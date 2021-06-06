@@ -1,47 +1,37 @@
 @extends('layouts.app')
-
+@section('page')
+<title>Восстановление пароля - LanGame</title>
+@endsection
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
+<!--SECTION PASSWORD RECOVERY PAGE START-->
+<section class="password_recovery_page_wrapper">
+    <div class="container">
+        <div class="password_recovery_content">
+            <div class="password_recovery_title">
+                Забыли пароль?
+            </div>
+            @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+            <div class="password_recovery_wrapper">
+                <form action="{{ route('password.email') }}" method="post" id="password-recovery-form">
+                @csrf
+                    <div class="forma">
+                        <div class="form-group">
+                            <label for="password-recovery-input">Email</label>
+                            <input id="password-recovery-input" name="email" type="email" value="{{ old('email') }}" placeholder="" required>
                         </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="btn_wrapper">
+                        <a href="{{url('login')}}" class="step_back">Назад</a>
+                        <button type="submit">Восстановление пароля</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</div>
+</section>
+<!--SECTION PASSWORD RECOVERY PAGE END-->
 @endsection

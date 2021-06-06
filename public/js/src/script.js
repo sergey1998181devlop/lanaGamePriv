@@ -10,10 +10,15 @@ jQuery(function() {
 
     jQuery('input[type="tel"]').inputmask({
         mask: '+7 (999) 999-99-99',
-
+        removeMaskOnSubmit: true,
         onincomplete: function() {
             this.value = '';
-        }
+        },
+        "oncomplete": function(){
+         if($(this).attr('id') == 'log-in-phone-input'){
+            $('#log-in-password-input').focus();
+         }           
+        } 
     });
 
     jQuery('input[type="number"]').on('input change', function(e) {

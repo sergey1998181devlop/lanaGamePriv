@@ -1,0 +1,142 @@
+.write-article-section {
+  width: 100%;padding: 20px;
+  background: #fff;
+  -webkit-border-radius: 5px;
+          border-radius: 5px;
+  -webkit-box-shadow: 0 4px 10px rgba(163, 166, 181, 0.18);
+          box-shadow: 0 4px 10px rgba(163, 166, 181, 0.18); }
+
+.write-article-header {
+  width: 100%;
+  min-height: 80px;
+  line-height: 80px;
+  padding: 0 40px;
+  position: relative;
+  border-bottom: 1px solid #f4f5fa; }
+  .write-article-header img {
+    margin-right: 10px; }
+  .write-article-header a {
+    font-size: 12px;
+    font-family: 'GeoM', sans-serif;
+    color: #3e4d8d;
+    text-decoration: none; }
+  .write-article-header p {
+    font-size: 12px;
+    color: #9d9ea7;
+    font-family: 'GeoM', sans-serif;
+    display: inline-block;
+    margin-left: 35px; }
+  .write-article-header .publish {
+    border: 1px solid #ddd;
+    position: absolute;
+    font-size: 11px;
+    height: 40px;
+    color: #3e4d8d;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 20px 30px;
+    line-height: 0;
+    right: 40px;
+    top: 20px;
+    -webkit-border-radius: 5px;
+            border-radius: 5px;
+    background: #fff;
+    -webkit-box-shadow: 0 4px 10px rgba(163, 166, 181, 0.18);
+            box-shadow: 0 4px 10px rgba(163, 166, 181, 0.18); }
+            .write-article-header .publish:hover{
+              background: #f1efef;
+            }
+
+.write-article-content {
+  padding: 10px; }
+  .write-article-content a.add-tag {
+    color: #b2b2b2;
+    text-decoration: none;
+    font-size: 15px;
+    font-family: 'GeoM', sans-serif;
+    margin-bottom: 30px;
+    display: inline-block; }
+    .write-article-content a.add-tag span {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      -webkit-border-radius: 10em;
+              border-radius: 10em;
+      -webkit-box-shadow: 0 4px 10px rgba(163, 166, 181, 0.18);
+              box-shadow: 0 4px 10px rgba(163, 166, 181, 0.18);
+      position: relative;
+      -webkit-transform: translate(12px, 5px);
+          -ms-transform: translate(12px, 5px);
+              transform: translate(12px, 5px); }
+      .write-article-content a.add-tag span::before, .write-article-content a.add-tag span::after {
+        position: absolute;
+        content: '';
+        width: 8px;
+        height: 2px;
+        background: #9d9ea7; }
+      .write-article-content a.add-tag span::before {
+        -webkit-transform: translate(8px, 11px);
+            -ms-transform: translate(8px, 11px);
+                transform: translate(8px, 11px); }
+      .write-article-content a.add-tag span::after {
+        -webkit-transform: rotate(90deg) translate(11px, -8px);
+            -ms-transform: rotate(90deg) translate(11px, -8px);
+                transform: rotate(90deg) translate(11px, -8px); }
+  .write-article-content input {
+    width: 100%;
+    display: block;
+    border: 1px solid #e5e6eb;
+    padding:5px 20px;
+    font-size: 20px;
+    font-family: 'GeoM', sans-serif;
+    outline: none;
+    color: #3f3f3f;
+    -webkit-transition: .35s;
+    -o-transition: .35s;
+    transition: .35s; }
+    .write-article-content input:focus {
+      border-color: #3f3f3f; }
+
+      .write-article-editor{
+        width: 100%;
+    padding: 0 10px;
+margin-top:10px;margin-bottom:10px;
+      }
+      .ck-editor__editable {
+        min-height: 200px;
+    }
+    input[type="file"] {
+      display: none;
+  }
+  .custom-file-upload {
+      border: 1px solid #bfbfbf;
+      display: inline-block;
+      padding: 2px 8px;
+      cursor: pointer;
+    background: #fbfbfb;
+      color: #333;
+      font-size: 13px;
+  }
+  .custom-file-upload:hover {background: #eaeaea;}
+
+  .fileContainer.notsel{  
+    text-align: center;
+    margin-top: 15px;
+    margin-left: 15px;
+  }
+  .fileContainer.notsel .custom-file-upload.upload-span{
+    display: block;
+    padding: 5px;
+    width: 150px;
+  }
+  .fileContainer .custom-file-upload .title{display: none}
+  .fileContainer.notsel .custom-file-upload .title{display: block}
+
+  .fileContainer.notsel .custom-file-upload .chng{display: none}
+
+  .fileContainer .custom-file-upload .up{display: none}
+  
+  .fileContainer.notsel .custom-file-upload .up{display: inline}
+
+  img{max-width: 100%;}
+.clear{clear: both;}

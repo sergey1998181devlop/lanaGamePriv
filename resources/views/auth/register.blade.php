@@ -1,8 +1,10 @@
 @extends('layouts.app')
-
+@section('page')
+<title>Регистрация - LanGame</title>
+@endsection
 @section('content')
 <!--SECTION ADD CLUB PAGE START-->
-<section class="add_club_page_start_wrapper" style="dыisplay:none">
+<section class="add_club_page_start_wrapper">
     <div class="container">
         <div class="add_club_page_start_content">
             <div class="add_club_page_title">
@@ -17,13 +19,14 @@
                 </p>
             </div>
             <div class="add_club_start_wrapper">
-                <form action="{{url('register/send_sms')}}" method="post" id="add-club-start-form">
+                <form action="{{url('register/send_sms')}}" class="add_club_start" method="post" id="add-club-start-form">
                 <input type="hidden" name="_token"  value="{{ csrf_token() }}">
 
                     <div class="forma">
                         <div class="form-group">
                             <label for="add-club-start-input">Номер телефона</label>
                             <input id="add-club-start-input" name="phone" type="tel" placeholder="+7 (___) ___-__-__" required>
+                            <div class="error"></div>
                         </div>
                         <div class="checkbox_wrapper">
                             <div class="checkbox_item">
@@ -36,12 +39,12 @@
                         </div>
                     </div>
                     <div class="btn_wrapper">
-                        <a href="/log_in.php" class="log_in">Уже есть аккаунт?</a>
+                        <a href="{{url('login')}}" class="log_in">Уже есть аккаунт?</a>
                         <button type="submit">Продолжить</button>
                     </div>
                 </form>
 
-                <form action="{{url('register/verify_sms')}}" method="post" id="add-club-code-confirm-form">
+                <form action="{{url('register/verify_sms')}}" method="post" class="add_class_confirm_code" id="add-club-code-confirm-form">
                 <input type="hidden" name="_token"  value="{{ csrf_token() }}">
                     <div class="forma">
                         <p>Введите код, отправленный на номер <span class="user_phone"></span></p>
@@ -64,7 +67,7 @@
 
 
 <!--SECTION PERSONAL PAGE START-->
-<section class="personal_page_wrapper" style="disp5lay:none" id="personal_info_register">
+<section class="personal_page_wrapper" style="display:none" id="personal_info_register">
     <div class="container-fluid">
         <div class="personal_page">
             <div class="personal_menu_wrapper">
@@ -93,7 +96,7 @@
             <div class="personal_main_content_wrapper">
                 <div class="user_profile_form_wrapper">
                     <div class="user_profile_title">Профиль</div>
-                    <form  method="post" id="user-profile-form" action="{{ route('register') }}">
+                    <form  method="post" action="{{ url('register/create') }}" class="user_profile">
                     @csrf
                     <input type="hidden" name="conf_code">
                         <div class="forma">
@@ -104,7 +107,8 @@
                             <div class="user_phone_wrapper">
                                 <div class="form-group required">
                                     <label for="user-phone-input">Мобильный телефон</label>
-                                    <input id="user-phone-input" name="phone" type="tel" placeholder="+7 (___) ___-__-__" disabled required>
+                                    <input id="user-phone-input" type="tel" placeholder="+7 (___) ___-__-__" disabled>
+                                    <input  name="phone" type="hidden">
                                 </div>
                             </div>
                             <div class="form-group required">

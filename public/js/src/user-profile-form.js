@@ -5,7 +5,7 @@ jQuery(function() {
         $codeWrapper = $form.find('.confirm_mobile_wrapper'),
         $codeDescription = $codeWrapper.find('.confirm_mobile_descr'),
         newPhoneNumber = null,
-        oldPhoneNumber = $form.find('input[name="phone"]').val();
+        oldPhoneNumber = $form.find('#oldPhone').val();
 
     if ($form.length === 0) {
         return;
@@ -15,21 +15,30 @@ jQuery(function() {
 
     $form.on('submit', function(e) {
         e.preventDefault();
-
+        $form.find('.forma .form-group').removeClass('error');
+        $form.find('.forma .error').remove();
         newPhoneNumber = $inputPhone.val();
 
-        if (newPhoneNumber !== oldPhoneNumber) {
+        if ($inputPhone.inputmask('unmaskedvalue') !== oldPhoneNumber) {
+            $form.find('.code_input_wrapper input').val('');
             jQuery.ajax({
                 type: 'POST',
-                url: '',
-                data: {phone: newPhoneNumber},
-                success: function() {
-                    jQuery('.user_profile_submit').addClass('disabled');
-                    $inputPhone.hide();
-                    $codeDescription.text(`Код отправлен на номер ${newPhoneNumber}`).removeClass('error');
-                    $codeWrapper.show();
-                    clearInterval(codeFormInterval);
-                    startCountDown();
+                url: $(this).attr('phone-action'),
+                data: {phone:  $inputPhone.inputmask('unmaskedvalue'),
+                    '_token':$form.find('[name="_token"]').val()
+                },
+                success: function(data) {
+                    if(data.status =='false'){
+                        jQuery('#user-profile-form').find('#user-phone-input').closest('.form-group').addClass('error').append('<div class="error">'+data.msg+'</div>');
+                    }else{
+                        jQuery('.user_profile_submit').addClass('disabled');
+                        $inputPhone.hide();
+                        $codeDescription.text(`Код отправлен на номер ${newPhoneNumber}`).removeClass('error');
+                        $codeWrapper.show();
+                        clearInterval(codeFormInterval);
+                        startCountDown();
+                    }
+                   
                 }
             });
         } else {
@@ -46,13 +55,17 @@ jQuery(function() {
 
         jQuery.ajax({
             type: 'POST',
-            url: '',
-            data: {code: $this.val()},
+            url: $form.attr('verify-action'),
+            data: {'confirm_code': $this.val(),
+                     'phone' : $inputPhone.inputmask('unmaskedvalue'),
+                '_token':$form.find('[name="_token"]').val()
+            },
             success: function(json) {
-                if (json.error) {
+                if (typeof json.error !== 'undefined') {
                     // ошибка
                     $codeDescription.text(json.error).addClass('error');
                 } else {
+                    oldPhoneNumber = $inputPhone.inputmask('unmaskedvalue');
                     // успех
                     submitForm();
                     $inputPhone.show();
@@ -66,12 +79,26 @@ jQuery(function() {
     });
 
     function submitForm() {
+        $form.find('.user_profile_submit').addClass('disabled');
         jQuery.ajax({
             type: 'POST',
-            url: '',
+            url:  $form.attr('action'),
             data: $form.serialize(),
-            success: function() {
-                jQuery('[data-remodal-id="success_modal"]').remodal().open();
+            success: function(data) {
+                if(data.status == 'false'){
+                   
+                }else{
+                    jQuery('.user_profile_submit').removeClass('disabled');
+                    jQuery('[data-remodal-id="success_modal"]').remodal().open();
+                }
+                
+            },
+            error:function(errors){
+                jQuery('.user_profile_submit').removeClass('disabled');
+                $.each(errors.responseJSON.errors, function(key, item) 
+                {
+                    $form.find('.form-group [name="'+key+'"]').closest('.form-group').addClass('error').append('<div class="error">'+item+'</div>');
+                });
             }
         });
     }

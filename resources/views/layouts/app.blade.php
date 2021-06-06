@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
+@yield('page')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Langame</title>
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
           integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="{{ asset('/fonts/PT/stylesheet.css') }}?v={{ENV('CSS_VERSION',0)}}">
     <link rel="stylesheet" href="{{ asset('/css/layout.css') }}?v={{ENV('CSS_VERSION',0)}}">
 </head>
+
 <body>
 <div class="svg_icons">
     <svg id="icon-svg-account" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -79,22 +80,32 @@
                         <h4>Личный кабинет</h4>
                         <ul class="personal_menu">
                             <li>
-                                <a href="/personal/personal_profile.php">Профиль</a>
+                                <a href="{{url('personal/profile')}}">Профиль</a>
                             </li>
                             <li>
-                                <a href="/personal/personal_club_list.php">Список клубов</a>
+                                <a href="{{url('personal/clubs')}}">Список клубов</a>
                             </li>
                             <li>
-                                <a href="#" class="exit">Выйти</a>
+                                <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" class="exit" class="exit">Выйти</a>
                             </li>
                         </ul>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
                     </div>
                     <ul class="main_menu">
                         <li>
-                            <a href="{{url('register')}}">Добавить клуб</a>
+                        @if (Auth::guest())
+                        <a href="{{url('register')}}">Добавить клуб</a>
+                        @else
+                            <a href="{{url('personal/clubs')}}?action=add_club">Добавить клуб</a>
+                        @endif
                         </li>
                         <li>
-                            <a href="/contacts.php">Контакты</a>
+                            <a href="{{url('contacts')}}">Контакты</a>
                         </li>
                     </ul>
                     <div class="mob_menu_item">
@@ -103,24 +114,24 @@
                                 <a href="{{url('register')}}">Как попасть на LanGame</a>
                             </li>
                             <li>
-                                <a href="/langame_software.php">LanGame Software</a>
+                                <a href="{{url('langame-software')}}">LanGame Software</a>
                             </li>
                         </ul>
                     </div>
                     <div class="mob_menu_item">
                         <ul>
                             <li>
-                                <a href="#">О сервисе</a>
+                                <a href="{{url('about-us')}}">О сервисе</a>
                             </li>
                         </ul>
                     </div>
                     <div class="mob_menu_item">
                         <ul>
                             <li>
-                                <a href="/privacy_policy.php">Политика конфиденциальности</a>
+                                <a href="{{url('privacy_policy')}}">Политика конфиденциальности</a>
                             </li>
                             <li>
-                                <a href="/terms_of_use.php">Пользовательское соглашение</a>
+                                <a href="{{url('terms_of_use')}}">Пользовательское соглашение</a>
                             </li>
                         </ul>
                         <div class="rights_wrapper">
@@ -151,10 +162,10 @@
                         <h4>Игрокам</h4>
                         <ul>
                             <li>
-                                <a href="#">О сервисе</a>
+                                <a href="{{url('about-us')}}">О сервисе</a>
                             </li>
                             <li>
-                                <a href="/contacts.php">Обратная связь</a>
+                                <a href="{{url('contacts')}}">Обратная связь</a>
                             </li>
                         </ul>
                     </div>
@@ -162,13 +173,13 @@
                         <h4>Владельцам клубов</h4>
                         <ul>
                             <li>
-                                <a href="/personal/personal_club_list.php">Личный кабинет владельца</a>
+                                <a href="{{url('personal/clubs')}}">Личный кабинет владельца</a>
                             </li>
                             <li>
-                                <a href="/add_club.php">Как попасть на Langame</a>
+                                <a href="{{url('personal/clubs')}}?action=add_club">Как попасть на Langame</a>
                             </li>
                             <li>
-                                <a href="/langame_software.php">Langame Software</a>
+                                <a href="{{url('langame-software')}}">Langame Software</a>
                             </li>
                         </ul>
                     </div>
@@ -180,8 +191,8 @@
                 <p>© ООО «Лангейм», 2021</p>
             </div>
             <div class="footer_site_info">
-                <a href="/privacy_policy.php">Политика конфиденциальности</a>
-                <a href="/terms_of_use.php">Пользовательское соглашение</a>
+                <a href="{{url('privacy_policy')}}">Политика конфиденциальности</a>
+                <a href="{{url('terms_of_use')}}">Пользовательское соглашение</a>
             </div>
         </div>
     </div>
@@ -219,7 +230,7 @@
     <script src="{{ asset('/js/main.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
 
 
-    
+    @yield('scripts')
     
 
 </body>

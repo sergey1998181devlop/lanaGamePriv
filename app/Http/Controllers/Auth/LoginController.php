@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
+    protected $redirectTo = '/';
     /*
     |--------------------------------------------------------------------------
     | Login Controller
@@ -26,8 +27,15 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
-
+    // protected $redirectTo = RouteServiceProvider::HOME;
+    public function username()
+    {
+        return 'phone';
+    }
+    // protected function guard()
+    // {
+    //     return Auth::guard('phone');
+    // }
     /**
      * Create a new controller instance.
      *

@@ -1963,13 +1963,14 @@ section.personal_page_wrapper {
                     color: #000000;
                 }
 
-                #user-profile-form {
+                .user_profile {
                     width: 670px;
 
                     .forma {
                         margin-bottom: 32px;
 
                         .form-group {
+                            position: relative;
                             display: flex;
                             flex-direction: row;
                             justify-content: space-between;
@@ -2212,6 +2213,24 @@ section.personal_page_wrapper {
                                     }
                                 }
                             }
+
+                            .error{
+                                position: absolute;
+                                left: 0;
+                                top: 100%;
+                                display: block;
+                                font-style: normal;
+                                font-weight: 500;
+                                font-size: 18px;
+                                line-height: 1;
+                                color: rgba(220, 0, 0, 0.6);
+                            }
+
+                            &.error{
+                                input{
+                                    border: 2px solid rgba(220, 0, 0, 0.6);
+                                }
+                            }
                         }
                     }
 
@@ -2445,7 +2464,7 @@ section.personal_page_wrapper {
                         display: block;
                     }
 
-                    #user-profile-form {
+                    .user_profile {
                         width: 100%;
 
                         .forma {
@@ -2622,7 +2641,7 @@ section.personal_page_wrapper {
         .personal_page {
             .personal_main_content_wrapper {
                 .user_profile_form_wrapper {
-                    #user-profile-form {
+                    .user_profile {
                         .forma {
                             .form-group {
                                 .confirm_mobile_wrapper {
@@ -4442,6 +4461,7 @@ section.log_in_page_wrapper {
                     margin-bottom: 46px;
 
                     .form-group {
+                        position: relative;
                         display: flex;
                         flex-direction: row;
                         justify-content: space-between;
@@ -4514,6 +4534,24 @@ section.log_in_page_wrapper {
                                     height: 3px;
                                     color: #dc0000;
                                 }
+                            }
+                        }
+
+                        .error{
+                            position: absolute;
+                            left: 0;
+                            top: 100%;
+                            display: block;
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 18px;
+                            line-height: 1;
+                            color: rgba(220, 0, 0, 0.6);
+                        }
+
+                        &.error{
+                            input{
+                                border: 2px solid rgba(220, 0, 0, 0.6);
                             }
                         }
                     }
@@ -4669,6 +4707,7 @@ section.password_recovery_page_wrapper {
                     margin-bottom: 46px;
 
                     .form-group {
+                        position: relative;
                         display: flex;
                         flex-direction: row;
                         justify-content: space-between;
@@ -4703,7 +4742,6 @@ section.password_recovery_page_wrapper {
                             }
                         }
 
-
                         &.required {
                             label {
                                 position: relative;
@@ -4718,6 +4756,24 @@ section.password_recovery_page_wrapper {
                                     height: 3px;
                                     color: #dc0000;
                                 }
+                            }
+                        }
+
+                        .error{
+                            position: absolute;
+                            left: 0;
+                            top: 100%;
+                            display: block;
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 18px;
+                            line-height: 1;
+                            color: rgba(220, 0, 0, 0.6);
+                        }
+
+                        &.error{
+                            input{
+                                border: 2px solid rgba(220, 0, 0, 0.6);
                             }
                         }
                     }
@@ -4867,13 +4923,14 @@ section.add_club_page_start_wrapper {
         }
 
         .add_club_start_wrapper {
-            #add-club-start-form {
+            .add_club_start {
                 width: 100%;
 
                 .forma {
                     margin-bottom: 46px;
 
                     .form-group {
+                        position: relative;
                         display: flex;
                         flex-direction: row;
                         justify-content: space-between;
@@ -4922,6 +4979,24 @@ section.add_club_page_start_wrapper {
                                     height: 3px;
                                     color: #dc0000;
                                 }
+                            }
+                        }
+
+                        .error{
+                            position: absolute;
+                            right: 0;
+                            top: 100%;
+                            display: block;
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 18px;
+                            line-height: 1;
+                            color: rgba(220, 0, 0, 0.6);
+                        }
+
+                        &.error{
+                            input{
+                                border: 2px solid rgba(220, 0, 0, 0.6);
                             }
                         }
                     }
@@ -5027,7 +5102,7 @@ section.add_club_page_start_wrapper {
                 }
             }
 
-            #add-club-code-confirm-form {
+            .add_class_confirm_code {
                 display: none;
                 width: 100%;
 
@@ -5175,7 +5250,7 @@ section.add_club_page_start_wrapper {
             }
 
             .add_club_start_wrapper {
-                #add-club-start-form {
+                .add_club_start {
                     width: 100%;
 
                     .forma {
@@ -5225,7 +5300,7 @@ section.add_club_page_start_wrapper {
                     }
                 }
 
-                #add-club-code-confirm-form {
+                .add_class_confirm_code {
                     display: none;
                     width: 100%;
 
@@ -5309,7 +5384,7 @@ section.add_club_page_start_wrapper {
     @media (max-width: 400px) {
         .add_club_page_start_content {
             .add_club_start_wrapper {
-                #add-club-start-form {
+                .add_club_start {
                     .btn_wrapper {
                         display: block;
 

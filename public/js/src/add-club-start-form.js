@@ -24,13 +24,31 @@ jQuery(function() {
                 'phone' : $('#add-club-start-input').inputmask('unmaskedvalue'),
                 '_token':$('#add-club-start-form [name="_token"]').val()
             },
-            success: function() {
-                $firstForm.hide();
-                $secondForm.find('.user_phone').text(phoneNumber);
-                $secondForm.show();
-                clearInterval(codeFormInterval);
-                startCountDown();
+            success: function(data) {
+                if(data.status== 'false' ){
+                    $firstForm.find('.forma .form-group').addClass('error');
+                    $firstForm.find('.forma .form-group .error').text(data.msg);
+                }else{
+                    $firstForm.find('.forma .form-group.error').removeClass('error');
+                    $firstForm.find('.forma .form-group .error').text('');
+                    $firstForm.hide();
+                    $secondForm.find('.user_phone').text(phoneNumber);
+                    $secondForm.show();
+                    clearInterval(codeFormInterval);
+                    startCountDown();
+                }
+               
+            },
+            error: function (errors) {
+                $firstForm.find('.forma .form-group').addClass('error');
+                $.each(errors.responseJSON.errors, function(key, item) 
+                {
+                    $firstForm.find('.forma .form-group [name="'+key+'"]').closest('.form-group').find('.error').text(item)
+            
+                });
+                
             }
+
         });
     });
 
@@ -58,7 +76,8 @@ jQuery(function() {
 
                 } else {
                     $lastForm.find('#user-phone-input').val($('#add-club-start-input').inputmask('unmaskedvalue'));
-                    $lastForm.find('[name="code"]').val(confirm_code);
+                    $lastForm.find('[name="phone"]').val($('#add-club-start-input').inputmask('unmaskedvalue'));
+                    $lastForm.find('[name="conf_code"]').val(confirm_code);
                     $('.add_club_page_start_wrapper').hide();
                     $lastForm.show();
                     // успех
@@ -67,25 +86,33 @@ jQuery(function() {
             }
         });
     });
-    // $lastForm.find('form').on('submit', function(e) {
-    //     e.preventDefault();
-    //     jQuery.ajax({
-    //         type: 'POST',
-    //         url: $(this).attr('action'),
-    //         data:$lastForm.find('form').serialize(),
-    //         success: function(json) {
-    //             if (json.errors) {
-    //                 // ошибка
-    //                 jQuery('.code_wrapper .error').text(json.error);
+    $lastForm.find('form').on('submit', function(e) {
+        e.preventDefault();
+        $lastForm.find('.forma .form-group').removeClass('error');
+        $lastForm.find('.forma .error').remove();
+        jQuery.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data:$lastForm.find('form').serialize(),
+            success: function(json) {
+                if (typeof json.errors !== 'undefined') {
+                    // ошибка
+                    jQuery('.code_wrapper .error').text(json.error);
 
-    //             } else {
-    //                 alert('success');
-    //                 // успех
-    //                 // location.href = '/';
-    //             }
-    //         }
-    //     });
-    // })
+                } else {
+                    // успех
+                    location.href = '/personal/clubs?action=add_club';
+                }
+            },
+            error: function (errors) {
+                $.each(errors.responseJSON.errors, function(key, item) 
+                {
+                    $lastForm.find('.forma .form-group [name="'+key+'"]').closest('.form-group').addClass('error').append('<div class="error">'+item+'</div>');
+                });
+                
+            }
+        });
+    })
 
     $step_back.on('click', function(e) {
         $secondForm.trigger('reset');

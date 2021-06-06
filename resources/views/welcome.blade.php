@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('page')
+<title>LanGame</title>
+@endsection
 @section('content')
 
 <!--SECTION CHOOSE CLUB INFO START-->
@@ -630,73 +632,41 @@
     </div>
 </section>
 <!--SECTION SEARCH CLUB END-->
-
+@if(isset( $posts) && count($posts)>0)
 <!--SECTION ARTICLES START-->
 <section class="articles_wrapper">
     <div class="container">
         <h2>Статьи</h2>
         <div class="articles">
             <div class="articles_list">
-                <div class="articles_item">
-                    <a href="article_page.php">
+            @foreach($posts as $post)
+          
+          <div class="articles_item">
+                    <a href="{{url('post/read/'.$post->id.'/'.$post->url)}}">
                         <div class="article_img_wrapper">
-                            <img src="{{ asset('/img/club6.png')}}" alt="club">
+                            <img src="{{url('../storage/app/public/posts/'.$post->image)}}" alt="club">
                         </div>
                         <div class="article_content_wrapper">
                             <div class="article_title">
-                                Как выбрать компьютерный клуб?
+                            {{$post->name}}
                             </div>
                             <div class="article_descr">
-                                Мощная аппаратура, тянет все игры, часто
-                                бываю здесь и один, и Мощная аппаратура,
-                                тянет все игры, часто бываю ddfdfdff
-                                fdfdfdf dfd fdfdf dfdfdfd dfdfdfdf dfdf
-                                dfdffd dfdfdfd dffdfd  dfdfdf dfdfd dfdf
+                            {{ \Illuminate\Support\Str::limit(strip_tags($post->about),150, '...')}}
                             </div>
                             <p>Читать дальше</p>
                         </div>
                     </a>
                 </div>
-                <div class="articles_item">
-                    <a href="article_page.php">
-                        <div class="article_img_wrapper">
-                            <img src="{{ asset('/img/club6.png')}}" alt="club">
-                        </div>
-                        <div class="article_content_wrapper">
-                            <div class="article_title">
-                                Как создать команду Counter-Strike?
-                            </div>
-                            <div class="article_descr">
-                                Мощная аппаратура, тянет все игры, часто
-                                бываю здесь и один, и Мощная аппаратура,
-                                тянет все игры, часто бываю...
-                            </div>
-                            <p>Читать дальше</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="articles_item">
-                    <a href="article_page.php">
-                        <div class="article_img_wrapper">
-                            <img src="{{ asset('/img/club6.png')}}" alt="club">
-                        </div>
-                        <div class="article_content_wrapper">
-                            <div class="article_title">
-                                Бизнес план компьютерного клуба
-                            </div>
-                            <div class="article_descr">
-                                Мощная аппаратура, тянет все игры, часто
-                                бываю здесь и один, и Мощная аппаратура,
-                                тянет все игры, часто бываю...
-                            </div>
-                            <p>Читать дальше</p>
-                        </div>
-                    </a>
-                </div>
+        @endforeach
+                
+               
             </div>
-            <a href="/articles.php" class="show_more">Смотреть все</a>
+            @if(isset( $postsCount) && $postsCount>3)
+                <a href="{{url('posts')}}" class="show_more">Смотреть все</a>
+            @endif
         </div>
     </div>
 </section>
 <!--SECTION ARTICLES END-->
+@endif
 @endsection
