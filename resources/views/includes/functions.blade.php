@@ -11,6 +11,13 @@
 //     return '';
        
 // }
+
+function admin($rules = 1){
+ if(Auth::check()){
+     if(Auth::user()->rules >= $rules )return true;
+ }
+ return false;
+}
 function notReq($input){
     if(empty($input) || !isset($input)){
         return $input='';

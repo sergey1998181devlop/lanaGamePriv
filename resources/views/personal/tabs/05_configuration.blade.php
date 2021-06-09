@@ -39,6 +39,10 @@ declare(strict_types=1);
                             <select id="cpu-vendor-0" name="configuration[0][cpu_vendor]" data-placeholder="Фирма" required>
                                 <option value=""></option>
                                 <option value="1">Фирма</option>
+                                <option value="2">Logitech</option>
+                                <option value="3">DxRacer</option>
+                                <option value="4">Nvidia</option>
+
                             </select>
                             <div class="error"></div>
                         </div>

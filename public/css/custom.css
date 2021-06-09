@@ -1,0 +1,16 @@
+.pointer{
+    cursor: pointer;
+}
+.btn {
+    line-height: 30px;border-radius: 12px;text-align: center;    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;text-decoration: none;    padding: 10px;
+}
+.btn-danger{
+    background-color: #dc0000;
+    color: #fff;
+}
+.btn-primary{
+    background-color: #00caff;
+    color: #fff;
+}

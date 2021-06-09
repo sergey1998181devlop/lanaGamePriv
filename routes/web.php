@@ -24,16 +24,24 @@ Route::post('/register/create', 'Auth\registerController@create');
 // Route::get('/home', 'HomeController@index')->name('home');
 
 // личный кабинет
-Route::get('personal/clubs', 'personalController@clubs');
+
 Route::get('personal/profile', 'personalController@profile');
 Route::post('profile/sendSMS', 'personalController@sendSMS');
 Route::post('profile/verify', 'personalController@verifySMS');
 Route::post('profile/update', 'personalController@update');
-
+Route::get('personal/clubs', 'clubsController@clubs');
 
 // посты
 Route::get('post/read/{id}/{url}','postsController@post');
 Route::get('posts','postsController@allposts');
+
+// клубы
+
+Route::post('clubs/add', 'clubsController@addClub');
+Route::post('clubs/add-draft', 'clubsController@addDraftClub');
+Route::post('clubs/add-list','clubsController@savePriceList' );
+Route::post('clubs/add-image','clubsController@saveImage' );
+
 
 // прочие страницы
 Route::get('/langame-software', function () {
@@ -75,9 +83,13 @@ Route::get('post/new',function(){
     return view('admin.posts.add');
 })->middleware('rule:1');
 
+// посты
 Route::post('post/create','panel\postsController@store' );
 Route::get('post/edit/{id}','panel\postsController@postToUpdste');
 Route::post('post/update/{id}','panel\postsController@update');
 Route::post('post/saveImage','panel\postsController@saveImage' );
 Route::post('post/delete/{id}','panel\postsController@delete' );
 Route::post('post/edit/saveImage','panel\postsController@saveImage' );
+
+// клубы
+Route::get('panel/clubs/new-clubs','panel\clubsController@new_clubs');

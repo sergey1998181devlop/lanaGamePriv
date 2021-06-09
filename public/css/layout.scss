@@ -5838,7 +5838,7 @@ section.langame_software_wrapper {
         }
 
         .remodal-content {
-            #add-club-form {
+            form {
                 width: 670px;
                 margin: 0 auto;
 
@@ -6054,7 +6054,13 @@ section.langame_software_wrapper {
                                         display: block;
                                         width: 100%;
                                         text-align: center;
-                                        color: rgba(220, 0, 0, 0.4);
+                                        color: #f19999;
+                                        background-color: #ffffff;
+
+                                        &:empty{
+                                            opacity: 0;
+                                            pointer-events: none;
+                                        }
                                     }
 
                                     .work_time_select {
@@ -6176,14 +6182,21 @@ section.langame_software_wrapper {
                                     .select2-container {
                                         .select2-dropdown {
                                             border: none;
+                                            box-shadow: 0 0 27px rgba(0, 2, 4, 0.09);
+                                            background-color: #ffffff;
+                                            padding: 15px 10px;
+                                            margin-top: 0;
+                                            border-radius: 12px;
+
+                                            .select2-search__field{
+                                                width: 100%;
+                                                height: 37px;
+                                                text-align: left;
+                                                font-size: 16px;
+                                                padding: 4px 8px;
+                                            }
 
                                             .select2-results {
-                                                box-shadow: 0 0 27px rgba(0, 2, 4, 0.09);
-                                                background-color: #ffffff;
-                                                padding: 15px 10px;
-                                                margin-top: 0;
-                                                border-radius: 12px;
-
                                                 .select2-results__option {
                                                     font-size: 18px;
                                                     line-height: 20px;
@@ -6316,7 +6329,13 @@ section.langame_software_wrapper {
                                     display: block;
                                     width: 100%;
                                     text-align: left;
-                                    color: rgba(220, 0, 0, 0.4);
+                                    color: #f19999;
+                                    background-color: #ffffff;
+
+                                    &:empty{
+                                        opacity: 0;
+                                        pointer-events: none;
+                                    }
                                 }
                             }
 
@@ -6943,7 +6962,13 @@ section.langame_software_wrapper {
                                     display: block;
                                     width: 100%;
                                     text-align: left;
-                                    color: rgba(220, 0, 0, 0.4);
+                                    color: #f19999;
+                                    background-color: #ffffff;
+
+                                    &:empty{
+                                        opacity: 0;
+                                        pointer-events: none;
+                                    }
                                 }
                             }
 
@@ -7146,7 +7171,13 @@ section.langame_software_wrapper {
                                             display: block;
                                             width: 100%;
                                             text-align: center;
-                                            color: rgba(220, 0, 0, 0.4);
+                                            color: #f19999;
+                                            background-color: #ffffff;
+
+                                            &:empty{
+                                                opacity: 0;
+                                                pointer-events: none;
+                                            }
                                         }
 
                                         .work_time_select {
@@ -8006,4 +8037,3 @@ section.langame_software_wrapper {
     }
 }
 /*! FOOTER END */
-

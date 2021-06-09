@@ -31,7 +31,7 @@ $action=$page == 'addnew' ? url('post/create') : url('post/update').'/'.$post->i
                                 <div class="write-article-editor image-section" style="width: 50%;float: left;">
                                     <div id="result-img" class="text-center">
                                    @if(isset($post->image))  
-                                        <img class="img-responsive imgLink" style="max-width:100%" alt="Image three" src="{{url('storage/app/public/posts').'/'.$post->image}}">
+                                        <img class="img-responsive imgLink" style="max-width:100%" alt="Image three" src="{{url('../storage/app/public/posts').'/'.$post->image}}">
                                    @endif
                                     </div>
                                     <label class="fileContainer notsel">

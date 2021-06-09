@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller; 
 
 use App\post;
-// include_once(resource_path('views/includes/functions.blade.php')); 
+include_once(resource_path('views/includes/functions.blade.php')); 
 class postsController extends Controller
 {
     public function post($id,$url){

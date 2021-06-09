@@ -34,7 +34,6 @@
         </div>
         <div class="sidebar-brand-text mx-3">LanGame</div>
       </a>
-
       <!-- Divider -->
       <!-- <hr class="sidebar-divider my-0"> -->
       <li class="nav-item">
@@ -49,13 +48,20 @@
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Панель</span></a>
       </li>
-       <!-- Nav Item - Dashboard -->
-      <li class="nav-item <?php if($page=="orders") echo 'active'; ?>">
-        <a class="nav-link" href="{{url('/panel/orders')}}">
-        <i class="fab fa-amazon-pay"></i>
-          <span>Заказы</span></a>
+  
+      <li class="nav-item">
+          <a class="nav-link <?php if($page!="clubs" && $page!="changed-clubs") echo 'collapsed'; ?> " data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              <i class="fas fa-fw fa-cog"></i>
+              <span>Клубы</span>
+          </a>
+        
+          <div id="collapseTwo" class="collapse <?=($page=="clubs" || $page=="changed-clubs")? ' show': null ?> collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
+              <div class="bg-white py-2 collapse-inner rounded">
+                  <a class="collapse-item<?=($page=="clubs")? ' active': null ?>" href="{{url('/panel/clubs/new-clubs')}}">Новые заявки</a>
+                  <a class="collapse-item<?=($page=="changed-clubs")? ' active': null ?>" href="{{url('/panel/clubs/changed-clubs')}}">Лог изменения</a>
+              </div>
+          </div>
       </li>
-
 
       <li class="nav-item <?php if($page=="addPost") echo 'active'; ?>">
         <a class="nav-link" href="{{url('post/new')}}">
@@ -68,18 +74,7 @@
           <i class="fas fa-users"></i>
           <span>Пользователи</span></a>
       </li>
-
-      
-      <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
- <!-- Nav Item - Tables -->
- <li class="nav-item <?php if($page=="settings") echo 'active'; ?>">
-        <a class="nav-link" href="{{url('panel/settings')}}">
-        <i class="fas fa-cogs"></i>
-          <span>Настройки</span></a>
-      </li>
-
-  
+    
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>

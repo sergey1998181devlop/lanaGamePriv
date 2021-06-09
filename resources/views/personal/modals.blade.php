@@ -3,13 +3,13 @@
 <div class="person_add_club_modal" data-remodal-id="add_club_modal">
     <button data-remodal-action="close" class="remodal-close">Закрыть</button>
     <div class="remodal-content">
-        <form action="" method="post" id="add-club-form">
+        <form action="{{url('clubs/add')}}" draft-action="{{url('clubs/add-draft')}}" list-action="{{url('clubs/add-list')}}" image-action="{{url('clubs/add-image')}}" method="post" id="add-club-form">
+        {{ csrf_field() }}
             <div class="forma">
                 <div class="form_tab_wrapper">
                     <div class="form_tab form_tab_01_common_info">
                         @include("personal.tabs.01_common_info")
                     </div>
-
                     <div class="form_tab form_tab_02_basic_services">
                     @include("personal.tabs.02_basic_services")
                     </div>
@@ -58,57 +58,5 @@
     </div>
 </div>
 
-<div class="club_page_modals_wrapper"></div>
-<div class="show_club_price_list_modal" data-remodal-id="club_price_list_modal">
-    <button data-remodal-action="close" class="remodal-close">Закрыть</button>
-    <div class="remodal-content">
-        <div class="club_price_list_wrapper">
-            <img src="{{asset('/img/club_prices.png')}}" alt="price_list">
-        </div>
-    </div>
-</div>
 
-<div class="show_club_photo_modal" data-remodal-id="club_photo_modal">
-    <button data-remodal-action="close" class="remodal-close">Закрыть</button>
-    <div class="remodal-content">
-        <div class="counter_slide" id="show_club_photo_counter_slide">
-            1/10
-        </div>
-        <div class="club_photo_modal_wrapper">
-            <div class="slide_item">
-                <img src="{{asset('/img/slider.png')}}" alt="club_image">
-            </div>
-            <div class="slide_item">
-                <img src="{{asset('/img/slider.png')}}" alt="club_image">
-            </div>
-            <div class="slide_item">
-                <img src="{{asset('/img/slider.png')}}" alt="club_image">
-            </div>
-            <div class="slide_item">
-                <img src="{{asset('/img/slider.png')}}" alt="club_image">
-            </div>
-            <div class="slide_item">
-                <img src="{{asset('/img/slider.png')}}" alt="club_image">
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="remodal show_club_phone_modal" data-remodal-id="club_phone_modal">
-    <button data-remodal-action="close" class="remodal-close"></button>
-    <div class="remodal-content">
-        <div class="club_phone_wrapper">
-            <p>+7 (495)874-99-00</p>
-        </div>
-    </div>
-</div>
-
-<div class="remodal success_modal" data-remodal-id="success_modal" data-remodal-options="hashTracking: false">
-    <button data-remodal-action="close" class="remodal-close"></button>
-    <div class="remodal-content">
-        <div class="club_phone_wrapper">
-        <p class="title">Успешно!</p>
-        </div>
-    </div>
-</div>
 <!--MODALS END-->

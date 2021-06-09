@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+include_once(resource_path('views/includes/functions.blade.php')); 
 class LoginController extends Controller
 {
     protected $redirectTo = '/';

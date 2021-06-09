@@ -13,6 +13,7 @@ use Carbon;
 use App\sms_code;
 use App\Jobs\SMSRU;
 use Auth;
+include_once(resource_path('views/includes/functions.blade.php')); 
 class RegisterController extends Controller
 {
     protected $redirectTo = 'personal/clubs?action=add_club';

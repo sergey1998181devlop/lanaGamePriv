@@ -44,7 +44,7 @@ declare(strict_types=1);
     <label for="select-subway">Метро</label>
     <div class="input_wrapper">
         <div class="select2_wrapper">
-            <select id="select-subway" name="club_city" data-placeholder="Выберите метро">
+            <select id="select-subway" name="club_metro" data-placeholder="Выберите метро">
                 <option value=""></option>
                 <option value="1">Не указан</option>
                 <option value="2">Сокол</option>

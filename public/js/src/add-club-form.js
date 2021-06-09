@@ -15,7 +15,7 @@ jQuery(function() {
         return;
     }
 
-    $form.formWizard({
+    let formWizard = $form.formWizard({
         inputWrapperSelector: '.form-group',
         inputErrorSelector: '.error',
         submitButtonSelector: '[type="submit"]',
@@ -25,6 +25,13 @@ jQuery(function() {
         nextButtonText: 'Продолжить',
         tabSelector: '.form_tab'
     });
+    $form.on('keydown', 'input', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+
+            formWizard.goToNextTab();
+        }
+    });
 
     $form.on('show-tab', function(e, tabIndex) {
         jQuery('.person_add_club_modal_wrapper .remodal-wrapper').stop().animate({scrollTop: 0}, 300);
@@ -33,7 +40,7 @@ jQuery(function() {
     $save_draft.on('click', function(e) {
         jQuery.ajax({
             type: 'POST',
-            url: '',
+            url: $form.attr('draft-action'),
             data: $form.serialize(),
             success: function() {
                 jQuery('[data-remodal-id="success_modal"]').remodal().open();
@@ -46,7 +53,7 @@ jQuery(function() {
 
         jQuery.ajax({
             type: 'POST',
-            url: '',
+            url: $form.attr('action'),
             data: $form.serialize(),
             success: function() {
                 jQuery('[data-remodal-id="success_modal"]').remodal().open();
@@ -61,7 +68,7 @@ jQuery(function() {
             return;
         }
 
-        upload_file(this.files[0]).then(data => {
+        upload_file(this.files[0],'price_list').then(data => {
             $club_price_hidden_input.val(data);
             $club_price_file_text.text('Файл загружен');
         });
@@ -69,7 +76,7 @@ jQuery(function() {
 
     //upload photo gallery
     (() => {
-        let files = $club_photo_hidden_input.val().split(':').filter(x => !!x),
+        let files = $club_photo_hidden_input.val().split(',').filter(x => !!x),
             main_file = $main_preview_photo_hidden_input.val();
 
         $club_photo_file_input.on('change', function() {
@@ -82,7 +89,7 @@ jQuery(function() {
 
                 ++current_gallery_image_count;
 
-                upload_file(file).then((data) => {
+                upload_file(file,'image').then((data) => {
                     addFile(data);
                 });
             }
@@ -161,14 +168,19 @@ jQuery(function() {
         }
     })();
 
-    function upload_file(file) {
+    function upload_file(file,type) {
         return new Promise((resolve, reject) => {
             let formData = new FormData();
-
+            if(type == 'price_list'){
+                var url = $form.attr('list-action');
+            }else{
+                var url = $form.attr('image-action');
+            }
             formData.append('file', file, file.name);
-
+            formData.append('_token',$('[name="_token"]').val());
+                 
             jQuery.ajax({
-                url: '/upload.php',
+                url: url,
                 method: 'post',
                 data: formData,
                 processData: false,

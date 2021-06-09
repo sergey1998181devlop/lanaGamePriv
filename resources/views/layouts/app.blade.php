@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="{{ asset('/fonts/stylesheet.css') }}?v={{ENV('CSS_VERSION',0)}}">
     <link rel="stylesheet" href="{{ asset('/fonts/PT/stylesheet.css') }}?v={{ENV('CSS_VERSION',0)}}">
     <link rel="stylesheet" href="{{ asset('/css/layout.css') }}?v={{ENV('CSS_VERSION',0)}}">
+    <link rel="stylesheet" href="{{ asset('/css/custom.css') }}?v={{ENV('CSS_VERSION',0)}}">
 </head>
 
 <body>
@@ -76,6 +77,7 @@
                 </a>
                 <div class="header_menu">
                     <div class="decor"></div>
+                    @if(!Auth::guest())
                     <div class="mob_menu_item">
                         <h4>Личный кабинет</h4>
                         <ul class="personal_menu">
@@ -96,20 +98,29 @@
                             {{ csrf_field() }}
                         </form>
                     </div>
+                    @endif
+                    
                     <ul class="main_menu">
-                        <li>
-                        @if (Auth::guest())
-                        <a href="{{url('register')}}">Добавить клуб</a>
-                        @else
-                            <a href="{{url('personal/clubs')}}?action=add_club">Добавить клуб</a>
-                        @endif
+                      @if(admin())
+                      <li> 
+                        <a href="<?=url('panel')?>">Панель</a>
+                        </li>
+                      @endif
+                        <li> 
+                        <a href="<?= Auth::guest() ? url('register') : url('personal/clubs') ?>">Добавить клуб</a>
                         </li>
                         <li>
                             <a href="{{url('contacts')}}">Контакты</a>
                         </li>
                     </ul>
                     <div class="mob_menu_item">
+                       
                         <ul>
+                            @if(Auth::guest())
+                                <li> 
+                                    <a href="<?=url('personal/clubs')?>">Личный кабинет</a>
+                                </li>
+                            @endif
                             <li>
                                 <a href="{{url('register')}}">Как попасть на LanGame</a>
                             </li>
@@ -145,6 +156,64 @@
 </header>
 <!--HEADER END-->
 @yield('content')
+<!-- MODALS -->
+
+<div class="remodal success_modal" data-remodal-id="success_modal" data-remodal-options="hashTracking: false">
+    <button data-remodal-action="close" class="remodal-close"></button>
+    <div class="remodal-content">
+        <div class="club_phone_wrapper">
+        <p class="title">Успешно!</p>
+        </div>
+    </div>
+</div>
+
+
+<div class="club_page_modals_wrapper"></div>
+<div class="show_club_price_list_modal" data-remodal-id="club_price_list_modal">
+    <button data-remodal-action="close" class="remodal-close">Закрыть</button>
+    <div class="remodal-content">
+        <div class="club_price_list_wrapper">
+            <img src="{{asset('/img/club_prices.png')}}" alt="price_list">
+        </div>
+    </div>
+</div>
+
+<div class="show_club_photo_modal" data-remodal-id="club_photo_modal">
+    <button data-remodal-action="close" class="remodal-close">Закрыть</button>
+    <div class="remodal-content">
+        <div class="counter_slide" id="show_club_photo_counter_slide">
+            1/10
+        </div>
+        <div class="club_photo_modal_wrapper">
+            <div class="slide_item">
+                <img src="{{asset('/img/slider.png')}}" alt="club_image">
+            </div>
+            <div class="slide_item">
+                <img src="{{asset('/img/slider.png')}}" alt="club_image">
+            </div>
+            <div class="slide_item">
+                <img src="{{asset('/img/slider.png')}}" alt="club_image">
+            </div>
+            <div class="slide_item">
+                <img src="{{asset('/img/slider.png')}}" alt="club_image">
+            </div>
+            <div class="slide_item">
+                <img src="{{asset('/img/slider.png')}}" alt="club_image">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="remodal show_club_phone_modal" data-remodal-id="club_phone_modal">
+    <button data-remodal-action="close" class="remodal-close"></button>
+    <div class="remodal-content">
+        <div class="club_phone_wrapper">
+            <p>+7 (495)874-99-00</p>
+        </div>
+    </div>
+</div>
+
+<!-- END OF MODALS -->
 <!--FOOTER START-->
 <footer class="footer">
     <div class="container-fluid">

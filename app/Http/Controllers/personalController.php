@@ -8,16 +8,15 @@ use App\sms_code;
 use App\Jobs\SMSRU;
 use Carbon;
 use Illuminate\Support\Facades\Hash;
+include_once(resource_path('views/includes/functions.blade.php')); 
+
 class personalController extends Controller
 {
     public function __construct()
     {   
         $this->middleware('auth');
     }
-    public function clubs(){
-   
-     return view('personal/club_list');
-    }
+
 
     public function profile(){
         $user = Auth::user();
