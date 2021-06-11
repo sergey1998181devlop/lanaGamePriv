@@ -10,7 +10,7 @@ declare(strict_types=1);
 <div class="checkbox_wrapper">
     <div class="checkbox_item">
         <label>
-            <input type="checkbox" name="hookah">
+            <input type="checkbox" name="hookah" data-hookah-service>
             <span class="activator"><span></span></span>
             <span>Есть кальяны</span>
         </label>
@@ -24,7 +24,7 @@ declare(strict_types=1);
     </div>
     <div class="checkbox_item">
         <label>
-            <input type="checkbox" name="alcohol">
+            <input type="checkbox" name="alcohol" data-alcohol-service>
             <span class="activator"><span></span></span>
             <span>Есть алкоголь в продаже</span>
         </label>
@@ -87,7 +87,7 @@ declare(strict_types=1);
     </div>
     <div class="checkbox_item">
         <label>
-            <input type="checkbox" name="with_own_food">
+            <input type="checkbox" name="with_own_food" data-food-service>
             <span class="activator"><span></span></span>
             <span>Можно со своей едой</span>
         </label>

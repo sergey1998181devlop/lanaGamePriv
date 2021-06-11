@@ -4,8 +4,10 @@ function echoCard($club,$type = 'published'){
     $cart =  '<a href="'.url('clubs/'.$club->id.'/'.$club->url).'" class="club_card">
     <div class="search_club_img_wrapper">
         <div class="search_club_img">
-            <img src="'.asset('/img/club6.png').'" alt="club">
-        </div>
+            <img src="'.asset('/img/default-club-preview-image.svg').'" alt="club">
+        </div>';
+        if($club->qty_vip_pc > 0 || $club->food_drinks =='1' || $club->alcohol =='1'){
+        $cart .=  ' 
         <div class="club_services">';
            if($club->qty_vip_pc > 0)
             $cart .=  '  <img src="'.asset('/img/vip.svg').'" alt="icon">';
@@ -15,6 +17,7 @@ function echoCard($club,$type = 'published'){
             $cart .=  '  <img src="'.asset('/img/drink.svg').'" alt="icon">';
 
        $cart .=  '  </div>';
+        }
         if($club->marketing_event == '1'){
           $cart.= '<div class="club_promotion">
                     <span>Акция</span>

@@ -2,8 +2,9 @@
 <a href="{{url('clubs/'.$club->id.'/'.$club->url)}}" class="club_card">
     <div class="search_club_img_wrapper">
         <div class="search_club_img">
-            <img src="{{ asset('/img/club6.png')}}" alt="club">
+            <img src="{{ asset('/img/default-club-preview-image.svg')}}" alt="club">
         </div>
+        @if($club->qty_vip_pc > 0 || $club->food_drinks =='1' || $club->alcohol =='1')
         <div class="club_services">
             @if($club->qty_vip_pc > 0)
             <img src="{{ asset('/img/vip.svg')}}" alt="icon">
@@ -14,8 +15,8 @@
             @if($club->alcohol =='1')
             <img src="{{ asset('/img/drink.svg')}}" alt="icon">
             @endif
-
         </div>
+        @endif
         <div class="club_distance">
             <img src="{{ asset('/img/walk.svg')}}" alt="icon">
             <span>5 км. от вас</span>

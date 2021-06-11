@@ -2,6 +2,8 @@ jQuery(function() {
     let $form = jQuery('#add-club-form'),
         $save_draft = $form.find('.save_draft'),
         $club_photo_hidden_input = jQuery('#club_photos_input'),
+        $club_select_metro_input = jQuery('#select-subway'),
+        $club_select_city_input = jQuery('#select-сity'),
         $main_preview_photo_hidden_input = jQuery('#main_preview_photo_input'),
         $club_photo_file_input = jQuery('#add-photo-input'),
         $club_price_file_input = jQuery('#add-price-file-input'),
@@ -9,7 +11,8 @@ jQuery(function() {
         $club_price_file_text = jQuery('#add-price-file-text'),
         $add_photo_preview = jQuery('#add_photo_preview'),
         $add_photo_list = jQuery('#add_photo_list'),
-        max_image_count = 10;
+        max_image_count = 10,
+        subway_options = [];
 
     if ($form.length === 0) {
         return;
@@ -74,6 +77,42 @@ jQuery(function() {
         });
     });
 
+       // common info
+       (() => {
+        $club_select_metro_input.find('option[data-city]').each(function() {
+            let $option = jQuery(this);
+
+            subway_options.push({
+                id: this.value,
+                text: $option.text(),
+                city: $option.data('city'),
+                lineColor: $option.data('line-color')
+            });
+        });
+
+        $club_select_metro_input.html('<option></option>');
+        $club_select_metro_input.select2({
+            minimumResultsForSearch: Infinity,
+            placeholder: $club_select_metro_input.data('placeholder'),
+            dropdownParent: $club_select_metro_input.closest('.select2_wrapper'),
+            width: '100%',
+            data: []
+        });
+
+        $club_select_city_input.on('change', function() {
+            $club_select_metro_input.select2('destroy');
+            $club_select_metro_input.html('<option></option>');
+            $club_select_metro_input.select2({
+                minimumResultsForSearch: 1,
+                placeholder: $club_select_metro_input.data('placeholder'),
+                dropdownParent: $club_select_metro_input.closest('.select2_wrapper'),
+                width: '100%',
+                data: subway_options.filter(({city}) => city === $club_select_city_input.val())
+            }).on('select2:opening', function(e) {
+                $(this).data('select2').$dropdown.find(':input.select2-search__field').attr('placeholder', 'Поиск...');
+            });
+        });
+    })();
     //upload photo gallery
     (() => {
         let files = $club_photo_hidden_input.val().split(',').filter(x => !!x),
@@ -143,8 +182,7 @@ jQuery(function() {
 
         function renderFiles() {
             $club_photo_hidden_input.val(files.join(','));
-            $main_preview_photo_hidden_input.val(main_file || '');
-
+            $main_preview_photo_hidden_input.val(main_file || '').trigger('change');
             if (main_file) {
                 $add_photo_preview.html(`<img src="${main_file}"/>`);
             } else {
@@ -278,6 +316,9 @@ jQuery(function() {
                     let $input = jQuery(this);
 
                     $input.prop('disabled', !state);
+                    if (!state) {
+                        $input.val('').trigger('change');
+                    }
                 });
             });
         }
@@ -438,5 +479,74 @@ jQuery(function() {
             });
         });
     })();
+   /**
+     * Preview tab
+     */
 
+    (() => {
+        $form.find('input,select,texarea').on('change', function(e) {
+            let clubName = jQuery('#club-name-input').val(),
+                clubAddress = jQuery('#club-address-input').val(),
+                clubPrice = jQuery('#min-price-input').val(),
+                clubSubway = $club_select_metro_input.find('option:selected').text(),
+                clubSubwayOption = subway_options.find(({id}) => id === $club_select_metro_input.val()),
+                clubSubwayLineColor = clubSubwayOption?.lineColor || 'black',
+                totalPc = jQuery('#qty_pc-input').val(),
+                consoleQty = jQuery('#qty_console-input').val(),
+                vr = jQuery('#qty_vr-input').val(),
+                autosim = jQuery('#qty_simulator-input').val(),
+                marketingInput = jQuery('.marketing_event_wrapper .checkbox_wrapper input[type="checkbox"]'),
+                main_file = $main_preview_photo_hidden_input.val() || '/img/default-club-preview-image.svg';
+
+            jQuery('.form_tab_09_club_preview .search_club_info .club_name span').text(clubName);
+            jQuery('.form_tab_09_club_preview .club_address_wrapper .club_address').text(clubAddress);
+            jQuery('.form_tab_09_club_preview .club_subway_wrapper .subway_station').text(clubSubway);
+            jQuery('.form_tab_09_club_preview .club_subway_wrapper .subway_img_wrapper')[0].style.setProperty('--subway-color', clubSubwayLineColor);
+            jQuery('.form_tab_09_club_preview .club_price_wrapper .club_price span').text(clubPrice);
+
+            jQuery('.form_tab_09_club_preview .club_features_item .club_features_qty.total_pc').text(totalPc);
+            if (consoleQty === '') {
+                jQuery('.club_features_qty.console').closest('.club_features_item').hide();
+            } else {
+                jQuery('.club_features_qty.console').closest('.club_features_item').show();
+                jQuery('.form_tab_09_club_preview .club_features_item .club_features_qty.console').text(consoleQty);
+            }
+
+            if (vr === '') {
+                jQuery('.club_features_qty.vr').closest('.club_features_item').hide();
+            } else {
+                jQuery('.club_features_qty.vr').closest('.club_features_item').show();
+                jQuery('.form_tab_09_club_preview .club_features_item .club_features_qty.vr').text(vr);
+            }
+
+            if (autosim === '') {
+                jQuery('.club_features_qty.autosim').closest('.club_features_item').hide();
+            } else {
+                jQuery('.club_features_qty.autosim').closest('.club_features_item').show();
+                jQuery('.form_tab_09_club_preview .club_features_item .club_features_qty.autosim').text(autosim);
+            }
+
+            jQuery('.form_tab_09_club_preview .search_club_img_wrapper .search_club_img img').attr('src', main_file);
+
+            if (jQuery('input[data-food-service]').filter(':checked').length > 0) {
+                jQuery('.form_tab_09_club_preview .club_services .food_services').show();
+            } else {
+                jQuery('.form_tab_09_club_preview .club_services .food_services').hide();
+            }
+
+            jQuery('.form_tab_09_club_preview .club_services .drink__services').toggle(jQuery('input[data-alcohol-service]').prop('checked'));
+            jQuery('.form_tab_09_club_preview .club_services .hookah_services').toggle(jQuery('input[data-hookah-service]').prop('checked'));
+            jQuery('.form_tab_09_club_preview .club_services .vip_services').toggle(jQuery('input[data-vip-service]').prop('checked'));
+            jQuery('.form_tab_09_club_preview .club_promotion').toggle(marketingInput.prop('checked'));
+            if(!jQuery('input[data-alcohol-service]').prop('checked')
+                && !jQuery('input[data-hookah-service]').prop('checked')
+            && !jQuery('input[data-vip-service]').prop('checked')
+            && !jQuery('input[data-food-service]').filter(':checked').length > 0){
+                jQuery('.form_tab_09_club_preview .club_services').hide();
+            }else{
+                jQuery('.form_tab_09_club_preview .club_services').show();
+            }
+            jQuery('.club_subway_wrapper').toggle($club_select_metro_input.val() !== '');
+        });
+    })();
 });

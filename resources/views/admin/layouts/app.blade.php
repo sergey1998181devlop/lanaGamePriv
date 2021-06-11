@@ -122,6 +122,7 @@
                     </ul>
                 </div>
       </nav>
+      @include('admin.layouts.messages')
       @yield('content')
       </div>
       <!-- End of Main Content -->

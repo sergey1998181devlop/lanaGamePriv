@@ -16,7 +16,7 @@ declare(strict_types=1);
 <div class="form-group">
     <div class="checkbox_qty_wrapper">
         <label>
-            <input type="checkbox" name="vip_pc" data-toggle-block='[data-block="vip_pc"]'>
+            <input type="checkbox" name="vip_pc" data-vip-service data-toggle-block='[data-block="vip_pc"]'>
             <span class="activator"><span></span></span>
             <span>VIP-компьютеры</span>
         </label>
@@ -50,7 +50,7 @@ declare(strict_types=1);
 <div class="form-group">
     <div class="checkbox_qty_wrapper">
         <label>
-            <input type="checkbox" name="food_drinks" data-toggle-block='[data-block="food_drinks"]'>
+            <input type="checkbox" name="food_drinks" data-food-service data-toggle-block='[data-block="food_drinks"]'>
             <span class="activator"><span></span></span>
             <span>Еда и напитки</span>
         </label>

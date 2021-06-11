@@ -1,10 +1,8 @@
 window.Layout = (() => {
     return {
         initSelect2() {
-            jQuery('.select2_wrapper select:not([data-select2-id])').each(function() {
+            jQuery('.select2_wrapper select:not([data-select2-id]):not([data-select2-manual-init])').each(function() {
                 let $this = jQuery(this);
-
-
 
                 $this.select2({
                     minimumResultsForSearch: Infinity,
@@ -23,8 +21,8 @@ window.Layout = (() => {
                     dropdownParent: $this.closest('.select2_wrapper'),
                     width: '100%'
                 }).on('select2:opening', function(e) {
-                    $(this).data('select2').$dropdown.find(':input.select2-search__field').attr('placeholder', 'Поиск...')
-                })
+                    $(this).data('select2').$dropdown.find(':input.select2-search__field').attr('placeholder', 'Поиск...');
+                });
             });
         }
     };
