@@ -15,8 +15,12 @@ class clubsController extends Controller
     public $isDraft;
     public function __construct()
     {
-        $this->middleware('auth')->except('club');
+        $this->middleware('auth')->except('index');
         $this->isDraft = false;
+    }
+    public function index($id){
+        $club = club::where('id',$id)->first();
+        return view('clubs.club')->with(['club'=>$club]);
     }
     public function clubs(){
         $published = club::SelectCartFeilds()->CorrentUser()->Published()->get();
@@ -153,7 +157,7 @@ class clubsController extends Controller
                 $uniqie=time().uniqid();
                 $filename = $uniqie.preg_replace('/\s+/', '_', $file->getClientOriginalName());
                 $file->move(storage_path('app/public/clubs/images/'), $filename);
-                $url = url('storage/app/public/clubs/images').'/'. $filename;
+                $url = url('storage/clubs/images').'/'. $filename;
                 return response()->json(['data'=>$url]);
             } else {
                 $message = 'An error occured while uploading the file.';
@@ -176,7 +180,7 @@ class clubsController extends Controller
                 $uniqie=time().uniqid();
                 $filename = $uniqie.preg_replace('/\s+/', '_', $file->getClientOriginalName()) ;
                 $file->move(storage_path('app/public/clubs/lists'), $filename);
-                $url = url('storage/app/public/clubs/lists').'/'. $filename;
+                $url = url('storage/clubs/lists').'/'. $filename;
                 return response()->json(['data'=>$url]);
             } else {
                 $message = 'An error occured while uploading the file.';

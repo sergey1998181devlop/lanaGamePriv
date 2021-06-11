@@ -29,6 +29,7 @@ declare(strict_types=1);
                 <div class="pc_config">Оборудование</div>
                 <div class="pc_config">
                     <input type="text" value="1. Общий зал" placeholder="Введите название" readonly>
+                    <input type="hidden" value="Общий зал" name="configuration[0][conf_name]"readonly>
                 </div>
             </div>
             <div class="form-group">
@@ -368,7 +369,7 @@ declare(strict_types=1);
         <div class="form-group">
             <div class="pc_config">Оборудование</div>
             <div class="pc_config">
-                <input type="text" value="" placeholder="Введите название">
+                <input type="text" value="" name="configuration[{n}][conf_name]" placeholder="Введите название">
             </div>
         </div>
         <div class="form-group">

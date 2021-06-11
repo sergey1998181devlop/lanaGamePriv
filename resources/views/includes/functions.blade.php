@@ -19,7 +19,7 @@ function admin($rules = 1){
  return false;
 }
 function notReq($input){
-    if(empty($input) || !isset($input)){
+    if(!isset($input) || empty($input)  ){
         return $input='';
     }
     else{return $input;}

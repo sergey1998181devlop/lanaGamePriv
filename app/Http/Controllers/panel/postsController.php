@@ -100,7 +100,7 @@ public function saveImage(Request $request){
             $uniqie=time().uniqid();
             $filename = $uniqie.preg_replace('/\s+/', '_', $file->getClientOriginalName()) ;
             $file->move(storage_path('app/public/imagesInposts/'), $filename);
-            $url = url('storage/app/public/imagesInposts/').'/'. $filename;
+            $url = url('storage/imagesInposts/').'/'. $filename;
             return response()->json(['uploaded' => '1', "fileName"=> $filename ,
             "url"=>$url,'default'=> $url]);
         } else {

@@ -36,7 +36,7 @@ Route::get('post/read/{id}/{url}','postsController@post');
 Route::get('posts','postsController@allposts');
 
 // клубы
-
+Route::get('clubs/{id}/{url}','clubsController@index');
 Route::post('clubs/add', 'clubsController@addClub');
 Route::post('clubs/add-draft', 'clubsController@addDraftClub');
 Route::post('clubs/add-list','clubsController@savePriceList' );

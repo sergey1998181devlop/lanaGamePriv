@@ -32,6 +32,11 @@ return [
     'living_country_not_currect' => 'Страна проживания неверное',
     
     'pay' => 'Оплатить',
+    'payment_cash' => 'Наличные',
+    'payment_cards' => 'Карты',
+    'payment_online' => 'Online-перевод',
+    'payment_web_wallet' => 'Web-кошельки',
+    'payment_account_number' => 'По счёту',
     'loading...' => 'загрузка...',
     'dataFrpmIsPast' => 'дата заезда не правильный',
     'dataToFrpmIsError' => 'дата заезда и выезда не правильные',

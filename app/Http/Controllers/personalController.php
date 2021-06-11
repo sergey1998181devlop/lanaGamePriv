@@ -81,7 +81,6 @@ class personalController extends Controller
 
     public static function sendSMSViaService($phone, $confirm_code)
   {
-    return true;
     $smsru = new SMSRU(env('SMSRU_API_KEY'));
     $data = new \stdClass();
     $data->to = '7' . $phone;

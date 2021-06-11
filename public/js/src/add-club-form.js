@@ -142,7 +142,7 @@ jQuery(function() {
         }
 
         function renderFiles() {
-            $club_photo_hidden_input.val(files.join(':'));
+            $club_photo_hidden_input.val(files.join(','));
             $main_preview_photo_hidden_input.val(main_file || '');
 
             if (main_file) {

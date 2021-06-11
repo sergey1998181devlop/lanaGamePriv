@@ -19,7 +19,7 @@ class club extends Model
     }
     public function scopeSelectCartFeilds4Home($query)
     {
-        return $query->select('id','club_name','marketing_event','url','club_metro','club_address','qty_vip_pc','food_drinks','alcohol','qty_pc','qty_vr','qty_simulator','qty_console');
+        return $query->select('id','club_name','marketing_event','url','club_metro','club_address','qty_vip_pc','food_drinks','alcohol','qty_pc','qty_vr','qty_simulator','qty_console','club_min_price');
     }
     
     public function scopeCorrentUser($query)

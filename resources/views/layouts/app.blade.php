@@ -204,14 +204,6 @@
     </div>
 </div>
 
-<div class="remodal show_club_phone_modal" data-remodal-id="club_phone_modal">
-    <button data-remodal-action="close" class="remodal-close"></button>
-    <div class="remodal-content">
-        <div class="club_phone_wrapper">
-            <p>+7 (495)874-99-00</p>
-        </div>
-    </div>
-</div>
 
 <!-- END OF MODALS -->
 <!--FOOTER START-->
@@ -284,13 +276,13 @@
             integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg=="
             crossorigin="anonymous"></script>
     <script src="{{ asset('/js/inputmask.js') }}"></script>
-
+    <script src="{{ asset('/js/src/form-wizard.jquery.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
     <script src="{{ asset('/js/src/add-club-form.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
     <script src="{{ asset('/js/src/add-club-start-form.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
     <script src="{{ asset('/js/src/club-page-map.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
     <script src="{{ asset('/js/src/club-photo-modal.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
     <script src="{{ asset('/js/src/code-input.jquery.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
-    <script src="{{ asset('/js/src/form-wizard.jquery.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
+
     <script src="{{ asset('/js/src/hide-from-search-form.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
     <script src="{{ asset('/js/src/layout.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
     <script src="{{ asset('/js/src/mobile-menu.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
