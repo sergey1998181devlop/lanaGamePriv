@@ -105,10 +105,6 @@ input[type=number] {
                 height: 18px;
                 margin: 0 4px;
             }
-
-            &:empty{
-                padding: 0;
-            }
         }
 
         .club_distance {
@@ -332,6 +328,14 @@ input[type=number] {
                     text-align: center;
                     color: #ffffff;
                     transform: translate(50%, -50%);
+
+                    &:empty{
+                        display: none;
+                    }
+                }
+
+                .club_features_qty:empty + .club_features_img_wrapper{
+                    display: none;
                 }
             }
         }
@@ -351,7 +355,7 @@ input[type=number] {
             .club_price {
                 font-style: normal;
                 font-weight: 700;
-                font-size: 20px;
+                font-size: 19px;
                 line-height: 1;
                 color: #000000;
             }
@@ -6415,6 +6419,11 @@ section.langame_software_wrapper {
                                     }
                                 }
                             }
+
+                            .add_photo_instruction{
+                                margin-bottom: 5px;
+                            }
+
 
                             .photo_gallery {
                                 .add_photo_preview_wrapper {
