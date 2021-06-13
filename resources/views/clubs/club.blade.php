@@ -5,12 +5,36 @@
 @section('content')
 <section class="club_page_main_info_wrapper" data-track-sticky>
     <div class="container">
+    @if(isset($comments))
+            <div class="club_comments">
+               @foreach($comments as $comment)
+                  <div class="comment">
+                    <div class="comment-header">
+                      {{timelabe($comment->created_at)}} 
+                      @if(admin())
+                      Написал
+                        {{$comment->user->name}}
+                      @endif
+                    </div>
+                    <div class="comment-content">
+                      {{$comment->comment}}
+                    </div>
+                  </div>
+               @endforeach
+            </div>
+            @endif
         <div class="club_page_main_info_top">
             <div class="main_info_title approve">
                 <span>{{$club->club_name}}</span>
             </div>
+            
             <div class="main_info_btn_wrapper">
+            @if($club->published_at == null && admin())
+                <a href="{{url('club/'.$club->id.'/active')}}" class="club_active btn">Актевировать</a>
+                <button type="button" class="club_comment" data-remodal-target="club_comment_modal">Написать коммент</button>
+            @endif
                 <button type="button" class="club_calling" data-remodal-target="club_phone_modal">Позвонить</button>
+               
             </div>
         </div>
         <div class="club_page_main_info_bottom">
@@ -813,4 +837,26 @@
     </div>
 </div>
 
+@if($club->published_at == null && admin())
+<div class="club_comment_modal remodal" id="club_comment_modal" data-remodal-id="club_comment_modal">
+    <button data-remodal-action="close" class="remodal-close">Закрыть</button>
+    <div class="remodal-content">
+        <form action="{{url('club/')}}/{{$club->id}}/comment" method="post" style="dispaly:inline">   
+        {{ csrf_field() }}
+        <input type="hidden" name="club_id" value="{{$club->id}}">
+        <div class="modal-header">
+            <h4 class="modal-title">Написать коммент</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+        <div class="modal-body">
+            Напишите коммент
+            <div class="textarea-holder">
+               <textarea name="comment" cols="30" rows="10" required></textarea>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-danger" >Отправить</button>
+    </div>
+</div>
+
+@endif
 @endsection

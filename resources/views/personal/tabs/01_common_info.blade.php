@@ -18,9 +18,9 @@ declare(strict_types=1);
     <div class="input_wrapper">
         <div class="select2_wrapper">
             <select id="select-сity" name="club_city" required data-placeholder="Выберите город">
-                <option value=""></option>
-                <option value="2">Москва</option>
-                <option value="3">Санкт-Петербург</option>
+            <option value=""></option>
+                <option value="moscow">Москва</option>
+                <option value="saint-peterburg">Санкт-Петербург</option>
             </select>
             <div class="error"></div>
         </div>
@@ -44,10 +44,16 @@ declare(strict_types=1);
     <label for="select-subway">Метро</label>
     <div class="input_wrapper">
         <div class="select2_wrapper">
-            <select id="select-subway" name="club_metro" data-placeholder="Выберите метро">
-                <option value=""></option>
-                <option value="1">Не указан</option>
-                <option value="2">Сокол</option>
+        <select id="select-subway" name="club_city" data-placeholder="Выберите метро" data-select2-manual-init>
+                <option value="2" data-city="moscow" data-line-color="aqua">Выставочная</option>
+                <option value="3" data-city="moscow" data-line-color="blue">Арбат</option>
+                <option value="4" data-city="moscow" data-line-color="blue">Площадь революции</option>
+                <option value="5" data-city="moscow" data-line-color="brown">Октябрьская</option>
+                <option value="6" data-city="moscow" data-line-color="brown">Парк культуры</option>
+                <option value="7" data-city="saint-peterburg" data-line-color="blue">Горьковская</option>
+                <option value="8" data-city="saint-peterburg" data-line-color="blue">Невский</option>
+                <option value="9" data-city="saint-peterburg" data-line-color="purple">Адмиралтейская</option>
+                <option value="10" data-city="saint-peterburg" data-line-color="red">Чернышевская</option>
             </select>
             <div class="error"></div>
         </div>

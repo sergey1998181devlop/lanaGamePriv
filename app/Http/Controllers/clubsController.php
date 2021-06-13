@@ -19,7 +19,17 @@ class clubsController extends Controller
         $this->isDraft = false;
     }
     public function index($id){
-        $club = club::where('id',$id)->first();
+        $club = club::where('id',$id)->where('draft','0')->first();
+        if(!$club)abort(404);
+        if($club->published_at == null){
+            if(!admin() || $club->user_id != Auth::user()->id){
+                abort(404);
+            }
+            $comments = $club->comments;
+            if(count($comments) > 0)
+            return view('clubs.club')->with(['club'=>$club,'comments'=>$comments ]);
+        }
+        
         return view('clubs.club')->with(['club'=>$club]);
     }
     public function clubs(){

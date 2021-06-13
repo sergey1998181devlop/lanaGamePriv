@@ -29,8 +29,6 @@ public function store(Request $request){
          'name'=>'required',
          'img'=>'required|image|mimes:jpeg,png,jpg',
     ]);
-    // type 0 => posts в конце
-    // type 1 => в средении главной страницы
 
     $errors=array();
     $user=Auth::user();

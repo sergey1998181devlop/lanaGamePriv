@@ -93,3 +93,5 @@ Route::post('post/edit/saveImage','panel\postsController@saveImage' );
 
 // клубы
 Route::get('panel/clubs/new-clubs','panel\clubsController@new_clubs');
+Route::get('club/{id}/active','panel\clubsController@active');
+Route::post('club/{id}/comment','panel\clubsController@comment');

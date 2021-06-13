@@ -11,6 +11,10 @@ class club extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function comments()
+    {
+        return $this->hasMany(comment::class)->orderBy('created_at','DESC');;
+    }
 
     
     public function scopeSelectCartFeilds($query)
