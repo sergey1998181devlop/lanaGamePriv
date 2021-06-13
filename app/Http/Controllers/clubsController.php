@@ -6,10 +6,8 @@ use Illuminate\Http\Request;
 use App\club;
 use App\User;
 use Auth;
-include_once(resource_path('views/includes/functions.blade.php')); 
-
-        // $clubs= club::select('id','draft','published_at')->Draft()->get();
-        // $clubs= club::select('id','draft','published_at')->UnderEdit()->get();
+use Carbon\Carbon;
+include_once(resource_path('views/includes/functions.blade.php'));
 class clubsController extends Controller
 {
     public $isDraft;
@@ -21,7 +19,7 @@ class clubsController extends Controller
     public function index($id){
         $club = club::where('id',$id)->where('draft','0')->first();
         if(!$club)abort(404);
-        if($club->published_at == null){
+        if($club->published_at == null || $club->hidden_at != null ){
             if(!admin() || $club->user_id != Auth::user()->id){
                 abort(404);
             }
@@ -31,6 +29,12 @@ class clubsController extends Controller
         }
         
         return view('clubs.club')->with(['club'=>$club]);
+    }
+    public function toggle($id){
+        $club = club::select('id','user_id','published_at','hidden_at','draft')->where('id',$id)->CorrentUser()->Published()->first();
+        if(!$club)abort(404);
+        $club->hidden_at = ($club->hidden_at == null) ? Carbon::now()->toDateTimeString() : null;
+        $club->save();
     }
     public function clubs(){
         $published = club::SelectCartFeilds()->CorrentUser()->Published()->get();

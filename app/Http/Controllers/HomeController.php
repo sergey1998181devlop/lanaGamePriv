@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $clubs= club::SelectCartFeilds4Home()->Published()->orderBy('club_min_price','ASC')->paginate(6);
+        $clubs= club::SelectCartFeilds4Home()->Published()->whereNull('hidden_at')->orderBy('club_min_price','ASC')->paginate(6);
         if(\Request::ajax())
         {
             $html = '';

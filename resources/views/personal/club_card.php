@@ -65,11 +65,13 @@ function echoCard($club,$type = 'published'){
                     '.$club->club_address.'
                     </div>
                 </div>';
+
                 if($type == 'published'){
-                    $cart .=  ' <form action="" method="post" class="hide-from-search-form">
+                    $hiddenProb = ($club->hidden_at == null) ? '' : 'checked';
+                    $cart .=  ' <form action="'.url('personal/club/'.$club->id.'/toggle').'" method="get" class="hide-from-search-form">
                     <div class="checkbox_wrapper">
                         <label>
-                            <input type="checkbox" name="hide_from_search">
+                            <input type="checkbox" name="hide_from_search" '.$hiddenProb.'>
                             <span class="activator"><span></span></span>
                             <span>Скрыть из поиска</span>
                         </label>

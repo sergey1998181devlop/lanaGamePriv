@@ -6,23 +6,23 @@
 <section class="club_page_main_info_wrapper" data-track-sticky>
     <div class="container">
     @if(isset($comments))
-            <div class="club_comments">
-               @foreach($comments as $comment)
-                  <div class="comment">
-                    <div class="comment-header">
-                      {{timelabe($comment->created_at)}} 
-                      @if(admin())
-                      Написал
-                        {{$comment->user->name}}
-                      @endif
-                    </div>
-                    <div class="comment-content">
-                      {{$comment->comment}}
-                    </div>
-                  </div>
-               @endforeach
-            </div>
-            @endif
+        <div class="club_comments">
+            @foreach($comments as $comment)
+                <div class="comment">
+                <div class="comment-header">
+                    {{timelabe($comment->created_at)}} 
+                    @if(admin())
+                    Написал
+                    {{$comment->user->name}}
+                    @endif
+                </div>
+                <div class="comment-content">
+                    {{$comment->comment}}
+                </div>
+                </div>
+            @endforeach
+        </div>
+        @endif
         <div class="club_page_main_info_top">
             <div class="main_info_title approve">
                 <span>{{$club->club_name}}</span>
@@ -38,6 +38,7 @@
             </div>
         </div>
         <div class="club_page_main_info_bottom">
+        @if($club->published_at != null)
             <div class="rating_wrapper">
                 <div class="rating_stars">
                 <img src="{{ asset('/img/star.svg')}}" alt="star">
@@ -50,6 +51,7 @@
                     <span>47 отзывов</span>
                 </div>
             </div>
+            @endif
             @if($club->club_metro != null)
                 <div class="club_subway_wrapper">
                     <div class="subway_img_wrapper" style="--subway-color: blue">

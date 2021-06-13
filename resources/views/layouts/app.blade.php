@@ -107,7 +107,7 @@
                         </li>
                       @endif
                         <li> 
-                        <a href="<?= Auth::guest() ? url('register') : url('personal/clubs') ?>">Добавить клуб</a>
+                        <a href="<?= Auth::guest() ? url('register') : url('personal/clubs') ?>?action=add_club">Добавить клуб</a>
                         </li>
                         <li>
                             <a href="{{url('contacts')}}">Контакты</a>

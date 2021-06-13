@@ -1,21 +1,10 @@
-jQuery(function() {
-    let $form = jQuery('.hide-from-search-form'),
-        $input = $form.find('input[type="checkbox"]');
-
-    if ($form.length === 0) {
-        return;
-    }
-
-    $input.on('change', function(e) {
-        jQuery.ajax({
-            type: 'POST',
-            url: '',
-            data: {
-                status: $input.prop('checked') ? 'hidden' : 'active'
-            },
-            success: function() {
-
-            }
-        });
+$(document).on('change','.hide-from-search-form input[type="checkbox"]',function(){
+    jQuery.ajax({
+        type: 'get',
+        url:$(this).closest('form').attr('action') ,
+        success: function() {
+        },
+        error: function() {
+        }
     });
-});
+})

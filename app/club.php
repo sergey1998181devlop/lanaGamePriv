@@ -19,7 +19,7 @@ class club extends Model
     
     public function scopeSelectCartFeilds($query)
     {
-        return $query->select('id','club_name','marketing_event','url','club_metro','club_address','qty_vip_pc','food_drinks','alcohol');
+        return $query->select('id','club_name','marketing_event','url','club_metro','club_address','qty_vip_pc','food_drinks','alcohol','hidden_at');
     }
     public function scopeSelectCartFeilds4Home($query)
     {
