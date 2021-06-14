@@ -71,14 +71,14 @@ jQuery(function() {
             return;
         }
 
-        upload_file(this.files[0],'price_list').then(data => {
+        upload_file(this.files[0], 'price_list').then(data => {
             $club_price_hidden_input.val(data);
             $club_price_file_text.text('Файл загружен');
         });
     });
 
-       // common info
-       (() => {
+    // common info
+    (() => {
         $club_select_metro_input.find('option[data-city]').each(function() {
             let $option = jQuery(this);
 
@@ -113,6 +113,7 @@ jQuery(function() {
             });
         });
     })();
+
     //upload photo gallery
     (() => {
         let $tab = jQuery('.form_tab_08_club_formalization'),
@@ -130,7 +131,7 @@ jQuery(function() {
 
                 ++current_gallery_image_count;
 
-                upload_file(file,'image').then((data) => {
+                upload_file(file, 'image').then((data) => {
                     addFile(data);
                 });
             }
@@ -207,6 +208,7 @@ jQuery(function() {
         function selectMainFile(path) {
             main_file = path;
         }
+
         $tab.data('form-wizard-tab-validation', function() {
             return new Promise((resolve, reject) => {
                 let hasErrors = false;
@@ -223,17 +225,17 @@ jQuery(function() {
         });
     })();
 
-    function upload_file(file,type) {
+    function upload_file(file, type) {
         return new Promise((resolve, reject) => {
             let formData = new FormData();
-            if(type == 'price_list'){
+            if (type == 'price_list') {
                 var url = $form.attr('list-action');
-            }else{
+            } else {
                 var url = $form.attr('image-action');
             }
             formData.append('file', file, file.name);
-            formData.append('_token',$('[name="_token"]').val());
-                 
+            formData.append('_token', $('[name="_token"]').val());
+
             jQuery.ajax({
                 url: url,
                 method: 'post',
@@ -257,14 +259,19 @@ jQuery(function() {
             $input_week_schedule = jQuery('input[data-week-schedule]'),
             $input_day_schedule = jQuery('input[data-day-schedule]');
 
-        $tab.on('change', 'input', function(e) {
-            if ($input_day_schedule.filter(':checked').length === 0 && $input_week_schedule.is(':checked')) {
-                jQuery('.next_btn, .prev_btn').prop('disabled', true);
-                jQuery('.work_time_wrapper .error').text('Необходимо заполнить хотя бы один день');
-            } else {
-                jQuery('.next_btn, .prev_btn').prop('disabled', false);
+        $tab.data('form-wizard-tab-validation', function() {
+            return new Promise((resolve, reject) => {
+                let hasErrors = false;
+
                 jQuery('.work_time_wrapper .error').text('');
-            }
+
+                if ($input_day_schedule.filter(':checked').length === 0 && $input_week_schedule.is(':checked')) {
+                    jQuery('.work_time_wrapper .error').text('Необходимо заполнить хотя бы один день');
+                    hasErrors = true;
+                }
+
+                return hasErrors ? reject() : resolve();
+            });
         });
     })();
 
@@ -294,7 +301,7 @@ jQuery(function() {
                     selector = $this.data('toggle-block'),
                     state = this.checked;
 
-                blockToggle(selector, state);
+                blockToggle($this, selector, state);
             })
             .trigger('init');
 
@@ -303,7 +310,7 @@ jQuery(function() {
                 let $this = jQuery(this),
                     selector = $this.data('activate-block');
 
-                blockToggle(selector, true);
+                blockToggle($this, selector, true);
             })
             .filter(':checked')
             .trigger('init');
@@ -313,30 +320,34 @@ jQuery(function() {
                 let $this = jQuery(this),
                     selector = $this.data('disable-block');
 
-                blockToggle(selector, false);
+                blockToggle($this, selector, false);
             })
             .filter(':checked')
             .trigger('init');
 
         /**
+         * @param {jQuery} $input
          * @param {String} selector
          * @param {Boolean} state
          */
-        function blockToggle(selector, state) {
+        function blockToggle($input, selector, state) {
             jQuery(selector).each(function() {
                 let $block = jQuery(this);
 
                 $block.toggleClass('block_active', state);
                 $block.toggleClass('block_disabled', !state);
 
-                $block.find('input, select, textarea').each(function() {
-                    let $input = jQuery(this);
+                if ($input.is(':not([data-activate-block-without-input-toggle])')) {
+                    $block.find('input, select, textarea').each(function() {
+                        let $input = jQuery(this);
 
-                    $input.prop('disabled', !state);
-                    if (!state) {
-                        $input.val('').trigger('change');
-                    }
-                });
+                        if (!state) {
+                            $input.val('').trigger('change');
+                        }
+
+                        $input.prop('disabled', !state);
+                    });
+                }
             });
         }
     })();
@@ -496,7 +507,8 @@ jQuery(function() {
             });
         });
     })();
-   /**
+
+    /**
      * Preview tab
      */
 
@@ -555,12 +567,12 @@ jQuery(function() {
             jQuery('.form_tab_09_club_preview .club_services .hookah_services').toggle(jQuery('input[data-hookah-service]').prop('checked'));
             jQuery('.form_tab_09_club_preview .club_services .vip_services').toggle(jQuery('input[data-vip-service]').prop('checked'));
             jQuery('.form_tab_09_club_preview .club_promotion').toggle(marketingInput.prop('checked'));
-            if(!jQuery('input[data-alcohol-service]').prop('checked')
+            if (!jQuery('input[data-alcohol-service]').prop('checked')
                 && !jQuery('input[data-hookah-service]').prop('checked')
-            && !jQuery('input[data-vip-service]').prop('checked')
-            && !jQuery('input[data-food-service]').filter(':checked').length > 0){
+                && !jQuery('input[data-vip-service]').prop('checked')
+                && !jQuery('input[data-food-service]').filter(':checked').length > 0) {
                 jQuery('.form_tab_09_club_preview .club_services').hide();
-            }else{
+            } else {
                 jQuery('.form_tab_09_club_preview .club_services').show();
             }
             jQuery('.club_subway_wrapper').toggle($club_select_metro_input.val() !== '');

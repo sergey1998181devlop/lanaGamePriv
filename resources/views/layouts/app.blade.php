@@ -99,14 +99,14 @@
                         </form>
                     </div>
                     @endif
-                    
+
                     <ul class="main_menu">
                       @if(admin())
-                      <li> 
+                      <li>
                         <a href="<?=url('panel')?>">Панель</a>
                         </li>
                       @endif
-                        <li> 
+                        <li>
                         <a href="<?= Auth::guest() ? url('register') : url('personal/clubs') ?>?action=add_club">Добавить клуб</a>
                         </li>
                         <li>
@@ -114,10 +114,10 @@
                         </li>
                     </ul>
                     <div class="mob_menu_item">
-                       
+
                         <ul>
                             @if(Auth::guest())
-                                <li> 
+                                <li>
                                     <a href="<?=url('personal/clubs')?>">Личный кабинет</a>
                                 </li>
                             @endif
@@ -276,23 +276,12 @@
             integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg=="
             crossorigin="anonymous"></script>
     <script src="{{ asset('/js/inputmask.js') }}"></script>
-    <script src="{{ asset('/js/src/form-wizard.jquery.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
-    <script src="{{ asset('/js/src/add-club-form.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
-    <script src="{{ asset('/js/src/add-club-start-form.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
-    <script src="{{ asset('/js/src/club-page-map.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
-    <script src="{{ asset('/js/src/club-photo-modal.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
-    <script src="{{ asset('/js/src/code-input.jquery.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
-
-    <script src="{{ asset('/js/src/hide-from-search-form.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
-    <script src="{{ asset('/js/src/layout.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
-    <script src="{{ asset('/js/src/mobile-menu.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
-    <script src="{{ asset('/js/src/user-profile-form.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
-    <script src="{{ asset('/js/src/script.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
+    <script src="{{ asset('/js/dest/layout.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
     <script src="{{ asset('/js/main.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
 
 
     @yield('scripts')
-    
+
 
 </body>
 </html>

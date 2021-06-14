@@ -24,13 +24,14 @@ jQuery(function() {
             jQuery.ajax({
                 type: 'POST',
                 url: $(this).attr('phone-action'),
-                data: {phone:  $inputPhone.inputmask('unmaskedvalue'),
-                    '_token':$form.find('[name="_token"]').val()
+                data: {
+                    phone: $inputPhone.inputmask('unmaskedvalue'),
+                    '_token': $form.find('[name="_token"]').val()
                 },
                 success: function(data) {
-                    if(data.status =='false'){
-                        jQuery('#user-profile-form').find('#user-phone-input').closest('.form-group').addClass('error').append('<div class="error">'+data.msg+'</div>');
-                    }else{
+                    if (data.status == 'false') {
+                        jQuery('#user-profile-form').find('#user-phone-input').closest('.form-group').addClass('error').append('<div class="error">' + data.msg + '</div>');
+                    } else {
                         jQuery('.user_profile_submit').addClass('disabled');
                         $inputPhone.hide();
                         $codeDescription.text(`Код отправлен на номер ${newPhoneNumber}`).removeClass('error');
@@ -38,7 +39,7 @@ jQuery(function() {
                         clearInterval(codeFormInterval);
                         startCountDown();
                     }
-                   
+
                 }
             });
         } else {
@@ -56,9 +57,10 @@ jQuery(function() {
         jQuery.ajax({
             type: 'POST',
             url: $form.attr('verify-action'),
-            data: {'confirm_code': $this.val(),
-                     'phone' : $inputPhone.inputmask('unmaskedvalue'),
-                '_token':$form.find('[name="_token"]').val()
+            data: {
+                'confirm_code': $this.val(),
+                'phone': $inputPhone.inputmask('unmaskedvalue'),
+                '_token': $form.find('[name="_token"]').val()
             },
             success: function(json) {
                 if (typeof json.error !== 'undefined') {
@@ -82,22 +84,21 @@ jQuery(function() {
         $form.find('.user_profile_submit').addClass('disabled');
         jQuery.ajax({
             type: 'POST',
-            url:  $form.attr('action'),
+            url: $form.attr('action'),
             data: $form.serialize(),
             success: function(data) {
-                if(data.status == 'false'){
-                   
-                }else{
+                if (data.status == 'false') {
+
+                } else {
                     jQuery('.user_profile_submit').removeClass('disabled');
                     jQuery('[data-remodal-id="success_modal"]').remodal().open();
                 }
-                
+
             },
-            error:function(errors){
+            error: function(errors) {
                 jQuery('.user_profile_submit').removeClass('disabled');
-                $.each(errors.responseJSON.errors, function(key, item) 
-                {
-                    $form.find('.form-group [name="'+key+'"]').closest('.form-group').addClass('error').append('<div class="error">'+item+'</div>');
+                $.each(errors.responseJSON.errors, function(key, item) {
+                    $form.find('.form-group [name="' + key + '"]').closest('.form-group').addClass('error').append('<div class="error">' + item + '</div>');
                 });
             }
         });

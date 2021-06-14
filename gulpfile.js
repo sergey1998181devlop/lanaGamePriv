@@ -9,7 +9,7 @@ const gulp = require('gulp'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     scss = {
-        'css/**/*.scss': 'css'
+        'public/css/**/*.scss': 'public/css'
     };
 
 gulp.task('scss', () => {
@@ -38,22 +38,24 @@ gulp.task('scss:watch', gulp.series('scss', () => {
 }));
 
 gulp.task('js', () => {
-    return gulp.src('js/src/*.js')
+    return gulp.src('public/js/src/*.js')
         .pipe(sourcemaps.init())
         .pipe(concat('layout.js'))
         .pipe(uglify())
         .pipe(sourcemaps.mapSources(sourcePath  => `../src/${sourcePath}`))
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('js/dest'));
+        .pipe(gulp.dest('public/js/dest'));
 });
 
 gulp.task('js:watch', gulp.series('js', () => {
-    gulp.watch('js/src/*.js', gulp.series('js'));
+    gulp.watch('public/js/src/*.js', gulp.series('js'));
 }));
 
-gulp.task('all:watch', gulp.series('scss', () => {
-    gulp.watch(Object.keys(scss), gulp.series('scss'));
-    gulp.watch('js/src/*.js', gulp.series('js'));
-}))
+gulp.task('all', gulp.series('scss', 'js'));
 
-gulp.task('default', gulp.series('scss:watch'));
+gulp.task('all:watch', gulp.series('scss', 'js', () => {
+    gulp.watch(Object.keys(scss), gulp.series('scss'));
+    gulp.watch('public/js/src/*.js', gulp.series('js'));
+}));
+
+gulp.task('default', gulp.series('all:watch'));

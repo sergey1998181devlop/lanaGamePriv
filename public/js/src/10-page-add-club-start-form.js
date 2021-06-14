@@ -21,14 +21,14 @@ jQuery(function() {
             type: 'POST',
             url: $(this).attr('action'),
             data: {
-                'phone' : $('#add-club-start-input').inputmask('unmaskedvalue'),
-                '_token':$('#add-club-start-form [name="_token"]').val()
+                'phone': $('#add-club-start-input').inputmask('unmaskedvalue'),
+                '_token': $('#add-club-start-form [name="_token"]').val()
             },
             success: function(data) {
-                if(data.status== 'false' ){
+                if (data.status == 'false') {
                     $firstForm.find('.forma .form-group').addClass('error');
                     $firstForm.find('.forma .form-group .error').text(data.msg);
-                }else{
+                } else {
                     $firstForm.find('.forma .form-group.error').removeClass('error');
                     $firstForm.find('.forma .form-group .error').text('');
                     $firstForm.hide();
@@ -37,16 +37,15 @@ jQuery(function() {
                     clearInterval(codeFormInterval);
                     startCountDown();
                 }
-               
+
             },
-            error: function (errors) {
+            error: function(errors) {
                 $firstForm.find('.forma .form-group').addClass('error');
-                $.each(errors.responseJSON.errors, function(key, item) 
-                {
-                    $firstForm.find('.forma .form-group [name="'+key+'"]').closest('.form-group').find('.error').text(item)
-            
+                $.each(errors.responseJSON.errors, function(key, item) {
+                    $firstForm.find('.forma .form-group [name="' + key + '"]').closest('.form-group').find('.error').text(item);
+
                 });
-                
+
             }
 
         });
@@ -55,19 +54,21 @@ jQuery(function() {
     $secondForm.on('submit', function(e) {
         e.preventDefault();
         jQuery('.code_wrapper .error').text('');
-        var confirm_code ='',phone = $('#add-club-start-input').inputmask('unmaskedvalue');
-        $secondForm.find('.code_input_wrapper input').each(function(){
-             confirm_code = confirm_code+$(this).val();
-        })
-        if(confirm_code.length != 4){return false;}
+        var confirm_code = '', phone = $('#add-club-start-input').inputmask('unmaskedvalue');
+        $secondForm.find('.code_input_wrapper input').each(function() {
+            confirm_code = confirm_code + $(this).val();
+        });
+        if (confirm_code.length != 4) {
+            return false;
+        }
 
         jQuery.ajax({
             type: 'POST',
             url: $(this).attr('action'),
             data: {
-                'phone':phone,
+                'phone': phone,
                 'confirm_code': confirm_code,
-                '_token':$secondForm.find('[name="_token"]').val()
+                '_token': $secondForm.find('[name="_token"]').val()
             },
             success: function(json) {
                 if (json.error) {
@@ -93,7 +94,7 @@ jQuery(function() {
         jQuery.ajax({
             type: 'POST',
             url: $(this).attr('action'),
-            data:$lastForm.find('form').serialize(),
+            data: $lastForm.find('form').serialize(),
             success: function(json) {
                 if (typeof json.errors !== 'undefined') {
                     // ошибка
@@ -104,15 +105,14 @@ jQuery(function() {
                     location.href = '/personal/clubs?action=add_club';
                 }
             },
-            error: function (errors) {
-                $.each(errors.responseJSON.errors, function(key, item) 
-                {
-                    $lastForm.find('.forma .form-group [name="'+key+'"]').closest('.form-group').addClass('error').append('<div class="error">'+item+'</div>');
+            error: function(errors) {
+                $.each(errors.responseJSON.errors, function(key, item) {
+                    $lastForm.find('.forma .form-group [name="' + key + '"]').closest('.form-group').addClass('error').append('<div class="error">' + item + '</div>');
                 });
-                
+
             }
         });
-    })
+    });
 
     $step_back.on('click', function(e) {
         $secondForm.trigger('reset');

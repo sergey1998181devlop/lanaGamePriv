@@ -52,13 +52,14 @@
                 }
 
                 validateActiveTab()
-                    .then(() => {
+                    .then(function() {
                         showTab(activeTab + 1);
                     })
-                    .catch(() => {
+                    .catch(function() {
                         self.trigger('error-tab');
                     });
             }
+
             function goToPrevTab() {
                 if (activeTab === 0) {
                     return;
@@ -66,6 +67,7 @@
 
                 showTab(activeTab - 1);
             }
+
             function validateStandardInputErrors() {
                 let $activeTab = $tabs.eq(activeTab);
 
@@ -144,13 +146,13 @@
                 goToNextTab,
                 goToPrevTab,
                 validateActiveTab
-            };  
+            };
 
             return {
                 showTab,
                 goToNextTab,
                 goToPrevTab,
-                validateActiveTab,
+                validateActiveTab
             };
         }
     });

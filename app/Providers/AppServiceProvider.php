@@ -23,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        if (isset($_SERVER['APP_URL']) && \strpos($_SERVER['APP_URL'], 'https') === 0) {
+            \URL::forceScheme('https');
+        }
     }
 }

@@ -14,17 +14,17 @@ jQuery(function() {
         onincomplete: function() {
             this.value = '';
         },
-        "oncomplete": function(){
-         if($(this).attr('id') == 'log-in-phone-input'){
-            $('#log-in-password-input').focus();
-         }           
-        } 
+        'oncomplete': function() {
+            if ($(this).attr('id') == 'log-in-phone-input') {
+                $('#log-in-password-input').focus();
+            }
+        }
     });
 
     jQuery('input[type="number"]').on('input change', function(e) {
         let input_val = +jQuery(this).val();
 
-        if (input_val <= 0 || isNaN(input_val)){
+        if (input_val <= 0 || isNaN(input_val)) {
             jQuery(this).val('');
         }
     });

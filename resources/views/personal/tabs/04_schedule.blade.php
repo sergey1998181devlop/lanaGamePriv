@@ -9,12 +9,23 @@ declare(strict_types=1);
 
 <div class="radiobox_wrapper">
     <label>
-        <input type="radio" name="work_time" {{(clubValue('work_time') != '2') ? 'checked' : null}} value="24/7" data-disable-block='[data-block="work_time"]'>
+        <input type="radio"
+               name="work_time"
+               {{(clubValue('work_time') != '2') ? 'checked' : null}}
+               value="24/7"
+               data-disable-block='[data-block="work_time"]'
+               data-activate-block-without-input-toggle>
         <span class="activator"><span></span></span>
         <span>Круглосуточно</span>
     </label>
     <label>
-        <input type="radio" name="work_time" {{(clubValue('work_time') == '2') ? 'checked' : null}} value="not-24/7" data-activate-block='[data-block="work_time"]' data-week-schedule>
+        <input type="radio"
+               name="work_time"
+               {{(clubValue('work_time') == '2') ? 'checked' : null}}
+               value="not-24/7"
+               data-activate-block='[data-block="work_time"]'
+               data-activate-block-without-input-toggle
+               data-week-schedule>
         <span class="activator"><span></span></span>
         <span>Не круглосуточно</span>
     </label>
@@ -24,7 +35,7 @@ declare(strict_types=1);
     <div class="form-group">
         <div class="work_time_item">
             <label>
-                <input type="checkbox" name="monday" {{(checkDays('monday')) ? 'checked' : null}} data-toggle-block='[data-block="monday"]' data-day-schedule >
+                <input type="checkbox" name="monday" {{(checkDays('monday')) ? 'checked' : null}} data-toggle-block='[data-block="monday"]' data-day-schedule>
                 <span class="activator"><span></span></span>
                 <span>Понедельник</span>
             </label>
@@ -51,7 +62,7 @@ declare(strict_types=1);
     <div class="form-group">
         <div class="work_time_item">
             <label>
-                <input type="checkbox" name="tuesday" {{(checkDays('tuesday')) ? 'checked' : null}} data-toggle-block='[data-block="tuesday"]' data-day-schedule >
+                <input type="checkbox" name="tuesday" {{(checkDays('tuesday')) ? 'checked' : null}} data-toggle-block='[data-block="tuesday"]' data-day-schedule>
                 <span class="activator"><span></span></span>
                 <span>Вторник</span>
             </label>
@@ -78,7 +89,7 @@ declare(strict_types=1);
     <div class="form-group">
         <div class="work_time_item">
             <label>
-                <input type="checkbox" name="wednesday" {{(checkDays('wednesday')) ? 'checked' : null}} data-toggle-block='[data-block="wednesday"]' data-day-schedule >
+                <input type="checkbox" name="wednesday" {{(checkDays('wednesday')) ? 'checked' : null}} data-toggle-block='[data-block="wednesday"]' data-day-schedule>
                 <span class="activator"><span></span></span>
                 <span>Среда</span>
             </label>
@@ -105,7 +116,7 @@ declare(strict_types=1);
     <div class="form-group">
         <div class="work_time_item">
             <label>
-                <input type="checkbox" name="thursday" {{(checkDays('thursday')) ? 'checked' : null}} data-toggle-block='[data-block="thursday"]' data-day-schedule >
+                <input type="checkbox" name="thursday" {{(checkDays('thursday')) ? 'checked' : null}} data-toggle-block='[data-block="thursday"]' data-day-schedule>
                 <span class="activator"><span></span></span>
                 <span>Четверг</span>
             </label>
@@ -132,7 +143,7 @@ declare(strict_types=1);
     <div class="form-group">
         <div class="work_time_item">
             <label>
-                <input type="checkbox" name="friday" {{(checkDays('friday')) ? 'checked' : null}} data-toggle-block='[data-block="friday"]' data-day-schedule >
+                <input type="checkbox" name="friday" {{(checkDays('friday')) ? 'checked' : null}} data-toggle-block='[data-block="friday"]' data-day-schedule>
                 <span class="activator"><span></span></span>
                 <span>Пятница</span>
             </label>
@@ -159,7 +170,7 @@ declare(strict_types=1);
     <div class="form-group">
         <div class="work_time_item">
             <label>
-                <input type="checkbox" name="saturday"  {{(checkDays('saturday')) ? 'checked' : null}} data-toggle-block='[data-block="saturday"]' data-day-schedule >
+                <input type="checkbox" name="saturday" {{(checkDays('saturday')) ? 'checked' : null}} data-toggle-block='[data-block="saturday"]' data-day-schedule>
                 <span class="activator"><span></span></span>
                 <span>Суббота</span>
             </label>
@@ -186,7 +197,7 @@ declare(strict_types=1);
     <div class="form-group">
         <div class="work_time_item">
             <label>
-                <input type="checkbox" name="sunday" {{(checkDays('sunday')) ? 'checked' : null}} data-toggle-block='[data-block="sunday"]' data-day-schedule >
+                <input type="checkbox" name="sunday" {{(checkDays('sunday')) ? 'checked' : null}} data-toggle-block='[data-block="sunday"]' data-day-schedule>
                 <span class="activator"><span></span></span>
                 <span>Воскресенье</span>
             </label>
