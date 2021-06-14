@@ -1,3 +1,6 @@
+public/js/dest/*.js binary
+public/css/layout.css binary
+public/css/layout.css.map binary
 * text=auto
 *.css linguist-vendored
 *.scss linguist-vendored

@@ -52,13 +52,13 @@
 
                 </div>
                 <div class="form_btn_wrapper">
-             
+
                     <div class="form_btn_item">
                         @if(!$edit || true)
                         <button type="button" class="save_draft" data-role="save-draft">Сохранить как черновик</button>
                         @endif
                     </div>
-       
+
                     <div class="form_btn_item">
                         <button type="button" class="prev_btn" data-role="prev-tab-button">Назад</button>
                         <button type="button" class="next_btn" data-role="next-tab-button">Продолжить</button>

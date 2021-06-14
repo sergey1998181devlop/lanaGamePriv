@@ -5822,8 +5822,11 @@ section.langame_software_wrapper {
             font-style: normal;
             font-weight: 500;
             font-size: 18px;
-            line-height: 1;
             color: #dc0000;
+            display: block;
+            padding: 9px 9px 9px 30px;
+            text-align: left;
+            line-height: 1;
 
             &:before {
                 content: '';
