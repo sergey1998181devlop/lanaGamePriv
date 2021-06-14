@@ -38,3 +38,11 @@
 .club_comments .comment-header{
     text-align: right;
 }
+
+
+/* section.personal_page_wrapper .personal_page .personal_main_content_wrapper .club_list_content_tabs .tab .club_list_content.moderation .club_list_item .club_card{
+    pointer-events: auto!important;
+} */
+.club_card .search_club_info .club_price_wrapper .club_edit{
+    background: unset;
+}

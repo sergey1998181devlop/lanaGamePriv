@@ -31,6 +31,7 @@ Route::post('profile/verify', 'personalController@verifySMS');
 Route::post('profile/update', 'personalController@update');
 Route::get('personal/clubs', 'clubsController@clubs');
 Route::get('personal/club/{id}/toggle', 'clubsController@toggle');
+Route::get('personal/club/{id}/edit', 'clubsController@edit');
 
 // посты
 Route::get('post/read/{id}/{url}','postsController@post');

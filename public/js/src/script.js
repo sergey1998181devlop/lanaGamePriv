@@ -56,7 +56,8 @@ jQuery(function() {
 
     jQuery('.person_add_club_modal').remodal({
         appendTo: jQuery('.person_add_club_modal_wrapper'),
-        hashTracking: false
+        hashTracking: false,
+        closeOnOutsideClick: false
     });
 
     jQuery('.show_club_price_list_modal').remodal({

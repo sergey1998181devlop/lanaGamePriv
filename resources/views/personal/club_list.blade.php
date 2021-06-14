@@ -4,7 +4,79 @@
 @endsection
 @section('content')
 @include('personal/club_card')
+<?php
+global $edit;
+global $club;
+global $schedule_item;
+if(isset($action) && $action== 'edit'){
+    $edit = true;
+    $schedule_item = '1';
+    if($clubAr->work_time != '1' && $clubAr->work_time_days != ''){
+        $schedule_item = unserialize($clubAr->work_time_days);
+    }
+}else{
+    $edit = false;
+}
 
+function clubValue($input){
+    global $edit;
+    if(!$edit)return false;
+    global $clubAr;
+    if(isset($clubAr->$input)){
+       return $clubAr->$input;
+    }
+    return false;
+}
+function checkDays($day){
+    global $edit;
+    if(!$edit) return true;
+    global $clubAr;
+    if($clubAr->work_time == '1') return true;
+    global $schedule_item;
+    if(!is_array($schedule_item) || !isset($schedule_item[$day]))return false;
+    return true;
+}
+function hours($day,$fromOrTo = 'to'){
+    $hours = [
+        '00:00',
+        '01:00',
+        '02:00',
+        '03:00',
+        '04:00',
+        '05:00',
+        '06:00',
+        '07:00',
+        '08:00',
+        '09:00',
+        '10:00',
+        '11:00',
+        '12:00',
+        '13:00',
+        '14:00',
+        '15:00',
+        '16:00',
+        '17:00',
+        '18:00',
+        '19:00',
+        '20:00',
+        '21:00',
+        '22:00',
+        '23:00'
+    ];
+    global $edit;
+    if($edit){
+        global $clubAr;
+        global $schedule_item;
+    }
+    foreach ($hours as $value) {
+        $selected = '';  
+        if($edit && is_array($schedule_item) && isset($schedule_item[$day])){
+            $selected =  ($schedule_item[$day][$fromOrTo] == $value) ? 'selected' : null ;
+        }
+        echo '<option value="'.$value.'" '.$selected.'>'.$value.'</option>';
+    }
+}
+?>
 <!--SECTION PERSONAL PAGE START-->
 <section class="personal_page_wrapper">
     <div class="container-fluid">
@@ -78,7 +150,7 @@
                         </div>
                     </div>
                     <div class="tab" id="tab2" style="display: none">
-                        <div class="club_list_content moderation">
+                        <div class="club_list_content moderation1">
                             @foreach($underModify as $club)
                                 <div class="club_list_item">
                                 {!!echoCard($club,'under_edit')!!}
@@ -106,12 +178,18 @@
 @endsection
 
 @section('scripts')
+@if(isset($action) && $action == 'edit')
+<script>
+    $( document ).ready(function(){
+        $('[data-remodal-target="add_club_modal"]').click();
+    })
+</script>
+@endif
 @if(isset($_GET['action']) && $_GET['action'] == 'add_club')
 <script>
     $( document ).ready(function(){
         $('[data-remodal-target="add_club_modal"]').click();
     })
-
 </script>
 @endif
 @endsection

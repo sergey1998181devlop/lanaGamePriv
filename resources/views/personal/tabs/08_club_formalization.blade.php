@@ -31,7 +31,7 @@ declare(strict_types=1);
 <div class="add_photo_instruction">
     До 10 изображений формата jpg, png. Размер одного изображения не более 5 Мб.
 </div>
-
+<div class="add_photo_error"></div>
 <div class="photo_gallery">
     <div class="add_photo_preview_wrapper">
         <div id="add_photo_preview" class="add_photo_preview"></div>

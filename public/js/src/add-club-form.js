@@ -115,7 +115,9 @@ jQuery(function() {
     })();
     //upload photo gallery
     (() => {
-        let files = $club_photo_hidden_input.val().split(',').filter(x => !!x),
+        let $tab = jQuery('.form_tab_08_club_formalization'),
+            $photo_error = $tab.find('.add_photo_error'),
+            files = $club_photo_hidden_input.val().split(':').filter(x => !!x),
             main_file = $main_preview_photo_hidden_input.val();
 
         $club_photo_file_input.on('change', function() {
@@ -181,6 +183,7 @@ jQuery(function() {
         }
 
         function renderFiles() {
+            $photo_error.text('');
             $club_photo_hidden_input.val(files.join(','));
             $main_preview_photo_hidden_input.val(main_file || '').trigger('change');
             if (main_file) {
@@ -204,6 +207,20 @@ jQuery(function() {
         function selectMainFile(path) {
             main_file = path;
         }
+        $tab.data('form-wizard-tab-validation', function() {
+            return new Promise((resolve, reject) => {
+                let hasErrors = false;
+
+                $photo_error.text('');
+
+                if (!main_file) {
+                    $photo_error.text('Необходимо загрузить хотя бы одну фотографию');
+                    hasErrors = true;
+                }
+
+                return hasErrors ? reject() : resolve();
+            });
+        });
     })();
 
     function upload_file(file,type) {
@@ -234,7 +251,7 @@ jQuery(function() {
         });
     }
 
-    // schedule validation
+    // // schedule validation
     (() => {
         let $tab = jQuery('.form_tab_04_schedule'),
             $input_week_schedule = jQuery('input[data-week-schedule]'),

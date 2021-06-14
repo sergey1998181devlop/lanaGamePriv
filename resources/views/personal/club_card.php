@@ -1,10 +1,19 @@
 <?php
 
 function echoCard($club,$type = 'published'){
-    $cart =  '<a href="'.url('clubs/'.$club->id.'/'.$club->url).'" class="club_card">
-    <div class="search_club_img_wrapper">
+    if($type == 'published'){
+        $cart =  '<a href="'.url('clubs/'.$club->id.'/'.$club->url).'" class="club_card">';
+    }else{
+        $cart =  '<a class="club_card">';
+    }
+   $editForm = '
+    <form action="'.url('personal/club/'.$club->id.'/edit').'" method="get">
+        <button type="submit" class="club_edit">Редактировать</button>
+    </form> ';
+    $photo = ($club->main_preview_photo != null) ? $club->main_preview_photo  : asset('/img/default-club-preview-image.svg');
+    $cart .=  '<div class="search_club_img_wrapper">
         <div class="search_club_img">
-            <img src="'.asset('/img/default-club-preview-image.svg').'" alt="club">
+            <img src="'.$photo.'" alt="club">
         </div>';
         if($club->qty_vip_pc > 0 || $club->food_drinks =='1' || $club->alcohol =='1'){
         $cart .=  ' 
@@ -79,7 +88,7 @@ function echoCard($club,$type = 'published'){
                 </form>
                 <div class="club_price_wrapper">
                     <div class="club_price"></div>
-                    <div class="club_edit">Редактировать</div>
+                    '.$editForm .'
                 </div>';
                 }elseif ($type == 'under_edit') {
                     $cart.= '<div class="club_status_wrapper">
@@ -87,7 +96,7 @@ function echoCard($club,$type = 'published'){
                     <span>На модерации</span>
                 </div>
                 <div class="club_price_wrapper">
-                    <div class="club_edit">Редактировать</div>
+                '.$editForm .'
                 </div>';
                 }elseif($type == 'draft'){
                     $cart .='<div class="club_status_wrapper">
@@ -96,7 +105,7 @@ function echoCard($club,$type = 'published'){
                 </div>
                 <div class="club_price_wrapper">
                     <div class="club_price"></div>
-                    <div class="club_edit">Редактировать</div>
+                    '.$editForm .'
                 </div>';
                 }
                 

@@ -1,9 +1,17 @@
 <!--MODALS START-->
 <div class="person_add_club_modal_wrapper"></div>
 <div class="person_add_club_modal" data-remodal-id="add_club_modal">
-    <button data-remodal-action="close" class="remodal-close">Закрыть</button>
+@if($edit)
+<a href="{{url('personal/clubs')}}" class="remodal-close">Закрыть</a>
+@else
+<button data-remodal-action="close" class="remodal-close">Закрыть</button>
+@endif
     <div class="remodal-content">
+        @if($edit)
+        <form action="{{url('personal/club/'.$club->id.'/update')}}" list-action="{{url('clubs/add-list')}}" image-action="{{url('clubs/add-image')}}" method="post" id="add-club-form">
+        @else
         <form action="{{url('clubs/add')}}" draft-action="{{url('clubs/add-draft')}}" list-action="{{url('clubs/add-list')}}" image-action="{{url('clubs/add-image')}}" method="post" id="add-club-form">
+        @endif
         {{ csrf_field() }}
             <div class="forma">
                 <div class="form_tab_wrapper">
@@ -44,9 +52,13 @@
 
                 </div>
                 <div class="form_btn_wrapper">
+             
                     <div class="form_btn_item">
+                        @if(!$edit || true)
                         <button type="button" class="save_draft" data-role="save-draft">Сохранить как черновик</button>
+                        @endif
                     </div>
+       
                     <div class="form_btn_item">
                         <button type="button" class="prev_btn" data-role="prev-tab-button">Назад</button>
                         <button type="button" class="next_btn" data-role="next-tab-button">Продолжить</button>

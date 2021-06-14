@@ -36,6 +36,15 @@ class clubsController extends Controller
         $club->hidden_at = ($club->hidden_at == null) ? Carbon::now()->toDateTimeString() : null;
         $club->save();
     }
+    public function edit($id){
+        global $clubAr;
+        $clubAr = club::CorrentUser()->findOrFail($id);
+        $published = club::SelectCartFeilds()->CorrentUser()->Published()->get();
+        $underModify = club::SelectCartFeilds()->CorrentUser()->UnderEdit()->get();
+        $draft = club::SelectCartFeilds()->CorrentUser()->Draft()->get();
+
+        return view('personal/club_list')->with(['action'=>'edit','clubAr'=>$clubAr,'published'=>$published,'underModify'=>$underModify,'draft'=>$draft]);
+    }
     public function clubs(){
         $published = club::SelectCartFeilds()->CorrentUser()->Published()->get();
         $underModify = club::SelectCartFeilds()->CorrentUser()->UnderEdit()->get();
@@ -130,11 +139,11 @@ class clubsController extends Controller
                     $daysAr[$day]['to'] = $request->input($day.'_work_to');
                 }
             }
-            if($request->input('club_price_file') != ''){
-                $club->club_price_file = $request->input('club_price_file') ;
-            }
             if(count($daysAr) > 0)
             $club->work_time_days = serialize($daysAr);
+        }
+        if($request->input('club_price_file') != ''){
+            $club->club_price_file = $request->input('club_price_file') ;
         }
         $club->configuration = serialize($request->input('configuration'));
         if($request->input('marketing_event') == 'on'){
@@ -156,7 +165,7 @@ class clubsController extends Controller
         if(count($payment_methods) > 0)
         $club->payment_methods = implode(',',$payment_methods);
         $club->url=ucwords(str_replace(" ","-",$request->input('club_name')));
-
+         return;
        if($club->save()){
            return true;
        }
