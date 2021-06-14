@@ -8,7 +8,7 @@
 @endif
     <div class="remodal-content">
         @if($edit)
-        <form action="{{url('personal/club/'.$club->id.'/update')}}" list-action="{{url('clubs/add-list')}}" image-action="{{url('clubs/add-image')}}" method="post" id="add-club-form">
+        <form action="{{url('personal/club/'.$club->id.'/update')}}" class="edit_club_form" list-action="{{url('clubs/add-list')}}" image-action="{{url('clubs/add-image')}}" method="post" id="add-club-form">
         @else
         <form action="{{url('clubs/add')}}" draft-action="{{url('clubs/add-draft')}}" list-action="{{url('clubs/add-list')}}" image-action="{{url('clubs/add-image')}}" method="post" id="add-club-form">
         @endif
