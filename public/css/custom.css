@@ -2,10 +2,22 @@
     cursor: pointer;
 }
 .btn {
-    line-height: 30px;border-radius: 12px;text-align: center;    font-style: normal;
+    border-radius: 12px;
+    text-align: center;
+    font-style: normal;
     font-weight: 500;
-    font-size: 18px;text-decoration: none;    padding: 10px;
+    font-size: 18px;text-decoration: none;
+    padding: 12px 30px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
 }
+
+.btn:hover{
+    box-shadow: 0 0 8px #cecece;
+}
+
 .btn-danger{
     background-color: #dc0000;
     color: #fff;
