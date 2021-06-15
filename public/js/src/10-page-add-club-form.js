@@ -118,7 +118,7 @@ jQuery(function() {
     (() => {
         let $tab = jQuery('.form_tab_08_club_formalization'),
             $photo_error = $tab.find('.add_photo_error'),
-            files = $club_photo_hidden_input.val().split(':').filter(x => !!x),
+            files = $club_photo_hidden_input.val().split(',').filter(x => !!x),
             main_file = $main_preview_photo_hidden_input.val();
 
         $club_photo_file_input.on('change', function() {

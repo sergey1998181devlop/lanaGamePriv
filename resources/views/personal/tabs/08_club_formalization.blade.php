@@ -18,15 +18,10 @@ declare(strict_types=1);
     </div>
 </div>
 
-<? $images = [];
-if(clubValue('club_photos') != null){
-    $images = array_filter(explode(',',clubValue('club_photos')));
-}
-?>
 <div class="add_photo_wrapper">
     <div class="add_photo_title">Фото</div>
-    <input id="club_photos_input" type="hidden" name="club_photos" value="">
-    <input id="main_preview_photo_input" type="hidden" name="main_preview_photo" value="">
+    <input id="club_photos_input" type="hidden" name="club_photos" value="{{clubValue('club_photos')}}">
+    <input id="main_preview_photo_input" type="hidden" name="main_preview_photo" value="{{clubValue('main_preview_photo')}}">
     <div class="add_photo">
         <label>
             <input id="add-photo-input" type="file" multiple accept="image/*">
@@ -41,22 +36,9 @@ if(clubValue('club_photos') != null){
 <div class="add_photo_error"></div>
 <div class="photo_gallery">
     <div class="add_photo_preview_wrapper">
-        <div id="add_photo_preview" class="add_photo_preview">
-        <?if(clubValue('main_preview_photo') != null){?>
-            <img src="{{clubValue('main_preview_photo')}}">
-        <?}?>
-        </div>
+        <div id="add_photo_preview" class="add_photo_preview"></div>
     </div>
-    <div id="add_photo_list" class="add_photo_list">
-    @if(is_array($images) && count($images) > 0)
-       @foreach($images as $image)
-                <div class="add_photo_item">
-                    <img src="{{$image}}">
-                    <a href="#" class="remove_photo"></a>
-                </div>
-        @endforeach
-    @endif
-    </div>
+    <div id="add_photo_list" class="add_photo_list"></div>
 </div>
 
 <div class="form-group">
