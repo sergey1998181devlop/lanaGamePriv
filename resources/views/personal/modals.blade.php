@@ -31,6 +31,7 @@
                     </div>
 
                     <div class="form_tab form_tab_05_configuration">
+
                     @include("personal.tabs.05_configuration")
                     </div>
 
