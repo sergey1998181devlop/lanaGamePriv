@@ -811,12 +811,14 @@
                             <a href="tel:{{$club->phone}}">{{$club->phone}}</a>
                         </div>
                     </div>
+                    @if($club->club_email != '')
                     <div class="club_page_contacts_item">
                         <div class="club_contact">
                             <img src="{{asset('/img/mail.svg')}}" alt="email">
                             <a href="mailto:{{$club->club_email}}">{{$club->club_email}}</a>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

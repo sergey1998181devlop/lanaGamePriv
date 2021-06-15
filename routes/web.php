@@ -29,15 +29,17 @@ Route::get('personal/profile', 'personalController@profile');
 Route::post('profile/sendSMS', 'personalController@sendSMS');
 Route::post('profile/verify', 'personalController@verifySMS');
 Route::post('profile/update', 'personalController@update');
-Route::get('personal/clubs', 'clubsController@clubs');
-Route::get('personal/club/{id}/toggle', 'clubsController@toggle');
-Route::get('personal/club/{id}/edit', 'clubsController@edit');
 
 // посты
 Route::get('post/read/{id}/{url}','postsController@post');
 Route::get('posts','postsController@allposts');
 
 // клубы
+Route::get('personal/clubs', 'clubsController@clubs');
+Route::get('personal/club/{id}/toggle', 'clubsController@toggle');
+Route::get('personal/club/{id}/edit', 'clubsController@edit');
+Route::post('personal/club/{id}/update', 'clubsController@update');
+Route::post('personal/club/{id}/update-draft', 'clubsController@updateDraft');
 Route::get('clubs/{id}/{url}','clubsController@index');
 Route::post('clubs/add', 'clubsController@addClub');
 Route::post('clubs/add-draft', 'clubsController@addDraftClub');

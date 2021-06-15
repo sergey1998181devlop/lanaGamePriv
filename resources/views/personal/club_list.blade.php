@@ -28,6 +28,7 @@ function clubValue($input){
     if(!$edit)return false;
     global $clubAr;
     if(isset($clubAr->$input)){
+        if(is_numeric($clubAr->$input) && $clubAr->$input == 0) return false;
        return $clubAr->$input;
     }
     return false;

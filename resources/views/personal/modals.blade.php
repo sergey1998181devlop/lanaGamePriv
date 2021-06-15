@@ -8,7 +8,7 @@
 @endif
     <div class="remodal-content">
         @if($edit)
-        <form action="{{url('personal/club/'.$club->id.'/update')}}" class="edit_club_form" list-action="{{url('clubs/add-list')}}" image-action="{{url('clubs/add-image')}}" method="post" id="add-club-form">
+        <form action="{{url('personal/club/'.$clubAr->id.'/update')}}" @if($clubAr->draft == '1') draft-action="{{url('personal/club/'.$clubAr->id.'/update-draft')}}" @endif class="edit_club_form" list-action="{{url('clubs/add-list')}}" image-action="{{url('clubs/add-image')}}" method="post" id="add-club-form">
         @else
         <form action="{{url('clubs/add')}}" draft-action="{{url('clubs/add-draft')}}" list-action="{{url('clubs/add-list')}}" image-action="{{url('clubs/add-image')}}" method="post" id="add-club-form">
         @endif
@@ -54,7 +54,7 @@
                 <div class="form_btn_wrapper">
 
                     <div class="form_btn_item">
-                        @if(!$edit || true)
+                        @if(!$edit || $clubAr->draft == '1')
                         <button type="button" class="save_draft" data-role="save-draft">Сохранить как черновик</button>
                         @endif
                     </div>

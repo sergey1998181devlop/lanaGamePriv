@@ -100,37 +100,72 @@ class clubsController extends Controller
         return response()->json('error',402);
 
     }
+    public function update($id,Request $request){
+        return $this->store($request,true,$id);
+    }
+    public function updateDraft($id,Request $request){
+        $this->isDraft = true;
+        return $this->store($request,true,$id);
+    }
     
-    public function store($request){
-       $club = new club();
-       $club->user_id=Auth::user()->id;
+    public function store($request,$update = false,$id= null){
+        if($update){
+          $club = club::CorrentUser()->findOrFail($id);
+          if(!$this->isDraft && $club->draft == '1'){
+            $club->draft = '0';
+          }
+        }else{
+            $club = new club();
+            $club->user_id=Auth::user()->id;
+        }
+        if($this->isDraft){
+            $club->draft = '1';
+        }
        foreach($this->inputsTextsHandle() as $input){
            if($request->input($input) == '')continue;
             $club->$input = $request->input($input);
        }
-       if($this->isDraft){
-           $club->draft = '1';
-       }
-       if($request->input('vip_pc') == 'on')
+       
+        if($request->input('vip_pc') == 'on'){
             $club->qty_vip_pc = $request->input('qty_vip_pc');
-       if($request->input('vr') == 'on')
+        }
+        else{
+            $club->qty_vip_pc = 0;
+        }
+        if($request->input('vr') == 'on'){
             $club->qty_vr = $request->input('qty_vr');
-       if($request->input('simulator') == 'on')
-            $club->qty_simulator = $request->input('qty_simulator');
+        }else{
+            $club->qty_vr = 0;
+        }
 
+        if($request->input('simulator') == 'on'){
+            $club->qty_simulator = $request->input('qty_simulator');
+        }else{
+            $club->qty_simulator = 0;
+        }
        if($request->input('console') == 'on'){
             $club->console = '1';
             $club->console_type = $request->input('console_type');
             $club->qty_console = $request->input('qty_console');
+        }else{
+            $club->console = '0';
+            $club->console_type = '0';
+            $club->qty_console = 0;
         }
         if($request->input('food_drinks') == 'on'){
             $club->food_drinks = '1';
             $club->food_drink_type = $request->input('food_drink_type');
+        }else{
+            $club->food_drinks = '0';
+            $club->food_drink_type = '';
         }
 
         foreach($this->servicesHandle() as $input){
-            if($request->input($input) == 'on')
-             $club->$input = '1';
+            if($request->input($input) == 'on'){
+                $club->$input = '1';
+            }else{
+                $club->$input = '0';
+            }
         }
 
         if($request->input('work_time') == 'not-24/7'){
@@ -145,14 +180,20 @@ class clubsController extends Controller
             }
             if(count($daysAr) > 0)
             $club->work_time_days = serialize($daysAr);
+        }else{
+            $club->work_time = '1';
+            $club->work_time_days = '';
         }
         if($request->input('club_price_file') != ''){
-            $club->club_price_file = $request->input('club_price_file') ;
+            $club->club_price_file = $request->input('club_price_file');
         }
         $club->configuration = serialize($request->input('configuration'));
         if($request->input('marketing_event') == 'on'){
             $club->marketing_event = '1';
             $club->marketing_event_descr = serialize($request->input('marketing_event_descr'));
+        }else{
+            $club->marketing_event = '0';
+            $club->marketing_event_descr = '';
         }
         $payment_methods = [];
         $payment_ways=[
@@ -166,7 +207,6 @@ class clubsController extends Controller
             if($request->input($input) == 'on')
             $payment_methods[]=$input;
         }
-        if(count($payment_methods) > 0)
         $club->payment_methods = implode(',',$payment_methods);
         $club->url=ucwords(str_replace(" ","-",$request->input('club_name')));
        if($club->save()){
