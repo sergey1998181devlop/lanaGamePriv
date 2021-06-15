@@ -41,14 +41,14 @@ declare(strict_types=1);
         <div class="input_wrapper" data-block="monday">
             <div class="work_time_select">
                 <div class="select2_wrapper">
-                    <select id="monday_work_from" name="monday_work_from" required>
+                    <select id="monday_work_from" name="monday_work_from" data-select2-without-search required>
                         <option value=""></option>
                         {!!hours('monday','from')!!}
                     </select>
                     <div class="error"></div>
                 </div>
                 <div class="select2_wrapper">
-                    <select id="monday_work_to" name="monday_work_to" required>
+                    <select id="monday_work_to" name="monday_work_to" data-select2-without-search required>
                         <option value=""></option>
                         {!!hours('monday')!!}
                     </select>
@@ -68,14 +68,14 @@ declare(strict_types=1);
         <div class="input_wrapper" data-block="tuesday">
             <div class="work_time_select">
                 <div class="select2_wrapper">
-                    <select id="tuesday_work_from" name="tuesday_work_from" required>
+                    <select id="tuesday_work_from" name="tuesday_work_from" data-select2-without-search required>
                         <option value=""></option>
                         {!!hours('tuesday','from')!!}
                     </select>
                     <div class="error"></div>
                 </div>
                 <div class="select2_wrapper">
-                    <select id="tuesday_work_to" name="tuesday_work_to" required>
+                    <select id="tuesday_work_to" name="tuesday_work_to" data-select2-without-search required>
                         <option value=""></option>
                         {!!hours('tuesday')!!}
                     </select>
@@ -95,14 +95,14 @@ declare(strict_types=1);
         <div class="input_wrapper" data-block="wednesday">
             <div class="work_time_select">
                 <div class="select2_wrapper">
-                    <select id="wednesday_work_from" name="wednesday_work_from" required>
+                    <select id="wednesday_work_from" name="wednesday_work_from" data-select2-without-search required>
                         <option value=""></option>
                         {!!hours('wednesday','from')!!}
                     </select>
                     <div class="error"></div>
                 </div>
                 <div class="select2_wrapper">
-                    <select id="wednesday_work_to" name="wednesday_work_to" required>
+                    <select id="wednesday_work_to" name="wednesday_work_to" data-select2-without-search required>
                         <option value=""></option>
                         {!!hours('wednesday')!!}
                     </select>
@@ -122,14 +122,14 @@ declare(strict_types=1);
         <div class="input_wrapper" data-block="thursday">
             <div class="work_time_select">
                 <div class="select2_wrapper">
-                    <select id="thursday_work_from" name="thursday_work_from" required>
+                    <select id="thursday_work_from" name="thursday_work_from" data-select2-without-search required>
                         <option value=""></option>
                         {!!hours('thursday','from')!!}
                     </select>
                     <div class="error"></div>
                 </div>
                 <div class="select2_wrapper">
-                    <select id="thursday_work_to" name="thursday_work_to" required>
+                    <select id="thursday_work_to" name="thursday_work_to" data-select2-without-search required>
                         <option value=""></option>
                         {!!hours('thursday')!!}
                     </select>
@@ -149,14 +149,14 @@ declare(strict_types=1);
         <div class="input_wrapper" data-block="friday">
             <div class="work_time_select">
                 <div class="select2_wrapper">
-                    <select id="friday_work_from" name="friday_work_from" required>
+                    <select id="friday_work_from" name="friday_work_from" data-select2-without-search required>
                         <option value=""></option>
                         {!!hours('friday','from')!!}
                     </select>
                     <div class="error"></div>
                 </div>
                 <div class="select2_wrapper">
-                    <select id="friday_work_to" name="friday_work_to" required>
+                    <select id="friday_work_to" name="friday_work_to" data-select2-without-search required>
                         <option value=""></option>
                         {!!hours('friday')!!}
                     </select>
@@ -176,14 +176,14 @@ declare(strict_types=1);
         <div class="input_wrapper" data-block="saturday">
             <div class="work_time_select">
                 <div class="select2_wrapper">
-                    <select id="saturday_work_from" name="saturday_work_from" required>
+                    <select id="saturday_work_from" name="saturday_work_from" data-select2-without-search required>
                         <option value=""></option>
                         {!!hours('saturday','from')!!}
                     </select>
                     <div class="error"></div>
                 </div>
                 <div class="select2_wrapper">
-                    <select id="saturday_work_to" name="saturday_work_to" required>
+                    <select id="saturday_work_to" name="saturday_work_to" data-select2-without-search required>
                         <option value=""></option>
                         {!!hours('saturday')!!}
                     </select>
@@ -203,14 +203,14 @@ declare(strict_types=1);
         <div class="input_wrapper" data-block="sunday">
             <div class="work_time_select">
                 <div class="select2_wrapper">
-                    <select id="sunday_work_from" name="sunday_work_from" required>
+                    <select id="sunday_work_from" name="sunday_work_from" data-select2-without-search required>
                         <option value=""></option>
                         {!!hours('sunday','from')!!}
                     </select>
                     <div class="error"></div>
                 </div>
                 <div class="select2_wrapper">
-                    <select id="sunday_work_to" name="sunday_work_to" required>
+                    <select id="sunday_work_to" name="sunday_work_to" data-select2-without-search required>
                         <option value=""></option>
                         {!!hours('sunday')!!}
                     </select>

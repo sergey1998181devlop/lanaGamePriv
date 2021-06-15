@@ -77,49 +77,6 @@ jQuery(function() {
         });
     });
 
-    // common info
-    (() => {
-        let current_subway_value = $club_select_metro_input.val();
-
-        $club_select_metro_input.find('option[data-city]').each(function() {
-            let $option = jQuery(this);
-
-            subway_options.push({
-                id: this.value,
-                text: $option.text(),
-                city: $option.data('city'),
-                lineColor: $option.data('line-color')
-            });
-        });
-
-        $club_select_metro_input.html('<option></option>');
-        $club_select_metro_input.select2({
-            minimumResultsForSearch: Infinity,
-            placeholder: $club_select_metro_input.data('placeholder'),
-            dropdownParent: $club_select_metro_input.closest('.select2_wrapper'),
-            width: '100%',
-            data: []
-        });
-
-        $club_select_city_input.on('change init', function(e) {
-            $club_select_metro_input.select2('destroy');
-            $club_select_metro_input.html('<option></option>');
-            $club_select_metro_input.select2({
-                minimumResultsForSearch: 1,
-                placeholder: $club_select_metro_input.data('placeholder'),
-                dropdownParent: $club_select_metro_input.closest('.select2_wrapper'),
-                width: '100%',
-                data: subway_options.filter(({city}) => city === $club_select_city_input.val())
-            }).on('select2:opening', function(e) {
-                $(this).data('select2').$dropdown.find(':input.select2-search__field').attr('placeholder', 'Поиск...');
-            });
-
-            if(e.type === 'init') {
-                $club_select_metro_input.val(current_subway_value).trigger('change');
-            }
-        }).trigger('init');
-    })();
-
     //upload photo gallery
     (() => {
         let $tab = jQuery('.form_tab_08_club_formalization'),

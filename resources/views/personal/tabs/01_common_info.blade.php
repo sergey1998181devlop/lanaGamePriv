@@ -19,7 +19,7 @@ declare(strict_types=1);
     <div class="input_wrapper">
         <div class="select2_wrapper">
             <select id="select-сity" name="club_city" required data-placeholder="Выберите город">
-            <option value=""></option>
+                <option value=""></option>
                 <option value="moscow" {{(clubValue('club_city') == 'moscow') ? 'selected' : null}}>Москва</option>
                 <option value="saint-peterburg" {{(clubValue('club_city') == 'saint-peterburg') ? 'selected' : null}}>Санкт-Петербург</option>
             </select>
@@ -45,16 +45,17 @@ declare(strict_types=1);
     <label for="select-subway">Метро</label>
     <div class="input_wrapper">
         <div class="select2_wrapper">
-        <select id="select-subway" name="club_metro" data-placeholder="Выберите метро" data-select2-manual-init data-select2-depends-on="#select-сity">
-                <option value="2" {{(clubValue('club_metro') == '2') ? 'selected' : null}} data-city="moscow" data-line-color="aqua">Выставочная</option>
-                <option value="3" {{(clubValue('club_metro') == '3') ? 'selected' : null}} data-city="moscow" data-line-color="blue">Арбат</option>
-                <option value="4" {{(clubValue('club_metro') == '4') ? 'selected' : null}} data-city="moscow" data-line-color="blue">Площадь революции</option>
-                <option value="5" {{(clubValue('club_metro') == '5') ? 'selected' : null}} data-city="moscow" data-line-color="brown">Октябрьская</option>
-                <option value="6" {{(clubValue('club_metro') == '6') ? 'selected' : null}} data-city="moscow" data-line-color="brown">Парк культуры</option>
-                <option value="7" {{(clubValue('club_metro') == '7') ? 'selected' : null}} data-city="saint-peterburg" data-line-color="blue">Горьковская</option>
-                <option value="8" {{(clubValue('club_metro') == '8') ? 'selected' : null}} data-city="saint-peterburg" data-line-color="blue">Невский</option>
-                <option value="9" {{(clubValue('club_metro') == '9') ? 'selected' : null}} data-city="saint-peterburg" data-line-color="purple">Адмиралтейская</option>
-                <option value="10" {{(clubValue('club_metro') == '10') ? 'selected' : null}} data-city="saint-peterburg" data-line-color="red">Чернышевская</option>
+            <select id="select-subway" name="club_metro" data-placeholder="Выберите метро" data-select2-depends-on="#select-сity">
+                <option value=""></option>
+                <option value="2" {{(clubValue('club_metro') == '2') ? 'selected' : null}} data-depend-value="moscow" data-line-color="aqua">Выставочная</option>
+                <option value="3" {{(clubValue('club_metro') == '3') ? 'selected' : null}} data-depend-value="moscow" data-line-color="blue">Арбат</option>
+                <option value="4" {{(clubValue('club_metro') == '4') ? 'selected' : null}} data-depend-value="moscow" data-line-color="blue">Площадь революции</option>
+                <option value="5" {{(clubValue('club_metro') == '5') ? 'selected' : null}} data-depend-value="moscow" data-line-color="brown">Октябрьская</option>
+                <option value="6" {{(clubValue('club_metro') == '6') ? 'selected' : null}} data-depend-value="moscow" data-line-color="brown">Парк культуры</option>
+                <option value="7" {{(clubValue('club_metro') == '7') ? 'selected' : null}} data-depend-value="saint-peterburg" data-line-color="blue">Горьковская</option>
+                <option value="8" {{(clubValue('club_metro') == '8') ? 'selected' : null}} data-depend-value="saint-peterburg" data-line-color="blue">Невский</option>
+                <option value="9" {{(clubValue('club_metro') == '9') ? 'selected' : null}} data-depend-value="saint-peterburg" data-line-color="purple">Адмиралтейская</option>
+                <option value="10" {{(clubValue('club_metro') == '10') ? 'selected' : null}} data-depend-value="saint-peterburg" data-line-color="red">Чернышевская</option>
             </select>
             <div class="error"></div>
         </div>

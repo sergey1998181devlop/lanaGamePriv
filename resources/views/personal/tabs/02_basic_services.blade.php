@@ -37,7 +37,7 @@ declare(strict_types=1);
     <div class="input_wrapper" data-block="console">
         <div class="console_select">
             <div class="select2_wrapper">
-                <select class="type" id="console-type" name="console_type" required data-placeholder="Тип">
+                <select class="type" id="console-type" name="console_type" data-select2-without-search required data-placeholder="Тип">
                     <option value=""></option>
                     <option value="1" {{(clubValue('console_type') == '1') ? 'selected' : null}}>1234</option>
                 </select>
@@ -57,7 +57,7 @@ declare(strict_types=1);
     </div>
     <div class="input_wrapper" data-block="food_drinks">
         <div class="select2_wrapper">
-            <select class="type" id="food-drink-type" name="food_drink_type" required data-placeholder="Тип">
+            <select class="type" id="food-drink-type" name="food_drink_type" data-select2-without-search required data-placeholder="Тип">
                 <option value=""></option>
                 <option value="1"  {{(clubValue('food_drink_type') == '1') ? 'selected' : null}}>123</option>
             </select>

@@ -49,18 +49,20 @@ declare(strict_types=1);
                         <div class="select2_wrapper">
                             <select id="cpu-vendor-0" name="configuration[0][cpu_vendor]" data-placeholder="Фирма" required>
                                 <option value=""></option>
-                                <option value="1" {{(getConf('cpu_vendor','0') == '1') ? 'selected' : null}}>Фирма</option>
-                                <option value="2" {{(getConf('cpu_vendor','0') == '2') ? 'selected' : null}}>Logitech</option>
-                                <option value="3" {{(getConf('cpu_vendor','0') == '3') ? 'selected' : null}}>DxRacer</option>
-                                <option value="4" {{(getConf('cpu_vendor','0') == '4') ? 'selected' : null}}>Nvidia</option>
-
+                                <option value="intel" {{(getConf('cpu_vendor','0') === 'intel') ? 'selected' : null}}>Intel</option>
+                                <option value="amd" {{(getConf('cpu_vendor','0') === 'amd') ? 'selected' : null}}>AMD</option>
                             </select>
                             <div class="error"></div>
                         </div>
                         <div class="select2_wrapper">
-                            <select id="cpu-model-0" name="configuration[0][cpu_model]" data-placeholder="Модель" required>
+                            <select id="cpu-model-0" name="configuration[0][cpu_model]" data-placeholder="Модель" data-select2-depends-on="#cpu-vendor-0" required>
                                 <option value=""></option>
-                                <option value="1" {{(getConf('cpu_model','0') == '1') ? 'selected' : null}}>Модель</option>
+                                <option value="intel-i5" {{(getConf('cpu_model','0') === 'intel-i5') ? 'selected' : null}} data-depend-value="intel">Intel i5</option>
+                                <option value="intel-i7" {{(getConf('cpu_model','0') === 'intel-i7') ? 'selected' : null}} data-depend-value="intel">Intel i7</option>
+                                <option value="intel-i9" {{(getConf('cpu_model','0') === 'intel-i9') ? 'selected' : null}} data-depend-value="intel">Intel i9</option>
+                                <option value="amd-ryzen-5-2600" {{(getConf('cpu_model','0') === 'amd-ryzen-5-2600') ? 'selected' : null}} data-depend-value="amd">Ryzen 5 2600</option>
+                                <option value="amd-ryzen-5-3600" {{(getConf('cpu_model','0') === 'amd-ryzen-5-3600') ? 'selected' : null}} data-depend-value="amd">Ryzen 5 3600</option>
+                                <option value="amd-ryzen-7-2700x" {{(getConf('cpu_model','0') === 'amd-ryzen-7-2700x') ? 'selected' : null}} data-depend-value="amd">Ryzen 7 2700X</option>
                             </select>
                             <div class="error"></div>
                         </div>
@@ -74,14 +76,20 @@ declare(strict_types=1);
                         <div class="select2_wrapper">
                             <select id="video-vendor-0" name="configuration[0][video_vendor]" data-placeholder="Фирма" required>
                                 <option value=""></option>
-                                <option value="1" {{(getConf('video_vendor','0') == '1') ? 'selected' : null}}>Фирма</option>
+                                <option value="intel" {{(getConf('video_vendor','0') === 'intel') ? 'selected' : null}}>Intel</option>
+                                <option value="amd" {{(getConf('video_vendor','0') === 'amd') ? 'selected' : null}}>AMD</option>
                             </select>
                             <div class="error"></div>
                         </div>
                         <div class="select2_wrapper">
-                            <select id="video-model-0" name="configuration[0][video_model]" data-placeholder="Модель" required>
+                            <select id="video-model-0" name="configuration[0][video_model]" data-placeholder="Модель" data-select2-depends-on="#video-vendor-0" required>
                                 <option value=""></option>
-                                <option value="1" {{(getConf('video_model','0') == '1') ? 'selected' : null}}>Модель</option>
+                                <option value="intel-i5" {{(getConf('video_model','0') === 'intel-i5') ? 'selected' : null}} data-depend-value="intel">Intel i5</option>
+                                <option value="intel-i7" {{(getConf('video_model','0') === 'intel-i7') ? 'selected' : null}} data-depend-value="intel">Intel i7</option>
+                                <option value="intel-i9" {{(getConf('video_model','0') === 'intel-i9') ? 'selected' : null}} data-depend-value="intel">Intel i9</option>
+                                <option value="amd-ryzen-5-2600" {{(getConf('video_model','0') === 'amd-ryzen-5-2600') ? 'selected' : null}} data-depend-value="amd">Ryzen 5 2600</option>
+                                <option value="amd-ryzen-5-3600" {{(getConf('video_model','0') === 'amd-ryzen-5-3600') ? 'selected' : null}} data-depend-value="amd">Ryzen 5 3600</option>
+                                <option value="amd-ryzen-7-2700x" {{(getConf('video_model','0') === 'amd-ryzen-7-2700x') ? 'selected' : null}} data-depend-value="amd">Ryzen 7 2700X</option>
                             </select>
                             <div class="error"></div>
                         </div>
@@ -219,14 +227,20 @@ declare(strict_types=1);
                         <div class="select2_wrapper">
                             <select id="cpu-vendor-1" name="configuration[1][cpu_vendor]" data-placeholder="Фирма" required>
                                 <option value=""></option>
-                                <option value="1" {{(getConf('cpu_vendor','1') == '1') ? 'selected' : null}}>Фирма</option>
+                                <option value="intel" {{(getConf('cpu_vendor','0') === 'intel') ? 'selected' : null}}>Intel</option>
+                                <option value="amd" {{(getConf('cpu_vendor','0') === 'amd') ? 'selected' : null}}>AMD</option>
                             </select>
                             <div class="error"></div>
                         </div>
                         <div class="select2_wrapper">
-                            <select id="cpu-model-1" name="configuration[1][cpu_model]" data-placeholder="Модель" required>
+                            <select id="cpu-model-1" name="configuration[1][cpu_model]" data-placeholder="Модель" data-select2-depends-on="#cpu-vendor-1" required>
                                 <option value=""></option>
-                                <option value="1" {{(getConf('cpu_model','1') == '1') ? 'selected' : null}}>Модель</option>
+                                <option value="intel-i5" {{(getConf('cpu_model','0') === 'intel-i5') ? 'selected' : null}} data-depend-value="intel">Intel i5</option>
+                                <option value="intel-i7" {{(getConf('cpu_model','0') === 'intel-i7') ? 'selected' : null}} data-depend-value="intel">Intel i7</option>
+                                <option value="intel-i9" {{(getConf('cpu_model','0') === 'intel-i9') ? 'selected' : null}} data-depend-value="intel">Intel i9</option>
+                                <option value="amd-ryzen-5-2600" {{(getConf('cpu_model','0') === 'amd-ryzen-5-2600') ? 'selected' : null}} data-depend-value="amd">Ryzen 5 2600</option>
+                                <option value="amd-ryzen-5-3600" {{(getConf('cpu_model','0') === 'amd-ryzen-5-3600') ? 'selected' : null}} data-depend-value="amd">Ryzen 5 3600</option>
+                                <option value="amd-ryzen-7-2700x" {{(getConf('cpu_model','0') === 'amd-ryzen-7-2700x') ? 'selected' : null}} data-depend-value="amd">Ryzen 7 2700X</option>
                             </select>
                             <div class="error"></div>
                         </div>
@@ -240,14 +254,20 @@ declare(strict_types=1);
                         <div class="select2_wrapper">
                             <select id="video-vendor-1" name="configuration[1][video_vendor]" data-placeholder="Фирма" required>
                                 <option value=""></option>
-                                <option value="1" {{(getConf('video_vendor','1') == '1') ? 'selected' : null}}>Фирма</option>
+                                <option value="intel" {{(getConf('video_vendor','0') === 'intel') ? 'selected' : null}}>Intel</option>
+                                <option value="amd" {{(getConf('video_vendor','0') === 'amd') ? 'selected' : null}}>AMD</option>
                             </select>
                             <div class="error"></div>
                         </div>
                         <div class="select2_wrapper">
-                            <select id="video-model-1" name="configuration[1][video_model]" data-placeholder="Модель" required>
+                            <select id="video-model-1" name="configuration[1][video_model]" data-placeholder="Модель" data-select2-depends-on="#video-vendor-1" required>
                                 <option value=""></option>
-                                <option value="1" {{(getConf('video_model','1') == '1') ? 'selected' : null}}>Модель</option>
+                                <option value="intel-i5" {{(getConf('video_model','0') === 'intel-i5') ? 'selected' : null}} data-depend-value="intel">Intel i5</option>
+                                <option value="intel-i7" {{(getConf('video_model','0') === 'intel-i7') ? 'selected' : null}} data-depend-value="intel">Intel i7</option>
+                                <option value="intel-i9" {{(getConf('video_model','0') === 'intel-i9') ? 'selected' : null}} data-depend-value="intel">Intel i9</option>
+                                <option value="amd-ryzen-5-2600" {{(getConf('video_model','0') === 'amd-ryzen-5-2600') ? 'selected' : null}} data-depend-value="amd">Ryzen 5 2600</option>
+                                <option value="amd-ryzen-5-3600" {{(getConf('video_model','0') === 'amd-ryzen-5-3600') ? 'selected' : null}} data-depend-value="amd">Ryzen 5 3600</option>
+                                <option value="amd-ryzen-7-2700x" {{(getConf('video_model','0') === 'amd-ryzen-7-2700x') ? 'selected' : null}} data-depend-value="amd">Ryzen 7 2700X</option>
                             </select>
                             <div class="error"></div>
                         </div>
@@ -397,14 +417,20 @@ declare(strict_types=1);
                     <div class="select2_wrapper">
                         <select id="cpu-vendor-{n}" name="configuration[{n}][cpu_vendor]" data-placeholder="Фирма" required>
                             <option value=""></option>
-                            <option value="1">Фирма</option>
+                            <option value="intel" {{(getConf('cpu_vendor','0') === 'intel') ? 'selected' : null}}>Intel</option>
+                            <option value="amd" {{(getConf('cpu_vendor','0') === 'amd') ? 'selected' : null}}>AMD</option>
                         </select>
                         <div class="error"></div>
                     </div>
                     <div class="select2_wrapper">
-                        <select id="cpu-model-{n}" name="configuration[{n}][cpu_model]" data-placeholder="Модель" required>
+                        <select id="cpu-model-{n}" name="configuration[{n}][cpu_model]" data-placeholder="Модель" data-select2-depends-on="#cpu-vendor-{n}" required>
                             <option value=""></option>
-                            <option value="1">Модель</option>
+                            <option value="intel-i5" {{(getConf('cpu_model','0') === 'intel-i5') ? 'selected' : null}} data-depend-value="intel">Intel i5</option>
+                            <option value="intel-i7" {{(getConf('cpu_model','0') === 'intel-i7') ? 'selected' : null}} data-depend-value="intel">Intel i7</option>
+                            <option value="intel-i9" {{(getConf('cpu_model','0') === 'intel-i9') ? 'selected' : null}} data-depend-value="intel">Intel i9</option>
+                            <option value="amd-ryzen-5-2600" {{(getConf('cpu_model','0') === 'amd-ryzen-5-2600') ? 'selected' : null}} data-depend-value="amd">Ryzen 5 2600</option>
+                            <option value="amd-ryzen-5-3600" {{(getConf('cpu_model','0') === 'amd-ryzen-5-3600') ? 'selected' : null}} data-depend-value="amd">Ryzen 5 3600</option>
+                            <option value="amd-ryzen-7-2700x" {{(getConf('cpu_model','0') === 'amd-ryzen-7-2700x') ? 'selected' : null}} data-depend-value="amd">Ryzen 7 2700X</option>
                         </select>
                         <div class="error"></div>
                     </div>
@@ -418,14 +444,20 @@ declare(strict_types=1);
                     <div class="select2_wrapper">
                         <select id="video-vendor-{n}" name="configuration[{n}][video_vendor]" data-placeholder="Фирма" required>
                             <option value=""></option>
-                            <option value="1">Фирма</option>
+                            <option value="intel" {{(getConf('video_vendor','0') === 'intel') ? 'selected' : null}}>Intel</option>
+                            <option value="amd" {{(getConf('video_vendor','0') === 'amd') ? 'selected' : null}}>AMD</option>
                         </select>
                         <div class="error"></div>
                     </div>
                     <div class="select2_wrapper">
-                        <select id="video-model-{n}" name="configuration[{n}][video_model]" data-placeholder="Модель" required>
+                        <select id="video-model-{n}" name="configuration[{n}][video_model]" data-placeholder="Модель" data-select2-depends-on="#video-vendor-{n}" required>
                             <option value=""></option>
-                            <option value="1">Модель</option>
+                            <option value="intel-i5" {{(getConf('video_model','0') === 'intel-i5') ? 'selected' : null}} data-depend-value="intel">Intel i5</option>
+                            <option value="intel-i7" {{(getConf('video_model','0') === 'intel-i7') ? 'selected' : null}} data-depend-value="intel">Intel i7</option>
+                            <option value="intel-i9" {{(getConf('video_model','0') === 'intel-i9') ? 'selected' : null}} data-depend-value="intel">Intel i9</option>
+                            <option value="amd-ryzen-5-2600" {{(getConf('video_model','0') === 'amd-ryzen-5-2600') ? 'selected' : null}} data-depend-value="amd">Ryzen 5 2600</option>
+                            <option value="amd-ryzen-5-3600" {{(getConf('video_model','0') === 'amd-ryzen-5-3600') ? 'selected' : null}} data-depend-value="amd">Ryzen 5 3600</option>
+                            <option value="amd-ryzen-7-2700x" {{(getConf('video_model','0') === 'amd-ryzen-7-2700x') ? 'selected' : null}} data-depend-value="amd">Ryzen 7 2700X</option>
                         </select>
                         <div class="error"></div>
                     </div>
