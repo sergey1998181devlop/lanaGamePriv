@@ -137,21 +137,21 @@ return $marketing_events[$key];
                 <div class="club_list_navigation_wrapper">
                     <ul class="club_list_navigation_tabs">
                         <li>
-                            <a href="#tab1" class="active">
+                            <a href="#tab1" @if(!$edit || $clubAr->published_at != null)class="active" @endif>
                                 <span>Опубликованные</span>
                                 @if(count($published) > 0)
                                 <span class="qty">{{count($published)}}</span>
                                 @endif
                             </a>
                         </li>
-                        <li><a href="#tab2">
+                        <li><a href="#tab2" @if($edit && $clubAr->draft != '1' && $clubAr->published_at == null)class="active" @endif>
                                 <span>На модерации</span>
                                 @if(count($underModify) > 0)
                                 <span class="qty">{{count($underModify)}}</span>
                                 @endif
                             </a>
                         </li>
-                        <li><a href="#tab3">
+                        <li><a href="#tab3" @if($edit && $clubAr->draft == '1')class="active" @endif>
                                 <span>Черновики</span>
                                 @if(count($draft) > 0)
                                 <span class="qty">{{count($draft)}}</span>
@@ -166,7 +166,7 @@ return $marketing_events[$key];
                 </div>
 
                 <div class="club_list_content_tabs">
-                    <div class="tab" id="tab1">
+                    <div class="tab" id="tab1" @if($edit && $clubAr->published_at == null)style="display: none" @endif>
                         <div class="club_list_content">
                             @foreach($published as $club)
                                 <div class="club_list_item">
@@ -175,7 +175,7 @@ return $marketing_events[$key];
                             @endforeach
                         </div>
                     </div>
-                    <div class="tab" id="tab2" style="display: none">
+                    <div class="tab" id="tab2" @if(!$edit || $clubAr->draft == '1' || $clubAr->published_at != null)style="display: none"@endif>
                         <div class="club_list_content moderation1">
                             @foreach($underModify as $club)
                                 <div class="club_list_item">
@@ -184,7 +184,7 @@ return $marketing_events[$key];
                             @endforeach
                         </div>
                     </div>
-                    <div class="tab" id="tab3" style="display: none">
+                    <div class="tab" id="tab3" @if(!$edit || $clubAr->draft != '1')style="display: none"@endif>
                         <div class="club_list_content">
                             @foreach($draft as $club)
                                 <div class="club_list_item">
