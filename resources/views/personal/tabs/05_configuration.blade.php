@@ -17,6 +17,16 @@ declare(strict_types=1);
                 <li data-nav-tab="1" data-block="vip_pc">
                     <a href="#" data-show-tab="1"></a>
                 </li>
+                @if($edit && is_array($configuration) && count($configuration) > 2)
+                    <?foreach($configuration as $key=>$confTap){
+                         if($key == 0 || $key== 1)continue;
+                         ?>
+                        <li data-nav-tab="{{$key}}">
+                            <a href="#" data-show-tab="{{$key}}"></a>
+                            <button type="button" data-remove-tab="{{$key}}"></button>
+                        </li>
+                    <?}?>
+                @endif
             </ul>
 
             <button class="add_pc_config" data-role="pc-configuration-create-tab"></button>
@@ -39,10 +49,10 @@ declare(strict_types=1);
                         <div class="select2_wrapper">
                             <select id="cpu-vendor-0" name="configuration[0][cpu_vendor]" data-placeholder="Фирма" required>
                                 <option value=""></option>
-                                <option value="1">Фирма</option>
-                                <option value="2">Logitech</option>
-                                <option value="3">DxRacer</option>
-                                <option value="4">Nvidia</option>
+                                <option value="1" {{(getConf('cpu_vendor','0') == '1') ? 'selected' : null}}>Фирма</option>
+                                <option value="2" {{(getConf('cpu_vendor','0') == '2') ? 'selected' : null}}>Logitech</option>
+                                <option value="3" {{(getConf('cpu_vendor','0') == '3') ? 'selected' : null}}>DxRacer</option>
+                                <option value="4" {{(getConf('cpu_vendor','0') == '4') ? 'selected' : null}}>Nvidia</option>
 
                             </select>
                             <div class="error"></div>
@@ -50,7 +60,7 @@ declare(strict_types=1);
                         <div class="select2_wrapper">
                             <select id="cpu-model-0" name="configuration[0][cpu_model]" data-placeholder="Модель" required>
                                 <option value=""></option>
-                                <option value="1">Модель</option>
+                                <option value="1" {{(getConf('cpu_model','0') == '1') ? 'selected' : null}}>Модель</option>
                             </select>
                             <div class="error"></div>
                         </div>
@@ -64,14 +74,14 @@ declare(strict_types=1);
                         <div class="select2_wrapper">
                             <select id="video-vendor-0" name="configuration[0][video_vendor]" data-placeholder="Фирма" required>
                                 <option value=""></option>
-                                <option value="1">Фирма</option>
+                                <option value="1" {{(getConf('video_vendor','0') == '1') ? 'selected' : null}}>Фирма</option>
                             </select>
                             <div class="error"></div>
                         </div>
                         <div class="select2_wrapper">
                             <select id="video-model-0" name="configuration[0][video_model]" data-placeholder="Модель" required>
                                 <option value=""></option>
-                                <option value="1">Модель</option>
+                                <option value="1" {{(getConf('video_model','0') == '1') ? 'selected' : null}}>Модель</option>
                             </select>
                             <div class="error"></div>
                         </div>
@@ -85,14 +95,14 @@ declare(strict_types=1);
                         <div class="select2_wrapper">
                             <select id="memory-size-0" name="configuration[0][memory_size]" data-placeholder="Объем" required>
                                 <option value=""></option>
-                                <option value="1">Объем</option>
+                                <option value="1" {{(getConf('memory_size','0') == '1') ? 'selected' : null}}>Объем</option>
                             </select>
                             <div class="error"></div>
                         </div>
                         <div class="select2_wrapper">
                             <select id="memory-type-0" name="configuration[0][memory_type]" data-placeholder="Тип" required>
                                 <option value=""></option>
-                                <option value="1">Тип</option>
+                                <option value="1" {{(getConf('memory_type','0') == '1') ? 'selected' : null}}>Тип</option>
                             </select>
                             <div class="error"></div>
                         </div>
@@ -105,7 +115,7 @@ declare(strict_types=1);
                     <div class="select2_wrapper">
                         <select id="hard-disc-type-0" name="configuration[0][hard_disc_type]" data-placeholder="Тип" required>
                             <option value=""></option>
-                            <option value="1">Тип</option>
+                            <option value="1" {{(getConf('hard_disc_type','0') == '1') ? 'selected' : null}}>Тип</option>
                         </select>
                         <div class="error"></div>
                     </div>
@@ -117,7 +127,7 @@ declare(strict_types=1);
                     <div class="select2_wrapper">
                         <select id="keyboard-vendor-0" name="configuration[0][keyboard_vendor]" data-placeholder="Фирма" required>
                             <option value=""></option>
-                            <option value="1">Фирма</option>
+                            <option value="1" {{(getConf('keyboard_vendor','0') == '1') ? 'selected' : null}}>Фирма</option>
                         </select>
                         <div class="error"></div>
                     </div>
@@ -129,7 +139,7 @@ declare(strict_types=1);
                     <div class="select2_wrapper">
                         <select id="mouse-vendor-0" name="configuration[0][mouse_vendor]" data-placeholder="Фирма" required>
                             <option value=""></option>
-                            <option value="1">Фирма</option>
+                            <option value="1" {{(getConf('mouse_vendor','0') == '1') ? 'selected' : null}}>Фирма</option>
                         </select>
                         <div class="error"></div>
                     </div>
@@ -141,7 +151,7 @@ declare(strict_types=1);
                     <div class="select2_wrapper">
                         <select id="headphone-vendor-0" name="configuration[0][headphone_vendor]" data-placeholder="Фирма" required>
                             <option value=""></option>
-                            <option value="1">Фирма</option>
+                            <option value="1" {{(getConf('headphone_vendor','0') == '1') ? 'selected' : null}}>Фирма</option>
                         </select>
                         <div class="error"></div>
                     </div>
@@ -153,7 +163,7 @@ declare(strict_types=1);
                     <div class="select2_wrapper">
                         <select id="chair-vendor-0" name="configuration[0][chair_vendor]" data-placeholder="Фирма" required>
                             <option value=""></option>
-                            <option value="1">Фирма</option>
+                            <option value="1" {{(getConf('chair_vendor','0') == '1') ? 'selected' : null}}>Фирма</option>
                         </select>
                         <div class="error"></div>
                     </div>
@@ -166,14 +176,14 @@ declare(strict_types=1);
                         <div class="select2_wrapper">
                             <select id="monitor-vendor-0" name="configuration[0][monitor_vendor]" data-placeholder="Фирма" required>
                                 <option value=""></option>
-                                <option value="1">Фирма</option>
+                                <option value="1" {{(getConf('monitor_vendor','0') == '1') ? 'selected' : null}}>Фирма</option>
                             </select>
                             <div class="error"></div>
                         </div>
                         <div class="select2_wrapper">
                             <select id="monitor-type-0" name="configuration[0][monitor_type]" data-placeholder="Тип" required>
                                 <option value=""></option>
-                                <option value="1">Тип</option>
+                                <option value="1" {{(getConf('monitor_type','0') == '1') ? 'selected' : null}}>Тип</option>
                             </select>
                             <div class="error"></div>
                         </div>
@@ -186,7 +196,7 @@ declare(strict_types=1);
                     <div class="select2_wrapper">
                         <select id="internet-0" name="configuration[0][internet]" data-placeholder="Скорость" required>
                             <option value=""></option>
-                            <option value="1">Скорость</option>
+                            <option value="1" {{(getConf('internet','0') == '1') ? 'selected' : null}}>Скорость</option>
                         </select>
                         <div class="error"></div>
                     </div>
@@ -199,6 +209,7 @@ declare(strict_types=1);
                 <div class="pc_config">Оборудование</div>
                 <div class="pc_config">
                     <input type="text" value="2. VIP" placeholder="Введите название" readonly>
+                    <input type="hidden" value="VIP" name="configuration[1][conf_name]" readonly>
                 </div>
             </div>
             <div class="form-group">
@@ -208,14 +219,14 @@ declare(strict_types=1);
                         <div class="select2_wrapper">
                             <select id="cpu-vendor-1" name="configuration[1][cpu_vendor]" data-placeholder="Фирма" required required>
                                 <option value=""></option>
-                                <option value="1">Фирма</option>
+                                <option value="1" {{(getConf('cpu_vendor','1') == '1') ? 'selected' : null}}>Фирма</option>
                             </select>
                             <div class="error"></div>
                         </div>
                         <div class="select2_wrapper">
                             <select id="cpu-model-1" name="configuration[1][cpu_model]" data-placeholder="Модель" required required>
                                 <option value=""></option>
-                                <option value="1">Модель</option>
+                                <option value="1" {{(getConf('cpu_model','1') == '1') ? 'selected' : null}}>Модель</option>
                             </select>
                             <div class="error"></div>
                         </div>
@@ -229,14 +240,14 @@ declare(strict_types=1);
                         <div class="select2_wrapper">
                             <select id="video-vendor-1" name="configuration[1][video_vendor]" data-placeholder="Фирма" required required>
                                 <option value=""></option>
-                                <option value="1">Фирма</option>
+                                <option value="1" {{(getConf('video_vendor','1') == '1') ? 'selected' : null}}>Фирма</option>
                             </select>
                             <div class="error"></div>
                         </div>
                         <div class="select2_wrapper">
                             <select id="video-model-1" name="configuration[1][video_model]" data-placeholder="Модель" required required>
                                 <option value=""></option>
-                                <option value="1">Модель</option>
+                                <option value="1" {{(getConf('video_model','1') == '1') ? 'selected' : null}}>Модель</option>
                             </select>
                             <div class="error"></div>
                         </div>
@@ -250,14 +261,14 @@ declare(strict_types=1);
                         <div class="select2_wrapper">
                             <select id="memory-size-1" name="configuration[1][memory_size]" data-placeholder="Объем" required required>
                                 <option value=""></option>
-                                <option value="1">Объем</option>
+                                <option value="1" {{(getConf('memory_size','1') == '1') ? 'selected' : null}}>Объем</option>
                             </select>
                             <div class="error"></div>
                         </div>
                         <div class="select2_wrapper">
                             <select id="memory-type-1" name="configuration[1][memory_type]" data-placeholder="Тип" required required>
                                 <option value=""></option>
-                                <option value="1">Тип</option>
+                                <option value="1" {{(getConf('memory_type','1') == '1') ? 'selected' : null}}>Тип</option>
                             </select>
                             <div class="error"></div>
                         </div>
@@ -270,7 +281,7 @@ declare(strict_types=1);
                     <div class="select2_wrapper">
                         <select id="hard-disc-type-1" name="configuration[1][hard_disc_type]" data-placeholder="Тип" required required>
                             <option value=""></option>
-                            <option value="1">Тип</option>
+                            <option value="1" {{(getConf('hard_disc_type','1') == '1') ? 'selected' : null}}>Тип</option>
                         </select>
                         <div class="error"></div>
                     </div>
@@ -282,7 +293,7 @@ declare(strict_types=1);
                     <div class="select2_wrapper">
                         <select id="keyboard-vendor-1" name="configuration[1][keyboard_vendor]" data-placeholder="Фирма" required required>
                             <option value=""></option>
-                            <option value="1">Фирма</option>
+                            <option value="1" {{(getConf('keyboard_vendor','1') == '1') ? 'selected' : null}}>Фирма</option>
                         </select>
                         <div class="error"></div>
                     </div>
@@ -294,7 +305,7 @@ declare(strict_types=1);
                     <div class="select2_wrapper">
                         <select id="mouse-vendor-1" name="configuration[1][mouse_vendor]" data-placeholder="Фирма" required required>
                             <option value=""></option>
-                            <option value="1">Фирма</option>
+                            <option value="1" {{(getConf('mouse_vendor','1') == '1') ? 'selected' : null}}>Фирма</option>
                         </select>
                         <div class="error"></div>
                     </div>
@@ -306,7 +317,7 @@ declare(strict_types=1);
                     <div class="select2_wrapper">
                         <select id="headphone-vendor-1" name="configuration[1][headphone_vendor]" data-placeholder="Фирма" required required>
                             <option value=""></option>
-                            <option value="1">Фирма</option>
+                            <option value="1" {{(getConf('headphone_vendor','1') == '1') ? 'selected' : null}}>Фирма</option>
                         </select>
                         <div class="error"></div>
                     </div>
@@ -318,7 +329,7 @@ declare(strict_types=1);
                     <div class="select2_wrapper">
                         <select id="chair-vendor-1" name="configuration[1][chair_vendor]" data-placeholder="Фирма" required required>
                             <option value=""></option>
-                            <option value="1">Фирма</option>
+                            <option value="1" {{(getConf('chair_vendor','1') == '1') ? 'selected' : null}}>Фирма</option>
                         </select>
                         <div class="error"></div>
                     </div>
@@ -331,14 +342,14 @@ declare(strict_types=1);
                         <div class="select2_wrapper">
                             <select id="monitor-vendor-1" name="configuration[1][monitor_vendor]" data-placeholder="Фирма" required required>
                                 <option value=""></option>
-                                <option value="1">Фирма</option>
+                                <option value="1" {{(getConf('monitor_vendor','1') == '1') ? 'selected' : null}}>Фирма</option>
                             </select>
                             <div class="error"></div>
                         </div>
                         <div class="select2_wrapper">
                             <select id="monitor-type-1" name="configuration[1][monitor_type]" data-placeholder="Тип" required required>
                                 <option value=""></option>
-                                <option value="1">Тип</option>
+                                <option value="1" {{(getConf('monitor_type','1') == '1') ? 'selected' : null}}>Тип</option>
                             </select>
                             <div class="error"></div>
                         </div>
@@ -351,13 +362,20 @@ declare(strict_types=1);
                     <div class="select2_wrapper">
                         <select id="internet-1" name="configuration[1][internet]" data-placeholder="Скорость" required required>
                             <option value=""></option>
-                            <option value="1">Скорость</option>
+                            <option value="1" {{(getConf('internet','1') == '1') ? 'selected' : null}}>Скорость</option>
                         </select>
                         <div class="error"></div>
                     </div>
                 </div>
             </div>
         </div>
+        @if($edit && is_array($configuration) && count($configuration) > 2)
+            <?foreach($configuration as $key=>$confTap){
+                    if($key == 0 || $key== 1)continue;
+                    ?>
+                @include('personal.tabs.confTab')
+            <?}?>
+        @endif
     </div>
 </div>
 
@@ -369,7 +387,7 @@ declare(strict_types=1);
         <div class="form-group">
             <div class="pc_config">Оборудование</div>
             <div class="pc_config">
-                <input type="text" value="" name="configuration[{n}][conf_name]" placeholder="Введите название">
+                <input type="text" name="configuration[{n}][conf_name]" placeholder="Введите название">
             </div>
         </div>
         <div class="form-group">

@@ -94,7 +94,11 @@ class clubsController extends Controller
     }
     public function addDraftClub(Request $request){
         $this->isDraft = true;
-        return $this->store($request);
+        if($this->store($request)){
+            return response()->json('success',202);
+        }
+        return response()->json('error',402);
+
     }
     
     public function store($request){
@@ -165,7 +169,6 @@ class clubsController extends Controller
         if(count($payment_methods) > 0)
         $club->payment_methods = implode(',',$payment_methods);
         $club->url=ucwords(str_replace(" ","-",$request->input('club_name')));
-         return;
        if($club->save()){
            return true;
        }

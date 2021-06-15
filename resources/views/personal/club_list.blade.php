@@ -6,14 +6,19 @@
 @include('personal/club_card')
 <?php
 global $edit;
-global $club;
+global $clubAr;
 global $schedule_item;
+global $configuration;
+global $marketing_events;
 if(isset($action) && $action== 'edit'){
     $edit = true;
     $schedule_item = '1';
     if($clubAr->work_time != '1' && $clubAr->work_time_days != ''){
         $schedule_item = unserialize($clubAr->work_time_days);
     }
+    $configuration = unserialize($clubAr->configuration);
+    $configurationAr = [];
+    $marketing_events = unserialize($clubAr->marketing_event_descr);
 }else{
     $edit = false;
 }
@@ -75,6 +80,26 @@ function hours($day,$fromOrTo = 'to'){
         }
         echo '<option value="'.$value.'" '.$selected.'>'.$value.'</option>';
     }
+}
+function getConf($name,$key){
+global $edit;
+if(!$edit)return false;
+global $configuration;
+if(!is_array($configuration))return false;
+if(isset($configuration[$key][$name])){
+    return $configuration[$key][$name];
+}
+return false;
+}
+function getMarketingEvents($key = null){
+global $edit;
+if(!$edit)return false;
+global $clubAr;
+if($clubAr->marketing_event != '1') return false;
+global $marketing_events;
+$marketing_events = unserialize($clubAr->marketing_event_descr);
+if($key === null)return $marketing_events;
+return $marketing_events[$key];
 }
 ?>
 <!--SECTION PERSONAL PAGE START-->
