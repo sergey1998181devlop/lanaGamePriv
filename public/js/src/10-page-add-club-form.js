@@ -263,10 +263,10 @@ jQuery(function() {
             return new Promise((resolve, reject) => {
                 let hasErrors = false;
 
-                jQuery('.work_time_wrapper .error').text('');
+                jQuery('.work_time_wrapper_error').text('');
 
                 if ($input_day_schedule.filter(':checked').length === 0 && $input_week_schedule.is(':checked')) {
-                    jQuery('.work_time_wrapper .error').text('Необходимо заполнить хотя бы один день');
+                    jQuery('.work_time_wrapper_error').text('Необходимо заполнить хотя бы один день');
                     hasErrors = true;
                 }
 
@@ -337,17 +337,17 @@ jQuery(function() {
                 $block.toggleClass('block_active', state);
                 $block.toggleClass('block_disabled', !state);
 
-                if ($input.is(':not([data-activate-block-without-input-toggle])')) {
-                    $block.find('input, select, textarea').each(function() {
-                        let $input = jQuery(this);
 
-                        if (!state) {
-                            $input.val('').trigger('change');
-                        }
+                $block.find('input, select, textarea').each(function() {
+                    let $input = jQuery(this);
 
-                        $input.prop('disabled', !state);
-                    });
-                }
+                    if (!state) {
+                        $input.val('').trigger('change');
+                    }
+
+                    $input.prop('disabled', $input.is('.block_disabled *'));
+                });
+
             });
         }
     })();

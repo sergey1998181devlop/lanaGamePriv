@@ -13,8 +13,7 @@ declare(strict_types=1);
                name="work_time"
                {{(clubValue('work_time') != '2') ? 'checked' : null}}
                value="24/7"
-               data-disable-block='[data-block="work_time"]'
-               data-activate-block-without-input-toggle>
+               data-disable-block='[data-block="work_time"]'>
         <span class="activator"><span></span></span>
         <span>Круглосуточно</span>
     </label>
@@ -24,14 +23,13 @@ declare(strict_types=1);
                {{(clubValue('work_time') == '2') ? 'checked' : null}}
                value="not-24/7"
                data-activate-block='[data-block="work_time"]'
-               data-activate-block-without-input-toggle
                data-week-schedule>
         <span class="activator"><span></span></span>
         <span>Не круглосуточно</span>
     </label>
 </div>
 <div class="work_time_wrapper" data-block="work_time">
-    <div class="error"></div>
+    <div class="error work_time_wrapper_error"></div>
     <div class="form-group">
         <div class="work_time_item">
             <label>
