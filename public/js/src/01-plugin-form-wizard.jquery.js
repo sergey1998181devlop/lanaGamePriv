@@ -33,9 +33,16 @@
             });
 
             function showTab(index) {
-                let $activeTab = $tabs.hide().eq(index).show(),
-                    activeTabPrevButtonText = $activeTab.data('prev-button-text') || prevButtonText,
-                    activeTabNextButtonText = $activeTab.data('next-button-text') || nextButtonText;
+                let $closingTab = activeTab !== index ? $tabs.eq(activeTab) : jQuery(),
+                    $openingTab = $tabs.eq(index),
+                    activeTabPrevButtonText = $openingTab.data('prev-button-text') || prevButtonText,
+                    activeTabNextButtonText = $openingTab.data('next-button-text') || nextButtonText;
+
+                $closingTab.trigger('close');
+                $openingTab.trigger('open');
+
+                $tabs.hide();
+                $openingTab.show();
 
                 $submitButton.toggle(index === $tabs.length - 1);
                 $prevButton.toggle(index > 0).text(activeTabPrevButtonText);

@@ -45,7 +45,7 @@ declare(strict_types=1);
     <label for="select-subway">Метро</label>
     <div class="input_wrapper">
         <div class="select2_wrapper">
-        <select id="select-subway" name="club_metro" data-placeholder="Выберите метро" data-select2-manual-init>
+        <select id="select-subway" name="club_metro" data-placeholder="Выберите метро" data-select2-manual-init data-select2-depends-on="#select-сity">
                 <option value="2" {{(clubValue('club_metro') == '2') ? 'selected' : null}} data-city="moscow" data-line-color="aqua">Выставочная</option>
                 <option value="3" {{(clubValue('club_metro') == '3') ? 'selected' : null}} data-city="moscow" data-line-color="blue">Арбат</option>
                 <option value="4" {{(clubValue('club_metro') == '4') ? 'selected' : null}} data-city="moscow" data-line-color="blue">Площадь революции</option>
