@@ -8,6 +8,7 @@
 <link href="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 @section('content')
 
+
    <!-- Begin Page Content -->
    <div class="container-fluid">
 
@@ -19,7 +20,7 @@
 <div class="card shadow mb-4">
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUser">{{__('messages.add')}}</button>
+        <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUser">{{__('messages.add')}}</button> -->
     </h6>
   </div>
   <div class="card-body">
@@ -30,7 +31,9 @@
             <th>№</th>
             <th>{{__('messages.Name')}}</th>
             <th>{{__('messages.Email')}}</th>
-         
+            <th>{{__('messages.phone')}}</th>
+            <th>Тип</th>
+            
             <th>действие</th>
           </tr>
         </thead>
@@ -40,6 +43,8 @@
             <th>№</th>
             <th>{{__('messages.Name')}}</th>
             <th>{{__('messages.Email')}}</th>
+            <th>{{__('messages.phone')}}</th>
+            <th>Тип</th>
              
             <th>действие</th>
           </tr>
@@ -51,6 +56,17 @@
             <td name="id" val="{{$user->id}}">{{$user->id}}</td>
             <td name="name" val="{{$user->name}}">{{$user->name}}</td>
             <td name="email" val="{{$user->email}}">{{$user->email}}</td>
+            <td name="phone" val="{{$user->phone}}">{{$user->phone}}</td>
+            @if($user->rules == '1')
+            <td name="rules" val="{{$user->rules}}">Админ</td>
+            @elseif(($user->rules == '2'))
+            <td name="rules" val="{{$user->rules}}">Супер-админ</td>
+            @else
+            <td ></td>
+            @endif
+            
+
+
           
             <td>
                 <button type="button" class="btn-sm btn btn-info editUserButton"  data-toggle="modal" data-target="#editUser">{{__('messages.edit')}}</button>
@@ -68,7 +84,9 @@
     </div>
   </div>
 </div>
-
+<div class="alert alert-info">
+   <h6>Админ не имеет права смотреть и редактировать данные пользователей</h6>
+  </div>
 </div>
 @include('admin.users.modals.add')
 @include('admin.users.modals.edit')
@@ -88,8 +106,9 @@
             var modal=$('.modal'+$(this).attr('data-target'));
             modal.find('input#name').val($(this).closest('tr').find('td[name="name"]').text());
             modal.find('input#email').val($(this).closest('tr').find('td[name="email"]').text());
+            modal.find('input#phone').val($(this).closest('tr').find('td[name="phone"]').text());
+            modal.find('select#rule').val($(this).closest('tr').find('td[name="rules"]').attr('val'));
             modal.find('input#id').val($(this).closest('tr').find('td[name="id"]').text());
-             
     });
     $('.deleteUserButton.btn').click(function(){
         var id=$(this).attr('userId'),
