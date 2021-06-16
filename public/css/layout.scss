@@ -1108,6 +1108,10 @@ section.choose_club_info_wrapper {
             }
         }
     }
+
+    @media (max-width: 980px){
+        overflow: hidden;
+    }
 }
 /*! SECTION CHOOSE CLUB INFO END */
 
@@ -1396,6 +1400,7 @@ section.search_club_wrapper {
             .search_club_list {
                 display: block;
                 margin: 0 auto;
+                width: 100%;
 
                 .search_club_item {
                     width: 294px;
