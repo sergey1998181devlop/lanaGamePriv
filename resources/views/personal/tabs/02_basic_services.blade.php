@@ -39,7 +39,9 @@ declare(strict_types=1);
             <div class="select2_wrapper">
                 <select class="type" id="console-type" name="console_type" data-select2-without-search required data-placeholder="Тип">
                     <option value=""></option>
-                    <option value="1" {{(clubValue('console_type') == '1') ? 'selected' : null}}>1234</option>
+                    @foreach($consoles as $vendor)
+                        <option value="{{$vendor}}" {{(clubValue('console_type') == $vendor ) ? 'selected' : null}}>{{$vendor}}</option>
+                    @endforeach
                 </select>
                 <div class="error"></div>
             </div>
@@ -59,7 +61,9 @@ declare(strict_types=1);
         <div class="select2_wrapper">
             <select class="type" id="food-drink-type" name="food_drink_type" data-select2-without-search required data-placeholder="Тип">
                 <option value=""></option>
-                <option value="1"  {{(clubValue('food_drink_type') == '1') ? 'selected' : null}}>123</option>
+                    @foreach($foods as $type)
+                        <option value="{{$type}}" {{(clubValue('food_drink_type') == $type ) ? 'selected' : null}}>{{$type}}</option>
+                    @endforeach
             </select>
             <div class="error"></div>
         </div>

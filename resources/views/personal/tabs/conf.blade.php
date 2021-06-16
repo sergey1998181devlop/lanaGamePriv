@@ -30,4 +30,13 @@ $chairs = [
 $monitor_types = [
     '24" 60 Гц','27" 60 Гц','24" 144 Гц','24" 240 Гц','24,5" 165 Гц','27" 144 Гц','27" 165 Гц','27" 240 Гц','>27" 144 Гц','>27" 240 Гц'
 ];
+$consoles = [
+    'PS4','PS4 Pro','PS5','Xbox Series S','Xbox Series X','PS + Xbox'
+];
+$foods = [
+    'Продажа через администратора','Вендинг','Снек-бар','Кафе','Ресторан',
+];
+$monitors = [
+    'Acer','AOC','ASUS','BenQ','Cooler Master','DELL','Alienware','HP Omen','MSI','LG'
+];
 ?>

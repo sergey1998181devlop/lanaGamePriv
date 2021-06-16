@@ -168,6 +168,9 @@
                     <select id="monitor-vendor-{{$tabKey}}" name="configuration[{{$tabKey}}][monitor_vendor]" data-placeholder="Фирма" required required>
                         <option value=""></option>
                         <option value="1" {{(getConf('monitor_vendor',$tabKey) == '1') ? 'selected' : null}}>Фирма</option>
+                        @foreach ($monitors as $vendor)
+                        <option value="{{$vendor}}" {{(getConf('monitor_vendor',$tabKey) == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
+                        @endforeach
                     </select>
                     <div class="error"></div>
                 </div>
@@ -189,7 +192,9 @@
             <div class="select2_wrapper">
                 <select id="internet-{{$tabKey}}" name="configuration[{{$tabKey}}][internet]" data-placeholder="Скорость" required required>
                     <option value=""></option>
-                    <option value="1" {{(getConf('internet',$tabKey) == '1') ? 'selected' : null}}>Скорость</option>
+                    <option value="<100 Мбит" {{(getConf('internet',$tabKey) == '<100 Мбит') ? 'selected' : null}}>&lt;100 Мбит</option>
+                    <option value=">100 Мбит" {{(getConf('internet',$tabKey) == '>100 Мбит') ? 'selected' : null}}>&gt;100 Мбит</option>
+                    <option value=">1 Гбит" {{(getConf('internet',$tabKey) == '>1 Гбит') ? 'selected' : null}}>&gt;1 Гбит</option>
                 </select>
                 <div class="error"></div>
             </div>

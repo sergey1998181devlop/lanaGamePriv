@@ -1,7 +1,6 @@
 <?php
 
 declare(strict_types=1);
-include_once(resource_path('views/personal/tabs/conf.blade.php')); 
 ?>
 
 <div class="form_tab_title">
@@ -205,6 +204,9 @@ include_once(resource_path('views/personal/tabs/conf.blade.php'));
                             <select id="monitor-vendor-0" name="configuration[0][monitor_vendor]" data-placeholder="Фирма" required>
                                 <option value=""></option>
                                 <option value="1" {{(getConf('monitor_vendor','0') == '1') ? 'selected' : null}}>Фирма</option>
+                                @foreach ($monitors as $vendor)
+                                <option value="{{$vendor}}" {{(getConf('monitor_vendor','0') == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
+                                @endforeach
                             </select>
                             <div class="error"></div>
                         </div>
@@ -226,7 +228,9 @@ include_once(resource_path('views/personal/tabs/conf.blade.php'));
                     <div class="select2_wrapper">
                         <select id="internet-0" name="configuration[0][internet]" data-placeholder="Скорость" required>
                             <option value=""></option>
-                            <option value="1" {{(getConf('internet','0') == '1') ? 'selected' : null}}>Скорость</option>
+                            <option value="<100 Мбит" {{(getConf('internet','0') == '<100 Мбит') ? 'selected' : null}}>&lt;100 Мбит</option>
+                            <option value=">100 Мбит" {{(getConf('internet','0') == '>100 Мбит') ? 'selected' : null}}>&gt;100 Мбит</option>
+                            <option value=">1 Гбит" {{(getConf('internet','0') == '>1 Гбит') ? 'selected' : null}}>&gt;1 Гбит</option>
                         </select>
                         <div class="error"></div>
                     </div>
@@ -402,7 +406,9 @@ include_once(resource_path('views/personal/tabs/conf.blade.php'));
                         <div class="select2_wrapper">
                             <select id="monitor-vendor-1" name="configuration[1][monitor_vendor]" data-placeholder="Фирма" required>
                                 <option value=""></option>
-                                <option value="1" {{(getConf('monitor_vendor','1') == '1') ? 'selected' : null}}>Фирма</option>
+                                @foreach ($monitors as $vendor)
+                                <option value="{{$vendor}}" {{(getConf('monitor_vendor','1') == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
+                                @endforeach
                             </select>
                             <div class="error"></div>
                         </div>
@@ -424,7 +430,9 @@ include_once(resource_path('views/personal/tabs/conf.blade.php'));
                     <div class="select2_wrapper">
                         <select id="internet-1" name="configuration[1][internet]" data-placeholder="Скорость" required>
                             <option value=""></option>
-                            <option value="1" {{(getConf('internet','1') == '1') ? 'selected' : null}}>Скорость</option>
+                            <option value="<100 Мбит" {{(getConf('internet','1') == '<100 Мбит') ? 'selected' : null}}>&lt;100 Мбит</option>
+                            <option value=">100 Мбит" {{(getConf('internet','1') == '>100 Мбит') ? 'selected' : null}}>&gt;100 Мбит</option>
+                            <option value=">1 Гбит" {{(getConf('internet','1') == '>1 Гбит') ? 'selected' : null}}>&gt;1 Гбит</option>
                         </select>
                         <div class="error"></div>
                     </div>
@@ -612,7 +620,9 @@ include_once(resource_path('views/personal/tabs/conf.blade.php'));
                     <div class="select2_wrapper">
                         <select id="monitor-vendor-{n}" name="configuration[{n}][monitor_vendor]" data-placeholder="Фирма" required>
                             <option value=""></option>
-                            <option value="1">Фирма</option>
+                            @foreach ($monitors as $vendor)
+                            <option value="{{$vendor}}">{{$vendor}}</option>
+                            @endforeach
                         </select>
                         <div class="error"></div>
                     </div>
@@ -634,7 +644,9 @@ include_once(resource_path('views/personal/tabs/conf.blade.php'));
                 <div class="select2_wrapper">
                     <select id="internet-{n}" name="configuration[{n}][internet]" data-placeholder="Скорость" required>
                         <option value=""></option>
-                        <option value="1">Скорость</option>
+                        <option value="<100 Мбит">&lt;100 Мбит</option>
+                            <option value=">100 Мбит">&gt;100 Мбит</option>
+                            <option value=">1 Гбит">&gt;1 Гбит</option>
                     </select>
                     <div class="error"></div>
                 </div>

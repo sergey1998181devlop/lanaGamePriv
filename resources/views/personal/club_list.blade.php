@@ -4,6 +4,9 @@
 @endsection
 @section('content')
 @include('personal/club_card')
+<?
+include_once(resource_path('views/personal/tabs/conf.blade.php')); 
+?>
 <?php
 global $edit;
 global $clubAr;
