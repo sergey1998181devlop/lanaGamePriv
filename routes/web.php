@@ -17,9 +17,9 @@ Route::get('/', 'HomeController@index')->name('home');
 
 // регистрация и авторизация
 Auth::routes();
-Route::post('/register/send_sms', 'Auth\registerController@sendSMS');
-Route::post('/register/verify_sms', 'Auth\registerController@verifySMS');
-Route::post('/register/create', 'Auth\registerController@create');
+Route::post('/register/send_sms', 'Auth\RegisterController@sendSMS');
+Route::post('/register/verify_sms', 'Auth\RegisterController@verifySMS');
+Route::post('/register/create', 'Auth\RegisterController@create');
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
