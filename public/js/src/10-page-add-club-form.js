@@ -45,7 +45,7 @@ jQuery(function() {
             url: $form.attr('draft-action'),
             data: $form.serialize(),
             success: function() {
-                jQuery('[data-remodal-id="success_modal"]').remodal().open();
+                location.href = '/personal/clubs?status=success';
             }
         });
     });
@@ -58,7 +58,7 @@ jQuery(function() {
             url: $form.attr('action'),
             data: $form.serialize(),
             success: function() {
-                jQuery('[data-remodal-id="success_modal"]').remodal().open();
+                location.href = '/personal/clubs?status=success';
             }
         });
     });
