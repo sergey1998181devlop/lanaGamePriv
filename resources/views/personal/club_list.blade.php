@@ -218,4 +218,12 @@ return $marketing_events[$key];
     })
 </script>
 @endif
+@if(isset($_GET['status']) && $_GET['status'] == 'success')
+<script>
+    $( document ).ready(function(){
+        jQuery('[data-remodal-id="success_modal"]').remodal().open();
+    });
+    window.history.pushState({}, document.title, "/" + 'personal/clubs/' );
+</script>
+@endif
 @endsection
