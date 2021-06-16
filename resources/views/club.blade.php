@@ -2,7 +2,12 @@
 <a href="{{url('clubs/'.$club->id.'/'.$club->url)}}" class="club_card">
     <div class="search_club_img_wrapper">
         <div class="search_club_img">
-            <img src="{{ asset('/img/default-club-preview-image.svg')}}" alt="club">
+        @if($club->main_preview_photo != null)
+        <img src="{{ $club->main_preview_photo}}" alt="club">
+        @else
+        <img src="{{ asset('/img/default-club-preview-image.svg')}}" alt="club">
+        @endif
+            
         </div>
         @if($club->qty_vip_pc > 0 || $club->food_drinks =='1' || $club->alcohol =='1')
         <div class="club_services">
