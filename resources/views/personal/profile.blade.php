@@ -98,6 +98,5 @@ function customOldVal($name,$item){
     </div>
 </section>
 <!--SECTION PERSONAL PAGE END-->
-@include("personal.modals")
 
 @endsection
