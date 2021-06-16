@@ -88,11 +88,11 @@
                     <?php
                     $images = array_filter(explode(',', $club->club_photos));
                     foreach ($images as $value) {
-                    if(file_exists($value)){?>
+                    ?>
                     <div class="club_page_photo_item">
                         <img src="{{$value}}" alt="image">
                     </div>
-                    <?}
+                    <?
                     }?>
                     @if(count($images) > 4)
                         <button type="button" data-remodal-target="club_photo_modal">Показать все фото</button>
