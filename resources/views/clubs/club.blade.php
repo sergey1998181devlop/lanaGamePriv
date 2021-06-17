@@ -366,6 +366,7 @@
                 </div>
             </div>
         @endif
+        @if($club->lat!= '' && $club->lon!= '')
         <div class="club_page_map_wrapper">
             <div class="container">
                 <div class="club_page_title">
@@ -374,6 +375,7 @@
                 <div class="club_page_map" id="club_page_maps"></div>
             </div>
         </div>
+        @endif
         <div class="club_page_reviews_wrapper">
             <div class="container">
                 <div class="club_page_title">
