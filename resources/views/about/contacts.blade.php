@@ -39,18 +39,38 @@
                     <div class="form-group required @error('name') error @enderror">
                         <label for="contact-us-name-input">Имя</label>
                         <input id="contact-us-name-input" name="name" value="{{ old('name') }}"  type="text" placeholder=""  >
+                        @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="form-group required @error('email') error @enderror">
                         <label for="contact-us-email-input">Email</label>
                         <input id="contact-us-email-input" name="email" value="{{ old('email') }}" type="email" placeholder=""  >
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="form-group @error('phone') error @enderror">
                         <label for="contact-us-phone-input">Контактный телефон</label>
                         <input id="contact-us-phone-input" name="phone" value="{{ old('phone') }}" type="tel" placeholder="+7 (___) ___-__-__">
+                        @error('phone')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="form-group descr required @error('message') error @enderror">
                         <label for="contact-us-message-input">Текст сообщения</label>
                         <textarea name="message" id="contact-us-message-input" maxlength="1500" required>{{ old('message') }}</textarea>
+                        @error('message')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
                 <button type="submit">Отправить</button>
