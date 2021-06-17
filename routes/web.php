@@ -47,6 +47,10 @@ Route::post('clubs/add-list','clubsController@savePriceList' );
 Route::post('clubs/add-image','clubsController@saveImage' );
 
 
+// обратная связь
+Route::post('messages/send','mailController@storeFromContacts' );
+
+
 // прочие страницы
 Route::get('/langame-software', function () {
     return view('about.langame_software');
@@ -99,3 +103,8 @@ Route::post('post/edit/saveImage','panel\postsController@saveImage' );
 Route::get('panel/clubs/new-clubs','panel\clubsController@new_clubs');
 Route::get('club/{id}/active','panel\clubsController@active');
 Route::post('club/{id}/comment','panel\clubsController@comment');
+
+// обратная связь
+Route::get('/panel/contacts', 'panel\adminController@contacts');
+Route::get('/panel/getMessage', 'panel\adminController@getMessage');
+Route::post('panel/message/delete', 'panel\adminController@deleteMessage');

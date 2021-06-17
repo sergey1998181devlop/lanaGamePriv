@@ -33,23 +33,24 @@
         </div>
         <div class="contacts_page_title">Напишите нам</div>
         <div class="contact_us_wrapper">
-            <form action="" method="post" id="contact-us-form">
+            <form action="{{url('messages/send')}}" method="post" id="contact-us-form">
+            {{ csrf_field() }}
                 <div class="forma">
-                    <div class="form-group required">
+                    <div class="form-group required @error('name') error @enderror">
                         <label for="contact-us-name-input">Имя</label>
-                        <input id="contact-us-name-input" name="contact_us_name" type="text" placeholder="" required>
+                        <input id="contact-us-name-input" name="name" value="{{ old('name') }}"  type="text" placeholder=""  >
                     </div>
-                    <div class="form-group required">
+                    <div class="form-group required @error('email') error @enderror">
                         <label for="contact-us-email-input">Email</label>
-                        <input id="contact-us-email-input" name="contact_us_email" type="email" placeholder="" required>
+                        <input id="contact-us-email-input" name="email" value="{{ old('email') }}" type="email" placeholder=""  >
                     </div>
-                    <div class="form-group">
+                    <div class="form-group @error('phone') error @enderror">
                         <label for="contact-us-phone-input">Контактный телефон</label>
-                        <input id="contact-us-phone-input" name="contact_us_phone" type="tel" placeholder="+7 (___) ___-__-__">
+                        <input id="contact-us-phone-input" name="phone" value="{{ old('phone') }}" type="tel" placeholder="+7 (___) ___-__-__">
                     </div>
-                    <div class="form-group descr required">
+                    <div class="form-group descr required @error('message') error @enderror">
                         <label for="contact-us-message-input">Текст сообщения</label>
-                        <textarea name="contact_us_message" id="contact-us-message-input" maxlength="1500" required></textarea>
+                        <textarea name="message" id="contact-us-message-input" maxlength="1500" required>{{ old('message') }}</textarea>
                     </div>
                 </div>
                 <button type="submit">Отправить</button>
@@ -59,4 +60,13 @@
 </section>
 <!--SECTION CONTACTS PAGE END-->
 
+@endsection
+@section('scripts')
+@if(session('success'))
+<script>
+    $( document ).ready(function(){
+        jQuery('[data-remodal-id="success_modal"]').remodal().open();
+    });
+</script>
+@endif
 @endsection
