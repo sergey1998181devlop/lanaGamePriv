@@ -49,7 +49,7 @@ Route::post('clubs/add-image','clubsController@saveImage' );
 
 // обратная связь
 Route::post('messages/send','mailController@storeFromContacts' );
-
+Route::post('langame/request','mailController@langameRequest' );
 
 // прочие страницы
 Route::get('/langame-software', function () {
@@ -108,3 +108,6 @@ Route::post('club/{id}/comment','panel\clubsController@comment');
 Route::get('/panel/contacts', 'panel\adminController@contacts');
 Route::get('/panel/getMessage', 'panel\adminController@getMessage');
 Route::post('panel/message/delete', 'panel\adminController@deleteMessage');
+
+
+

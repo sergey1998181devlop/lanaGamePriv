@@ -95,35 +95,61 @@
                 Оставьте заявку и получите все необходимые материалы для его установки и настройки.
             </p>
             <div class="add_club_request_wrapper">
-                <form action="" method="post" id="add-club-request-form">
+                <form action="{{url('langame/request')}}" method="post" id="add-club-request-form">
+                    {{ csrf_field() }}
                     <div class="forma">
-                        <div class="form-group required">
+                        <div class="form-group required @error('name')error @enderror">
                             <label for="club-request-user-name-input">Ваше имя</label>
-                            <input id="club-request-user-name-input" name="add_club_request_user_name" type="text" placeholder="" required>
+                            <input id="club-request-user-name-input" name="name" type="text" placeholder="" required>
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
-                        <div class="form-group required">
+                        <div class="form-group required @error('club_name') error @enderror">
                             <label for="club-request-name-input">Название клуба</label>
-                            <input id="club-request-name-input" name="add_club_request_name" type="text" placeholder="Введите название клуба" required>
+                            <input id="club-request-name-input" name="club_name" type="text" placeholder="Введите название клуба" required>
+                            @error('club_name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
-                        <div class="form-group required">
+                        <div class="form-group required @error('city') error @enderror">
                             <label for="club-request-select-сity">Город</label>
                             <div class="input_wrapper">
                                 <div class="select2_wrapper">
-                                    <select id="club-request-select-сity" name="add_club_request_city" required data-placeholder="Выберите город">
+                                    <select id="club-request-select-сity" name="city" required data-placeholder="Выберите город">
                                         <option value=""></option>
                                         <option value="2">Москва</option>
                                         <option value="3">Санкт-Петербург</option>
                                     </select>
                                 </div>
                             </div>
+                            @error('city')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
-                        <div class="form-group">
+                        <div class="form-group @error('phone') error @enderror">
                             <label for="club-request-phone-input">Контактный телефон</label>
-                            <input id="club-request-phone-input" name="add_club_request_phone" type="tel" placeholder="+7 (___) ___-__-__">
+                            <input id="club-request-phone-input" name="phone" type="tel" placeholder="+7 (___) ___-__-__">
+                            @error('phone')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
-                        <div class="form-group required">
+                        <div class="form-group required @error('email') error @enderror">
                             <label for="club-request-email-input">Email</label>
-                            <input id="club-request-email-input" name="add_club_request_email" type="email" placeholder="" required>
+                            <input id="club-request-email-input" name="email" type="email" placeholder="" required>
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="checkbox_wrapper">
                             <div class="checkbox_item">
@@ -142,4 +168,13 @@
     </div>
 </section>
 <!--SECTION LANGAME SOFTWARE END-->
+@endsection
+@section('scripts')
+@if(session('success'))
+<script>
+    $( document ).ready(function(){
+        jQuery('[data-remodal-id="success_modal"]').remodal().open();
+    });
+</script>
+@endif
 @endsection
