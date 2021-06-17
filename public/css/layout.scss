@@ -182,7 +182,6 @@ input[type=number] {
             margin-bottom: 8px;
 
             span {
-                position: relative;
                 font-style: normal;
                 font-weight: 700;
                 font-size: 20px;
@@ -191,15 +190,12 @@ input[type=number] {
             }
 
             &.approve {
-                span:before {
+                span:after {
                     content: '';
-                    position: absolute;
-                    top: 50%;
-                    right: -30px;
-                    display: block;
+                    display: inline-block;
                     width: 19px;
                     height: 19px;
-                    transform: translate(0, -50%);
+                    margin-left: 10px;
                     background-image: url("../img/ok.svg");
                     background-repeat: no-repeat;
                     background-position: center;
@@ -2081,6 +2077,7 @@ section.personal_page_wrapper {
                                     color: #000000;
                                     text-align: right;
                                     padding-left: 36px;
+                                    cursor: pointer;
 
                                     &:before {
                                         content: '';
@@ -4840,6 +4837,7 @@ section.password_recovery_page_wrapper {
                         line-height: 1;
                         text-align: center;
                         color: #000000;
+                        cursor: pointer;
                     }
                 }
             }
@@ -5188,6 +5186,7 @@ section.add_club_page_start_wrapper {
                         font-size: 18px;
                         line-height: 1;
                         color: #000000;
+                        cursor: pointer;
 
                         span.hide {
                             display: none;
@@ -5242,6 +5241,7 @@ section.add_club_page_start_wrapper {
                         line-height: 1;
                         text-align: center;
                         color: #000000;
+                        cursor: pointer;
                     }
                 }
             }
@@ -6014,6 +6014,8 @@ section.langame_software_wrapper {
                                 }
 
                                 .add_file_wrapper {
+                                    position: relative;
+
                                     label {
                                         position: relative;
                                         flex-shrink: 0;
@@ -6071,6 +6073,24 @@ section.langame_software_wrapper {
                                                 background-image: url("../img/fill-white.svg");
                                             }
                                         }
+                                    }
+
+                                    button[data-role-remove-price-list-event] {
+                                        position: absolute;
+                                        top: -7px;
+                                        right: -7px;
+                                        display: block;
+                                        width: 20px;
+                                        height: 20px;
+                                        background-image: url("../img/cancel.svg");
+                                        background-repeat: no-repeat;
+                                        background-position: center;
+                                        background-size: 24px 24px;
+                                        background-color: #ffffff;
+                                        border: none;
+                                        border-radius: 50%;
+                                        outline: none;
+                                        cursor: pointer;
                                     }
                                 }
 
@@ -6677,7 +6697,7 @@ section.langame_software_wrapper {
                                                 border: none;
                                                 border-radius: 50%;
                                                 outline: none;
-
+                                                cursor: pointer;
                                             }
                                         }
                                     }

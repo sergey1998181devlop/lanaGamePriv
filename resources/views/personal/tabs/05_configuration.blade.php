@@ -171,7 +171,7 @@ declare(strict_types=1);
                 <label for="headphone-vendor-0">Гарнитура</label>
                 <div class="input_wrapper">
                     <div class="select2_wrapper">
-                        <select id="headphone-vendor-0" name="configuration[0][headphone_vendor]" data-placeholder="Фирма" required> 
+                        <select id="headphone-vendor-0" name="configuration[0][headphone_vendor]" data-placeholder="Фирма" required>
                             <option value=""></option>
                             @foreach ($headphones as $vendor)
                                 <option value="{{$vendor}}" {{(getConf('headphone_vendor','0') == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
@@ -187,7 +187,6 @@ declare(strict_types=1);
                     <div class="select2_wrapper">
                         <select id="chair-vendor-0" name="configuration[0][chair_vendor]" data-placeholder="Фирма" required>
                             <option value=""></option>
-                            <option value="1" {{(getConf('chair_vendor','0') == '1') ? 'selected' : null}}>Фирма</option>
                             @foreach ($chairs as $vendor)
                                 <option value="{{$vendor}}" {{(getConf('chair_vendor','0') == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
                             @endforeach
@@ -203,7 +202,6 @@ declare(strict_types=1);
                         <div class="select2_wrapper">
                             <select id="monitor-vendor-0" name="configuration[0][monitor_vendor]" data-placeholder="Фирма" required>
                                 <option value=""></option>
-                                <option value="1" {{(getConf('monitor_vendor','0') == '1') ? 'selected' : null}}>Фирма</option>
                                 @foreach ($monitors as $vendor)
                                 <option value="{{$vendor}}" {{(getConf('monitor_vendor','0') == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
                                 @endforeach

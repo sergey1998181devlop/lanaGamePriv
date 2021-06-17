@@ -67,13 +67,20 @@ jQuery(function() {
         if (this.files.length === 0) {
             $club_price_hidden_input.val('');
             $club_price_file_text.text('Загрузить файл');
+            jQuery('button[data-role-remove-price-list-event]').remove();
             return;
         }
 
         upload_file(this.files[0], 'price_list').then(data => {
             $club_price_hidden_input.val(data);
             $club_price_file_text.text('Файл загружен');
+            jQuery('.add_file_wrapper').append('<button type="button" data-role-remove-price-list-event></button>');
         });
+    });
+
+    jQuery('.add_file_wrapper').on('click', '[data-role-remove-price-list-event]', function(e) {
+        $club_price_file_input.val('');
+        $club_price_file_input.trigger('change');
     });
 
     //upload photo gallery
