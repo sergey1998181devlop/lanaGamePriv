@@ -51,7 +51,7 @@
   
       <li class="nav-item">
           <a class="nav-link <?php if($page!="clubs" && $page!="changed-clubs") echo 'collapsed'; ?> " data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              <i class="fas fa-fw fa-cog"></i>
+              <i class="fas fa-network-wired"></i>
               <span>Клубы</span>
           </a>
         
@@ -74,7 +74,19 @@
           <i class="fas fa-users"></i>
           <span>Пользователи</span></a>
       </li>
-    
+      <li class="nav-item">
+          <a class="nav-link <?php if($page!="clubs" && $page!="changed-clubs") echo 'collapsed'; ?> " data-toggle="collapse" data-target="#collapseTwoContact" aria-expanded="false" aria-controls="collapseTwo">
+              <i class="fas fa-fw fa-cog"></i>
+              <span>Обратная связь</span>
+          </a>
+        
+          <div id="collapseTwoContact" class="collapse <?=($page=="contacts" || $page=="changed-langame_soft")? ' show': null ?> collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
+              <div class="bg-white py-2 collapse-inner rounded">
+                  <a class="collapse-item<?=($page=="contacts")? ' active': null ?>" href="{{url('/panel/contacts')}}">Форма напишите нам</a>
+                  <a class="collapse-item<?=($page=="langame_soft")? ' active': null ?>" href="{{url('/panel/langame-requests')}}">Заявки LanGame Software</a>
+              </div>
+          </div>
+      </li>
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>

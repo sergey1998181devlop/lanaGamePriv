@@ -34,7 +34,7 @@
             <th>{{__('messages.phone')}}</th>
             <th>Тип</th>
             
-            <th>действие</th>
+            <th>Действие</th>
           </tr>
         </thead>
         @if(count($users)>5)
@@ -46,7 +46,7 @@
             <th>{{__('messages.phone')}}</th>
             <th>Тип</th>
              
-            <th>действие</th>
+            <th>Действие</th>
           </tr>
         </tfoot>
         @endif
@@ -72,7 +72,7 @@
                 <button type="button" class="btn-sm btn btn-info editUserButton"  data-toggle="modal" data-target="#editUser">{{__('messages.edit')}}</button>
             @if($user->id!=1)
              
-                <button type="button" class="btn-sm btn btn-danger deleteUserButton"  data-toggle="modal" data-target="#deleteUser" userId="{{$user->id}}" userName="{{$user->name}}">{{__('messages.delete')}}</button>
+                <button type="button" class="btn-sm btn btn-danger deleteUserButton"  data-toggle="modal" data-target="#deleteUser" userId="{{$user->id}}" userName="{{$user->name}}">{{__('messages.Delete')}}</button>
                 
 
             @endif 
