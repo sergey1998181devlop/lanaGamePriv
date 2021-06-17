@@ -58,3 +58,21 @@
 .club_card .search_club_info .club_price_wrapper .club_edit{
     background: unset;
 }
+
+.autocomplete-suggestions{
+    z-index: 11000!important;
+    border: 0;
+    box-shadow: 0 0 27px rgb(0 2 4 / 9%);
+    background-color: #fff;
+    padding: 15px 10px;
+    margin-top: 0;
+    border-radius: 12px;
+}
+
+.autocomplete-suggestions .autocomplete-suggestion{
+    padding: 5px;
+    cursor: pointer;
+}
+.autocomplete-suggestions .autocomplete-suggestion:hover{
+color: #dc0000;
+background-color: #fff;}

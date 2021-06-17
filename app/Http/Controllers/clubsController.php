@@ -184,6 +184,16 @@ class clubsController extends Controller
             $club->work_time = '1';
             $club->work_time_days = '';
         }
+        if($request->input('lon') != ''){
+            $club->lon = $request->input('lon');
+        }else{
+            $club->lon = '';
+        }
+        if($request->input('lat') != ''){
+            $club->lat = $request->input('lat');
+        }else{
+            $club->lat = '';
+        }
         if($request->input('club_price_file') != ''){
             $club->club_price_file = $request->input('club_price_file');
         }

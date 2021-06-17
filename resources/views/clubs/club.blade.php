@@ -371,7 +371,7 @@
                 <div class="club_page_title">
                     <span>Расположение</span>
                 </div>
-                <div class="club_page_map" id="club_page_map"></div>
+                <div class="club_page_map" id="club_page_maps"></div>
             </div>
         </div>
         <div class="club_page_reviews_wrapper">
@@ -862,4 +862,24 @@
         </div>
 
     @endif
+@endsection
+@section('scripts')
+@if($club->lat!= '' && $club->lon!= '')
+<script src="https://api-maps.yandex.ru/2.1/?apikey=79ca1998-f254-447d-8081-bcd9647a8fb9&lang=ru_RU" type="text/javascript"></script>
+<script>
+ymaps.ready(init);
+    function init() {
+    var myMap = new ymaps.Map("club_page_maps", {
+            center: [{{$club->lat}}, {{$club->lon}}],
+            zoom: 12
+        });
+        myMap.geoObjects
+            .add(new ymaps.Placemark([{{$club->lat}}, {{$club->lon}}],  {
+                preset: 'islands#dotIcon',
+                iconColor: '#735184'
+            }));
+    }
+
+</script>
+@endif
 @endsection

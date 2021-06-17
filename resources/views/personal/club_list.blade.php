@@ -229,4 +229,38 @@ return $marketing_events[$key];
     window.history.pushState({}, document.title, "/" + 'personal/clubs/' );
 </script>
 @endif
+<script src="{{ asset('/js/jquery.autocomplete.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
+<script>
+
+$('#club-address-input').autocomplete({
+    paramName : 'geocode',
+    serviceUrl: "https://geocode-maps.yandex.ru/1.x/?apikey={{env('YANDIX_MAPS_KEY','79ca1998-f254-447d-8081-bcd9647a8fb9')}}&format=json&results=5",
+    transformResult: function(response) {
+        response= jQuery.parseJSON(response);
+        return {
+            suggestions: $.map(response.response.GeoObjectCollection.featureMember, function(dataItem) {
+                var name="" ,coord ,quma="";
+                if(dataItem.GeoObject.Point.pos != null){
+                    coord=dataItem.GeoObject.Point.pos;
+                    if(dataItem.GeoObject.name != null){
+                        name = dataItem.GeoObject.name;
+                        quma=', ';
+                    }
+                    if(dataItem.GeoObject.description != null){
+                        name+=quma+dataItem.GeoObject.description;
+                    }
+                    if(name != ''){
+                        return { value: name, data: coord };
+                    }
+                }
+            })
+        };
+    },
+    onSelect: function (suggestion) {
+        var coor=suggestion.data.split(' ');
+           $('#add-club-form #lat').val(coor[1]);
+           $('#add-club-form #lon').val(coor[0]);
+    }
+});
+</script>
 @endsection
