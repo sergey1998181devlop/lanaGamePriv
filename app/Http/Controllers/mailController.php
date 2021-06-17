@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\contact;
 use Auth;
-
 use App\langame_request;
 class mailController extends Controller
 {

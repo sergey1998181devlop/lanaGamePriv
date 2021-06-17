@@ -2,8 +2,8 @@
 
 @extends('admin.layouts.app')
 @section('page')
-<?php $page='contacts';?>
-<title>Форма напишите нам</title>
+<?php $page='langame_soft';?>
+<title>Заявки LanGame Software</title>
 @endsection
 <link href="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 @section('content')
@@ -13,7 +13,7 @@
    <div class="container-fluid">
 
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Новые заявки<span class="badge badge-pill badge-warning">{{$newCount}}</span></h1>
+<h1 class="h3 mb-2 text-gray-800">LanGame Software - Новые заявки<span class="badge badge-pill badge-warning">{{$newCount}}</span></h1>
 
 
 <!-- DataTales Example -->
@@ -27,32 +27,42 @@
           <tr>
             <th>{{__('messages.Name')}}</th>
             <th>{{__('messages.Email')}}</th>
-            <th>{{__('messages.phone')}}</th>    
+            <th>{{__('messages.phone')}}</th>
+            <th>Название клуба</th>
+            <th>Город</th>
             <th>Отпралено</th>        
             <th>Действие</th>
           </tr>
         </thead>
-        @if(count($messages)>5)
+        @if(count($requests)>5)
         <tfoot>
           <tr>
             <th>{{__('messages.Name')}}</th>
             <th>{{__('messages.Email')}}</th>
             <th>{{__('messages.phone')}}</th>
+            <th>Название клуба</th>
+            <th>Город</th>
             <th>Отпралено</th>
             <th>Действие</th>
           </tr>
         </tfoot>
         @endif
         <tbody>
-           @foreach($messages as $contact) 
-          <tr @if($contact->seen_at==null) style="background: #ffed85;" @endif>  
-            <td name="name" >{{$contact->name}}</td>
-            <td name="email">{{$contact->email}}</td>
-            <td name="phone">{{$contact->phone}}</td>
-            <td>{{$contact->created_at}}</td>
+           @foreach($requests as $request) 
+          <tr @if($request->seen_at==null) style="background: #ffed85;" @endif>  
+            <td name="name" >{{$request->name}}</td>
+            <td name="email">{{$request->email}}</td>
+            <td name="phone">{{$request->phone}}</td>
+            <td name="club_name">{{$request->club_name}}</td>
+            <td name="city">{{$request->city}}</td>
+            <td>{{$request->created_at}}</td>
             <td>
-                <button type="button" class="btn-sm btn btn-info showMessage" contactId="{{$contact->id}}" data-toggle="modal" data-target="#showMessage">Посмотреть</button>
-                <button type="button" class="btn-sm btn btn-danger deletecontactButton"  data-toggle="modal" data-target="#deletecontact" contactId="{{$contact->id}}" contactName="{{$contact->name}}">{{__('messages.Delete')}}</button>
+            @if($request->seen_at==null)
+                <a type="button" class="btn-sm btn btn-info " href="{{url('panel/langame-requests/toggle')}}/{{$request->id}}">Отметить как принята</a>
+            @else
+                <a type="button" class="btn-sm btn btn-light " href="{{url('panel/langame-requests/toggle')}}/{{$request->id}}">Отметить как не принята</a>
+            @endif    
+                <button type="button" class="btn-sm btn btn-danger deleterequestButton"  data-toggle="modal" data-target="#deleterequest" requestId="{{$request->id}}" requestName="{{$request->name}}">{{__('messages.Delete')}}</button>
             </td>
           </tr>
           @endforeach
@@ -65,18 +75,7 @@
 @endsection
 
 <!-- Modal -->
-<div class="modal fade" id="showMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-
-      <div class="modal-body">
-
-      </div>
-      </div>
-  </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="deletecontact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleterequest" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -85,11 +84,11 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form action="{{url('panel/message/delete')}}" method="post">
+            <form action="{{url('/panel/langame-requests/delete')}}" method="post">
                 {{ csrf_field() }}
                 <input type="number" hidden name="id" id="messageId">
             <div class="modal-body">
-                    <p>Вы уверены,что хотите удалить сообщение?</p>
+                    <p>Вы уверены,что хотите удалить заявки?</p>
             </div>
             <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('messages.cancel')}}</button>
@@ -111,28 +110,9 @@ $(document).ready( function() {
     });
 })
 
-$('.deletecontactButton.btn').click(function(){
-    var id=$(this).attr('contactId');
-    $('#deletecontact #messageId').val(id);
+$('.deleterequestButton.btn').click(function(){
+    var id=$(this).attr('requestId');
+    $('#deleterequest #messageId').val(id);
 });
-
-$('.showMessage').click(function(){
-    
-    var
-    id=$(this).attr('contactId'),
-    modal=$('.modal'+$(this).attr('data-target'));
-    modal.find(".modal-body").empty();
-    jQuery.ajax({
-    type: 'get',
-    data : {'id' : id},
-    url: "{{url('panel/getMessage')}}",
-    success: function(data) {
-        modal.find(".modal-body").append(data.html)
-    },
-    error: function() {
-        alert('Ошибка')
-    }
-});
-})
     </script>
 @endsection
