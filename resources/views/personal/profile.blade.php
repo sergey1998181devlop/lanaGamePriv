@@ -5,7 +5,7 @@
 @section('content')
 <?php
 function customOldVal($name,$item){
-    if(!empty(old($name))){return old($name);} 
+    if(!empty(old($name))){return old($name);}
     if($item=='new'){return;}
     if(isset($item->$name)){return $item->$name;}
     return '';
@@ -38,7 +38,7 @@ function customOldVal($name,$item){
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-svg-cancel"></use>
                         </svg>
                         <span>Выйти</span>
-                        
+
                     </a>
                 </div>
             </div>

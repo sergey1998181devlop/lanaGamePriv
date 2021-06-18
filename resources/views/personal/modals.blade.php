@@ -16,8 +16,9 @@
             <div class="forma">
                 <div class="form_tab_wrapper">
                     <div class="form_tab form_tab_01_common_info">
-                        @include("personal.tabs.01_common_info")
+                    @include("personal.tabs.01_common_info")
                     </div>
+
                     <div class="form_tab form_tab_02_basic_services">
                     @include("personal.tabs.02_basic_services")
                     </div>
@@ -31,7 +32,6 @@
                     </div>
 
                     <div class="form_tab form_tab_05_configuration">
-
                     @include("personal.tabs.05_configuration")
                     </div>
 
@@ -50,7 +50,6 @@
                     <div class="form_tab form_tab_09_club_preview">
                     @include("personal.tabs.09_club_preview")
                     </div>
-
                 </div>
                 <div class="form_btn_wrapper">
 

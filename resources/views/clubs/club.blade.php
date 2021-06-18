@@ -30,7 +30,7 @@
 
                 <div class="main_info_btn_wrapper">
                     @if($club->published_at == null && admin())
-                        <a href="{{url('club/'.$club->id.'/active')}}" class="club_active btn">Актевировать</a>
+                        <a href="{{url('club/'.$club->id.'/active')}}" class="club_active btn">Активировать</a>
                         <button type="button" class="club_comment" data-remodal-target="club_comment_modal">Написать коммент</button>
                     @endif
                     <button type="button" class="club_calling" data-remodal-target="club_phone_modal">Позвонить</button>

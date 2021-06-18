@@ -89,4 +89,20 @@ jQuery(function() {
             }
         ]
     });
+
+    /**
+     * Scroll page handlers
+     */
+    (() => {
+        jQuery(window).on('scroll resize', function() {
+            jQuery('[data-track-sticky]').each(function() {
+                let $this = jQuery(this),
+                    y = this.getBoundingClientRect().y;
+
+                $this
+                    .toggleClass('sticky', y === 0)
+                    .toggleClass('not-sticky', y !== 0);
+            });
+        });
+    })();
 });

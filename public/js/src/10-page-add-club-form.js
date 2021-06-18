@@ -222,7 +222,79 @@ jQuery(function() {
         });
     }
 
-    // // schedule validation
+    // common info validation
+
+    (() => {
+        let $tab = jQuery('.form_tab_01_common_info'),
+            $address_input = $tab.find('#club-address-input'),
+            $lat = jQuery('#lat'),
+            $lon = jQuery('#lon');
+
+        if (jQuery.fn.autocomplete) {
+            jQuery('#club-address-input').autocomplete({
+                paramName: 'geocode',
+                serviceUrl: `https://geocode-maps.yandex.ru/1.x/?apikey=${window.YANDEX_API_KEY}&format=json&results=5`,
+                transformResult: function(response) {
+                    response = JSON.parse(response);
+
+                    return {
+                        suggestions: $.map(response.response.GeoObjectCollection.featureMember, function(dataItem) {
+                            let name = '',
+                                coord,
+                                quma = '';
+
+                            if (dataItem.GeoObject.Point.pos != null) {
+                                coord = dataItem.GeoObject.Point.pos;
+
+                                if (dataItem.GeoObject.name != null) {
+                                    name = dataItem.GeoObject.name;
+                                    quma = ', ';
+                                }
+
+                                if (dataItem.GeoObject.description != null) {
+                                    name += quma + dataItem.GeoObject.description;
+                                }
+
+                                if (name != '') {
+                                    return {value: name, data: coord};
+                                }
+                            }
+                        })
+                    };
+                },
+                onSelect: function(suggestion) {
+
+                    var coor = suggestion.data.split(' ');
+                    $('#add-club-form #lat').val(coor[1]);
+                    $('#add-club-form #lon').val(coor[0]);
+                    jQuery('.error.address_error').text('');
+                }
+            });
+        }
+
+        $address_input.on('input', function() {
+            $lat.val('');
+            $lon.val('');
+        });
+
+        $tab.data('form-wizard-tab-validation', function() {
+            return new Promise((resolve, reject) => {
+                let hasErrors = false;
+
+
+                jQuery('.error.address_error').text('');
+
+                if ($lat.val() === '' || $lon.val() === '') {
+                    jQuery('.error.address_error').text('Необходимо выбрать адрес из списка');
+                    hasErrors = true;
+                }
+
+                return hasErrors ? reject() : resolve();
+            });
+        });
+    })();
+
+    // schedule validation
     (() => {
         let $tab = jQuery('.form_tab_04_schedule'),
             $input_week_schedule = jQuery('input[data-week-schedule]'),
@@ -458,22 +530,6 @@ jQuery(function() {
             jQuery(this).closest('.form-group').remove();
             --index;
             add_button.prop('disabled', index >= 5);
-        });
-    })();
-
-    /**
-     * Scroll page handlers
-     */
-    (() => {
-        jQuery(window).on('scroll resize', function() {
-            jQuery('[data-track-sticky]').each(function() {
-                let $this = jQuery(this),
-                    y = this.getBoundingClientRect().y;
-
-                $this
-                    .toggleClass('sticky', y === 0)
-                    .toggleClass('not-sticky', y !== 0);
-            });
         });
     })();
 

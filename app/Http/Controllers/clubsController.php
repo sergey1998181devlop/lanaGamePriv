@@ -27,7 +27,7 @@ class clubsController extends Controller
             if(count($comments) > 0)
             return view('clubs.club')->with(['club'=>$club,'comments'=>$comments ]);
         }
-        
+
         return view('clubs.club')->with(['club'=>$club]);
     }
     public function toggle($id){
@@ -107,7 +107,7 @@ class clubsController extends Controller
         $this->isDraft = true;
         return $this->store($request,true,$id);
     }
-    
+
     public function store($request,$update = false,$id= null){
         if($update){
           $club = club::CorrentUser()->findOrFail($id);
@@ -125,7 +125,7 @@ class clubsController extends Controller
            if($request->input($input) == '')continue;
             $club->$input = $request->input($input);
        }
-       
+
         if($request->input('vip_pc') == 'on'){
             $club->qty_vip_pc = $request->input('qty_vip_pc');
         }
@@ -225,7 +225,7 @@ class clubsController extends Controller
        return false;
     }
     public function saveImage(Request $request){
-    
+
         $message = $url = '';
         if ($request->hasFile('file')) {
             $file = $request->file('file');
@@ -241,14 +241,14 @@ class clubsController extends Controller
         } else {
             $message = 'No file uploaded.';
         }
-        
+
         return response()->json(['uploaded' => '0', "error"=> [
             "message"=> "An error occured while uploading the file."]
         ]);
-     
+
     }
     public function savePriceList(Request $request){
-    
+
         $message = $url = '';
         if ($request->hasFile('file')) {
             $file = $request->file('file');
@@ -264,10 +264,10 @@ class clubsController extends Controller
         } else {
             $message = 'No file uploaded.';
         }
-        
+
         return response()->json(['uploaded' => '0', "error"=> [
             "message"=> "An error occured while uploading the file."]
         ]);
-     
+
     }
 }

@@ -5,7 +5,7 @@
 @section('content')
 @include('personal/club_card')
 <?
-include_once(resource_path('views/personal/tabs/conf.blade.php')); 
+include_once(resource_path('views/personal/tabs/conf.blade.php'));
 ?>
 <?php
 global $edit;
@@ -78,7 +78,7 @@ function hours($day,$fromOrTo = 'to'){
         global $schedule_item;
     }
     foreach ($hours as $value) {
-        $selected = '';  
+        $selected = '';
         if($edit && is_array($schedule_item) && isset($schedule_item[$day])){
             $selected =  ($schedule_item[$day][$fromOrTo] == $value) ? 'selected' : null ;
         }
@@ -132,8 +132,8 @@ return $marketing_events[$key];
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-svg-cancel"></use>
                         </svg>
                         <span>Выйти</span>
-                        
-                    </a>                    
+
+                    </a>
                 </div>
             </div>
             <div class="personal_main_content_wrapper">
@@ -230,37 +230,4 @@ return $marketing_events[$key];
 </script>
 @endif
 <script src="{{ asset('/js/jquery.autocomplete.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
-<script>
-
-$('#club-address-input').autocomplete({
-    paramName : 'geocode',
-    serviceUrl: "https://geocode-maps.yandex.ru/1.x/?apikey={{env('YANDIX_MAPS_KEY','79ca1998-f254-447d-8081-bcd9647a8fb9')}}&format=json&results=5",
-    transformResult: function(response) {
-        response= jQuery.parseJSON(response);
-        return {
-            suggestions: $.map(response.response.GeoObjectCollection.featureMember, function(dataItem) {
-                var name="" ,coord ,quma="";
-                if(dataItem.GeoObject.Point.pos != null){
-                    coord=dataItem.GeoObject.Point.pos;
-                    if(dataItem.GeoObject.name != null){
-                        name = dataItem.GeoObject.name;
-                        quma=', ';
-                    }
-                    if(dataItem.GeoObject.description != null){
-                        name+=quma+dataItem.GeoObject.description;
-                    }
-                    if(name != ''){
-                        return { value: name, data: coord };
-                    }
-                }
-            })
-        };
-    },
-    onSelect: function (suggestion) {
-        var coor=suggestion.data.split(' ');
-           $('#add-club-form #lat').val(coor[1]);
-           $('#add-club-form #lon').val(coor[0]);
-    }
-});
-</script>
 @endsection
