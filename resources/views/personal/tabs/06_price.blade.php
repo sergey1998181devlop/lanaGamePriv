@@ -27,7 +27,7 @@ declare(strict_types=1);
         <div class="add_file_wrapper">
             <label>
                 <input id="add-price-file-input" type="file">
-                <input type="hidden" id="add-price-file-hidden-input" name="club_price_file">
+                <input type="hidden" id="add-price-file-hidden-input" value="{{clubValue('club_price_file')}}" name="club_price_file">
                 <span id="add-price-file-text">Загрузить файл</span>
             </label>
         </div>
