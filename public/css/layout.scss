@@ -3061,6 +3061,10 @@ section.club_page_content_wrapper {
                 text-align: center;
                 color: #ffffff;
                 cursor: pointer;
+
+                &.hidden-lg{
+                    display: none;
+                }
             }
         }
     }
@@ -3624,6 +3628,10 @@ section.club_page_content_wrapper {
                 button {
                     width: 180px;
                     height: 35px;
+
+                    &.hidden-lg{
+                        display: flex;
+                    }
                 }
             }
         }
