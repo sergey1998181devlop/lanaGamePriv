@@ -63,6 +63,10 @@ jQuery(function() {
         });
     });
 
+
+
+    // price list validation
+
     $club_price_file_input.on('change', function(e) {
         if (this.files.length === 0) {
             $club_price_hidden_input.val('');
@@ -82,6 +86,17 @@ jQuery(function() {
         $club_price_file_input.val('');
         $club_price_file_input.trigger('change');
     });
+
+    (() => {
+        let $tab = jQuery('.form_tab_06_price');
+
+        $tab.on('open', function() {
+            if ($club_price_hidden_input.val() !== ''){
+                $club_price_file_text.text('Файл загружен');
+                jQuery('.add_file_wrapper').append('<button type="button" data-role-remove-price-list-event></button>');
+            }
+        });
+    })();
 
     //upload photo gallery
     (() => {
