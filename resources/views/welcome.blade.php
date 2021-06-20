@@ -111,7 +111,7 @@
         var nextPage=correntPage + 1;
         jQuery.ajax({
             type: 'get',
-            url: '{{url('/')}}/',
+            url: '{{url('/')}}/{{city()}}',
             data: {'page':nextPage},
             success: function(data) {
                 correntPage++;
