@@ -179,31 +179,6 @@
     </div>
 </div>
 
-<div class="show_club_photo_modal" data-remodal-id="club_photo_modal">
-    <button data-remodal-action="close" class="remodal-close">Закрыть</button>
-    <div class="remodal-content">
-        <div class="counter_slide" id="show_club_photo_counter_slide">
-            1/10
-        </div>
-        <div class="club_photo_modal_wrapper">
-            <div class="slide_item">
-                <img src="{{asset('/img/slider.png')}}" alt="club_image">
-            </div>
-            <div class="slide_item">
-                <img src="{{asset('/img/slider.png')}}" alt="club_image">
-            </div>
-            <div class="slide_item">
-                <img src="{{asset('/img/slider.png')}}" alt="club_image">
-            </div>
-            <div class="slide_item">
-                <img src="{{asset('/img/slider.png')}}" alt="club_image">
-            </div>
-            <div class="slide_item">
-                <img src="{{asset('/img/slider.png')}}" alt="club_image">
-            </div>
-        </div>
-    </div>
-</div>
 
 
 <!-- END OF MODALS -->

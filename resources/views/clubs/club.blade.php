@@ -864,6 +864,23 @@
         </div>
 
     @endif
+
+    
+<div class="show_club_photo_modal" data-remodal-id="club_photo_modal">
+    <button data-remodal-action="close" class="remodal-close">Закрыть</button>
+    <div class="remodal-content">
+        <div class="counter_slide" id="show_club_photo_counter_slide">
+            1/10
+        </div>
+        <div class="club_photo_modal_wrapper">
+        @foreach ($images as $value) 
+            <div class="slide_item">
+                <img src="{{$value}}" alt="club_image">
+            </div>
+        @endforeach
+        </div>
+    </div>
+</div>
 @endsection
 @section('scripts')
 @if($club->lat!= '' && $club->lon!= '')
