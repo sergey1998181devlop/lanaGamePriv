@@ -1,30 +1,10 @@
 <?php
-
-// function customOldVal($name,$item,$withID=""){
-//     if(!empty(old($name))){return old($name);}
-//     if($withID=='withID'){$name=explode('_',$name)[0];}    
-//     if($item=='new'){return;}
-//     //  if($name=='item_name'){$name='name';}
-//     //  if($name=='item_about'){$name='about';}
-//     //  if($name=='category'){$name='cat_id';}
-//     if(isset($item->$name)){return $item->$name;}
-//     return '';
-       
-// }
-
 function admin($rules = 1){
  if(Auth::check()){
      if(Auth::user()->rules >= $rules )return true;
  }
  return false;
 }
-function notReq($input){
-    if(!isset($input) || empty($input)  ){
-        return $input='';
-    }
-    else{return $input;}
-}
-
   function timelabe($oldtime,$iftime = true){
 	$ru_month = array( '01'=>'янв', '02'=>'фев', '03'=>'мар', '04'=>'апр', '05'=>'май', '06'=>'июн', '07'=>'июл', '08'=>'авг', '09'=>'сен', '10'=>'окт', '11'=>'ноя','12'=> 'дек' );
     $current = strtotime(date("Y-m-d"));
@@ -75,16 +55,4 @@ function cities($city = false){
         }
         return $cities;
     }
-function echoText($name,$ifValue = true,$showLink = true){
-    global $texts;$editor="";
-    if(Auth::check() && $showLink==true){
-      $editor='<a class="link-adm link-adm-ico" href="'.url('text/edit').'?name='.$name.'">Изменить</a>';
-    }
-    if(isset($texts[$name])){
-        if($ifValue == false){return $texts[$name]['value_1']. $editor;}
-        return $texts[$name]['value']. $editor;
-    
-    }
-    return '';
-}
 ?>

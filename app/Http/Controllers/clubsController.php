@@ -69,7 +69,8 @@ class clubsController extends Controller
             'club_description',
             'club_youtube_link',
             'club_photos',
-            'main_preview_photo'
+            'main_preview_photo',
+            'club_price_file'
         ];
     }
     public function servicesHandle(){
@@ -193,9 +194,6 @@ class clubsController extends Controller
             $club->lat = $request->input('lat');
         }else{
             $club->lat = '';
-        }
-        if($request->input('club_price_file') != ''){
-            $club->club_price_file = $request->input('club_price_file');
         }
         $club->configuration = serialize($request->input('configuration'));
         if($request->input('marketing_event') == 'on'){

@@ -38,7 +38,7 @@
                 <div class="forma">
                     <div class="form-group required @error('name') error @enderror">
                         <label for="contact-us-name-input">Имя</label>
-                        <input id="contact-us-name-input" name="name" value="{{ old('name') }}"  type="text" placeholder=""  >
+                        <input id="contact-us-name-input" name="name" value="{{ old('name') }}"  type="text" placeholder=""  required>
                         @error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -47,7 +47,7 @@
                     </div>
                     <div class="form-group required @error('email') error @enderror">
                         <label for="contact-us-email-input">Email</label>
-                        <input id="contact-us-email-input" name="email" value="{{ old('email') }}" type="email" placeholder=""  >
+                        <input id="contact-us-email-input" name="email" value="{{ old('email') }}" type="email" placeholder=""  required>
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

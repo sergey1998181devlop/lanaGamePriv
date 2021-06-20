@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\post;
 use App\club;
+use App\city;
 use View;
 include_once(resource_path('views/includes/functions.blade.php')); 
 class HomeController extends Controller
@@ -23,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $clubs= club::SelectCartFeilds4Home()->Published()->whereNull('hidden_at')->orderBy('club_min_price','ASC')->paginate(6);
+        $clubs= club::SelectCartFeilds4Home()->Published()->CorrentCity()->whereNull('hidden_at')->orderBy('club_min_price','ASC')->paginate(6);
         if(\Request::ajax())
         {
             $html = '';

@@ -20,8 +20,9 @@ declare(strict_types=1);
         <div class="select2_wrapper">
             <select id="select-сity" name="club_city" required data-placeholder="Выберите город">
                 <option value=""></option>
-                <option value="moscow" {{(clubValue('club_city') == 'moscow') ? 'selected' : null}}>Москва</option>
-                <option value="saint-peterburg" {{(clubValue('club_city') == 'saint-peterburg') ? 'selected' : null}}>Санкт-Петербург</option>
+                @foreach(session()->get('cities')['ar'] as $city)
+                    <option value="{{$city->id}}" @if(!$edit) @if($city->en_name == city()) selected @endif @endif {{(clubValue('club_city') == $city->id) ? 'selected' : null}} >{{$city->name}}</option>
+                @endforeach
             </select>
             <div class="error"></div>
         </div>

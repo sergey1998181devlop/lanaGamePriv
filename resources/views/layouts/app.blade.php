@@ -1,3 +1,4 @@
+<? updateCities();?>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -5,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="site" content="{{url('/')}}">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
           integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
@@ -56,15 +58,15 @@
     <div class="container-fluid">
         <div class="header_wrapper">
             <div class="header_logo_wrapper">
-                <a href="{{url('/')}}">
+                <a href="{{url('/')}}/{{city()}}">
                     <img src="{{ asset('/img/logo.svg')}}" alt="logo">
                 </a>
             </div>
             <div class="select2_wrapper select_city_wrapper">
-                <select class="select_city">
-                    <option value="1">Москва</option>
-                    <option value="2">Санкт-Петербург</option>
-                    <option value="3">Тюмень</option>
+                <select class="select_city" id="city_selector">
+                    @foreach(session()->get('cities')['ar'] as $city)
+                        <option value="{{$city->id}}" @if($city->en_name == city()) selected @endif target="{{$city->en_name}}">{{$city->name}}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="mobile_menu_bg"></div>
@@ -211,7 +213,7 @@
         <div class="footer_top">
             <div class="footer_logo_wrapper">
                 <div class="logo_wrapper">
-                    <a href="{{url('/')}}">
+                    <a href="{{url('/')}}/{{city()}}">
                         <img src="{{ asset('/img/logo.svg')}}" alt="logo">
                     </a>
                 </div>
@@ -283,6 +285,11 @@
 
     @yield('scripts')
 
-
+   <script>
+   $('#city_selector').on('select2:select', function (e) {
+        var url = $('meta[name="site"]').attr('content');
+        window.location.href = url + '/'+$('#city_selector option:selected').attr('target');
+    });
+   </script>
 </body>
 </html>

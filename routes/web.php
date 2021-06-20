@@ -13,8 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home');
-
+Route::get('/', function () {
+    return redirect('moskva');
+});
 // регистрация и авторизация
 Auth::routes();
 Route::post('/register/send_sms', 'Auth\RegisterController@sendSMS');
@@ -114,3 +115,5 @@ Route::post('/panel/langame-requests/delete', 'panel\adminController@deleteReque
 Route::get('/panel/langame-requests/toggle/{id}', 'panel\adminController@langameRequestsToggle');
 
 
+// должен быть последным, иначе остальные ссылки не сработают
+Route::get('/{city}', 'HomeController@index')->name('home')->middleware('city');

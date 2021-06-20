@@ -100,7 +100,7 @@
                     <div class="forma">
                         <div class="form-group required @error('name')error @enderror">
                             <label for="club-request-user-name-input">Ваше имя</label>
-                            <input id="club-request-user-name-input" name="name" type="text" placeholder="" required>
+                            <input id="club-request-user-name-input" name="name" value="{{old('name')}}" type="text" placeholder="" required>
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -109,7 +109,7 @@
                         </div>
                         <div class="form-group required @error('club_name') error @enderror">
                             <label for="club-request-name-input">Название клуба</label>
-                            <input id="club-request-name-input" name="club_name" type="text" placeholder="Введите название клуба" required>
+                            <input id="club-request-name-input" name="club_name" value="{{old('club_name')}}" type="text" placeholder="Введите название клуба" required>
                             @error('club_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -120,10 +120,18 @@
                             <label for="club-request-select-сity">Город</label>
                             <div class="input_wrapper">
                                 <div class="select2_wrapper">
+                                <?php
+                                 $selected_city=old('city');
+                                 if($selected_city == ''){
+                                    $selected_city = city(true)['id'];
+                                 }
+                                 
+                                ?>
                                     <select id="club-request-select-сity" name="city" required data-placeholder="Выберите город">
                                         <option value=""></option>
-                                        <option value="2">Москва</option>
-                                        <option value="3">Санкт-Петербург</option>
+                                        @foreach(session()->get('cities')['ar'] as $city)
+                                            <option value="{{$city->id}}" @if($city->id == $selected_city) selected @endif target="{{$city->en_name}}">{{$city->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -135,7 +143,7 @@
                         </div>
                         <div class="form-group @error('phone') error @enderror">
                             <label for="club-request-phone-input">Контактный телефон</label>
-                            <input id="club-request-phone-input" name="phone" type="tel" placeholder="+7 (___) ___-__-__">
+                            <input id="club-request-phone-input" name="phone" value="{{old('phone')}}" type="tel" placeholder="+7 (___) ___-__-__">
                             @error('phone')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -144,7 +152,7 @@
                         </div>
                         <div class="form-group required @error('email') error @enderror">
                             <label for="club-request-email-input">Email</label>
-                            <input id="club-request-email-input" name="email" type="email" placeholder="" required>
+                            <input id="club-request-email-input" name="email" value="{{old('email')}}" type="email" placeholder="" required>
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

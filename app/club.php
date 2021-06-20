@@ -42,4 +42,13 @@ class club extends Model
     {
         return $query->where('draft', '0')->whereNull('published_at');
     }
+    public function scopeCorrentCity($query)
+    {
+        return $query->where('club_city', city(true)['id']);
+    }
+    
+    public function city()
+    {
+        return $this->belongsTo('App\city','club_city');
+    }
 }

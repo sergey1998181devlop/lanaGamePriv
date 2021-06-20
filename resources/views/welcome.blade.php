@@ -10,7 +10,7 @@
         <div class="choose_club_info">
             <div class="choose_club_info_title">
                 <h1>Выбери свой <br>
-                    компьютерный клуб в <span class="text_decor">Москве</span>
+                    компьютерный клуб в <span class="text_decor">{{city(true)['namePrepositional']}}</span>
                 </h1>
             </div>
             <div class="choose_club_info_img">
