@@ -94,9 +94,9 @@
                     </div>
                     <?
                     }?>
-                    @if(count($images) > 4)
-                        <button type="button" data-remodal-target="club_photo_modal">Показать все фото</button>
-                    @endif
+                    
+                        <button type="button" class="@if(count($images) < 5) hidden-lg @endif" data-remodal-target="club_photo_modal">Показать все фото</button>
+                   
                 </div>
             </div>
         </div>
