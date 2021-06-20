@@ -17,7 +17,9 @@ class clubsController extends Controller
         $this->isDraft = false;
     }
     public function index($id){
-        $club = club::where('id',$id)->where('draft','0')->first();
+        $club = club::where('id',$id)->where('draft','0')->with(array('city' => function($query) {
+            $query->select('id','name');
+        }))->first();
         if(!$club)abort(404);
         if($club->published_at == null || $club->hidden_at != null ){
             if(!admin() || $club->user_id != Auth::user()->id){

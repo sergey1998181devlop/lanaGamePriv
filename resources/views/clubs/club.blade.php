@@ -781,7 +781,7 @@
                     <div class="club_page_contacts_item">
 
                         <div class="club_city">
-                            <span>{{$club->club_city}}</span>
+                            <span>{{$club->city->name}}</span>
                         </div>
                     </div>
                     <div class="club_page_contacts_item">
