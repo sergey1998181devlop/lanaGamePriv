@@ -22,6 +22,7 @@ class clubsController extends Controller
         }))->first();
         if(!$club)abort(404);
         if($club->published_at == null || $club->hidden_at != null ){
+            if(Auth::guest())abort(404);
             if(!admin() && $club->user_id != Auth::user()->id){
                 abort(404);
             }
