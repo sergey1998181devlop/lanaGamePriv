@@ -63,8 +63,6 @@ jQuery(function() {
         });
     });
 
-
-
     // price list validation
 
     $club_price_file_input.on('change', function(e) {
@@ -91,7 +89,7 @@ jQuery(function() {
         let $tab = jQuery('.form_tab_06_price');
 
         $tab.on('open', function() {
-            if ($club_price_hidden_input.val() !== ''){
+            if ($club_price_hidden_input.val() !== '') {
                 $club_price_file_text.text('Файл загружен');
                 jQuery('.add_file_wrapper').append('<button type="button" data-role-remove-price-list-event></button>');
             }
@@ -394,7 +392,7 @@ jQuery(function() {
                 $block.toggleClass('block_disabled', !state);
 
 
-                $block.find('input, select, textarea').each(function() {
+                $block.find('input:not([type="radio"]):not([type="checkbox"]), select, textarea').each(function() {
                     let $input = jQuery(this);
 
                     if (!state) {
