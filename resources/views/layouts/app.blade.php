@@ -258,6 +258,7 @@
     @yield('scripts')
 
    <script>
+    //    in header
    $('#city_selector').on('select2:select', function (e) {
         var url = $('meta[name="site"]').attr('content');
         window.location.href = url + '/'+e.params.data.data;
@@ -265,20 +266,29 @@
 
     $('#city_selector').select2({
         ajax: {
-            url: '{{url("searchCities")}}',
+            url: $('meta[name="site"]').attr('content') +'/searchCities',
             dataType: 'json'
         },
         cache: true
     });
-    $('#select-сity').select2({
+
+    // in club add modal
+    $('#add-club-form #select-сity').select2({
         ajax: {
-            url: '{{url("searchCities")}}',
+            url: $('meta[name="site"]').attr('content') + '/searchCities',
             dataType: 'json',
-            data:{
-                selected : $('#select-сity').val()
-            }
+            data: function (params) {
+                return {
+                    q: params.term, // search term
+                    page: params.page,
+                    selected : $('#add-club-form #select-сity').val()
+                };
+                },
         },
         cache: true
+    });
+    $('#add-club-form #select-сity').on('select2:select', function (e) {
+        console.log(e.params.data);
     });
    </script>
    <style>
