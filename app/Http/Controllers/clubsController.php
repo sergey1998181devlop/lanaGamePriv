@@ -182,8 +182,10 @@ class clubsController extends Controller
                     $daysAr[$day]['to'] = $request->input($day.'_work_to');
                 }
             }
-            if(count($daysAr) > 0)
-            $club->work_time_days = serialize($daysAr);
+            if(count($daysAr) > 0){
+                $club->work_time_days = serialize($daysAr);
+            }
+            
         }else{
             $club->work_time = '1';
             $club->work_time_days = '';

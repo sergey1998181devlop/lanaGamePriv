@@ -43,28 +43,28 @@ class HomeController extends Controller
     public function searchCities(Request $request){
       $b = array();
       $b['query']='Unit';
-      if(($request->input('term'))){
-        $cities=city::select('id','name','en_name')->where('name', 'like', '%' . $request->input('q') . '%')->orWhere('en_name', 'like', '%' . $request->input('q') . '%')->paginate(6);
-          if(count($cities) == 5){
+      if(($request->input('q'))){
+        $cities=city::select('id','name','en_name','metroMap')->where('name', 'like', '%' . $request->input('q') . '%')->orWhere('en_name', 'like', '%' . $request->input('q') . '%')->paginate(6);
+          if(count($cities) >= 5){
             $b["pagination"]= [
               "more"=> true
             ];
           }
       }else{
 
-        $correntCity = city::select('id','name','en_name')->find(($request->input('selected') ? $request->input('selected') : city(true)['id']));
-        $b["results"][]=[ "text"=> $correntCity->name, "data"=> $correntCity->en_name,'id'=>$correntCity->id ];
+        $correntCity = city::select('id','name','en_name','metroMap')->find(($request->input('selected') ? $request->input('selected') : city(true)['id']));
+        $b["results"][]=[ "text"=> $correntCity->name, "data"=> $correntCity->en_name,'id'=>$correntCity->id ,'has_metro' =>  $correntCity->metroMap ];
         $defCities = [637640,653240,650400,634450];
         if($correntCity){
           if (($key = array_search($correntCity->id, $defCities)) !== false) {
             unset($defCities[$key]);
           }
         }
-        $cities=city::select('id','name','en_name')->whereIn('id',$defCities)->get();
+        $cities=city::select('id','name','en_name','metroMap')->whereIn('id',$defCities)->get();
       }
      
       foreach ($cities as $city) {
-       $b["results"][]=[ "text"=> $city->name, "data"=> $city->en_name,'id'=>$city->id ];
+       $b["results"][]=[ "text"=> $city->name, "data"=> $city->en_name,'id'=>$city->id,'has_metro' =>  $city->metroMap  ];
       }
       
       return response($b);
