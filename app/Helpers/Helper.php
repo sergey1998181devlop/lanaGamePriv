@@ -25,12 +25,4 @@ if(!function_exists('notReq')){
     }
 }
 
-
-function updateCities(){
-if(session()->get('cities')==null || session()->get('cities')['v'] != env('CITIES_V',0) ){
-$cities = \App\city::select('id','name','en_name','metroMap')->get();
-session()->put('cities',['v'=>env('CITIES_V',0),'ar'=>$cities]);
-session()->save();
-}
-}
 ?>

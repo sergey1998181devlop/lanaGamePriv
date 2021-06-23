@@ -47,6 +47,7 @@ Route::post('clubs/add-draft', 'clubsController@addDraftClub');
 Route::post('clubs/add-list','clubsController@savePriceList' );
 Route::post('clubs/add-image','clubsController@saveImage' );
 
+Route::get('searchCities','HomeController@searchCities');
 
 // обратная связь
 Route::post('messages/send','mailController@storeFromContacts' );

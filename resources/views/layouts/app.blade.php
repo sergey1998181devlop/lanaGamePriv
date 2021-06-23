@@ -1,4 +1,3 @@
-<? updateCities();?>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -64,9 +63,7 @@
             </div>
             <div class="select2_wrapper select_city_wrapper">
                 <select class="select_city" id="city_selector">
-                    @foreach(session()->get('cities')['ar'] as $city)
-                        <option value="{{$city->id}}" @if($city->en_name == city()) selected @endif target="{{$city->en_name}}">{{$city->name}}</option>
-                    @endforeach
+                    <option>{{city(true)['name']}}</option>
                 </select>
             </div>
             <div class="mobile_menu_bg"></div>
@@ -263,8 +260,30 @@
    <script>
    $('#city_selector').on('select2:select', function (e) {
         var url = $('meta[name="site"]').attr('content');
-        window.location.href = url + '/'+$('#city_selector option:selected').attr('target');
+        window.location.href = url + '/'+e.params.data.data;
+    });
+
+    $('#city_selector').select2({
+        ajax: {
+            url: '{{url("searchCities")}}',
+            dataType: 'json'
+        },
+        cache: true
+    });
+    $('#select-сity').select2({
+        ajax: {
+            url: '{{url("searchCities")}}',
+            dataType: 'json',
+            data:{
+                selected : $('#select-сity').val()
+            }
+        },
+        cache: true
     });
    </script>
+   <style>
+   .select2-container .select2-dropdown{
+    z-index: 9999999!important;
+   }</style>
 </body>
 </html>
