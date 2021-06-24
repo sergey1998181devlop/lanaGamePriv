@@ -58,7 +58,7 @@ jQuery(function() {
 window.Layout = (() => {
     return {
         initSelect2() {
-            jQuery('.select2_wrapper select:not([data-select2-id])').each(function() {
+            jQuery('.select2_wrapper select:not([data-select2-id]):not([data-select2-skip-auto-init])').each(function() {
                 let $this = jQuery(this),
                     options = {
                         minimumResultsForSearch: 1,

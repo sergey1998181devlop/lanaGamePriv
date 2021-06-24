@@ -18,14 +18,14 @@ declare(strict_types=1);
     <label for="select-сity">Город</label>
     <div class="input_wrapper">
         <div class="select2_wrapper">
-            <select id="select-сity" name="club_city" required data-placeholder="Выберите город">
+            <select id="select-сity" name="club_city" data-select2-skip-auto-init required data-placeholder="Выберите город">
                 <option value=""></option>
                 @if(!$edit)
-                <option value="{{city(true)['id']}}" selected >{{city(true)['name']}}</option> 
+                <option value="{{city(true)['id']}}" selected >{{city(true)['name']}}</option>
                 @else
                    @if($clubAr->club_city != '')
                       @if($curCity = App\city::select('id','name','metroMap')->find($clubAr->club_city))
-                        <option value="{{$curCity->id}}"  selected >{{$curCity->name}}</option> 
+                        <option value="{{$curCity->id}}"  selected >{{$curCity->name}}</option>
                       @endif
                    @endif
                 @endif
@@ -62,11 +62,11 @@ declare(strict_types=1);
             }
           }
           ?>
-            <select id="select-subway" name="club_metro" data-placeholder="Выберите метро" data-select2-depends-on="#select-сity" @if($metro_disabled) disabled @endif>
+            <select id="select-subway" name="club_metro" data-placeholder="Выберите метро" data-select2-skip-auto-init @if($metro_disabled) disabled @endif>
                 <option value=""></option>
                 @if(!$metro_disabled && clubValue('club_metro'))
                     @if($curMetro = App\metro::select('id','name','color')->find(clubValue('club_metro')))
-                        <option value="{{$curMetro->id}}"  selected data-line-color="#{{$curMetro->color}}">{{$curMetro->name}}</option> 
+                        <option value="{{$curMetro->id}}"  selected data-line-color="#{{$curMetro->color}}">{{$curMetro->name}}</option>
                     @endif
                 @endif
             </select>

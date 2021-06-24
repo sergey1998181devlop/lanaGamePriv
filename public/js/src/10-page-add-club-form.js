@@ -1,5 +1,6 @@
 jQuery(function() {
     let $form = jQuery('#add-club-form'),
+        $city_input = jQuery('#select-сity'),
         $save_draft = $form.find('.save_draft'),
         $club_photo_hidden_input = jQuery('#club_photos_input'),
         $club_select_metro_input = jQuery('#select-subway'),
@@ -10,8 +11,8 @@ jQuery(function() {
         $club_price_file_text = jQuery('#add-price-file-text'),
         $add_photo_preview = jQuery('#add_photo_preview'),
         $add_photo_list = jQuery('#add_photo_list'),
-        max_image_count = 10,
-        subway_options = [];
+        max_image_count = 10;
+
 
     if ($form.length === 0) {
         return;
@@ -27,6 +28,7 @@ jQuery(function() {
         nextButtonText: 'Продолжить',
         tabSelector: '.form_tab'
     });
+
     $form.on('keydown', 'input', function(e) {
         if (e.key === 'Enter') {
             e.preventDefault();
@@ -62,6 +64,130 @@ jQuery(function() {
             }
         });
     });
+
+    // common info validation
+
+    (() => {
+        let $tab = jQuery('.form_tab_01_common_info'),
+            $address_input = $tab.find('#club-address-input'),
+            $lat = jQuery('#lat'),
+            $lon = jQuery('#lon');
+
+        if (jQuery.fn.autocomplete) {
+            $address_input.autocomplete({
+                // paramName: 'geocode',
+                // serviceUrl: `https://geocode-maps.yandex.ru/1.x/?apikey=${window.YANDEX_API_KEY}&format=json&results=5`,
+
+                lookup: function(query, done) {
+                    let cityName = $city_input.find('option:selected').text();
+
+                    jQuery.ajax({
+                        method: 'GET',
+                        url: 'https://geocode-maps.yandex.ru/1.x/',
+                        data: {
+                            apikey: window.YANDEX_API_KEY,
+                            format: 'json',
+                            results: '5',
+                            geocode: `город ${cityName}, ${query}`
+                        },
+                        success: function(json) {
+                            let suggestions = $.map(json.response.GeoObjectCollection.featureMember, function(dataItem) {
+                                let name = '',
+                                    coord,
+                                    quma = '';
+
+                                if (dataItem.GeoObject.Point.pos != null) {
+                                    coord = dataItem.GeoObject.Point.pos;
+
+                                    if (dataItem.GeoObject.name != null) {
+                                        name = dataItem.GeoObject.name;
+                                        quma = ', ';
+                                    }
+
+                                    if (dataItem.GeoObject.description != null) {
+                                        name += quma + dataItem.GeoObject.description;
+                                    }
+
+                                    if (name) {
+                                        return {value: name, data: coord};
+                                    }
+                                }
+                            });
+
+                            done({suggestions});
+                        }
+                    });
+
+                    // var result = {
+                    //     suggestions: [
+                    //         {'value': 'United Arab Emirates', 'data': 'AE'},
+                    //         {'value': 'United Kingdom', 'data': 'UK'},
+                    //         {'value': 'United States', 'data': 'US'},
+                    //         {'value': `My query: «${query}»`, 'data': 'QQ'}
+                    //     ]
+                    // };
+                    //
+                    // done(result);
+                },
+                // transformResult: function(response) {
+                //     response = JSON.parse(response);
+                //
+                //     return {
+                //         suggestions: $.map(response.response.GeoObjectCollection.featureMember, function(dataItem) {
+                //             let name = '',
+                //                 coord,
+                //                 quma = '';
+                //
+                //             if (dataItem.GeoObject.Point.pos != null) {
+                //                 coord = dataItem.GeoObject.Point.pos;
+                //
+                //                 if (dataItem.GeoObject.name != null) {
+                //                     name = dataItem.GeoObject.name;
+                //                     quma = ', ';
+                //                 }
+                //
+                //                 if (dataItem.GeoObject.description != null) {
+                //                     name += quma + dataItem.GeoObject.description;
+                //                 }
+                //
+                //                 if (name != '') {
+                //                     return {value: name, data: coord};
+                //                 }
+                //             }
+                //         })
+                //     };
+                // },
+                onSelect: function(suggestion) {
+
+                    var coor = suggestion.data.split(' ');
+                    $('#add-club-form #lat').val(coor[1]);
+                    $('#add-club-form #lon').val(coor[0]);
+                    jQuery('.error.address_error').text('');
+                }
+            });
+        }
+
+        $address_input.on('input', function() {
+            $lat.val('');
+            $lon.val('');
+        });
+
+        $tab.data('form-wizard-tab-validation', function() {
+            return new Promise((resolve, reject) => {
+                let hasErrors = false;
+
+
+                jQuery('.error.address_error').text('');
+
+                if ($lat.val() === '' || $lon.val() === '') {
+                    jQuery('.error.address_error').text('Необходимо выбрать адрес из списка');
+                    hasErrors = true;
+                }
+
+                return hasErrors ? reject() : resolve();
+            });
+        });
+    })();
 
     // url validation
 
@@ -260,78 +386,6 @@ jQuery(function() {
             });
         });
     }
-
-    // common info validation
-
-    (() => {
-        let $tab = jQuery('.form_tab_01_common_info'),
-            $address_input = $tab.find('#club-address-input'),
-            $lat = jQuery('#lat'),
-            $lon = jQuery('#lon');
-
-        if (jQuery.fn.autocomplete) {
-            jQuery('#club-address-input').autocomplete({
-                paramName: 'geocode',
-                serviceUrl: `https://geocode-maps.yandex.ru/1.x/?apikey=${window.YANDEX_API_KEY}&format=json&results=5`,
-                transformResult: function(response) {
-                    response = JSON.parse(response);
-
-                    return {
-                        suggestions: $.map(response.response.GeoObjectCollection.featureMember, function(dataItem) {
-                            let name = '',
-                                coord,
-                                quma = '';
-
-                            if (dataItem.GeoObject.Point.pos != null) {
-                                coord = dataItem.GeoObject.Point.pos;
-
-                                if (dataItem.GeoObject.name != null) {
-                                    name = dataItem.GeoObject.name;
-                                    quma = ', ';
-                                }
-
-                                if (dataItem.GeoObject.description != null) {
-                                    name += quma + dataItem.GeoObject.description;
-                                }
-
-                                if (name != '') {
-                                    return {value: name, data: coord};
-                                }
-                            }
-                        })
-                    };
-                },
-                onSelect: function(suggestion) {
-
-                    var coor = suggestion.data.split(' ');
-                    $('#add-club-form #lat').val(coor[1]);
-                    $('#add-club-form #lon').val(coor[0]);
-                    jQuery('.error.address_error').text('');
-                }
-            });
-        }
-
-        $address_input.on('input', function() {
-            $lat.val('');
-            $lon.val('');
-        });
-
-        $tab.data('form-wizard-tab-validation', function() {
-            return new Promise((resolve, reject) => {
-                let hasErrors = false;
-
-
-                jQuery('.error.address_error').text('');
-
-                if ($lat.val() === '' || $lon.val() === '') {
-                    jQuery('.error.address_error').text('Необходимо выбрать адрес из списка');
-                    hasErrors = true;
-                }
-
-                return hasErrors ? reject() : resolve();
-            });
-        });
-    })();
 
     // schedule validation
     (() => {
