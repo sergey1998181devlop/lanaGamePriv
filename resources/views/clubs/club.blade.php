@@ -90,7 +90,9 @@
                     foreach ($images as $value) {
                     ?>
                     <div class="club_page_photo_item">
-                        <img src="{{$value}}" alt="image">
+                        <a href="{{$value}}" data-fancybox>
+                            <img src="{{$value}}" alt="image">
+                        </a>
                     </div>
                     <?
                     }?>

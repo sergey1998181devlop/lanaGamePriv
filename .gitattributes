@@ -1,4 +1,5 @@
 public/js/dest/*.js binary
+public/js/dest/*.js.map binary
 public/css/layout.css binary
 public/css/layout.css.map binary
 * text=auto

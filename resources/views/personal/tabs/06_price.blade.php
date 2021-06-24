@@ -34,6 +34,10 @@ declare(strict_types=1);
         <div class="error"></div>
     </div>
 </div>
+<div class="add_photo_instruction">
+    Файл формата jpg, jpeg, png или pdf. Размер не более 5 Мб.
+</div>
+
 
 <div class="marketing_event_wrapper">
 
