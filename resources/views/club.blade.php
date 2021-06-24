@@ -33,7 +33,7 @@
         @endif
     </div>
     <div class="search_club_info">
-        <div class="club_name approve">
+        <div class="club_name">
             <span>{{$club->club_name}}</span>
         </div>
         <div class="rating_wrapper">

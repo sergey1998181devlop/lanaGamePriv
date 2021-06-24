@@ -96,7 +96,7 @@ class personalController extends Controller
   public function update(Request $request){
     $data = $request->validate([
         'name' => ['required', 'string', 'max:255'],
-        'user_position'=>['required','numeric','min:1','max:2'],
+        'user_position'=>['required','numeric','min:1','max:4'],
     ]);
     $user = Auth::user();
     if($request->input('email') != $user->email){
