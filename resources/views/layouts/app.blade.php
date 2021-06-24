@@ -114,14 +114,20 @@
                     <div class="mob_menu_item">
 
                         <ul>
-                            @if(Auth::guest())
-                                <li>
-                                    <a href="<?=url('personal/clubs')?>">Личный кабинет</a>
-                                </li>
-                            @endif
+                            <li>
+                                <a href="<?=url('personal/clubs')?>">Личный кабинет</a>
+                            </li>
+                        @if(Auth::guest())
                             <li>
                                 <a href="{{url('register')}}">Как попасть на LanGame</a>
                             </li>
+                        @else
+                            <li>
+                                <a href="{{url('personal/clubs')}}?action=add_club">Как попасть на LanGame</a>
+                            </li>
+                        @endif
+                            
+                            
                             <li>
                                 <a href="{{url('langame-software')}}">LanGame Software</a>
                             </li>
@@ -209,9 +215,15 @@
                             <li>
                                 <a href="{{url('personal/clubs')}}">Личный кабинет владельца</a>
                             </li>
-                            <li>
-                                <a href="{{url('personal/clubs')}}?action=add_club">Как попасть на Langame</a>
-                            </li>
+                            @if(Auth::guest())
+                                <li>
+                                    <a href="{{url('register')}}">Как попасть на LanGame</a>
+                                </li>
+                            @else
+                                <li>
+                                    <a href="{{url('personal/clubs')}}?action=add_club">Как попасть на LanGame</a>
+                                </li>
+                            @endif
                             <li>
                                 <a href="{{url('langame-software')}}">Langame Software</a>
                             </li>
