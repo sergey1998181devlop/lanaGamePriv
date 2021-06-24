@@ -19,6 +19,8 @@ class clubsController extends Controller
     public function index($id){
         $club = club::where('id',$id)->where('draft','0')->with(array('city' => function($query) {
             $query->select('id','name');
+        },'metro'=>function($query) {
+            $query->select('id','name','color');
         }))->first();
         if(!$club)abort(404);
         if($club->published_at == null || $club->hidden_at != null ){
@@ -49,9 +51,15 @@ class clubsController extends Controller
         return view('personal/club_list')->with(['action'=>'edit','clubAr'=>$clubAr,'published'=>$published,'underModify'=>$underModify,'draft'=>$draft]);
     }
     public function clubs(){
-        $published = club::SelectCartFeilds()->CorrentUser()->Published()->get();
-        $underModify = club::SelectCartFeilds()->CorrentUser()->UnderEdit()->get();
-        $draft = club::SelectCartFeilds()->CorrentUser()->Draft()->get();
+        $published = club::SelectCartFeilds()->CorrentUser()->Published()->with(array('metro'=>function($query) {
+            $query->select('id','name','color');
+        }))->get();
+        $underModify = club::SelectCartFeilds()->CorrentUser()->UnderEdit()->with(array('metro'=>function($query) {
+            $query->select('id','name','color');
+        }))->get();
+        $draft = club::SelectCartFeilds()->CorrentUser()->Draft()->with(array('metro'=>function($query) {
+            $query->select('id','name','color');
+        }))->get();
         return view('personal/club_list')->with(['published'=>$published,'underModify'=>$underModify,'draft'=>$draft]);
     }
     public function inputsTextsHandle(){
@@ -73,7 +81,9 @@ class clubsController extends Controller
             'club_youtube_link',
             'club_photos',
             'main_preview_photo',
-            'club_price_file'
+            'club_price_file',
+            'lon',
+            'lat'
         ];
     }
     public function servicesHandle(){
@@ -126,7 +136,7 @@ class clubsController extends Controller
             $club->draft = '1';
         }
        foreach($this->inputsTextsHandle() as $input){
-           if($request->input($input) == '')continue;
+           if($request->input($input) == ''){ $club->$input = '';continue;}
             $club->$input = $request->input($input);
        }
 
@@ -189,16 +199,6 @@ class clubsController extends Controller
         }else{
             $club->work_time = '1';
             $club->work_time_days = '';
-        }
-        if($request->input('lon') != ''){
-            $club->lon = $request->input('lon');
-        }else{
-            $club->lon = '';
-        }
-        if($request->input('lat') != ''){
-            $club->lat = $request->input('lat');
-        }else{
-            $club->lat = '';
         }
         $club->configuration = serialize($request->input('configuration'));
         if($request->input('marketing_event') == 'on'){

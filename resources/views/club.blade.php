@@ -48,15 +48,15 @@
                 <span>47 отзывов</span>
             </div>
         </div>
-        @if($club->club_metro != null)
+        @if($club->club_metro != null && $club->metro != null)
         <div class="club_subway_wrapper">
-            <div class="subway_img_wrapper" style="--subway-color: blue">
+            <div class="subway_img_wrapper" style="--subway-color: #{{ $club->metro->color}}">
                 <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-svg-subway"></use>
                 </svg>
             </div>
             <div class="subway_station">
-                <span>{{$club->club_metro}}</span>
+                <span>{{$club->metro->name}}</span>
                 <span class="subway_time_to">(1 мин.)</span>
             </div>
         </div>

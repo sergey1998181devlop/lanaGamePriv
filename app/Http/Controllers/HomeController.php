@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\post;
 use App\club;
 use App\city;
+use App\metro;
 use View;
 include_once(resource_path('views/includes/functions.blade.php')); 
 class HomeController extends Controller
@@ -24,7 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $clubs= club::SelectCartFeilds4Home()->Published()->CorrentCity()->whereNull('hidden_at')->orderBy('club_min_price','ASC')->paginate(6);
+        $clubs= club::SelectCartFeilds4Home()->Published()->CorrentCity()->whereNull('hidden_at')->with(array('metro'=>function($query) {
+          $query->select('id','name','color');
+      }))->orderBy('club_min_price','ASC')->paginate(6);
         if(\Request::ajax())
         {
             $html = '';
@@ -68,5 +71,23 @@ class HomeController extends Controller
       }
       
       return response($b);
+   }
+   public function searchMetro(Request $request){
+    $b = array();
+    $b['query']='Unit';
+    if(($request->input('q'))){
+      $metros=metro::select('id','name','color')->where('city_id',$request->input('city_id'))->where('name', 'like', '%' . $request->input('q') . '%')->paginate(10);
+        if(count($metros) >= 9){
+          $b["pagination"]= [
+            "more"=> true
+          ];
+        }
+    }else{
+      $metros=metro::select('id','name','color')->where('city_id',$request->input('city_id'))->paginate(10);
+    }
+    foreach ($metros as $metro) {
+      $b["results"][]=[ "text"=> $metro->name,'id'=>$metro->id,'color' =>  $metro->color  ];
+     }
+     return response($b);
    }
 }
