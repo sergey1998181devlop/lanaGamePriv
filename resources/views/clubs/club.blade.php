@@ -229,9 +229,12 @@
                     <div class="club_page_min_price">
                         Стоимость аренды от {{$club->club_min_price}}₽/час
                     </div>
-                    <!-- <button type="button" class="show_price_list" data-remodal-target="club_price_list_modal">Посмотреть прайс-лист</button> -->
                     @if($club->club_price_file != null && $club->club_price_file != '')
-                        <a href="{{$club->club_price_file}}" action="_blank" class="show_price_list">Посмотреть прайс-лист</a>
+                        @if(substr($club->club_price_file, strrpos($club->club_price_file, '.') + 1) != 'pdf')
+                            <button type="button" class="show_price_list" data-remodal-target="club_price_list_modal">Посмотреть прайс-лист</button>
+                        @else
+                        <a href="{{$club->club_price_file}}" target="_blank" class="show_price_list">Посмотреть прайс-лист</a>
+                        @endif
                     @endif
                 </div>
             </div>
@@ -885,6 +888,16 @@
         </div>
     </div>
 </div>
+@if(substr($club->club_price_file, strrpos($club->club_price_file, '.') + 1) != 'pdf')
+<div class="show_club_price_list_modal" data-remodal-id="club_price_list_modal">
+    <button data-remodal-action="close" class="remodal-close">Закрыть</button>
+    <div class="remodal-content">
+        <div class="club_price_list_wrapper">
+            <img src="{{$club->club_price_file}}" alt="price_list">
+        </div>
+    </div>
+</div>
+@endif
 @endsection
 @section('scripts')
 @if($club->lat!= '' && $club->lon!= '')
