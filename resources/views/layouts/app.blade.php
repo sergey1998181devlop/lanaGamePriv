@@ -173,16 +173,6 @@
 
 
 <div class="club_page_modals_wrapper"></div>
-<div class="show_club_price_list_modal" data-remodal-id="club_price_list_modal">
-    <button data-remodal-action="close" class="remodal-close">Закрыть</button>
-    <div class="remodal-content">
-        <div class="club_price_list_wrapper">
-            <img src="{{asset('/img/club_prices.png')}}" alt="price_list">
-        </div>
-    </div>
-</div>
-
-
 
 <!-- END OF MODALS -->
 <!--FOOTER START-->
