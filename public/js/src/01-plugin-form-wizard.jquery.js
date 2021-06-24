@@ -114,16 +114,6 @@
                         }
                     });
 
-                    $activeTab.find('input[type="url"]:not(:disabled)').each(function() {
-                        let $input = jQuery(this),
-                            value = $input.val();
-
-                        if (value && /^.+\..+$/.test(value) === false) {
-                            hasErrors = true;
-                            setInputError(this, 'Необходимо ввести валидный url');
-                        }
-                    });
-
                     return hasErrors ? reject() : resolve();
                 });
             }

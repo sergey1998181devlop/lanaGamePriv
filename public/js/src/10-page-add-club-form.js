@@ -63,6 +63,32 @@ jQuery(function() {
         });
     });
 
+    // url validation
+
+    (() => {
+        let $tab = jQuery('.form_tab_07_contact_information');
+
+        $tab.data('form-wizard-tab-validation', function() {
+            return new Promise((resolve, reject) => {
+                let hasErrors = false;
+
+                $tab.find('.form-group .error').text('');
+
+                $tab.find('input[data-type="url"]').each(function() {
+                    let $input = jQuery(this),
+                        value = $input.val();
+                    if (value && !/^(https?:\/\/)?([-_a-z0-9а-яё]+\.)+[-_a-z0-9а-яё]/mugi.test(value)) {
+
+                        $input.closest('.form-group').find('.error').text('Необходимо ввести валидный url');
+                        hasErrors = true;
+                    }
+                });
+
+                return hasErrors ? reject() : resolve();
+            });
+        });
+    })();
+
     // price list validation
 
     $club_price_file_input.on('change', function(e) {
@@ -395,9 +421,9 @@ jQuery(function() {
                 $block.find('input:not([type="radio"]):not([type="checkbox"]), select, textarea').each(function() {
                     let $input = jQuery(this);
 
-                    if (!state) {
-                        $input.val('').trigger('change');
-                    }
+                    // if (!state) {
+                    //     $input.val('').trigger('change');
+                    // }
 
                     $input.prop('disabled', $input.is('.block_disabled *'));
                 });

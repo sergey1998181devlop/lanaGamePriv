@@ -94,9 +94,9 @@
                     </div>
                     <?
                     }?>
-                    
+
                         <button type="button" class="@if(count($images) < 5) hidden-lg @endif" data-remodal-target="club_photo_modal">Показать все фото</button>
-                   
+
                 </div>
             </div>
         </div>
@@ -836,7 +836,7 @@
             </div>
         </div>
     </section>
-    <div class="remodal show_club_phone_modal" data-remodal-id="club_phone_modal">
+    <div class="remodal show_club_phone_modal" data-remodal-id="club_phone_modal" data-remodal-options="hashTracking: false">
         <button data-remodal-action="close" class="remodal-close"></button>
         <div class="remodal-content">
             <div class="club_phone_wrapper">
@@ -867,7 +867,7 @@
 
     @endif
 
-    
+
 <div class="show_club_photo_modal" data-remodal-id="club_photo_modal">
     <button data-remodal-action="close" class="remodal-close">Закрыть</button>
     <div class="remodal-content">
@@ -875,7 +875,7 @@
             1/10
         </div>
         <div class="club_photo_modal_wrapper">
-        @foreach ($images as $value) 
+        @foreach ($images as $value)
             <div class="slide_item">
                 <img src="{{$value}}" alt="club_image">
             </div>
