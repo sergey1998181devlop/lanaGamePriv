@@ -219,6 +219,7 @@ return $marketing_events[$key];
     $( document ).ready(function(){
         $('[data-remodal-target="add_club_modal"]').click();
     })
+    window.history.replaceState({}, document.title, $('meta[name="site"]').attr('content') + "/" + 'personal/clubs/' );
 </script>
 @endif
 @if(isset($_GET['status']) && $_GET['status'] == 'success')
@@ -226,7 +227,7 @@ return $marketing_events[$key];
     $( document ).ready(function(){
         jQuery('[data-remodal-id="success_modal"]').remodal().open();
     });
-    window.history.pushState({}, document.title, "/" + 'personal/clubs/' );
+    window.history.replaceState({}, document.title, $('meta[name="site"]').attr('content') + "/" + 'personal/clubs/' );
 </script>
 @endif
 <script src="{{ asset('/js/jquery.autocomplete.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
