@@ -69,9 +69,6 @@ class clubsController extends Controller
             'phone',
             'club_address',
             'club_metro',
-            'club_area',
-            'qty_pc',
-            'club_min_price',
             'club_site',
             'club_email',
             'club_link',
@@ -84,6 +81,13 @@ class clubsController extends Controller
             'club_price_file',
             'lon',
             'lat'
+        ];
+    }
+    public function inputsNumersHandle(){
+        return [
+            'qty_pc',
+            'club_min_price',
+            'club_area',
         ];
     }
     public function servicesHandle(){
@@ -140,7 +144,14 @@ class clubsController extends Controller
            if($request->input($input) == ''){ $club->$input = '';continue;}
             $club->$input = $request->input($input);
        }
-
+       foreach($this->inputsTextsHandle() as $input){
+            if($request->input($input) == ''){ $club->$input = '';continue;}
+            $club->$input = $request->input($input);
+        }
+        foreach($this->inputsNumersHandle() as $input){
+            if($request->input($input) == ''){ $club->$input = 0;continue;}
+            $club->$input = $request->input($input);
+        }
         if($request->input('vip_pc') == 'on'){
             $club->qty_vip_pc = $request->input('qty_vip_pc');
         }
