@@ -270,14 +270,44 @@ jQuery(function() {
             $lon = jQuery('#lon');
 
         if (jQuery.fn.autocomplete) {
-            jQuery('#club-address-input').autocomplete({
-                paramName: 'geocode',
-                serviceUrl: `https://geocode-maps.yandex.ru/1.x/?apikey=${window.YANDEX_API_KEY}&format=json&results=5`,
+            $address_input.autocomplete({
+                // paramName: 'geocode',
+                // serviceUrl: `https://geocode-maps.yandex.ru/1.x/?apikey=${window.YANDEX_API_KEY}&format=json&results=5`,
+
+                lookup: function(query, done) {
+                    if ($address_input.val().length < 3) {
+                        return done({suggestions: []});
+                    }
+
+                    jQuery.ajax({
+                        method: 'GET',
+                        url: 'https://geocode-maps.yandex.ru/1.x/',
+                        data: {
+                            apikey: window.YANDEX_API_KEY,
+                            format: 'json',
+                            results: '5',
+                            geocode: $address_input.val()
+                        },
+                        success: function(json) {
+                            console.log(json?.response?.GeoObjectCollection?.featureMember || []);
+                            return done(json);
+                        },
+                        error: function() {
+                            console.log(2);
+                            return done({suggestions: []});
+                        }
+                    });
+
+                    // return done({suggestions: []})
+
+                },
                 transformResult: function(response) {
-                    response = JSON.parse(response);
+                    console.log(response);
+
+                    // response = JSON.parse(response);
 
                     return {
-                        suggestions: $.map(response.response.GeoObjectCollection.featureMember, function(dataItem) {
+                        suggestions: $.map(response.response?.GeoObjectCollection?.featureMember || [], function(dataItem) {
                             let name = '',
                                 coord,
                                 quma = '';
