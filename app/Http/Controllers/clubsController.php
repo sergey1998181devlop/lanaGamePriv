@@ -128,6 +128,7 @@ class clubsController extends Controller
           if(!$this->isDraft && $club->draft == '1'){
             $club->draft = '0';
           }
+          $club->published_at = null;
         }else{
             $club = new club();
             $club->user_id=Auth::user()->id;
