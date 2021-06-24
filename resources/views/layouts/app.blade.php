@@ -287,9 +287,38 @@
         },
         cache: true
     });
+    // in club add modal
     $('#add-club-form #select-сity').on('select2:select', function (e) {
-        console.log(e.params.data);
+        $('#add-club-form #select-subway').val('').change();
+        if(e.params.data.has_metro == 1){
+            $('#add-club-form #select-subway').attr('disabled',false)
+        }else{
+            $('#add-club-form #select-subway').attr('disabled',true)
+        }
+
     });
+
+     // in club add modal
+     $('#add-club-form #select-subway').select2({
+        ajax: {
+            url: $('meta[name="site"]').attr('content') + '/searchMetro',
+            dataType: 'json',
+            data: function (params) {
+                return {
+                    q: params.term, // search term
+                    page: params.page,
+                    city_id : $('#add-club-form #select-сity').val()
+                };
+                },
+        },
+        cache: true
+    });
+    $('#add-club-form #select-subway').on('select2:select', function (e) {
+        $('#add-club-form #select-subway option[value="'+e.params.data.id+'"]').attr('data-line-color','#'+e.params.data.color)
+    });
+
+
+
    </script>
    <style>
    .select2-container .select2-dropdown{

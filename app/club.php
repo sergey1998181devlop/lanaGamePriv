@@ -51,4 +51,8 @@ class club extends Model
     {
         return $this->belongsTo('App\city','club_city');
     }
+    public function metro()
+    {
+        return $this->belongsTo(metro::class,'club_metro');
+    }
 }
