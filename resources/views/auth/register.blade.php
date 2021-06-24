@@ -122,7 +122,9 @@
                                     <select id="user-position-input" name="user_position" class="select2_input" data-placeholder="Выбрать из списка" required>
                                         <option value=""></option>
                                         <option value="1">Директор</option>
-                                        <option value="2">Администратор</option>
+                                        <option value="2">Управляющий</option>
+                                        <option value="3">Маркетинг-менеджер</option>
+                                        <option value="4">Администратор</option>
                                     </select>
                                 </div>
                             </div>
