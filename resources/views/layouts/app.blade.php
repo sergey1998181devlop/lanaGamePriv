@@ -113,7 +113,41 @@
                         <li>
                             <a href="{{url('contacts')}}">Контакты</a>
                         </li>
+                          <li>
+                              <a href=# class="log_in_form_toggle">Войти</a>
+                          </li>
                     </ul>
+                    <div class="log_in_block_wrapper">
+                        <div class="log_in_page_title">
+                            <span>Вход в личный кабинет</span>
+                            <span class="instr">Для представителей компьютерных клубов</span>
+                        </div>
+                        <div class="log_in_wrapper">
+                            <form action="{{ route('login') }}" method="post" id="log-in-form">
+                                @csrf
+                                <div class="forma">
+                                    <div class="form-group @error('phone') error @enderror">
+                                        <label for="log-in-phone-input">Номер телефона</label>
+                                        <input id="log-in-phone-input" name="phone" type="tel" value="{{ old('phone') }}"  placeholder="+7 (___) ___-__-__" required>
+                                    </div>
+                                    <div class="form-group @error('phone') error @enderror">
+                                        <label for="log-in-password-input">Пароль</label>
+                                        <div class="input_wrapper">
+                                            <input id="log-in-password-input" name="password" type="password" placeholder="" required>
+                                            <a  href="{{ route('password.request') }}" class="forgot_password">Забыл пароль</a>
+                                        </div>
+                                        @error('phone')
+                                        <div class="error">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="btn_wrapper">
+                                    <a href="{{url('register')}}" class="registration">Регистрация</a>
+                                    <button type="submit">Продолжить</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                     <div class="mob_menu_item">
 
                         <ul>
@@ -174,6 +208,25 @@
     </div>
 </div>
 
+<div class="remodal report_modal" data-remodal-id="report_modal" data-remodal-options="hashTracking: false">
+    <button data-remodal-action="close" class="remodal-close"></button>
+    <div class="remodal-content">
+        <div class="title">Экспресс - отчёт об ошибке</div>
+        <form action="" method="post" id="report-form">
+            <div class="forma">
+                <textarea name="message" id="report-message-input" maxlength="1500" required></textarea>
+            </div>
+            <div class="btn_wrapper">
+                <button type="submit">Отправить</button>
+            </div>
+        </form>
+
+        <div class="instr">
+            Используйте <a href="{{url('contacts')}}">форму обратной связи,</a> если хотите указать
+            контактную информацию и получить ответ.
+        </div>
+    </div>
+</div>
 
 <div class="club_page_modals_wrapper"></div>
 
@@ -224,6 +277,7 @@
                     </div>
                 </div>
             </div>
+            <button type="button" class="report" data-remodal-target="report_modal">Сообщить об ошибке</button>
         </div>
         <div class="footer_bottom">
             <div class="footer_rights_wrapper">

@@ -90,7 +90,13 @@ jQuery(function() {
         ]
     });
 
-    /**
+    jQuery('.main_menu .log_in_form_toggle').on('click', function(e) {
+        e.preventDefault();
+        jQuery('.header_menu .log_in_block_wrapper').toggle();
+        jQuery(this).toggleClass('active');
+    });
+
+   /**
      * Scroll page handlers
      */
     (() => {
