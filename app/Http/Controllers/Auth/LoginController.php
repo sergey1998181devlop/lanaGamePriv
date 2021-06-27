@@ -45,4 +45,31 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    // do login Auth
+    public function loginUser(Request $request)
+    {
+    	$phone	       = $request->phone;
+    	$password      = $request->password;
+    	$rememberToken = $request->remember;
+		if (Auth::guard('web')->attempt(['phone' => $phone, 'password' => $password], $rememberToken)) {
+			$msg = array(
+				'status'  => 'success',
+				'message' => 'Login Successful'
+			);
+			return response()->json($msg);
+		}else if (Auth::guard('web')->attempt(['phone' => $phone, 'password' => $password], $rememberToken)) {
+			$msg = array(
+				'status'  => 'success',
+				'message' => 'Login Successful'
+			);
+			return response()->json($msg);
+		}
+		 else {
+			$msg = array(
+				'status'  => 'error',
+				'message' => 'Login Fail !'
+			);
+			return response()->json($msg);
+		}
+    }
 }

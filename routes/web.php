@@ -22,7 +22,6 @@ Route::post('/register/send_sms', 'Auth\RegisterController@sendSMS');
 Route::post('/register/verify_sms', 'Auth\RegisterController@verifySMS');
 Route::post('/register/create', 'Auth\RegisterController@create');
 
-// Route::get('/home', 'HomeController@index')->name('home');
 
 // личный кабинет
 
@@ -76,7 +75,7 @@ Route::get('/about-us', function () {
 
 
 Auth::routes();
-
+Route::post('auth/login',   'Auth\LoginController@loginUser' );
 
 ////// панель админа  \\\\\\\
 

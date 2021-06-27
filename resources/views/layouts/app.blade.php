@@ -124,28 +124,26 @@
                         @endif
                     </ul>
                     @if(Auth::guest())
-                    <div class="log_in_block_wrapper" style="display: none;">
+                    <div class="log_in_block_wrapper log_in_page_wrapper" style="display: none;">
                         <div class="log_in_page_title">
                             <span>Вход в личный кабинет</span>
                             <span class="instr">Для представителей компьютерных клубов</span>
                         </div>
                         <div class="log_in_wrapper">
-                            <form action="{{ route('login') }}" method="post" id="log-in-form">
+                            <form action="{{ route('login') }}" method="post" id="log-in-form-popup">
                                 @csrf
                                 <div class="forma">
-                                    <div class="form-group @error('phone') error @enderror">
+                                    <div class="form-group">
                                         <label for="log-in-phone-input">Номер телефона</label>
-                                        <input id="log-in-phone-input" name="phone" type="tel" value="{{ old('phone') }}"  placeholder="+7 (___) ___-__-__" required>
+                                        <input id="log-in-phone-input" name="phone" type="tel" placeholder="+7 (___) ___-__-__" required>
                                     </div>
-                                    <div class="form-group @error('phone') error @enderror">
+                                    <div class="form-group">
                                         <label for="log-in-password-input">Пароль</label>
                                         <div class="input_wrapper">
                                             <input id="log-in-password-input" name="password" type="password" placeholder="" required>
                                             <a  href="{{ route('password.request') }}" class="forgot_password">Забыл пароль</a>
                                         </div>
-                                        @error('phone')
-                                        <div class="error">{{ $message }}</div>
-                                        @enderror
+                                       
                                     </div>
                                 </div>
                                 <div class="btn_wrapper">
@@ -324,8 +322,35 @@
     <script src="{{ asset('/js/inputmask.js') }}"></script>
     <script src="{{ asset('/js/dest/layout.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
     <script src="{{ asset('/js/main.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
-
-
+    @if(Auth::guest())
+    <script>
+        $('#log-in-form-popup').submit(function (e){
+            e.preventDefault();
+            url=$(this).attr('action'),
+            msgs=$(this).find('.msgs'),
+            form_groups = $(this).find('.form-group');
+            msgs.empty();
+            form_groups.removeClass('error');
+            $.ajax({
+                url: url,
+                type: 'post',
+                dataType: 'json',
+                data:{
+                    'phone': $(this).find('#log-in-phone-input').inputmask('unmaskedvalue'),
+                    'password': $(this).find('#log-in-password-input').val(),
+                    '_token': $(this).find('[name="_token"]').val()
+                },
+                success: function(data) {
+                    location.reload();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    msgs.append('<div class="error" role="alert">Электронный адрес или пароль неверны</div>');
+                    form_groups.addClass('error');
+                }
+            });
+        })
+    </script>
+    @endif
     @yield('scripts')
 </body>
 </html>
