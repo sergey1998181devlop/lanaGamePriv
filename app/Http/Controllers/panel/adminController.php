@@ -25,7 +25,7 @@ class adminController extends Controller
         return view('admin.home')->with(['newMessages'=>$newMessages,'newClubs'=>$newClubs,'newLangameRequests'=>$newLangameRequests,'newReports'=>$newReports]);
     }
     public function contacts(){
-        $messages = contact::select('id','name','phone','email','created_at','seen_at')->orderBy('seen_at','asc')->orderBy('created_at','asc')->get();
+        $messages = contact::select('id','name','phone','email','created_at','seen_at')->orderBy('seen_at','asc')->orderBy('created_at','desc')->get();
         $newCount = contact::whereNull('seen_at')->count();
         return view('admin.contacts.contacts')->with(['messages'=>$messages,'newCount'=>$newCount]);
     }
@@ -50,7 +50,7 @@ class adminController extends Controller
         return back()->with('success',__('messages.Success'));
     }
     public function langameRequests(){
-        $langame_requests = langame_request::orderBy('seen_at','asc')->orderBy('created_at','asc')->get();
+        $langame_requests = langame_request::orderBy('seen_at','asc')->orderBy('created_at','desc')->with('city_name')->get();
         $newCount = langame_request::whereNull('seen_at')->count();
         return view('admin.contacts.langame_software')->with(['requests'=>$langame_requests,'newCount'=>$newCount]);
     }
@@ -72,7 +72,7 @@ class adminController extends Controller
         return back()->with('success',__('messages.Success'));
     }
     public function errorReports(){
-        $reports = report::orderBy('seen_at','asc')->orderBy('created_at','asc')->get();
+        $reports = report::orderBy('seen_at','asc')->orderBy('created_at','desc')->get();
         $newCount = report::whereNull('seen_at')->count();
         return view('admin.contacts.reports')->with(['reports'=>$reports,'newCount'=>$newCount]);
     }

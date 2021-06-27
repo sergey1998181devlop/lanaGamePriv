@@ -129,9 +129,7 @@
                                 ?>
                                     <select id="club-request-select-сity" name="city" required data-placeholder="Выберите город">
                                         <option value=""></option>
-                                        @foreach(session()->get('cities')['ar'] as $city)
-                                            <option value="{{$city->id}}" @if($city->id == $selected_city) selected @endif target="{{$city->en_name}}">{{$city->name}}</option>
-                                        @endforeach
+                                        
                                     </select>
                                 </div>
                             </div>
@@ -185,4 +183,14 @@
     });
 </script>
 @endif
+<script>
+ $('#club-request-select-сity').select2({
+        ajax: {
+            url: $('meta[name="site"]').attr('content') +'/searchCities',
+            dataType: 'json'
+        },
+        cache: true
+    });
+
+</script>
 @endsection

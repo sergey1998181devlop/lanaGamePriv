@@ -54,7 +54,7 @@
             <td name="email">{{$request->email}}</td>
             <td name="phone">{{$request->phone}}</td>
             <td name="club_name">{{$request->club_name}}</td>
-            <td name="city">{{$request->city}}</td>
+            <td name="city">{{$request->city_name->name}}</td>
             <td>{{$request->created_at}}</td>
             <td>
             @if($request->seen_at==null)

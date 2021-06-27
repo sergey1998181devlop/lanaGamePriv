@@ -344,7 +344,7 @@
                     location.reload();
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
-                    msgs.append('<div class="error" role="alert">Электронный адрес или пароль неверны</div>');
+                    msgs.append('<div class="error">Телефон или пароль неверны</div>');
                     form_groups.addClass('error');
                 }
             });
