@@ -78,6 +78,29 @@
                 </a>
                 <div class="header_menu">
                     <div class="decor"></div>
+                    @if(!Auth::guest())
+                    <div class="mob_menu_item">
+                        <h4>Личный кабинет</h4>
+                        <ul class="personal_menu">
+                            <li>
+                                <a href="{{url('personal/profile')}}">Профиль</a>
+                            </li>
+                            <li>
+                                <a href="{{url('personal/clubs')}}">Список клубов</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" class="exit" class="exit">Выйти</a>
+                            </li>
+                        </ul>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </div>
+                    @endif
+
                     <ul class="main_menu">
                       @if(admin())
                       <li>
@@ -100,7 +123,8 @@
                           </li>
                         @endif
                     </ul>
-                    <div class="log_in_block_wrapper">
+                    @if(Auth::guest())
+                    <div class="log_in_block_wrapper" style="display: none;">
                         <div class="log_in_page_title">
                             <span>Вход в личный кабинет</span>
                             <span class="instr">Для представителей компьютерных клубов</span>
@@ -131,6 +155,7 @@
                             </form>
                         </div>
                     </div>
+                    @endif
                     <div class="mob_menu_item">
 
                         <ul>
@@ -195,7 +220,8 @@
     <button data-remodal-action="close" class="remodal-close"></button>
     <div class="remodal-content">
         <div class="title">Экспресс - отчёт об ошибке</div>
-        <form action="" method="post" id="report-form">
+        <form action="{{url('report_error')}}" method="post" id="report-form">
+        @csrf
             <div class="forma">
                 <textarea name="message" id="report-message-input" maxlength="1500" required></textarea>
             </div>

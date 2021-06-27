@@ -81,10 +81,11 @@
               <span>Обратная связь</span>
           </a>
         
-          <div id="collapseTwoContact" class="collapse <?=($page=="contacts" || $page=="langame_soft")? ' show': null ?> collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
+          <div id="collapseTwoContact" class="collapse <?=($page=="contacts" || $page=="langame_soft" || $page=="error-reports" )? ' show': null ?> collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
               <div class="bg-white py-2 collapse-inner rounded">
                   <a class="collapse-item<?=($page=="contacts")? ' active': null ?>" href="{{url('/panel/contacts')}}">Форма напишите нам</a>
                   <a class="collapse-item<?=($page=="langame_soft")? ' active': null ?>" href="{{url('/panel/langame-requests')}}">Заявки LanGame Software</a>
+                  <a class="collapse-item<?=($page=="error-reports")? ' active': null ?>" href="{{url('/panel/error-reports')}}">Сооющение об ошибке</a>
               </div>
           </div>
       </li>

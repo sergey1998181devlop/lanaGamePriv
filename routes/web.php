@@ -51,8 +51,9 @@ Route::get('searchCities','HomeController@searchCities');
 Route::get('searchMetro','HomeController@searchMetro');
 
 // обратная связь
-Route::post('messages/send','mailController@storeFromContacts' );
-Route::post('langame/request','mailController@langameRequest' );
+Route::post('messages/send','mailController@storeFromContacts');
+Route::post('langame/request','mailController@langameRequest');
+Route::post('report_error','mailController@reportError');
 
 // прочие страницы
 Route::get('/langame-software', function () {
@@ -113,6 +114,10 @@ Route::post('panel/club/{id}/change-user','panel\clubsController@changeClubUser'
 Route::get('/panel/contacts', 'panel\adminController@contacts');
 Route::get('/panel/getMessage', 'panel\adminController@getMessage');
 Route::post('panel/message/delete', 'panel\adminController@deleteMessage');
+
+Route::get('/panel/error-reports', 'panel\adminController@errorReports');
+Route::get('/panel/get-report', 'panel\adminController@getReports');
+Route::post('panel/error-reports/delete', 'panel\adminController@deleteErrorReport');
 
 Route::get('/panel/langame-requests', 'panel\adminController@langameRequests');
 Route::post('/panel/langame-requests/delete', 'panel\adminController@deleteRequest');

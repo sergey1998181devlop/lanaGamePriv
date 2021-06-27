@@ -8,6 +8,7 @@ use App\contact;
 use Carbon\Carbon;
 use App\club;
 use App\langame_request;
+use App\report;
 class adminController extends Controller
 {
     public function __construct()
@@ -18,9 +19,10 @@ class adminController extends Controller
     public function index()
     {
         $newMessages = contact::whereNull('seen_at')->count();
+        $newReports = report::whereNull('seen_at')->count();
         $newClubs= club::UnderEdit()->count();
         $newLangameRequests= langame_request::whereNull('seen_at')->count();
-        return view('admin.home')->with(['newMessages'=>$newMessages,'newClubs'=>$newClubs,'newLangameRequests'=>$newLangameRequests]);
+        return view('admin.home')->with(['newMessages'=>$newMessages,'newClubs'=>$newClubs,'newLangameRequests'=>$newLangameRequests,'newReports'=>$newReports]);
     }
     public function contacts(){
         $messages = contact::select('id','name','phone','email','created_at','seen_at')->orderBy('seen_at','asc')->orderBy('created_at','asc')->get();
@@ -67,6 +69,29 @@ class adminController extends Controller
             $langame_requests->seen_at = null;
         }
         if( $langame_requests->save())
+        return back()->with('success',__('messages.Success'));
+    }
+    public function errorReports(){
+        $reports = report::orderBy('seen_at','asc')->orderBy('created_at','asc')->get();
+        $newCount = report::whereNull('seen_at')->count();
+        return view('admin.contacts.reports')->with(['reports'=>$reports,'newCount'=>$newCount]);
+    }
+    
+    public function getReports(Request $request)
+    {
+        $report = report::findOrFail($request->input('id'));
+        if($report->seen_at == null){
+            $report->seen_at = Carbon::now()->toDateTimeString();
+            $report->save();
+        }
+        $html = '<h4>'.$report->message.'</h4>';
+        $html .= '<p>'.$report->created_at.'</p>';
+        return response()->json(['status'=>'success','html'=>$html], 202);
+    }
+    public function deleteErrorReport(Request $request)
+    {
+        $report = report::findOrFail($request->input('id'));
+        $report->delete();
         return back()->with('success',__('messages.Success'));
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\contact;
+use App\report;
 use Auth;
 use App\langame_request;
 class mailController extends Controller
@@ -42,7 +43,17 @@ class mailController extends Controller
         if(!Auth::guest())
         $langame_request->user_id =Auth::user()->id;
         if($langame_request->save())
-        return back()->with(['success'=>'Сообщение успешно отправлено']);;
+        return back()->with(['success'=>'Сообщение успешно отправлено']);
     }
-    
+    public function reportError(Request $request){
+        $data = $request->validate([
+            'message' => ['required'],
+        ]);
+        $report = new report();
+        $report->message = $request->input('message');
+        if(!Auth::guest())
+        $report->user_id =Auth::user()->id;
+        if($report->save())
+        return back()->with(['success'=>'Сообщение успешно отправлено']);
+    }
 }
