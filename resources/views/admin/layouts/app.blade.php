@@ -55,10 +55,11 @@
               <span>Клубы</span>
           </a>
         
-          <div id="collapseTwo" class="collapse <?=($page=="clubs" || $page=="changed-clubs")? ' show': null ?> collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
+          <div id="collapseTwo" class="collapse <?=($page=="clubs" || $page=="changed-clubs" || $page=="new-clubs")? ' show': null ?> collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
               <div class="bg-white py-2 collapse-inner rounded">
-                  <a class="collapse-item<?=($page=="clubs")? ' active': null ?>" href="{{url('/panel/clubs/new-clubs')}}">Новые заявки</a>
-                  <a class="collapse-item<?=($page=="changed-clubs")? ' active': null ?>" href="{{url('/panel/clubs/changed-clubs')}}">Лог изменения</a>
+                  <a class="collapse-item<?=($page=="new-clubs")? ' active': null ?>" href="{{url('/panel/clubs/new-clubs')}}">Новые заявки</a>
+                  <a class="collapse-item<?=($page=="clubs")? ' active': null ?>" href="{{url('/panel/clubs/clubs')}}">Все клубы</a>
+                  <!-- <a class="collapse-item<?=($page=="changed-clubs")? ' active': null ?>" href="{{url('/panel/clubs/changed-clubs')}}">Лог изменения</a> -->
               </div>
           </div>
       </li>
@@ -101,6 +102,9 @@
       <!-- Main Content -->
       <div id="content">
       <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+      <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

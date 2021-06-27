@@ -78,29 +78,6 @@
                 </a>
                 <div class="header_menu">
                     <div class="decor"></div>
-                    @if(!Auth::guest())
-                    <div class="mob_menu_item">
-                        <h4>Личный кабинет</h4>
-                        <ul class="personal_menu">
-                            <li>
-                                <a href="{{url('personal/profile')}}">Профиль</a>
-                            </li>
-                            <li>
-                                <a href="{{url('personal/clubs')}}">Список клубов</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();" class="exit" class="exit">Выйти</a>
-                            </li>
-                        </ul>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
-                    </div>
-                    @endif
-
                     <ul class="main_menu">
                       @if(admin())
                       <li>
@@ -113,9 +90,15 @@
                         <li>
                             <a href="{{url('contacts')}}">Контакты</a>
                         </li>
+                        @if(Auth::guest())
                           <li>
                               <a href=# class="log_in_form_toggle">Войти</a>
                           </li>
+                        @else
+                        <li>
+                              <a href="{{url('personal/clubs')}}">Личный кабинет</a>
+                          </li>
+                        @endif
                     </ul>
                     <div class="log_in_block_wrapper">
                         <div class="log_in_page_title">

@@ -29,9 +29,16 @@
                 </div>
 
                 <div class="main_info_btn_wrapper">
+                    @if(admin())
+                    <a href="{{url('personal/club/'.$club->id.'/edit')}}" style="background:#cb8e20;color:#000;margin-right: 5px;font-size: 14px;" class="btn" data-remodal-target="change_user_modal">Сменить владелец</a>
+                    @endif
                     @if($club->published_at == null && admin())
                         <a href="{{url('club/'.$club->id.'/active')}}" class="club_active btn">Активировать</a>
                         <button type="button" class="club_comment" data-remodal-target="club_comment_modal">Написать коммент</button>
+                    @endif
+                    @if(admin() && $club->published_at != null)
+                        <a href="{{url('personal/club/'.$club->id.'/edit')}}" style="background:#1f42ff;color:#fff;margin-right: 5px;" class="btn">Редактировать</a>
+                        <a href="{{url('personal/club/'.$club->id.'/edit')}}" style="background:#a0a0a0;color:#fff;margin-right: 5px;" data-remodal-target="club_comment_modal" class="btn">Снять с публикации</a>
                     @endif
                     <button type="button" class="club_calling" data-remodal-target="club_phone_modal">Позвонить</button>
 
@@ -850,7 +857,30 @@
         </div>
     </div>
 
-    @if($club->published_at == null && admin())
+    @if(admin())
+        <div class="change_user_modal remodal" id="change_user_modal" data-remodal-id="change_user_modal">
+            <button data-remodal-action="close" class="remodal-close">Закрыть</button>
+            <div class="remodal-content">
+                <form action="{{url('panel/club/'.$club->id.'/change-user')}}" method="post" style="dispaly:inline">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="club_id" value="{{$club->id}}">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Сменить владелец клуба</h4>
+                    </div>
+                    <div class="modal-body">
+                        
+                        <div class="form-group required">
+                        <label for="select_new_user">выберите новый владелец</label>
+                        <div class="input_wrapper">
+                            <input id="select_new_user" type="text" placeholder="" autocomplete="false" autocomplete="chrome-off"  required>
+                            <input type="hidden" id="new_user_id"  name="new_user" required>
+                            <div class="error address_error"></div>
+                        </div>
+                    </div>
+                    </div>
+                    <button type="submit" class="btn btn-danger">Отправить</button>
+            </div>
+        </div>
         <div class="club_comment_modal remodal admin_modal" id="club_comment_modal" data-remodal-id="club_comment_modal">
             <button data-remodal-action="close" class="remodal-close">Закрыть</button>
             <div class="remodal-content">
@@ -916,6 +946,27 @@ ymaps.ready(init);
             }));
     }
 
+</script>
+@endif
+@if(admin())
+<script src="{{ asset('/js/jquery.autocomplete.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
+<script>
+$('#select_new_user').autocomplete({
+    serviceUrl: '{{url("/panel/find-user")}}',
+    dataType : 'json',
+    
+    onSelect: function (suggestion) {
+        $('#new_user_id').val(suggestion.data)
+    }
+});
+</script>
+@endif
+@if(isset($_GET['status']) && $_GET['status'] == 'success')
+<script>
+    $( document ).ready(function(){
+        jQuery('[data-remodal-id="success_modal"]').remodal().open();
+    });
+    window.history.replaceState({}, document.title, $('meta[name="site"]').attr('content') + "/" + 'personal/clubs/' );
 </script>
 @endif
 @endsection

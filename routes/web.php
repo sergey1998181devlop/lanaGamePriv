@@ -89,6 +89,7 @@ Route::post('users/register','panel\usersController@register');
 Route::post('users/edit','panel\usersController@edit');
 Route::post('users/delete','panel\usersController@delete');
 Route::get('users/toggleadmin/{id}','panel\usersController@toggleadmin');
+Route::get('panel/find-user','panel\usersController@find');
 
 Route::get('post/new',function(){
     return view('admin.posts.add');
@@ -104,9 +105,10 @@ Route::post('post/edit/saveImage','panel\postsController@saveImage' );
 
 // клубы
 Route::get('panel/clubs/new-clubs','panel\clubsController@new_clubs');
+Route::get('panel/clubs/clubs','panel\clubsController@clubs');
 Route::get('club/{id}/active','panel\clubsController@active');
 Route::post('club/{id}/comment','panel\clubsController@comment');
-
+Route::post('panel/club/{id}/change-user','panel\clubsController@changeClubUser');
 // обратная связь
 Route::get('/panel/contacts', 'panel\adminController@contacts');
 Route::get('/panel/getMessage', 'panel\adminController@getMessage');

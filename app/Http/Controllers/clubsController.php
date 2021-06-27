@@ -43,7 +43,12 @@ class clubsController extends Controller
     }
     public function edit($id){
         global $clubAr;
-        $clubAr = club::CorrentUser()->findOrFail($id);
+        if(admin()){
+            $clubAr = club::findOrFail($id);
+        }else{
+            $clubAr = club::CorrentUser()->findOrFail($id);
+        }
+      
         $published = club::SelectCartFeilds()->CorrentUser()->Published()->get();
         $underModify = club::SelectCartFeilds()->CorrentUser()->UnderEdit()->get();
         $draft = club::SelectCartFeilds()->CorrentUser()->Draft()->get();
@@ -128,11 +133,16 @@ class clubsController extends Controller
 
     public function store($request,$update = false,$id= null){
         if($update){
-          $club = club::CorrentUser()->findOrFail($id);
-          if(!$this->isDraft && $club->draft == '1'){
-            $club->draft = '0';
-          }
-          $club->published_at = null;
+            if(admin()){
+                $club = club::findOrFail($id);
+            }else{
+                $club = club::CorrentUser()->findOrFail($id);
+                $club->published_at = null;
+            }
+            if(!$this->isDraft && $club->draft == '1'){
+                $club->draft = '0';
+            }
+            
         }else{
             $club = new club();
             $club->user_id=Auth::user()->id;

@@ -12,30 +12,13 @@ class usersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('rule:2');
+        $this->middleware('rule:2')->except('find');
+        $this->middleware('rule:1');
     }
     public function index(){
         $users=User::all();
         return view('admin.users.users')->with(['users'=>$users]);
     }
-    // public function register(Request $request) 
-    // {
-    //     $validator = Validator::make($request->all(), [
-    //         'name' => 'required', 
-    //         'email' => 'required|email|unique:users', 
-    //         'password' => 'required', 
-    //         'password_confirmation' => 'required|same:password',
-    //     ]);
-    //     if ($validator->fails()) {
-    //                 return back()->with('errors',$validator->errors())->withInput();
-    //             }
-    //      $input = $request->all(); 
-    //             $input['password'] = Hash::make($input['password']); 
-    //             $input['rule'] =2;
-    //             $user = User::create($input);
-    //             $success['name'] =  $user->name;
-    //     return back()->with('success','Создано успешно'); 
-    //         }
     public function edit(Request $request){
         $validatedData =  $this->validate($request ,[
             'name'=>'required|string|max:55|min:4',
@@ -87,7 +70,18 @@ class usersController extends Controller
         else{
             abort('404');
         }
-        
-
     }
+    
+    public function find(Request $request){
+            $b = array();
+            $b['query']='Unit';
+            if(($request->input('query'))){
+              $Users=User::select('id','name','phone')->where('email', 'like', '%' . $request->input('query') . '%')->orWhere('phone', 'like', '%' . $request->input('query') . '%')->get();
+            }
+            foreach ($Users as $User) {
+              $b["suggestions"][]=[ "value"=> $User->name.'-'.$User->phone,'data'=>$User->id];
+             }
+             return response($b);
+    }
+    
 }
