@@ -104,9 +104,9 @@ jQuery(function() {
                                         quma = ', ';
                                     }
 
-                                    if (dataItem.GeoObject.description != null) {
-                                        name += quma + dataItem.GeoObject.description;
-                                    }
+                                    // if (dataItem.GeoObject.description != null) {
+                                    //     name += quma + dataItem.GeoObject.description;
+                                    // }
 
                                     if (name) {
                                         return {value: name, data: coord};
