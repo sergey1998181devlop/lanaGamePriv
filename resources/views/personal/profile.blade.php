@@ -76,7 +76,7 @@ function customOldVal($name,$item){
                                 <label for="user-position-input">Должность представителя</label>
                                 <div class="select2_wrapper select_user_position_wrapper">
                                     <select id="user-position-input" name="user_position" class="select2_input" data-placeholder="Выбрать из списка" data-select2-without-search required>
-                                        <option  <?=customOldVal('user_position',$user) == 1 ? 'selected' : ''?> value="1">Директор</option>
+                                        <option  <?=customOldVal('user_position',$user) == 1 ? 'selected' : ''?> value="1">Владелец</option>
                                         <option <?=customOldVal('user_position',$user) == 2 ? 'selected' : ''?> value="2">Управляющий</option>
                                         <option <?=customOldVal('user_position',$user) == 3 ? 'selected' : ''?> value="3">Маркетинг-менеджер</option>
                                         <option <?=customOldVal('user_position',$user) == 4 ? 'selected' : ''?> value="4">Администратор</option>

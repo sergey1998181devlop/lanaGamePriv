@@ -19,7 +19,11 @@
                 </p>
             </div>
             <div class="add_club_start_wrapper">
+            @if(Auth::guest())
                 <form action="{{url('register/send_sms')}}" class="add_club_start" method="post" id="add-club-start-form">
+            @else
+                <form action="" class="add_club_start" method="post" id="add-club-start-form_authed">
+            @endif    
                 <input type="hidden" name="_token"  value="{{ csrf_token() }}">
 
                     <div class="forma">
@@ -43,7 +47,7 @@
                         <button type="submit">Продолжить</button>
                     </div>
                 </form>
-
+                @if(Auth::guest())
                 <form action="{{url('register/verify_sms')}}" method="post" class="add_class_confirm_code" id="add-club-code-confirm-form">
                 <input type="hidden" name="_token"  value="{{ csrf_token() }}">
                     <div class="forma">
@@ -59,13 +63,14 @@
                         <button type="submit">Продолжить</button>
                     </div>
                 </form>
+                @endif
             </div>
         </div>
     </div>
 </section>
 <!--SECTION ADD CLUB PAGE END-->
 
-
+@if(Auth::guest())
 <!--SECTION PERSONAL PAGE START-->
 <section class="personal_page_wrapper" style="display:none" id="personal_info_register">
     <div class="container-fluid">
@@ -121,7 +126,7 @@
                                 <div class="select2_wrapper select_user_position_wrapper">
                                     <select id="user-position-input" name="user_position" class="select2_input" data-placeholder="Выбрать из списка" required>
                                         <option value=""></option>
-                                        <option value="1">Директор</option>
+                                        <option value="1">Владелец</option>
                                         <option value="2">Управляющий</option>
                                         <option value="3">Маркетинг-менеджер</option>
                                         <option value="4">Администратор</option>
@@ -144,5 +149,14 @@
         </div>
     </div>
 </section>
+@endif
 <!--SECTION PERSONAL PAGE END-->
+@endsection
+@section('scripts')
+<script>
+$('#add-club-start-form_authed').submit(function(e){
+    e.preventDefault();
+    $('#add-club-start-form_authed .forma .form-group .error').empty().text('Вы уже авторизованы');
+})
+</script>
 @endsection
