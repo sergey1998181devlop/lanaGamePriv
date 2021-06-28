@@ -47,25 +47,19 @@ class HomeController extends Controller
       $b = array();
       $b['query']='Unit';
       if(($request->input('q'))){
-        $cities=city::select('id','name','en_name','metroMap')->where('name', 'like', '%' . $request->input('q') . '%')->orWhere('en_name', 'like', '%' . $request->input('q') . '%')->paginate(6);       
-          if($cities->lastPage() > $cities->currentPage() ){
-            $b["pagination"]= [
-              "more"=> true
-            ];
-          }
+        $cities=city::select('id','name','en_name','metroMap')->where('name', 'like', '%' . $request->input('q') . '%')->orWhere('en_name', 'like', '%' . $request->input('q') . '%')->orderBy('order_no')->paginate(8);       
       }else{
-
         $correntCity = city::select('id','name','en_name','metroMap')->find(($request->input('selected') ? $request->input('selected') : city(true)['id']));
-        $b["results"][]=[ "text"=> $correntCity->name, "data"=> $correntCity->en_name,'id'=>$correntCity->id ,'has_metro' =>  $correntCity->metroMap ];
-        $defCities = [637640,653240,650400,634450];
-        if($correntCity){
-          if (($key = array_search($correntCity->id, $defCities)) !== false) {
-            unset($defCities[$key]);
-          }
+        if(!isset($request->page) || $request->page == 1){
+          $b["results"][]=[ "text"=> $correntCity->name, "data"=> $correntCity->en_name,'id'=>$correntCity->id ,'has_metro' =>  $correntCity->metroMap ];
         }
-        $cities=city::select('id','name','en_name','metroMap')->whereIn('id',$defCities)->get();
+        $cities=city::select('id','name','en_name','metroMap')->where('id','!=',$correntCity->id)->orderBy('order_no')->paginate(8);
       }
-     
+      if($cities->lastPage() > $cities->currentPage() ){
+        $b["pagination"]= [
+          "more"=> true
+        ];
+      }
       foreach ($cities as $city) {
        $b["results"][]=[ "text"=> $city->name, "data"=> $city->en_name,'id'=>$city->id,'has_metro' =>  $city->metroMap  ];
       }
