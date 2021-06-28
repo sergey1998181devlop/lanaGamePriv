@@ -8,8 +8,11 @@
     <section class="article_page_main_banner_wrapper">
         <div class="container-fluid">
             @if(admin())
+            <div style="margin-bottom: 20px;">
                 <a class="btn btn-primary" href="{{url('post/edit/')}}/{{$post->id}}">Отредактировать</a>
                 <a class="btn btn-danger " data-remodal-target="deleteitem">Удалить</a>
+
+            </div>
             @endif
             <div class="article_page_main_banner_img_wrapper">
                 <div class="article_page_main_banner_img">

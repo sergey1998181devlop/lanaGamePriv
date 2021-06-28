@@ -186,10 +186,10 @@
                     <div class="mob_menu_item">
                         <ul>
                             <li>
-                                <a href="{{url('privacy_policy')}}">Политика конфиденциальности</a>
+                                <a href="{{url('policy')}}">Политика конфиденциальности</a>
                             </li>
                             <li>
-                                <a href="{{url('terms_of_use')}}">Пользовательское соглашение</a>
+                                <a href="{{url('user-agreement')}}">Пользовательское соглашение</a>
                             </li>
                         </ul>
                         <div class="rights_wrapper">
@@ -285,8 +285,8 @@
                 <p>© ООО «Лангейм», 2021</p>
             </div>
             <div class="footer_site_info">
-                <a href="{{url('privacy_policy')}}">Политика конфиденциальности</a>
-                <a href="{{url('terms_of_use')}}">Пользовательское соглашение</a>
+                <a href="{{url('policy')}}">Политика конфиденциальности</a>
+                <a href="{{url('user-agreement')}}">Пользовательское соглашение</a>
             </div>
         </div>
     </div>

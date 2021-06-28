@@ -68,11 +68,11 @@ Route::get('/contacts', function () {
     return view('about.contacts');
 });
 
-Route::get('/privacy_policy', function () {
-    return view('about.privacy_policy');
+Route::get('/policy', function () {
+    return view('about.policy');
 });
-Route::get('/terms_of_use', function () {
-    return view('about.terms_of_use');
+Route::get('/user-agreement', function () {
+    return view('about.user_agreemen');
 });
 Route::get('/about-us', function () {
     return view('about.about_us');
