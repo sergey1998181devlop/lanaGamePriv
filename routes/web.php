@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::get('/test', function () {
+    return view('emails.user.reset');
+});
+
+
 Route::get('/', function () {
     return redirect('moskva');
 });
