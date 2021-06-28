@@ -56,7 +56,6 @@
   </div>
 </div>
 </div>
-@endsection
 
 <!-- Modal -->
 <div class="modal fade" id="showMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -91,7 +90,8 @@
             </div>
           </div>
         </div>
-      </div>=
+      </div>
+@endsection
 @section('scripts')
   <script src="{{asset('admin/vendor/datatables/jquery.dataTables.min.js')}}"></script>
   <script src="{{asset('admin/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>

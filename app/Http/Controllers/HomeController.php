@@ -47,8 +47,8 @@ class HomeController extends Controller
       $b = array();
       $b['query']='Unit';
       if(($request->input('q'))){
-        $cities=city::select('id','name','en_name','metroMap')->where('name', 'like', '%' . $request->input('q') . '%')->orWhere('en_name', 'like', '%' . $request->input('q') . '%')->paginate(6);
-          if(count($cities) >= 5){
+        $cities=city::select('id','name','en_name','metroMap')->where('name', 'like', '%' . $request->input('q') . '%')->orWhere('en_name', 'like', '%' . $request->input('q') . '%')->paginate(6);       
+          if($cities->lastPage() > $cities->currentPage() ){
             $b["pagination"]= [
               "more"=> true
             ];
@@ -77,13 +77,18 @@ class HomeController extends Controller
     $b['query']='Unit';
     if(($request->input('q'))){
       $metros=metro::select('id','name','color')->where('city_id',$request->input('city_id'))->where('name', 'like', '%' . $request->input('q') . '%')->paginate(10);
-        if(count($metros) >= 9){
-          $b["pagination"]= [
-            "more"=> true
-          ];
-        }
+      if($metros->lastPage() > $metros->currentPage() ){
+        $b["pagination"]= [
+          "more"=> true
+        ];
+      }
     }else{
       $metros=metro::select('id','name','color')->where('city_id',$request->input('city_id'))->paginate(10);
+      if($metros->lastPage() > $metros->currentPage() ){
+        $b["pagination"]= [
+          "more"=> true
+        ];
+      }
     }
     foreach ($metros as $metro) {
       $b["results"][]=[ "text"=> $metro->name,'id'=>$metro->id,'color' =>  $metro->color  ];
