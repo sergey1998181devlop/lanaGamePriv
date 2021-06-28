@@ -18,7 +18,7 @@
                             <label for="password-recovery-input">Email</label>
                             <input id="password-recovery-input" name="email" type="email" value="{{ old('email') }}" placeholder="" required>
                             @if (session('status'))
-                                <div class="success">
+                                <div class="success" style="position: absolute;left: 0;top: 100%;font-size: 18px;">
                                     {{ session('status') }}
                                 </div>
                             @endif
