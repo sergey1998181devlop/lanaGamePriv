@@ -10,11 +10,6 @@
             <div class="password_recovery_title">
                 Забыли пароль?
             </div>
-            @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
             <div class="password_recovery_wrapper">
                 <form action="{{ route('password.email') }}" method="post" id="password-recovery-form">
                 @csrf
@@ -22,6 +17,11 @@
                         <div class="form-group">
                             <label for="password-recovery-input">Email</label>
                             <input id="password-recovery-input" name="email" type="email" value="{{ old('email') }}" placeholder="" required>
+                            @if (session('status'))
+                                <div class="success">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="btn_wrapper">

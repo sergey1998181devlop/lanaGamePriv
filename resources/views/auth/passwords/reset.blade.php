@@ -1,65 +1,47 @@
 @extends('layouts.app')
-
+@section('page')
+<title>Восстановление пароля - LanGame</title>
+@endsection
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('password.update') }}">
-                        @csrf
-
-                        <input type="hidden" name="token" value="{{ $token }}">
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+<!--SECTION PASSWORD RECOVERY PAGE START-->
+<section class="password_recovery_page_wrapper">
+    <div class="container">
+        <div class="password_recovery_content">
+            <div class="password_recovery_title">
+            Восстановление пароля
+            </div>
+            <div class="password_recovery_wrapper">
+                <form method="POST" action="{{ route('password.update') }}">
+                @csrf
+                <input type="hidden" name="token" value="{{ $token }}">
+                    <div class="forma">
+                        <div class="form-group @error('email') error @enderror">
+                            <label for="password-recovery-email">Email</label>
+                            <input id="password-recovery-email"  name="email" type="email" value="{{ $email ?? old('email') }}"  required>
+                            @error('email')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
                         </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        <div class="form-group @error('password') error @enderror">
+                            <label for="password-recovery-input">Новый пароль</label>
+                            <input id="password-recovery-input" name="password" type="password" autofocus required>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
+                        <div class="form-group @error('password') error @enderror">
+                            <label for="password-confirm">Подтверждение пароля</label>
+                            <input id="password-confirm" type="password" name="password_confirmation" required>
+                            @error('password')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
                         </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Reset Password') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="btn_wrapper">
+                        <a href="{{url('/')}}" class="step_back">Отмена</a>
+                        <button type="submit">Сменить пароль</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</div>
+</section>
+<!--SECTION PASSWORD RECOVERY PAGE END-->
 @endsection
