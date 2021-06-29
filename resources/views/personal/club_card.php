@@ -46,9 +46,6 @@ function echoCard($club,$type = 'published'){
                         <img src="'.asset('/img/star.svg').'" alt="star">
                         <img src="'.asset('/img/star0.svg').'" alt="star">
                     </div>
-                    <div class="reviews_qty">
-                        <span>47 отзывов</span>
-                    </div>
                 </div>';
                 if($club->club_metro != null  && $club->metro != null){
                     $cart .=  '

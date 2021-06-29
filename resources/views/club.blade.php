@@ -44,9 +44,11 @@
                 <img src="{{ asset('/img/star.svg')}}" alt="star">
                 <img src="{{ asset('/img/star0.svg')}}" alt="star">
             </div>
+            @if(false)
             <div class="reviews_qty">
                 <span>47 отзывов</span>
             </div>
+            @endif
         </div>
         @if($club->club_metro != null && $club->metro != null)
         <div class="club_subway_wrapper">
