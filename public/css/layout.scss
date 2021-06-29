@@ -8297,6 +8297,79 @@ section.langame_software_wrapper {
                 outline: 0;
                 resize: none;
             }
+
+            .form-group {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+
+                label {
+                    display: block;
+                    margin-bottom: 10px;
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 1;
+                    color: #000000;
+                }
+
+                input {
+                    flex-shrink: 0;
+                    display: block;
+                    width: 100%;
+                    height: 46px;
+                    border: 2px solid rgba(0, 0, 0, 0.25);
+                    border-radius: 14px;
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 1;
+                    color: rgba(0, 0, 0, 1);
+                    text-align: center;
+                    outline: none;
+
+                    &::placeholder {
+                        color: rgba(0, 0, 0, 0.25);
+                    }
+                }
+
+                &.required {
+                    label {
+                        position: relative;
+
+                        &:before {
+                            content: '*';
+                            position: absolute;
+                            top: 0;
+                            right: -10px;
+                            display: block;
+                            width: 3px;
+                            height: 3px;
+                            color: #dc0000;
+                        }
+                    }
+                }
+
+                .error {
+                    position: absolute;
+                    left: 0;
+                    top: 100%;
+                    display: block;
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 1;
+                    color: rgba(220, 0, 0, 0.6);
+                }
+
+                &.error {
+                    input {
+                        border: 2px solid rgba(220, 0, 0, 0.6);
+                    }
+                }
+            }
         }
     }
 }

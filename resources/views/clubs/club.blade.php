@@ -858,27 +858,28 @@
     </div>
 
     @if(admin())
-        <div class="change_user_modal remodal" id="change_user_modal" data-remodal-id="change_user_modal">
+        <div class="change_user_modal remodal admin_modal" id="change_user_modal" data-remodal-id="change_user_modal">
             <button data-remodal-action="close" class="remodal-close">Закрыть</button>
             <div class="remodal-content">
                 <form action="{{url('panel/club/'.$club->id.'/change-user')}}" method="post" style="dispaly:inline">
                     {{ csrf_field() }}
                     <input type="hidden" name="club_id" value="{{$club->id}}">
                     <div class="modal-header">
-                        <h4 class="modal-title">Сменить владелец клуба</h4>
+                        <h4 class="modal-title">Сменить владелеца клуба</h4>
                     </div>
                     <div class="modal-body">
-                        
+
                         <div class="form-group required">
-                        <label for="select_new_user">выберите новый владелец</label>
+                        <label for="select_new_user">Выберите нового владелец</label>
                         <div class="input_wrapper">
                             <input id="select_new_user" type="text" placeholder="" autocomplete="false" autocomplete="chrome-off"  required>
                             <input type="hidden" id="new_user_id"  name="new_user" required>
-                            <div class="error address_error"></div>
+                            <div class="error"></div>
                         </div>
                     </div>
                     </div>
                     <button type="submit" class="btn btn-danger">Отправить</button>
+                </form>
             </div>
         </div>
         <div class="club_comment_modal remodal admin_modal" id="club_comment_modal" data-remodal-id="club_comment_modal">
@@ -897,6 +898,7 @@
                         </div>
                     </div>
                     <button type="submit" class="btn btn-danger">Отправить</button>
+                </form>
             </div>
         </div>
 
@@ -954,7 +956,7 @@ ymaps.ready(init);
 $('#select_new_user').autocomplete({
     serviceUrl: '{{url("/panel/find-user")}}',
     dataType : 'json',
-    
+
     onSelect: function (suggestion) {
         $('#new_user_id').val(suggestion.data)
     }
