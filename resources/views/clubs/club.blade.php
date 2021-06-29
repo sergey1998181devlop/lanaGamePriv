@@ -30,7 +30,7 @@
 
                 <div class="main_info_btn_wrapper">
                     @if(admin())
-                    <a href="{{url('personal/club/'.$club->id.'/edit')}}" style="background:#cb8e20;color:#000;margin-right: 5px;font-size: 14px;" class="btn" data-remodal-target="change_user_modal">Сменить владелец</a>
+                    <a href="{{url('personal/club/'.$club->id.'/edit')}}" style="background:#cb8e20;color:#000;margin-right: 5px;font-size: 14px;" class="btn" data-remodal-target="change_user_modal">Сменить владелеца</a>
                     @endif
                     @if($club->published_at == null && admin())
                         <a href="{{url('club/'.$club->id.'/active')}}" class="club_active btn">Активировать</a>
@@ -870,7 +870,7 @@
                     <div class="modal-body">
 
                         <div class="form-group required">
-                        <label for="select_new_user">Выберите нового владелец</label>
+                        <label for="select_new_user">Выберите нового владелеца</label>
                         <div class="input_wrapper">
                             <input id="select_new_user" type="text" placeholder="" autocomplete="false" autocomplete="chrome-off"  required>
                             <input type="hidden" id="new_user_id"  name="new_user" required>
