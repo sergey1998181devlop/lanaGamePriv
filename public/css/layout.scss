@@ -42,6 +42,8 @@ input[type=number] {
         margin-top: 0;
         border-radius: 12px;
         z-index: 9999999!important;
+        width: 100%;
+        min-width: 220px;
 
         .select2-search__field {
             width: 100%;
@@ -2059,16 +2061,15 @@ section.privacy_policy_content_wrapper {
         .privacy_policy_content {
 
             h2 {
-                max-width: 260px;
 
                 span {
-                    font-size: 26px;
+                    font-size: 25px;
                     line-height: 1.2;
 
                     &:before {
                         top: unset;
-                        bottom: 6px;
-                        right: -54px;
+                        bottom: 0;
+                        right: -45px;
                         width: 33px;
                         height: 33px;
                         background-size: 33px 33px;
@@ -3486,7 +3487,7 @@ section.club_page_content_wrapper {
         margin-bottom: 32px;
 
         .club_page_pc_configuration_list {
-            display: none;
+            display: block;
             padding: 24px;
             background: #ffffff;
             box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
@@ -3679,7 +3680,7 @@ section.club_page_content_wrapper {
         padding: 0 0 120px;
 
         .club_page_contacts_list {
-            display: none;
+            display: block;
             padding: 24px;
             background: #ffffff;
             box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);

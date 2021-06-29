@@ -143,7 +143,7 @@
                                             <input id="log-in-password-input" name="password" type="password" placeholder="" required>
                                             <a  href="{{ route('password.request') }}" class="forgot_password">Забыл пароль</a>
                                         </div>
-                                       
+
                                     </div>
                                 </div>
                                 <div class="btn_wrapper">
@@ -157,10 +157,7 @@
                     <div class="mob_menu_item">
 
                         <ul>
-                            <li>
-                                <a href="<?=url('personal/clubs')?>">Личный кабинет</a>
-                            </li>
-                        @if(Auth::guest())
+                            @if(Auth::guest())
                             <li>
                                 <a href="{{url('register')}}">Как попасть на LanGame</a>
                             </li>
@@ -320,9 +317,9 @@
     <script>
         $('#log-in-form-popup').submit(function (e){
             e.preventDefault();
-            url=$(this).attr('action'),
-            msgs=$(this).find('.msgs'),
-            form_groups = $(this).find('.form-group');
+            let url=$(this).attr('action'),
+                msgs=$(this).find('.msgs'),
+                form_groups = $(this).find('.form-group');
             msgs.empty();
             form_groups.removeClass('error');
             $.ajax({
