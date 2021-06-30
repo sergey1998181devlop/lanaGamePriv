@@ -44,7 +44,7 @@ declare(strict_types=1);
 <div class="form-group required">
     <label for="club-address-input">Адрес</label>
     <div class="input_wrapper">
-        <input id="club-address-input" name="club_address" value="{{clubValue('club_address')}}" type="text" placeholder="" autocomplete="off" required>
+        <input id="club-address-input" value="{{clubValue('club_address')}}" type="text" placeholder="" autocomplete="off" required>
         <div class="error address_error"></div>
     </div>
 </div>
@@ -83,3 +83,4 @@ declare(strict_types=1);
 </div>
 <input type="hidden" name="lat" id="lat" value="{{clubValue('lat')}}">
 <input type="hidden" name="lon" id="lon" value="{{clubValue('lon')}}">
+<input type="hidden" name="club_address" id="club_address" value="{{clubValue('club_address')}}">

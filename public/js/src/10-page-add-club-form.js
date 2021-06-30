@@ -94,22 +94,24 @@ jQuery(function() {
                             let suggestions = $.map(json.response.GeoObjectCollection.featureMember, function(dataItem) {
                                 let name = '',
                                     coord,
-                                    quma = '';
+                                    quma = '',
+                                    address = '';
 
                                 if (dataItem.GeoObject.Point.pos != null) {
                                     coord = dataItem.GeoObject.Point.pos;
 
                                     if (dataItem.GeoObject.name != null) {
                                         name = dataItem.GeoObject.name;
+                                        address = dataItem.GeoObject.name;
                                         quma = ', ';
                                     }
 
-                                    // if (dataItem.GeoObject.description != null) {
-                                    //     name += quma + dataItem.GeoObject.description;
-                                    // }
+                                    if (dataItem.GeoObject.description != null) {
+                                        name += quma + dataItem.GeoObject.description;
+                                    }
 
                                     if (name) {
-                                        return {value: name, data: coord};
+                                        return {value: name, data: coord,address:address};
                                     }
                                 }
                             });
@@ -162,6 +164,7 @@ jQuery(function() {
                     var coor = suggestion.data.split(' ');
                     $('#add-club-form #lat').val(coor[1]);
                     $('#add-club-form #lon').val(coor[0]);
+                    $('#add-club-form #club_address').val(suggestion.address);
                     jQuery('.error.address_error').text('');
                 }
             });
