@@ -133,6 +133,7 @@ class clubsController extends Controller
     }
 
     public function store($request,$update = false,$id= null){
+        
         if($update){
             if(admin()){
                 $club = club::findOrFail($id);

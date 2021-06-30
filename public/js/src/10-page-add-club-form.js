@@ -125,7 +125,7 @@ jQuery(function() {
                     $('#add-club-form #lat').val(coor[1]);
                     $('#add-club-form #lon').val(coor[0]);
                     $('#add-club-form #club_address').val(suggestion.address);
-                    $('#add-club-form #club_full_address').val(suggestion.name);
+                    $('#add-club-form #club_full_address').val(suggestion.value);
                     jQuery('.error.address_error').text('');
                 }
             });
