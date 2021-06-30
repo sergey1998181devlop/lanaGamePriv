@@ -24,5 +24,11 @@ if(!function_exists('notReq')){
         else{return $input;}
     }
 }
+function canBeUnserialized($string) {
+    if (@unserialize($string) === false) {
+        return false;
+    }
+    return true;
+}
 
 ?>

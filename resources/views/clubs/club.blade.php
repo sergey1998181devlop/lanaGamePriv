@@ -248,7 +248,7 @@
                 </div>
             </div>
         </div>
-        @if($club->marketing_event == '1')
+        @if($club->marketing_event == '1' && canBeUnserialized($club->marketing_event_descr))
             <? $events = unserialize($club->marketing_event_descr);?>
             @if(is_array($events))
                 <div class="club_page_marketing_event_wrapper">
@@ -286,6 +286,7 @@
                 </div>
             </div>
         </div>
+        @if(canBeUnserialized($club->configuration))
         <?php
         $configuration = unserialize($club->configuration);
         $configurationAr = [];
@@ -312,73 +313,93 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @if(isset($configurationAr['cpu_vendor']))
                                     <tr>
                                         <td>Процессор</td>
                                         @foreach($configurationAr['cpu_vendor'] as $key=>$val)
-                                            <td>{{$val}} {{$configurationAr['cpu_model'][$key]}}</td>
+                                            <td>{{$val}} {{isset($configurationAr['cpu_model'][$key]) ? $configurationAr['cpu_model'][$key] : null}}</td>
                                         @endforeach
-
                                     </tr>
+                                    @endif
+                                    @if(isset($configurationAr['video_vendor']))
                                     <tr>
                                         <td>Видеокарта</td>
                                         @foreach($configurationAr['video_vendor'] as $key=>$val)
-                                            <td>{{$val}} {{$configurationAr['video_model'][$key]}}</td>
+                                            <td>{{$val}} {{isset($configurationAr['video_model'][$key]) ? $configurationAr['video_model'][$key] : null}}</td>
                                         @endforeach
                                     </tr>
+                                    @endif
+                                    @if(isset($configurationAr['memory_size']))
                                     <tr>
                                         <td>Оперативная память</td>
                                         @foreach($configurationAr['memory_size'] as $key=>$val)
-                                            <td>{{$val}} {{$configurationAr['memory_type'][$key]}}</td>
+                                            <td>{{$val}} {{isset($configurationAr['memory_type'][$key]) ? $configurationAr['memory_type'][$key] : null}}</td>
                                         @endforeach
                                     </tr>
+                                    @endif
+                                    @if(isset($configurationAr['hard_disc_type']))
                                     <tr>
                                         <td>Жёсткий диск</td>
                                         @foreach($configurationAr['hard_disc_type'] as $val)
                                             <td>{{$val}}</td>
                                         @endforeach
                                     </tr>
+                                    @endif
+                                    @if(isset($configurationAr['keyboard_vendor']))
                                     <tr>
                                         <td>Клавиатура</td>
                                         @foreach($configurationAr['keyboard_vendor'] as $val)
                                             <td>{{$val}}</td>
                                         @endforeach
                                     </tr>
+                                    @endif
+                                    @if(isset($configurationAr['mouse_vendor']))
                                     <tr>
                                         <td>Мышь</td>
                                         @foreach($configurationAr['mouse_vendor'] as $val)
                                             <td>{{$val}}</td>
                                         @endforeach
                                     </tr>
+                                    @endif
+                                    @if(isset($configurationAr['headphone_vendor']))
                                     <tr>
                                         <td>Гарнитура</td>
                                         @foreach($configurationAr['headphone_vendor'] as $val)
                                             <td>{{$val}}</td>
                                         @endforeach
                                     </tr>
+                                    @endif
+                                    @if(isset($configurationAr['chair_vendor']))
                                     <tr>
                                         <td>Кресло</td>
                                         @foreach($configurationAr['chair_vendor'] as $val)
                                             <td>{{$val}}</td>
                                         @endforeach
                                     </tr>
+                                    @endif
+                                    @if(isset($configurationAr['monitor_vendor']))
                                     <tr>
                                         <td>Монитор</td>
                                         @foreach($configurationAr['monitor_vendor'] as $key=>$val)
-                                            <td>{{$val}} {{$configurationAr['monitor_type'][$key]}}</td>
+                                            <td>{{$val}} {{isset($configurationAr['monitor_type'][$key]) ? $configurationAr['monitor_type'][$key] : null}}</td>
                                         @endforeach
                                     </tr>
+                                    @endif
+                                    @if(isset($configurationAr['internet']))
                                     <tr>
                                         <td>Интернет</td>
                                         @foreach($configurationAr['internet'] as $val)
                                             <td>{{$val}}</td>
                                         @endforeach
                                     </tr>
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
+        @endif
         @endif
         @if($club->lat!= '' && $club->lon!= '')
         <div class="club_page_map_wrapper">

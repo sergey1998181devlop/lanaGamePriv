@@ -19,9 +19,15 @@ if(isset($action) && $action== 'edit'){
     if($clubAr->work_time != '1' && $clubAr->work_time_days != ''){
         $schedule_item = unserialize($clubAr->work_time_days);
     }
-    $configuration = unserialize($clubAr->configuration);
-    $configurationAr = [];
-    $marketing_events = unserialize($clubAr->marketing_event_descr);
+    $configuration =[];
+    if(canBeUnserialized($clubAr->configuration)){
+        $configuration = unserialize($clubAr->configuration);
+    }
+    
+    $marketing_events = [];
+    if(canBeUnserialized($clubAr->marketing_event_descr)){
+        $marketing_events = unserialize($clubAr->marketing_event_descr);
+    }
 }else{
     $edit = false;
 }
@@ -101,7 +107,11 @@ if(!$edit)return false;
 global $clubAr;
 if($clubAr->marketing_event != '1') return false;
 global $marketing_events;
-$marketing_events = unserialize($clubAr->marketing_event_descr);
+if(canBeUnserialized($clubAr->marketing_event_descr)){
+    $marketing_events = unserialize($clubAr->marketing_event_descr);
+}else{
+    return false;
+}
 if($key === null)return $marketing_events;
 return $marketing_events[$key];
 }
