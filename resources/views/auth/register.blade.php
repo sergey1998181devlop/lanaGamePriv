@@ -37,7 +37,7 @@
                                 <label>
                                     <input type="checkbox" name="add_club_request_user_agree" required>
                                     <span class="activator"><span></span></span>
-                                    <span>Согласен с условиями использования сервиса</span>
+                                    <span>Согласен с <a href="{{url('user-agreement')}}" style="text-decoration:none">условиями использования</a> сервиса</span>
                                 </label>
                             </div>
                         </div>
