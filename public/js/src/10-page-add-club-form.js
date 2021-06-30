@@ -75,8 +75,6 @@ jQuery(function() {
 
         if (jQuery.fn.autocomplete) {
             $address_input.autocomplete({
-                // paramName: 'geocode',
-                // serviceUrl: `https://geocode-maps.yandex.ru/1.x/?apikey=${window.YANDEX_API_KEY}&format=json&results=5`,
 
                 lookup: function(query, done) {
                     let cityName = $city_input.find('option:selected').text();
@@ -111,7 +109,7 @@ jQuery(function() {
                                     }
 
                                     if (name) {
-                                        return {value: name, data: coord,address:address};
+                                        return {value: name, data: coord, address: address};
                                     }
                                 }
                             });
@@ -119,46 +117,8 @@ jQuery(function() {
                             done({suggestions});
                         }
                     });
-
-                    // var result = {
-                    //     suggestions: [
-                    //         {'value': 'United Arab Emirates', 'data': 'AE'},
-                    //         {'value': 'United Kingdom', 'data': 'UK'},
-                    //         {'value': 'United States', 'data': 'US'},
-                    //         {'value': `My query: «${query}»`, 'data': 'QQ'}
-                    //     ]
-                    // };
-                    //
-                    // done(result);
                 },
-                // transformResult: function(response) {
-                //     response = JSON.parse(response);
-                //
-                //     return {
-                //         suggestions: $.map(response.response.GeoObjectCollection.featureMember, function(dataItem) {
-                //             let name = '',
-                //                 coord,
-                //                 quma = '';
-                //
-                //             if (dataItem.GeoObject.Point.pos != null) {
-                //                 coord = dataItem.GeoObject.Point.pos;
-                //
-                //                 if (dataItem.GeoObject.name != null) {
-                //                     name = dataItem.GeoObject.name;
-                //                     quma = ', ';
-                //                 }
-                //
-                //                 if (dataItem.GeoObject.description != null) {
-                //                     name += quma + dataItem.GeoObject.description;
-                //                 }
-                //
-                //                 if (name != '') {
-                //                     return {value: name, data: coord};
-                //                 }
-                //             }
-                //         })
-                //     };
-                // },
+
                 onSelect: function(suggestion) {
 
                     var coor = suggestion.data.split(' ');
