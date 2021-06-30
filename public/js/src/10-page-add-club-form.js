@@ -86,7 +86,7 @@ jQuery(function() {
                             apikey: window.YANDEX_API_KEY,
                             format: 'json',
                             results: '5',
-                            geocode: `город ${cityName}, ${query}`
+                            geocode: `Россия, ${cityName}, ${query}`
                         },
                         success: function(json) {
                             let suggestions = $.map(json.response.GeoObjectCollection.featureMember, function(dataItem) {
