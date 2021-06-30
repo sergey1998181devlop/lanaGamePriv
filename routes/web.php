@@ -61,9 +61,9 @@ Route::post('langame/request','mailController@langameRequest');
 Route::post('report_error','mailController@reportError');
 
 // прочие страницы
-Route::get('/langame-software', function () {
-    return view('about.langame_software');
-});
+// Route::get('/langame-software', function () {
+//     return view('about.langame_software');
+// });
 Route::get('/contacts', function () {
     return view('about.contacts');
 });

@@ -268,9 +268,11 @@
                             <li>
                                 <a href="{{url('register')}}">Как попасть на LanGame</a>
                             </li>
+                            @if(false)
                             <li>
                                 <a href="{{url('langame-software')}}">Langame Software</a>
                             </li>
+                            @endif
                         </ul>
                     </div>
                 </div>

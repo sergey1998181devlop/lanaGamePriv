@@ -33,8 +33,6 @@ class HomeController extends Controller
         $order = 'rating';
         $order_key='DESC';
       }
-
-      
       if($order == 'nearby'){ // тут делай что надо
       //  данныую функцию можешь изменить
         $clubs= club::SelectCartFeilds4Home()->Published()->CorrentCity()->whereNull('hidden_at')->with(array('metro'=>function($query) {

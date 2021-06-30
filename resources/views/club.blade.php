@@ -42,7 +42,11 @@
                 <img src="{{ asset('/img/star.svg')}}" alt="star">
                 <img src="{{ asset('/img/star.svg')}}" alt="star">
                 <img src="{{ asset('/img/star.svg')}}" alt="star">
-                <img src="{{ asset('/img/star0.svg')}}" alt="star">
+                @if($club->rating > 4.4)
+                    <img src="{{ asset('/img/star.svg')}}" alt="star">
+                @else
+                    <img src="{{ asset('/img/star0.svg')}}" alt="star">
+                @endif
             </div>
             @if(false)
             <div class="reviews_qty">

@@ -43,9 +43,13 @@ function echoCard($club,$type = 'published'){
                         <img src="'.asset('/img/star.svg').'" alt="star">
                         <img src="'.asset('/img/star.svg').'" alt="star">
                         <img src="'.asset('/img/star.svg').'" alt="star">
-                        <img src="'.asset('/img/star.svg').'" alt="star">
-                        <img src="'.asset('/img/star0.svg').'" alt="star">
-                    </div>
+                        <img src="'.asset('/img/star.svg').'" alt="star">';
+                        if($club->rating > 4.4){
+                            $cart.= '<img src="'.asset('/img/star.svg').'" alt="star">';}
+                    else{
+                        $cart.= '<img src="'.asset('/img/star0.svg').'" alt="star">';}
+
+                    $cart .=  '</div>
                 </div>';
                 if($club->club_metro != null  && $club->metro != null){
                     $cart .=  '
