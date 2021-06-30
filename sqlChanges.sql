@@ -16,3 +16,6 @@ UPDATE `cities` SET `order_no` = '13' WHERE `cities`.`id` = 625810;
 UPDATE `cities` SET `order_no` = '14' WHERE `cities`.`id` = 644200;
 UPDATE `cities` SET `order_no` = '15' WHERE `cities`.`id` = 661420;
 
+
+
+ALTER TABLE `clubs` ADD `rating` VARCHAR(10) NOT NULL AFTER `club_youtube_link`;
