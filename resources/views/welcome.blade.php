@@ -3,7 +3,14 @@
 <title>LanGame</title>
 @endsection
 @section('content')
-
+<?
+$order_by='price';
+if(isset($_GET['order']) && $_GET['order'] == 'nearby'){
+    $order_by='nearby';
+}elseif(isset($_GET['order']) && $_GET['order'] == 'rating'){
+    $order_by='rating';
+}
+?>
 <!--SECTION CHOOSE CLUB INFO START-->
 <section class="choose_club_info_wrapper">
     <div class="container">
@@ -37,11 +44,11 @@
                         </div>
 
                         <div class="sort_by_options">
-                            <a href="#" class="active">По цене</a>
+                            <a @if($order_by == 'price' ) class="active" @else href="{{url('/')}}/{{city()}}?order=price" @endif>По цене</a>
 
-                            <a href="#">По рейтингу</a>
+                            <a @if($order_by == 'rating' ) class="active" @else href="{{url('/')}}/{{city()}}?order=rating" @endif>По рейтингу</a>
 
-                            <a href="#">По близости</a>
+                            <a @if($order_by == 'nearby' ) class="active" @else href="{{url('/')}}/{{city()}}?order=nearby" @endif>По близости</a>
                         </div>
                     </div>
                 </div>
@@ -111,7 +118,7 @@
         var nextPage=correntPage + 1;
         jQuery.ajax({
             type: 'get',
-            url: '{{url('/')}}/{{city()}}',
+            url: '{{url('/')}}/{{city()}}?order={{$order_by}}',
             data: {'page':nextPage},
             success: function(data) {
                 correntPage++;

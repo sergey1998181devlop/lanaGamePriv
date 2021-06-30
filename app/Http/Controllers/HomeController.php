@@ -23,11 +23,29 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+      $order = 'club_min_price';
+      $order_key='ASC';
+      if($request->input('order') == 'nearby'){
+        $order = 'nearby';
+      }elseif ($request->input('order') == 'rating') {
+        $order = 'rating';
+        $order_key='DESC';
+      }
+
+      
+      if($order == 'nearby'){ // тут делай что надо
+      //  данныую функцию можешь изменить
         $clubs= club::SelectCartFeilds4Home()->Published()->CorrentCity()->whereNull('hidden_at')->with(array('metro'=>function($query) {
           $query->select('id','name','color');
-      }))->orderBy('club_min_price','ASC')->paginate(6);
+        }))->paginate(6);
+      }else{
+        $clubs= club::SelectCartFeilds4Home()->Published()->CorrentCity()->whereNull('hidden_at')->with(array('metro'=>function($query) {
+          $query->select('id','name','color');
+      }))->orderBy($order,$order_key)->paginate(6);
+      }
+
         if(\Request::ajax())
         {
             $html = '';
