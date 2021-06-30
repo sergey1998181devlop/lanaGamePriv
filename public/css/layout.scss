@@ -72,6 +72,18 @@ input[type=number] {
             }
         }
     }
+
+    @media (max-width: 900px){
+        .select2-dropdown {
+            min-width: 180px;
+
+            .select2-results {
+                .select2-results__option {
+                    font-size: 17px;
+                }
+            }
+        }
+    }
 }
 
 .container {
@@ -3891,7 +3903,7 @@ section.club_page_content_wrapper {
                 display: grid;
                 grid-auto-flow: row;
                 grid-template-columns: repeat(2, auto);
-                grid-template-rows: repeat(9, auto);
+                grid-template-rows: auto;
                 column-gap: 23px;
                 row-gap: 29px;
                 padding: 24px 24px 68px;
@@ -3908,7 +3920,7 @@ section.club_page_content_wrapper {
 
                 &.mob_toggle {
                     grid-template-columns: repeat(2, auto);
-                    grid-template-rows: repeat(4, auto);
+                    grid-template-rows: auto;
                 }
 
                 .club_services_mobile_toggle {
@@ -3996,7 +4008,7 @@ section.club_page_content_wrapper {
         .club_page_pc_configuration_wrapper {
 
             .club_page_pc_configuration_list {
-                display: none;
+                display: block;
                 padding: 24px;
                 background: #ffffff;
                 box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
@@ -7514,6 +7526,24 @@ section.langame_software_wrapper {
                                         margin-bottom: 14px;
                                     }
 
+                                    .checkbox_qty_wrapper{
+                                        label{
+                                            display: flex;
+                                        }
+                                    }
+
+                                    .work_time_item{
+                                        label{
+                                            display: flex;
+                                        }
+                                    }
+
+                                    .add_file_wrapper{
+                                        label{
+                                            display: flex;
+                                        }
+                                    }
+
                                     input {
                                         width: 100%;
                                     }
@@ -8637,6 +8667,7 @@ section.langame_software_wrapper {
             top: 29px;
             right: 0;
             display: block;
+            width: 200px;
             background-color: transparent;
             border: none;
             outline: none;
@@ -8740,6 +8771,8 @@ section.langame_software_wrapper {
                 top: calc(100% - 37px);
                 left: 17px;
                 display: block;
+                width: 100%;
+                text-align: left;
                 background-color: transparent;
                 border: none;
                 outline: none;
