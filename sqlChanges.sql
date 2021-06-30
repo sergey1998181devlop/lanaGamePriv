@@ -19,3 +19,5 @@ UPDATE `cities` SET `order_no` = '15' WHERE `cities`.`id` = 661420;
 
 
 ALTER TABLE `clubs` ADD `rating` VARCHAR(10) NOT NULL AFTER `club_youtube_link`;
+
+ALTER TABLE `clubs` ADD `club_full_address` VARCHAR(255) NULL DEFAULT NULL AFTER `club_address`;

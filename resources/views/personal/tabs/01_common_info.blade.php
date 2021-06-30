@@ -84,3 +84,4 @@ declare(strict_types=1);
 <input type="hidden" name="lat" id="lat" value="{{clubValue('lat')}}">
 <input type="hidden" name="lon" id="lon" value="{{clubValue('lon')}}">
 <input type="hidden" name="club_address" id="club_address" value="{{clubValue('club_address')}}">
+<input type="hidden" name="club_full_address" id="club_full_address" value="{{clubValue('club_full_address')}}">

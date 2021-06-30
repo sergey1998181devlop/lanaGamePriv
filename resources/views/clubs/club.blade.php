@@ -79,7 +79,7 @@
                         <img src="{{asset('/img/point-red.svg')}}" alt="location">
                     </div>
                     <div class="club_address">
-                        {{$club->club_address}}
+                        {{$club->club_full_address}}
                     </div>
                 </div>
                 <div class="club_distance">
@@ -544,7 +544,7 @@
                                 <img src="{{asset('/img/point-red.svg')}}" alt="location">
                             </div>
                             <div class="club_address">
-                                {{$club->club_address}}
+                                {{$club->club_full_address}}
                             </div>
                         </div>
                     </div>

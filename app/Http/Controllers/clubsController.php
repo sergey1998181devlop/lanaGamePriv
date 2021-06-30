@@ -73,6 +73,7 @@ class clubsController extends Controller
             'club_city',
             'phone',
             'club_address',
+            'club_full_address',
             'club_metro',
             'club_site',
             'club_email',
@@ -243,7 +244,10 @@ class clubsController extends Controller
             $payment_methods[]=$input;
         }
         $club->payment_methods = implode(',',$payment_methods);
-        $club->url=ucwords(str_replace(" ","-",$request->input('club_name')));
+        $club->url=str_replace("/","-",$request->input('club_name'));
+        $club->url=str_replace("\\","-",$club->url);
+        $club->url=ucwords(str_replace(" ","-",$club->url));
+
        if($club->save()){
            return true;
        }
