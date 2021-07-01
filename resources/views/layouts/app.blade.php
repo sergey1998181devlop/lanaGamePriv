@@ -198,9 +198,11 @@
                                 </li>
                             @endif
 
+                            @if(false)
                             <li>
                                 <a href="{{url('about-us')}}">О сервисе</a>
                             </li>
+                            @endif
 
                             <li>
                                 <a href="{{url('contacts')}}">Обратная связь</a>
@@ -295,9 +297,11 @@
                     <div class="footer_content_item">
                         <h4>Игрокам</h4>
                         <ul>
+                            @if(false)
                             <li>
                                 <a href="{{url('about-us')}}">О сервисе</a>
                             </li>
+                            @endif
                             <li>
                                 <a href="{{url('contacts')}}">Обратная связь</a>
                             </li>

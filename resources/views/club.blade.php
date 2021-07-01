@@ -7,7 +7,7 @@
         @else
         <img src="{{ asset('/img/default-club-preview-image.svg')}}" alt="club">
         @endif
-            
+
         </div>
         @if($club->qty_vip_pc > 0 || $club->food_drinks =='1' || $club->alcohol =='1')
         <div class="club_services">
@@ -63,7 +63,9 @@
             </div>
             <div class="subway_station">
                 <span>{{$club->metro->name}}</span>
+                @if(false)
                 <span class="subway_time_to">(1 мин.)</span>
+                @endif
             </div>
         </div>
         @endif

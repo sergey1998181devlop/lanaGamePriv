@@ -57,9 +57,11 @@ if(isset($_GET['order']) && $_GET['order'] == 'nearby'){
                     <div class="show_by_list">
                         <a href="#"><span>Список</span></a>
                     </div>
+                    @if(false)
                     <div class="show_by_map">
                         <a href="#"><span>На карте</span></a>
                     </div>
+                    @endif
                 </div>
             </div>
             <div class="search_club_list">

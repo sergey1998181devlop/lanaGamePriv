@@ -8,16 +8,18 @@
     <div class="container">
         <div class="contacts_page_title">Контакты</div>
         <div class="contacts_page_info_wrapper">
+            @if(false)
             <div class="info_item">
                 <div class="club_contact">
                     <img src="{{ asset('/img/phone.svg')}}" alt="phone">
                     <a href="tel:+79999999999">+7(999)999-99-99</a>
                 </div>
             </div>
+            @endif
             <div class="info_item">
                 <div class="club_contact">
                     <img src="{{ asset('/img/mail.svg')}}" alt="email">
-                    <a href="mailto:admin@f5center.com">admin@f5center.com</a>
+                    <a href="mailto:pg@langame.ru">pg@langame.ru</a>
                 </div>
             </div>
             <div class="info_item">

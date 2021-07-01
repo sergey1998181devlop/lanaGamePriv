@@ -74,7 +74,9 @@
                         </div>
                         <div class="subway_station">
                             <span>{{$club->metro->name}}</span>
+                            @if(false)
                             <span class="subway_time_to">(1 мин.)</span>
+                            @endif
                         </div>
                     </div>
                 @endif
@@ -539,7 +541,9 @@
                                 </div>
                                 <div class="subway_station">
                                     <span>{{$club->metro->name}}</span>
+                                    @if(false)
                                     <span class="subway_time_to">(1 мин.)</span>
+                                    @endif
                                 </div>
                             </div>
                         @endif
