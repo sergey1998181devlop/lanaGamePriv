@@ -156,7 +156,7 @@
                     @if($club->food_drinks == '1')
                         <div class="club_page_services_item">
                             <img src="{{asset('/img/icons/club-fastfood.svg')}}" alt="icons">
-                            <span>Горячее питание</span>
+                            <span>{{$club->food_drink_type}}</span>
                         </div>
                     @endif
                     @if($club->hookah == '1')

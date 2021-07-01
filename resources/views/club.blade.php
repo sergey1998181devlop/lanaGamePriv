@@ -86,13 +86,13 @@
                     <span>{{$club->qty_pc}}</span>
                 </div>
             </div>
-            @if($club->qty_simulator > 0 )
+            @if($club->qty_console > 0 )
             <div class="club_features_item">
                 <div class="club_features_img_wrapper">
                     <img src="{{ asset('/img/playstation.svg')}}" alt="icon">
                 </div>
                 <div class="club_features_qty">
-                    <span>{{$club->qty_simulator}}</span>
+                    <span>{{$club->qty_console}}</span>
                 </div>
             </div>
             @endif
