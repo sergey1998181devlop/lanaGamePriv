@@ -10,6 +10,8 @@ if(isset($_GET['order']) && $_GET['order'] == 'nearby'){
 }elseif(isset($_GET['order']) && $_GET['order'] == 'rating'){
     $order_by='rating';
 }
+
+$order_key = isset($_GET['order_key']) && \in_array($_GET['order_key'], ['asc', 'desc']) ? $_GET['order_key'] : 'asc';
 ?>
 @if(count($clubs) > 0)
 <!--SECTION CHOOSE CLUB INFO START-->
@@ -45,11 +47,14 @@ if(isset($_GET['order']) && $_GET['order'] == 'nearby'){
                         </div>
 
                         <div class="sort_by_options">
-                            <a @if($order_by == 'price' ) class="active" @else href="{{url('/')}}/{{city()}}?order=price" @endif>По цене</a>
+                            <a class="<?= $order_by === 'price' ? $order_key : ''; ?>"
+                               href="{{url('/')}}/{{city()}}?order=price&order_key=<?= $order_by === 'price' && $order_key === 'asc' ? 'desc' : 'asc'; ?>">По цене</a>
 
-                            <a @if($order_by == 'rating' ) class="active" @else href="{{url('/')}}/{{city()}}?order=rating" @endif>По рейтингу</a>
+                            <a class="<?= $order_by === 'rating' ? $order_key : ''; ?>"
+                               href="{{url('/')}}/{{city()}}?order=rating&order_key=<?= $order_by === 'rating' && $order_key === 'asc' ? 'desc' : 'asc'; ?>">По рейтингу</a>
 
-                            <a @if($order_by == 'nearby' ) class="active" @else href="{{url('/')}}/{{city()}}?order=nearby" @endif>По близости</a>
+                            <a class="<?= $order_by === 'nearby' ? $order_key : ''; ?>"
+                               href="{{url('/')}}/{{city()}}?order=nearby&order_key=<?= $order_by === 'nearby' && $order_key === 'asc' ? 'desc' : 'asc'; ?>">По близости</a>
                         </div>
                     </div>
                 </div>
