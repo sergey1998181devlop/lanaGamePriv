@@ -1,4 +1,6 @@
 jQuery(function() {
+    const is_admin = jQuery('meta[name="is-admin"]').attr('content') === '1';
+
     let $form = jQuery('#add-club-form'),
         $city_input = jQuery('#select-сity'),
         $save_draft = $form.find('.save_draft'),
@@ -28,6 +30,12 @@ jQuery(function() {
         nextButtonText: 'Продолжить',
         tabSelector: '.form_tab'
     });
+
+    if (is_admin) {
+        $form.find('input[required], select[required], textarea[required]')
+            .prop('required', false)
+            .attr('required', null);
+    }
 
     $form.on('keydown', 'input', function(e) {
         if (e.key === 'Enter') {
@@ -140,6 +148,9 @@ jQuery(function() {
             return new Promise((resolve, reject) => {
                 let hasErrors = false;
 
+                if(is_admin) {
+                    return resolve();
+                }
 
                 jQuery('.error.address_error').text('');
 
@@ -161,6 +172,10 @@ jQuery(function() {
         $tab.data('form-wizard-tab-validation', function() {
             return new Promise((resolve, reject) => {
                 let hasErrors = false;
+
+                if(is_admin) {
+                    return resolve();
+                }
 
                 $tab.find('.form-group .error').text('');
 
@@ -311,6 +326,10 @@ jQuery(function() {
             return new Promise((resolve, reject) => {
                 let hasErrors = false;
 
+                if(is_admin) {
+                    return resolve();
+                }
+
                 $photo_error.text('');
 
                 if (!main_file) {
@@ -360,6 +379,10 @@ jQuery(function() {
         $tab.data('form-wizard-tab-validation', function() {
             return new Promise((resolve, reject) => {
                 let hasErrors = false;
+
+                if(is_admin) {
+                    return resolve();
+                }
 
                 jQuery('.work_time_wrapper_error').text('');
 
