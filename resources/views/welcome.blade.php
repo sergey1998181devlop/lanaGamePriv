@@ -11,6 +11,7 @@ if(isset($_GET['order']) && $_GET['order'] == 'nearby'){
     $order_by='rating';
 }
 ?>
+@if(count($clubs) > 0)
 <!--SECTION CHOOSE CLUB INFO START-->
 <section class="choose_club_info_wrapper">
     <div class="container">
@@ -72,6 +73,9 @@ if(isset($_GET['order']) && $_GET['order'] == 'nearby'){
         </div>
     </div>
 </section>
+@else
+
+@endif
 <!--SECTION SEARCH CLUB END-->
 @if(isset( $posts) && count($posts)>0)
 <!--SECTION ARTICLES START-->
