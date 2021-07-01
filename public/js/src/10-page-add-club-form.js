@@ -35,7 +35,11 @@ jQuery(function() {
         $form.find('input[required], select[required], textarea[required]')
             .prop('required', false)
             .attr('required', null);
+
+        $form.find('.form_tab').append('<button type="submit" class="save_for_admin">Сохранить</button>')
     }
+
+
 
     $form.on('keydown', 'input', function(e) {
         if (e.key === 'Enter') {
