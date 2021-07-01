@@ -3312,8 +3312,8 @@ section.club_page_content_wrapper {
 
         .club_page_photo_list {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(2, 1fr);
+            grid-template-columns: repeat(4, 233px);
+            grid-template-rows: repeat(2, 160px);
             grid-gap: 12px;
             border-radius: 14px;
             overflow: hidden;
