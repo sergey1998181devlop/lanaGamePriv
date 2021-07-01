@@ -122,9 +122,9 @@
                             <a href="{{url('contacts')}}">Контакты</a>
                         </li>
 
-                            <li>
-                                <a href=# class="log_in_form_toggle">Войти</a>
-                            </li>
+                        <li>
+                            <a href=# class="log_in_form_toggle">Войти</a>
+                        </li>
                     </ul>
                     @endif
 
