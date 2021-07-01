@@ -672,7 +672,7 @@ ymaps.ready(init);
     function init() {
     var myMap = new ymaps.Map("club_page_maps", {
             center: [{{$club->lat}}, {{$club->lon}}],
-            zoom: 12
+            zoom: 15
         });
         myMap.geoObjects
             .add(new ymaps.Placemark([{{$club->lat}}, {{$club->lon}}],  {
