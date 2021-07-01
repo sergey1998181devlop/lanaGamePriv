@@ -90,7 +90,7 @@
                 </div>
                 <div class="club_distance">
                     <img src="{{asset('/img/walk-black.svg')}}" alt="icon">
-                    <span>5 км. от вас</span>
+                    <span>{{$club->nearby}} км</span>
                 </div>
             </div>
         </div>

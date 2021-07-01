@@ -25,6 +25,32 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+      if (empty($_COOKIE["lat"]) && empty($_COOKIE['lon'])){
+        $api_yandex = new \Yandex\Locator\Api('AP2BymABAAAAAqumUgIAzSJaePpJPDsATaQ5CtyPNtLdC60AAAAAAAAAAABVXZbOLoQ1EhZSTVkNehJDKsp9Dg==');
+        $api_yandex->setIp($_SERVER['REMOTE_ADDR']);
+
+        try {
+            $api_yandex->load();
+        } catch (\Yandex\Locator\Exception\CurlError $ex) {
+            // ошибка curl
+        } catch (\Yandex\Locator\Exception\ServerError $ex) {
+            // ошибка Яндекса
+        } catch (\Yandex\Locator\Exception $ex) {
+            // какая-то другая ошибка (запроса, например)
+        }
+
+        $response = $api_yandex->getResponse();
+        $lat = $response->getLatitude();
+        $lon = $response->getLongitude();
+        setcookie("lat", $lat);
+        setcookie("lon", $lon);
+        setcookie("geo", "yandex");
+      }else{
+        $lat = $_COOKIE["lat"];
+        $lon = $_COOKIE["lon"];
+        setcookie("geo", "browser");
+      }
+
       $order = 'club_min_price';
       $order_key='ASC';
       if($request->input('order') == 'nearby'){
@@ -35,11 +61,11 @@ class HomeController extends Controller
       }
       if($order == 'nearby'){ // тут делай что надо
       //  данныую функцию можешь изменить
-        $clubs= club::SelectCartFeilds4Home()->Published()->CorrentCity()->whereNull('hidden_at')->with(array('metro'=>function($query) {
+        $clubs= club::SelectCartFeilds4Home($lat, $lon)->Published()->CorrentCity()->whereNull('hidden_at')->with(array('metro'=>function($query) {
           $query->select('id','name','color');
-        }))->paginate(6);
+        }))->orderBy($order,$order_key)->paginate(6);
       }else{
-        $clubs= club::SelectCartFeilds4Home()->Published()->CorrentCity()->whereNull('hidden_at')->with(array('metro'=>function($query) {
+        $clubs= club::SelectCartFeilds4Home($lat, $lon)->Published()->CorrentCity()->whereNull('hidden_at')->with(array('metro'=>function($query) {
           $query->select('id','name','color');
       }))->orderBy($order,$order_key)->paginate(6);
       }
