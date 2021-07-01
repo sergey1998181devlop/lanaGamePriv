@@ -790,6 +790,10 @@ input[type=number] {
                     }
                 }
 
+                .mob_main_menu{
+                    display: none;
+                }
+
                 .main_menu {
                     margin: 0 -12px;
                     padding: 0;
@@ -1145,7 +1149,11 @@ input[type=number] {
                         }
                     }
 
-                    .main_menu {
+                    .main_menu{
+                        display: none;
+                    }
+
+                    .mob_main_menu {
                         order: 3;
                         margin: 0 15px 40px;
                         padding: 0;
@@ -4385,6 +4393,7 @@ section.bottom_nav_mobile {
 
         .club_booking, .club_calling {
             display: flex;
+            text-decoration: none;
             flex-direction: row;
             justify-content: center;
             align-items: center;
@@ -7199,6 +7208,10 @@ section.langame_software_wrapper {
                             }
 
                             .pc_configuration_content_wrapper {
+                                .main-error{
+                                    margin-bottom: 10px;
+                                }
+
                                 .tab:not(.active) {
                                     display: none;
                                 }
@@ -8771,7 +8784,7 @@ section.langame_software_wrapper {
                 top: calc(100% - 37px);
                 left: 17px;
                 display: block;
-                width: 100%;
+                width: 80%;
                 text-align: left;
                 background-color: transparent;
                 border: none;
