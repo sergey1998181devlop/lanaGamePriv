@@ -575,7 +575,7 @@
         <div class="container">
             <div class="club_price_wrapper">
                 <div class="club_price">Аренда от {{$club->club_min_price}} ₽/час</div>
-                <button type="button" class="club_calling" data-remodal-target="club_phone_modal">Позвонить</button>
+                <a href="tel:84958749900" class="club_calling">Позвонить</a>
             </div>
         </div>
     </section>
@@ -656,7 +656,9 @@
     <button data-remodal-action="close" class="remodal-close">Закрыть</button>
     <div class="remodal-content">
         <div class="club_price_list_wrapper">
-            <img src="{{$club->club_price_file}}" alt="price_list">
+            <a href="{{$club->club_price_file}}" data-fancybox>
+                <img src="{{$club->club_price_file}}" alt="price_list">
+            </a>
         </div>
     </div>
 </div>
