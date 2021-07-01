@@ -90,7 +90,7 @@ jQuery(function() {
         ]
     });
 
-    jQuery('.main_menu .log_in_form_toggle').on('click', function(e) {
+    jQuery('.log_in_form_toggle').on('click', function(e) {
         e.preventDefault();
         jQuery('.header_menu .log_in_block_wrapper').toggle();
         jQuery(this).toggleClass('active');
@@ -99,9 +99,9 @@ jQuery(function() {
     jQuery(document).on('click', function(e) {
         if(jQuery('.header_menu .log_in_block_wrapper').is(':visible')
             && jQuery(e.target).closest('.log_in_block_wrapper').length === 0
-            && !jQuery(e.target).is('.main_menu .log_in_form_toggle')){
+            && !jQuery(e.target).is('.log_in_form_toggle')){
             jQuery('.header_menu .log_in_block_wrapper').hide();
-            jQuery('.main_menu .log_in_form_toggle').removeClass('active');
+            jQuery('.log_in_form_toggle').removeClass('active');
         }
     });
 
