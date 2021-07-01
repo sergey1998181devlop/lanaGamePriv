@@ -74,7 +74,25 @@ if(isset($_GET['order']) && $_GET['order'] == 'nearby'){
     </div>
 </section>
 @else
+    <!--SECTION CHOOSE CLUB INFO START-->
+    <section class="choose_club_info_wrapper">
+        <div class="container">
+            <div class="choose_club_info not_found">
+                <div class="choose_club_info_title">
+                    <h1>В <span class="text_decor">{{city(true)['namePrepositional']}}</span> пока нет клубов, <br>
+                        или мы о них не знаем :(
+                    </h1>
 
+                    <div class="instr"><a href="{{url('contacts')}}">Напиши нам,</a> пожалуйста, если мы пропустили <br>
+                        открытие клуба в твоём городе</div>
+                </div>
+                <div class="choose_club_info_img">
+                    <img src="{{ asset('/img/not_found.png')}}" alt="image">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--SECTION CHOOSE CLUB INFO END-->
 @endif
 <!--SECTION SEARCH CLUB END-->
 @if(isset( $posts) && count($posts)>0)
@@ -85,7 +103,7 @@ if(isset($_GET['order']) && $_GET['order'] == 'nearby'){
         <div class="articles">
             <div class="articles_list">
             @foreach($posts as $post)
-          
+
           <div class="articles_item">
                     <a href="{{url('post/read/'.$post->id.'/'.$post->url)}}">
                         <div class="article_img_wrapper">
@@ -103,8 +121,8 @@ if(isset($_GET['order']) && $_GET['order'] == 'nearby'){
                     </a>
                 </div>
         @endforeach
-                
-               
+
+
             </div>
             @if(isset( $postsCount) && $postsCount>3)
                 <a href="{{url('posts')}}" class="show_more">Смотреть все</a>
@@ -129,7 +147,7 @@ if(isset($_GET['order']) && $_GET['order'] == 'nearby'){
                 $('.search_club_list').append(data.html);
                 if(data.last == correntPage){
                     $('#show_more_clubs').hide();
-                }              
+                }
             }
         });
     })
