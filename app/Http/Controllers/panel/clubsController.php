@@ -9,6 +9,8 @@ use App\User;
 use App\comment;
 use Auth;
 use Carbon\Carbon;
+use Notification;
+use App\Notifications\userNotification;
 class clubsController extends Controller
 {
     public function __construct()
@@ -40,7 +42,7 @@ class clubsController extends Controller
         return redirect('clubs/'.$club->id.'/'.$club->url);
     }
     public function comment($id,Request $request){
-        $club = club::select('published_at','draft','id','user_id','url')->findOrFail($id);
+        $club = club::select('published_at','draft','id','user_id','url','club_name')->findOrFail($id);
         if( $club->published_at != null ){
             $club->published_at = null;
             $club->save();
@@ -50,6 +52,15 @@ class clubsController extends Controller
         $comment ->comment =  $request->input('comment');
         $comment->created_by = Auth::user()->id;
         $comment -> save();
+        $user = user::find($club->user_id);
+
+        // send notification
+        $details = [
+            'subject' =>'Комментарий модератора на Langame',
+            'body' => 'Модератор Langame отправил вам по вашему клубу <strong>'.$club->club_name.'</strong> комментарий: '.$request->input('comment'),
+            'content' => 'Для редактирования клуба пройдите <a href="'.url('personal/club/'.$club->id.'/edit').'">по ссылке</a>',
+        ];
+        Notification::send($user, new userNotification($details));
         return redirect('clubs/'.$club->id.'/'.$club->url);
     }
     public function changeClubUser($id,Request $request){

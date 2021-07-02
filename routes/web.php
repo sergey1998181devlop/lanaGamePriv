@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/test', function () {
-    return view('emails.user.reset');
-});
+Route::get('/test',  'HomeController@sendNotification');
 
 
 Route::get('/', function () {

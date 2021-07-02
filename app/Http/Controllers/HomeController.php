@@ -7,7 +7,12 @@ use App\post;
 use App\club;
 use App\city;
 use App\metro;
+use App\User;
+
 use View;
+use Notification;
+
+use App\Notifications\userNotification;
 include_once(resource_path('views/includes/functions.blade.php')); 
 class HomeController extends Controller
 {
@@ -16,6 +21,32 @@ class HomeController extends Controller
      *
      * @return void
      */
+
+
+
+
+
+
+
+    public function sendNotification()
+    {
+
+        $user = User::find(5);
+        $details = [
+            'subject' =>'Комментарий модератора на Langame',
+            'body' => 'Модератор Langame отправил вам комментарий',
+        ];
+        Notification::send($user, new userNotification($details));
+
+
+
+        dd('done');
+
+    }
+
+
+
+
 
 
     /**
