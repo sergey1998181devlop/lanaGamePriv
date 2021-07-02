@@ -109,7 +109,8 @@ class HomeController extends Controller
         ];
       }
       foreach ($cities as $city) {
-       $b["results"][]=[ "text"=> $city->name.', '.$city->parentName, "data"=> $city->en_name,'id'=>$city->id,'has_metro' =>  $city->metroMap  ];
+        
+       $b["results"][]=[ "text"=> ($city->parentName != '') ? $city->name.', '.$city->parentName :  $city->name, "data"=> $city->en_name,'id'=>$city->id,'has_metro' =>  $city->metroMap  ];
       }
       
       return response($b);
