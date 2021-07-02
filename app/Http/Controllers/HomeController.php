@@ -28,9 +28,16 @@ class HomeController extends Controller
       if (empty($_COOKIE["lat"]) && empty($_COOKIE['lon'])){
         $api_yandex = new \Yandex\Locator\Api('AP2BymABAAAAAqumUgIAzSJaePpJPDsATaQ5CtyPNtLdC60AAAAAAAAAAABVXZbOLoQ1EhZSTVkNehJDKsp9Dg==');
         $api_yandex->setIp($_SERVER['REMOTE_ADDR']);
-
+        $lat = '';
+        $lon = '';
         try {
+            $response = $api_yandex->getResponse();
             $api_yandex->load();
+            $lat = $response->getLatitude();
+            $lon = $response->getLongitude();
+            setcookie("lat", $lat);
+            setcookie("lon", $lon);
+            setcookie("geo", "yandex");
         } catch (\Yandex\Locator\Exception\CurlError $ex) {
             // ошибка curl
         } catch (\Yandex\Locator\Exception\ServerError $ex) {
@@ -38,13 +45,7 @@ class HomeController extends Controller
         } catch (\Yandex\Locator\Exception $ex) {
             // какая-то другая ошибка (запроса, например)
         }
-
-        $response = $api_yandex->getResponse();
-        $lat = $response->getLatitude();
-        $lon = $response->getLongitude();
-        setcookie("lat", $lat);
-        setcookie("lon", $lon);
-        setcookie("geo", "yandex");
+        
       }else{
         $lat = $_COOKIE["lat"];
         $lon = $_COOKIE["lon"];
