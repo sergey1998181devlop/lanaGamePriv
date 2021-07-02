@@ -152,10 +152,6 @@ jQuery(function() {
             return new Promise((resolve, reject) => {
                 let hasErrors = false;
 
-                if(is_admin) {
-                    return resolve();
-                }
-
                 jQuery('.error.address_error').text('');
 
                 if ($lat.val() === '' || $lon.val() === '') {
