@@ -147,7 +147,7 @@ $order_key = isset($_GET['order_key']) && \in_array($_GET['order_key'], ['asc', 
         var nextPage=correntPage + 1;
         jQuery.ajax({
             type: 'get',
-            url: '{{url('/')}}/{{city()}}?order={{$order_by}}',
+            url: '{{url('/')}}/{{city()}}?order={{$order_by}}&order_key={{$order_key}}',
             data: {'page':nextPage},
             success: function(data) {
                 correntPage++;
