@@ -95,9 +95,9 @@
             </div>
         </div>
     </section>
+    <section class="club_page_content_wrapper">
     <?php $images = array_filter(explode(',', $club->club_photos));?>
     @if(count($images) > 0)
-    <section class="club_page_content_wrapper">
         <div class="club_page_photo_wrapper">
             <div class="container">
                 <div class="club_page_photo_list">
