@@ -42,7 +42,9 @@ class ResetPasswordNotification extends Notification
             'token' => $this->token,
             'email' => $notifiable->getEmailForPasswordReset(),
         ], false));
-        return (new MailMessage)->view('emails.user.reset', ['url' => $url]);
+        return (new MailMessage)
+        ->subject('Восстановление пароля на Langame')
+        ->view('emails.user.reset', ['url' => $url]);
     }
 
     /**
