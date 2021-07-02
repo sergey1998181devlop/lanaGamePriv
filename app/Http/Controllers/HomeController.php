@@ -31,8 +31,8 @@ class HomeController extends Controller
         $lat = '';
         $lon = '';
         try {
-            $response = $api_yandex->getResponse();
             $api_yandex->load();
+            $response = $api_yandex->getResponse();
             $lat = $response->getLatitude();
             $lon = $response->getLongitude();
             setcookie("lat", $lat);
