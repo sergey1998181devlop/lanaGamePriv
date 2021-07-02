@@ -21,11 +21,10 @@ class club extends Model
     {
         return $query->select('id','club_name','marketing_event','url','club_metro','club_address','qty_vip_pc','food_drinks','alcohol','hidden_at','main_preview_photo','rating');
     }
-    public function scopeSelectCartFeilds4Home($query)
+    public function scopeSelectCartFeilds4Home($query, $lat, $lon)
     {
-        return $query->select('id','club_name','marketing_event','url','club_metro','club_address','qty_vip_pc','food_drinks','alcohol','qty_pc','qty_vr','main_preview_photo','rating','qty_simulator','qty_console','club_min_price');
-    }
-    
+        return $query->select('id','club_name','marketing_event','url','club_metro','club_address','qty_vip_pc','food_drinks','alcohol','qty_pc','qty_vr','main_preview_photo','rating','qty_simulator','qty_console','club_min_price', club::raw('round(1.6 * ( 3959 * acos( cos( radians("'.$lat.'") ) * cos( radians( lat ) ) * cos( radians( lon ) - radians("'.$lon.'") ) + sin( radians("'.$lat.'") ) * sin( radians( lat ) ) ) ),1) AS nearby'));
+    }   
     public function scopeCorrentUser($query)
     {
         return $query->where('user_id', Auth::user()->id);

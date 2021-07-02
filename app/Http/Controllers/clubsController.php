@@ -17,7 +17,9 @@ class clubsController extends Controller
         $this->isDraft = false;
     }
     public function index($id){
-        $club = club::where('id',$id)->where('draft','0')->with(array('city' => function($query) {
+        $lon = $_COOKIE['lon'];
+        $lat = $_COOKIE['lat'];
+        $club = club::where('id',$id)->select('*', club::raw('round(1.6 * ( 3959 * acos( cos( radians("'.$lat.'") ) * cos( radians( lat ) ) * cos( radians( lon ) - radians("'.$lon.'") ) + sin( radians("'.$lat.'") ) * sin( radians( lat ) ) ) ),1) AS nearby'))->where('draft','0')->with(array('city' => function($query) {
             $query->select('id','name');
         },'metro'=>function($query) {
             $query->select('id','name','color');

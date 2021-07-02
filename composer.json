@@ -15,7 +15,8 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "2.4",
-        "intervention/image": "dev-master"
+        "intervention/image": "dev-master",
+        "yandex/locator": "0.9.2"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

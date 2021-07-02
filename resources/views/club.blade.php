@@ -24,7 +24,7 @@
         @endif
         <div class="club_distance">
             <img src="{{ asset('/img/walk.svg')}}" alt="icon">
-            <span>5 км. от вас</span>
+            <span>{{$club->nearby}} км. от вас</span>
         </div>
         @if($club->marketing_event == '1')
         <div class="club_promotion">

@@ -1488,10 +1488,10 @@ section.search_club_wrapper {
                             display: block;
                             position: relative;
                             margin-right: 12px;
-                            padding: 6px 0 6px 24px;
+                            padding: 6px 12px 6px 24px;
                             text-decoration: none;
                             font-style: normal;
-                            font-weight: normal;
+                            font-weight: 400;
                             font-size: 18px;
                             line-height: 1;
                             color: #000000;
@@ -1506,18 +1506,36 @@ section.search_club_wrapper {
                                 position: absolute;
                                 top: 6px;
                                 left: 0;
-                                background-image: url("../img/sort.svg");
+                                background-image: url("../img/asc.svg");
                                 background-repeat: no-repeat;
                                 background-position: center;
                                 background-size: 18px 18px;
                                 opacity: 0;
                             }
 
-                            &.active {
-                                border-bottom: 4px solid #dc0000;
+                            &:hover{
+                                border-bottom-color: rgba(220, 0, 0, 0.4);
+
+                                &:before {
+                                    opacity: 0.4;
+                                }
+                            }
+
+                            &.asc {
+                                border-bottom-color: #dc0000;
 
                                 &:before {
                                     opacity: 1;
+                                    background-image: url("../img/asc.svg");
+                                }
+                            }
+
+                            &.desc {
+                                border-bottom-color: #dc0000;
+
+                                &:before {
+                                    opacity: 1;
+                                    background-image: url("../img/desc.svg");
                                 }
                             }
                         }
@@ -1653,6 +1671,7 @@ section.search_club_wrapper {
 
                             a {
                                 margin-right: 0;
+                                padding: 6px 0 6px 24px;
                             }
 
                             a + a {
@@ -3949,6 +3968,10 @@ section.club_page_content_wrapper {
                 padding: 24px 24px 68px;
 
                 .club_page_services_item {
+                    span{
+                        font-size: 16px;
+                    }
+
                     &.mob_hide {
                         display: none;
 
@@ -8061,8 +8084,8 @@ section.langame_software_wrapper {
 
                 .slick-arrow {
                     display: block;
-                    width: 46px;
-                    height: 46px;
+                    width: 55px;
+                    height: 55px;
                     position: absolute;
                     background: none;
                     border: none;
