@@ -3,6 +3,11 @@
     <title>{{$club->club_name}} - LanGame</title>
 @endsection
 @section('content')
+    <?php
+    if($club->work_time == '2'){
+        $schedule_item = unserialize($club->work_time_days);
+    }
+    ?>
     <section class="club_page_main_info_wrapper" data-track-sticky>
         <div class="container">
             @if(isset($comments))
@@ -40,7 +45,32 @@
                         <a href="{{url('personal/club/'.$club->id.'/edit')}}" style="background:#1f42ff;color:#fff;margin-right: 5px;" class="btn">Редактировать</a>
                         <a href="{{url('personal/club/'.$club->id.'/edit')}}" style="background:#a0a0a0;color:#fff;margin-right: 5px;" data-remodal-target="club_comment_modal" class="btn">Снять с публикации</a>
                     @endif
+
+                <?php
+                  $showCallButton =true;
+                    if($club->work_time == '2' && is_array($schedule_item)){
+                        if(!isset($schedule_item[strtolower(date("l"))])){
+                            $showCallButton =false;
+                        }else{
+                            if(!empty($schedule_item[strtolower(date("l"))]['from']) && !empty($schedule_item[strtolower(date("l"))]['to'])){
+                                $now = new DateTime();
+                                $begin = new DateTime($schedule_item[strtolower(date("l"))]['from']);
+                                $end = new DateTime($schedule_item[strtolower(date("l"))]['to']);
+                                if ($now >= $begin && $now <= $end){
+                                    $showCallButton =true;
+                                }else{
+                                    $showCallButton =false;
+                                }
+                            }
+                        }
+                       
+                    }
+                ?>
+                   @if($showCallButton)
                     <button type="button" class="club_calling" data-remodal-target="club_phone_modal">Позвонить</button>
+                   @else
+                    <button type="button" class="club_calling closed">Закрыт</button>
+                   @endif 
 
                 </div>
             </div>
@@ -504,9 +534,6 @@
                                 <span>Круглосуточно</span>
                             </div>
                         @else
-                            <?php
-                            $schedule_item = unserialize($club->work_time_days);
-                            ?>
                             @if(is_array($schedule_item))
                                 <div class="club_page_schedule_item">
                                     <span>Понедельник</span>
@@ -595,7 +622,11 @@
         <div class="container">
             <div class="club_price_wrapper">
                 <div class="club_price">Аренда от {{$club->club_min_price}} ₽/час</div>
+                @if($showCallButton)
                 <a href="tel:84958749900" class="club_calling">Позвонить</a>
+                @else
+                <a class="club_calling">Закрыт</a>
+                @endif
             </div>
         </div>
     </section>
