@@ -625,7 +625,7 @@
                 @if($showCallButton)
                 <a href="tel:84958749900" class="club_calling">Позвонить</a>
                 @else
-                <a class="club_calling">Закрыт</a>
+                <a class="club_calling closed">Закрыт</a>
                 @endif
             </div>
         </div>
