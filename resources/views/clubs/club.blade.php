@@ -127,30 +127,45 @@
                 <div class="club_page_services_list mob_toggle">
                     <div class="club_page_services_item">
                         <img src="{{asset('/img/icons/pc.svg')}}" alt="icons">
-                        <span>{{$club->qty_pc}} компьютеров</span>
+                        <?
+                            $message = msgfmt_create('ru_RU', '{count, plural, one{# компьютер} few{# компьютера} many{# компьютеров} other{# компьютера}}');
+                        ?>
+                        <span>{{$message->format(['count' => $club->qty_pc]) . PHP_EOL}}</span>
                     </div>
                     @if($club->console == '1')
+                        <?
+                            $message = msgfmt_create('ru_RU', '{count, plural, one{# консоль} few{# консоли} many{# консолей} other{# консоли}}');
+                        ?>
                         <div class="club_page_services_item">
                             <img src="{{asset('/img/icons/playstation.svg')}}" alt="icons">
-                            <span>{{$club->qty_console}} консоли {{$club->console_type}}</span>
+                            <span>{{$message->format(['count' => $club->qty_console]) . PHP_EOL}} {{$club->console_type}}</span>
                         </div>
                     @endif
                     @if($club->qty_vip_pc > 0)
+                        <?
+                            $message = msgfmt_create('ru_RU', '{count, plural, one{# компьютер} few{# компьютера} many{# компьютеров} other{# компьютера}}');
+                        ?>
                         <div class="club_page_services_item">
                             <img src="{{asset('/img/icons/vip-black.svg')}}" alt="icons">
-                            <span>{{$club->qty_vip_pc}} компьютеров</span>
+                            <span>{{$message->format(['count' => $club->qty_vip_pc]) . PHP_EOL}}</span>
                         </div>
                     @endif
                     @if($club->qty_simulator > 0)
+                        <?
+                            $message = msgfmt_create('ru_RU', '{count, plural, one{# устройство} few{# устройства} many{# устройств} other{# устройства}}');
+                        ?>
                         <div class="club_page_services_item">
                             <img src="{{asset('/img/icons/drive.svg')}}" alt="icons">
-                            <span>{{$club->qty_simulator}} устройства</span>
+                            <span>{{$message->format(['count' => $club->qty_simulator]) . PHP_EOL}}</span>
                         </div>
                     @endif
                     @if($club->qty_vr > 0)
+                        <?
+                           $message = msgfmt_create('ru_RU', '{count, plural, one{# устройство} few{# устройства} many{# устройств} other{# устройства}}');
+                        ?>
                         <div class="club_page_services_item">
                             <img src="{{asset('/img/icons/vr.svg')}}" alt="icons">
-                            <span>{{$club->qty_vr}} устройства</span>
+                            <span>{{$message->format(['count' => $club->qty_vr]) . PHP_EOL}}</span>
                         </div>
                     @endif
 
