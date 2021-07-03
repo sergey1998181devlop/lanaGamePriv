@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/test',  'HomeController@sendNotification');
+// Route::get('/test',  'HomeController@sendNotification');
 
 
 Route::get('/', function () {
