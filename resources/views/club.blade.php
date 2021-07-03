@@ -119,7 +119,33 @@
         </div>
         <div class="club_price_wrapper">
             <div class="club_price">от {{$club->club_min_price}} ₽/час</div>
+            <?php
+                if($club->work_time == '2'){
+                    $schedule_item = unserialize($club->work_time_days);
+                }
+                $showCallButton =true;
+                if($club->work_time == '2' && is_array($schedule_item)){
+                    if(!isset($schedule_item[$today])){
+                        $showCallButton =false;
+                    }else{
+                        if(!empty($schedule_item[$today]['from']) && !empty($schedule_item[$today]['to'])){
+                            $begin = new DateTime($schedule_item[$today]['from']);
+                            $end = new DateTime($schedule_item[$today]['to']);
+                            if ($now >= $begin && $now <= $end){
+                                $showCallButton =true;
+                            }else{
+                                $showCallButton =false;
+                            }
+                        }
+                    }
+                    
+                }
+            ?>
+            @if($showCallButton)
             <div class="club_booking">Забронировать</div>
+            @else
+            <div class="club_booking closed">Закрыт</div>
+            @endif
         </div>
     </div>
 </a>

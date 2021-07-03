@@ -8,6 +8,7 @@ use App\club;
 use App\city;
 use App\metro;
 use View;
+use DateTime;
 include_once(resource_path('views/includes/functions.blade.php')); 
 class HomeController extends Controller
 {
@@ -76,13 +77,15 @@ class HomeController extends Controller
           $query->select('id','name','color');
       }))->orderBy($order,$order_key)->paginate(6);
       }
-
+       $now = new DateTime();
+       $today = strtolower(date("l"));
         if(\Request::ajax())
         {
             $html = '';
           foreach ($clubs as $club) {
             $view = View::make('club', [
-                'club' => $club
+                'club' => $club,
+                'now'=>$now,'today'=>$today
             ]);
             $html .= $view->render();
           }
@@ -90,7 +93,7 @@ class HomeController extends Controller
         }
         $posts=post::orderBy('created_at','desc')->limit(3)->get();
         $postsCount=post::count();
-        return view('welcome')->with(['posts'=>$posts,'postsCount'=>$postsCount,'clubs'=>$clubs]);
+        return view('welcome')->with(['posts'=>$posts,'postsCount'=>$postsCount,'clubs'=>$clubs,'now'=>$now,'today'=>$today]);
     }
     public function searchCities(Request $request){
       $b = array();
