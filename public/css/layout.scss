@@ -2229,6 +2229,8 @@ section.terms_of_use_content_wrapper {
 
 /*! SECTION PERSONAL PAGE START */
 section.personal_page_wrapper {
+    min-height: calc(100vh - 331px);
+
     .personal_page {
         display: flex;
         flex-direction: row;
@@ -4825,7 +4827,7 @@ section.contacts_page_content_wrapper {
 /*! SECTION LOG IN PAGE START */
 section.log_in_page_wrapper {
     padding: 64px 0 0;
-    height: calc(100vh - 361px);
+    height: calc(100vh - 331px);
 
     .log_in_page_content {
         width: 670px;
