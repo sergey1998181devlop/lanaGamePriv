@@ -94,6 +94,17 @@ jQuery(function() {
         ]
     });
 
+    // if (window.matchMedia('(max-width: 980px)').matches){
+    //     jQuery('.club_page_photo_list').slick({
+    //         infinite: false,
+    //         slidesToShow: 1,
+    //         slidesToScroll: 1,
+    //         variableWidth: true,
+    //         prevArrow: '<button type="button" class="slick-prev slick-arrow"><img src="../../img/left1.svg" alt="arrow"></button>',
+    //         nextArrow: '<button type="button" class="slick-next slick-arrow"><img src="../../img/right1.svg" alt="arrow"></button>',
+    //     });
+    // }
+
     jQuery('.log_in_form_toggle').on('click', function(e) {
         e.preventDefault();
         jQuery('.header_menu .log_in_block_wrapper').toggle();

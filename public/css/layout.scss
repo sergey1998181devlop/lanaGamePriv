@@ -2677,6 +2677,7 @@ section.personal_page_wrapper {
                         text-align: right;
                         color: #ffffff;
                         transition: box-shadow 0.2s;
+                        cursor: pointer;
 
                         &:before {
                             content: '';
@@ -3956,15 +3957,6 @@ section.club_page_content_wrapper {
                         display: block;
                     }
                 }
-
-                button {
-                    width: 180px;
-                    height: 35px;
-
-                    &.hidden-lg{
-                        display: flex;
-                    }
-                }
             }
         }
 
@@ -5074,7 +5066,7 @@ section.log_in_page_wrapper {
 /*! SECTION PASSWORD RECOVERY PAGE START */
 section.password_recovery_page_wrapper {
     padding: 64px 0 0;
-    height: calc(100vh - 361px);
+    height: calc(100vh - 331px);
 
     .password_recovery_content {
         width: 670px;
@@ -5286,7 +5278,7 @@ section.password_recovery_page_wrapper {
 /*! SECTION ADD CLUB START PAGE START */
 section.add_club_page_start_wrapper {
     padding: 64px 0 0;
-    height: calc(100vh - 361px);
+    height: calc(100vh - 331px);
 
     .add_club_page_start_content {
         width: 670px;
@@ -5446,6 +5438,10 @@ section.add_club_page_start_wrapper {
                                     font-size: 18px;
                                     line-height: 1;
                                     color: #000000;
+
+                                    a{
+                                        color: #dc0000;
+                                    }
                                 }
                             }
                         }
