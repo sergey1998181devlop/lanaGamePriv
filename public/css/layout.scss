@@ -497,10 +497,10 @@ input[type=number] {
                 flex-direction: row;
                 justify-content: flex-start;
                 align-items: center;
-                background-color: transparent !important;
+                background-color: #ffffff;
                 box-shadow: none;
                 outline: none;
-                background: transparent !important;
+                //background: transparent !important;
 
                 input {
                     opacity: 0;
@@ -3079,6 +3079,17 @@ section.club_page_main_info_wrapper {
 
                     &:hover {
                         box-shadow: 0 0 8px #000000;
+                    }
+
+                    &.closed{
+                        margin-right: 0;
+                        background: transparent;
+                        color: #dc0000;
+                        cursor: auto;
+
+                        &:hover {
+                            box-shadow: none;
+                        }
                     }
                 }
 
@@ -8096,6 +8107,7 @@ section.langame_software_wrapper {
                         display: block;
                         width: 46px;
                         height: 46px;
+                        object-fit: contain;
                     }
 
                     &.slick-next {
