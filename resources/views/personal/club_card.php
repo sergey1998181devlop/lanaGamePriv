@@ -44,12 +44,15 @@ function echoCard($club,$type = 'published'){
                         <img src="'.asset('/img/star.svg').'" alt="star">
                         <img src="'.asset('/img/star.svg').'" alt="star">
                         <img src="'.asset('/img/star.svg').'" alt="star">';
-                        if($club->rating > 4.4){
-                            $cart.= '<img src="'.asset('/img/star.svg').'" alt="star">';}
-                    else{
-                        $cart.= '<img src="'.asset('/img/star0.svg').'" alt="star">';}
-
-                    $cart .=  '</div>
+                        if($club->rating >= 4.8 ){
+                            $cart.= '<img src="'.asset('/img/stars/star.svg').'" alt="star">';
+                        }elseif($club->rating > 4.3){
+                            $cart.= '<img src="'.asset('/img/stars/half-star.svg').'" alt="star">';
+                        }
+                        else{
+                            $cart.= '<img src="'.asset('/img/stars/star0.svg').'" alt="star">';
+                        }
+                        $cart .=  '<span class="rating" >'.$club->rating .'</span></div>
                 </div>';
                 if($club->club_metro != null  && $club->metro != null){
                     $cart .=  '
