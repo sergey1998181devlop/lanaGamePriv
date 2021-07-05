@@ -436,6 +436,12 @@ input[type=number] {
 
             .club_booking {
                 background-color: #dc0000;
+
+                &.closed{
+                    color: #dc0000;
+                    background-color: transparent;
+                    cursor: auto;
+                }
             }
 
             .club_calling {
@@ -7964,14 +7970,13 @@ section.langame_software_wrapper {
 
     .remodal.show_club_price_list_modal {
         position: relative;
-        max-width: 1000px;
+        max-width: 800px;
         background-color: transparent;
 
         .remodal-close {
             width: 129px;
-            top: -27px;
-            left: unset;
-            right: -173px;
+            top: 50px;
+            left: 100%;
             font-style: normal;
             font-weight: 500;
             font-size: 18px;
