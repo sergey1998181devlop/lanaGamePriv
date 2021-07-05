@@ -153,6 +153,8 @@ class clubsController extends Controller
         }
         if($this->isDraft){
             $club->draft = '1';
+        }elseif(notVerifed()){
+                abort(404);
         }
        foreach($this->inputsTextsHandle() as $input){
            if($request->input($input) == ''){ $club->$input = '';continue;}

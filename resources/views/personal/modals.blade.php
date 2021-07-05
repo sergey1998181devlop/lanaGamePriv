@@ -51,6 +51,9 @@
                     @include("personal.tabs.09_club_preview")
                     </div>
                 </div>
+                @if(notVerifed())
+                        Необходимо подтвердить адрес электронной почты, письмо отправлено в ваш адрес элек. почты, для получения сообщение повторно <a href="{{url('profile/verify/resend')}}">нажмите здесь</a>
+                @endif
                 <div class="form_btn_wrapper">
 
                     <div class="form_btn_item">
@@ -61,7 +64,11 @@
 
                     <div class="form_btn_item">
                         <button type="button" class="prev_btn" data-role="prev-tab-button">Назад</button>
+                        @if(notVerifed())
+                        <button type="button" class="disabled" disabled>Продолжить</button>
+                        @else
                         <button type="button" class="next_btn" data-role="next-tab-button">Продолжить</button>
+                        @endif
                         <button type="submit">Подтвердить отправку</button>
                     </div>
                 </div>

@@ -25,6 +25,7 @@ Auth::routes();
 Route::post('/register/send_sms', 'Auth\RegisterController@sendSMS');
 Route::post('/register/verify_sms', 'Auth\RegisterController@verifySMS');
 Route::post('/register/create', 'Auth\RegisterController@create');
+Route::get('email/verify/{token}','Auth\RegisterController@verifyEmail')->name('user.verify'); 
 
 
 // личный кабинет
@@ -33,7 +34,7 @@ Route::get('personal/profile', 'personalController@profile');
 Route::post('profile/sendSMS', 'personalController@sendSMS');
 Route::post('profile/verify', 'personalController@verifySMS');
 Route::post('profile/update', 'personalController@update');
-
+Route::get('profile/verify/resend', 'personalController@resendVerfyEmail');
 // посты
 Route::get('post/read/{id}/{url}','postsController@post');
 Route::get('posts','postsController@allposts');

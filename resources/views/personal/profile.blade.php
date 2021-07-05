@@ -45,6 +45,9 @@ function customOldVal($name,$item){
             <div class="personal_main_content_wrapper">
                 <div class="user_profile_form_wrapper">
                     <div class="user_profile_title">Профиль</div>
+                    @if(notVerifed())
+                        Необходимо подтвердить адрес электронной почты, письмо отправлено в ваш адрес элек. почты, для получения сообщение повторно <a href="{{url('profile/verify/resend')}}">нажмите здесь</a>
+                    @endif
                     <form action="{{url('profile/update')}}" method="post" id="user-profile-form" class="user_profile" phone-action="{{url('profile/sendSMS')}}" verify-action="{{url('profile/verify')}}">
                     {{ csrf_field() }}
                         <div class="forma">

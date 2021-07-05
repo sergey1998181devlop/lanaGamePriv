@@ -13,6 +13,9 @@ use Carbon;
 use App\sms_code;
 use App\Jobs\SMSRU;
 use Auth;
+use App\UserVerify;
+use Mail;
+use Illuminate\Support\Str;
 include_once(resource_path('views/includes/functions.blade.php')); 
 class RegisterController extends Controller
 {
@@ -94,6 +97,16 @@ class RegisterController extends Controller
             'password' => Hash::make($request->input('password')),
         ]);
         Auth::login($user);
+        $token = Str::random(64);
+        UserVerify::create([
+            'user_id' => $user->id, 
+            'token' => $token
+          ]);
+          Mail::send('emails.user.emailVerificationEmail', ['token' => $token], function($message) use($user){
+            $message->to($user->email);
+            $message->subject('Завершение регистрации на Langame');
+        });
+       
 
     }
 
@@ -165,4 +178,25 @@ class RegisterController extends Controller
       return false;
     }
   }
+  public function verifyEmail($token)
+    {
+        $verifyUser = UserVerify::where('token', $token)->first();
+  
+        $message = 'К сожалению, ваш адрес электронной почты не найден';
+  
+        if(!is_null($verifyUser) ){
+            $user = $verifyUser->user;
+              
+            if($user->email_verified_at == null) {
+                $verifyUser->user->email_verified_at = Carbon::now()->toDateTimeString();
+                $verifyUser->user->save();
+                $verifyUser->delete();
+                $message = "Ваш e-mail подтвержден";
+            } else {
+                $message = "Ваш e-mail уже подтвержден";
+            }
+        }
+  
+      return redirect()->route('login')->with('verifyEmailMessage', $message);
+    }
 }

@@ -8,6 +8,9 @@ use App\sms_code;
 use App\Jobs\SMSRU;
 use Carbon;
 use Illuminate\Support\Facades\Hash;
+use App\UserVerify;
+use Mail;
+use Illuminate\Support\Str;
 include_once(resource_path('views/includes/functions.blade.php')); 
 
 class personalController extends Controller
@@ -117,5 +120,22 @@ class personalController extends Controller
     return response()->json(['status'=>'success'], 202);
    }
    return response()->json(['status'=>'false'], 202);
+  }
+  public function resendVerfyEmail(){
+    $user = Auth::user();
+    if($user->email_verified_at == null) {
+        $token = Str::random(64);
+        $UserVerify = UserVerify::firstOrCreate([
+            'user_id' => $user->id
+          ]);
+          $UserVerify->token = $token;
+          $UserVerify->save();
+          Mail::send('emails.user.emailVerificationEmail', ['token' => $token], function($message) use($user){
+            $message->to($user->email);
+            $message->subject('Завершение регистрации на Langame');
+        });
+        return back();
+    }
+    abort(402);
   }
 }

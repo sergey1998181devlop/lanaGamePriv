@@ -30,5 +30,11 @@ function canBeUnserialized($string) {
     }
     return true;
 }
+function notVerifed(){
+    if(Auth::check()){
+        if(Auth::user()->email_verified_at != null )return false;
+    }
+    return true;
+}
 
 ?>

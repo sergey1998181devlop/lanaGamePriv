@@ -180,6 +180,9 @@ return $marketing_events[$key];
 
                 <div class="club_list_content_tabs">
                     <div class="tab" id="tab1" @if($edit && $clubAr->published_at == null)style="display: none" @endif>
+                    @if(notVerifed())
+                        Необходимо подтвердить адрес электронной почты, письмо отправлено в ваш адрес элек. почты, для получения сообщение повторно <a href="{{url('profile/verify/resend')}}">нажмите здесь</a>
+                    @endif
                         <div class="club_list_content">
                             @foreach($published as $club)
                                 <div class="club_list_item">
