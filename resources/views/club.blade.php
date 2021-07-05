@@ -145,7 +145,7 @@
                 }
             ?>
             @if($showCallButton)
-            <div class="club_booking">Забронировать</div>
+            <div class="club_calling">Бронь по звонку</div>
             @else
             <div class="club_booking closed">Закрыт</div>
             @endif
