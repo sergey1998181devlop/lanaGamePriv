@@ -278,6 +278,16 @@ input[type=number] {
                     height: 18px;
                     margin: 0 4px;
                 }
+
+                .rating{
+                    display: block;
+                    margin-left: 10px;
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 1.3;
+                    color: #000;
+                }
             }
 
             .reviews_qty {
