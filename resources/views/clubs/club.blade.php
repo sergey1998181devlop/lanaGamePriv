@@ -63,14 +63,14 @@
                                 }
                             }
                         }
-                       
+
                     }
                 ?>
                    @if($showCallButton)
                     <button type="button" class="club_calling" data-remodal-target="club_phone_modal">Позвонить</button>
                    @else
                     <button type="button" class="club_calling closed">Закрыт</button>
-                   @endif 
+                   @endif
 
                 </div>
             </div>
@@ -147,9 +147,9 @@
                     }?>
 
                         <button type="button" class="@if(count($images) < 5) hidden-lg @endif" data-remodal-target="club_photo_modal">Показать все фото</button>
-
                 </div>
             </div>
+            <span class="counter"></span>
         </div>
     @endif
         <div class="club_page_services_wrapper">

@@ -3160,6 +3160,16 @@ section.club_page_main_info_wrapper {
                 line-height: 1;
                 color: #000000;
             }
+
+            .rating{
+                display: block;
+                margin-left: 10px;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 1.3;
+                color: #000;
+            }
         }
 
         .club_subway_wrapper {
@@ -3414,6 +3424,10 @@ section.club_page_content_wrapper {
                     display: none;
                 }
             }
+        }
+
+        .counter{
+            display: none;
         }
     }
 
@@ -3944,6 +3958,7 @@ section.club_page_content_wrapper {
             height: 272px;
             padding: 0;
 
+
             .container {
                 width: 100%;
                 height: 100%;
@@ -3951,17 +3966,19 @@ section.club_page_content_wrapper {
             }
 
             .club_page_photo_list {
-                display: block;
+                display: flex;
                 border-radius: 0;
-                overflow: hidden;
                 position: relative;
                 width: 100%;
                 height: 100%;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
 
                 .club_page_photo_item {
                     width: 100%;
                     height: 100%;
-                    display: none;
+                    flex-shrink: 0;
+                    scroll-snap-align: start;
 
                     img {
                         width: 100%;
@@ -3969,10 +3986,36 @@ section.club_page_content_wrapper {
                         object-fit: cover;
                     }
 
-                    &:first-child {
+                    &:nth-child(n+6){
                         display: block;
                     }
                 }
+
+                button{
+                    display: none;
+                }
+            }
+
+            .counter{
+                width: 50px;
+                height: 28px;
+                border-radius: 10px;
+                position: absolute;
+                right: 32px;
+                bottom: 16px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: rgba(85, 85, 85, 0.5);
+                backdrop-filter: blur(10.4615px);
+                border: none;
+                outline: none;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 1;
+                text-align: center;
+                color: #ffffff;
             }
         }
 

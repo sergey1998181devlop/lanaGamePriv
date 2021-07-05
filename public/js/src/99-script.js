@@ -94,16 +94,43 @@ jQuery(function() {
         ]
     });
 
-    // if (window.matchMedia('(max-width: 980px)').matches){
-    //     jQuery('.club_page_photo_list').slick({
-    //         infinite: false,
-    //         slidesToShow: 1,
-    //         slidesToScroll: 1,
-    //         variableWidth: true,
-    //         prevArrow: '<button type="button" class="slick-prev slick-arrow"><img src="../../img/left1.svg" alt="arrow"></button>',
-    //         nextArrow: '<button type="button" class="slick-next slick-arrow"><img src="../../img/right1.svg" alt="arrow"></button>',
-    //     });
-    // }
+
+    // club page (mobile) - counter photo in gallery
+    let scrollLeft = 0,
+        totalPhoto = jQuery('.club_page_photo_list .club_page_photo_item').length;
+
+    jQuery('.club_page_photo_list').on('scroll',function(e) {
+        let direction = this.scrollLeft >= scrollLeft  ? 'right' : 'left';
+
+        scrollLeft = this.scrollLeft;
+
+        let activeIndex = getActiveSlide(this, '.club_page_photo_item', direction);
+
+        jQuery(this).closest('.club_page_photo_wrapper').find('.counter').text(`${activeIndex + 1} / ${totalPhoto}`);
+    });
+
+    jQuery(window).on('resize', function(e) {
+        jQuery('.club_page_photo_list').trigger('scroll');
+    });
+
+    jQuery('.club_page_photo_list').trigger('scroll');
+
+    function getActiveSlide(list, item, direction) {
+        let slides = [];
+
+        jQuery(list).find(item).each(function(index, element) {
+            slides.push({
+                index: index,
+                x: element.getBoundingClientRect().x
+            });
+        });
+
+        let sortedSlides = slides
+            .filter(({x}) => direction === 'right' ? x >= 0 : x <= 0)
+            .sort((a, b) => Math.abs(a.x) - Math.abs(b.x));
+
+        return sortedSlides?.[0]?.index || 0;
+    }
 
     jQuery('.log_in_form_toggle').on('click', function(e) {
         e.preventDefault();
