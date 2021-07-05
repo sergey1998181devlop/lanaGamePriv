@@ -5213,6 +5213,11 @@ section.password_recovery_page_wrapper {
         }
     }
 
+    @media (max-height: 850px) {
+        padding: 64px 0 120px;
+        height: auto;
+    }
+
     @media (max-width: 980px) {
         padding: 64px 0 130px;
         height: auto;

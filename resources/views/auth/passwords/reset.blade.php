@@ -17,7 +17,7 @@
                     <div class="forma">
                         <div class="form-group @error('email') error @enderror">
                             <label for="password-recovery-email">Email</label>
-                            <input id="password-recovery-email"  name="email" type="email" value="{{ $email ?? old('email') }}"  required>
+                            <input id="password-recovery-email"  name="email" type="email" value="{{ $email ?? old('email') }}" readonly required>
                             @error('email')
                                 <span class="error">{{ $message }}</span>
                             @enderror
