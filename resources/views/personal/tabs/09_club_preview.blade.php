@@ -69,7 +69,7 @@ declare(strict_types=1);
                     <div class="club_features_img_wrapper">
                         <img src="{{asset('/img/vr.svg')}}" alt="icon">
                     </div>
-                    
+
                 </div>
                 <div class="club_features_item">
                     <div class="club_features_qty autosim">
@@ -78,7 +78,7 @@ declare(strict_types=1);
                     <div class="club_features_img_wrapper">
                         <img src="{{asset('/img/drive.svg')}}" alt="icon">
                     </div>
-                    
+
                 </div>
             </div>
             <div class="club_price_wrapper">
@@ -88,4 +88,12 @@ declare(strict_types=1);
         </div>
     </a>
 </div>
+
+@if(notVerifed())
+    <div class="user_verified">
+        Мы не сможем приступить к проверке вашего клуба, пока вы не подтвердите адрес электронной почты. Письмо с инструкциями направлено на указанный ящик.
+        Для повторной отправки <a href="{{url('profile/verify/resend')}}">нажмите сюда.</a> <br><br>
+        А чтобы не потерять заполненную информацию, сохраните её как черновик. После подтверждения адреса вы сможете отправить его на модерацию.
+    </div>
+@endif
 
