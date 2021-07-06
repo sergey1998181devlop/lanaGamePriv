@@ -38,4 +38,37 @@ function admin($rules = 1){
         
      }
 }
+function echoRating(int $rating,$echo = true){
+   $stars = intval($rating/10);
+   $halfStar = $rating - ( $stars *10);
+  if($halfStar < 3){
+  $halfStar_ =0;
+  }else{
+  if($halfStar < 7){
+        $halfStar_ = 1;
+     }else{
+        $halfStar_ = 0;
+        $stars++;
+     }
+  }
+  $zeroStars = 5 - ($stars + $halfStar_);
+  $result = '';
+  while($stars > 0) {
+   $result .= '<img src="'. asset('/img/star.svg').'" alt="star">';
+     $stars--;
+   }
+    
+  if($halfStar_ > 0){
+   $result .= '<img src="'. asset('/img/stars/half-star.svg').'" alt="star">';
+  }
+  while($zeroStars > 0) {
+   $result .= '<img src="'. asset('/img/stars/star0.svg').'" alt="star">';
+     $zeroStars--;
+   }
+   if($echo){
+      echo $result;
+   }else{
+      return $result;
+   }
+}
 ?>

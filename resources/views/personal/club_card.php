@@ -39,19 +39,9 @@ function echoCard($club,$type = 'published'){
                     <span>'.htmlspecialchars($club->club_name).'</span>
                 </div>
                 <div class="rating_wrapper">
-                    <div class="rating_stars">
-                        <img src="'.asset('/img/star.svg').'" alt="star">
-                        <img src="'.asset('/img/star.svg').'" alt="star">
-                        <img src="'.asset('/img/star.svg').'" alt="star">
-                        <img src="'.asset('/img/star.svg').'" alt="star">';
-                        if($club->rating >= 4.8 ){
-                            $cart.= '<img src="'.asset('/img/stars/star.svg').'" alt="star">';
-                        }elseif($club->rating > 4.3){
-                            $cart.= '<img src="'.asset('/img/stars/half-star.svg').'" alt="star">';
-                        }
-                        else{
-                            $cart.= '<img src="'.asset('/img/stars/star0.svg').'" alt="star">';
-                        }
+                    <div class="rating_stars"> ';
+                         
+                        $cart .=echoRating($club->rating * 10,false);
                         $cart .=  '<span class="rating" >'.$club->rating .'</span></div>
                 </div>';
                 if($club->club_metro != null  && $club->metro != null){

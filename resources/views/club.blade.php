@@ -38,17 +38,7 @@
         </div>
         <div class="rating_wrapper">
             <div class="rating_stars">
-                <img src="{{ asset('/img/star.svg')}}" alt="star">
-                <img src="{{ asset('/img/star.svg')}}" alt="star">
-                <img src="{{ asset('/img/star.svg')}}" alt="star">
-                <img src="{{ asset('/img/star.svg')}}" alt="star">
-                @if($club->rating >= 4.8 )
-                    <img src="{{ asset('/img/stars/star.svg')}}" alt="star">
-                @elseif ($club->rating > 4.3)
-                    <img src="{{ asset('/img/stars/half-star.svg')}}" alt="star">
-                @else
-                    <img src="{{ asset('/img/stars/star0.svg')}}" alt="star">
-                @endif
+               {!!echoRating($club->rating * 10)!!}
                <span class="rating" >{{$club->rating }}</span>
             </div>
             @if(false)
