@@ -81,6 +81,15 @@ declare(strict_types=1);
         <div class="error"></div>
     </div>
 </div>
+@if(admin())
+<div class="form-group">
+    <label for="rating-input">Отзыв клуба</label>
+    <div class="input_wrapper">
+        <input id="rating-input" name="rating" value="{{clubValue('rating')}}">
+        <div class="error"></div>
+    </div>
+</div>
+@endif
 <input type="hidden" name="lat" id="lat" value="{{clubValue('lat')}}">
 <input type="hidden" name="lon" id="lon" value="{{clubValue('lon')}}">
 <input type="hidden" name="club_address" id="club_address" value="{{clubValue('club_address')}}">
