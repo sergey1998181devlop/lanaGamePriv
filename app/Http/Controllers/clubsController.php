@@ -262,7 +262,9 @@ class clubsController extends Controller
        return false;
     }
     public function saveImage(Request $request){
-
+        $data = $request->validate([
+            'file' => ['required', 'image','max:5500'],
+        ]);
         $message = $url = '';
         if ($request->hasFile('file')) {
             $file = $request->file('file');
@@ -285,7 +287,9 @@ class clubsController extends Controller
 
     }
     public function savePriceList(Request $request){
-
+        $data = $request->validate([
+            'file' => ['required', 'mimes:jpg,bmp,png,pdf','max:5500'],
+        ]);
         $message = $url = '';
         if ($request->hasFile('file')) {
             $file = $request->file('file');
