@@ -116,7 +116,10 @@ class clubsController extends Controller
     }
 
     public function addClub(Request $request){
-        return $this->store($request);
+        if($this->store($request)){
+            return response()->json('success',202);
+        }
+        return response()->json('error',402);
     }
     public function addDraftClub(Request $request){
         $this->isDraft = true;
@@ -127,11 +130,17 @@ class clubsController extends Controller
 
     }
     public function update($id,Request $request){
-        return $this->store($request,true,$id);
+        if($this->store($request,true,$id)){
+            return response()->json('success',202);
+        }
+        return response()->json('error',402);
     }
     public function updateDraft($id,Request $request){
         $this->isDraft = true;
-        return $this->store($request,true,$id);
+        if($this->store($request,true,$id)){
+            return response()->json('success',202);
+        }
+        return response()->json('error',402);
     }
 
     public function store($request,$update = false,$id= null){
