@@ -280,6 +280,15 @@
         </div>
     </div>
 </div>
+<a data-remodal-target="get_geo"></a>
+<div class="remodal get_geo" data-remodal-id="get_geo">
+    <button data-remodal-action="close" class="remodal-close"></button>
+    <div class="remodal-content">
+        <div class="club_phone_wrapper">
+            <p class="title">Помогите нам найти вас: разрешите сайту определять местоположение в настройках браузера!</p>
+        </div>
+    </div>
+</div>
 
 <div class="club_page_modals_wrapper"></div>
 
