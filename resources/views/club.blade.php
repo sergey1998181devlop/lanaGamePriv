@@ -1,4 +1,4 @@
-<div class="search_club_item <?=($show == 'map') ? 'in_map' : null ?>" data-role-club data-lon="{{$club->lon}}" data-lat="{{$club->lat}}">
+<div class="search_club_item <?=(isset($show) && $show === 'map') ? 'in_map' : null ?>" data-role-club data-lon="{{$club->lon}}" data-lat="{{$club->lat}}">
 <a href="{{url('clubs/'.$club->id.'/'.$club->url)}}" class="club_card">
     <div class="search_club_img_wrapper">
         <div class="search_club_img">
