@@ -110,6 +110,7 @@
                 success: function(data) {
                     correntPage++;
                     $('.search_club_list').append(data.html);
+                    geo();
                     if (data.last == correntPage) {
                         $('#show_more_clubs').hide();
                     }
