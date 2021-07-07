@@ -116,7 +116,10 @@ class clubsController extends Controller
     }
 
     public function addClub(Request $request){
-        return $this->store($request);
+        if($this->store($request)){
+            return response()->json('success',202);
+        }
+        return response()->json('error',402);
     }
     public function addDraftClub(Request $request){
         $this->isDraft = true;
@@ -127,15 +130,38 @@ class clubsController extends Controller
 
     }
     public function update($id,Request $request){
-        return $this->store($request,true,$id);
+        if($this->store($request,true,$id)){
+            return response()->json('success',202);
+        }
+        return response()->json('error',402);
     }
     public function updateDraft($id,Request $request){
         $this->isDraft = true;
-        return $this->store($request,true,$id);
+        if($this->store($request,true,$id)){
+            return response()->json('success',202);
+        }
+        return response()->json('error',402);
     }
 
     public function store($request,$update = false,$id= null){
-        
+        // validation
+        if(!admin() && !$this->isDraft){
+            $data = $request->validate([
+                'club_name' => ['required'],
+                'club_city' => ['required'],
+                'phone' => ['required'],
+                'club_address' => ['required'],
+                'club_photos' => ['required'],
+                'lon' => ['required'],
+                'lat' => ['required'],
+                'qty_pc' => ['required'],
+                'club_min_price' => ['required'],
+                'work_time' => ['required'],
+                'configuration' => ['required'],
+            ]);
+        }
+        $validationAr = [];
+        $errors = [];
         if($update){
             if(admin()){
                 $club = club::findOrFail($id);
@@ -163,28 +189,27 @@ class clubsController extends Controller
            if($request->input($input) == ''){ $club->$input = '';continue;}
             $club->$input = $request->input($input);
        }
-       foreach($this->inputsTextsHandle() as $input){
-            if($request->input($input) == ''){ $club->$input = '';continue;}
-            $club->$input = $request->input($input);
-        }
         foreach($this->inputsNumersHandle() as $input){
             if($request->input($input) == ''){ $club->$input = 0;continue;}
             $club->$input = $request->input($input);
         }
         if($request->input('vip_pc') == 'on'){
             $club->qty_vip_pc = $request->input('qty_vip_pc');
+            $validationAr['qty_vip_pc'] = ['required','numeric','min:1'];
         }
         else{
             $club->qty_vip_pc = 0;
         }
         if($request->input('vr') == 'on'){
             $club->qty_vr = $request->input('qty_vr');
+            $validationAr['qty_vr'] = ['required','numeric','min:1'];
         }else{
             $club->qty_vr = 0;
         }
 
         if($request->input('simulator') == 'on'){
             $club->qty_simulator = $request->input('qty_simulator');
+            $validationAr['qty_simulator'] = ['required','numeric','min:1'];
         }else{
             $club->qty_simulator = 0;
         }
@@ -192,6 +217,8 @@ class clubsController extends Controller
             $club->console = '1';
             $club->console_type = $request->input('console_type');
             $club->qty_console = $request->input('qty_console');
+            $validationAr['qty_console'] = ['required','numeric','min:1'];
+            $validationAr['console_type'] = ['required'];
         }else{
             $club->console = '0';
             $club->console_type = '0';
@@ -200,6 +227,7 @@ class clubsController extends Controller
         if($request->input('food_drinks') == 'on'){
             $club->food_drinks = '1';
             $club->food_drink_type = $request->input('food_drink_type');
+            $validationAr['food_drink_type'] = ['required'];
         }else{
             $club->food_drinks = '0';
             $club->food_drink_type = '';
@@ -221,10 +249,15 @@ class clubsController extends Controller
                 if($request->input($day) == 'on'){
                     $daysAr[$day]['from'] = $request->input($day.'_work_from');
                     $daysAr[$day]['to'] = $request->input($day.'_work_to');
+                    if($request->input($day.'_work_from') == '' || $request->input($day.'_work_to')){
+                        $errors[] = 'work_time';
+                    }
                 }
             }
             if(count($daysAr) > 0){
                 $club->work_time_days = serialize($daysAr);
+            }else{
+                $errors[] = 'work_time';
             }
             
         }else{
@@ -232,9 +265,11 @@ class clubsController extends Controller
             $club->work_time_days = '';
         }
         $club->configuration = serialize($request->input('configuration'));
+        if(!is_array($request->input('configuration'))) $errors[] = 'configuration';
         if($request->input('marketing_event') == 'on'){
             $club->marketing_event = '1';
             $club->marketing_event_descr = serialize($request->input('marketing_event_descr'));
+            if(!is_array($request->input('marketing_event_descr'))) $errors[] = 'marketing_event';
         }else{
             $club->marketing_event = '0';
             $club->marketing_event_descr = '';
@@ -251,18 +286,25 @@ class clubsController extends Controller
             if($request->input($input) == 'on')
             $payment_methods[]=$input;
         }
+        if(count($payment_methods) == 0) $errors[] = 'payment_methods';
         $club->payment_methods = implode(',',$payment_methods);
         $club->url=str_replace("/","-",$request->input('club_name'));
         $club->url=str_replace("\\","-",$club->url);
         $club->url=ucwords(str_replace(" ","-",$club->url));
-
+        if(!admin() && !$this->isDraft){
+            $data = $request->validate($validationAr);
+            if(count($errors) > 0) {
+                return false;}
+        }
        if($club->save()){
            return true;
        }
        return false;
     }
     public function saveImage(Request $request){
-
+        $data = $request->validate([
+            'file' => ['required', 'image','max:5500'],
+        ]);
         $message = $url = '';
         if ($request->hasFile('file')) {
             $file = $request->file('file');
@@ -285,7 +327,9 @@ class clubsController extends Controller
 
     }
     public function savePriceList(Request $request){
-
+        $data = $request->validate([
+            'file' => ['required', 'mimes:jpg,bmp,png,pdf','max:5500'],
+        ]);
         $message = $url = '';
         if ($request->hasFile('file')) {
             $file = $request->file('file');
