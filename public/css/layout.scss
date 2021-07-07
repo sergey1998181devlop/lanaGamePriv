@@ -41,7 +41,7 @@ input[type=number] {
         padding: 15px 10px;
         margin-top: 0;
         border-radius: 12px;
-        z-index: 9999999!important;
+        z-index: 9999999 !important;
         width: 100%;
         min-width: 220px;
 
@@ -73,7 +73,7 @@ input[type=number] {
         }
     }
 
-    @media (max-width: 900px){
+    @media (max-width: 900px) {
         .select2-dropdown {
             min-width: 180px;
 
@@ -279,14 +279,14 @@ input[type=number] {
                     margin: 0 4px;
                 }
 
-                .rating{
+                .rating {
                     display: block;
                     margin-left: 10px;
                     font-style: normal;
                     font-weight: 400;
                     font-size: 16px;
                     line-height: 1.3;
-                    color: #000;
+                    color: #000000;
                 }
             }
 
@@ -447,7 +447,7 @@ input[type=number] {
             .club_booking {
                 background-color: #dc0000;
 
-                &.closed{
+                &.closed {
                     color: #dc0000;
                     background-color: transparent;
                     cursor: auto;
@@ -494,7 +494,7 @@ input[type=number] {
                     transform: translateY(-50%);
                 }
 
-                &:hover{
+                &:hover {
                     background-color: #dc0000;
                     color: #ffffff;
 
@@ -592,7 +592,7 @@ input[type=number] {
         }
     }
 
-    &:hover{
+    &:hover {
         box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.25);
     }
 }
@@ -620,21 +620,21 @@ input[type=number] {
     white-space: nowrap;
 }
 
-.user_verified{
+.user_verified {
     padding: 30px 0;
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
     line-height: 1.3;
-    color: #000;
+    color: #000000;
 
-    a{
+    a {
         color: #dc0000;
     }
 }
 
 .simplebar-scrollbar::before {
-    background-color: #DC0000;
+    background-color: #dc0000;
     border-radius: 20px;
     height: 192px;
     opacity: 1;
@@ -649,7 +649,7 @@ input[type=number] {
     bottom: 2px;
 }
 
-.simplebar-track{
+.simplebar-track {
     right: unset;
     left: 10px;
 }
@@ -840,7 +840,7 @@ input[type=number] {
                     }
                 }
 
-                .mob_main_menu{
+                .mob_main_menu {
                     display: none;
                 }
 
@@ -869,14 +869,14 @@ input[type=number] {
                                 color: #dc0000;
                             }
 
-                            &.log_in_form_toggle.active{
+                            &.log_in_form_toggle.active {
                                 color: #dc0000;
                             }
                         }
                     }
                 }
 
-                .log_in_block_wrapper{
+                .log_in_block_wrapper {
                     display: none;
                     position: absolute;
                     z-index: 10000;
@@ -885,7 +885,7 @@ input[type=number] {
                     width: 436px;
                     height: auto;
                     padding: 32px;
-                    background: #FFFFFF;
+                    background: #ffffff;
                     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
                     border-radius: 20px;
 
@@ -897,12 +897,12 @@ input[type=number] {
                         line-height: 1;
                         color: #000000;
 
-                        .instr{
+                        .instr {
                             display: block;
                             font-size: 18px;
                             font-weight: 400;
                             line-height: 1;
-                            color: #C4C4C4;
+                            color: #c4c4c4;
                         }
                     }
 
@@ -1199,7 +1199,7 @@ input[type=number] {
                         }
                     }
 
-                    .main_menu{
+                    .main_menu {
                         display: none;
                     }
 
@@ -1233,7 +1233,7 @@ input[type=number] {
                         }
                     }
 
-                    .log_in_block_wrapper{
+                    .log_in_block_wrapper {
                         order: 2;
                         display: block;
                         position: static;
@@ -1241,14 +1241,15 @@ input[type=number] {
                         width: 100%;
                         max-width: 386px;
                         padding: 0 15px;
-                        background: #FFFFFF;
+                        background: #ffffff;
                         box-shadow: none;
                         border-radius: 0;
                         margin: 0 0 40px;
 
-                        .log_in_page_title{
+                        .log_in_page_title {
                             margin-bottom: 24px;
-                            .instr{
+
+                            .instr {
                                 font-size: 16px;
                             }
                         }
@@ -1312,12 +1313,12 @@ input[type=number] {
             .header_menu_wrapper {
                 .header_menu {
 
-                    .log_in_block_wrapper{
+                    .log_in_block_wrapper {
 
                         .log_in_wrapper {
                             form {
                                 .btn_wrapper {
-                                    .registration{
+                                    .registration {
                                         padding: 14px;
                                     }
                                 }
@@ -1413,22 +1414,22 @@ section.choose_club_info_wrapper {
             }
         }
 
-        &.not_found{
-            border-bottom: 1px solid #D3D3D3;
+        &.not_found {
+            border-bottom: 1px solid #d3d3d3;
 
             .choose_club_info_title {
-               .instr{
-                   font-family: 'PT Root UI', sans-serif;
-                   font-style: normal;
-                   font-weight: 500;
-                   font-size: 20px;
-                   line-height: 1.2;
-                   color: #000000;
+                .instr {
+                    font-family: 'PT Root UI', sans-serif;
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 20px;
+                    line-height: 1.2;
+                    color: #000000;
 
-                  a{
-                      color: #000000;
-                  }
-               }
+                    a {
+                        color: #000000;
+                    }
+                }
             }
 
             .choose_club_info_img {
@@ -1453,8 +1454,8 @@ section.choose_club_info_wrapper {
                     margin-bottom: 20px;
                 }
 
-                .instr{
-                    br{
+                .instr {
+                    br {
                         display: none;
                     }
                 }
@@ -1563,7 +1564,7 @@ section.search_club_wrapper {
                                 opacity: 0;
                             }
 
-                            &:hover{
+                            &:hover {
                                 border-bottom-color: rgba(220, 0, 0, 0.4);
 
                                 &:before {
@@ -1855,7 +1856,7 @@ section.search_club_wrapper {
 section.search_club_wrapper_by_map {
     position: relative;
 
-    #search_club_by_map{
+    #search_club_by_map {
         display: block;
         width: 100%;
         height: 1080px;
@@ -1868,7 +1869,7 @@ section.search_club_wrapper_by_map {
         top: 64px;
         width: 737px;
         height: 1016px;
-        background: #FFFFFF;
+        background: #ffffff;
         box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.25);
         border-radius: 20px 20px 0 0;
         display: flex;
@@ -1884,7 +1885,7 @@ section.search_club_wrapper_by_map {
             width: 100%;
             padding: 15px;
             margin-bottom: 0;
-            border-bottom: 1px solid #D3D3D3;
+            border-bottom: 1px solid #d3d3d3;
 
             .search_club_sort {
                 display: flex;
@@ -1955,7 +1956,7 @@ section.search_club_wrapper_by_map {
                                 opacity: 0;
                             }
 
-                            &:hover{
+                            &:hover {
                                 border-bottom-color: rgba(220, 0, 0, 0.4);
 
                                 &:before {
@@ -2069,15 +2070,15 @@ section.search_club_wrapper_by_map {
                 height: 220px;
                 margin: 0 0 32px;
 
-                .club_card{
+                .club_card {
                     display: flex;
                     flex-direction: row;
 
-                    .search_club_img_wrapper{
+                    .search_club_img_wrapper {
                         width: 294px;
                         height: 100%;
 
-                        .search_club_img{
+                        .search_club_img {
                             img {
                                 width: 100%;
                                 height: 100%;
@@ -2199,14 +2200,14 @@ section.search_club_wrapper_by_map {
                                     margin: 0 4px;
                                 }
 
-                                .rating{
+                                .rating {
                                     display: block;
                                     margin-left: 10px;
                                     font-style: normal;
                                     font-weight: 400;
                                     font-size: 16px;
                                     line-height: 1.3;
-                                    color: #000;
+                                    color: #000000;
                                 }
                             }
 
@@ -2285,7 +2286,7 @@ section.search_club_wrapper_by_map {
                             align-items: stretch;
                             margin: 13px 0;
                             padding: 0 24px 0 14px;
-                            border-left: 1px solid #D3D3D3;
+                            border-left: 1px solid #d3d3d3;
 
                             .club_features_item {
                                 margin: 10px 0;
@@ -2373,7 +2374,7 @@ section.search_club_wrapper_by_map {
                             .club_booking {
                                 background-color: #dc0000;
 
-                                &.closed{
+                                &.closed {
                                     color: #dc0000;
                                     background-color: transparent;
                                     cursor: auto;
@@ -2420,7 +2421,7 @@ section.search_club_wrapper_by_map {
                                     transform: translateY(-50%);
                                 }
 
-                                &:hover{
+                                &:hover {
                                     background-color: #dc0000;
                                     color: #ffffff;
 
@@ -2521,39 +2522,33 @@ section.search_club_wrapper_by_map {
             }
         }
 
-        .show_more{
-           display: none;
+        .show_more {
+            display: none;
         }
     }
 
-    @media (max-width: 1500px){
+    @media (max-width: 1500px) {
         position: relative;
+        overflow: hidden;
+        padding-top: 68px;
 
-        #search_club_by_map{
-            display: block;
-            width: 100%;
-            height: 1080px;
-            box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+        #search_club_by_map {
+            height: 980px;
         }
 
         .search_club_by_map {
             position: static;
-            left: 64px;
-            top: 0;
             width: 100%;
-            height: 230px;
+            height: 0;
             background: transparent;
             box-shadow: none;
             border-radius: 0;
             display: block;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: flex-start;
 
 
             .search_club_sort_wrapper {
                 position: absolute;
-                bottom: 100%;
+                top: 0;
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
@@ -2632,7 +2627,7 @@ section.search_club_wrapper_by_map {
                                     opacity: 0;
                                 }
 
-                                &:hover{
+                                &:hover {
                                     border-bottom-color: rgba(220, 0, 0, 0.4);
 
                                     &:before {
@@ -2734,7 +2729,7 @@ section.search_club_wrapper_by_map {
             .search_club_list {
                 position: absolute;
                 left: 30px;
-                bottom: 295px;
+                bottom: 53px;
                 display: flex;
                 width: 100%;
                 height: 250px;
@@ -2745,7 +2740,7 @@ section.search_club_wrapper_by_map {
                 flex-wrap: nowrap;
                 overflow-x: auto;
 
-                .simplebar-content{
+                .simplebar-content {
                     display: flex;
                 }
 
@@ -2756,15 +2751,15 @@ section.search_club_wrapper_by_map {
                     flex-shrink: 0;
                     background-color: #ffffff;
 
-                    .club_card{
+                    .club_card {
                         display: flex;
                         flex-direction: row;
 
-                        .search_club_img_wrapper{
+                        .search_club_img_wrapper {
                             width: 294px;
                             height: 100%;
 
-                            .search_club_img{
+                            .search_club_img {
                                 img {
                                     width: 100%;
                                     height: 100%;
@@ -2886,14 +2881,14 @@ section.search_club_wrapper_by_map {
                                         margin: 0 4px;
                                     }
 
-                                    .rating{
+                                    .rating {
                                         display: block;
                                         margin-left: 10px;
                                         font-style: normal;
                                         font-weight: 400;
                                         font-size: 16px;
                                         line-height: 1.3;
-                                        color: #000;
+                                        color: #000000;
                                     }
                                 }
 
@@ -2972,7 +2967,7 @@ section.search_club_wrapper_by_map {
                                 align-items: stretch;
                                 margin: 13px 0;
                                 padding: 0 24px 0 14px;
-                                border-left: 1px solid #D3D3D3;
+                                border-left: 1px solid #d3d3d3;
 
                                 .club_features_item {
                                     margin: 10px 0;
@@ -3060,7 +3055,7 @@ section.search_club_wrapper_by_map {
                                 .club_booking {
                                     background-color: #dc0000;
 
-                                    &.closed{
+                                    &.closed {
                                         color: #dc0000;
                                         background-color: transparent;
                                         cursor: auto;
@@ -3107,7 +3102,7 @@ section.search_club_wrapper_by_map {
                                         transform: translateY(-50%);
                                     }
 
-                                    &:hover{
+                                    &:hover {
                                         background-color: #dc0000;
                                         color: #ffffff;
 
@@ -3210,21 +3205,19 @@ section.search_club_wrapper_by_map {
         }
     }
 
-    @media (max-width: 980px) {
-        .search_club {
-            padding: 0 0 32px;
-            border-bottom: 1px solid #d3d3d3;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: flex-start;
+    @media (max-width: 760px) {
+        padding-top: 130px;
 
+        #search_club_by_map {
+            height: 680px;
+        }
+
+        .search_club_by_map {
             .search_club_sort_wrapper {
-                position: relative;
+                position: absolute;
                 display: block;
                 width: 100%;
-                padding: 0;
-                margin-bottom: 32px;
+                padding: 0 10px;
 
                 .search_club_sort {
                     display: block;
@@ -3265,14 +3258,14 @@ section.search_club_wrapper_by_map {
 
                 .search_club_show {
                     position: absolute;
-                    right: 0;
+                    right: 10px;
                     top: 32px;
 
                     .show_by_list {
                         a {
                             width: 34px;
                             height: 34px;
-                            margin-right: 20px;
+                            margin-right: 10px;
                             padding: 8px;
                             border-radius: 8px;
 
@@ -3290,7 +3283,7 @@ section.search_club_wrapper_by_map {
 
                     .show_by_map {
                         a {
-                            width: 34px;
+                            width: 46px;
                             height: 34px;
                             padding: 8px;
 
@@ -3309,70 +3302,144 @@ section.search_club_wrapper_by_map {
             }
 
             .search_club_list {
-                display: block;
-                margin: 0 auto;
-                width: 100%;
+                position: absolute;
+                left: 14px;
+                bottom: 14px;
+                height: 130px;
+                padding: 0;
 
                 .search_club_item {
-                    width: 294px;
-                    margin: 0 auto 32px;
-                }
-            }
-        }
-    }
+                    width: 362px;
+                    height: 108px;
+                    margin: 0 10px 0 0;
 
-    @media (max-width: 400px) {
-        .search_club {
-            .search_club_sort_wrapper {
-                .search_club_sort {
-                    .sort_by {
-                        .sort_by_options {
-                            a {
-                                margin-right: 0;
-                                padding: 6px 0 6px 21px;
-                                font-size: 16px;
+                    .club_card {
+                        display: flex;
+                        flex-direction: row;
 
-                                &:before {
-                                    width: 16px;
-                                    height: 16px;
-                                    background-size: 16px 16px;
+                        .search_club_img_wrapper {
+                            width: 108px;
+                            height: 100%;
+                            flex-shrink: 0;
+
+                            .search_club_img {
+                                img {
+                                    width: 100%;
+                                    height: 100%;
+                                    border-radius: 14px 0 0 14px;
+                                    object-fit: cover;
                                 }
                             }
 
-                            a + a {
-                                margin-left: 10px;
+                            .club_services {
+                                display: none;
+                            }
+
+                            .club_distance {
+                                display: none;
                             }
                         }
-                    }
-                }
-            }
-        }
-    }
 
-    @media (max-width: 340px) {
-        .search_club {
-            .search_club_sort_wrapper {
-                .search_club_sort {
+                        .search_club_info {
+                            width: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            padding: 4px 12px;
 
-                    .sort_by {
-                        .sort_by_title {
-                            margin-right: 0;
-                            margin-bottom: 24px;
-                        }
+                            .club_name {
+                                order: 2;
+                                margin-bottom: 4px;
 
-                        .sort_by_options {
-                            a {
-                                margin-right: 0;
-                                padding: 6px 0;
-                                font-size: 16px;
+                                span {
+                                    font-size: 16px;
+                                }
 
-                                &:before {
-                                    display: none;
+                                &.approve {
+                                    span:after {
+                                        width: 16px;
+                                        height: 16px;
+                                        background-size: 16px 16px;
+                                    }
                                 }
                             }
 
-                            a + a {
-                                margin-left: 10px;
+                            .rating_wrapper {
+                                order: 1;
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: flex-start;
+                                align-items: center;
+                                margin-bottom: 4px;
+
+                                .rating_stars {
+                                    display: flex;
+                                    flex-direction: row-reverse;
+                                    justify-content: flex-start;
+                                    align-items: stretch;
+                                    margin: 0 11px 0 -4px;
+
+                                    img {
+                                        display: none;
+                                        width: 16px;
+                                        height: 16px;
+                                        margin: 0 4px;
+
+                                        &:first-child{
+                                            display: block;
+                                        }
+                                    }
+
+                                    .rating {
+                                        display: block;
+                                        margin-left: 0;
+                                        margin-right: 5px;
+                                        font-size: 16px;
+                                    }
+                                }
+                            }
+
+                            .club_subway_wrapper {
+                                order: 2;
+                                margin-bottom: 4px;
+                            }
+
+                            .club_address_wrapper {
+                                order: 2;
+                                display: none;
+                            }
+
+                            .club_features_wrapper {
+                                display: none;
+                            }
+
+                            .club_price_wrapper {
+                                order: 2;
+                                position: static;
+                                right: 0;
+                                bottom: 12px;
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: space-between;
+                                align-items: center;
+                                height: auto;
+                                width: 100%;
+                                padding: 0;
+
+                                .club_price {
+                                    font-size: 16px;
+                                }
+
+                                .club_close {
+                                    font-size: 16px;
+                                }
+
+                                .club_booking, .club_calling {
+                                    width: 116px;
+                                    height: 28px;
+                                    font-size: 14px;
+                                    line-height: 1;
+                                    border-radius: 10px;
+                                }
                             }
                         }
                     }
@@ -3386,6 +3453,7 @@ section.search_club_wrapper_by_map {
 /*! SECTION ARTICLES START */
 section.articles_wrapper {
     padding: 32px 0 122px;
+    overflow: hidden;
 
     h2 {
         margin: 0;
@@ -4666,7 +4734,7 @@ section.club_page_main_info_wrapper {
                         box-shadow: 0 0 8px #000000;
                     }
 
-                    &.closed{
+                    &.closed {
                         margin-right: 0;
                         background: transparent;
                         color: #dc0000;
@@ -4727,14 +4795,14 @@ section.club_page_main_info_wrapper {
                 color: #000000;
             }
 
-            .rating{
+            .rating {
                 display: block;
                 margin-left: 10px;
                 font-style: normal;
                 font-weight: 400;
                 font-size: 16px;
                 line-height: 1.3;
-                color: #000;
+                color: #000000;
             }
         }
 
@@ -4951,7 +5019,7 @@ section.club_page_content_wrapper {
                     height: 100%;
                     object-fit: cover;
                     object-position: center;
-                    box-shadow: 0 0 10px #eee;
+                    box-shadow: 0 0 10px #eeeeee;
                 }
 
                 &:first-child {
@@ -4959,7 +5027,7 @@ section.club_page_content_wrapper {
                     grid-column: 1/2 span;
                 }
 
-                &:nth-child(n+6){
+                &:nth-child(n+6) {
                     display: none;
                 }
             }
@@ -4986,13 +5054,13 @@ section.club_page_content_wrapper {
                 color: #ffffff;
                 cursor: pointer;
 
-                &.hidden-lg{
+                &.hidden-lg {
                     display: none;
                 }
             }
         }
 
-        .counter{
+        .counter {
             display: none;
         }
     }
@@ -5552,17 +5620,17 @@ section.club_page_content_wrapper {
                         object-fit: cover;
                     }
 
-                    &:nth-child(n+6){
+                    &:nth-child(n+6) {
                         display: block;
                     }
                 }
 
-                button{
+                button {
                     display: none;
                 }
             }
 
-            .counter{
+            .counter {
                 width: 50px;
                 height: 28px;
                 border-radius: 10px;
@@ -5598,7 +5666,7 @@ section.club_page_content_wrapper {
                 padding: 24px 24px 68px;
 
                 .club_page_services_item {
-                    span{
+                    span {
                         font-size: 16px;
                     }
 
@@ -7069,7 +7137,7 @@ section.add_club_page_start_wrapper {
                                     line-height: 1;
                                     color: #000000;
 
-                                    a{
+                                    a {
                                         color: #dc0000;
                                     }
                                 }
@@ -8902,7 +8970,7 @@ section.langame_software_wrapper {
                             }
 
                             .pc_configuration_content_wrapper {
-                                .main-error{
+                                .main-error {
                                     margin-bottom: 10px;
                                 }
 
@@ -9141,7 +9209,7 @@ section.langame_software_wrapper {
                                 }
                             }
 
-                            .save_for_admin{
+                            .save_for_admin {
                                 display: block;
                                 background: #ffffff;
                                 color: #dc0000;
@@ -9248,20 +9316,20 @@ section.langame_software_wrapper {
                                         margin-bottom: 14px;
                                     }
 
-                                    .checkbox_qty_wrapper{
-                                        label{
+                                    .checkbox_qty_wrapper {
+                                        label {
                                             display: flex;
                                         }
                                     }
 
-                                    .work_time_item{
-                                        label{
+                                    .work_time_item {
+                                        label {
                                             display: flex;
                                         }
                                     }
 
-                                    .add_file_wrapper{
-                                        label{
+                                    .add_file_wrapper {
+                                        label {
                                             display: flex;
                                         }
                                     }
@@ -9623,9 +9691,9 @@ section.langame_software_wrapper {
             }
         }
 
-        .remodal-content{
-            .club_price_list_wrapper{
-                img{
+        .remodal-content {
+            .club_price_list_wrapper {
+                img {
                     display: block;
                     width: 100%;
                     height: 100%;
@@ -10128,7 +10196,7 @@ section.langame_software_wrapper {
     }
 }
 
-.report_modal{
+.report_modal {
     width: 436px;
     height: auto;
     background: #ffffff;
@@ -10158,8 +10226,8 @@ section.langame_software_wrapper {
         }
     }
 
-    .remodal-content{
-        .title{
+    .remodal-content {
+        .title {
             font-style: normal;
             font-weight: 500;
             font-size: 18px;
@@ -10169,7 +10237,7 @@ section.langame_software_wrapper {
             margin-bottom: 16px;
         }
 
-        form{
+        form {
             margin-bottom: 32px;
 
             textarea {
@@ -10188,7 +10256,7 @@ section.langame_software_wrapper {
                 margin-bottom: 32px;
             }
 
-            .btn_wrapper{
+            .btn_wrapper {
                 button {
                     display: block;
                     border: none;
@@ -10210,7 +10278,7 @@ section.langame_software_wrapper {
             }
         }
 
-        .instr{
+        .instr {
             font-style: normal;
             font-weight: 500;
             font-size: 18px;
@@ -10218,7 +10286,7 @@ section.langame_software_wrapper {
             text-align: left;
             color: #000000;
 
-            a{
+            a {
                 color: #000000;
             }
         }
@@ -10226,7 +10294,6 @@ section.langame_software_wrapper {
 
     @media (max-width: 500px) {
         width: 300px;
-
 
 
         .remodal-close {
@@ -10238,8 +10305,8 @@ section.langame_software_wrapper {
             top: -9px;
         }
 
-        .remodal-content{
-            .title{
+        .remodal-content {
+            .title {
                 font-style: normal;
                 font-weight: 500;
                 font-size: 18px;
@@ -10249,7 +10316,7 @@ section.langame_software_wrapper {
                 margin-bottom: 16px;
             }
 
-            form{
+            form {
                 margin-bottom: 32px;
 
                 textarea {
@@ -10268,7 +10335,7 @@ section.langame_software_wrapper {
                     margin-bottom: 32px;
                 }
 
-                .btn_wrapper{
+                .btn_wrapper {
                     button {
                         display: block;
                         border: none;
@@ -10290,7 +10357,7 @@ section.langame_software_wrapper {
                 }
             }
 
-            .instr{
+            .instr {
                 font-style: normal;
                 font-weight: 500;
                 font-size: 18px;
@@ -10298,7 +10365,7 @@ section.langame_software_wrapper {
                 text-align: left;
                 color: #000000;
 
-                a{
+                a {
                     color: #000000;
                 }
             }
@@ -10386,7 +10453,7 @@ section.langame_software_wrapper {
             }
         }
 
-        .report{
+        .report {
             position: absolute;
             top: 29px;
             right: 0;
@@ -10402,7 +10469,7 @@ section.langame_software_wrapper {
             line-height: 1;
             cursor: pointer;
 
-            &:before{
+            &:before {
                 content: '';
                 position: absolute;
                 top: 50%;
@@ -10442,11 +10509,10 @@ section.langame_software_wrapper {
             flex-direction: row;
             justify-content: flex-start;
             align-items: center;
-            margin: 0 -16px;
+            margin: 0;
 
             a {
                 display: block;
-                margin: 0 16px;
                 text-decoration: none;
                 font-style: normal;
                 font-weight: normal;
@@ -10458,6 +10524,10 @@ section.langame_software_wrapper {
                 &:hover {
                     color: #dc0000;
                 }
+            }
+
+            a + a {
+                margin-left: 32px;
             }
         }
     }
@@ -10490,7 +10560,7 @@ section.langame_software_wrapper {
                 }
             }
 
-            .report{
+            .report {
                 position: absolute;
                 top: calc(100% - 37px);
                 left: 17px;
@@ -10507,7 +10577,7 @@ section.langame_software_wrapper {
                 line-height: 1;
                 cursor: pointer;
 
-                &:before{
+                &:before {
                     content: '';
                     position: absolute;
                     top: 50%;

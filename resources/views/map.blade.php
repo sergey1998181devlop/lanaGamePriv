@@ -34,14 +34,11 @@
                 </div>
             </div>
         </div>
-        <div class="search_club_list" id="search-club-simplebar" data-simplebar-auto-hide="false">
+        <div class="search_club_list" data-simplebar data-simplebar-auto-hide="false">
             @foreach($clubs as $club)
                 @include('club')
             @endforeach
         </div>
-        @if($clubs->total() > 6)
-            <a id="show_more_clubs" class="show_more pointer">Показать ещё</a>
-        @endif
     </div>
 </section>
 <!--SECTION SEARCH CLUB BY MAP END-->
