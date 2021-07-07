@@ -633,6 +633,27 @@ input[type=number] {
     }
 }
 
+.simplebar-scrollbar::before {
+    background-color: #DC0000;
+    border-radius: 20px;
+    height: 192px;
+    opacity: 1;
+}
+
+.simplebar-scrollbar.simpleber-hover::before {
+    opacity: 1;
+}
+
+.simplebar-track.simplebar-vertical .simplebar-scrollbar:before {
+    top: 47px;
+    bottom: 2px;
+}
+
+.simplebar-track{
+    right: unset;
+    left: 10px;
+}
+
 /*! HEADER START */
 .header {
     padding: 24px 0;
@@ -1829,6 +1850,1538 @@ section.search_club_wrapper {
     }
 }
 /*! SECTION SEARCH CLUB END */
+
+/*! SECTION SEARCH CLUB BY MAP START */
+section.search_club_wrapper_by_map {
+    position: relative;
+
+    #search_club_by_map{
+        display: block;
+        width: 100%;
+        height: 1080px;
+        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    .search_club_by_map {
+        position: absolute;
+        left: 64px;
+        top: 64px;
+        width: 737px;
+        height: 1016px;
+        background: #FFFFFF;
+        box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.25);
+        border-radius: 20px 20px 0 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+
+        .search_club_sort_wrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 0;
+            border-bottom: 1px solid #D3D3D3;
+
+            .search_club_sort {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+
+                .search_club_result {
+                    margin-right: 12px;
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 16px;
+                    line-height: 1;
+                    color: #000000;
+
+                    .search_qty {
+                        font-weight: 400;
+                    }
+                }
+
+                .sort_by {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    align-items: center;
+
+                    .sort_by_title {
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 16px;
+                        line-height: 1;
+                        color: #000000;
+                        margin-right: 10px;
+                    }
+
+                    .sort_by_options {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-start;
+                        align-items: center;
+
+                        a {
+                            display: block;
+                            position: relative;
+                            margin-right: 10px;
+                            padding: 6px 8px 6px 20px;
+                            text-decoration: none;
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 18px;
+                            line-height: 1;
+                            color: #000000;
+                            border-bottom: 4px solid transparent;
+                            transition: opacity 0.2s, border-bottom-color 0.2s;
+
+                            &:before {
+                                content: '';
+                                display: block;
+                                width: 18px;
+                                height: 18px;
+                                position: absolute;
+                                top: 6px;
+                                left: 0;
+                                background-image: url("../img/asc.svg");
+                                background-repeat: no-repeat;
+                                background-position: center;
+                                background-size: 18px 18px;
+                                opacity: 0;
+                            }
+
+                            &:hover{
+                                border-bottom-color: rgba(220, 0, 0, 0.4);
+
+                                &:before {
+                                    opacity: 0.4;
+                                }
+                            }
+
+                            &.asc {
+                                border-bottom-color: #dc0000;
+
+                                &:before {
+                                    opacity: 1;
+                                    background-image: url("../img/asc.svg");
+                                }
+                            }
+
+                            &.desc {
+                                border-bottom-color: #dc0000;
+
+                                &:before {
+                                    opacity: 1;
+                                    background-image: url("../img/desc.svg");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .search_club_show {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+
+                .show_by_list {
+                    a {
+                        display: block;
+                        position: relative;
+                        text-decoration: none;
+                        padding: 8px 12px 8px 42px;
+                        background: #ffffff;
+                        border-radius: 12px;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 18px;
+                        line-height: 1;
+                        color: #ffffff;
+
+                        &:before {
+                            content: '';
+                            display: block;
+                            width: 22px;
+                            height: 22px;
+                            position: absolute;
+                            top: 50%;
+                            left: 12px;
+                            background-image: url("../img/list-black.svg");
+                            background-repeat: no-repeat;
+                            background-position: center;
+                            background-size: 18px 18px;
+                            transform: translateY(-50%);
+                        }
+                    }
+                }
+
+                .show_by_map {
+                    a {
+                        display: block;
+                        margin-left: 0;
+                        position: relative;
+                        text-decoration: none;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 18px;
+                        line-height: 1;
+                        color: #000000;
+                        padding: 0 46px 0 0;
+
+                        &:before {
+                            content: '';
+                            position: absolute;
+                            top: 50%;
+                            left: 0;
+                            display: block;
+                            width: 46px;
+                            height: 34px;
+                            background-image: url("../img/bymap.svg");
+                            background-repeat: no-repeat;
+                            background-position: center;
+                            background-size: 46px 34px;
+                            transform: translateY(-50%);
+                        }
+                    }
+                }
+            }
+        }
+
+        .search_club_list {
+            display: flex;
+            width: 100%;
+            height: 951px;
+            padding: 32px 32px 0;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: stretch;
+            flex-wrap: wrap;
+
+            .search_club_item {
+                width: 100%;
+                height: 220px;
+                margin: 0 0 32px;
+
+                .club_card{
+                    display: flex;
+                    flex-direction: row;
+
+                    .search_club_img_wrapper{
+                        width: 294px;
+                        height: 100%;
+
+                        .search_club_img{
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                border-radius: 14px 0 0 14px;
+                                object-fit: cover;
+                            }
+                        }
+
+                        .club_services {
+                            position: absolute;
+                            left: 12px;
+                            bottom: 12px;
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: flex-start;
+                            align-items: center;
+                            padding: 4px;
+                            margin: 0 -4px;
+                            background: rgba(85, 85, 85, 0.5);
+                            backdrop-filter: blur(10.4615px);
+                            border-radius: 8px;
+                            height: 26px;
+
+                            img {
+                                display: block;
+                                width: 18px;
+                                height: 18px;
+                                margin: 0 4px;
+                                object-fit: contain;
+                            }
+                        }
+
+                        .club_distance {
+                            position: absolute;
+                            right: 12px;
+                            bottom: 12px;
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: flex-start;
+                            align-items: center;
+                            padding: 4px 6px 4px 10px;
+                            background: rgba(85, 85, 85, 0.5);
+                            backdrop-filter: blur(10.4615px);
+                            border-radius: 8px;
+                            height: 26px;
+
+                            img {
+                                display: block;
+                                width: 18px;
+                                height: 18px;
+                                margin-right: 8px;
+                                object-fit: contain;
+                            }
+
+                            span {
+                                font-style: normal;
+                                font-weight: 500;
+                                font-size: 14px;
+                                line-height: 1.2;
+                                color: #ffffff;
+                            }
+
+                            &:empty {
+                                padding: 0;
+                            }
+                        }
+                    }
+
+                    .search_club_info {
+                        width: 306px;
+                        display: flex;
+                        flex-direction: column;
+                        padding: 12px;
+
+                        .club_name {
+                            margin-bottom: 8px;
+
+                            span {
+                                font-style: normal;
+                                font-weight: 700;
+                                font-size: 20px;
+                                line-height: 1.2;
+                                color: #000000;
+                            }
+
+                            &.approve {
+                                span:after {
+                                    content: '';
+                                    display: inline-block;
+                                    width: 19px;
+                                    height: 19px;
+                                    margin-left: 10px;
+                                    background-image: url("../img/ok.svg");
+                                    background-repeat: no-repeat;
+                                    background-position: center;
+                                    background-size: 19px 19px;
+                                }
+                            }
+                        }
+
+                        .rating_wrapper {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: flex-start;
+                            align-items: center;
+                            margin-bottom: 16px;
+
+                            .rating_stars {
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: flex-start;
+                                align-items: stretch;
+                                margin: 0 11px 0 -4px;
+
+                                img {
+                                    display: block;
+                                    width: 18px;
+                                    height: 18px;
+                                    margin: 0 4px;
+                                }
+
+                                .rating{
+                                    display: block;
+                                    margin-left: 10px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    font-size: 16px;
+                                    line-height: 1.3;
+                                    color: #000;
+                                }
+                            }
+
+                            .reviews_qty {
+                                span {
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    font-size: 16px;
+                                    line-height: 1.2;
+                                    color: #000000;
+                                }
+                            }
+                        }
+
+                        .club_subway_wrapper {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: flex-start;
+                            align-items: center;
+                            margin-bottom: 12px;
+
+                            .subway_img_wrapper {
+                                margin-right: 8px;
+
+                                svg {
+                                    display: block;
+                                    width: 20px;
+                                    height: 20px;
+                                }
+                            }
+
+                            .subway_station {
+                                font-style: normal;
+                                font-weight: 400;
+                                font-size: 16px;
+                                line-height: 1.3;
+                                color: #000000;
+                            }
+                        }
+
+                        .club_address_wrapper {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: flex-start;
+                            align-items: center;
+                            min-height: 52px;
+                            margin-bottom: 12px;
+
+                            .address_img_wrapper {
+                                margin-right: 10px;
+
+                                img {
+                                    display: block;
+                                    width: 20px;
+                                    height: 20px;
+                                }
+                            }
+
+                            .club_address {
+                                font-style: normal;
+                                font-weight: normal;
+                                font-size: 16px;
+                                line-height: 1.3;
+                                color: #000000;
+                            }
+                        }
+
+                        .club_features_wrapper {
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            height: 196px;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: flex-start;
+                            align-items: stretch;
+                            margin: 13px 0;
+                            padding: 0 24px 0 14px;
+                            border-left: 1px solid #D3D3D3;
+
+                            .club_features_item {
+                                margin: 10px 0;
+                                position: relative;
+
+                                .club_features_img_wrapper {
+                                    img {
+                                        display: block;
+                                        width: 30px;
+                                        height: 30px;
+                                    }
+                                }
+
+                                .club_features_qty {
+                                    display: block;
+                                    position: absolute;
+                                    top: 0;
+                                    right: 0;
+                                    background: #dc0000;
+                                    border-radius: 6px;
+                                    padding: 3px 4px;
+                                    font-style: normal;
+                                    font-weight: 500;
+                                    font-size: 14px;
+                                    line-height: 1;
+                                    text-align: center;
+                                    color: #ffffff;
+                                    transform: translate(50%, -50%);
+
+                                    &:empty {
+                                        display: none;
+                                    }
+                                }
+
+                                .club_features_qty:empty + .club_features_img_wrapper {
+                                    display: none;
+                                }
+                            }
+                        }
+
+                        .club_price_wrapper {
+                            position: static;
+                            right: 0;
+                            bottom: 12px;
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-between;
+                            align-items: center;
+                            height: 34px;
+                            width: 100%;
+                            padding: 0;
+
+                            .club_price {
+                                font-style: normal;
+                                font-weight: 700;
+                                font-size: 19px;
+                                line-height: 1;
+                                color: #000000;
+                            }
+
+                            .club_close {
+                                font-style: normal;
+                                font-weight: 500;
+                                font-size: 18px;
+                                line-height: 1;
+                                color: #dc0000;
+                            }
+
+                            .club_booking, .club_calling {
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: center;
+                                align-items: center;
+                                width: 151px;
+                                height: 34px;
+                                font-style: normal;
+                                font-weight: 500;
+                                font-size: 18px;
+                                line-height: 30px;
+                                text-align: center;
+                                color: #ffffff;
+                                border-radius: 12px;
+                            }
+
+                            .club_booking {
+                                background-color: #dc0000;
+
+                                &.closed{
+                                    color: #dc0000;
+                                    background-color: transparent;
+                                    cursor: auto;
+                                }
+                            }
+
+                            .club_calling {
+                                background-color: #000000;
+                            }
+
+                            .club_edit {
+                                position: relative;
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: flex-end;
+                                align-items: center;
+                                padding: 0 12px;
+                                margin-left: auto;
+                                width: 173px;
+                                height: 34px;
+                                font-style: normal;
+                                font-weight: 500;
+                                font-size: 18px;
+                                line-height: 23px;
+                                text-align: center;
+                                color: #dc0000;
+                                border-radius: 12px;
+                                border: 2px solid #dc0000;
+                                cursor: pointer;
+                                transition: color 0.2s, background-color 0.2s;
+
+                                &:before {
+                                    content: '';
+                                    display: block;
+                                    width: 18px;
+                                    height: 18px;
+                                    position: absolute;
+                                    top: 50%;
+                                    left: 10px;
+                                    background-image: url("../img/edit.svg");
+                                    background-repeat: no-repeat;
+                                    background-position: center;
+                                    background-size: 13px 13px;
+                                    transform: translateY(-50%);
+                                }
+
+                                &:hover{
+                                    background-color: #dc0000;
+                                    color: #ffffff;
+
+                                    &:before {
+                                        background-image: url("../img/edit-white.svg");
+                                    }
+                                }
+                            }
+                        }
+
+                        .checkbox_wrapper {
+                            margin-bottom: 28px;
+
+                            label {
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: flex-start;
+                                align-items: center;
+                                background-color: #ffffff;
+                                box-shadow: none;
+                                outline: none;
+                                //background: transparent !important;
+
+                                input {
+                                    opacity: 0;
+                                    position: absolute;
+                                    left: -9999px;
+                                    z-index: -1;
+                                }
+
+                                input:checked + .activator {
+                                    background-color: #dc0000;
+
+                                    span {
+                                        transform: translate(102%, -50%);
+                                    }
+                                }
+
+                                .activator {
+                                    display: block;
+                                    position: relative;
+                                    width: 52px;
+                                    height: 28px;
+                                    background-color: #000000;
+                                    border-radius: 14px;
+                                    margin-right: 12px;
+                                    transition: background-color 0.2s;
+
+                                    span {
+                                        position: absolute;
+                                        top: 50%;
+                                        left: 4px;
+                                        display: block;
+                                        width: 22px;
+                                        height: 22px;
+                                        border-radius: 50%;
+                                        background-color: #ffffff;
+                                        transform: translateY(-50%);
+                                        transition: transform 0.2s;
+                                    }
+                                }
+
+                                span {
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    font-size: 16px;
+                                    line-height: 1;
+                                    color: #000000;
+                                }
+                            }
+                        }
+
+                        .club_status_wrapper {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: center;
+                            align-items: center;
+                            margin-bottom: 28px;
+
+                            span {
+                                font-style: normal;
+                                font-weight: 500;
+                                font-size: 18px;
+                                line-height: 1;
+                                color: #000000;
+                            }
+
+                            img {
+                                display: block;
+                                width: 22px;
+                                height: 22px;
+                                margin-right: 12px;
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+
+        .show_more{
+           display: none;
+        }
+    }
+
+    @media (max-width: 1500px){
+        position: relative;
+
+        #search_club_by_map{
+            display: block;
+            width: 100%;
+            height: 1080px;
+            box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+        }
+
+        .search_club_by_map {
+            position: static;
+            left: 64px;
+            top: 0;
+            width: 100%;
+            height: 230px;
+            background: transparent;
+            box-shadow: none;
+            border-radius: 0;
+            display: block;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+
+
+            .search_club_sort_wrapper {
+                position: absolute;
+                bottom: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                padding: 15px;
+                margin-bottom: 0;
+                border-bottom: none;
+
+                .search_club_sort {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    align-items: center;
+
+                    .search_club_result {
+                        margin-right: 12px;
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 16px;
+                        line-height: 1;
+                        color: #000000;
+
+                        .search_qty {
+                            font-weight: 400;
+                        }
+                    }
+
+                    .sort_by {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-start;
+                        align-items: center;
+
+                        .sort_by_title {
+                            font-style: normal;
+                            font-weight: 700;
+                            font-size: 16px;
+                            line-height: 1;
+                            color: #000000;
+                            margin-right: 10px;
+                        }
+
+                        .sort_by_options {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: flex-start;
+                            align-items: center;
+
+                            a {
+                                display: block;
+                                position: relative;
+                                margin-right: 10px;
+                                padding: 6px 8px 6px 20px;
+                                text-decoration: none;
+                                font-style: normal;
+                                font-weight: 400;
+                                font-size: 18px;
+                                line-height: 1;
+                                color: #000000;
+                                border-bottom: 4px solid transparent;
+                                transition: opacity 0.2s, border-bottom-color 0.2s;
+
+                                &:before {
+                                    content: '';
+                                    display: block;
+                                    width: 18px;
+                                    height: 18px;
+                                    position: absolute;
+                                    top: 6px;
+                                    left: 0;
+                                    background-image: url("../img/asc.svg");
+                                    background-repeat: no-repeat;
+                                    background-position: center;
+                                    background-size: 18px 18px;
+                                    opacity: 0;
+                                }
+
+                                &:hover{
+                                    border-bottom-color: rgba(220, 0, 0, 0.4);
+
+                                    &:before {
+                                        opacity: 0.4;
+                                    }
+                                }
+
+                                &.asc {
+                                    border-bottom-color: #dc0000;
+
+                                    &:before {
+                                        opacity: 1;
+                                        background-image: url("../img/asc.svg");
+                                    }
+                                }
+
+                                &.desc {
+                                    border-bottom-color: #dc0000;
+
+                                    &:before {
+                                        opacity: 1;
+                                        background-image: url("../img/desc.svg");
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .search_club_show {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    align-items: center;
+
+                    .show_by_list {
+                        a {
+                            display: block;
+                            position: relative;
+                            text-decoration: none;
+                            padding: 8px 12px 8px 42px;
+                            background: #ffffff;
+                            border-radius: 12px;
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 18px;
+                            line-height: 1;
+                            color: #ffffff;
+
+                            &:before {
+                                content: '';
+                                display: block;
+                                width: 22px;
+                                height: 22px;
+                                position: absolute;
+                                top: 50%;
+                                left: 12px;
+                                background-image: url("../img/list-black.svg");
+                                background-repeat: no-repeat;
+                                background-position: center;
+                                background-size: 18px 18px;
+                                transform: translateY(-50%);
+                            }
+                        }
+                    }
+
+                    .show_by_map {
+                        a {
+                            display: block;
+                            margin-left: 0;
+                            position: relative;
+                            text-decoration: none;
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 18px;
+                            line-height: 1;
+                            color: #000000;
+                            padding: 0 46px 0 0;
+
+                            &:before {
+                                content: '';
+                                position: absolute;
+                                top: 50%;
+                                left: 0;
+                                display: block;
+                                width: 46px;
+                                height: 34px;
+                                background-image: url("../img/bymap.svg");
+                                background-repeat: no-repeat;
+                                background-position: center;
+                                background-size: 46px 34px;
+                                transform: translateY(-50%);
+                            }
+                        }
+                    }
+                }
+            }
+
+            .search_club_list {
+                position: absolute;
+                left: 30px;
+                bottom: 295px;
+                display: flex;
+                width: 100%;
+                height: 250px;
+                padding: 15px 0 15px 15px;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+
+                .simplebar-content{
+                    display: flex;
+                }
+
+                .search_club_item {
+                    width: 673px;
+                    height: 220px;
+                    margin: 0 20px 0 0;
+                    flex-shrink: 0;
+                    background-color: #ffffff;
+
+                    .club_card{
+                        display: flex;
+                        flex-direction: row;
+
+                        .search_club_img_wrapper{
+                            width: 294px;
+                            height: 100%;
+
+                            .search_club_img{
+                                img {
+                                    width: 100%;
+                                    height: 100%;
+                                    border-radius: 14px 0 0 14px;
+                                    object-fit: cover;
+                                }
+                            }
+
+                            .club_services {
+                                position: absolute;
+                                left: 12px;
+                                bottom: 12px;
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: flex-start;
+                                align-items: center;
+                                padding: 4px;
+                                margin: 0 -4px;
+                                background: rgba(85, 85, 85, 0.5);
+                                backdrop-filter: blur(10.4615px);
+                                border-radius: 8px;
+                                height: 26px;
+
+                                img {
+                                    display: block;
+                                    width: 18px;
+                                    height: 18px;
+                                    margin: 0 4px;
+                                    object-fit: contain;
+                                }
+                            }
+
+                            .club_distance {
+                                position: absolute;
+                                right: 12px;
+                                bottom: 12px;
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: flex-start;
+                                align-items: center;
+                                padding: 4px 6px 4px 10px;
+                                background: rgba(85, 85, 85, 0.5);
+                                backdrop-filter: blur(10.4615px);
+                                border-radius: 8px;
+                                height: 26px;
+
+                                img {
+                                    display: block;
+                                    width: 18px;
+                                    height: 18px;
+                                    margin-right: 8px;
+                                    object-fit: contain;
+                                }
+
+                                span {
+                                    font-style: normal;
+                                    font-weight: 500;
+                                    font-size: 14px;
+                                    line-height: 1.2;
+                                    color: #ffffff;
+                                }
+
+                                &:empty {
+                                    padding: 0;
+                                }
+                            }
+                        }
+
+                        .search_club_info {
+                            width: 306px;
+                            display: flex;
+                            flex-direction: column;
+                            padding: 12px;
+
+                            .club_name {
+                                margin-bottom: 8px;
+
+                                span {
+                                    font-style: normal;
+                                    font-weight: 700;
+                                    font-size: 20px;
+                                    line-height: 1.2;
+                                    color: #000000;
+                                }
+
+                                &.approve {
+                                    span:after {
+                                        content: '';
+                                        display: inline-block;
+                                        width: 19px;
+                                        height: 19px;
+                                        margin-left: 10px;
+                                        background-image: url("../img/ok.svg");
+                                        background-repeat: no-repeat;
+                                        background-position: center;
+                                        background-size: 19px 19px;
+                                    }
+                                }
+                            }
+
+                            .rating_wrapper {
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: flex-start;
+                                align-items: center;
+                                margin-bottom: 16px;
+
+                                .rating_stars {
+                                    display: flex;
+                                    flex-direction: row;
+                                    justify-content: flex-start;
+                                    align-items: stretch;
+                                    margin: 0 11px 0 -4px;
+
+                                    img {
+                                        display: block;
+                                        width: 18px;
+                                        height: 18px;
+                                        margin: 0 4px;
+                                    }
+
+                                    .rating{
+                                        display: block;
+                                        margin-left: 10px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        font-size: 16px;
+                                        line-height: 1.3;
+                                        color: #000;
+                                    }
+                                }
+
+                                .reviews_qty {
+                                    span {
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        font-size: 16px;
+                                        line-height: 1.2;
+                                        color: #000000;
+                                    }
+                                }
+                            }
+
+                            .club_subway_wrapper {
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: flex-start;
+                                align-items: center;
+                                margin-bottom: 12px;
+
+                                .subway_img_wrapper {
+                                    margin-right: 8px;
+
+                                    svg {
+                                        display: block;
+                                        width: 20px;
+                                        height: 20px;
+                                    }
+                                }
+
+                                .subway_station {
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    font-size: 16px;
+                                    line-height: 1.3;
+                                    color: #000000;
+                                }
+                            }
+
+                            .club_address_wrapper {
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: flex-start;
+                                align-items: center;
+                                min-height: 52px;
+                                margin-bottom: 12px;
+
+                                .address_img_wrapper {
+                                    margin-right: 10px;
+
+                                    img {
+                                        display: block;
+                                        width: 20px;
+                                        height: 20px;
+                                    }
+                                }
+
+                                .club_address {
+                                    font-style: normal;
+                                    font-weight: normal;
+                                    font-size: 16px;
+                                    line-height: 1.3;
+                                    color: #000000;
+                                }
+                            }
+
+                            .club_features_wrapper {
+                                position: absolute;
+                                top: 0;
+                                right: 0;
+                                height: 196px;
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: flex-start;
+                                align-items: stretch;
+                                margin: 13px 0;
+                                padding: 0 24px 0 14px;
+                                border-left: 1px solid #D3D3D3;
+
+                                .club_features_item {
+                                    margin: 10px 0;
+                                    position: relative;
+
+                                    .club_features_img_wrapper {
+                                        img {
+                                            display: block;
+                                            width: 30px;
+                                            height: 30px;
+                                        }
+                                    }
+
+                                    .club_features_qty {
+                                        display: block;
+                                        position: absolute;
+                                        top: 0;
+                                        right: 0;
+                                        background: #dc0000;
+                                        border-radius: 6px;
+                                        padding: 3px 4px;
+                                        font-style: normal;
+                                        font-weight: 500;
+                                        font-size: 14px;
+                                        line-height: 1;
+                                        text-align: center;
+                                        color: #ffffff;
+                                        transform: translate(50%, -50%);
+
+                                        &:empty {
+                                            display: none;
+                                        }
+                                    }
+
+                                    .club_features_qty:empty + .club_features_img_wrapper {
+                                        display: none;
+                                    }
+                                }
+                            }
+
+                            .club_price_wrapper {
+                                position: static;
+                                right: 0;
+                                bottom: 12px;
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: space-between;
+                                align-items: center;
+                                height: 34px;
+                                width: 100%;
+                                padding: 0;
+
+                                .club_price {
+                                    font-style: normal;
+                                    font-weight: 700;
+                                    font-size: 19px;
+                                    line-height: 1;
+                                    color: #000000;
+                                }
+
+                                .club_close {
+                                    font-style: normal;
+                                    font-weight: 500;
+                                    font-size: 18px;
+                                    line-height: 1;
+                                    color: #dc0000;
+                                }
+
+                                .club_booking, .club_calling {
+                                    display: flex;
+                                    flex-direction: row;
+                                    justify-content: center;
+                                    align-items: center;
+                                    width: 151px;
+                                    height: 34px;
+                                    font-style: normal;
+                                    font-weight: 500;
+                                    font-size: 18px;
+                                    line-height: 30px;
+                                    text-align: center;
+                                    color: #ffffff;
+                                    border-radius: 12px;
+                                }
+
+                                .club_booking {
+                                    background-color: #dc0000;
+
+                                    &.closed{
+                                        color: #dc0000;
+                                        background-color: transparent;
+                                        cursor: auto;
+                                    }
+                                }
+
+                                .club_calling {
+                                    background-color: #000000;
+                                }
+
+                                .club_edit {
+                                    position: relative;
+                                    display: flex;
+                                    flex-direction: row;
+                                    justify-content: flex-end;
+                                    align-items: center;
+                                    padding: 0 12px;
+                                    margin-left: auto;
+                                    width: 173px;
+                                    height: 34px;
+                                    font-style: normal;
+                                    font-weight: 500;
+                                    font-size: 18px;
+                                    line-height: 23px;
+                                    text-align: center;
+                                    color: #dc0000;
+                                    border-radius: 12px;
+                                    border: 2px solid #dc0000;
+                                    cursor: pointer;
+                                    transition: color 0.2s, background-color 0.2s;
+
+                                    &:before {
+                                        content: '';
+                                        display: block;
+                                        width: 18px;
+                                        height: 18px;
+                                        position: absolute;
+                                        top: 50%;
+                                        left: 10px;
+                                        background-image: url("../img/edit.svg");
+                                        background-repeat: no-repeat;
+                                        background-position: center;
+                                        background-size: 13px 13px;
+                                        transform: translateY(-50%);
+                                    }
+
+                                    &:hover{
+                                        background-color: #dc0000;
+                                        color: #ffffff;
+
+                                        &:before {
+                                            background-image: url("../img/edit-white.svg");
+                                        }
+                                    }
+                                }
+                            }
+
+                            .checkbox_wrapper {
+                                margin-bottom: 28px;
+
+                                label {
+                                    display: flex;
+                                    flex-direction: row;
+                                    justify-content: flex-start;
+                                    align-items: center;
+                                    background-color: #ffffff;
+                                    box-shadow: none;
+                                    outline: none;
+                                    //background: transparent !important;
+
+                                    input {
+                                        opacity: 0;
+                                        position: absolute;
+                                        left: -9999px;
+                                        z-index: -1;
+                                    }
+
+                                    input:checked + .activator {
+                                        background-color: #dc0000;
+
+                                        span {
+                                            transform: translate(102%, -50%);
+                                        }
+                                    }
+
+                                    .activator {
+                                        display: block;
+                                        position: relative;
+                                        width: 52px;
+                                        height: 28px;
+                                        background-color: #000000;
+                                        border-radius: 14px;
+                                        margin-right: 12px;
+                                        transition: background-color 0.2s;
+
+                                        span {
+                                            position: absolute;
+                                            top: 50%;
+                                            left: 4px;
+                                            display: block;
+                                            width: 22px;
+                                            height: 22px;
+                                            border-radius: 50%;
+                                            background-color: #ffffff;
+                                            transform: translateY(-50%);
+                                            transition: transform 0.2s;
+                                        }
+                                    }
+
+                                    span {
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        font-size: 16px;
+                                        line-height: 1;
+                                        color: #000000;
+                                    }
+                                }
+                            }
+
+                            .club_status_wrapper {
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: center;
+                                align-items: center;
+                                margin-bottom: 28px;
+
+                                span {
+                                    font-style: normal;
+                                    font-weight: 500;
+                                    font-size: 18px;
+                                    line-height: 1;
+                                    color: #000000;
+                                }
+
+                                img {
+                                    display: block;
+                                    width: 22px;
+                                    height: 22px;
+                                    margin-right: 12px;
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 980px) {
+        .search_club {
+            padding: 0 0 32px;
+            border-bottom: 1px solid #d3d3d3;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+
+            .search_club_sort_wrapper {
+                position: relative;
+                display: block;
+                width: 100%;
+                padding: 0;
+                margin-bottom: 32px;
+
+                .search_club_sort {
+                    display: block;
+                    flex-direction: unset;
+                    justify-content: unset;
+                    align-items: unset;
+
+                    .search_club_result {
+                        margin-right: 0;
+                        margin-bottom: 24px;
+                    }
+
+                    .sort_by {
+                        display: block;
+                        flex-direction: unset;
+                        justify-content: unset;
+                        align-items: unset;
+
+                        .sort_by_title {
+                            margin-right: 0;
+                            margin-bottom: 24px;
+                        }
+
+                        .sort_by_options {
+                            justify-content: space-between;
+
+                            a {
+                                margin-right: 0;
+                                padding: 6px 0 6px 24px;
+                            }
+
+                            a + a {
+                                margin-left: 10px;
+                            }
+                        }
+                    }
+                }
+
+                .search_club_show {
+                    position: absolute;
+                    right: 0;
+                    top: 32px;
+
+                    .show_by_list {
+                        a {
+                            width: 34px;
+                            height: 34px;
+                            margin-right: 20px;
+                            padding: 8px;
+                            border-radius: 8px;
+
+                            span {
+                                display: none;
+                            }
+
+                            &:before {
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                            }
+                        }
+                    }
+
+                    .show_by_map {
+                        a {
+                            width: 34px;
+                            height: 34px;
+                            padding: 8px;
+
+                            span {
+                                display: none;
+                            }
+
+                            &:before {
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                            }
+                        }
+                    }
+                }
+            }
+
+            .search_club_list {
+                display: block;
+                margin: 0 auto;
+                width: 100%;
+
+                .search_club_item {
+                    width: 294px;
+                    margin: 0 auto 32px;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 400px) {
+        .search_club {
+            .search_club_sort_wrapper {
+                .search_club_sort {
+                    .sort_by {
+                        .sort_by_options {
+                            a {
+                                margin-right: 0;
+                                padding: 6px 0 6px 21px;
+                                font-size: 16px;
+
+                                &:before {
+                                    width: 16px;
+                                    height: 16px;
+                                    background-size: 16px 16px;
+                                }
+                            }
+
+                            a + a {
+                                margin-left: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 340px) {
+        .search_club {
+            .search_club_sort_wrapper {
+                .search_club_sort {
+
+                    .sort_by {
+                        .sort_by_title {
+                            margin-right: 0;
+                            margin-bottom: 24px;
+                        }
+
+                        .sort_by_options {
+                            a {
+                                margin-right: 0;
+                                padding: 6px 0;
+                                font-size: 16px;
+
+                                &:before {
+                                    display: none;
+                                }
+                            }
+
+                            a + a {
+                                margin-left: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+/*! SECTION SEARCH CLUB BY MAP END */
 
 /*! SECTION ARTICLES START */
 section.articles_wrapper {

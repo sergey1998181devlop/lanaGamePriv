@@ -710,7 +710,7 @@
 @endsection
 @section('scripts')
 @if($club->lat!= '' && $club->lon!= '')
-<script src="https://api-maps.yandex.ru/2.1/?apikey=79ca1998-f254-447d-8081-bcd9647a8fb9&lang=ru_RU" type="text/javascript"></script>
+<script src="https://api-maps.yandex.ru/2.1/?apikey={{env('YANDIX_MAPS_KEY','79ca1998-f254-447d-8081-bcd9647a8fb9')}}&lang=ru_RU" type="text/javascript"></script>
 <script>
 ymaps.ready(init);
     function init() {

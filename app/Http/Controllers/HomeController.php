@@ -9,7 +9,7 @@ use App\city;
 use App\metro;
 use View;
 use DateTime;
-include_once(resource_path('views/includes/functions.blade.php')); 
+include_once(resource_path('views/includes/functions.blade.php'));
 class HomeController extends Controller
 {
     /**
@@ -46,7 +46,7 @@ class HomeController extends Controller
         } catch (\Yandex\Locator\Exception $ex) {
             // какая-то другая ошибка (запроса, например)
         }
-        
+
       }else{
         $lat = $_COOKIE["lat"];
         $lon = $_COOKIE["lon"];
@@ -99,7 +99,7 @@ class HomeController extends Controller
       $b = array();
       $b['query']='Unit';
       if(($request->input('q'))){
-        $cities=city::select('id','name','en_name','metroMap','parentName')->where('name', 'like', '%' . $request->input('q') . '%')->orWhere('en_name', 'like', '%' . $request->input('q') . '%')->orderBy('order_no')->paginate(8);       
+        $cities=city::select('id','name','en_name','metroMap','parentName')->where('name', 'like', '%' . $request->input('q') . '%')->orWhere('en_name', 'like', '%' . $request->input('q') . '%')->orderBy('order_no')->paginate(8);
       }else{
         $correntCity = city::select('id','name','en_name','metroMap','parentName')->find(($request->input('selected') ? $request->input('selected') : city(true)['id']));
         if(!isset($request->page) || $request->page == 1){
@@ -113,10 +113,10 @@ class HomeController extends Controller
         ];
       }
       foreach ($cities as $city) {
-        
+
        $b["results"][]=[ "text"=> ($city->parentName != '') ? $city->name.', '.$city->parentName :  $city->name, "data"=> $city->en_name,'id'=>$city->id,'has_metro' =>  $city->metroMap  ];
       }
-      
+
       return response($b);
    }
    public function searchMetro(Request $request){

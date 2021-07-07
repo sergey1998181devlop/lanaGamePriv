@@ -147,6 +147,10 @@ jQuery(function() {
         }
     });
 
+
+        new SimpleBar(document.getElementById('search-club-simplebar'));
+
+
    /**
      * Scroll page handlers
      */
