@@ -10,132 +10,32 @@
     } elseif (isset($_GET['order']) && $_GET['order'] == 'rating') {
         $order_by = 'rating';
     }
-
     $order_key = isset($_GET['order_key']) && \in_array($_GET['order_key'], ['asc', 'desc']) ? $_GET['order_key'] : 'asc';
+    $show = 'list';
+    if(isset($_GET['show']) && $_GET['show'] == 'map'){ $show = 'map';}
     ?>
     @if(count($clubs) > 0)
         <!--SECTION CHOOSE CLUB INFO START-->
-        <section class="choose_club_info_wrapper">
-            <div class="container">
-                <div class="choose_club_info">
-                    <div class="choose_club_info_title">
-                        <h1>Выбери свой <br>
-                            компьютерный клуб в <span class="text_decor">{{city(true)['namePrepositional']}}</span>
-                        </h1>
-                    </div>
-                    <div class="choose_club_info_img">
-                        <img src="{{ asset('/img/choose.png')}}" alt="image">
-                    </div>
+    <section class="choose_club_info_wrapper">
+        <div class="container">
+            <div class="choose_club_info">
+                <div class="choose_club_info_title">
+                    <h1>Выбери свой <br>
+                        компьютерный клуб в <span class="text_decor">{{city(true)['namePrepositional']}}</span>
+                    </h1>
+                </div>
+                <div class="choose_club_info_img">
+                    <img src="{{ asset('/img/choose.png')}}" alt="image">
                 </div>
             </div>
-        </section>
-        <!--SECTION CHOOSE CLUB INFO END-->
-
-            <!--SECTION SEARCH CLUB START-->
-            <section class="search_club_wrapper">
-                <div class="container">
-                    <div class="search_club">
-                        <div class="search_club_sort_wrapper">
-                            <div class="search_club_sort">
-                                <div class="search_club_result">
-                                    <span>Найдено:</span>
-                                    <span class="search_qty">{{$clubs->total()}}</span>
-                                </div>
-                                <div class="sort_by">
-                                    <div class="sort_by_title">
-                                        Сортировать:
-                                    </div>
-
-                                    <div class="sort_by_options">
-                                        <a class="<?= $order_by === 'price' ? $order_key : ''; ?>"
-                                           href="{{url('/')}}/{{city()}}?order=price&order_key=<?= $order_by === 'price' && $order_key === 'asc' ? 'desc' : 'asc'; ?>">По цене</a>
-
-                                        <a class="<?= $order_by === 'rating' ? $order_key : ''; ?>"
-                                           href="{{url('/')}}/{{city()}}?order=rating&order_key=<?= $order_by === 'rating' && $order_key === 'asc' ? 'desc' : 'asc'; ?>">По
-                                            рейтингу</a>
-
-                                        <a class="<?= $order_by === 'nearby' ? $order_key : ''; ?>"
-                                           href="{{url('/')}}/{{city()}}?order=nearby&order_key=<?= $order_by === 'nearby' && $order_key === 'asc' ? 'desc' : 'asc'; ?>">По
-                                            близости</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="search_club_show">
-                                <div class="show_by_list">
-                                    <a href="#"><span>Список</span></a>
-                                </div>
-                                @if(false)
-                                    <div class="show_by_map">
-                                        <a href="#"><span>На карте</span></a>
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="search_club_list">
-                            @foreach($clubs as $club)
-                                @include('club')
-                            @endforeach
-                        </div>
-                        @if($clubs->total() > 6)
-                            <a id="show_more_clubs" class="show_more pointer">Показать ещё</a>
-                        @endif
-                    </div>
-                </div>
-            </section>
-            <!--SECTION SEARCH CLUB END-->
-
-
-    @if(false)
-        <!--SECTION SEARCH CLUB BY MAP START-->
-        <section class="search_club_wrapper_by_map">
-            <div id="search_club_by_map"></div>
-            <div class="search_club_by_map">
-                <div class="search_club_sort_wrapper">
-                    <div class="search_club_sort">
-                        <div class="search_club_result">
-                            <span>Найдено:</span>
-                            <span class="search_qty">{{$clubs->total()}}</span>
-                        </div>
-                        <div class="sort_by">
-                            <div class="sort_by_title">
-                                Сортировать:
-                            </div>
-
-                            <div class="sort_by_options">
-                                <a class="<?= $order_by === 'price' ? $order_key : ''; ?>"
-                                   href="{{url('/')}}/{{city()}}?order=price&order_key=<?= $order_by === 'price' && $order_key === 'asc' ? 'desc' : 'asc'; ?>">По цене</a>
-
-                                <a class="<?= $order_by === 'rating' ? $order_key : ''; ?>"
-                                   href="{{url('/')}}/{{city()}}?order=rating&order_key=<?= $order_by === 'rating' && $order_key === 'asc' ? 'desc' : 'asc'; ?>">По рейтингу</a>
-
-                                <a class="<?= $order_by === 'nearby' ? $order_key : ''; ?>"
-                                   href="{{url('/')}}/{{city()}}?order=nearby&order_key=<?= $order_by === 'nearby' && $order_key === 'asc' ? 'desc' : 'asc'; ?>">По близости</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="search_club_show">
-                        <div class="show_by_list">
-                            <a href="#"><span></span></a>
-                        </div>
-                        <div class="show_by_map">
-                            <a href="#"><span></span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="search_club_list" id="search-club-simplebar" data-simplebar-auto-hide="false">
-                    @foreach($clubs as $club)
-                        @include('club')
-                    @endforeach
-                </div>
-                @if($clubs->total() > 6)
-                    <a id="show_more_clubs" class="show_more pointer">Показать ещё</a>
-                @endif
-            </div>
-        </section>
-        <!--SECTION SEARCH CLUB BY MAP END-->
-    @endif
-
-
+        </div>
+    </section>
+    <!--SECTION CHOOSE CLUB INFO END-->
+        @if($show == 'map')
+            @include('map')
+        @else
+            @include('list')
+        @endif
     @else
         <!--SECTION CHOOSE CLUB INFO START-->
         <section class="choose_club_info_wrapper">

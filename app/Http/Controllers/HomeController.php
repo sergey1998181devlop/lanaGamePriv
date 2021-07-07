@@ -67,15 +67,19 @@ class HomeController extends Controller
       if ($request->input('order_key') == "asc"){
         $order_key = "ASC";
       }
+      $paginate = 6;
+      if ($request->input('show') == "map"){
+        $paginate = 999999999999999; // показать все
+      }
       if($order == 'nearby'){ // тут делай что надо
       //  данныую функцию можешь изменить
         $clubs= club::SelectCartFeilds4Home($lat, $lon)->Published()->CorrentCity()->whereNull('hidden_at')->with(array('metro'=>function($query) {
           $query->select('id','name','color');
-        }))->orderBy($order,$order_key)->paginate(6);
+        }))->orderBy($order,$order_key)->paginate($paginate);
       }else{
         $clubs= club::SelectCartFeilds4Home($lat, $lon)->Published()->CorrentCity()->whereNull('hidden_at')->with(array('metro'=>function($query) {
           $query->select('id','name','color');
-      }))->orderBy($order,$order_key)->paginate(6);
+      }))->orderBy($order,$order_key)->paginate($paginate);
       }
        $now = new DateTime();
        $today = strtolower(date("l"));
