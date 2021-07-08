@@ -3435,10 +3435,12 @@ section.search_club_wrapper_by_map {
                                 }
 
                                 .club_close {
+                                    display: none;
                                     font-size: 16px;
                                 }
 
                                 .club_booking, .club_calling {
+                                    display: none;
                                     width: 116px;
                                     height: 28px;
                                     font-size: 14px;
@@ -10076,6 +10078,44 @@ section.langame_software_wrapper {
                 p {
                     font-size: 22px;
                 }
+            }
+        }
+    }
+}
+
+.get_geo{
+    background: #ffffff;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    padding: 16px;
+
+    .remodal-close {
+        width: 28px;
+        height: 28px;
+        left: unset;
+        left: auto;
+        right: -10px;
+        top: -10px;
+        opacity: 1;
+        background-image: url("../img/cancel.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 34px 34px;
+        background-color: #ffffff;
+        border-radius: 50%;
+
+
+        &:before {
+            content: none;
+            display: none;
+        }
+    }
+
+    .remodal-content{
+        .club_phone_wrapper{
+
+            p{
+                font-weight: 500;
             }
         }
     }

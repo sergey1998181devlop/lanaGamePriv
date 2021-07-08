@@ -24,8 +24,16 @@ jQuery(function() {
         let myMap = new ymaps.Map(map, {
             center: fixCoordinatesCenter(center, 11),
             zoom: 11,
-            behaviors: ['drag', 'dblClickZoom', 'ruler', 'routeEditor', 'leftMouseButtonMagnifier']
+            behaviors: ['drag', 'dblClickZoom'],
+            controls: ['searchControl']
         });
+
+        let zoomControl = new ymaps.control.ZoomControl({
+            options: {
+                position: {left: 'auto', right: 10, top: 108}
+            }
+        });
+        myMap.controls.add(zoomControl);
 
         jQuery('[data-role-club]').each(function() {
             let $club = jQuery(this);
@@ -122,7 +130,7 @@ jQuery(function() {
                 listScrollLeft = list[0].scrollLeft,
                 wrapperPaddingLeft = parseFloat(style.paddingTop ? style.paddingTop.replace('px', '') : '0');
 
-            list[0].scrollTop = elementOffsetTop - listOffsetTop + listScrollTop - wrapperPaddingTop;
+            list[0].scrollTop = elementOffsetTop - listOffsetTop + listScrollTop - wrapperPaddingTop -360;
             list[0].scrollLeft = elementOffsetLeft - listOffsetLeft + listScrollLeft - wrapperPaddingLeft;
         }
     });
