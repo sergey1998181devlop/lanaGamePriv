@@ -5018,6 +5018,8 @@ section.club_page_content_wrapper {
             position: relative;
 
             .club_page_photo_item {
+                position: relative;
+
                 img {
                     display: block;
                     width: 100%;
@@ -5034,6 +5036,21 @@ section.club_page_content_wrapper {
 
                 &:nth-child(n+6) {
                     display: none;
+                }
+
+                &.club_video{
+                    &:before{
+                        content: '▶';
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        display: block;
+                        color: #ffffff;
+                        text-shadow: 0 0 0.5em black;
+                        font-size: 48px;
+                        transform: translate(-50%, -50%);
+                        pointer-events: none;
+                    }
                 }
             }
 

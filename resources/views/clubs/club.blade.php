@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <?php
-    if($club->work_time == '2'){
+    if ($club->work_time == '2') {
         $schedule_item = unserialize($club->work_time_days);
     }
     ?>
@@ -35,7 +35,10 @@
 
                 <div class="main_info_btn_wrapper">
                     @if(admin())
-                    <a href="{{url('personal/club/'.$club->id.'/edit')}}" style="background:#cb8e20;color:#000;margin-right: 5px;font-size: 14px;" class="btn" data-remodal-target="change_user_modal">Сменить владелеца</a>
+                        <a href="{{url('personal/club/'.$club->id.'/edit')}}"
+                           style="background:#cb8e20;color:#000;margin-right: 5px;font-size: 14px;"
+                           class="btn"
+                           data-remodal-target="change_user_modal">Сменить владелеца</a>
                     @endif
                     @if($club->published_at == null && admin())
                         <a href="{{url('club/'.$club->id.'/active')}}" class="club_active btn">Активировать</a>
@@ -43,34 +46,37 @@
                     @endif
                     @if(admin() && $club->published_at != null)
                         <a href="{{url('personal/club/'.$club->id.'/edit')}}" style="background:#1f42ff;color:#fff;margin-right: 5px;" class="btn">Редактировать</a>
-                        <a href="{{url('personal/club/'.$club->id.'/edit')}}" style="background:#a0a0a0;color:#fff;margin-right: 5px;" data-remodal-target="club_comment_modal" class="btn">Снять с публикации</a>
+                        <a href="{{url('personal/club/'.$club->id.'/edit')}}"
+                           style="background:#a0a0a0;color:#fff;margin-right: 5px;"
+                           data-remodal-target="club_comment_modal"
+                           class="btn">Снять с публикации</a>
                     @endif
 
-                <?php
-                  $showCallButton =true;
-                    if($club->work_time == '2' && is_array($schedule_item)){
-                        if(!isset($schedule_item[strtolower(date("l"))])){
-                            $showCallButton =false;
-                        }else{
-                            if(!empty($schedule_item[strtolower(date("l"))]['from']) && !empty($schedule_item[strtolower(date("l"))]['to'])){
+                    <?php
+                    $showCallButton = true;
+                    if ($club->work_time == '2' && is_array($schedule_item)) {
+                        if (!isset($schedule_item[strtolower(date("l"))])) {
+                            $showCallButton = false;
+                        } else {
+                            if (!empty($schedule_item[strtolower(date("l"))]['from']) && !empty($schedule_item[strtolower(date("l"))]['to'])) {
                                 $now = new DateTime();
                                 $begin = new DateTime($schedule_item[strtolower(date("l"))]['from']);
                                 $end = new DateTime($schedule_item[strtolower(date("l"))]['to']);
-                                if ($now >= $begin && $now <= $end){
-                                    $showCallButton =true;
-                                }else{
-                                    $showCallButton =false;
+                                if ($now >= $begin && $now <= $end) {
+                                    $showCallButton = true;
+                                } else {
+                                    $showCallButton = false;
                                 }
                             }
                         }
 
                     }
-                ?>
-                   @if($showCallButton)
-                    <button type="button" class="club_calling" data-remodal-target="club_phone_modal">Позвонить</button>
-                   @else
-                    <button type="button" class="club_calling closed">Закрыт</button>
-                   @endif
+                    ?>
+                    @if($showCallButton)
+                        <button type="button" class="club_calling" data-remodal-target="club_phone_modal">Позвонить</button>
+                    @else
+                        <button type="button" class="club_calling closed">Закрыт</button>
+                    @endif
 
                 </div>
             </div>
@@ -79,12 +85,12 @@
                     <div class="rating_wrapper">
                         <div class="rating_stars">
                             {!!echoRating($club->rating * 10)!!}
-                            <span class="rating" >{{$club->rating }}</span>
+                            <span class="rating">{{$club->rating }}</span>
                         </div>
                         @if(false)
-                        <div class="reviews_qty">
-                            <span>47 отзывов</span>
-                        </div>
+                            <div class="reviews_qty">
+                                <span>47 отзывов</span>
+                            </div>
                         @endif
                     </div>
                 @endif
@@ -98,7 +104,7 @@
                         <div class="subway_station">
                             <span>{{$club->metro->name}}</span>
                             @if(false)
-                            <span class="subway_time_to">(1 мин.)</span>
+                                <span class="subway_time_to">(1 мин.)</span>
                             @endif
                         </div>
                     </div>
@@ -119,29 +125,45 @@
         </div>
     </section>
     <section class="club_page_content_wrapper">
-    <?php $images = array_filter(explode(',', $club->club_photos));?>
-    @if(count($images) > 0)
-        <div class="club_page_photo_wrapper">
-            <div class="container">
-                <div class="club_page_photo_list">
-                    <?php
-                    $images = array_filter(explode(',', $club->club_photos));
-                    foreach ($images as $value) {
-                    ?>
-                    <div class="club_page_photo_item">
-                        <a href="{{$value}}" data-fancybox>
-                            <img src="{{$value}}" alt="image">
-                        </a>
-                    </div>
-                    <?
-                    }?>
+        <?php $images = array_filter(explode(',', $club->club_photos));?>
+        @if(count($images) > 0)
+            <div class="club_page_photo_wrapper">
+                <div class="container">
+                    <div class="club_page_photo_list">
+                        <?php
+                        $images = array_filter(explode(',', $club->club_photos));
+                        foreach ($images as $value) {
+                        ?>
+                        <div class="club_page_photo_item">
+                            <a href="{{$value}}" data-fancybox>
+                                <img src="{{$value}}" alt="image">
+                            </a>
+                        </div>
+
+                        <?php } ?>
+
+                        <?php
+                        $youtubeUrl = 'https://www.youtube.com/embed/IcfI5rthcTA';
+                        ?>
+
+                        <?php if ($youtubeUrl): ?>
+                        <?php
+                        $youtubeImageUrl = \preg_replace('#^https://www.youtube.com/embed/(.+)(\?.+)?$#', 'https://img.youtube.com/vi/$1/hqdefault.jpg', $youtubeUrl);
+                        ?>
+
+                        <div class="club_page_photo_item club_video">
+                            <a href="{{$youtubeUrl}}" data-fancybox>
+                                <img src="{{ $youtubeImageUrl }}" alt="">
+                            </a>
+                        </div>
+                        <?php endif; ?>
 
                         <button type="button" class="@if(count($images) < 5) hidden-lg @endif" data-remodal-target="club_photo_modal">Показать все фото</button>
+                    </div>
                 </div>
+                <span class="counter"></span>
             </div>
-            <span class="counter"></span>
-        </div>
-    @endif
+        @endif
         <div class="club_page_services_wrapper">
             <div class="container">
                 <div class="club_page_title">
@@ -151,13 +173,13 @@
                     <div class="club_page_services_item">
                         <img src="{{asset('/img/icons/pc.svg')}}" alt="icons">
                         <?
-                            $message = msgfmt_create('ru_RU', '{count, plural, one{# компьютер} few{# компьютера} many{# компьютеров} other{# компьютера}}');
+                        $message = msgfmt_create('ru_RU', '{count, plural, one{# компьютер} few{# компьютера} many{# компьютеров} other{# компьютера}}');
                         ?>
                         <span>{{$message->format(['count' => $club->qty_pc]) . PHP_EOL}}</span>
                     </div>
                     @if($club->console == '1')
                         <?
-                            $message = msgfmt_create('ru_RU', '{count, plural, one{# консоль} few{# консоли} many{# консолей} other{# консоли}}');
+                        $message = msgfmt_create('ru_RU', '{count, plural, one{# консоль} few{# консоли} many{# консолей} other{# консоли}}');
                         ?>
                         <div class="club_page_services_item">
                             <img src="{{asset('/img/icons/playstation.svg')}}" alt="icons">
@@ -166,7 +188,7 @@
                     @endif
                     @if($club->qty_vip_pc > 0)
                         <?
-                            $message = msgfmt_create('ru_RU', '{count, plural, one{# компьютер} few{# компьютера} many{# компьютеров} other{# компьютера}}');
+                        $message = msgfmt_create('ru_RU', '{count, plural, one{# компьютер} few{# компьютера} many{# компьютеров} other{# компьютера}}');
                         ?>
                         <div class="club_page_services_item">
                             <img src="{{asset('/img/icons/vip-black.svg')}}" alt="icons">
@@ -175,7 +197,7 @@
                     @endif
                     @if($club->qty_simulator > 0)
                         <?
-                            $message = msgfmt_create('ru_RU', '{count, plural, one{# устройство} few{# устройства} many{# устройств} other{# устройства}}');
+                        $message = msgfmt_create('ru_RU', '{count, plural, one{# устройство} few{# устройства} many{# устройств} other{# устройства}}');
                         ?>
                         <div class="club_page_services_item">
                             <img src="{{asset('/img/icons/drive.svg')}}" alt="icons">
@@ -184,7 +206,7 @@
                     @endif
                     @if($club->qty_vr > 0)
                         <?
-                           $message = msgfmt_create('ru_RU', '{count, plural, one{# устройство} few{# устройства} many{# устройств} other{# устройства}}');
+                        $message = msgfmt_create('ru_RU', '{count, plural, one{# устройство} few{# устройства} many{# устройств} other{# устройства}}');
                         ?>
                         <div class="club_page_services_item">
                             <img src="{{asset('/img/icons/vr.svg')}}" alt="icons">
@@ -287,7 +309,7 @@
                         @if(substr($club->club_price_file, strrpos($club->club_price_file, '.') + 1) != 'pdf')
                             <button type="button" class="show_price_list" data-remodal-target="club_price_list_modal">Посмотреть прайс-лист</button>
                         @else
-                        <a href="{{$club->club_price_file}}" target="_blank" class="show_price_list">Посмотреть прайс-лист</a>
+                            <a href="{{$club->club_price_file}}" target="_blank" class="show_price_list">Посмотреть прайс-лист</a>
                         @endif
                     @endif
                 </div>
@@ -332,187 +354,187 @@
             </div>
         </div>
         @if(canBeUnserialized($club->configuration))
-        <?php
-        $configuration = unserialize($club->configuration);
-        $configurationAr = [];
-        ?>
-        @if(is_array( $configuration))
-            <div class="club_page_pc_configuration_wrapper toggle_block_wrapper">
-                <div class="container">
-                    <div class="club_page_title club_page_toggle_content">
-                        <span>Конфигурация компьютеров</span>
-                    </div>
+            <?php
+            $configuration = unserialize($club->configuration);
+            $configurationAr = [];
+            ?>
+            @if(is_array( $configuration))
+                <div class="club_page_pc_configuration_wrapper toggle_block_wrapper">
+                    <div class="container">
+                        <div class="club_page_title club_page_toggle_content">
+                            <span>Конфигурация компьютеров</span>
+                        </div>
 
-                    <div class="club_page_pc_configuration_list toggle_block">
-                        <div class="table_wrapper">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Оборудование</th>
-                                        @foreach($configuration as $val)
-                                            <th>{{isset($val['conf_name'])? $val['conf_name'] : null}}</th>
-                                            <? foreach ($val as $key => $value) {
-                                                $configurationAr[$key][] = $value;
-                                            }?>
-                                        @endforeach
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if(isset($configurationAr['cpu_vendor']))
-                                    <tr>
-                                        <td>Процессор</td>
-                                        @foreach($configurationAr['cpu_vendor'] as $key=>$val)
-                                            <td>{{$val}} {{isset($configurationAr['cpu_model'][$key]) ? $configurationAr['cpu_model'][$key] : null}}</td>
-                                        @endforeach
-                                    </tr>
-                                    @endif
-                                    @if(isset($configurationAr['video_vendor']))
-                                    <tr>
-                                        <td>Видеокарта</td>
-                                        @foreach($configurationAr['video_vendor'] as $key=>$val)
-                                            <td>{{$val}} {{isset($configurationAr['video_model'][$key]) ? $configurationAr['video_model'][$key] : null}}</td>
-                                        @endforeach
-                                    </tr>
-                                    @endif
-                                    @if(isset($configurationAr['memory_size']))
-                                    <tr>
-                                        <td>Оперативная память</td>
-                                        @foreach($configurationAr['memory_size'] as $key=>$val)
-                                            <td>{{$val}} {{isset($configurationAr['memory_type'][$key]) ? $configurationAr['memory_type'][$key] : null}}</td>
-                                        @endforeach
-                                    </tr>
-                                    @endif
-                                    @if(isset($configurationAr['hard_disc_type']))
-                                    <tr>
-                                        <td>Жёсткий диск</td>
-                                        @foreach($configurationAr['hard_disc_type'] as $val)
-                                            <td>{{$val}}</td>
-                                        @endforeach
-                                    </tr>
-                                    @endif
-                                    @if(isset($configurationAr['keyboard_vendor']))
-                                    <tr>
-                                        <td>Клавиатура</td>
-                                        @foreach($configurationAr['keyboard_vendor'] as $val)
-                                            <td>{{$val}}</td>
-                                        @endforeach
-                                    </tr>
-                                    @endif
-                                    @if(isset($configurationAr['mouse_vendor']))
-                                    <tr>
-                                        <td>Мышь</td>
-                                        @foreach($configurationAr['mouse_vendor'] as $val)
-                                            <td>{{$val}}</td>
-                                        @endforeach
-                                    </tr>
-                                    @endif
-                                    @if(isset($configurationAr['headphone_vendor']))
-                                    <tr>
-                                        <td>Гарнитура</td>
-                                        @foreach($configurationAr['headphone_vendor'] as $val)
-                                            <td>{{$val}}</td>
-                                        @endforeach
-                                    </tr>
-                                    @endif
-                                    @if(isset($configurationAr['chair_vendor']))
-                                    <tr>
-                                        <td>Кресло</td>
-                                        @foreach($configurationAr['chair_vendor'] as $val)
-                                            <td>{{$val}}</td>
-                                        @endforeach
-                                    </tr>
-                                    @endif
-                                    @if(isset($configurationAr['monitor_vendor']))
-                                    <tr>
-                                        <td>Монитор</td>
-                                        @foreach($configurationAr['monitor_vendor'] as $key=>$val)
-                                            <td>{{$val}} {{isset($configurationAr['monitor_type'][$key]) ? $configurationAr['monitor_type'][$key] : null}}</td>
-                                        @endforeach
-                                    </tr>
-                                    @endif
-                                    @if(isset($configurationAr['internet']))
-                                    <tr>
-                                        <td>Интернет</td>
-                                        @foreach($configurationAr['internet'] as $val)
-                                            <td>{{$val}}</td>
-                                        @endforeach
-                                    </tr>
-                                    @endif
-                                </tbody>
-                            </table>
+                        <div class="club_page_pc_configuration_list toggle_block">
+                            <div class="table_wrapper">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Оборудование</th>
+                                            @foreach($configuration as $val)
+                                                <th>{{isset($val['conf_name'])? $val['conf_name'] : null}}</th>
+                                                <? foreach ($val as $key => $value) {
+                                                    $configurationAr[$key][] = $value;
+                                                }?>
+                                            @endforeach
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if(isset($configurationAr['cpu_vendor']))
+                                            <tr>
+                                                <td>Процессор</td>
+                                                @foreach($configurationAr['cpu_vendor'] as $key=>$val)
+                                                    <td>{{$val}} {{isset($configurationAr['cpu_model'][$key]) ? $configurationAr['cpu_model'][$key] : null}}</td>
+                                                @endforeach
+                                            </tr>
+                                        @endif
+                                        @if(isset($configurationAr['video_vendor']))
+                                            <tr>
+                                                <td>Видеокарта</td>
+                                                @foreach($configurationAr['video_vendor'] as $key=>$val)
+                                                    <td>{{$val}} {{isset($configurationAr['video_model'][$key]) ? $configurationAr['video_model'][$key] : null}}</td>
+                                                @endforeach
+                                            </tr>
+                                        @endif
+                                        @if(isset($configurationAr['memory_size']))
+                                            <tr>
+                                                <td>Оперативная память</td>
+                                                @foreach($configurationAr['memory_size'] as $key=>$val)
+                                                    <td>{{$val}} {{isset($configurationAr['memory_type'][$key]) ? $configurationAr['memory_type'][$key] : null}}</td>
+                                                @endforeach
+                                            </tr>
+                                        @endif
+                                        @if(isset($configurationAr['hard_disc_type']))
+                                            <tr>
+                                                <td>Жёсткий диск</td>
+                                                @foreach($configurationAr['hard_disc_type'] as $val)
+                                                    <td>{{$val}}</td>
+                                                @endforeach
+                                            </tr>
+                                        @endif
+                                        @if(isset($configurationAr['keyboard_vendor']))
+                                            <tr>
+                                                <td>Клавиатура</td>
+                                                @foreach($configurationAr['keyboard_vendor'] as $val)
+                                                    <td>{{$val}}</td>
+                                                @endforeach
+                                            </tr>
+                                        @endif
+                                        @if(isset($configurationAr['mouse_vendor']))
+                                            <tr>
+                                                <td>Мышь</td>
+                                                @foreach($configurationAr['mouse_vendor'] as $val)
+                                                    <td>{{$val}}</td>
+                                                @endforeach
+                                            </tr>
+                                        @endif
+                                        @if(isset($configurationAr['headphone_vendor']))
+                                            <tr>
+                                                <td>Гарнитура</td>
+                                                @foreach($configurationAr['headphone_vendor'] as $val)
+                                                    <td>{{$val}}</td>
+                                                @endforeach
+                                            </tr>
+                                        @endif
+                                        @if(isset($configurationAr['chair_vendor']))
+                                            <tr>
+                                                <td>Кресло</td>
+                                                @foreach($configurationAr['chair_vendor'] as $val)
+                                                    <td>{{$val}}</td>
+                                                @endforeach
+                                            </tr>
+                                        @endif
+                                        @if(isset($configurationAr['monitor_vendor']))
+                                            <tr>
+                                                <td>Монитор</td>
+                                                @foreach($configurationAr['monitor_vendor'] as $key=>$val)
+                                                    <td>{{$val}} {{isset($configurationAr['monitor_type'][$key]) ? $configurationAr['monitor_type'][$key] : null}}</td>
+                                                @endforeach
+                                            </tr>
+                                        @endif
+                                        @if(isset($configurationAr['internet']))
+                                            <tr>
+                                                <td>Интернет</td>
+                                                @foreach($configurationAr['internet'] as $val)
+                                                    <td>{{$val}}</td>
+                                                @endforeach
+                                            </tr>
+                                        @endif
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        @endif
+            @endif
         @endif
         @if($club->lat!= '' && $club->lon!= '')
-        <div class="club_page_map_wrapper">
-            <div class="container">
-                <div class="club_page_title">
-                    <span>Расположение</span>
+            <div class="club_page_map_wrapper">
+                <div class="container">
+                    <div class="club_page_title">
+                        <span>Расположение</span>
+                    </div>
+                    <div class="club_page_map" id="club_page_maps"></div>
                 </div>
-                <div class="club_page_map" id="club_page_maps"></div>
             </div>
-        </div>
         @endif
         @if(false)
-        <div class="club_page_reviews_wrapper">
-            <div class="container">
-                <div class="club_page_title">
-                    <span>Отзывы</span>
-                </div>
-                <div class="club_page_reviews">
-                    <div class="club_page_reviews_list">
-                        <div class="club_page_reviews_item">
-                            <div class="user_info">
-                                <div class="user_avatar">
-                                    <img src="{{asset('/img/avatar.svg')}}" alt="avatar">
+            <div class="club_page_reviews_wrapper">
+                <div class="container">
+                    <div class="club_page_title">
+                        <span>Отзывы</span>
+                    </div>
+                    <div class="club_page_reviews">
+                        <div class="club_page_reviews_list">
+                            <div class="club_page_reviews_item">
+                                <div class="user_info">
+                                    <div class="user_avatar">
+                                        <img src="{{asset('/img/avatar.svg')}}" alt="avatar">
+                                    </div>
+                                    <div class="user_name">
+                                        Федор Лукин
+                                    </div>
                                 </div>
-                                <div class="user_name">
-                                    Федор Лукин
+                                <div class="rating_wrapper">
+                                    <div class="rating_stars">
+                                        <img src="{{asset('/img/star.svg')}}" alt="star">
+                                        <img src="{{asset('/img/star.svg')}}" alt="star">
+                                        <img src="{{asset('/img/star.svg')}}" alt="star">
+                                        <img src="{{asset('/img/star.svg')}}" alt="star">
+                                        <img src="{{asset('/img/star.svg')}}" alt="star">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="rating_wrapper">
-                                <div class="rating_stars">
-                                    <img src="{{asset('/img/star.svg')}}" alt="star">
-                                    <img src="{{asset('/img/star.svg')}}" alt="star">
-                                    <img src="{{asset('/img/star.svg')}}" alt="star">
-                                    <img src="{{asset('/img/star.svg')}}" alt="star">
-                                    <img src="{{asset('/img/star.svg')}}" alt="star">
-                                </div>
-                            </div>
-                            <div class="review_content_wrapper">
-                                <div class="review_content">
-                                    Мощная аппаратура, тянет все игры, часто здесь бываю и один, и с компанией.
-                                    Отличный вариант отдыха после работы для любителей игр.
-                                    Располагающая атмосфера, приятный персонал, много единомышленников, даже если пришёл один
-                                    - без компании не останешься. Мне нравится бывать в этом клубе, цены не завышены.
-                                    Мощная аппаратура, тянет все игры, часто здесь бываю и один, и с компанией.
-                                    Отличный вариант отдыха после работы для любителей игр.
-                                    Располагающая атмосфера, приятный персонал, много единомышленников, даже если пришёл один
-                                    - без компании не останешься. Мне нравится бывать в этом клубе, цены не завышены.
+                                <div class="review_content_wrapper">
+                                    <div class="review_content">
+                                        Мощная аппаратура, тянет все игры, часто здесь бываю и один, и с компанией.
+                                        Отличный вариант отдыха после работы для любителей игр.
+                                        Располагающая атмосфера, приятный персонал, много единомышленников, даже если пришёл один
+                                        - без компании не останешься. Мне нравится бывать в этом клубе, цены не завышены.
+                                        Мощная аппаратура, тянет все игры, часто здесь бываю и один, и с компанией.
+                                        Отличный вариант отдыха после работы для любителей игр.
+                                        Располагающая атмосфера, приятный персонал, много единомышленников, даже если пришёл один
+                                        - без компании не останешься. Мне нравится бывать в этом клубе, цены не завышены.
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         @endif
         @if($club->club_description != '')
-        <div class="club_page_description_wrapper">
-            <div class="container">
-                <div class="club_page_title">
-                    <span>Описание</span>
-                </div>
-                <div class="club_page_description">
-                    <p>
-                        {{$club->club_description}}
-                    </p>
+            <div class="club_page_description_wrapper">
+                <div class="container">
+                    <div class="club_page_title">
+                        <span>Описание</span>
+                    </div>
+                    <div class="club_page_description">
+                        <p>
+                            {{$club->club_description}}
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
         @endif
         <div class="club_page_contacts_wrapper toggle_block_wrapper">
             <div class="container">
@@ -578,7 +600,7 @@
                                 <div class="subway_station">
                                     <span>{{$club->metro->name}}</span>
                                     @if(false)
-                                    <span class="subway_time_to">(1 мин.)</span>
+                                        <span class="subway_time_to">(1 мин.)</span>
                                     @endif
                                 </div>
                             </div>
@@ -599,12 +621,12 @@
                         </div>
                     </div>
                     @if($club->club_email != '')
-                    <div class="club_page_contacts_item">
-                        <div class="club_contact">
-                            <img src="{{asset('/img/mail.svg')}}" alt="email">
-                            <a href="mailto:{{$club->club_email}}">{{$club->club_email}}</a>
+                        <div class="club_page_contacts_item">
+                            <div class="club_contact">
+                                <img src="{{asset('/img/mail.svg')}}" alt="email">
+                                <a href="mailto:{{$club->club_email}}">{{$club->club_email}}</a>
+                            </div>
                         </div>
-                    </div>
                     @endif
                 </div>
             </div>
@@ -616,9 +638,9 @@
             <div class="club_price_wrapper">
                 <div class="club_price">Аренда от {{$club->club_min_price}} ₽/час</div>
                 @if($showCallButton)
-                <a href="tel:84958749900" class="club_calling">Позвонить</a>
+                    <a href="tel:84958749900" class="club_calling">Позвонить</a>
                 @else
-                <a class="club_calling closed">Закрыт</a>
+                    <a class="club_calling closed">Закрыт</a>
                 @endif
             </div>
         </div>
@@ -645,13 +667,13 @@
                     <div class="modal-body">
 
                         <div class="form-group required">
-                        <label for="select_new_user">Выберите нового владелеца</label>
-                        <div class="input_wrapper">
-                            <input id="select_new_user" type="text" placeholder="" autocomplete="false" autocomplete="chrome-off"  required>
-                            <input type="hidden" id="new_user_id"  name="new_user" required>
-                            <div class="error"></div>
+                            <label for="select_new_user">Выберите нового владелеца</label>
+                            <div class="input_wrapper">
+                                <input id="select_new_user" type="text" placeholder="" autocomplete="false" autocomplete="chrome-off" required>
+                                <input type="hidden" id="new_user_id" name="new_user" required>
+                                <div class="error"></div>
+                            </div>
                         </div>
-                    </div>
                     </div>
                     <button type="submit" class="btn btn-danger">Отправить</button>
                 </form>
@@ -680,72 +702,73 @@
     @endif
 
 
-<div class="show_club_photo_modal" data-remodal-id="club_photo_modal">
-    <button data-remodal-action="close" class="remodal-close">Закрыть</button>
-    <div class="remodal-content">
-        <div class="counter_slide" id="show_club_photo_counter_slide">
-            1/10
-        </div>
-        <div class="club_photo_modal_wrapper">
-        @foreach ($images as $value)
-            <div class="slide_item">
-                <img src="{{$value}}" alt="club_image">
+    <div class="show_club_photo_modal" data-remodal-id="club_photo_modal">
+        <button data-remodal-action="close" class="remodal-close">Закрыть</button>
+        <div class="remodal-content">
+            <div class="counter_slide" id="show_club_photo_counter_slide">
+                1/10
             </div>
-        @endforeach
+            <div class="club_photo_modal_wrapper">
+                @foreach ($images as $value)
+                    <div class="slide_item">
+                        <img src="{{$value}}" alt="club_image">
+                    </div>
+                @endforeach
+            </div>
         </div>
     </div>
-</div>
-@if(substr($club->club_price_file, strrpos($club->club_price_file, '.') + 1) != 'pdf')
-<div class="show_club_price_list_modal" data-remodal-id="club_price_list_modal">
-    <button data-remodal-action="close" class="remodal-close">Закрыть</button>
-    <div class="remodal-content">
-        <div class="club_price_list_wrapper">
-            <a href="{{$club->club_price_file}}" data-fancybox>
-                <img src="{{$club->club_price_file}}" alt="price_list">
-            </a>
+    @if(substr($club->club_price_file, strrpos($club->club_price_file, '.') + 1) != 'pdf')
+        <div class="show_club_price_list_modal" data-remodal-id="club_price_list_modal">
+            <button data-remodal-action="close" class="remodal-close">Закрыть</button>
+            <div class="remodal-content">
+                <div class="club_price_list_wrapper">
+                    <a href="{{$club->club_price_file}}" data-fancybox>
+                        <img src="{{$club->club_price_file}}" alt="price_list">
+                    </a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-@endif
+    @endif
 @endsection
 @section('scripts')
-@if($club->lat!= '' && $club->lon!= '')
-<script src="https://api-maps.yandex.ru/2.1/?apikey={{env('YANDIX_MAPS_KEY','79ca1998-f254-447d-8081-bcd9647a8fb9')}}&lang=ru_RU" type="text/javascript"></script>
-<script>
-ymaps.ready(init);
-    function init() {
-    var myMap = new ymaps.Map("club_page_maps", {
-            center: [{{$club->lat}}, {{$club->lon}}],
-            zoom: 15
-        });
-        myMap.geoObjects
-            .add(new ymaps.Placemark([{{$club->lat}}, {{$club->lon}}],  {
-                preset: 'islands#dotIcon',
-                iconColor: '#735184'
-            }));
-    }
+    @if($club->lat!= '' && $club->lon!= '')
+        <script src="https://api-maps.yandex.ru/2.1/?apikey={{env('YANDIX_MAPS_KEY','79ca1998-f254-447d-8081-bcd9647a8fb9')}}&lang=ru_RU" type="text/javascript"></script>
+        <script>
+            ymaps.ready(init);
 
-</script>
-@endif
-@if(admin())
-<script src="{{ asset('/js/jquery.autocomplete.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
-<script>
-$('#select_new_user').autocomplete({
-    serviceUrl: '{{url("/panel/find-user")}}',
-    dataType : 'json',
+            function init() {
+                var myMap = new ymaps.Map('club_page_maps', {
+                    center: [{{$club->lat}}, {{$club->lon}}],
+                    zoom: 15
+                });
+                myMap.geoObjects
+                    .add(new ymaps.Placemark([{{$club->lat}}, {{$club->lon}}], {
+                        preset: 'islands#dotIcon',
+                        iconColor: '#735184'
+                    }));
+            }
 
-    onSelect: function (suggestion) {
-        $('#new_user_id').val(suggestion.data)
-    }
-});
-</script>
-@endif
-@if(isset($_GET['status']) && $_GET['status'] == 'success')
-<script>
-    $( document ).ready(function(){
-        jQuery('[data-remodal-id="success_modal"]').remodal().open();
-    });
-    window.history.replaceState({}, document.title, $('meta[name="site"]').attr('content') + "/" + 'personal/clubs/' );
-</script>
-@endif
+        </script>
+    @endif
+    @if(admin())
+        <script src="{{ asset('/js/jquery.autocomplete.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
+        <script>
+            $('#select_new_user').autocomplete({
+                serviceUrl: '{{url("/panel/find-user")}}',
+                dataType: 'json',
+
+                onSelect: function(suggestion) {
+                    $('#new_user_id').val(suggestion.data);
+                }
+            });
+        </script>
+    @endif
+    @if(isset($_GET['status']) && $_GET['status'] == 'success')
+        <script>
+            $(document).ready(function() {
+                jQuery('[data-remodal-id="success_modal"]').remodal().open();
+            });
+            window.history.replaceState({}, document.title, $('meta[name="site"]').attr('content') + '/' + 'personal/clubs/');
+        </script>
+    @endif
 @endsection

@@ -23,7 +23,8 @@ jQuery(function() {
 
         let myMap = new ymaps.Map(map, {
             center: fixCoordinatesCenter(center, 11),
-            zoom: 11
+            zoom: 11,
+            behaviors: ['drag', 'dblClickZoom', 'ruler', 'routeEditor', 'leftMouseButtonMagnifier']
         });
 
         jQuery('[data-role-club]').each(function() {
