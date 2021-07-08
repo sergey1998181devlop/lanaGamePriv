@@ -15,13 +15,13 @@
 
                     <div class="sort_by_options">
                         <a class="<?= $order_by === 'price' ? $order_key : ''; ?>"
-                            href="{{url('/')}}/{{city()}}?order=price&order_key=<?= $order_by === 'price' && $order_key === 'asc' ? 'desc' : 'asc'; ?>">По цене</a>
+                            href="{{url('/')}}/{{city()}}?show=map&order=price&order_key=<?= $order_by === 'price' && $order_key === 'asc' ? 'desc' : 'asc'; ?>">По цене</a>
 
                         <a class="<?= $order_by === 'rating' ? $order_key : ''; ?>"
-                            href="{{url('/')}}/{{city()}}?order=rating&order_key=<?= $order_by === 'rating' && $order_key === 'asc' ? 'desc' : 'asc'; ?>">По рейтингу</a>
+                            href="{{url('/')}}/{{city()}}?show=map&order=rating&order_key=<?= $order_by === 'rating' && $order_key === 'asc' ? 'desc' : 'asc'; ?>">По рейтингу</a>
 
                         <a class="<?= $order_by === 'nearby' ? $order_key : ''; ?>"
-                            href="{{url('/')}}/{{city()}}?order=nearby&order_key=<?= $order_by === 'nearby' && $order_key === 'asc' ? 'desc' : 'asc'; ?>">По близости</a>
+                            href="{{url('/')}}/{{city()}}?show=map&order=nearby&order_key=<?= $order_by === 'nearby' && $order_key === 'asc' ? 'desc' : 'asc'; ?>">По близости</a>
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                 </div>
             </div>
         </div>
-        <div class="search_club_list" data-simplebar data-simplebar-auto-hide="false">
+        <div class="search_club_list" data-search-club-by-map data-simplebar data-simplebar-auto-hide="false">
             @foreach($clubs as $club)
                 @include('club')
             @endforeach

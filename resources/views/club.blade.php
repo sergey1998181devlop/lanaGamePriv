@@ -1,9 +1,13 @@
-<div class="search_club_item <?=(isset($show) && $show === 'map') ? 'in_map' : null ?>" data-role-club data-lon="{{$club->lon}}" data-lat="{{$club->lat}}">
+<div class="search_club_item <?=(isset($show) && $show === 'map') ? 'in_map' : null ?>"
+     data-id="{{$club->id}}"
+     data-role-club
+     data-lon="{{$club->lon}}"
+     data-lat="{{$club->lat}}">
 <a href="{{url('clubs/'.$club->id.'/'.$club->url)}}" class="club_card">
     <div class="search_club_img_wrapper">
         <div class="search_club_img">
         @if($club->main_preview_photo != null)
-        <img src="{{ $club->main_preview_photo}}" alt="club">
+        <img src="{{ $club->main_preview_photo}}" onerror="this.src='{{ asset('/img/default-club-preview-image.svg')}}'" alt="club">
         @else
         <img src="{{ asset('/img/default-club-preview-image.svg')}}" alt="club">
         @endif
