@@ -83,9 +83,9 @@ declare(strict_types=1);
 </div>
 @if(admin())
 <div class="form-group">
-    <label for="rating-input">Отзыв клуба</label>
+    <label for="rating-input">Рейтинг клуба</label>
     <div class="input_wrapper">
-        <input id="rating-input" name="rating" value="{{clubValue('rating')}}">
+        <input id="rating-input" type="number" step="0.1" max="5" min="1" name="rating" value="{{clubValue('rating')}}">
         <div class="error"></div>
     </div>
 </div>

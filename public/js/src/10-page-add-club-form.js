@@ -39,8 +39,6 @@ jQuery(function() {
         $form.find('.form_tab').append('<button type="submit" class="save_for_admin">Сохранить</button>')
     }
 
-
-
     $form.on('keydown', 'input', function(e) {
         if (e.key === 'Enter') {
             e.preventDefault();
@@ -162,6 +160,19 @@ jQuery(function() {
                 return hasErrors ? reject() : resolve();
             });
         });
+
+        jQuery('#rating-input').on('input change', function(e) {
+            let $this = jQuery(this);
+
+            if($this.length === 0){
+                return;
+            }
+
+            if ($this.val() < 0 || $this.val() > 5){
+                $this.val('');
+            }
+        });
+
     })();
 
     // url validation
