@@ -7,11 +7,11 @@ function geo(){
         navigator.geolocation.getCurrentPosition(        
             function(position) {
                 document.cookie = "lat=" + position.coords.latitude;
-                document.cookie = "lon=" + position.coords.longitude;        
+                document.cookie = "lon=" + position.coords.longitude;    
+                $(".club_distance").css("display", "flex");    
             },
             function(error) { 
                 //доступ закрыт к координатам браузера. оставляем координаты от яндекса в куках
-                $(".club_distance").hide();
                 $(".sort_by_options a").last().on("click", function(){
                     if (!getCookie('show_geo_alert')) {
                         document.cookie = "show_geo_alert=1";
@@ -26,9 +26,8 @@ function geo(){
                 });
             }            
         );
-    }else{
-        $(".club_distance").hide();
-        $(".sort_by_options a").last().hide();
+        $(".club_distance").css("display", "flex");
+        $(".sort_by_options a").last().show();
     }
 }
 function getCookie(name) {

@@ -4,7 +4,7 @@
 
 html, body {
     margin: 0;
-    padding: 0;
+    padding: 1;
 }
 
 *, a, input, select, textarea, button {
@@ -159,13 +159,13 @@ input[type=number] {
                 height: 18px;
                 margin: 0 4px;
             }
-        }
+        }        
 
         .club_distance {
             position: absolute;
             right: 12px;
             bottom: 12px;
-            display: flex;
+            display: none;
             flex-direction: row;
             justify-content: flex-start;
             align-items: center;
@@ -1590,6 +1590,9 @@ section.search_club_wrapper {
                                     background-image: url("../img/desc.svg");
                                 }
                             }
+                            &:last-child {
+                                display: none;
+                            }
                         }
                     }
                 }
@@ -1728,6 +1731,9 @@ section.search_club_wrapper {
 
                             a + a {
                                 margin-left: 10px;
+                            }
+                            &:last-child {
+                                display: block;
                             }
                         }
                     }
@@ -2119,7 +2125,7 @@ section.search_club_wrapper_by_map {
                             position: absolute;
                             right: 12px;
                             bottom: 12px;
-                            display: flex;
+                            display: none;
                             flex-direction: row;
                             justify-content: flex-start;
                             align-items: center;
@@ -2830,7 +2836,7 @@ section.search_club_wrapper_by_map {
                                 position: absolute;
                                 right: 12px;
                                 bottom: 12px;
-                                display: flex;
+                                display: none;
                                 flex-direction: row;
                                 justify-content: flex-start;
                                 align-items: center;
@@ -4897,7 +4903,7 @@ section.club_page_main_info_wrapper {
         }
 
         .club_distance {
-            display: flex;
+            display: none;
             flex-direction: row;
             justify-content: flex-start;
             align-items: center;
@@ -5838,7 +5844,7 @@ section.club_page_content_wrapper {
                         border: none;
                         border-collapse: collapse;
                         table-layout: fixed;
-                        overflowx-x: auto;
+                        overflow-x: auto;
 
                         thead {
                             tr {
