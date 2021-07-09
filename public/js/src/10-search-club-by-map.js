@@ -70,7 +70,9 @@ jQuery(function() {
 
         jQuery(document).on('mouseover', '[data-search-club-by-map] [data-role-club][data-id]', function(e) {
             let $this = jQuery(this);
+            jQuery('[data-role-club]').removeClass('active');
             activateClubById($this.data('id'));
+            $this.addClass('active');
         });
 
         function activateClubById(id) {
@@ -120,17 +122,20 @@ jQuery(function() {
 
         function scrollToElement(wrapper, list, element) {
             let style = getComputedStyle(wrapper),
+                styleElem = getComputedStyle(element[0]),
                 listOffsetTop = list.offset().top,
                 elementOffsetTop = element.offset().top,
                 listScrollTop = list[0].scrollTop,
                 wrapperPaddingTop = parseFloat(style.paddingTop ? style.paddingTop.replace('px', '') : '0'),
+                wrapperHeight = parseFloat(style.height ? style.height.replace('px', '') : '0'),
+                elemHeight = parseFloat(styleElem.height ? styleElem.height.replace('px', '') : '0'),
 
                 listOffsetLeft = list.offset().left,
                 elementOffsetLeft = element.offset().left,
                 listScrollLeft = list[0].scrollLeft,
                 wrapperPaddingLeft = parseFloat(style.paddingTop ? style.paddingTop.replace('px', '') : '0');
 
-            list[0].scrollTop = elementOffsetTop - listOffsetTop + listScrollTop - wrapperPaddingTop -360;
+            list[0].scrollTop = elementOffsetTop - listOffsetTop + listScrollTop - wrapperPaddingTop -wrapperHeight/2 + elemHeight/2;
             list[0].scrollLeft = elementOffsetLeft - listOffsetLeft + listScrollLeft - wrapperPaddingLeft;
         }
     });

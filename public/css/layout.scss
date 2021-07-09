@@ -634,6 +634,7 @@ input[type=number] {
 }
 
 .simplebar-scrollbar::before {
+    display: none;
     background-color: #dc0000;
     border-radius: 20px;
     height: 192px;
@@ -2066,6 +2067,8 @@ section.search_club_wrapper_by_map {
             flex-wrap: wrap;
 
             .search_club_item {
+                position: relative;
+                z-index: 2;
                 width: 100%;
                 height: 220px;
                 margin: 0 0 32px;
@@ -2522,7 +2525,33 @@ section.search_club_wrapper_by_map {
                 }
 
                 &.active {
-                    border: 2px solid #000000;
+                    &:before{
+                        z-index: 2;
+                        content: '';
+                        position: absolute;
+                        top: 50%;
+                        left: -10px;
+                        display: block;
+                        width: 6px;
+                        height: 192px;
+                        background: #DC0000;
+                        border-radius: 20px;
+                        transform: translateY(-50%);
+                    }
+
+                    &:after{
+                        z-index: -1;
+                        content: '';
+                        position: absolute;
+                        top: -14px;
+                        left: -32px;
+                        bottom: -14px;
+                        right: -32px;
+                        display: block;
+                        width: 737px;
+                        height: 248px;
+                        background-color: #F5F5F5;;
+                    }
                 }
             }
         }
