@@ -141,18 +141,6 @@
             <div class="club_page_photo_wrapper">
                 <div class="container">
                     <div class="club_page_photo_list">
-                        <?php
-                        $images = array_filter(explode(',', $club->club_photos));
-                        foreach ($images as $value) {
-                        ?>
-                        <div class="club_page_photo_item">
-                            <a href="{{$value}}" data-fancybox="gallery">
-                                <img src="{{$value}}" alt="image">
-                            </a>
-                        </div>
-
-                        <?php } ?>
-
                         <?php if ($youtubeVideoUrl && $youtubeImageUrl): ?>
                         <div class="club_page_photo_item club_video">
                             <a href="{{$youtubeVideoUrl}}" data-fancybox="gallery">
@@ -161,7 +149,19 @@
                         </div>
                         <?php endif; ?>
 
-                        <button type="button" class="@if(count($images) < 5) hidden-lg @endif" data-remodal-target="club_photo_modal">Показать все фото</button>
+                        <?php
+                        $images = array_filter(explode(',', $club->club_photos));
+                        foreach ($images as $value) {
+                        ?>
+                        <div class="club_page_photo_item">
+                            <a href="{{$value}}" data-fancybox="gallery">
+                                <img src="{{$value}}" onerror="this.src='/img/default-club-preview-image.svg'" alt="image">
+                            </a>
+                        </div>
+
+                        <?php } ?>
+
+                            <button type="button" class="@if(count($images) < 5) hidden-lg @endif" data-remodal-target="club_photo_modal">Показать все фото</button>
                     </div>
                 </div>
                 <span class="counter"></span>
@@ -712,11 +712,6 @@
                 1/10
             </div>
             <div class="club_photo_modal_wrapper">
-                @foreach ($images as $value)
-                    <div class="slide_item">
-                        <img src="{{$value}}" alt="club_image">
-                    </div>
-                @endforeach
                 <?php if ($youtubeVideoUrl && $youtubeImageUrl): ?>
                 <div class="slide_item club_video">
                     <iframe src="{{$youtubeVideoUrl}}"
@@ -726,6 +721,11 @@
                             allowfullscreen></iframe>
                 </div>
                 <?php endif; ?>
+                @foreach ($images as $value)
+                    <div class="slide_item">
+                        <img src="{{$value}}" alt="club_image">
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>

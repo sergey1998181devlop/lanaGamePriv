@@ -159,7 +159,7 @@ input[type=number] {
                 height: 18px;
                 margin: 0 4px;
             }
-        }        
+        }
 
         .club_distance {
             position: absolute;
@@ -2556,7 +2556,7 @@ section.search_club_wrapper_by_map {
                         display: block;
                         width: 737px;
                         height: 248px;
-                        background-color: #F5F5F5;;
+                        background-color: #F5F5F5;
                     }
                 }
             }
@@ -3238,6 +3238,16 @@ section.search_club_wrapper_by_map {
                                 }
 
                             }
+                        }
+                    }
+
+                    &.active {
+                        &:before{
+                           display: none;
+                        }
+
+                        &:after{
+                            display: none;
                         }
                     }
                 }

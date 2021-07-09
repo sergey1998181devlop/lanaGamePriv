@@ -25,12 +25,12 @@ jQuery(function() {
             center: fixCoordinatesCenter(center, 11),
             zoom: 11,
             behaviors: ['drag', 'dblClickZoom'],
-            controls: ['searchControl']
+            controls: []
         });
 
         let zoomControl = new ymaps.control.ZoomControl({
             options: {
-                position: {left: 'auto', right: 10, top: 108}
+                position: {left: 'auto', right: 10, top: 400}
             }
         });
         myMap.controls.add(zoomControl);
