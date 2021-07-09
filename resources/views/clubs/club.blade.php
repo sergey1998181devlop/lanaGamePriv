@@ -7,6 +7,17 @@
     if ($club->work_time == '2') {
         $schedule_item = unserialize($club->work_time_days);
     }
+
+    $youtubeVideoUrl = null;
+    $youtubeImageUrl = null;
+
+    if (\preg_match('#^https://youtu\.be/(.+)#', $club->club_youtube_link ?: '', $matches)) {
+        $youtubeVideoUrl = "https://www.youtube.com/embed/{$matches[1]}";
+        $youtubeImageUrl = "https://img.youtube.com/vi/{$matches[1]}/hqdefault.jpg";
+    } elseif (\preg_match('#^https://www\.youtube\.com/watch\?v=(.+)#', $club->club_youtube_link ?: '', $matches)) {
+        $youtubeVideoUrl = "https://www.youtube.com/embed/{$matches[1]}";
+        $youtubeImageUrl = "https://img.youtube.com/vi/{$matches[1]}/hqdefault.jpg";
+    }
     ?>
     <section class="club_page_main_info_wrapper" data-track-sticky>
         <div class="container">
@@ -135,24 +146,16 @@
                         foreach ($images as $value) {
                         ?>
                         <div class="club_page_photo_item">
-                            <a href="{{$value}}" data-fancybox>
+                            <a href="{{$value}}" data-fancybox="gallery">
                                 <img src="{{$value}}" alt="image">
                             </a>
                         </div>
 
                         <?php } ?>
 
-                        <?php
-                        $youtubeUrl = 'https://www.youtube.com/embed/IcfI5rthcTA';
-                        ?>
-
-                        <?php if ($youtubeUrl): ?>
-                        <?php
-                        $youtubeImageUrl = \preg_replace('#^https://www.youtube.com/embed/(.+)(\?.+)?$#', 'https://img.youtube.com/vi/$1/hqdefault.jpg', $youtubeUrl);
-                        ?>
-
+                        <?php if ($youtubeVideoUrl && $youtubeImageUrl): ?>
                         <div class="club_page_photo_item club_video">
-                            <a href="{{$youtubeUrl}}" data-fancybox>
+                            <a href="{{$youtubeVideoUrl}}" data-fancybox="gallery">
                                 <img src="{{ $youtubeImageUrl }}" alt="">
                             </a>
                         </div>
@@ -714,6 +717,15 @@
                         <img src="{{$value}}" alt="club_image">
                     </div>
                 @endforeach
+                <?php if ($youtubeVideoUrl && $youtubeImageUrl): ?>
+                <div class="slide_item club_video">
+                    <iframe src="{{$youtubeVideoUrl}}"
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
