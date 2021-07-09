@@ -5700,8 +5700,10 @@ section.club_page_content_wrapper {
             }
 
             .counter {
-                width: 50px;
+                min-width: 50px;
                 height: 28px;
+                white-space: nowrap;
+                width: auto;
                 border-radius: 10px;
                 position: absolute;
                 right: 32px;
@@ -5711,14 +5713,15 @@ section.club_page_content_wrapper {
                 justify-content: center;
                 background: rgba(85, 85, 85, 0.5);
                 backdrop-filter: blur(10.4615px);
-                border: none;
-                outline: none;
+                border: 0;
+                outline: 0;
                 font-style: normal;
                 font-weight: 500;
-                font-size: 18px;
+                font-size: 16px;
                 line-height: 1;
                 text-align: center;
-                color: #ffffff;
+                color: #fff;
+                padding: 0 5px;
             }
         }
 
