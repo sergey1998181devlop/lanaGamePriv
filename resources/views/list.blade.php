@@ -28,14 +28,14 @@
                                         </div>
                                     </div>
                                     <div class="search_club_show">
+                                    @if(false)
                                         <div class="show_by_list">
                                             <a href="#"><span>Список</span></a>
                                         </div>
-                                        @if(false)
+                                    @endif
                                             <div class="show_by_map">
-                                                <a href="#"><span>На карте</span></a>
-                                            </div>
-                                        @endif
+                                                <a href="{{url('/').'/'.city()}}?show=map&order={{$order_by}}&order_key={{$order_key}}"><span>На карте</span></a>
+                                            </div>                                        
                                     </div>
                                 </div>
                                 <div class="search_club_list">

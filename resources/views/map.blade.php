@@ -27,10 +27,7 @@
             </div>
             <div class="search_club_show">
                 <div class="show_by_list">
-                    <a href="#"><span></span></a>
-                </div>
-                <div class="show_by_map">
-                    <a href="#"><span></span></a>
+                    <a href="{{url('/').'/'.city()}}?show=list&order={{$order_by}}&order_key={{$order_key}}"><span></span></a>
                 </div>
             </div>
         </div>
