@@ -184,7 +184,8 @@ $cpus = [
         'Core i5-6600K',
         'Core i3-7300',
         'Core i5-4570R',
-        'Core i5-6600'
+        'Core i5-6600',
+        'Core i3-7100'
     ],
     'AMD' => [
         'Ryzen Threadripper PRO 3995WX',
@@ -354,6 +355,7 @@ $videoCards = [
         'GeForce GTX 760 2 Gb',
         'GeForce GTX 580 1,5 Gb',
         'GeForce GTX 660 Ti 2 Gb',
+        'GeForce 1070Ti',
     ],
     'AMD' => [
         'Radeon RX 6900 XT 16 Gb',
@@ -433,7 +435,14 @@ $keybords = [
     'Cougar',
     'Alienware',
     'DEXP',
-    'Oklick'
+    'Oklick',
+    'Thunder x3',
+    'Gamidas',
+    'Qcyber',
+    'Hermes',
+    'Dexp',
+    'Trust GXT',
+    'другой',
 ];
 $mouses = [
     'HyperX',
@@ -459,7 +468,14 @@ $mouses = [
     'Cougar',
     'Alienware',
     'DEXP',
-    'Oklick'
+    'Oklick',
+    'Thunder x3',
+    'Gamidas',
+    'Qcyber',
+    'Hermes',
+    'Dexp',
+    'Trust GXT',
+    'другой',
 ];
 $headphones = [
     'HyperX',
@@ -487,7 +503,15 @@ $headphones = [
     'Plantronics',
     'Sennheiser',
     'HP Omen',
-    'Alienware'
+    'Alienware',
+    'Oklick',
+    'Thunder x3',
+    'Gamidas',
+    'Qcyber',
+    'Hermes',
+    'Dexp',
+    'Trust GXT',
+    'другой',
 ];
 $chairs = [
     'Acer',
@@ -506,7 +530,13 @@ $chairs = [
     'Thermaltake',
     'Vertagear',
     'Tesoro',
-    'Zet Gaming'
+    'Zet Gaming',
+    'Akracing',
+    'VMM Gaming',
+    'X-cyber',
+    'Chairman',
+    'Trust GXT',
+    'другой',
 ];
 $monitor_types = [
     '24" 60 Гц',
@@ -546,5 +576,8 @@ $monitors = [
     'HP Omen',
     'MSI',
     'LG',
-    'Samsung'
+    'Samsung',
+    'Liyama',
+    'Zowie',
+    'другой',
 ];
