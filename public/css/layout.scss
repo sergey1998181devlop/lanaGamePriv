@@ -1989,6 +1989,9 @@ section.search_club_wrapper_by_map {
                                     background-image: url("../img/desc.svg");
                                 }
                             }
+                            &:last-child {
+                                display: none;
+                            }
                         }
                     }
                 }
@@ -2693,6 +2696,9 @@ section.search_club_wrapper_by_map {
                                         background-image: url("../img/desc.svg");
                                     }
                                 }
+                                &:last-child {
+                                    display: none;
+                                }
                             }
                         }
                     }
@@ -3290,7 +3296,7 @@ section.search_club_wrapper_by_map {
                         .sort_by_title {
                             margin-right: 0;
                             margin-bottom: 24px;
-                        }
+                        }                        
 
                         .sort_by_options {
                             justify-content: space-between;
@@ -3302,6 +3308,9 @@ section.search_club_wrapper_by_map {
 
                             a + a {
                                 margin-left: 10px;
+                            }
+                            a:last-child {
+                                display: block;
                             }
                         }
                     }

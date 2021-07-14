@@ -5,10 +5,25 @@ function geo(){
     var md = new MobileDetect(window.navigator.userAgent);
     if (md.mobile()){
         navigator.geolocation.getCurrentPosition(        
-            function(position) {
-                document.cookie = "lat=" + position.coords.latitude;
-                document.cookie = "lon=" + position.coords.longitude;    
-                $(".club_distance").css("display", "flex");    
+            function(position) { 
+                if (getCookie("lat")!=position.coords.latitude && getCookie("lon")!=position.coords.longitude){
+                    document.cookie = "lat=" + position.coords.latitude;
+                    document.cookie = "lon=" + position.coords.longitude;  
+                    jQuery.ajax({
+                        type: 'get',
+                        url: '',
+                        data: {'page': 1},
+                        success: function(data) {
+                            correntPage++;
+                            $('.search_club_list').html(data.html);
+                            if (data.last == correntPage) {
+                                $('#show_more_clubs').hide();
+                            } 
+                            $(".club_distance").css("display", "flex");
+                        }
+                    });
+                }
+                $(".club_distance").css("display", "flex");
             },
             function(error) { 
                 //доступ закрыт к координатам браузера. оставляем координаты от яндекса в куках
@@ -26,7 +41,6 @@ function geo(){
                 });
             }            
         );
-        $(".club_distance").css("display", "flex");
         $(".sort_by_options a").last().show();
     }
 }
