@@ -1,7 +1,13 @@
 jQuery(function() {
     let map = document.getElementById('search_club_by_map'),
         clubs = [],
-        activeClub = null;
+        activeClub = null,
+        zoomTop = 400;
+
+    if (window.matchMedia('(max-width: 760px)').matches){
+        zoomTop = 100;
+    }
+
 
     if (!map) {
         return;
@@ -30,7 +36,7 @@ jQuery(function() {
 
         let zoomControl = new ymaps.control.ZoomControl({
             options: {
-                position: {left: 'auto', right: 10, top: 400}
+                position: {left: 'auto', right: 10, top: zoomTop}
             }
         });
         myMap.controls.add(zoomControl);

@@ -3268,7 +3268,7 @@ section.search_club_wrapper_by_map {
         padding-top: 130px;
 
         #search_club_by_map {
-            height: 680px;
+            height: 580px;
         }
 
         .search_club_by_map {
@@ -3399,6 +3399,20 @@ section.search_club_wrapper_by_map {
 
                             .club_distance {
                                 display: none;
+                                right: -245px;
+                                bottom: 6px;
+                                padding: 4px 6px 4px 6px;
+                                height: 20px;
+
+                                span{
+                                    font-size: 12px;
+                                }
+
+                                img{
+                                    width: 15px;
+                                    height: 15px;
+                                    margin-right: 4px;
+                                }
                             }
                         }
 
