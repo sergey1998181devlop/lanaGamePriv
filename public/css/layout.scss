@@ -4612,59 +4612,63 @@ section.personal_page_wrapper {
                     justify-content: flex-start;
                     margin-top: 0;
 
-                    .club_list_navigation_tabs {
+                    .club_list_navigation_tabs_wrapper{
+                        overflow: hidden;
                         width: calc(100% + 30px);
-                        overflow-x: auto;
-                        overflow-y: hidden;
-                        padding: 0 15px;
-                        margin: 0;
-                        list-style: none;
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: flex-start;
-                        margin: 0 -15px;
 
-                        li {
-                            flex-shrink: 0;
+                        .club_list_navigation_tabs {
+                            overflow-x: auto;
+                            overflow-y: hidden;
+                            padding: 20px;
+                            margin: -20px;
+                            list-style: none;
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: flex-start;
 
-                            a {
-                                display: block;
-                                position: relative;
-                                text-decoration: none;
-                                font-style: normal;
-                                font-weight: 500;
-                                font-size: 18px;
-                                line-height: 1;
-                                color: #000000;
-                                padding: 5px 0;
-                                margin: 0 9px;
+                            li {
+                                flex-shrink: 0;
 
-                                &.active {
+                                a {
+                                    display: block;
+                                    position: relative;
+                                    text-decoration: none;
+                                    font-style: normal;
+                                    font-weight: 500;
+                                    font-size: 18px;
+                                    line-height: 1;
+                                    color: #000000;
+                                    padding: 5px 0;
+                                    margin: 0 9px;
 
-                                    &:before {
-                                        content: '';
-                                        position: absolute;
-                                        top: 90%;
-                                        left: 0;
-                                        display: block;
-                                        width: 100%;
-                                        height: 3px;
-                                        background-color: #dc0000;
-                                        border-radius: 2px;
+                                    &.active {
+
+                                        &:before {
+                                            content: '';
+                                            position: absolute;
+                                            top: 90%;
+                                            left: 0;
+                                            display: block;
+                                            width: 100%;
+                                            height: 3px;
+                                            background-color: #dc0000;
+                                            border-radius: 2px;
+                                        }
                                     }
                                 }
                             }
-                        }
 
-                        &:after {
-                            content: '';
-                            display: block;
-                            height: 1px;
-                            width: 30px;
-                            flex-shrink: 0;
-                            color: transparent;
+                            &:after {
+                                content: '';
+                                display: block;
+                                height: 1px;
+                                width: 30px;
+                                flex-shrink: 0;
+                                color: transparent;
+                            }
                         }
                     }
+
 
                     .btn_wrapper {
                         display: flex;

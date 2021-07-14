@@ -158,30 +158,32 @@
                 </div>
                 <div class="personal_main_content_wrapper">
                     <div class="club_list_navigation_wrapper">
-                        <ul class="club_list_navigation_tabs">
-                            <li>
-                                <a href="#tab1" @if(!$edit || $clubAr->published_at != null)class="active" @endif>
-                                    <span>Опубликованные</span>
-                                    @if(count($published) > 0)
-                                        <span class="qty">{{count($published)}}</span>
-                                    @endif
-                                </a>
-                            </li>
-                            <li><a href="#tab2" @if($edit && $clubAr->draft != '1' && $clubAr->published_at == null)class="active" @endif>
-                                    <span>На модерации</span>
-                                    @if(count($underModify) > 0)
-                                        <span class="qty">{{count($underModify)}}</span>
-                                    @endif
-                                </a>
-                            </li>
-                            <li><a href="#tab3" @if($edit && $clubAr->draft == '1')class="active" @endif>
-                                    <span>Черновики</span>
-                                    @if(count($draft) > 0)
-                                        <span class="qty">{{count($draft)}}</span>
-                                    @endif
-                                </a>
-                            </li>
-                        </ul>
+                        <div class="club_list_navigation_tabs_wrapper">
+                            <ul class="club_list_navigation_tabs">
+                                <li>
+                                    <a href="#tab1" @if(!$edit || $clubAr->published_at != null)class="active" @endif>
+                                        <span>Опубликованные</span>
+                                        @if(count($published) > 0)
+                                            <span class="qty">{{count($published)}}</span>
+                                        @endif
+                                    </a>
+                                </li>
+                                <li><a href="#tab2" @if($edit && $clubAr->draft != '1' && $clubAr->published_at == null)class="active" @endif>
+                                        <span>На модерации</span>
+                                        @if(count($underModify) > 0)
+                                            <span class="qty">{{count($underModify)}}</span>
+                                        @endif
+                                    </a>
+                                </li>
+                                <li><a href="#tab3" @if($edit && $clubAr->draft == '1')class="active" @endif>
+                                        <span>Черновики</span>
+                                        @if(count($draft) > 0)
+                                            <span class="qty">{{count($draft)}}</span>
+                                        @endif
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                         <div class="btn_wrapper">
                             <div class="club_list_title">Список клубов</div>
                             <button type="button" class="add_club" data-remodal-target="add_club_modal">Добавить</button>
