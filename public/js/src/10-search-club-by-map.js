@@ -18,7 +18,7 @@ jQuery(function() {
     }
 
     ymaps.ready(() => {
-        let scrollParent = jQuery('[data-search-club-by-map] .simplebar-content-wrapper'),
+        let scrollParent = jQuery('[data-search-club-by-map]'),
             wrapper = document.querySelector('[data-search-club-by-map]');
 
         let $firstClub = jQuery('[data-role-club]').eq(0),
@@ -132,7 +132,6 @@ jQuery(function() {
                 listOffsetTop = list.offset().top,
                 elementOffsetTop = element.offset().top,
                 listScrollTop = list[0].scrollTop,
-                wrapperPaddingTop = parseFloat(style.paddingTop ? style.paddingTop.replace('px', '') : '0'),
                 wrapperHeight = parseFloat(style.height ? style.height.replace('px', '') : '0'),
                 elemHeight = parseFloat(styleElem.height ? styleElem.height.replace('px', '') : '0'),
 
@@ -141,7 +140,7 @@ jQuery(function() {
                 listScrollLeft = list[0].scrollLeft,
                 wrapperPaddingLeft = parseFloat(style.paddingTop ? style.paddingTop.replace('px', '') : '0');
 
-            list[0].scrollTop = elementOffsetTop - listOffsetTop + listScrollTop - wrapperPaddingTop -wrapperHeight/2 + elemHeight/2;
+            list[0].scrollTop = elementOffsetTop - listOffsetTop + listScrollTop -wrapperHeight/2 + elemHeight/2;
             list[0].scrollLeft = elementOffsetLeft - listOffsetLeft + listScrollLeft - wrapperPaddingLeft;
         }
     });

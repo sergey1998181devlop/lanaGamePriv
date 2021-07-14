@@ -34,10 +34,12 @@
                 </div>
             </div>
         </div>
-        <div class="search_club_list" data-search-club-by-map data-simplebar data-simplebar-auto-hide="false">
-            @foreach($clubs as $club)
-                @include('club')
-            @endforeach
+        <div class="search_club_list_wrapper">
+            <div class="search_club_list" data-search-club-by-map>
+                @foreach($clubs as $club)
+                    @include('club')
+                @endforeach
+            </div>
         </div>
     </div>
 </section>
