@@ -1590,6 +1590,7 @@ section.search_club_wrapper {
                                     background-image: url("../img/desc.svg");
                                 }
                             }
+
                             &:last-child {
                                 display: none;
                             }
@@ -1725,16 +1726,17 @@ section.search_club_wrapper {
                             justify-content: space-between;
 
                             a {
-                                display: inline-block;
+                                display: block;
                                 margin-right: 0;
                                 padding: 6px 0 6px 24px;
+
+                                &:last-child {
+                                    display: block;
+                                }
                             }
 
                             a + a {
                                 margin-left: 10px;
-                            }
-                            &:last-child {
-                                display: block;
                             }
                         }
                     }
@@ -1749,7 +1751,7 @@ section.search_club_wrapper {
                         a {
                             width: 34px;
                             height: 34px;
-                            margin-right: 20px;
+                            margin-right: 0;
                             padding: 8px;
                             border-radius: 8px;
 
@@ -1817,7 +1819,7 @@ section.search_club_wrapper {
                             }
 
                             a + a {
-                                margin-left: 10px;
+                                margin-left: 0;
                             }
                         }
                     }
@@ -1826,7 +1828,7 @@ section.search_club_wrapper {
         }
     }
 
-    @media (max-width: 340px) {
+    @media (max-width: 360px) {
         .search_club {
             .search_club_sort_wrapper {
                 .search_club_sort {
@@ -3296,7 +3298,7 @@ section.search_club_wrapper_by_map {
                         .sort_by_title {
                             margin-right: 0;
                             margin-bottom: 24px;
-                        }                        
+                        }
 
                         .sort_by_options {
                             justify-content: space-between;
