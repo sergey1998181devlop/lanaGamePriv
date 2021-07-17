@@ -8,7 +8,7 @@
 <!--SECTION ARTICLES START-->
 <section class="articles_wrapper">
     <div class="container">
-        <h2>Статьи</h2>
+        <h2>Наш блог</h2>
         <div class="articles">
             <div class="articles_list">
                 @if(isset( $posts) && count($posts)>0)
