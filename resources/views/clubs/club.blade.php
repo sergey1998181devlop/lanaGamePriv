@@ -72,7 +72,7 @@
                             if (!empty($schedule_item[strtolower(date("l"))]['from']) && !empty($schedule_item[strtolower(date("l"))]['to'])) {
                                 $now = new DateTime();
                                 $begin = new DateTime($schedule_item[strtolower(date("l"))]['from']);
-                                $end = new DateTime($schedule_item[strtolower(date("l"))]['to']);
+                                $end = new DateTime(($schedule_item[strtolower(date("l"))]['to']=="00:00" ? "24:00" : $schedule_item[strtolower(date("l"))]['to']));
                                 if ($now >= $begin && $now <= $end) {
                                     $showCallButton = true;
                                 } else {
