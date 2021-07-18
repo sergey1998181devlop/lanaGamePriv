@@ -71,6 +71,7 @@ class clubsController extends Controller
         
       foreach($comments as $comment){
           if(!$comment->club || !$comment->club->user)continue;
+          if($comment->club->user->id == 10)continue; //parser user -- no email
             // send notification
             $details = [
                 'subject' =>'Комментарий модератора на Langame',
