@@ -106,13 +106,28 @@
             jQuery.ajax({
                 type: 'get',
                 url: '{{url('/')}}/{{city()}}?order={{$order_by}}&order_key={{$order_key}}',
-                data: {'page': nextPage},
+                data: {'page': nextPage, 'search': $("#search-text").val()},
                 success: function(data) {
                     correntPage++;
                     $('.search_club_list').append(data.html);
                     geo();
                     if (data.last == correntPage) {
                         $('#show_more_clubs').hide();
+                    }
+                }
+            });
+        });
+        $(document).on('keyup', '#search-text', function() {
+            jQuery.ajax({
+                type: 'get',
+                url: '{{url('/')}}/{{city()}}?order={{$order_by}}&order_key={{$order_key}}',
+                data: {'search': $("#search-text").val()},
+                success: function(data) {
+                    $('.search_club_list').html(data.html);
+                    if (data.last == correntPage) {
+                        $('#show_more_clubs').hide();
+                    }else{
+                        $('#show_more_clubs').show();
                     }
                 }
             });

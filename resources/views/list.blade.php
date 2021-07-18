@@ -37,6 +37,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div style="margin:10px"><form id="search-form">Поиск <input type='text' id="search-text"></form></div>
                                 <div class="search_club_list">
                                     @foreach($clubs as $club)
                                         @include('club')

@@ -71,13 +71,18 @@ class HomeController extends Controller
       if ($request->input('show') == "map"){
         $paginate = 999999999999999; // показать все
       }
+      if (!empty($request->input('search'))){
+        $search_string = $request->input('search');
+      }else{
+        $search_string = "";
+      }      
       if($order == 'nearby'){ // тут делай что надо
       //  данныую функцию можешь изменить
         $clubs= club::SelectCartFeilds4Home($lat, $lon)->Published()->CorrentCity()->whereNull('hidden_at')->with(array('metro'=>function($query) {
           $query->select('id','name','color');
         }))->orderBy($order,$order_key)->paginate($paginate);
       }else{
-        $clubs= club::SelectCartFeilds4Home($lat, $lon)->Published()->CorrentCity()->whereNull('hidden_at')->with(array('metro'=>function($query) {
+        $clubs= club::SelectCartFeilds4Home($lat, $lon)->Published()->CorrentCity()->whereNull('hidden_at')->where('club_name', 'like', '%'.$search_string.'%')->with(array('metro'=>function($query) {
           $query->select('id','name','color');
       }))->orderBy($order,$order_key)->paginate($paginate);
       }
