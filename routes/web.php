@@ -127,6 +127,9 @@ Route::get('/panel/langame-requests', 'panel\adminController@langameRequests');
 Route::post('/panel/langame-requests/delete', 'panel\adminController@deleteRequest');
 Route::get('/panel/langame-requests/toggle/{id}', 'panel\adminController@langameRequestsToggle');
 
+// cron
+
+Route::get('panel/comments/send-mails', 'panel\clubsController@sendMails');
 
 // должен быть последным, иначе остальные ссылки не сработают
 Route::get('/{city}', 'HomeController@index')->name('home')->middleware('city');

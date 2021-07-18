@@ -15,7 +15,7 @@ class clubsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('rule:1');
+        $this->middleware('rule:1')->except('sendMails');
     }
     public function clubs()
     {
@@ -52,15 +52,6 @@ class clubsController extends Controller
         $comment ->comment =  $request->input('comment');
         $comment->created_by = Auth::user()->id;
         $comment -> save();
-        $user = user::find($club->user_id);
-
-        // send notification
-        $details = [
-            'subject' =>'Комментарий модератора на Langame',
-            'body' => 'Модератор Langame отправил вам по вашему клубу <strong>'.$club->club_name.'</strong> комментарий: '.$request->input('comment'),
-            'content' => 'Для редактирования клуба пройдите <a href="'.url('personal/club/'.$club->id.'/edit').'">по ссылке</a>',
-        ];
-        Notification::send($user, new userNotification($details));
         return redirect('clubs/'.$club->id.'/'.$club->url);
     }
     public function changeClubUser($id,Request $request){
@@ -69,5 +60,26 @@ class clubsController extends Controller
         $club->user_id=$newUser->id;
         $club->save();
         return redirect('clubs/'.$club->id.'/'.$club->url.'/?status=success');
+    }
+    public function sendMails(Request $request){
+      if($request->input('s') != '!dw23@saf'){
+          return '';
+      }
+      $comments = comment::whereNull('sent_at')->with(array('club' => function($query) {
+            $query->select('id','club_name','user_id');
+        },'club.user'))->get();
+        
+      foreach($comments as $comment){
+          if(!$comment->club || !$comment->club->user)continue;
+            // send notification
+            $details = [
+                'subject' =>'Комментарий модератора на Langame',
+                'body' => 'Модератор Langame отправил вам по вашему клубу <strong>'.$comment->club->club_name.'</strong> комментарий: '.$comment->comment,
+                'content' => 'Для редактирования клуба пройдите <a href="'.url('personal/club/'.$comment->club->id.'/edit').'">по ссылке</a>',
+            ];
+            Notification::send($comment->club->user, new userNotification($details));
+            $comment->sent_at = Carbon::now()->toDateTimeString();
+            $comment->save();
+      }
     }
 }
