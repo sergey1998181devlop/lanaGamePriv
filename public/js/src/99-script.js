@@ -147,6 +147,15 @@ jQuery(function() {
         }
     });
 
+    jQuery('#open_search_form').on('click', function(e){
+        jQuery('.search .search_form').addClass('active');
+    });
+
+
+    jQuery('#close_search_form').on('click', function(e){
+        jQuery('.search .search_form').removeClass('active');
+    });
+
     /**
      * Scroll page handlers
      */

@@ -28,16 +28,27 @@
                                         </div>
                                     </div>
                                     <div class="search_club_show">
-                                    
+
                                         <div class="show_by_list">
                                             <a><span>Список</span></a>
                                         </div>
                                         <div class="show_by_map">
                                             <a href="{{url('/').'/'.city()}}?show=map&order={{$order_by}}&order_key={{$order_key}}"><span>На карте</span></a>
                                         </div>
+
+                                        <div class="search">
+                                            <button type="button" id="open_search_form">
+                                                <img src="{{asset('/img/search.svg')}}" alt="search">
+                                            </button>
+                                            <form id="search-form" class="search_form">
+                                            <input type="text" id="search-text" placeholder="Поиск...">
+                                            <button type="button" id="close_search_form">
+                                                <img src="{{asset('/img/search_close.svg')}}" alt="search">
+                                            </button>
+                                        </form>
+                                        </div>
                                     </div>
                                 </div>
-                                <div style="margin:10px"><form id="search-form">Поиск <input type='text' id="search-text"></form></div>
                                 <div class="search_club_list">
                                     @foreach($clubs as $club)
                                         @include('club')
