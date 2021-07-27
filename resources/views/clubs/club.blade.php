@@ -72,7 +72,12 @@
                             if (!empty($schedule_item[strtolower(date("l"))]['from']) && !empty($schedule_item[strtolower(date("l"))]['to'])) {
                                 $now = new DateTime();
                                 $begin = new DateTime($schedule_item[strtolower(date("l"))]['from']);
-                                $end = new DateTime(($schedule_item[strtolower(date("l"))]['to']=="00:00" ? "24:00" : $schedule_item[strtolower(date("l"))]['to']));
+                                if (explode(":", $schedule_item[strtolower(date("l"))]['to'])[0]<explode(":", $schedule_item[strtolower(date("l"))]['from'])[0]){
+                                    $end = new DateTime($schedule_item[strtolower(date("l"))]['to']);
+                                    $end->add(new DateInterval("P1D"));
+                                }else{
+                                    $end = new DateTime($schedule_item[strtolower(date("l"))]['to']);
+                                }
                                 if ($now >= $begin && $now <= $end) {
                                     $showCallButton = true;
                                 } else {
