@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="site" content="{{url('/')}}">
     @if(admin())
-    <meta name="is-admin" content="1">
+        <meta name="is-admin" content="1">
     @endif
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
@@ -35,7 +35,7 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplebar/5.3.2/simplebar.min.css"
           integrity="sha512-uZTwaYYhJLFXaXYm1jdNiH6JZ1wLCTVnarJza7iZ1OKQmvi6prtk85NMvicoSobylP5K4FCdGEc4vk1AYT8b9Q=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="{{ asset('/fonts/stylesheet.css') }}?v={{ENV('CSS_VERSION',0)}}">
     <link rel="stylesheet" href="{{ asset('/fonts/PT/stylesheet.css') }}?v={{ENV('CSS_VERSION',0)}}">
     <link rel="stylesheet" href="{{ asset('/css/layout.css') }}?v={{ENV('CSS_VERSION',0)}}">
@@ -120,18 +120,17 @@
                     @endif
 
                     @if(Auth::guest())
-                    <ul class="mob_main_menu">
-                        <li>
-                            <a href="<?= Auth::guest() ? url('register') : url('personal/clubs') ?>?action=add_club">Добавить клуб</a>
-                        </li>
-                        <li>
-                            <a href="{{url('contacts')}}">Контакты</a>
-                        </li>
-
-                        <li>
-                            <a href=# class="log_in_form_toggle">Войти</a>
-                        </li>
-                    </ul>
+                        <ul class="mob_main_menu">
+                            <li>
+                                <a href="<?= Auth::guest() ? url('register') : url('personal/clubs') ?>?action=add_club">Добавить клуб</a>
+                            </li>
+                            <li>
+                                <a href="{{url('contacts')}}">Контакты</a>
+                            </li>
+                            <li>
+                                <a href=# class="log_in_form_toggle">Войти</a>
+                            </li>
+                        </ul>
                     @endif
 
                     <ul class="main_menu">
@@ -201,25 +200,23 @@
                                 </li>
                             @endif
 
-                            @if(false)
                             <li>
                                 <a href="{{url('about-us')}}">О сервисе</a>
                             </li>
-                            @endif
 
                             <li>
                                 <a href="{{url('contacts')}}">Обратная связь</a>
                             </li>
 
                             @if(!Auth::guest())
-                            <li>
-                                <a href="{{url('contacts')}}">Контакты</a>
-                            </li>
+                                <li>
+                                    <a href="{{url('contacts')}}">Контакты</a>
+                                </li>
                             @endif
 
-                            {{--                            <li>--}}
-                            {{--                                <a href="{{url('langame-software')}}">LanGame Software</a>--}}
-                            {{--                            </li>--}}
+                            <li>
+                                <a href="{{url('langame-software')}}">LanGame Software</a>
+                            </li>
                         </ul>
                     </div>
                     <div class="mob_menu_item">
@@ -420,42 +417,63 @@
 @endif
 @yield('scripts')
 <!-- Yandex.Metrika counter -->
-<script type="text/javascript" >
-   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+<script type="text/javascript">
+    (function(m, e, t, r, i, k, a) {
+        m[i] = m[i] || function() {
+            (m[i].a = m[i].a || []).push(arguments);
+        };
+        m[i].l = 1 * new Date();
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a);
+    })
+    (window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
 
-   ym(82365286, "init", {
-        clickmap:true,
-        trackLinks:true,
-        accurateTrackBounce:true,
-        webvisor:true,
-        ecommerce:"dataLayer"
-   });
+    ym(82365286, 'init', {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        webvisor: true,
+        ecommerce: 'dataLayer'
+    });
 </script>
-<noscript><div><img src="https://mc.yandex.ru/watch/82365286" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<noscript>
+    <div><img src="https://mc.yandex.ru/watch/82365286" style="position:absolute; left:-9999px;" alt=""/></div>
+</noscript>
 <!-- /Yandex.Metrika counter -->
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-201040515-1"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-201040515-1');
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'UA-201040515-1');
 </script>
 
 <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-K5ZMWGV');</script>
+<script>(function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-K5ZMWGV');</script>
 <!-- End Google Tag Manager -->
 
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K5ZMWGV"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K5ZMWGV"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 </body>
