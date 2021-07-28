@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('page')
-    <title>О нас - LanGame</title>
+    <title>О LANGAME</title>
 @endsection
 @section('content')
     <!--SECTION ABOUT SERVICE START-->
@@ -14,7 +14,7 @@
                             продукты и решения для владельцев, сотрудников и
                             посетителей компьютерных клубов.
                         </h2>
-                        <a href="{{url('register')}}" class="learn_more">Узнать нас за 1 минуту</a>
+                        <a href="#block-about_service_descr" class="learn_more">Узнать нас за 1 минуту</a>
                     </div>
                     <div class="choose_club_info_img service">
                         <img src="{{ asset('/img/service/aboutservice.png')}}" alt="image">
@@ -26,7 +26,7 @@
     <!--SECTION ABOUT SERVICE END-->
 
     <!--SECTION ABOUT SERVICE DESCR START-->
-    <section class="about_service_descr_wrapper">
+    <section class="about_service_descr_wrapper" id="block-about_service_descr">
         <div class="container_descr">
             <div class="about_service_descr">
                 <div class="descr_item">
@@ -74,7 +74,7 @@
                 <div class="service_list">
                     <div class="service_item">
                         <div class="img_wrapper f5">
-                            <img src="{{ asset('/img/service/f5.svg')}}" alt="image">
+                            <img src="{{ asset('/img/service/f.svg')}}" alt="image">
                         </div>
                         <div class="descr">
                             Сеть собственных компьютерных клубов
@@ -225,10 +225,9 @@
                 </div>
                 <div class="name">
                     Дмитрий Лукин
+                    <span class="position">Основатель LANGAME и «F5 Центр киберспорта»</span>
                 </div>
-                <div class="position">
-                    Основатель F5 Центр киберспорта и LANGAME
-                </div>
+
             </div>
             <div class="our_team_item">
                 <div class="img_wrapper">
@@ -236,10 +235,11 @@
                 </div>
                 <div class="name">
                     Максим Улыбышев
+                    <span class="position">
+                        Коммерческий директор
+                    </span>
                 </div>
-                <div class="position">
-                    Коммерческий директор
-                </div>
+
             </div>
             <div class="our_team_item">
                 <div class="img_wrapper">
@@ -247,10 +247,11 @@
                 </div>
                 <div class="name">
                     Василий Фокин
+                    <span class="position">
+                        Руководитель службы поддержки
+                    </span>
                 </div>
-                <div class="position">
-                    Руководитель службы поддержки
-                </div>
+
             </div>
             <div class="our_team_item">
                 <div class="img_wrapper">
@@ -258,10 +259,11 @@
                 </div>
                 <div class="name">
                     Кирилл Соцков
+                    <span class="position">
+                        Должность
+                    </span>
                 </div>
-                <div class="position">
-                    Должность
-                </div>
+
             </div>
             <div class="our_team_item">
                 <div class="img_wrapper">
@@ -269,10 +271,11 @@
                 </div>
                 <div class="name">
                     Роман Ролдугин
+                    <span class="position">
+                        IT-директор
+                    </span>
                 </div>
-                <div class="position">
-                    IT-директор
-                </div>
+
             </div>
             <div class="our_team_item">
                 <div class="img_wrapper">
@@ -280,10 +283,11 @@
                 </div>
                 <div class="name">
                     Павел Голубев
+                    <span class="position">
+                        Руководитель проекта
+                    </span>
                 </div>
-                <div class="position">
-                    Руководитель проекта
-                </div>
+
             </div>
             <div class="our_team_item">
                 <div class="img_wrapper">
@@ -291,10 +295,11 @@
                 </div>
                 <div class="name">
                     Сергей Чернышев
+                    <span class="position">
+                        Директор по развитию
+                    </span>
                 </div>
-                <div class="position">
-                    Директор по развитию
-                </div>
+
             </div>
         </div>
 
@@ -312,7 +317,7 @@
             <div class="articles">
                 <div class="articles_list">
                     <div class="articles_item">
-                        <a href="#">
+                        <a href="https://youtu.be/I7sli1rulIw" target="_blank">
                             <div class="article_img_wrapper">
                                 <img src="{{ asset('/img/service/gallery.png')}}" alt="image">
                             </div>
@@ -326,7 +331,7 @@
                         </a>
                     </div>
                     <div class="articles_item">
-                        <a href="#">
+                        <a href="https://www.igromania.ru/article/31283/Kak_kompyuternye_kluby_vyzhivayut_v_karantin_Rasskazyvaet_vladelec_moskovskoy_seti.html" target="_blank">
                             <div class="article_img_wrapper">
                                 <img src="{{ asset('/img/service/gallery1.png')}}" alt="image">
                             </div>
@@ -340,7 +345,7 @@
                         </a>
                     </div>
                     <div class="articles_item">
-                        <a href="#">
+                        <a href="https://www.the-village.ru/village/city/specials/347959-kak-rabotayut-lyudi-v-kruglosutochnyh-zavedeniyah" target="_blank">
                             <div class="article_img_wrapper">
                                 <img src="{{ asset('/img/service/gallery2.png')}}" alt="image">
                             </div>
@@ -369,43 +374,43 @@
             <div class="our_partners_list_wrapper">
                 <div class="our_partners_list">
                     <div class="our_partners_item">
-                        <img src="{{ asset('/img/service/nvidia.svg')}}" alt="image">
+                        <img src="{{ asset('/img/service/nvidia.png')}}" alt="image">
                     </div>
                     <div class="our_partners_item">
-                        <img src="{{ asset('/img/service/msi.svg')}}" alt="image">
+                        <img src="{{ asset('/img/service/msi.png')}}" alt="image">
                     </div>
                     <div class="our_partners_item">
-                        <img src="{{ asset('/img/service/cooler.svg')}}" alt="image">
+                        <img src="{{ asset('/img/service/cooler.png')}}" alt="image">
                     </div>
                     <div class="our_partners_item">
-                        <img src="{{ asset('/img/service/ocs.svg')}}" alt="image">
+                        <img src="{{ asset('/img/service/ocs.png')}}" alt="image">
                     </div>
                     <div class="our_partners_item">
-                        <img src="{{ asset('/img/service/intel.svg')}}" alt="image">
+                        <img src="{{ asset('/img/service/intel.png')}}" alt="image">
                     </div>
                     <div class="our_partners_item">
-                        <img src="{{ asset('/img/service/pepsico.svg')}}" alt="image">
+                        <img src="{{ asset('/img/service/pepsico.png')}}" alt="image">
                     </div>
                     <div class="our_partners_item">
-                        <img src="{{ asset('/img/service/dxracer.svg')}}" alt="image">
+                        <img src="{{ asset('/img/service/dxracer.png')}}" alt="image">
                     </div>
                     <div class="our_partners_item">
-                        <img src="{{ asset('/img/service/apk.svg')}}" alt="image">
+                        <img src="{{ asset('/img/service/apk.png')}}" alt="image">
                     </div>
                     <div class="our_partners_item">
-                        <img src="{{ asset('/img/service/fed.svg')}}" alt="image">
+                        <img src="{{ asset('/img/service/fed.png')}}" alt="image">
                     </div>
                     <div class="our_partners_item">
-                        <img src="{{ asset('/img/service/game.svg')}}" alt="image">
+                        <img src="{{ asset('/img/service/game.png')}}" alt="image">
                     </div>
                     <div class="our_partners_item">
-                        <img src="{{ asset('/img/service/logitech.svg')}}" alt="image">
+                        <img src="{{ asset('/img/service/logitech.png')}}" alt="image">
                     </div>
                     <div class="our_partners_item">
-                        <img src="{{ asset('/img/service/strim.svg')}}" alt="image">
+                        <img src="{{ asset('/img/service/strim.png')}}" alt="image">
                     </div>
                     <div class="our_partners_item">
-                        <img src="{{ asset('/img/service/electronic.svg')}}" alt="image">
+                        <img src="{{ asset('/img/service/electronic.png')}}" alt="image">
                     </div>
                 </div>
             </div>

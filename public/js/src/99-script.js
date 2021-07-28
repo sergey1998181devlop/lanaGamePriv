@@ -95,12 +95,12 @@ jQuery(function() {
     });
 
     jQuery('.our_team_list').slick({
-        infinite: false,
+        infinite: true,
         slidesToShow: 5,
         slidesToScroll: 1,
         variableWidth: true,
-        prevArrow: false,
-        nextArrow: false,
+        prevArrow: '<button type="button" class="slick-prev slick-arrow"><img src="../../img/left1.svg" alt="arrow"></button>',
+        nextArrow: '<button type="button" class="slick-next slick-arrow"><img src="../../img/right1.svg" alt="arrow"></button>',
         responsive: [
             {
                 breakpoint: 700,
@@ -192,4 +192,10 @@ jQuery(function() {
             });
         });
     })();
+
+    jQuery('a[href^="#block-"]').on('click', function(e) {
+        e.preventDefault();
+        const _href = jQuery(this).attr('href');
+        jQuery('html, body').animate({scrollTop: jQuery(_href).offset().top + 'px'});
+    });
 });

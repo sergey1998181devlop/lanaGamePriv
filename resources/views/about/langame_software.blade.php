@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('page')
-<title>LanGame Software</title>
+<title>LANGAME Software</title>
 @endsection
 @section('content')
 <!--SECTION LANGAME SOFTWARE START-->
@@ -13,7 +13,7 @@
                         Программа для управления вашим
                         компьютерным клубом
                     </div>
-                    <a href="{{url('about-us')}}" class="learn_more">Узнать больше</a>
+                    <a href="#block-langame_software_features" class="learn_more">Узнать больше</a>
                 </div>
                 <div class="info_item">
                     <div class="img_wrapper">
@@ -23,14 +23,14 @@
             </div>
         </div>
     </div>
-    <div class="langame_software_features_wrapper">
+    <div class="langame_software_features_wrapper" id="block-langame_software_features">
         <div class="container">
             <div class="sub_title">почему langame?</div>
             <div class="title">
                 От собственников для собственников
             </div>
             <div class="descr">
-                LanGame Software - это 6 лет опыта управления сетью собственных компьютерных клубов, вложенных в разработку нашего решения.
+                LANGAME Software - это 6 лет опыта управления сетью собственных компьютерных клубов, вложенных в разработку нашего решения.
             </div>
             <div class="langame_software_features_list">
                 <div class="features_item">
@@ -126,7 +126,7 @@
                     </ul>
                 </div>
             </div>
-            <a href="{{url('contacts')}}" class="learn_more">Запросить демо-доступ</a>
+            <a href="#block-langame_software_request" class="learn_more">Запросить демо-доступ</a>
         </div>
     </div>
     <div class="langame_software_tariffs_wrapper">
@@ -134,69 +134,71 @@
             <div class="title">
                 Простые тарифные планы, которые не зависят от количества клубов и компьютеров
             </div>
-            <div class="langame_software_tariffs">
-                <div class="tariffs_item">
-                    <div class="tariffs_title">
-                        <p>Стартовый</p>
-                        <p class="text_decor">Бесплатно. Всегда.</p>
+            <div class="tariffs_wrapper">
+                <div class="langame_software_tariffs">
+                    <div class="tariffs_item">
+                        <div class="tariffs_title">
+                            <p>Стартовый</p>
+                            <p class="text_decor">Бесплатно. Всегда.</p>
+                        </div>
+                        <div class="descr">Простое решение для небольшого бизнеса</div>
+                        <ul>
+                            <li>
+                                <span>Интерфейс для клиентов и администраторов</span>
+                            </li>
+                            <li>
+                                <span>Распределение ролей, настройка пакетов</span>
+                            </li>
+                            <li>
+                                <span>Сбор базовых данных о гостях</span>
+                            </li>
+                        </ul>
+                        <button type="button" data-remodal-target="tariffs_modal">Полное описание</button>
                     </div>
-                    <div class="descr">Простое решение для небольшого бизнеса</div>
-                    <ul>
-                        <li>
-                            <span>Интерфейс для клиентов и администраторов</span>
-                        </li>
-                        <li>
-                            <span>Распределение ролей, настройка пакетов</span>
-                        </li>
-                        <li>
-                            <span>Сбор базовых данных о гостях</span>
-                        </li>
-                    </ul>
-                    <button type="button" data-remodal-target="tariffs_modal">Полное описание</button>
-                </div>
-                <div class="tariffs_item">
-                    <div class="tariffs_title">
-                        <p>Профессиональный</p>
-                        <p class="text_decor">6 месяцев - в подарок</p>
+                    <div class="tariffs_item">
+                        <div class="tariffs_title">
+                            <p>Профессиональный</p>
+                            <p class="text_decor">6 месяцев - в подарок</p>
+                        </div>
+                        <div class="descr">Решение для бизнеса с серьёзным подходом</div>
+                        <ul class="secondary">
+                            <li>
+                                <span>Расширенные функции работы с гостями</span>
+                            </li>
+                            <li>
+                                <span>Продвинутые технические модули</span>
+                            </li>
+                            <li>
+                                <span>Модули автоматизации</span>
+                            </li>
+                            <li>
+                                <span>Работа со складом и баром</span>
+                            </li>
+                            <li>
+                                <span>Бонусный и промо-функционал</span>
+                            </li>
+                        </ul>
+                        <button type="button" data-remodal-target="tariffs_modal">Полное описание</button>
                     </div>
-                    <div class="descr">Решение для бизнеса с серьёзным подходом</div>
-                    <ul class="secondary">
-                        <li>
-                            <span>Расширенные функции работы с гостями</span>
-                        </li>
-                        <li>
-                            <span>Продвинутые технические модули</span>
-                        </li>
-                        <li>
-                            <span>Модули автоматизации</span>
-                        </li>
-                        <li>
-                            <span>Работа со складом и баром</span>
-                        </li>
-                        <li>
-                            <span>Бонусный и промо-функционал</span>
-                        </li>
-                    </ul>
-                    <button type="button" data-remodal-target="tariffs_modal">Полное описание</button>
-                </div>
-                <div class="tariffs_item">
-                    <div class="tariffs_title">
-                        <p>Эксклюзив</p>
-                        <p class="text_decor">Индивидуально</p>
+                    <div class="tariffs_item">
+                        <div class="tariffs_title">
+                            <p>Эксклюзивный</p>
+                            <p class="text_decor">Индивидуально</p>
+                        </div>
+                        <div class="descr">Для большой сети клубов или статусной площадки</div>
+                        <ul>
+                            <li>
+                                <span>Дизайн ПО под фирменный стиль клуба</span>
+                            </li>
+                            <li>
+                                <span>Отдельное приложение для App Store и Google Play</span>
+                            </li>
+                            <li>
+                                <span>Приоритетная поддержка</span>
+                            </li>
+                        </ul>
+                        <button type="button" data-remodal-target="tariffs_modal">Полное описание</button>
                     </div>
-                    <div class="descr">Для большой сети клубов или статусной площадки</div>
-                    <ul>
-                        <li>
-                            <span>Дизайн ПО под фирменный стиль клуба</span>
-                        </li>
-                        <li>
-                            <span>Отдельное приложение для App Store и Google Play</span>
-                        </li>
-                        <li>
-                            <span>Приоритетная поддержка</span>
-                        </li>
-                    </ul>
-                    <button type="button" data-remodal-target="tariffs_modal">Полное описание</button>
                 </div>
             </div>
         </div>
@@ -231,7 +233,7 @@
                     <div class="descr">6 месяцев полного функционала - в подарок</div>
                 </div>
             </div>
-            <a href="{{url('register')}}" class="learn_more">Попробовать</a>
+            <a href="#block-langame_software_request" class="learn_more">Попробовать</a>
         </div>
     </div>
     <div class="langame_software_options_wrapper">
@@ -239,7 +241,7 @@
             <div class="sub_title">не только программное обеспечение</div>
             <div class="title">Больше возможностей для наших партнёров</div>
             <ul class="langame_software_options">
-                <li class="option_item">
+                <li class="option_item active">
                     <div class="option">
                         <span>Управляющая компания</span>
                         <button type="button" class="options_btn"></button>
@@ -306,12 +308,12 @@
                     </p>
                     <p class="text_decor">10 первых заявок</p>
                     <p>Торопитесь!</p>
-                    <a href="{{url('contacts')}}" class="learn_more">Оформить заявку</a>
+                    <a href="#block-langame_software_request" class="learn_more">Оформить заявку</a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="langame_software_content">
+    <div class="langame_software_content" id="block-langame_software_request">
             <div class="add_club_request_wrapper">
                 <div class="title">Оформить заявку</div>
                 <form action="{{url('langame/request')}}" method="post" id="add-club-request-form">
@@ -381,7 +383,7 @@
                                 <label>
                                     <input type="checkbox" name="add_club_request_user_agree" required>
                                     <span class="activator"><span></span></span>
-                                    <span>Согласен с условиями обработки персональных данных</span>
+                                    <span>Согласен <a href="{{url('policy')}}">с условиями обработки</a> персональных данных</span>
                                 </label>
                             </div>
                         </div>
@@ -430,7 +432,7 @@ $tariffs = [
     ],
     'Дополнительный заработок' => [
         'Панель управления майнингом' => [false, true, true],
-        'Гостевые аккаунты Langame (по модели revenue share)' => [false, true, true],
+        'Гостевые аккаунты LANGAME (по модели revenue share)' => [false, true, true],
         'Контроль использования принтеров<br> (контроль счетчика печати с сопоставлением<br> данных счетчика с данными кассы)' => [false, true, true],
     ],
     'Автоматизация' => [
@@ -493,7 +495,7 @@ $tariffs = [
                     <th>
                         <div class="head_wrapper">
                             <p class="text_decor">Индивидуально</p>
-                            <p>эксклюзивный</p>
+                            <p>Эксклюзивный</p>
                         </div>
                     </th>
                 </tr>
