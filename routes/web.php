@@ -25,7 +25,7 @@ Auth::routes();
 Route::post('/register/send_sms', 'Auth\RegisterController@sendSMS');
 Route::post('/register/verify_sms', 'Auth\RegisterController@verifySMS');
 Route::post('/register/create', 'Auth\RegisterController@create');
-Route::get('email/verify/{token}','Auth\RegisterController@verifyEmail')->name('user.verify'); 
+Route::get('email/verify/{token}','Auth\RegisterController@verifyEmail')->name('user.verify');
 
 
 // личный кабинет
@@ -60,9 +60,9 @@ Route::post('langame/request','mailController@langameRequest');
 Route::post('report_error','mailController@reportError');
 
 // прочие страницы
-// Route::get('/langame-software', function () {
-//     return view('about.langame_software');
-// });
+ Route::get('/langame-software', function () {
+     return view('about.langame_software');
+ });
 Route::get('/contacts', function () {
     return view('about.contacts');
 });

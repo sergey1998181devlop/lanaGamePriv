@@ -309,11 +309,9 @@
                     <div class="footer_content_item">
                         <h4>Игрокам</h4>
                         <ul>
-                            @if(false)
                             <li>
                                 <a href="{{url('about-us')}}">О сервисе</a>
                             </li>
-                            @endif
                             <li>
                                 <a href="{{url('contacts')}}">Обратная связь</a>
                             </li>
@@ -328,16 +326,27 @@
                             <li>
                                 <a href="{{url('register')}}">Как попасть на LanGame</a>
                             </li>
-                            @if(false)
                             <li>
                                 <a href="{{url('langame-software')}}">Langame Software</a>
                             </li>
-                            @endif
                         </ul>
                     </div>
                 </div>
             </div>
             <button type="button" class="report" data-remodal-target="report_modal">Сообщить об ошибке</button>
+            <div class="social_wrapper">
+                <div class="social_list">
+                    <a href="#">
+                        <img src="{{ asset('/img/icons/vk.svg')}}" alt="logo">
+                    </a>
+                    <a href="#">
+                        <img src="{{ asset('/img/icons/telegram.svg')}}" alt="logo">
+                    </a>
+                    <a href="#">
+                        <img src="{{ asset('/img/icons/inst.svg')}}" alt="logo">
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="footer_bottom">
             <div class="footer_rights_wrapper">

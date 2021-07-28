@@ -95,6 +95,17 @@
         </section>
         <!--SECTION ARTICLES END-->
     @endif
+
+    <!--SECTION TOURNAMENT START-->
+    <section class="tournament_wrapper">
+        <div class="container">
+            <h2>Турниры в клубах</h2>
+            <div class="tournament">
+                <img src="{{ asset('/img/service/tour.png')}}" alt="image">
+            </div>
+        </div>
+    </section>
+    <!--SECTION TOURNAMENT END-->
 @endsection
 @section('scripts')
     <script src="https://api-maps.yandex.ru/2.1/?apikey={{env('YANDIX_MAPS_KEY','79ca1998-f254-447d-8081-bcd9647a8fb9')}}&lang=ru_RU" type="text/javascript"></script>

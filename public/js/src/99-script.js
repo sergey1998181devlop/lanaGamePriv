@@ -94,6 +94,23 @@ jQuery(function() {
         ]
     });
 
+    jQuery('.our_team_list').slick({
+        infinite: false,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        variableWidth: true,
+        prevArrow: false,
+        nextArrow: false,
+        responsive: [
+            {
+                breakpoint: 700,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    });
 
     // club page (mobile) - counter photo in gallery
     let scrollLeft = 0,
@@ -154,6 +171,10 @@ jQuery(function() {
 
     jQuery('#close_search_form').on('click', function(e){
         jQuery('.search .search_form').removeClass('active');
+    });
+
+    jQuery('.langame_software_options .option').on('click', function(e) {
+        jQuery(this).closest('.option_item').toggleClass('active');
     });
 
     /**
