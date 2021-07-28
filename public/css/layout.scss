@@ -3965,7 +3965,7 @@ section.articles_wrapper {
 /*! SECTION ARTICLES END */
 
 /*! SECTION TOURNAMENT START */
-section.tournament_wrapper{
+section.tournament_wrapper {
     padding: 32px 0 0;
     margin-bottom: 200px;
 
@@ -3979,11 +3979,11 @@ section.tournament_wrapper{
         color: #000000;
     }
 
-    .tournament{
+    .tournament {
         margin-top: 32px;
     }
 
-    @media (max-width: 980px){
+    @media (max-width: 980px) {
         padding: 0;
         margin-bottom: 64px;
         h2 {
@@ -3992,8 +3992,8 @@ section.tournament_wrapper{
             text-align: center;
         }
 
-        .tournament{
-            img{
+        .tournament {
+            img {
                 width: 100%;
                 height: auto;
                 object-fit: contain;
@@ -4254,6 +4254,7 @@ section.terms_of_use_content_wrapper {
 /*! SECTION PERSONAL PAGE START */
 section.personal_page_wrapper {
     min-height: calc(100vh - 331px);
+
 
     .personal_page {
         display: flex;
@@ -4804,6 +4805,8 @@ section.personal_page_wrapper {
     }
 
     @media (max-width: 980px) {
+        overflow: hidden;
+
         .personal_page {
             display: block;
             padding: 64px 0 79px;
@@ -9086,8 +9089,8 @@ section.langame_software_wrapper {
                     margin: 0 32px;
 
                     .img_wrapper {
-                        width: 386px;
-                        height: 458px;
+                        width: 345px;
+                        height: 410px;
                         margin-bottom: 32px;
 
                         img {
@@ -9337,7 +9340,7 @@ section.langame_software_wrapper {
                     margin: 0;
 
                     .img_wrapper {
-                        width: 329px;
+                        width: 317px;
                         height: 336px;
                         margin: 0 auto -97px;
 
@@ -9606,6 +9609,76 @@ section.langame_software_wrapper {
             }
         }
     }
+
+    @media (max-width: 365px) {
+        .langame_software_info_wrapper {
+            .langame_software_info {
+                .info_item {
+                    .img_wrapper {
+                        width: 300px;
+                        height: 358px;
+                    }
+                }
+            }
+        }
+
+        .langame_software_description_wrapper {
+            .langame_software_description {
+                .description_item {
+                    .img_wrapper {
+                        width: 272px;
+                        height: 326px;
+                    }
+                }
+            }
+        }
+
+        .langame_software_offer_wrapper {
+            .langame_software_offer {
+                .offer_item {
+                    .number {
+                        left: -45px;
+                    }
+
+                    &:first-child {
+                        &:before {
+                            left: -30px;
+                        }
+                    }
+
+                    &:last-child {
+                        &:before {
+                            left: -30px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .langame_software_present_wrapper {
+            .langame_software_present {
+                .present_item {
+
+                    .img_wrapper {
+                        width: 259px;
+                        height: 326px;
+                        margin: 0 auto -110px;
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: contain;
+                            object-position: center;
+                        }
+                    }
+
+                    .learn_more {
+                        margin: 32px auto 0;
+                    }
+                }
+            }
+        }
+    }
 }
 /*! SECTION LANGAME SOFTWARE END */
 
@@ -9812,6 +9885,8 @@ section.langame_software_wrapper {
     }
 
     @media (max-width: 1100px) {
+        overflow: hidden;
+
         .service_for_people {
             .descr_title {
                 font-size: 26px;
@@ -9823,45 +9898,53 @@ section.langame_software_wrapper {
             }
         }
 
-        .service_list {
-            overflow-x: auto;
-            overflow-y: hidden;
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            align-items: stretch;
-            margin: 0 -16px 64px;
+        .service_list_wrapper {
+            overflow: hidden;
+            width: calc(100% + 80px);
+            margin-bottom: 64px;
 
-            .service_item {
-                flex-shrink: 0;
-                width: 240px;
-                margin: 0 16px;
+            .service_list {
+                width: calc(100% + 80px);
+                overflow-x: auto;
+                overflow-y: hidden;
+                padding: 20px;
+                margin: -20px;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: stretch;
 
+                .service_item {
+                    flex-shrink: 0;
+                    width: 240px;
+                    margin: 0 16px;
 
-                .descr {
-                    font-style: normal;
-                    font-weight: 400;
-                    font-size: 18px;
-                    line-height: 1.2;
-                    color: #000000;
-                    margin-bottom: 24px;
-                }
+                    .descr {
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 18px;
+                        line-height: 1.2;
+                        color: #000000;
+                        margin-bottom: 24px;
+                    }
 
-                a {
-                    display: block;
-                    text-decoration: none;
-                    font-style: normal;
-                    font-weight: 500;
-                    font-size: 18px;
-                    line-height: 1;
-                    color: #dc0000;
-                }
+                    a {
+                        display: block;
+                        text-decoration: none;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 18px;
+                        line-height: 1;
+                        color: #dc0000;
+                    }
 
-                &:first-child {
-                    width: 271px;
+                    &:first-child {
+                        width: 271px;
+                    }
                 }
             }
         }
+
     }
 }
 
@@ -10043,6 +10126,7 @@ section.langame_software_wrapper {
 }
 
 .our_team_wrapper {
+    overflow: hidden;
     margin-bottom: 128px;
 
     .title {
@@ -10241,41 +10325,61 @@ section.langame_software_wrapper {
             }
         }
     }
+
+    @media (max-width: 360px) {
+        .articles {
+            .articles_list {
+                .articles_item {
+                    width: 100%;
+                }
+            }
+        }
+    }
 }
 
-.our_partners_list {
-    width: 1042px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    filter: grayscale(1);
-    opacity: 0.2;
-
-    .our_partners_item {
-        margin: 0 25px 70px;
-    }
-
-    @media (max-width: 1100px) {
-        width: 100%;
-        padding: 0 15px;
-        overflow-x: auto;
+.our_partners_list_wrapper {
+    .our_partners_list {
+        width: 1042px;
         margin: 0 auto;
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         filter: grayscale(1);
         opacity: 0.2;
 
         .our_partners_item {
-            margin: 0 25px 0;
+            margin: 0 25px 70px;
+        }
+    }
+
+    @media (max-width: 1100px) {
+        overflow: hidden;
+        width: calc(100% + 30px);
+
+        .our_partners_list {
+            width: 100%;
+            padding: 20px;
+            margin: -20px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: nowrap;
+            filter: grayscale(1);
+            opacity: 0.2;
+
+            .our_partners_item {
+                margin: 0 25px 0;
+            }
         }
     }
 }
+
 
 .service_block_bottom {
     background: #000000;

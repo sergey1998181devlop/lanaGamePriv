@@ -70,49 +70,51 @@
                 </div>
             </div>
 
-            <div class="service_list">
-                <div class="service_item">
-                    <div class="img_wrapper f5">
-                        <img src="{{ asset('/img/service/f5.svg')}}" alt="image">
+            <div class="service_list_wrapper">
+                <div class="service_list">
+                    <div class="service_item">
+                        <div class="img_wrapper f5">
+                            <img src="{{ asset('/img/service/f5.svg')}}" alt="image">
+                        </div>
+                        <div class="descr">
+                            Сеть собственных компьютерных клубов
+                            “F5 Центр Киберспорта”
+                        </div>
+                        <a href="https://f5center.com">Посетить</a>
                     </div>
-                    <div class="descr">
-                        Сеть собственных компьютерных клубов
-                        “F5 Центр Киберспорта”
+                    <div class="service_item">
+                        <div class="img_wrapper">
+                            <img src="{{ asset('/img/service/ln3.svg')}}" alt="image">
+                        </div>
+                        <div class="descr">
+                            Программный комплекс
+                            для управления вашим
+                            компьютерным клубом
+                        </div>
+                        <a href="{{url('langame-software')}}">Установить</a>
                     </div>
-                    <a href="https://f5center.com">Посетить</a>
-                </div>
-                <div class="service_item">
-                    <div class="img_wrapper">
-                        <img src="{{ asset('/img/service/ln3.svg')}}" alt="image">
+                    <div class="service_item">
+                        <div class="img_wrapper">
+                            <img src="{{ asset('/img/service/ln1.svg')}}" alt="image">
+                        </div>
+                        <div class="descr">
+                            Информационный портал
+                            для владельцев и
+                            посетителей клубов
+                        </div>
+                        <a href="{{url('/')}}/{{city()}}">Узнать</a>
                     </div>
-                    <div class="descr">
-                        Программный комплекс
-                        для управления вашим
-                        компьютерным клубом
+                    <div class="service_item">
+                        <div class="img_wrapper">
+                            <img src="{{ asset('/img/service/ln2.svg')}}" alt="image">
+                        </div>
+                        <div class="descr">
+                            Дистрибуция, доверительное
+                            управление и другие услуги
+                            для бизнеса
+                        </div>
+                        <a href="{{url('contacts')}}">Заказать</a>
                     </div>
-                    <a href="{{url('langame-software')}}">Установить</a>
-                </div>
-                <div class="service_item">
-                    <div class="img_wrapper">
-                        <img src="{{ asset('/img/service/ln1.svg')}}" alt="image">
-                    </div>
-                    <div class="descr">
-                        Информационный портал
-                        для владельцев и
-                        посетителей клубов
-                    </div>
-                    <a href="{{url('/')}}/{{city()}}">Узнать</a>
-                </div>
-                <div class="service_item">
-                    <div class="img_wrapper">
-                        <img src="{{ asset('/img/service/ln2.svg')}}" alt="image">
-                    </div>
-                    <div class="descr">
-                        Дистрибуция, доверительное
-                        управление и другие услуги
-                        для бизнеса
-                    </div>
-                    <a href="{{url('contacts')}}">Заказать</a>
                 </div>
             </div>
         </div>
@@ -364,45 +366,47 @@
                 Поэтому нам <span class="text_decor">доверяют</span>
             </div>
 
-            <div class="our_partners_list">
-                <div class="our_partners_item">
-                    <img src="{{ asset('/img/service/nvidia.svg')}}" alt="image">
-                </div>
-                <div class="our_partners_item">
-                    <img src="{{ asset('/img/service/msi.svg')}}" alt="image">
-                </div>
-                <div class="our_partners_item">
-                    <img src="{{ asset('/img/service/cooler.svg')}}" alt="image">
-                </div>
-                <div class="our_partners_item">
-                    <img src="{{ asset('/img/service/ocs.svg')}}" alt="image">
-                </div>
-                <div class="our_partners_item">
-                    <img src="{{ asset('/img/service/intel.svg')}}" alt="image">
-                </div>
-                <div class="our_partners_item">
-                    <img src="{{ asset('/img/service/pepsico.svg')}}" alt="image">
-                </div>
-                <div class="our_partners_item">
-                    <img src="{{ asset('/img/service/dxracer.svg')}}" alt="image">
-                </div>
-                <div class="our_partners_item">
-                    <img src="{{ asset('/img/service/apk.svg')}}" alt="image">
-                </div>
-                <div class="our_partners_item">
-                    <img src="{{ asset('/img/service/fed.svg')}}" alt="image">
-                </div>
-                <div class="our_partners_item">
-                    <img src="{{ asset('/img/service/game.svg')}}" alt="image">
-                </div>
-                <div class="our_partners_item">
-                    <img src="{{ asset('/img/service/logitech.svg')}}" alt="image">
-                </div>
-                <div class="our_partners_item">
-                    <img src="{{ asset('/img/service/strim.svg')}}" alt="image">
-                </div>
-                <div class="our_partners_item">
-                    <img src="{{ asset('/img/service/electronic.svg')}}" alt="image">
+            <div class="our_partners_list_wrapper">
+                <div class="our_partners_list">
+                    <div class="our_partners_item">
+                        <img src="{{ asset('/img/service/nvidia.svg')}}" alt="image">
+                    </div>
+                    <div class="our_partners_item">
+                        <img src="{{ asset('/img/service/msi.svg')}}" alt="image">
+                    </div>
+                    <div class="our_partners_item">
+                        <img src="{{ asset('/img/service/cooler.svg')}}" alt="image">
+                    </div>
+                    <div class="our_partners_item">
+                        <img src="{{ asset('/img/service/ocs.svg')}}" alt="image">
+                    </div>
+                    <div class="our_partners_item">
+                        <img src="{{ asset('/img/service/intel.svg')}}" alt="image">
+                    </div>
+                    <div class="our_partners_item">
+                        <img src="{{ asset('/img/service/pepsico.svg')}}" alt="image">
+                    </div>
+                    <div class="our_partners_item">
+                        <img src="{{ asset('/img/service/dxracer.svg')}}" alt="image">
+                    </div>
+                    <div class="our_partners_item">
+                        <img src="{{ asset('/img/service/apk.svg')}}" alt="image">
+                    </div>
+                    <div class="our_partners_item">
+                        <img src="{{ asset('/img/service/fed.svg')}}" alt="image">
+                    </div>
+                    <div class="our_partners_item">
+                        <img src="{{ asset('/img/service/game.svg')}}" alt="image">
+                    </div>
+                    <div class="our_partners_item">
+                        <img src="{{ asset('/img/service/logitech.svg')}}" alt="image">
+                    </div>
+                    <div class="our_partners_item">
+                        <img src="{{ asset('/img/service/strim.svg')}}" alt="image">
+                    </div>
+                    <div class="our_partners_item">
+                        <img src="{{ asset('/img/service/electronic.svg')}}" alt="image">
+                    </div>
                 </div>
             </div>
         </div>
