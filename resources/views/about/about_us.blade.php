@@ -80,7 +80,7 @@
                             Сеть собственных компьютерных клубов
                             “F5 Центр Киберспорта”
                         </div>
-                        <a href="https://f5center.com">Посетить</a>
+                        <a href="https://f5center.com" target="_blank">Посетить</a>
                     </div>
                     <div class="service_item">
                         <div class="img_wrapper">
