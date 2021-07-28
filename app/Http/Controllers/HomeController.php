@@ -67,7 +67,7 @@ class HomeController extends Controller
       if ($request->input('order_key') == "asc"){
         $order_key = "ASC";
       }
-      $paginate = 6;
+      $paginate = 9;
       if ($request->input('show') == "map"){
         $paginate = 999999999999999; // показать все
       }

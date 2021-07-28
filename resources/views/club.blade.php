@@ -127,7 +127,12 @@
                     }else{
                         if(!empty($schedule_item[$today]['from']) && !empty($schedule_item[$today]['to'])){
                             $begin = new DateTime($schedule_item[$today]['from']);
-                            $end = new DateTime($schedule_item[$today]['to']);
+                            if (explode(":", $schedule_item[$today]['to'])[0]<explode(":", $schedule_item[$today]['from'])[0]){
+                                $end = new DateTime($schedule_item[$today]['to']);
+                                $end->add(new DateInterval("P1D"));
+                            }else{
+                                $end = new DateTime($schedule_item[$today]['to']);
+                            }
                             if ($now >= $begin && $now <= $end){
                                 $showCallButton =true;
                             }else{
