@@ -13,7 +13,7 @@
                         Программа для управления вашим
                         компьютерным клубом
                     </div>
-                    <a href="#" class="learn_more">Узнать больше</a>
+                    <a href="{{url('about-us')}}" class="learn_more">Узнать больше</a>
                 </div>
                 <div class="info_item">
                     <div class="img_wrapper">
@@ -126,7 +126,7 @@
                     </ul>
                 </div>
             </div>
-            <a href="#" class="learn_more">Запросить демо-доступ</a>
+            <a href="{{url('contacts')}}" class="learn_more">Запросить демо-доступ</a>
         </div>
     </div>
     <div class="langame_software_tariffs_wrapper">
@@ -231,7 +231,7 @@
                     <div class="descr">6 месяцев полного функционала - в подарок</div>
                 </div>
             </div>
-            <a href="#" class="learn_more">Попробовать</a>
+            <a href="{{url('register')}}" class="learn_more">Попробовать</a>
         </div>
     </div>
     <div class="langame_software_options_wrapper">
@@ -306,7 +306,7 @@
                     </p>
                     <p class="text_decor">10 первых заявок</p>
                     <p>Торопитесь!</p>
-                    <a href="#" class="learn_more">Оформить заявку</a>
+                    <a href="{{url('contacts')}}" class="learn_more">Оформить заявку</a>
                 </div>
             </div>
         </div>

@@ -336,10 +336,10 @@
             <button type="button" class="report" data-remodal-target="report_modal">Сообщить об ошибке</button>
             <div class="social_wrapper">
                 <div class="social_list">
-                    <a href="#">
+                    <a href="https://vk.com/langameru" target="_blank">
                         <img src="{{ asset('/img/icons/vk.svg')}}" alt="logo">
                     </a>
-                    <a href="#">
+                    <a href="https://t.me/langameru" target="_blank">
                         <img src="{{ asset('/img/icons/telegram.svg')}}" alt="logo">
                     </a>
                     <a href="#">

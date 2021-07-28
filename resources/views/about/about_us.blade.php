@@ -14,7 +14,7 @@
                             продукты и решения для владельцев, сотрудников и
                             посетителей компьютерных клубов.
                         </h2>
-                        <a href="#" class="learn_more">Узнать нас за 1 минуту</a>
+                        <a href="{{url('register')}}" class="learn_more">Узнать нас за 1 минуту</a>
                     </div>
                     <div class="choose_club_info_img service">
                         <img src="{{ asset('/img/service/aboutservice.png')}}" alt="image">
@@ -79,7 +79,7 @@
                         Сеть собственных компьютерных клубов
                         “F5 Центр Киберспорта”
                     </div>
-                    <a href="#">Посетить</a>
+                    <a href="https://f5center.com">Посетить</a>
                 </div>
                 <div class="service_item">
                     <div class="img_wrapper">
@@ -90,7 +90,7 @@
                         для управления вашим
                         компьютерным клубом
                     </div>
-                    <a href="#">Установить</a>
+                    <a href="{{url('langame-software')}}">Установить</a>
                 </div>
                 <div class="service_item">
                     <div class="img_wrapper">
@@ -101,7 +101,7 @@
                         для владельцев и
                         посетителей клубов
                     </div>
-                    <a href="#">Узнать</a>
+                    <a href="{{url('/')}}/{{city()}}">Узнать</a>
                 </div>
                 <div class="service_item">
                     <div class="img_wrapper">
@@ -112,7 +112,7 @@
                         управление и другие услуги
                         для бизнеса
                     </div>
-                    <a href="#">Заказать</a>
+                    <a href="{{url('contacts')}}">Заказать</a>
                 </div>
             </div>
         </div>
@@ -420,7 +420,7 @@
                     Делать игры и киберспорт <span class="text_decor">доступными для каждого!</span>
                 </p>
             </div>
-            <a href="#" class="learn_more">Вы с нами?</a>
+            <a href="{{url('register')}}" class="learn_more">Вы с нами?</a>
         </div>
     </section>
     <!--SECTION SERVICE BOTTOM BLOCK END-->
