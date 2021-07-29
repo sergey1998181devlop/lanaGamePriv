@@ -8906,12 +8906,12 @@ section.langame_software_wrapper {
                 flex-direction: row;
                 justify-content: center;
                 align-items: center;
-                margin: 0 -12px;
+                margin: 0 -10px;
 
                 .tariffs_item {
                     flex-shrink: 0;
-                    width: 330px;
-                    margin: 0 12px;
+                    width: 335px;
+                    margin: 0 10px;
                     padding: 16px 16px 32px;
 
                     .tariffs_title {
@@ -8936,6 +8936,7 @@ section.langame_software_wrapper {
                     ul {
                         margin-bottom: 61px;
 
+
                         li {
                             font-size: 14px;
 
@@ -8947,6 +8948,7 @@ section.langame_software_wrapper {
 
                         &.secondary {
                             margin-bottom: 29px;
+                            padding-left: 25px;
                         }
                     }
 
@@ -13103,142 +13105,288 @@ section.langame_software_wrapper {
     }
 }
 
-.tariffs_modal {
-    width: 1488px;
-    max-width: 1488px;
-    background: #ffffff;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
-    border-radius: 24px;
-    margin-top: 100px;
-    padding: 19px 32px;
+.tariffs_modal_wrapper{
+    .remodal-wrapper{
+        .tariffs_modal {
+            width: 1488px;
+            max-width: 1488px;
+            background: #ffffff;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+            border-radius: 24px;
+            margin-top: 100px;
+            padding: 19px 32px;
 
-    .remodal-close {
-        display: none;
-    }
+            .remodal-close {
+                display: none;
+            }
 
-    table {
-        width: 100%;
-        border: none;
-        border-collapse: collapse;
-        table-layout: fixed;
+            table {
+                width: 100%;
+                border: none;
+                border-collapse: collapse;
+                table-layout: fixed;
 
-        thead {
-            tr {
-                th {
-                    font-style: normal;
-                    font-weight: 700;
-                    font-size: 18px;
-                    line-height: 1;
-                    color: #000000;
-                    padding: 0 0 26px 0;
-                    text-align: center;
-                    border-bottom: 1px solid #d3d3d3;
+                thead {
+                    tr {
+                        th {
+                            font-style: normal;
+                            font-weight: 700;
+                            font-size: 18px;
+                            line-height: 1;
+                            color: #000000;
+                            padding: 0 0 26px 0;
+                            text-align: center;
+                            border-bottom: 1px solid #d3d3d3;
 
-                    &:first-child {
-                        width: 610px;
+                            &:first-child {
+                                width: 610px;
+                            }
+                        }
+                    }
+                }
+
+                tbody {
+                    tr {
+                        td {
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 18px;
+                            line-height: 1;
+                            color: #000000;
+                            padding: 14px 32px;
+                            text-align: center;
+
+                            .group-title {
+                                font-style: normal;
+                                font-weight: 700;
+                                font-size: 24px;
+                                line-height: 1;
+                                text-transform: uppercase;
+                                color: #000000;
+                            }
+
+                            .checkbox {
+                                width: 100%;
+                                height: 100%;
+                            }
+
+                            &:first-child {
+                                text-align: left;
+                                padding: 14px 32px 14px 0;
+                            }
+                        }
+
+                        &:first-child {
+                            td {
+                                padding-top: 64px;
+                            }
+                        }
                     }
                 }
             }
-        }
 
-        tbody {
-            tr {
-                td {
+            @media (max-width: 1100px){
+                width: 700px;
+                max-width: 700px;
+                background: #ffffff;
+                box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+                border-radius: 24px;
+                margin-top: 100px;
+                padding: 15px;
+
+                .remodal-close {
+                    display: none;
+                }
+
+                table {
+                    thead {
+                        tr {
+                            th {
+                                font-size: 16px;
+                                padding: 0 0 20px 0;
+
+                                &:first-child {
+                                    width: 210px;
+                                }
+                            }
+                        }
+                    }
+
+                    tbody {
+                        tr {
+                            td {
+                                font-size: 16px;
+                                padding: 10px;
+
+                                .group-title {
+                                    font-size: 18px;
+                                }
+
+                                .checkbox {
+                                    width: 100%;
+                                    height: 100%;
+                                }
+
+                                &:first-child {
+                                    text-align: left;
+                                    padding: 14px 32px 14px 0;
+                                }
+                            }
+
+                            &:first-child {
+                                td {
+                                    padding-top: 34px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            @media (max-width: 600px) {
+                width: 100%;
+                max-width: 100%;
+                background: #ffffff;
+                box-shadow: none;
+                border-radius: 12px;
+                margin-top: 0;
+                padding: 40px 5px 5px 10px;
+
+                .remodal-close {
+                    width: 129px;
+                    top: 5px;
+                    left: unset;
+                    right: 0;
                     font-style: normal;
                     font-weight: 500;
                     font-size: 18px;
+                    color: #dc0000;
+                    display: block;
+                    padding: 9px 9px 9px 30px;
+                    text-align: left;
                     line-height: 1;
-                    color: #000000;
-                    padding: 14px 32px;
-                    text-align: center;
 
-                    .group-title {
-                        font-style: normal;
-                        font-weight: 700;
-                        font-size: 24px;
-                        line-height: 1;
-                        text-transform: uppercase;
-                        color: #000000;
-                    }
-
-                    .checkbox {
-                        width: 100%;
-                        height: 100%;
-                    }
-
-                    &:first-child {
-                        text-align: left;
-                        padding: 14px 32px 14px 0;
+                    &:before {
+                        content: '';
+                        display: block;
+                        width: 23px;
+                        height: 23px;
+                        position: absolute;
+                        top: 50%;
+                        left: -2px;
+                        background-image: url("../img/close.svg");
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: 23px 23px;
+                        transform: translateY(-50%);
                     }
                 }
 
-                &:first-child {
-                    td {
-                        padding-top: 64px;
+                table {
+                    display: block;
+
+                    thead, tbody, tfoot, tr {
+                        display: block;
+                    }
+
+                    thead {
+                        tr {
+                            display: flex;
+                            flex-direction: row;
+                            flex-wrap: nowrap;
+
+                            th {
+                                font-size: 15px;
+                                padding: 5px;
+                                width: calc(100% / 3);
+                                text-align: center;
+
+                                &:first-child {
+                                    width: 0;
+                                    padding: 0;
+                                }
+
+                                &:nth-child(2){
+                                    width: 90px;
+                                }
+
+                                &:nth-child(3){
+                                    width: 155px;
+                                }
+                            }
+                        }
+                    }
+
+                    tbody {
+                        tr {
+                            display: grid;
+                            grid-template-columns: repeat(3, 1fr);
+
+                            td {
+                                font-size: 16px;
+                                padding: 10px;
+
+                                &:first-child {
+                                    grid-column-start: 1;
+                                    grid-column-end: -1;
+                                }
+
+                                .group-title {
+                                    font-size: 18px;
+                                }
+
+                                .checkbox {
+                                    width: 100%;
+                                    height: 100%;
+                                }
+
+                                &:first-child {
+                                    text-align: left;
+                                    padding: 14px 32px 14px 0;
+                                    width: 100%;
+                                }
+                            }
+
+                            &:first-child {
+                                td {
+                                    padding-top: 34px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            @media (max-width: 380px) {
+                table {
+                    thead {
+                        tr {
+                            th {
+                                font-size: 14px;
+                                padding: 5px;
+                                width: calc(100% / 3);
+                                text-align: center;
+
+                                &:nth-child(2){
+                                    width: 80px;
+                                }
+
+                                &:nth-child(3){
+                                    width: 145px;
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
-    }
 
-    @media (max-width: 1100px){
-        width: 700px;
-        max-width: 700px;
-        background: #ffffff;
-        box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
-        border-radius: 24px;
-        margin-top: 100px;
-        padding: 15px;
-
-        .remodal-close {
-            display: none;
-        }
-
-        table {
-            thead {
-                tr {
-                    th {
-                        font-size: 16px;
-                        padding: 0 0 20px 0;
-
-                        &:first-child {
-                            width: 210px;
-                        }
-                    }
-                }
-            }
-
-            tbody {
-                tr {
-                    td {
-                        font-size: 16px;
-                        padding: 10px;
-
-                        .group-title {
-                            font-size: 18px;
-                        }
-
-                        .checkbox {
-                            width: 100%;
-                            height: 100%;
-                        }
-
-                        &:first-child {
-                            text-align: left;
-                            padding: 14px 32px 14px 0;
-                        }
-                    }
-
-                    &:first-child {
-                        td {
-                            padding-top: 34px;
-                        }
-                    }
-                }
-            }
+        @media (max-width: 600px){
+            background-color: #ffffff;
         }
     }
 }
+
 /*! MODALS END */
 
 /*! FOOTER START */

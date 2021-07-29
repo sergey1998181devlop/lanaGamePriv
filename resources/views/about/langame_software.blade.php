@@ -467,16 +467,12 @@ $tariffs = [
 ];
 ?>
 
-<div class="remodal tariffs_modal" data-remodal-id="tariffs_modal">
+<div class="tariffs_modal_wrapper"></div>
+
+<div class="tariffs_modal" data-remodal-id="tariffs_modal">
     <button data-remodal-action="close" class="remodal-close">Закрыть</button>
     <div class="remodal-content">
         <table>
-            <colgroup>
-                <col>
-                <col>
-                <col>
-                <col>
-            </colgroup>
             <thead>
                 <tr>
                     <th></th>

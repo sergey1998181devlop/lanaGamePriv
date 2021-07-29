@@ -70,6 +70,11 @@ jQuery(function() {
         closeOnOutsideClick: false
     });
 
+    jQuery('.tariffs_modal').remodal({
+        appendTo: jQuery('.tariffs_modal_wrapper'),
+        hashTracking: false
+    });
+
     jQuery('.show_club_photo_modal').remodal({
         appendTo: jQuery('.club_page_modals_wrapper'),
         hashTracking: false,
