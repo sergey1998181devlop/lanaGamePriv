@@ -10420,6 +10420,7 @@ section.langame_software_wrapper {
     @media (max-width: 500px) {
         .our_team_list {
             margin-bottom: 60px;
+            padding: 0 15px;
 
             .our_team_item {
                 outline: none;
@@ -10433,10 +10434,12 @@ section.langame_software_wrapper {
                 &.slick-prev {
                     left: 30px;
                     right: unset;
+                    z-index: 5;
                 }
 
                 &.slick-next {
                     right: 30px;
+                    z-index: 5;
                 }
             }
         }
