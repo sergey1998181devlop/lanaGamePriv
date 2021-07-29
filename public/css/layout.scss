@@ -8906,12 +8906,12 @@ section.langame_software_wrapper {
                 flex-direction: row;
                 justify-content: center;
                 align-items: center;
-                margin: 0 -16px;
+                margin: 0 -12px;
 
                 .tariffs_item {
                     flex-shrink: 0;
-                    width: 340px;
-                    margin: 0 16px;
+                    width: 330px;
+                    margin: 0 12px;
                     padding: 16px 16px 32px;
 
                     .tariffs_title {
@@ -9724,8 +9724,7 @@ section.langame_software_wrapper {
         }
 
         .descr_text {
-            h4 {
-                font-family: 'PT Root UI', sans-serif;
+            p {
                 font-style: normal;
                 font-weight: 400;
                 font-size: 24px;
@@ -9796,7 +9795,7 @@ section.langame_software_wrapper {
             }
 
             .descr_text {
-                h4 {
+                p {
                     font-size: 20px;
                     margin-top: 0;
                 }
@@ -10368,6 +10367,8 @@ section.langame_software_wrapper {
 
         p {
             font-size: 20px;
+            padding-left: 15px;
+            text-align: left;
         }
 
         .articles {
@@ -10418,7 +10419,7 @@ section.langame_software_wrapper {
 
     @media (max-width: 500px) {
         .our_team_list {
-            margin-bottom: 140px;
+            margin-bottom: 60px;
 
             .our_team_item {
                 outline: none;
@@ -10426,15 +10427,16 @@ section.langame_software_wrapper {
             }
 
             .slick-arrow {
-                top: unset;
-                bottom: -80px;
+                top: 80px;
+                bottom: unset;
 
                 &.slick-prev {
-                    right: calc(50% + 50px);
+                    left: 30px;
+                    right: unset;
                 }
 
                 &.slick-next {
-                    right: calc(50% - 50px);
+                    right: 30px;
                 }
             }
         }
@@ -10464,19 +10466,6 @@ section.langame_software_wrapper {
             .our_team_item {
                 outline: none;
                 width: 320px;
-            }
-
-            .slick-arrow {
-                top: unset;
-                bottom: -80px;
-
-                &.slick-prev {
-                    right: calc(50% + 50px);
-                }
-
-                &.slick-next {
-                    right: calc(50% - 50px);
-                }
             }
         }
 

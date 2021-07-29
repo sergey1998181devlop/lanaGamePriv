@@ -192,16 +192,16 @@
                         <ul>
                             @if(Auth::guest())
                                 <li>
-                                    <a href="{{url('register')}}">Как попасть на LanGame</a>
+                                    <a href="{{url('register')}}">Как попасть на LANGAME</a>
                                 </li>
                             @else
                                 <li>
-                                    <a href="{{url('personal/clubs')}}?action=add_club">Как попасть на LanGame</a>
+                                    <a href="{{url('personal/clubs')}}?action=add_club">Как попасть на LANGAME</a>
                                 </li>
                             @endif
 
                             <li>
-                                <a href="{{url('about-us')}}">О сервисе</a>
+                                <a href="{{url('about-us')}}">О LANGAME</a>
                             </li>
 
                             <li>
@@ -215,7 +215,7 @@
                             @endif
 
                             <li>
-                                <a href="{{url('langame-software')}}">LanGame Software</a>
+                                <a href="{{url('langame-software')}}">LANGAME Software</a>
                             </li>
                         </ul>
                     </div>
@@ -307,7 +307,7 @@
                         <h4>Игрокам</h4>
                         <ul>
                             <li>
-                                <a href="{{url('about-us')}}">О сервисе</a>
+                                <a href="{{url('about-us')}}">О LANGAME</a>
                             </li>
                             <li>
                                 <a href="{{url('contacts')}}">Обратная связь</a>
@@ -321,10 +321,10 @@
                                 <a href="{{url('personal/clubs')}}">Личный кабинет владельца</a>
                             </li>
                             <li>
-                                <a href="{{url('register')}}">Как попасть на LanGame</a>
+                                <a href="{{url('register')}}">Как попасть на LANGAME</a>
                             </li>
                             <li>
-                                <a href="{{url('langame-software')}}">Langame Software</a>
+                                <a href="{{url('langame-software')}}">LANGAME Software</a>
                             </li>
                         </ul>
                     </div>
@@ -339,9 +339,11 @@
                     <a href="https://t.me/langameru" target="_blank">
                         <img src="{{ asset('/img/icons/telegram.svg')}}" alt="logo">
                     </a>
+                    @if(false)
                     <a href="#">
                         <img src="{{ asset('/img/icons/inst.svg')}}" alt="logo">
                     </a>
+                    @endif
                 </div>
             </div>
         </div>
