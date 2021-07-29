@@ -8437,6 +8437,7 @@ section.langame_software_wrapper {
             width: 848px;
 
             .option_item {
+                position: relative;
                 box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
                 margin-bottom: 16px;
                 border-radius: 14px;
@@ -8460,7 +8461,8 @@ section.langame_software_wrapper {
                     }
 
                     .options_btn {
-                        position: relative;
+                        position: absolute;
+                        right: 16px;
                         display: block;
                         width: 21px;
                         height: 21px;
