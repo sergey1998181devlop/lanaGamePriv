@@ -8464,11 +8464,11 @@ section.langame_software_wrapper {
                         position: absolute;
                         right: 16px;
                         display: block;
-                        width: 21px;
-                        height: 21px;
+                        width: 22px !important;
+                        height: 22px !important;
                         cursor: pointer;
                         background-color: #000000;
-                        border-radius: 50%;
+                        border-radius: 11px 11px 11px 11px !important;
                         border: none;
                         outline: none;
 
