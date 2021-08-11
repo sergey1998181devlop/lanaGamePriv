@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect('moskva');
 });
+Route::get('/sitemap.xml','HomeController@siteMap' );
 // регистрация и авторизация
 Auth::routes();
 Route::post('/register/send_sms', 'Auth\RegisterController@sendSMS');

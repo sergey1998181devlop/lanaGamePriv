@@ -151,4 +151,11 @@ class HomeController extends Controller
      }
      return response($b);
    }
+   public function siteMap(){
+    $clubs = club::Published()->select('id','url','created_at')->whereNull('hidden_at')->get();
+    $cites = city::select('id','name','en_name')->get();
+    $posts = post::select('id','name','url','created_at')->get();
+    $otherLinks = ['about-us','langame-software','register','personal/clubs','contacts','user-agreement','policy','login'];
+    return view('about.sitemap')->with(['posts'=>$posts,'cities'=>$cites,'clubs'=>$clubs,'otherLinks'=>$otherLinks]);
+  }
 }
