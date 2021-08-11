@@ -9,6 +9,8 @@
     @if(admin())
         <meta name="is-admin" content="1">
     @endif
+    <meta name="yandex-verification" content="32e051951e8b0c78" />
+    <meta name="google-site-verification" content="hxlJwydJQGGNf58k_xhPIcvSaIB1Vb3LplRFOPUyl0g" />
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
           integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
