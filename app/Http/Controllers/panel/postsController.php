@@ -128,7 +128,9 @@ public function saveImage(Request $request){
                 Storage::delete('public/posts/thumbnail/'.$post->image);
          }
      }
-    
+    public function newPost(){
+        return view('admin.posts.add');
+    }
 
      
     

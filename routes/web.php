@@ -17,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/test',  'HomeController@sendNotification');
 
 
-Route::get('/', function () {
-    return redirect('moskva');
-});
+Route::get('/', 'HomeController@redirectToCity');
 Route::get('/sitemap.xml','HomeController@siteMap' );
 // регистрация и авторизация
 Auth::routes();
@@ -61,22 +59,13 @@ Route::post('langame/request','mailController@langameRequest');
 Route::post('report_error','mailController@reportError');
 
 // прочие страницы
- Route::get('/langame-software', function () {
-     return view('about.langame_software');
- });
-Route::get('/contacts', function () {
-    return view('about.contacts');
-});
+ Route::get('/langame-software','HomeController@langame_software');
+ Route::get('/contacts','HomeController@contacts');
+ Route::get('/policy','HomeController@policy');
+ Route::get('/user-agreement','HomeController@user_agreement');
+ Route::get('/langame-software','HomeController@langame_software');
+ Route::get('/about-us','HomeController@about_us');
 
-Route::get('/policy', function () {
-    return view('about.policy');
-});
-Route::get('/user-agreement', function () {
-    return view('about.user_agreemen');
-});
-Route::get('/about-us', function () {
-    return view('about.about_us');
-});
 
 
 
@@ -97,9 +86,7 @@ Route::post('users/delete','panel\usersController@delete');
 Route::get('users/toggleadmin/{id}','panel\usersController@toggleadmin');
 Route::get('panel/find-user','panel\usersController@find');
 
-Route::get('post/new',function(){
-    return view('admin.posts.add');
-})->middleware('rule:1');
+Route::get('post/new','panel\postsController@newPost');
 
 // посты
 Route::post('post/create','panel\postsController@store' );

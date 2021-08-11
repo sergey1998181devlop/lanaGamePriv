@@ -24,6 +24,25 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function redirectToCity(){
+      return redirect('moskva');
+    }
+    public function langame_software(){
+      return view('about.langame_software');
+    }
+    public function contacts(){
+      return view('about.contacts');
+    }
+    public function policy(){
+      return view('about.policy');
+    }
+    public function user_agreement(){
+      return view('about.user_agreemen');
+    }
+    public function about_us(){
+      return view('about.about_us');
+    }
+    
     public function index(Request $request)
     {
       if (empty($_COOKIE["lat"]) && empty($_COOKIE['lon'])){
