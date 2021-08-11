@@ -41,9 +41,46 @@
     <link rel="stylesheet" href="{{ asset('/fonts/stylesheet.css') }}?v={{ENV('CSS_VERSION',0)}}">
     <link rel="stylesheet" href="{{ asset('/fonts/PT/stylesheet.css') }}?v={{ENV('CSS_VERSION',0)}}">
     <link rel="stylesheet" href="{{ asset('/css/layout.css') }}?v={{ENV('CSS_VERSION',0)}}">
+    <!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(82365286, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true,
+        ecommerce:"dataLayer"
+   });
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-201040515-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-201040515-1');
+</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K5ZMWGV');</script>
+<!-- End Google Tag Manager -->
+
+<!-- /Yandex.Metrika counter -->
 </head>
 
 <body>
+<noscript><div><img src="https://mc.yandex.ru/watch/82365286" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K5ZMWGV"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <div class="svg_icons">
     <svg id="icon-svg-account" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M16.8684 17C14.8045 17 13.0459 16.2622 11.5925 14.7865C10.1391 13.3108 9.41238 11.5252 9.41238 9.42969C9.41238 7.3342 10.1391 5.54861 11.5925 4.07292C13.0459 2.59722 14.8045 1.85938 16.8684 1.85938C18.9322 1.85938 20.6908 2.59722 22.1442 4.07292C23.5977 5.54861 24.3244 7.3342 24.3244 9.42969C24.3244 11.5252 23.5977 13.3108 22.1442 14.7865C20.6908 16.2622 18.9322 17 16.8684 17ZM16.8684 20.8073C18.6997 20.8073 20.7199 21.0729 22.9291 21.6042C25.1383 22.1354 27.1585 23.0061 28.9898 24.2161C30.8211 25.4262 31.7367 26.7986 31.7367 28.3333V32.1406H2V28.3333C2 26.7986 2.91565 25.4262 4.74694 24.2161C6.57824 23.0061 8.59848 22.1354 10.8077 21.6042C13.0168 21.0729 15.0371 20.8073 16.8684 20.8073Z"
