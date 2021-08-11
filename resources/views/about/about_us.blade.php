@@ -299,6 +299,29 @@
                         Директор по развитию
                     </span>
                 </div>
+            </div>
+            <div class="our_team_item">
+                <div class="img_wrapper">
+                    <img src="{{ asset('/img/service/team.png')}}" alt="image">
+                </div>
+                <div class="name">
+                    Василий Фокин
+                    <span class="position">
+                        Руководитель службы технической поддержки
+                    </span>
+                </div>
+
+            </div>
+            <div class="our_team_item">
+                <div class="img_wrapper">
+                    <img src="{{ asset('/img/service/team.png')}}" alt="image">
+                </div>
+                <div class="name">
+                    Кирилл Соцков
+                    <span class="position">
+                        Операционный директор
+                    </span>
+                </div>
 
             </div>
         </div>
