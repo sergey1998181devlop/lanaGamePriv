@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('page')
     <title>{{$club->club_name}} - LanGame</title>
+    <meta name="description" content="Компьютерный клуб - {{$club->club_name}}">
+    <meta name="keywords" content="LanGame,компьютерный клуб {{$club->club_name}},{{$club->club_name}},клуб,интернет"/>
 @endsection
 @section('content')
     <?php

@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('page')
     <title>LanGame</title>
+    <meta name="description" content="найди свой компьютерный клуб в {{city(true)['namePrepositional']}}">
+    <meta name="keywords" content="LanGame,компьютерный клуб в {{city(true)['namePrepositional']}},клуб,интернет"/>
 @endsection
 @section('content')
     <?
