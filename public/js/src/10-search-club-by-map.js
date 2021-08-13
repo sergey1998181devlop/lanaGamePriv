@@ -51,7 +51,7 @@ jQuery(function() {
                 // Своё изображение иконки метки.
                 iconImageHref: '/img/ballon.svg',
                 // Размеры метки.
-                iconImageSize: [28, 40],
+                iconImageSize: [42,60],
                 // Смещение левого верхнего угла иконки относительно
                 // её "ножки" (точки привязки).
                 iconImageOffset: [-14, -40],
