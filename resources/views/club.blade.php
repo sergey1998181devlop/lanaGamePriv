@@ -144,7 +144,7 @@
                 }
             ?>
             @if($showCallButton)
-            <div class="club_calling">Бронь по звонку</div>
+            <div class="club_calling" onclick="ym(82365286,'reachGoal','book');gtag('event', 'send', { 'event_category': 'book', 'event_action': 'click' });">Бронь по звонку</div>
             @else
             <div class="club_booking closed">Закрыт</div>
             @endif

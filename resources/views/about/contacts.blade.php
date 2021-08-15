@@ -19,7 +19,7 @@
             <div class="info_item">
                 <div class="club_contact">
                     <img src="{{ asset('/img/mail.svg')}}" alt="email">
-                    <a href="mailto:pg@langame.ru">pg@langame.ru</a>
+                    <a href="mailto:pg@langame.ru" onclick="gtag('event', 'send', { 'event_category': 'email', 'event_action': 'click' });">pg@langame.ru</a>
                 </div>
             </div>
             <div class="info_item">

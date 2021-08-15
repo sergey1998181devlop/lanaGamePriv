@@ -221,7 +221,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                     </div>
                                     <div class="btn_wrapper">
                                         <a href="{{url('register')}}" class="registration">Регистрация</a>
-                                        <button type="submit">Продолжить</button>
+                                        <button type="submit" onclick="ym(207465139,'reachGoal','lk');gtag('event', 'send', { 'event_category': 'lk', 'event_action': 'send' });">Продолжить</button>
                                     </div>
                                 </form>
                             </div>
@@ -373,10 +373,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <button type="button" class="report" data-remodal-target="report_modal">Сообщить об ошибке</button>
             <div class="social_wrapper">
                 <div class="social_list">
-                    <a href="https://vk.com/langameru" target="_blank">
+                    <a href="https://vk.com/langameru" onclick="gtag('event', 'send', { 'event_category': 'vkontakte', 'event_action': 'click' });" target="_blank">
                         <img src="{{ asset('/img/icons/vk.svg')}}" alt="logo">
                     </a>
-                    <a href="https://t.me/langameru" target="_blank">
+                    <a href="https://t.me/langameru" onclick="gtag('event', 'send', { 'event_category': 'telegram', 'event_action': 'click' });" target="_blank">
                         <img src="{{ asset('/img/icons/telegram.svg')}}" alt="logo">
                     </a>
                     @if(false)

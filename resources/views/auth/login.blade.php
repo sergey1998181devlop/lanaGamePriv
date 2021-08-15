@@ -31,7 +31,7 @@
                     </div>
                     <div class="btn_wrapper">
                         <a href="{{url('register')}}" class="registration">Регистрация</a>
-                        <button type="submit">Продолжить</button>
+                        <button type="submit" onclick="ym(207465139,'reachGoal','lk');gtag('event', 'send', { 'event_category': 'lk', 'event_action': 'send' });">Продолжить</button>
                     </div>
                 </form>
             </div>
