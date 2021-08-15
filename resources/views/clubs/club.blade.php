@@ -91,7 +91,7 @@
                     }
                     ?>
                     @if($showCallButton)
-                        <button type="button" class="club_calling" data-remodal-target="club_phone_modal">Позвонить</button>
+                        <button type="button" class="club_calling" data-remodal-target="club_phone_modal" onclick="ym(208271677,'reachGoal','phone');gtag('event', 'send', { 'event_category': 'phone', 'event_action': 'click' });">Позвонить</button>
                     @else
                         <button type="button" class="club_calling closed">Закрыт</button>
                     @endif
