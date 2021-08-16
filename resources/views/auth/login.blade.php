@@ -31,11 +31,18 @@
                     </div>
                     <div class="btn_wrapper">
                         <a href="{{url('register')}}" class="registration">Регистрация</a>
-                        <button type="submit" onclick="ym(207465139,'reachGoal','lk');gtag('event', 'send', { 'event_category': 'lk', 'event_action': 'send' });">Продолжить</button>
+                        <button type="submit">Продолжить</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </section>
+@endsection
+@section('scripts')
+<script>
+    $('#log-in-form').submit(function(){
+        ym(207465139,'reachGoal','lk');gtag('event', 'send', { 'event_category': 'lk', 'event_action': 'send' });
+    })
+</script>
 @endsection

@@ -221,7 +221,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                     </div>
                                     <div class="btn_wrapper">
                                         <a href="{{url('register')}}" class="registration">Регистрация</a>
-                                        <button type="submit" onclick="ym(207465139,'reachGoal','lk');gtag('event', 'send', { 'event_category': 'lk', 'event_action': 'send' });">Продолжить</button>
+                                        <button type="submit">Продолжить</button>
                                     </div>
                                 </form>
                             </div>
@@ -432,6 +432,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <script>
         $('#log-in-form-popup').submit(function(e) {
             e.preventDefault();
+            ym(207465139,'reachGoal','lk');gtag('event', 'send', { 'event_category': 'lk', 'event_action': 'send' });
             let url = $(this).attr('action'),
                 msgs = $(this).find('.msgs'),
                 form_groups = $(this).find('.form-group');
