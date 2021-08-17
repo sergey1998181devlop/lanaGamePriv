@@ -105,7 +105,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               style="fill: var(--subway-color, #4DB762)"/>
     </svg>
 </div>
+<?if (env('DEV_SERVER','false') === true){?>
+<div style="
+    text-align: center;
+    font-size: 20px;
+    background: #ffcd00;
+    padding: 15px;
 
+">
+это сервер для разработки
+</div>
+<?}?>
 <!--HEADER START-->
 <header class="header">
     <div class="container-fluid">
