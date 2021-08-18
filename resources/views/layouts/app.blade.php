@@ -113,7 +113,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     padding: 15px;
 
 ">
-это сервер для разработки
+этот сервер для разработки
 </div>
 <?}?>
 <!--HEADER START-->
@@ -265,7 +265,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             @endif
 
                             <li>
-                                <a href="{{url('langame-software')}}">LANGAME Software</a>
+                                <a href="{{url('software')}}">LANGAME Software</a>
                             </li>
                         </ul>
                     </div>
@@ -374,7 +374,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 <a href="{{url('register')}}">Как попасть на LANGAME</a>
                             </li>
                             <li>
-                                <a href="{{url('langame-software')}}">LANGAME Software</a>
+                                <a href="{{url('software')}}">LANGAME Software</a>
                             </li>
                         </ul>
                     </div>

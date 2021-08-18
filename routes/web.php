@@ -59,11 +59,11 @@ Route::post('langame/request','mailController@langameRequest');
 Route::post('report_error','mailController@reportError');
 
 // прочие страницы
- Route::get('/langame-software','HomeController@langame_software');
+ Route::get('/langame-software','HomeController@redirect_to_software');
  Route::get('/contacts','HomeController@contacts');
  Route::get('/policy','HomeController@policy');
  Route::get('/user-agreement','HomeController@user_agreement');
- Route::get('/langame-software','HomeController@langame_software');
+ Route::get('/software','HomeController@langame_software');
  Route::get('/about-us','HomeController@about_us');
 
 

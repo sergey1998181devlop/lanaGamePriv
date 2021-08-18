@@ -30,6 +30,10 @@ class HomeController extends Controller
     public function langame_software(){
       return view('about.langame_software');
     }
+    public function redirect_to_software(){
+      return redirect('/software');
+    }
+    
     public function contacts(){
       return view('about.contacts');
     }
@@ -174,7 +178,7 @@ class HomeController extends Controller
     $clubs = club::Published()->select('id','url','created_at')->whereNull('hidden_at')->get();
     $cites = city::select('id','name','en_name')->get();
     $posts = post::select('id','name','url','created_at')->get();
-    $otherLinks = ['about-us','langame-software','register','personal/clubs','contacts','user-agreement','policy','login'];
+    $otherLinks = ['about-us','software','register','personal/clubs','contacts','user-agreement','policy','login'];
     return view('about.sitemap')->with(['posts'=>$posts,'cities'=>$cites,'clubs'=>$clubs,'otherLinks'=>$otherLinks]);
   }
 }
