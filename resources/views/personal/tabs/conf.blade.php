@@ -437,11 +437,12 @@ $keybords = [
     'DEXP',
     'Oklick',
     'Thunder x3',
-    'Gamidas',
+    'GAMDIAS',
     'Qcyber',
     'Hermes',
     'Dexp',
     'Trust GXT',
+    'ZET Gaming',
     'другой',
 ];
 $mouses = [
@@ -470,11 +471,12 @@ $mouses = [
     'DEXP',
     'Oklick',
     'Thunder x3',
-    'Gamidas',
+    'GAMDIAS',
     'Qcyber',
     'Hermes',
     'Dexp',
     'Trust GXT',
+    'ZET Gaming',
     'другой',
 ];
 $headphones = [
@@ -506,11 +508,12 @@ $headphones = [
     'Alienware',
     'Oklick',
     'Thunder x3',
-    'Gamidas',
+    'GAMDIAS',
     'Qcyber',
     'Hermes',
     'Dexp',
     'Trust GXT',
+    'ZET Gaming',
     'другой',
 ];
 $chairs = [
@@ -536,6 +539,7 @@ $chairs = [
     'X-cyber',
     'Chairman',
     'Trust GXT',
+    'ZET Gaming',
     'другой',
 ];
 $monitor_types = [
@@ -579,5 +583,6 @@ $monitors = [
     'Samsung',
     'Liyama',
     'Zowie',
+    'ZET Gaming',
     'другой',
 ];
