@@ -1,8 +1,10 @@
-<div class="search_club_item <?=(isset($show) && $show === 'map') ? 'in_map' : null ?>"
+<div class="search_club_item <?=(isset($show) && $show === 'map') ? 'in_map' : null ?> <?=(isset($show) && $show === 'map' && $club->club_city != city(true)['id']) ? 'another_city' : null ?>"
      data-id="{{$club->id}}"
      data-role-club
      data-lon="{{$club->lon}}"
-     data-lat="{{$club->lat}}">
+     data-lat="{{$club->lat}}"
+     style="<?=(isset($show) && $show === 'map' && $club->club_city != city(true)['id']) ? 'display:none;' : null ?>"
+     >
 <a href="{{url('clubs/'.$club->id.'/'.$club->url)}}" class="club_card">
     <div class="search_club_img_wrapper">
         <div class="search_club_img">
@@ -71,7 +73,7 @@
                 <img src="{{ asset('/img/point-red.svg')}}" alt="location">
             </div>
             <div class="club_address">
-                {{$club->club_address}}
+            <?=(isset($show) && $show === 'map') ? $club->city->name.', ' : null ?> {{$club->club_address}}
             </div>
         </div>
         <div class="club_features_wrapper">

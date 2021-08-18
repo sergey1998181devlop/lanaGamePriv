@@ -32,7 +32,48 @@ jQuery(function() {
             zoom: 11,
             behaviors: ['drag', 'dblClickZoom'],
             controls: []
-        });
+        }),
+        /**
+         * Создадим кластеризатор, вызвав функцию-конструктор.
+         * Список всех опций доступен в документации.
+         * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/Clusterer.xml#constructor-summary
+         */
+            clusterer = new ymaps.Clusterer({
+                clusterIcons: [
+                    {
+                        href: '/img/icon-red-border.svg',
+                        size: [40, 40],
+                        offset: [-20, -20],
+                        color :'red',
+                    },
+                    {
+                        href: '/img/icon-red-border.svg',
+                        size: [60, 60],
+                        offset: [-30, -30],textColor :'red',
+                    }],
+                  
+            /**
+             * Через кластеризатор можно указать только стили кластеров,
+             * стили для меток нужно назначать каждой метке отдельно.
+             * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/option.presetStorage.xml
+             */
+            // preset: 'islands#redClusterIcons',
+            /**
+             * Ставим true, если хотим кластеризовать только точки с одинаковыми координатами.
+             */
+            groupByCoordinates: false,
+            /**
+             * Опции кластеров указываем в кластеризаторе с префиксом "cluster".
+             * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/ClusterPlacemark.xml
+             */
+            clusterDisableClickZoom: false,
+            clusterHideIconOnBalloonOpen: false,
+            geoObjectHideIconOnBalloonOpen: false,
+            hasBalloon:false,
+            minClusterSize:4,
+            textColor :'red',
+            
+        })
 
         let zoomControl = new ymaps.control.ZoomControl({
             options: {
@@ -62,14 +103,20 @@ jQuery(function() {
                 let clubId = $club.data('id');
 
                 jQuery('[data-role-club]').removeClass('active');
-
+                $('.search_club_list .search_club_item.another_city').hide();
+                if($('.search_club_list [data-id='+clubId+']').hasClass('another_city')){
+                    $('.search_club_list [data-id='+clubId+']').show()
+                }
                 activateClubById(clubId);
                 scrollToElement(wrapper, scrollParent, jQuery(`[data-id='${clubId}']`));
 
                 jQuery(`[data-id='${clubId}']`).addClass('active');
+                
             });
 
-            myMap.geoObjects.add(placemark);
+            // myMap.geoObjects.add(placemark);
+            clusterer.add(placemark);
+            myMap.geoObjects.add(clusterer);
 
             clubs.push({id: $club.data('id'), placemark});
         });
@@ -87,19 +134,17 @@ jQuery(function() {
             }
 
             let club = clubs.find((item) => item.id === id);
-
             if (!club) {
                 return;
             }
-
+            
             if (activeClub) {
                 activeClub.placemark.options.set('iconImageHref', '/img/ballon.svg');
                 activeClub.placemark.options.set('zIndex', 1);
-            }
-
+            }           
             club.placemark.options.set('iconImageHref', '/img/active_ballon.svg');
             club.placemark.options.set('zIndex', 2);
-
+            
             myMap.setCenter(
                 fixCoordinatesCenter(club.placemark.geometry.getCoordinates(), myMap.getZoom()),
                 myMap.getZoom(),
@@ -115,13 +160,13 @@ jQuery(function() {
         function fixCoordinatesCenter(coords, zoom) {
             let [x, y] = coords;
 
-            if (window.matchMedia('(max-width: 760px)').matches) {
-                x -= 0.025 * 8 / zoom;
-            } else if (window.matchMedia('(max-width: 1500px)').matches) {
-                x -= 0.05 * 8 / zoom;
-            } else {
-                y -= 0.15 * 8 / zoom;
-            }
+            // if (window.matchMedia('(max-width: 760px)').matches) {
+            //     x -= 0.025 * 8 / zoom;
+            // } else if (window.matchMedia('(max-width: 1500px)').matches) {
+            //     x -= 0.05 * 8 / zoom;
+            // } else {
+            //     y -= 0.15 * 8 / zoom;
+            // }
 
             return [x, y];
         }
@@ -143,7 +188,11 @@ jQuery(function() {
             list[0].scrollTop = elementOffsetTop - listOffsetTop + listScrollTop -wrapperHeight/2 + elemHeight/2;
             list[0].scrollLeft = elementOffsetLeft - listOffsetLeft + listScrollLeft - wrapperPaddingLeft;
         }
+        myMap.setBounds(clusterer.getBounds(), {
+            checkZoomRange: true
+        });
     });
+   
 });
 
 

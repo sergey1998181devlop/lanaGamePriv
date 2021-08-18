@@ -437,6 +437,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="https://cdn.jsdelivr.net/npm/mobile-detect@1.4.4/mobile-detect.min.js"></script>
 <script src="{{ asset('/js/inputmask.js') }}"></script>
 <script src="{{ asset('/js/dest/layout.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
+<script src="{{ asset('/js/src/10-search-club-by-map.js') }}?v={{time()}}{{ENV('JS_VERSION',0)}}"></script>
 <script src="{{ asset('/js/main.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
 @if(Auth::guest())
     <script>

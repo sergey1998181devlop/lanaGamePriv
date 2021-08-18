@@ -4,10 +4,10 @@
     <div class="search_club_by_map">
         <div class="search_club_sort_wrapper">
             <div class="search_club_sort">
-                <div class="search_club_result">
+                <!-- <div class="search_club_result">
                     <span>Найдено:</span>
                     <span class="search_qty">{{$clubs->total()}}</span>
-                </div>
+                </div> -->
                 <div class="sort_by">
                     <div class="sort_by_title">
                         Сортировать:
