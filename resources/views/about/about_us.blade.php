@@ -91,7 +91,7 @@
                             для управления вашим
                             компьютерным клубом
                         </div>
-                        <a href="{{url('langame-software')}}">Установить</a>
+                        <a href="{{url('software')}}">Установить</a>
                     </div>
                     <div class="service_item">
                         <div class="img_wrapper">
