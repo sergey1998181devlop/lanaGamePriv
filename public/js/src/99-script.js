@@ -2,8 +2,8 @@ jQuery(function() {
 
     Layout.initSelect2();
 
-    jQuery('.club_page_services_list .club_services_mobile_toggle').addClass('active');
-    jQuery('.club_page_services_list .mob_hide').addClass('active');
+    // jQuery('.club_page_services_list .club_services_mobile_toggle').addClass('active');
+    // jQuery('.club_page_services_list .mob_hide').addClass('active');
 
 
     jQuery('.club_page_services_list .club_services_mobile_toggle').on('click', function(e) {

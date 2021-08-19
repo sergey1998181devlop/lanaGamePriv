@@ -6082,7 +6082,7 @@ section.club_page_content_wrapper {
 
                 &.mob_toggle {
                     grid-template-columns: repeat(2, auto);
-                    grid-template-rows: auto;
+                    // grid-template-rows: auto;
                 }
 
                 .club_services_mobile_toggle {
@@ -6474,11 +6474,11 @@ section.club_page_content_wrapper {
 
             .club_page_services_list {
                 grid-template-columns: repeat(1, auto);
-                grid-template-rows: repeat(18, auto);
+                // grid-template-rows: repeat(18, auto);
 
                 &.mob_toggle {
                     grid-template-columns: repeat(1, auto);
-                    grid-template-rows: repeat(8, auto);
+                    // grid-template-rows: repeat(8, auto);
                 }
             }
         }
