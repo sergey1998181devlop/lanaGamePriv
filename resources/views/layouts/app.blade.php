@@ -74,6 +74,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 <!-- /Yandex.Metrika counter -->
+<script type="text/javascript">!function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src="https://vk.com/js/api/openapi.js?169",t.onload=function(){VK.Retargeting.Init("VK-RTRG-1054347-dW3vv"),VK.Retargeting.Hit()},document.head.appendChild(t)}();</script><noscript><img src="https://vk.com/rtrg?p=VK-RTRG-1054347-dW3vv" style="position:fixed; left:-999px;" alt=""/></noscript>
 <style>
 @media (max-width: 1500px){
     section.search_club_wrapper_by_map .search_club_by_map .search_club_sort_wrapper{
