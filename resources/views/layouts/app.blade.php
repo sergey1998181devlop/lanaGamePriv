@@ -74,6 +74,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 <!-- /Yandex.Metrika counter -->
+<style>
+@media (max-width: 1500px){
+    section.search_club_wrapper_by_map .search_club_by_map .search_club_sort_wrapper{
+        padding-top: 10px;
+    }
+    section.search_club_wrapper_by_map .search_club_by_map .search_club_sort_wrapper .search_club_show{
+        top: 0;
+    }
+}
+    
+</style>
 </head>
 
 <body>
