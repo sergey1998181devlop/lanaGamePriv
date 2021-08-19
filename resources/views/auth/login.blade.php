@@ -42,7 +42,7 @@
 @section('scripts')
 <script>
     $('#log-in-form').submit(function(){
-        ym(207465139,'reachGoal','lk');gtag('event', 'send', { 'event_category': 'lk', 'event_action': 'send' });
+        ym(82365286,'reachGoal','lk');gtag('event', 'send', { 'event_category': 'lk', 'event_action': 'send' });
     })
 </script>
 @endsection
