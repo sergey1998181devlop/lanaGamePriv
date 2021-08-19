@@ -288,9 +288,7 @@ class clubsController extends Controller
         }
         if(count($payment_methods) == 0) $errors[] = 'payment_methods';
         $club->payment_methods = implode(',',$payment_methods);
-        $club->url=str_replace("/","-",$request->input('club_name'));
-        $club->url=str_replace("\\","-",$club->url);
-        $club->url=ucwords(str_replace(" ","-",$club->url));
+        $club->url=$this->clean($request->input('club_name'));
         if(!admin() && !$this->isDraft){
             $data = $request->validate($validationAr);
             if(count($errors) > 0) {
@@ -325,6 +323,10 @@ class clubsController extends Controller
             "message"=> "An error occured while uploading the file."]
         ]);
 
+    }
+    public function clean($string) {
+        $string = str_replace(' ', '-', $string);
+        return preg_replace('/[^A-Za-z0-9-]/', '', $string);
     }
     public function savePriceList(Request $request){
         $data = $request->validate([

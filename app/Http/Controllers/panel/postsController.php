@@ -44,12 +44,15 @@ public function store(Request $request){
     $post->name=$request->input('name');
     $post->about= $request->input('about');
     $post->image=$image;
-    $post->url=ucwords(str_replace(" ","-",$request->input('name')));
+    $post->url=$this->clean($request->input('name'));
     $post->save();
 
 return redirect('post/read/'.$post->id.'/'.$post->url);
 }
-
+public function clean($string) {
+    $string = str_replace(' ', '-', $string);
+    return preg_replace('/[^A-Za-z0-9-]/', '', $string);
+}
 
 public function update(Request $request,$id){
     $validatedData =  $this->validate($request ,[
