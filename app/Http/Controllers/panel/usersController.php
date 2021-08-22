@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Support\Facades\Auth; 
 use Validator;
 use Illuminate\Support\Facades\Hash;
+use Mail;   
 class usersController extends Controller
 {
     public function __construct()
@@ -82,6 +83,19 @@ class usersController extends Controller
               $b["suggestions"][]=[ "value"=> $User->name.'-'.$User->phone,'data'=>$User->id];
              }
              return response($b);
+    }
+    public function sendMail(Request $request){
+        $validatedData =  $this->validate($request ,[
+            'subject'=>'required',
+            'id'=>'required|numeric',
+            'message'=>'required',
+        ]);
+        $user = User::findorFail($request->input('id'));
+        Mail::send('emails.user.userMail', ['content' =>  $request->input('message'),'subject'=>$request->input('subject')], function($message) use($user,$request){
+            $message->to($user->email);
+            $message->subject($request->input('subject'));
+        });
+        return response()->json(['status'=>'success']);
     }
     
 }

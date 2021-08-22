@@ -87,6 +87,9 @@ Route::get('users/toggleadmin/{id}','panel\usersController@toggleadmin');
 Route::get('panel/find-user','panel\usersController@find');
 
 Route::get('post/new','panel\postsController@newPost');
+Route::post('users/sendMail','panel\usersController@sendMail');
+
+
 
 // посты
 Route::post('post/create','panel\postsController@store' );

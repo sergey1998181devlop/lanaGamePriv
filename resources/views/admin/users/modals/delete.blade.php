@@ -12,7 +12,7 @@
                 {{ csrf_field() }}
                 <input type="number" hidden name="userId" id="userId">
             <div class="modal-body">
-                    <p>Вы уверены,что хотите удалить <span class="username badge badge-secondary"></span> ?:</p>
+                    <p>Вы уверены,что хотите удалить <span class="username badge badge-secondary"></span> ? Все его клубы при этом удаляются:</p>
             </div>
             <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('messages.cancel')}}</button>
