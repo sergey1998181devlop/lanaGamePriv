@@ -83,6 +83,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         top: 0;
     }
 }
+.header .header_wrapper .header_menu_wrapper .header_menu .log_in_block_wrapper .log_in_wrapper form .forma .form-group .logmsg .error{
+    top: 88%;
+}
     
 </style>
 </head>
@@ -235,6 +238,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                             <label for="log-in-password-input">Пароль</label>
                                             <div class="input_wrapper">
                                                 <input id="log-in-password-input" name="password" type="password" placeholder="" required>
+                                                <p class="logmsg"></p>
                                                 <a href="{{ route('password.request') }}" class="forgot_password">Забыл пароль</a>
                                             </div>
 
@@ -456,7 +460,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             e.preventDefault();
             ym(82365286,'reachGoal','lk');gtag('event', 'send', { 'event_category': 'lk', 'event_action': 'send' });
             let url = $(this).attr('action'),
-                msgs = $(this).find('.msgs'),
+                msgs = $(this).find('.logmsg'),
                 form_groups = $(this).find('.form-group');
             msgs.empty();
             form_groups.removeClass('error');
@@ -473,7 +477,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     location.reload();
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
-                    msgs.append('<div class="error">Телефон или пароль неверны</div>');
+                    $.each(xhr.responseJSON.errors, function(key,value) {
+                        msgs.append('<p class="error">'+value+'</p>');
+                    }); 
                     form_groups.addClass('error');
                 }
             });
