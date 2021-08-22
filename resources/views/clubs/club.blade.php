@@ -787,7 +787,7 @@
             $(document).ready(function() {
                 jQuery('[data-remodal-id="success_modal"]').remodal().open();
             });
-            window.history.replaceState({}, document.title, $('meta[name="site"]').attr('content') + '/' + 'personal/clubs/');
+            window.history.replaceState({}, document.title, $('meta[name="site"]').attr('content') +  '/clubs/'+'{{$club->id}}/{{$club->url}}');
         </script>
     @endif
 @endsection
