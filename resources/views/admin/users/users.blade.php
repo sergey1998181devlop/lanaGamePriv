@@ -163,6 +163,7 @@
           id = $(this).find('#id_sendMail').val(),
           token=$(this).find('[name="_token"]').val(),
           subject = $(this).find('#subject').val(),
+          submetBtn = $(this).find('[type="submit"]'),
           mailResult = $(this).find('.mailResult');
           mailResult.empty();
         $.ajax({
@@ -176,7 +177,7 @@
                 },
                 success: function(data) {
 
-                  $(this).find('[type="submit"]').attr('disabled',false);
+                  submetBtn.attr('disabled',false);
                   if(data.status == 'success'){
                     mailResult.append('<p style="color:green">Сообщение отправлено успешно</p>');
                   }else{
@@ -184,7 +185,7 @@
                   }
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
-                  $(this).find('[type="submit"]').attr('disabled',false);
+                  submetBtn.attr('disabled',false);
                   mailResult.append('<p style="color:red">Ошибка при отправке сообщение</p>');
                 }
             });
