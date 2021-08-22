@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Auth;
+use DB;
 class club extends Model
 {
 
@@ -53,5 +54,25 @@ class club extends Model
     public function metro()
     {
         return $this->belongsTo(metro::class,'club_metro');
+    }
+    public static function boot() {
+        parent::boot();
+        static::deleting(function($club) {
+            if($club->club_price_file!=''){
+                $path_to_file = explode('storage/',$club->club_price_file)[1];
+                if(file_exists(storage_path('app/public/'.$path_to_file))){
+                unlink(storage_path('app/public/'.$path_to_file));}
+             }
+             if($club->club_photos!=''){
+                 $images = explode(',',$club->club_photos);
+                foreach($images as $link){
+                    $path_to_file = explode('storage/',$link)[1];
+                    if(file_exists(storage_path('app/public/'.$path_to_file))){
+                        unlink(storage_path('app/public/'.$path_to_file));
+                    }
+                }
+             }
+        }
+    );
     }
 }

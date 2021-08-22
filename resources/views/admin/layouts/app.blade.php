@@ -69,11 +69,17 @@
           <i class="fas fa-fw fa-table"></i>
           <span>Добавить пост</span></a>
       </li>
-      <!-- Nav Item - Tables -->
-      <li class="nav-item <?php if($page=="users") echo 'active'; ?>">
-        <a class="nav-link" href="{{url('panel/users')}}">
-          <i class="fas fa-users"></i>
-          <span>Пользователи</span></a>
+      <li class="nav-item">
+          <a class="nav-link <?php if($page=="users") echo 'collapsed'; ?> " data-toggle="collapse" data-target="#collapseUsers" aria-expanded="false" aria-controls="collapseUsers">
+              <i class="fas fa-network-wired"></i>
+              <span>Пользователи</span>
+          </a>
+        
+          <div id="collapseUsers" class="collapse <?=($page=="users") ? ' show': null ?> collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
+              <div class="bg-white py-2 collapse-inner rounded">
+                  <a class="collapse-item <?php if($page=="users") echo 'active'; ?>" href="{{url('panel/users')}}">Все пользователи</a>
+              </div>
+          </div>
       </li>
       <li class="nav-item">
           <a class="nav-link <?php if($page!="clubs" && $page!="changed-clubs") echo 'collapsed'; ?> " data-toggle="collapse" data-target="#collapseTwoContact" aria-expanded="false" aria-controls="collapseTwo">

@@ -63,9 +63,9 @@ class usersController extends Controller
 
     public function delete(Request $request){
         if($request->input('userId')!=1){
-        $user=User::findorFail($request->input('userId'));
-        $user->delete();
-        return back()->with('success',__('messages.Success'));
+            $user=User::findorFail($request->input('userId'));
+            $user->delete();
+            return back()->with('success',__('messages.Success'));
         }
         else{
             abort('404');

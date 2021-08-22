@@ -6,6 +6,14 @@
 <title>Пользователи</title>
 @endsection
 <link href="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+<style>
+.userClubs p{
+  margin-bottom: 0;
+}
+.userClubsCount{
+  cursor: pointer;
+}
+</style>
 @section('content')
 
 
@@ -29,34 +37,22 @@
         <thead>
           <tr>
             <th>№</th>
-            <th>{{__('messages.Name')}}</th>
-            <th>{{__('messages.Email')}}</th>
-            <th>{{__('messages.phone')}}</th>
-            <th>Тип</th>
-            
+            <th>ФИО</th>
+            <th>Должность</th>
+            <th>Количество клубов</th>
+            <th>Email</th>
+            <th>Телефон</th>
+            <th>Статус активации почты</th>
+            <th>Дата регистрации</th>
+            <th>Дата последной активности</th>
             <th>Действие</th>
           </tr>
         </thead>
-        @if(count($users)>5)
-        <tfoot>
-          <tr>
-            <th>№</th>
-            <th>{{__('messages.Name')}}</th>
-            <th>{{__('messages.Email')}}</th>
-            <th>{{__('messages.phone')}}</th>
-            <th>Тип</th>
-             
-            <th>Действие</th>
-          </tr>
-        </tfoot>
-        @endif
         <tbody>
            @foreach($users as $user) 
           <tr>
             <td name="id" val="{{$user->id}}">{{$user->id}}</td>
             <td name="name" val="{{$user->name}}">{{$user->name}}</td>
-            <td name="email" val="{{$user->email}}">{{$user->email}}</td>
-            <td name="phone" val="{{$user->phone}}">{{$user->phone}}</td>
             @if($user->rules == '1')
             <td name="rules" val="{{$user->rules}}">Админ</td>
             @elseif(($user->rules == '2'))
@@ -64,7 +60,47 @@
             @else
             <td ></td>
             @endif
+            <?
+            $clubsCount = [];
+            $userClubs = [];
+            if(count($user->clubsPublished) > 0 ){
+              $clubsCount []=' опуб.('.count($user->clubsPublished).')';
+              $userClubs[] ='<p><strong>Опубликованные</strong></p>';
+              foreach($user->clubsPublished as $club){
+                $userClubs[] = '<p><a href="'.url('clubs/'.$club->id.'/'.$club->url).'">'.$club->club_name.'</a></p>';
+              }
+            }
+            if(count($user->clubsUnderEdit) > 0 ){
+              $clubsCount []=' на мод.('.count($user->clubsUnderEdit).')';
+              $userClubs[] ='<p><strong>На модерации</strong></p>';
+              foreach($user->clubsUnderEdit as $club){
+                $userClubs[] = '<p><a href="'.url('clubs/'.$club->id.'/'.$club->url).'">'.$club->club_name.'</a></p>';
+              }
+            }
+            if(count($user->clubsDraft) > 0 ){
+              $clubsCount []=' черн.('.count($user->clubsDraft).')';
+              $userClubs[] ='<p><strong>Черновики</strong></p>';
+              foreach($user->clubsDraft as $club){
+                if($club->club_name == '')continue;
+                $userClubs[] = '<p>'.$club->club_name.'</p>';
+              }
+            }
+            $clubsCount = implode(', ', $clubsCount);
+            $userClubs = implode('',$userClubs);
+            ?>
+            <td>
+             <span class="userClubsCount">{{$clubsCount}}</span> 
+              
+              <div class="userClubs" style="display:none;">
+                {!!$userClubs!!}
+              </div>
             
+            </td>
+            <td name="email" val="{{$user->email}}">{{$user->email}}</td>
+            <td name="phone" val="{{$user->phone}}">{{$user->phone}}</td>
+            <td>{!!($user->email_verified_at === null) ? 'не активирована' : '<span style="color:green">активирована</span>'!!}</td>
+            <td>{{timelabe($user->created_at)}}</td>
+            <td>{{ ($user->last_active_at === null) ? '' : timelabe($user->last_active_at)}}</td>
 
 
           
@@ -116,5 +152,10 @@
         $('#deleteUser .username').text(name);
         $('#deleteUser #userId').val(id);
     });
+    </script>
+    <script>
+      $('.userClubsCount').click(function(){
+        $(this).closest('td').find('.userClubs').toggle();
+      })
     </script>
 @endsection

@@ -51,7 +51,7 @@
                         <a href="{{url('personal/club/'.$club->id.'/edit')}}"
                            style="background:#cb8e20;color:#000;margin-right: 5px;font-size: 14px;"
                            class="btn"
-                           data-remodal-target="change_user_modal">Сменить владелеца</a>
+                           data-remodal-target="change_user_modal"  data-remodal-options="hashTracking: false">Сменить владелеца</a>
                     @endif
                     @if($club->published_at == null && admin())
                         <a href="{{url('club/'.$club->id.'/active')}}" class="club_active btn">Активировать</a>
@@ -665,7 +665,7 @@
     </div>
 
     @if(admin())
-        <div class="change_user_modal remodal admin_modal" id="change_user_modal" data-remodal-id="change_user_modal">
+        <div class="change_user_modal remodal admin_modal" id="change_user_modal" data-remodal-id="change_user_modal"  data-remodal-options="hashTracking: false">
             <button data-remodal-action="close" class="remodal-close">Закрыть</button>
             <div class="remodal-content">
                 <form action="{{url('panel/club/'.$club->id.'/change-user')}}" method="post" style="dispaly:inline">
@@ -689,7 +689,7 @@
                 </form>
             </div>
         </div>
-        <div class="club_comment_modal remodal admin_modal" id="club_comment_modal" data-remodal-id="club_comment_modal">
+        <div class="club_comment_modal remodal admin_modal" id="club_comment_modal" data-remodal-id="club_comment_modal"  data-remodal-options="hashTracking: false">
             <button data-remodal-action="close" class="remodal-close">Закрыть</button>
             <div class="remodal-content">
                 <form action="{{url('club/')}}/{{$club->id}}/comment" method="post" style="dispaly:inline">
@@ -712,7 +712,7 @@
     @endif
 
 
-    <div class="show_club_photo_modal" data-remodal-id="club_photo_modal">
+    <div class="show_club_photo_modal" data-remodal-id="club_photo_modal"  data-remodal-options="hashTracking: false">
         <button data-remodal-action="close" class="remodal-close">Закрыть</button>
         <div class="remodal-content">
             <div class="counter_slide" id="show_club_photo_counter_slide">
@@ -737,7 +737,7 @@
         </div>
     </div>
     @if(substr($club->club_price_file, strrpos($club->club_price_file, '.') + 1) != 'pdf')
-        <div class="show_club_price_list_modal" data-remodal-id="club_price_list_modal">
+        <div class="show_club_price_list_modal" data-remodal-id="club_price_list_modal"  data-remodal-options="hashTracking: false">
             <button data-remodal-action="close" class="remodal-close">Закрыть</button>
             <div class="remodal-content">
                 <div class="club_price_list_wrapper">
