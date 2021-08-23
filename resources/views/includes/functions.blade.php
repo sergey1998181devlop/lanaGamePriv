@@ -13,7 +13,7 @@ function admin($rules = 1){
      $difference = floor($datediff/(60*60*24));
      if ($iftime==true){
          $timestring=strtotime($oldtime);
-         $timestring  = 'в '.date("h:i", $timestring);}else{
+         $timestring  = 'в '.date("H:i", $timestring);}else{
             $timestring="";
          }
      if($difference==0)
