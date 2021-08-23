@@ -99,7 +99,7 @@
             <td name="email" val="{{$user->email}}">{{$user->email}}</td>
             <td name="phone" val="{{$user->phone}}">{{$user->phone}}</td>
             <td>{!!($user->email_verified_at === null) ? 'не активирована' : '<span style="color:green">активирована</span>'!!}</td>
-            <td>{{timelabe($user->created_at)}}</td>
+            <td>{{ ($user->created_at)}}</td>
             <td>{{ ($user->last_active_at === null) ? '' : timelabe($user->last_active_at)}}</td>
             <td>
                 <button type="button" class="btn-sm btn btn-info editUserButton"  data-toggle="modal" data-target="#editUser">{{__('messages.edit')}}</button>
