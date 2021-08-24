@@ -91,7 +91,7 @@
               <div class="bg-white py-2 collapse-inner rounded">
                   <a class="collapse-item<?=($page=="contacts")? ' active': null ?>" href="{{url('/panel/contacts')}}">Форма напишите нам</a>
                   <a class="collapse-item<?=($page=="langame_soft")? ' active': null ?>" href="{{url('/panel/langame-requests')}}">Заявки LanGame Software</a>
-                  <a class="collapse-item<?=($page=="error-reports")? ' active': null ?>" href="{{url('/panel/error-reports')}}">Сооющение об ошибке</a>
+                  <a class="collapse-item<?=($page=="error-reports")? ' active': null ?>" href="{{url('/panel/error-reports')}}">Сообщения об ошибках</a>
               </div>
           </div>
       </li>

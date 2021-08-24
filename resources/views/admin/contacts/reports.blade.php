@@ -3,7 +3,7 @@
 @extends('admin.layouts.app')
 @section('page')
 <?php $page='error-reports';?>
-<title>Сооющение об ошибке</title>
+<title>Сообщения об ошибке</title>
 @endsection
 <link href="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 @section('content')
