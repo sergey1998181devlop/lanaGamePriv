@@ -329,6 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="title">Экспресс - отчёт об ошибке</div>
         <form action="{{url('report_error')}}" method="post" id="report-form">
             @csrf
+            <input type="hidden" name="url" value="{{url()->current()}}">
             <div class="forma">
                 <textarea name="message" id="report-message-input" maxlength="1500" required></textarea>
             </div>

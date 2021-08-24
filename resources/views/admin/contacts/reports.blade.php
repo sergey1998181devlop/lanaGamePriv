@@ -27,6 +27,7 @@
           <tr>
             <th>Сообщение</th>
             <th>Отпралено</th>        
+            <th>Страница</th>        
             <th>Действие</th>
           </tr>
         </thead>
@@ -35,6 +36,7 @@
           <tr>
           <th>Сообщение</th>
             <th>Отпралено</th>
+            <th>Страница</th>  
             <th>Действие</th>
           </tr>
         </tfoot>
@@ -44,6 +46,7 @@
           <tr @if($report->seen_at==null) style="background: #ffed85;" @endif>  
             <td name="name" >{{substr($report->message, 0, 100)}}</td>
             <td>{{$report->created_at}}</td>
+            <td><a href="{{$report->url}}" target="_blank">{{$report->url}}</a></td>
             <td>
                 <button type="button" class="btn-sm btn btn-info showMessage" reportId="{{$report->id}}" data-toggle="modal" data-target="#showMessage">Посмотреть</button>
                 <button type="button" class="btn-sm btn btn-danger deletereportButton"  data-toggle="modal" data-target="#deletereport" reportId="{{$report->id}}" reportName="{{$report->name}}">{{__('messages.Delete')}}</button>

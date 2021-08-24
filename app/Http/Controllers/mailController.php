@@ -51,6 +51,7 @@ class mailController extends Controller
         ]);
         $report = new report();
         $report->message = $request->input('message');
+        $report->url =$request->input('url');
         if(!Auth::guest())
         $report->user_id =Auth::user()->id;
         if($report->save())
