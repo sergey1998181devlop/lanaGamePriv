@@ -31,9 +31,16 @@ class clubsController extends Controller
     }
     public function new_clubs()
     {
-        $newClubs= club::select('id','user_id','club_name','updated_at','url')->with(array('user' => function($query) {
+        $newClubs= club::select('id','user_id','club_name','club_city','updated_at','created_at','url')->with(array('user' => function($query) {
+        $query->select('id','name','phone');
+    },'city' => function($query) {
         $query->select('id','name');
     }))->UnderEdit()->orderBy('updated_at','DESC')->get();
+    // foreach ($newClubs as $key => $club) {
+    //     print_r($club->user->name);
+    //     die();
+    //     # code...
+    // }
         return view('admin.clubs.new-clubs')->with(['clubs'=>$newClubs]);
     }
     public function active($id){
