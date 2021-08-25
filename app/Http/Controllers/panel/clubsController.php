@@ -36,7 +36,7 @@ class clubsController extends Controller
     },'city' => function($query) {
         $query->select('id','name');
     },'comments' => function($query) {
-        $query->select('id','club_id');
+        $query->select('id','club_id','created_at');
     }))->UnderEdit()->orderBy('updated_at','DESC')->get();
         return view('admin.clubs.new-clubs')->with(['clubs'=>$newClubs]);
     }

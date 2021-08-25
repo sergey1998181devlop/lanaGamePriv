@@ -44,8 +44,9 @@
             <td><a href="{{url('panel/users')}}?search={{$club->user->phone}}">{{$club->user->name}}</a></td>
             <?php
               $status = ($club->created_at == $club->updated_at ) ? 'первичная модерация' : 'повторная модерация';
+              $color= (count($club->comments) > 0 && $club->updated_at > $club->comments[0]->created_at) ? 'background:#ffcf92':null;
             ?>
-            <td>{{$status}}</td>
+            <td style="{{ $color}}">{{$status}}</td>
             <td>
               {{count($club->comments)}}
             </td>
