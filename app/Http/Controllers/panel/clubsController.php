@@ -35,12 +35,9 @@ class clubsController extends Controller
         $query->select('id','name','phone');
     },'city' => function($query) {
         $query->select('id','name');
+    },'comments' => function($query) {
+        $query->select('id','club_id');
     }))->UnderEdit()->orderBy('updated_at','DESC')->get();
-    // foreach ($newClubs as $key => $club) {
-    //     print_r($club->user->name);
-    //     die();
-    //     # code...
-    // }
         return view('admin.clubs.new-clubs')->with(['clubs'=>$newClubs]);
     }
     public function active($id){

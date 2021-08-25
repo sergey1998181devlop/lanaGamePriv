@@ -27,6 +27,7 @@
             <th>Город</th>
             <th>владелец</th>
             <th>Статус</th>
+            <th>Комментарий</th>
             <th>Дата добавления</th>
             <th>Дата последнего редактирования</th>
             <th>Действие</th>
@@ -45,6 +46,9 @@
               $status = ($club->created_at == $club->updated_at ) ? 'первичная модерация' : 'повторная модерация';
             ?>
             <td>{{$status}}</td>
+            <td>
+              {{count($club->comments)}}
+            </td>
             <td>
                 {{$club->created_at}}
             </td>
