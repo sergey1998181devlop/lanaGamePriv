@@ -57,8 +57,10 @@
                         <a href="{{url('club/'.$club->id.'/active')}}" class="club_active btn">Опубликовать</a>
                         <button type="button" class="club_comment" data-remodal-target="club_comment_modal">Написать коммент</button>
                     @endif
+                    @if(admin())
+                    <a href="{{url('personal/club/'.$club->id.'/edit')}}" style="background:#1f42ff;color:#fff;margin-right: 5px;" class="btn">Редактировать</a>
+                    @endif
                     @if(admin() && $club->published_at != null)
-                        <a href="{{url('personal/club/'.$club->id.'/edit')}}" style="background:#1f42ff;color:#fff;margin-right: 5px;" class="btn">Редактировать</a>
                         <a href="{{url('personal/club/'.$club->id.'/edit')}}"
                            style="background:#a0a0a0;color:#fff;margin-right: 5px;"
                            data-remodal-target="club_comment_modal"
