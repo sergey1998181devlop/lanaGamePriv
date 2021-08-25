@@ -54,7 +54,7 @@
                 {{$club->created_at}}
             </td>
             <td>
-                {{$club->updated_at}}
+                {{($club->created_at == $club->updated_at ) ? '' : $club->updated_at}}
             </td>
             <td>
             <a href="{{url('personal/club/'.$club->id.'/edit')}}" class="btn btn-sm btn-primary">Редактировать</a>
