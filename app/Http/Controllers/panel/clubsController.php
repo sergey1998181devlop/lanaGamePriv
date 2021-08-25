@@ -19,11 +19,14 @@ class clubsController extends Controller
     }
     public function clubs()
     {
-        $newClubs= club::select('id','user_id','club_name','updated_at','url','club_city')->with(array('user' => function($query) {
-        $query->select('id','name');
-    },'city' => function($query) {
-        $query->select('id','name');
-    }))->Published()->orderBy('updated_at','DESC')->paginate(10);
+        $newClubs= club::select('id','user_id','club_name','updated_at','url','club_city','published_at','published_by','hidden_at','created_at','last_admin_edit')->with(array('user' => function($query) {
+            $query->select('id','name','phone');
+            },'city' => function($query) {
+                $query->select('id','name');
+        },
+        'lastAdminEdit' => function($query) {
+            $query->select('id','name');
+        }))->where('draft','0')->orderBy('updated_at','DESC')->get();
         return view('admin.clubs.clubs')->with(['clubs'=>$newClubs]);
     }
     public function new_clubs()
@@ -37,14 +40,18 @@ class clubsController extends Controller
         $club = club::select('published_at','published_by','draft','id','user_id','url')->UnderEdit()->findOrFail($id);
         $club->published_at =Carbon::now()->toDateTimeString();
         $club->published_by =Auth::user()->id;
+        $club->last_admin_edit =Auth::user()->id;
         $club->save();
         $club->comments()->delete();
         return redirect('clubs/'.$club->id.'/'.$club->url);
     }
     public function comment($id,Request $request){
-        $club = club::select('published_at','draft','id','user_id','url','club_name')->findOrFail($id);
+        $club = club::select('published_at','published_by','draft','id','user_id','url','club_name')->findOrFail($id);
         if( $club->published_at != null ){
             $club->published_at = null;
+            $club->published_by =Auth::user()->id;
+            $club->last_admin_edit =Auth::user()->id;
+
             $club->save();
         } 
         $comment  = new comment();
@@ -58,6 +65,8 @@ class clubsController extends Controller
         $club = club::findOrFail($id);
         $newUser = User::findOrFail($request->input('new_user'));
         $club->user_id=$newUser->id;
+        $club->last_admin_edit =Auth::user()->id;
+
         $club->save();
         return redirect('clubs/'.$club->id.'/'.$club->url.'/?status=success');
     }
@@ -82,5 +91,10 @@ class clubsController extends Controller
             $comment->sent_at = Carbon::now()->toDateTimeString();
             $comment->save();
       }
+    }
+    public function deleteClub($id){
+        $club = club::findOrFail($id);
+        $club->delete();
+        return back();
     }
 }

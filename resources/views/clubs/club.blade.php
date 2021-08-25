@@ -54,7 +54,7 @@
                            data-remodal-target="change_user_modal"  data-remodal-options="hashTracking: false">Сменить владелеца</a>
                     @endif
                     @if($club->published_at == null && admin())
-                        <a href="{{url('club/'.$club->id.'/active')}}" class="club_active btn">Активировать</a>
+                        <a href="{{url('club/'.$club->id.'/active')}}" class="club_active btn">Опубликовать</a>
                         <button type="button" class="club_comment" data-remodal-target="club_comment_modal">Написать коммент</button>
                     @endif
                     @if(admin() && $club->published_at != null)
@@ -790,4 +790,13 @@
             window.history.replaceState({}, document.title, $('meta[name="site"]').attr('content') +  '/clubs/'+'{{$club->id}}/{{$club->url}}');
         </script>
     @endif
+    @if(isset($_GET['action']) && $_GET['action'] == 'change_user')
+        <script>
+            $(document).ready(function() {
+                jQuery('[data-remodal-id="change_user_modal"]').remodal().open();
+                jQuery('[data-remodal-id="change_user_modal"] #select_new_user').focus()
+            });
+        </script>
+    @endif
+    
 @endsection

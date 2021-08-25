@@ -23,8 +23,9 @@ class clubsController extends Controller
             $query->select('id','name');
         },'metro'=>function($query) {
             $query->select('id','name','color');
-        }))->first();
+        }))->withTrashed()->first();
         if(!$club)abort(404);
+        if($club->deleted_at!= null && !admin())abort(404);
         if($club->published_at == null || $club->hidden_at != null ){
             if(Auth::guest())abort(404);
             if(!admin() && $club->user_id != Auth::user()->id){
@@ -171,11 +172,15 @@ class clubsController extends Controller
             }
             if(!$this->isDraft && $club->draft == '1'){
                 $club->draft = '0';
+                $club->created_at =Carbon::now()->toDateTimeString();
             }
             
         }else{
             $club = new club();
             $club->user_id=Auth::user()->id;
+        }
+        if(admin()){
+            $club->last_admin_edit =Auth::user()->id;
         }
         if($this->isDraft){
             $club->draft = '1';

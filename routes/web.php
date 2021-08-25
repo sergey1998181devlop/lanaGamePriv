@@ -105,6 +105,7 @@ Route::get('panel/clubs/clubs','panel\clubsController@clubs');
 Route::get('club/{id}/active','panel\clubsController@active');
 Route::post('club/{id}/comment','panel\clubsController@comment');
 Route::post('panel/club/{id}/change-user','panel\clubsController@changeClubUser');
+Route::post('panel/club/{id}/delete','panel\clubsController@deleteClub');
 // обратная связь
 Route::get('/panel/contacts', 'panel\adminController@contacts');
 Route::get('/panel/getMessage', 'panel\adminController@getMessage');

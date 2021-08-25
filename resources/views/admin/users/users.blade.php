@@ -33,7 +33,7 @@
   </div>
   <div class="card-body">
     <div class="table-responsive">
-      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+      <table class="table table-bordered" id="dataTable_" width="100%" cellspacing="0">
         <thead>
           <tr>
             <th>№</th>
@@ -195,5 +195,14 @@
       $('.userClubsCount').click(function(){
         $(this).closest('td').find('.userClubs').toggle();
       })
+
+      var table = $('#dataTable_').DataTable();
+ 
+// #myInput is a <input type="text"> element
+ <?if(isset($_GET['search'])){?>
+  table.search("{{$_GET['search']}}" ).draw();
+ <?}?>
+    
     </script>
+    
 @endsection

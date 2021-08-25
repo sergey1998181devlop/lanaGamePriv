@@ -65,20 +65,29 @@ class User extends Authenticatable
         static::deleting(function($user) {
             $user->clubs()->each(function($club) {
                 if($club->club_price_file!=''){
-                    $path_to_file = explode('storage/',$club->club_price_file)[1];
-                    if(file_exists(storage_path('app/public/'.$path_to_file))){
-                    unlink(storage_path('app/public/'.$path_to_file));}
+
+                    $path_to_file = explode('storage/',$club->club_price_file);
+                    if(isset($path_to_file[1])){
+                        $path_to_file = $path_to_file[1];
+                        if(file_exists(storage_path('app/public/'.$path_to_file))){
+                            unlink(storage_path('app/public/'.$path_to_file));}
+                    }
+                    
                  }
                  if($club->club_photos!=''){
                      $images = explode(',',$club->club_photos);
                     foreach($images as $link){
-                        $path_to_file = explode('storage/',$link)[1];
-                        if(file_exists(storage_path('app/public/'.$path_to_file))){
-                            unlink(storage_path('app/public/'.$path_to_file));
+                        $path_to_file = explode('storage/',$link);
+                        if(isset($path_to_file[1])){
+                            $path_to_file = $path_to_file[1];
+                            if(file_exists(storage_path('app/public/'.$path_to_file))){
+                                unlink(storage_path('app/public/'.$path_to_file));
+                            }
                         }
+                        
                     }
                  }
-                $club->delete(); 
+                $club->forceDelete(); 
              });
              DB::table('sms_codes')->where('phone',$user->phone)->delete();
              DB::table('users_verify')->where('user_id',$user->id)->delete();
