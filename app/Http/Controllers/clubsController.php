@@ -169,6 +169,9 @@ class clubsController extends Controller
             }else{
                 $club = club::CorrentUser()->findOrFail($id);
                 $club->published_at = null;
+                $club->published_by = 0;
+                $club->unpublished_at = Carbon::now()->toDateTimeString();
+                $club->unpublished_by = Auth::user()->id;
             }
             if(!$this->isDraft && $club->draft == '1'){
                 $club->draft = '0';

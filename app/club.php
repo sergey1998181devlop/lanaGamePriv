@@ -17,6 +17,10 @@ class club extends Model
     {
         return $this->belongsTo(User::class,'last_admin_edit');
     }
+    public function whoUnPublished()
+    {
+        return $this->belongsTo(User::class,'unpublished_by');
+    }
     public function comments()
     {
         return $this->hasMany(comment::class)->orderBy('created_at','DESC');;
@@ -47,6 +51,12 @@ class club extends Model
     {
         return $query->where('draft', '0')->whereNull('published_at');
     }
+
+    public function scopeHidded($query)
+    {
+        return $query->where('draft', '0')->whereNull('published_at')->whereNotNull('unpublished_at');
+    }
+    
     public function scopeCorrentCity($query)
     {
         return $query->where('club_city', city(true)['id']);

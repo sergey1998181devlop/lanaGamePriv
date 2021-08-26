@@ -1,7 +1,7 @@
 
 @extends('admin.layouts.app')
 @section('page')
-<?php $page='new-clubs';$title="Новые клубы";?>
+<?php $page='hidded-clubs';$title="Снятые с публикации клубы";?>
 <link href="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 @endsection
 @section('content')
@@ -10,7 +10,7 @@
    <div class="container-fluid">
 
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Новые клубы<span class="badge badge-pill badge-warning">{{count($clubs)}}</span></h1>
+<h1 class="h3 mb-2 text-gray-800">Снятые клубы<span class="badge badge-pill badge-warning">{{count($clubs)}}</span></h1>
 
 
 <!-- DataTales Example -->
@@ -29,7 +29,8 @@
             <th>Статус</th>
             <th>Комментарий</th>
             <th>Дата добавления</th>
-            <th>Дата последнего редактирования</th>
+            <th>Дата снятия с публикации</th>
+            <th>Кто снял</th>
             <th>Действие</th>
           </tr>
         </thead>
@@ -49,12 +50,29 @@
             <td style="{{ $color}}">{{$status}}</td>
             <td>
               {{(count($club->comments) > 0) ? count($club->comments) : null }}
+              <br>
+              <small>
+              {{(isset($club->comments[0])) ? \Illuminate\Support\Str::limit(strip_tags($club->comments[0]->comment),50, '...')  : null}}
+              </small>
             </td>
             <td>
                 {{$club->created_at}}
             </td>
             <td>
-                {{($club->created_at == $club->updated_at ) ? '' : $club->updated_at}}
+                {{$club->unpublished_at }}
+            </td>
+            <td>
+              <?
+              $how='';
+              if(is_object($club->whoUnPublished)){
+                 if($club->whoUnPublished->id == $club->user_id){
+                  $how = 'Владелец после редактирования';
+                 }else{
+                   $how=$club->whoUnPublished->name;
+                 }
+              }
+              ?>
+              {{$how}}
             </td>
             <td>
             <a href="{{url('personal/club/'.$club->id.'/edit')}}" class="btn btn-sm btn-primary">Редактировать</a>

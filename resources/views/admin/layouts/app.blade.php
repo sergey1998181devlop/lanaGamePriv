@@ -55,11 +55,12 @@
               <span>Клубы</span>
           </a>
         
-          <div id="collapseTwo" class="collapse <?=($page=="clubs" || $page=="changed-clubs" || $page=="new-clubs")? ' show': null ?> collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
+          <div id="collapseTwo" class="collapse <?=($page=="clubs" || $page=="hidded-clubs" || $page=="new-clubs")? ' show': null ?> collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
               <div class="bg-white py-2 collapse-inner rounded">
-                  <a class="collapse-item<?=($page=="new-clubs")? ' active': null ?>" href="{{url('/panel/clubs/new-clubs')}}">Новые заявки</a>
                   <a class="collapse-item<?=($page=="clubs")? ' active': null ?>" href="{{url('/panel/clubs/clubs')}}">Все клубы</a>
-                  <!-- <a class="collapse-item<?=($page=="changed-clubs")? ' active': null ?>" href="{{url('/panel/clubs/changed-clubs')}}">Лог изменения</a> -->
+                  <a class="collapse-item<?=($page=="new-clubs")? ' active': null ?>" href="{{url('/panel/clubs/new-clubs')}}">Новые заявки</a>
+                  <a class="collapse-item<?=($page=="hidded-clubs")? ' active': null ?>" href="{{url('/panel/clubs/hidded-clubs')}}">Снятые клубы</a>
+                  
               </div>
           </div>
       </li>

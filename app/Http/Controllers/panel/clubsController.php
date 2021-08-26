@@ -19,7 +19,7 @@ class clubsController extends Controller
     }
     public function clubs()
     {
-        $newClubs= club::select('id','user_id','club_name','updated_at','url','club_city','published_at','published_by','hidden_at','created_at','last_admin_edit')->with(array('user' => function($query) {
+        $newClubs= club::select('id','user_id','club_name','updated_at','url','club_city','published_at','published_by','hidden_at','created_at','last_admin_edit','unpublished_at')->with(array('user' => function($query) {
             $query->select('id','name','phone');
             },'city' => function($query) {
                 $query->select('id','name');
@@ -37,13 +37,31 @@ class clubsController extends Controller
         $query->select('id','name');
     },'comments' => function($query) {
         $query->select('id','club_id','created_at');
-    }))->UnderEdit()->orderBy('updated_at','DESC')->get();
+    }))->UnderEdit()->whereNull('unpublished_at')->orderBy('updated_at','DESC')->get();
         return view('admin.clubs.new-clubs')->with(['clubs'=>$newClubs]);
     }
+    public function hidded_clubs()
+    {
+        $clubs= club::select('id','user_id','club_name','club_city','updated_at','created_at','url','unpublished_at','unpublished_by')->with(array('user' => function($query) {
+        $query->select('id','name','phone');
+    },'city' => function($query) {
+        $query->select('id','name');
+    },'whoUnPublished' => function($query) {
+        $query->select('id','name');
+    },'comments' => function($query) {
+        $query->select('id','club_id','created_at','comment');
+    }
+    ))->Hidded()->orderBy('updated_at','DESC')->get();
+        return view('admin.clubs.hidded-clubs')->with(['clubs'=>$clubs]);
+    }
+    
+    
     public function active($id){
-        $club = club::select('published_at','published_by','draft','id','user_id','url')->UnderEdit()->findOrFail($id);
+        $club = club::select('published_at','published_by','unpublished_by','unpublished_at','draft','id','user_id','url')->UnderEdit()->findOrFail($id);
         $club->published_at =Carbon::now()->toDateTimeString();
         $club->published_by =Auth::user()->id;
+        $club->unpublished_at =null;
+        $club->unpublished_by =null;
         $club->last_admin_edit =Auth::user()->id;
         $club->save();
         $club->comments()->delete();
@@ -54,10 +72,11 @@ class clubsController extends Controller
         if( $club->published_at != null ){
             $club->published_at = null;
             $club->published_by =Auth::user()->id;
+            $club->unpublished_at =Carbon::now()->toDateTimeString();;
+            $club->unpublished_by =Auth::user()->id;
             $club->last_admin_edit =Auth::user()->id;
-
             $club->save();
-        } 
+        }
         $comment  = new comment();
         $comment ->club_id =  $id;
         $comment ->comment =  $request->input('comment');
