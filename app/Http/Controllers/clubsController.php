@@ -47,7 +47,7 @@ class clubsController extends Controller
     public function edit($id){
         global $clubAr;
         if(admin()){
-            $clubAr = club::findOrFail($id);
+            $clubAr = club::withTrashed()->findOrFail($id);
         }else{
             $clubAr = club::CorrentUser()->findOrFail($id);
         }
@@ -165,7 +165,7 @@ class clubsController extends Controller
         $errors = [];
         if($update){
             if(admin()){
-                $club = club::findOrFail($id);
+                $club = club::withTrashed()->findOrFail($id);
             }else{
                 $club = club::CorrentUser()->findOrFail($id);
                 $club->published_at = null;

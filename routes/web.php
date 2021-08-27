@@ -102,11 +102,13 @@ Route::post('post/edit/saveImage','panel\postsController@saveImage' );
 // клубы
 Route::get('panel/clubs/new-clubs','panel\clubsController@new_clubs');
 Route::get('panel/clubs/hidded-clubs','panel\clubsController@hidded_clubs');
+Route::get('panel/clubs/deleted-clubs','panel\clubsController@deleted_clubs');
 Route::get('panel/clubs/clubs','panel\clubsController@clubs');
 Route::get('club/{id}/active','panel\clubsController@active');
 Route::post('club/{id}/comment','panel\clubsController@comment');
 Route::post('panel/club/{id}/change-user','panel\clubsController@changeClubUser');
 Route::post('panel/club/{id}/delete','panel\clubsController@deleteClub');
+Route::get('panel/club/{id}/recover','panel\clubsController@recoverClub');
 // обратная связь
 Route::get('/panel/contacts', 'panel\adminController@contacts');
 Route::get('/panel/getMessage', 'panel\adminController@getMessage');

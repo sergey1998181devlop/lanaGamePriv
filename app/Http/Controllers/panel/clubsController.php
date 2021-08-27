@@ -44,16 +44,30 @@ class clubsController extends Controller
     {
         $clubs= club::select('id','user_id','club_name','club_city','updated_at','created_at','url','unpublished_at','unpublished_by')->with(array('user' => function($query) {
         $query->select('id','name','phone');
-    },'city' => function($query) {
-        $query->select('id','name');
-    },'whoUnPublished' => function($query) {
-        $query->select('id','name');
-    },'comments' => function($query) {
-        $query->select('id','club_id','created_at','comment');
-    }
-    ))->Hidded()->orderBy('updated_at','DESC')->get();
+        },'city' => function($query) {
+            $query->select('id','name');
+        },'whoUnPublished' => function($query) {
+            $query->select('id','name');
+        },'comments' => function($query) {
+            $query->select('id','club_id','created_at','comment');
+        }
+        ))->Hidded()->orderBy('updated_at','DESC')->get();
         return view('admin.clubs.hidded-clubs')->with(['clubs'=>$clubs]);
     }
+    public function deleted_clubs()
+    {
+        $clubs= club::select('id','user_id','club_name','club_city','deleted_at','deleted_by','created_at','url','unpublished_at','unpublished_by')->with(array('user' => function($query) {
+        $query->select('id','name','phone');
+        },'city' => function($query) {
+            $query->select('id','name');
+        },'deletedBy' => function($query) {
+            $query->select('id','name');
+        }
+        ))->onlyTrashed()->orderBy('deleted_at','DESC')->get();
+        return view('admin.clubs.deleted-clubs')->with(['clubs'=>$clubs]);
+    }
+
+    
     
     
     public function active($id){
@@ -117,7 +131,17 @@ class clubsController extends Controller
     }
     public function deleteClub($id){
         $club = club::findOrFail($id);
+        $club->deleted_by=Auth::user()->id;
+        $club->save();
         $club->delete();
         return back();
     }
+    public function recoverClub($id){
+        $club = club::withTrashed()->findOrFail($id);
+        $club->deleted_by=Auth::user()->id;
+        $club->deleted_at=null;
+        $club->save();
+        return redirect('clubs/'.$club->id.'/'.$club->url.'/?status=success');
+    }
+    
 }

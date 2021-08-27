@@ -47,20 +47,28 @@
                 </div>
 
                 <div class="main_info_btn_wrapper">
-                    @if(admin())
+                    @if($club->deleted_at != null)
+                    <a
+                           style="background:#ff6328;border: 2px solid black;color:#000;margin-right: 5px;font-size: 14px;    cursor: auto;"
+                           class="btn">Клуб удален</a>
+                        <a href="{{url('panel/club/'.$club->id.'/recover')}}"
+                           style="background:#5a985a;color:#000;margin-right: 5px;font-size: 14px;"
+                           class="btn">Вернуть</a>
+                    @endif
+                    @if(admin()  && $club->deleted_at == null)
                         <a href="{{url('personal/club/'.$club->id.'/edit')}}"
                            style="background:#cb8e20;color:#000;margin-right: 5px;font-size: 14px;"
                            class="btn"
                            data-remodal-target="change_user_modal"  data-remodal-options="hashTracking: false">Сменить владелеца</a>
                     @endif
-                    @if($club->published_at == null && admin())
+                    @if($club->published_at == null && admin() && $club->deleted_at == null)
                         <a href="{{url('club/'.$club->id.'/active')}}" class="club_active btn">Опубликовать</a>
                         <button type="button" class="club_comment" data-remodal-target="club_comment_modal">Написать коммент</button>
                     @endif
                     @if(admin())
                     <a href="{{url('personal/club/'.$club->id.'/edit')}}" style="background:#1f42ff;color:#fff;margin-right: 5px;" class="btn">Редактировать</a>
                     @endif
-                    @if(admin() && $club->published_at != null)
+                    @if(admin() && $club->published_at != null &&  $club->deleted_at == null)
                         <a href="{{url('personal/club/'.$club->id.'/edit')}}"
                            style="background:#a0a0a0;color:#fff;margin-right: 5px;"
                            data-remodal-target="club_comment_modal"

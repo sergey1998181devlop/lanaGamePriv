@@ -74,7 +74,7 @@
                 <a href="#" data-toggle="modal" data-target="#club_comment_modal" data-id="{{$club->id}}" class="btn club_comment_modal btn-sm btn-secondary">Снять с публикации</a>
              <?}?>
              <a href="{{url('clubs/'.$club->id.'/'.$club->url)}}?action=change_user" class="btn btn-warning btn-sm">Передать другому</a>
-             <a href="#" data-toggle="modal" data-target="#club_delete_modal" data-id="{{$club->id}}" club-name="{{$club->club_name}}"  href="{{url('panel/club/'.$club->id.'/delete')}}" class="btn btn-danger club_delete btn-sm">Удалить</a>
+             <a   data-id="{{$club->id}}" club-name="{{$club->club_name}}" class="btn btn-danger club_delete btn-sm pointer">Удалить</a>
             
           </td>
           </tr>
@@ -147,9 +147,11 @@
    $('.club_comment_modal').click(function(){
      $('#club_comment_modal form').attr('action',"{{url('club/')}}/"+$(this).attr('data-id')+"/comment")
    })
-   $('.club_delete').click(function(){
-     $('#club_delete_modal form').attr('action',"{{url('panel/club/')}}/"+$(this).attr('data-id')+"/delete");
+     $(document).on('click','.club_delete',function(e){
+       e.preventDefault;
+      $('#club_delete_modal form').attr('action',"{{url('panel/club/')}}/"+$(this).attr('data-id')+"/delete");
         $('#club_delete_modal .clubname').text($(this).attr('club-name'));
-   })
+       $('#club_delete_modal').modal();
+     })
 </script>
 @endsection

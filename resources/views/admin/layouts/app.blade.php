@@ -17,6 +17,11 @@
   @yield('page')
   <title><?php echo (isset($title))  ?  $title : env('APP_NAME');?></title>
   <?php $page=(isset($page)) ? $page  :''; ?>
+  <style>
+    .pointer{
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body id="page-top">
@@ -55,11 +60,12 @@
               <span>Клубы</span>
           </a>
         
-          <div id="collapseTwo" class="collapse <?=($page=="clubs" || $page=="hidded-clubs" || $page=="new-clubs")? ' show': null ?> collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
+          <div id="collapseTwo" class="collapse <?=($page=="clubs" || $page=="hidded-clubs" || $page=="new-clubs" || $page=="deleted-clubs")? ' show': null ?> collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
               <div class="bg-white py-2 collapse-inner rounded">
                   <a class="collapse-item<?=($page=="clubs")? ' active': null ?>" href="{{url('/panel/clubs/clubs')}}">Все клубы</a>
                   <a class="collapse-item<?=($page=="new-clubs")? ' active': null ?>" href="{{url('/panel/clubs/new-clubs')}}">Новые заявки</a>
                   <a class="collapse-item<?=($page=="hidded-clubs")? ' active': null ?>" href="{{url('/panel/clubs/hidded-clubs')}}">Снятые клубы</a>
+                  <a class="collapse-item<?=($page=="deleted-clubs")? ' active': null ?>" href="{{url('/panel/clubs/deleted-clubs')}}">Удалённые</a>
                   
               </div>
           </div>

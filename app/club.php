@@ -21,6 +21,10 @@ class club extends Model
     {
         return $this->belongsTo(User::class,'unpublished_by');
     }
+    public function deletedBy()
+    {
+        return $this->belongsTo(User::class,'deleted_by');
+    }
     public function comments()
     {
         return $this->hasMany(comment::class)->orderBy('created_at','DESC');;
