@@ -151,6 +151,9 @@ class HomeController extends Controller
     public function searchCities(Request $request){
       $b = array();
       $b['query']='Unit';
+      if($request->input('hasAll') && $request->input('hasAll') == 'true'){
+          $b["results"][]=[ "text"=>'Все города', "data"=> 'all','id'=>'all' ,'has_metro' => 'false'];
+      }
       if(($request->input('q'))){
         $cities=city::select('id','name','en_name','metroMap','parentName')->where('name', 'like', '%' . $request->input('q') . '%')->orWhere('en_name', 'like', '%' . $request->input('q') . '%')->orderBy('order_no')->paginate(8);
       }else{

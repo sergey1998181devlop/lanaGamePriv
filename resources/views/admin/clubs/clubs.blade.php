@@ -3,6 +3,14 @@
 @section('page')
 <?php $page='clubs';$title="Все клубы";?>
 <link href="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css"
+          integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw=="
+          crossorigin="anonymous"/>
+ <style>
+   .select2.select2-container.select2-container--default{
+     width:auto!important;min-width: 150px;
+   }
+ </style>         
 @endsection
 @section('content')
 
@@ -16,6 +24,17 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
+  <div class="select2_wrapper select_city_wrapper" style="display: inline-block;">
+      <select class="select_city" id="city_selector">
+      <option>
+        <?=($city != 'all') ? $city : 'Все города' ?>        
+       </option>
+      </select>
+  </div>
+  <div class="form-check" style="display: inline-block;margin-left: 15px;">
+    <input type="checkbox" class="form-check-input"  id="onlyPublished" <?=(isset($_GET['onlyPublished']) && $_GET['onlyPublished']=='true')?'checked' : null ?>>
+    <label class="form-check-label" for="onlyPublished">Только опубликованые</label>
+  </div>
   </div>
   <div class="card-body">
     <div class="table-responsive">
@@ -139,6 +158,10 @@
 
 @endsection
 @section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"
+        integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
 <script src="{{asset('admin/vendor/datatables/jquery.dataTables.min.js')}}"></script>
   <script src="{{asset('admin/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
   <script src="{{asset('admin/js/demo/datatables-demo.js')}}"></script>
@@ -153,5 +176,28 @@
         $('#club_delete_modal .clubname').text($(this).attr('club-name'));
        $('#club_delete_modal').modal();
      })
+     var onlyPublished = <?=(isset($_GET['onlyPublished']) && $_GET['onlyPublished']==true)? 'true' : 'false' ?>;
+     var SelectedCity = "<?=(isset($_GET['city'])) ? $_GET['city'] : '' ?>";
+     $(document).on('change','#onlyPublished',function(e){
+       if($(this).is(':checked')){
+        window.location.href = "{{url('panel/clubs/clubs')}}?city="+SelectedCity+"&onlyPublished=true";
+       }else{
+        window.location.href = "{{url('panel/clubs/clubs')}}?city="+SelectedCity;
+
+       }
+     })
+     //    in header
+    $('#city_selector').on('select2:select', function(e) {
+        window.location.href = '{{url("panel/clubs/clubs")}}' + '?city=' + e.params.data.id + '&onlyPublished=' +onlyPublished ;
+    });
+
+    $('#city_selector').select2({
+        ajax: {
+            url: '{{url('')}}' + '/searchCities?hasAll=true',
+            dataType: 'json'
+        },
+        cache: true
+    });
+
 </script>
 @endsection

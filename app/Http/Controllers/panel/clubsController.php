@@ -5,6 +5,7 @@ namespace  App\Http\Controllers\panel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller; 
 use App\club;
+use App\city;
 use App\User;
 use App\comment;
 use Auth;
@@ -26,8 +27,20 @@ class clubsController extends Controller
         },
         'lastAdminEdit' => function($query) {
             $query->select('id','name');
-        }))->where('draft','0')->orderBy('updated_at','DESC')->get();
-        return view('admin.clubs.clubs')->with(['clubs'=>$newClubs]);
+        }))->where('draft','0')->orderBy('updated_at','DESC');
+        if(isset($_GET['onlyPublished']) && $_GET['onlyPublished'] == 'true'){
+            $newClubs=$newClubs->Published();
+        }
+        $city = 'all';
+        if(isset($_GET['city']) && $_GET['city'] != ''){
+         $selectedCity = city::find($_GET['city']);
+         if($selectedCity){
+            $newClubs=$newClubs->where('club_city',$selectedCity->id);
+            $city = $selectedCity->name;
+         }
+        }
+        $newClubs=$newClubs->get();
+        return view('admin.clubs.clubs')->with(['clubs'=>$newClubs,'city'=>$city]);
     }
     public function new_clubs()
     {
