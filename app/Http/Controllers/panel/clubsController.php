@@ -66,10 +66,16 @@ class clubsController extends Controller
         ))->onlyTrashed()->orderBy('deleted_at','DESC')->get();
         return view('admin.clubs.deleted-clubs')->with(['clubs'=>$clubs]);
     }
-
-    
-    
-    
+    public function drafts()
+    {
+        $clubs= club::select('id','user_id','club_name','club_city','updated_at','created_at')->with(array('user' => function($query) {
+        $query->select('id','name','phone');
+        },'city' => function($query) {
+            $query->select('id','name');
+        }
+        ))->Draft()->orderBy('updated_at','DESC')->get();
+        return view('admin.clubs.drafts')->with(['clubs'=>$clubs]);
+    }
     public function active($id){
         $club = club::select('published_at','published_by','unpublished_by','unpublished_at','draft','id','user_id','url')->UnderEdit()->findOrFail($id);
         $club->published_at =Carbon::now()->toDateTimeString();

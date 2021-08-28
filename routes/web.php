@@ -102,6 +102,7 @@ Route::post('post/edit/saveImage','panel\postsController@saveImage' );
 // клубы
 Route::get('panel/clubs/new-clubs','panel\clubsController@new_clubs');
 Route::get('panel/clubs/hidded-clubs','panel\clubsController@hidded_clubs');
+Route::get('panel/clubs/drafts','panel\clubsController@drafts');
 Route::get('panel/clubs/deleted-clubs','panel\clubsController@deleted_clubs');
 Route::get('panel/clubs/clubs','panel\clubsController@clubs');
 Route::get('club/{id}/active','panel\clubsController@active');
