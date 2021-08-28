@@ -18,7 +18,7 @@
    <div class="container-fluid">
 
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Все клубы<span class="badge badge-pill badge-warning">{{count($clubs) }}</span></h1>
+<h1 class="h3 mb-2 text-gray-800">Все клубы <?=($city != 'all') ? '('.$city.')': '' ?><span class="badge badge-pill badge-warning">{{count($clubs) }}</span></h1>
 
 
 <!-- DataTales Example -->
