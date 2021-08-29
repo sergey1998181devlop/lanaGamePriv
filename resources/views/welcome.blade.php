@@ -146,4 +146,16 @@
             });
         });
     </script>
+    @if($show == 'map')
+    <script>
+       @if(city(true)['lat'] != '' && city(true)['lon'] != '')
+        window.CITY_LAT = "{{city(true)['lat']}}";
+        window.CITY_LON = "{{city(true)['lon']}}";
+       @else
+        window.CITY_LAT = "55.7558";
+        window.CITY_LON = "37.6173";
+       @endif
+    </script>
+      
+    @endif
 @endsection

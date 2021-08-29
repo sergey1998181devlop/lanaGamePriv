@@ -21,10 +21,9 @@ jQuery(function() {
         let scrollParent = jQuery('[data-search-club-by-map]'),
             wrapper = document.querySelector('[data-search-club-by-map]');
 
-        let $firstClub = jQuery('[data-role-club]').eq(0),
-            center = [
-                $firstClub.data('lat'),
-                $firstClub.data('lon')
+        let center = [
+                window.CITY_LAT,
+                window.CITY_LON
             ];
 
         let myMap = new ymaps.Map(map, {
