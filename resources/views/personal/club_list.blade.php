@@ -1,6 +1,15 @@
 @extends('layouts.app')
 @section('page')
     <title>Список клубов - LanGame</title>
+    <style>
+        .ck.ck-content.ck-editor__editable{
+            height: 250px;
+        }
+        .ck.ck-reset.ck-editor{
+            max-width:500px;
+            width:400px;
+        }
+    </style>
 @endsection
 @section('content')
     @include('personal/club_card')
@@ -260,4 +269,17 @@
         </script>
     @endif
     <script src="{{ asset('/js/jquery.autocomplete.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
+    <script src="{{url('ckeditor5/ckeditor.js')}}"></script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#club-descr-input' ), {
+                toolbar: [ 'heading', '|', 'bold', 'italic','|', 'numberedList', 'bulletedList', 'link' ,'undo', 'redo', ]
+            } )
+            .then( editor => {
+                window.editor = editor;
+            } )
+            .catch( err => {
+                console.error( err.stack );
+            } );
+    </script>
 @endsection
