@@ -104,6 +104,9 @@ jQuery(function() {
                 jQuery('[data-role-club]').removeClass('active');
                 $('.search_club_list .search_club_item.another_city').hide();
                 if($('.search_club_list [data-id='+clubId+']').hasClass('another_city')){
+                    if( typeof  $('.search_club_list [data-id='+clubId+'] .main_preview_photo').attr('src') == 'undefined'){
+                        $('.search_club_list [data-id='+clubId+'] .main_preview_photo').attr('src',$('.search_club_list [data-id='+clubId+'] .main_preview_photo').attr('asrc'))
+                    }
                     $('.search_club_list [data-id='+clubId+']').show()
                 }
                 activateClubById(clubId);

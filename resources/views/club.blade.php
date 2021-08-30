@@ -1,15 +1,17 @@
-<div class="search_club_item <?=(isset($show) && $show === 'map') ? 'in_map' : null ?> <?=(isset($show) && $show === 'map' && $club->club_city != city(true)['id']) ? 'another_city' : null ?>"
+<?$isHidden =(isset($show) && $show === 'map' && $club->club_city != city(true)['id']) ? true : false ?>
+<div class="search_club_item <?=(isset($show) && $show === 'map') ? 'in_map' : null ?> <?=($isHidden) ? 'another_city' : null ?>"
      data-id="{{$club->id}}"
      data-role-club
      data-lon="{{$club->lon}}"
      data-lat="{{$club->lat}}"
-     style="<?=(isset($show) && $show === 'map' && $club->club_city != city(true)['id']) ? 'display:none;' : null ?>"
+     style="<?=($isHidden) ? 'display:none;' : null ?>"
      >
 <a href="{{url('clubs/'.$club->id.'/'.$club->url)}}" class="club_card">
     <div class="search_club_img_wrapper">
         <div class="search_club_img">
         @if($club->main_preview_photo != null)
-        <img src="{{ $club->main_preview_photo}}" onerror="this.src='{{ asset('/img/default-club-preview-image.svg')}}'" alt="club">
+
+        <img <?=($isHidden) ? 'asrc="'. $club->main_preview_photo.'"' : 'src="'. $club->main_preview_photo.'"' ?> class="main_preview_photo"  onerror="this.src='{{ asset('/img/default-club-preview-image.svg')}}'" alt="club">
         @else
         <img src="{{ asset('/img/default-club-preview-image.svg')}}" alt="club">
         @endif
