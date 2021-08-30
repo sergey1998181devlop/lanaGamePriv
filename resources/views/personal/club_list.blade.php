@@ -9,6 +9,12 @@
             max-width:500px;
             width:400px;
         }
+        @media (max-width:500px) {
+            .ck.ck-reset.ck-editor{
+            max-width:100%;
+            width:100%;
+        }
+        }
     </style>
 @endsection
 @section('content')
