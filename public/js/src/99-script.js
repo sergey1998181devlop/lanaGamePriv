@@ -205,30 +205,37 @@ jQuery(function() {
         jQuery('html, body').animate({scrollTop: jQuery(_href).offset().top + 'px'});
     });
 
-    jQuery('#gamer_mailing').on('click', function(e) {
-        jQuery('.mailing_form_wrapper').show();
-        jQuery(this).closest('.btn_wrapper').hide();
-        jQuery(this).closest('.mailing_modal').find('.title').text('Игрок');
-        jQuery(this).closest('.mailing_modal').find('.instr').text('Оставь свою почту и получай информацю об акциях, розыгрышах и других интересных предложениях от клубов!');
+    jQuery('#gamer-mailing-form').on('submit', function(e) {
+        e.preventDefault();
 
+        let $form = jQuery(this);
+
+        jQuery.ajax({
+            type: 'POST',
+            url: '',
+            data: $form.serialize(),
+            success: function() {
+                jQuery('[data-remodal-id="mailing_success_modal"]').remodal().open();
+            }
+        });
     });
 
-    jQuery('#owner_mailing').on('click', function(e) {
-        jQuery('.mailing_form_wrapper').show();
-        jQuery(this).closest('.btn_wrapper').hide();
-        jQuery(this).closest('.mailing_modal').find('.title').text('Представитель клуба');
-        jQuery(this).closest('.mailing_modal').find('.instr').text('Подпишись на нашу рассылку, и будь в курсе обновлений сервиса, выгодных предложений от брендов и другой полезной информации!');
+    jQuery('#owner-mailing-form').on('submit', function(e) {
+        e.preventDefault();
+
+        let $form = jQuery(this);
+
+        jQuery.ajax({
+            type: 'POST',
+            url: '',
+            data: $form.serialize(),
+            success: function() {
+                jQuery('[data-remodal-id="mailing_success_modal"]').remodal().open();
+            }
+        });
     });
 
     jQuery('.remodal.mailing_modal').on('opening', function(e) {
-        jQuery(this).find('.mailing_form_wrapper').hide();
         jQuery(this).find('form input').val('');
-        jQuery(this).find('.btn_wrapper').show();
-        jQuery(this).closest('.mailing_modal').find('.title').text('Подписаться на рассылку');
-        jQuery(this).closest('.mailing_modal').find('.instr').text('Привет! Ты выбираешь место, где поиграть, или работаешь в компьютерном клубе?');
-    });
-
-    jQuery('#mailing-form').on('submit', function(e) {
-        jQuery('[data-remodal-id="mailing_success_modal"]').remodal().open();
     });
 });

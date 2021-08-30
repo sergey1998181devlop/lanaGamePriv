@@ -13305,8 +13305,6 @@ section.langame_software_wrapper {
         }
 
         .mailing_form_wrapper{
-            display: none;
-
             input{
                 display: block;
                 width: 100%;
@@ -13329,9 +13327,9 @@ section.langame_software_wrapper {
         }
     }
 
-    @media (max-width: 500px) {
-        width: 300px;
-
+    @media (max-width: 460px) {
+        width: 100%;
+        padding: 24px;
 
         .remodal-close {
             width: 24px;
@@ -13345,53 +13343,12 @@ section.langame_software_wrapper {
         .remodal-content {
             .title {
                 font-style: normal;
-                font-weight: 500;
-                font-size: 18px;
+                font-weight: 700;
+                font-size: 20px;
                 line-height: 100%;
                 text-align: left;
                 color: #000000;
                 margin-bottom: 16px;
-            }
-
-            form {
-                margin-bottom: 32px;
-
-                textarea {
-                    display: block;
-                    padding: 12px;
-                    width: 100%;
-                    height: 230px;
-                    border: 2px solid rgba(0, 0, 0, 0.25);
-                    border-radius: 14px;
-                    font-weight: 500;
-                    font-size: 18px;
-                    line-height: 1;
-                    color: rgba(0, 0, 0, 1);
-                    outline: none;
-                    resize: none;
-                    margin-bottom: 32px;
-                }
-
-                .btn_wrapper {
-                    button {
-                        display: block;
-                        border: none;
-                        background: #dc0000;
-                        border-radius: 14px;
-                        padding: 14px 32px;
-                        font-style: normal;
-                        font-weight: 500;
-                        font-size: 18px;
-                        line-height: 1;
-                        text-align: center;
-                        color: #ffffff;
-                        margin: 0 auto;
-
-                        &:hover {
-                            box-shadow: 0 0 6px #dc0000;
-                        }
-                    }
-                }
             }
 
             .instr {
@@ -13406,7 +13363,81 @@ section.langame_software_wrapper {
                     color: #000000;
                 }
             }
+
+            .btn_wrapper {
+                button {
+                    padding: 14px 16px;
+                }
+            }
         }
+    }
+}
+
+.mailing_success_modal {
+    width: 448px;
+    height: auto;
+    background: #ffffff;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    padding: 40px 32px 32px;
+
+    .remodal-close {
+        width: 28px;
+        height: 28px;
+        left: unset;
+        left: auto;
+        right: -10px;
+        top: -10px;
+        opacity: 1;
+        background-image: url("../img/cancel.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 34px 34px;
+        background-color: #ffffff;
+        border-radius: 50%;
+
+
+        &:before {
+            content: none;
+            display: none;
+        }
+    }
+
+    .remodal-content {
+        .img_wrapper{
+            margin-bottom: 24px;
+
+            img{
+                display: block;
+                width: 48px;
+                height: 48px;
+                margin: 0 auto;
+            }
+        }
+
+        .title {
+            font-style: normal;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 100%;
+            text-align: center;
+            color: #000000;
+            margin-bottom: 10px;
+        }
+
+        .instr {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 23px;
+            text-align: center;
+            color: #000000;
+            margin-bottom: 32px;
+        }
+    }
+
+    @media (max-width: 460px) {
+        width: 100%;
     }
 }
 
@@ -13973,6 +14004,19 @@ section.langame_software_wrapper {
 
             .social_wrapper {
                 position: static;
+            }
+
+            .mailing {
+                top: 22px;
+                right: 0;
+                width: 44px;
+                height: 44px;
+
+                &:before {
+                    width: 30px;
+                    height: 24px;
+                    background-size: 21px 17px;
+                }
             }
         }
 

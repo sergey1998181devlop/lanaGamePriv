@@ -379,7 +379,6 @@
                 <button type="submit">Отправить</button>
             </div>
         </form>
-
         <div class="instr">
             Используйте <a href="{{url('contacts')}}">форму обратной связи,</a> если хотите указать
             контактную информацию и получить ответ.
@@ -395,7 +394,22 @@
             Привет! Ты выбираешь место, где поиграть, или работаешь в компьютерном клубе?
         </div>
 
-        <form action="" method="post" id="mailing-form">
+        <div class="btn_wrapper">
+            <button type="button" class="log_in" data-remodal-target="gamer_mailing_modal">Игрок</button>
+            <button type="button" data-remodal-target="owner_mailing_modal">Представитель клуба</button>
+        </div>
+    </div>
+</div>
+
+<div class="remodal mailing_modal" data-remodal-id="gamer_mailing_modal" data-remodal-options="hashTracking: false">
+    <button data-remodal-action="close" class="remodal-close"></button>
+    <div class="remodal-content">
+        <div class="title">Игрок</div>
+        <div class="instr">
+            Оставь свою почту и получай информацю об акциях, розыгрышах и других интересных предложениях от клубов!
+        </div>
+
+        <form action="" method="post" id="gamer-mailing-form">
             <div class="mailing_form_wrapper">
                 <input type="email" name="email" required>
                 <div class="btn_wrapper">
@@ -403,11 +417,25 @@
                 </div>
             </div>
         </form>
+    </div>
+</div>
 
-        <div class="btn_wrapper">
-            <button type="button" class="log_in" id="gamer_mailing">Игрок</button>
-            <button type="button" id="owner_mailing">Представитель клуба</button>
+<div class="remodal mailing_modal" data-remodal-id="owner_mailing_modal" data-remodal-options="hashTracking: false">
+    <button data-remodal-action="close" class="remodal-close"></button>
+    <div class="remodal-content">
+        <div class="title">Представитель клуба</div>
+        <div class="instr">
+            Подпишись на нашу рассылку, и будь в курсе обновлений сервиса, выгодных предложений от брендов и другой полезной информации!
         </div>
+
+        <form action="" method="post" id="owner-mailing-form">
+            <div class="mailing_form_wrapper">
+                <input type="email" name="email" required>
+                <div class="btn_wrapper">
+                    <button type="submit">Подписаться</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 
