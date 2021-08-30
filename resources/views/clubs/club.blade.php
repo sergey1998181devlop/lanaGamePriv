@@ -550,7 +550,7 @@
                     </div>
                     <div class="club_page_description">
                         <p>
-                            {{$club->club_description}}
+                            {!!$club->club_description!!}
                         </p>
                     </div>
                 </div>
