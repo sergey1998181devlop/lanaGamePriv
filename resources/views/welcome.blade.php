@@ -156,6 +156,6 @@
         window.CITY_LON = "37.6173";
        @endif
     </script>
-      
+
     @endif
 @endsection

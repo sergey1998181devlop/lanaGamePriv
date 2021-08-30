@@ -10,8 +10,8 @@
     @if(admin())
         <meta name="is-admin" content="1">
     @endif
-    <meta name="yandex-verification" content="32e051951e8b0c78" />
-    <meta name="google-site-verification" content="hxlJwydJQGGNf58k_xhPIcvSaIB1Vb3LplRFOPUyl0g" />
+    <meta name="yandex-verification" content="32e051951e8b0c78"/>
+    <meta name="google-site-verification" content="hxlJwydJQGGNf58k_xhPIcvSaIB1Vb3LplRFOPUyl0g"/>
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
           integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
@@ -43,59 +43,88 @@
     <link rel="stylesheet" href="{{ asset('/fonts/PT/stylesheet.css') }}?v={{ENV('CSS_VERSION',0)}}">
     <link rel="stylesheet" href="{{ asset('/css/layout.css') }}?v={{ENV('CSS_VERSION',0)}}">
     <!-- Yandex.Metrika counter -->
-<script type="text/javascript" >
-   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    <script type="text/javascript">
+        (function(m, e, t, r, i, k, a) {
+            m[i] = m[i] || function() {
+                (m[i].a = m[i].a || []).push(arguments);
+            };
+            m[i].l = 1 * new Date();
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a);
+        })
+        (window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
 
-   ym(82365286, "init", {
-        clickmap:true,
-        trackLinks:true,
-        accurateTrackBounce:true,
-        webvisor:true,
-        ecommerce:"dataLayer"
-   });
-</script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-201040515-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+        ym(82365286, 'init', {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true,
+            ecommerce: 'dataLayer'
+        });
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-201040515-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-201040515-1');
-</script>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-K5ZMWGV');</script>
-<!-- End Google Tag Manager -->
+        function gtag() {
+            dataLayer.push(arguments);
+        }
 
-<!-- /Yandex.Metrika counter -->
-<script type="text/javascript">!function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src="https://vk.com/js/api/openapi.js?169",t.onload=function(){VK.Retargeting.Init("VK-RTRG-1054347-dW3vv"),VK.Retargeting.Hit()},document.head.appendChild(t)}();</script><noscript><img src="https://vk.com/rtrg?p=VK-RTRG-1054347-dW3vv" style="position:fixed; left:-999px;" alt=""/></noscript>
-<style>
-@media (max-width: 1500px){
-    section.search_club_wrapper_by_map .search_club_by_map .search_club_sort_wrapper{
-        padding-top: 10px;
-    }
-    section.search_club_wrapper_by_map .search_club_by_map .search_club_sort_wrapper .search_club_show{
-        top: 0;
-    }
-}
-.header .header_wrapper .header_menu_wrapper .header_menu .log_in_block_wrapper .log_in_wrapper form .forma .form-group .logmsg .error{
-    top: 88%;
-}
-    
-</style>
+        gtag('js', new Date());
+
+        gtag('config', 'UA-201040515-1');
+    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-K5ZMWGV');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- /Yandex.Metrika counter -->
+    <script type="text/javascript">!function() {
+            var t = document.createElement('script');
+            t.type = 'text/javascript', t.async = !0, t.src = 'https://vk.com/js/api/openapi.js?169', t.onload = function() {
+                VK.Retargeting.Init('VK-RTRG-1054347-dW3vv'), VK.Retargeting.Hit();
+            }, document.head.appendChild(t);
+        }();</script>
+    <noscript><img src="https://vk.com/rtrg?p=VK-RTRG-1054347-dW3vv" style="position:fixed; left:-999px;" alt=""/></noscript>
+    <style>
+        @media (max-width: 1500px) {
+            section.search_club_wrapper_by_map .search_club_by_map .search_club_sort_wrapper {
+                padding-top: 10px;
+            }
+
+            section.search_club_wrapper_by_map .search_club_by_map .search_club_sort_wrapper .search_club_show {
+                top: 0;
+            }
+        }
+
+        .header .header_wrapper .header_menu_wrapper .header_menu .log_in_block_wrapper .log_in_wrapper form .forma .form-group .logmsg .error {
+            top: 88%;
+        }
+
+    </style>
 </head>
 
 <body>
-<noscript><div><img src="https://mc.yandex.ru/watch/82365286" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<noscript>
+    <div><img src="https://mc.yandex.ru/watch/82365286" style="position:absolute; left:-9999px;" alt=""/></div>
+</noscript>
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K5ZMWGV"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K5ZMWGV"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
 <!-- End Google Tag Manager (noscript) -->
 <div class="svg_icons">
     <svg id="icon-svg-account" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -120,7 +149,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               style="fill: var(--subway-color, #4DB762)"/>
     </svg>
 </div>
-<?if (env('DEV_SERVER','false') === true){?>
+<?if (env('DEV_SERVER', 'false') === true){?>
 <div style="
     text-align: center;
     font-size: 20px;
@@ -128,7 +157,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     padding: 15px;
 
 ">
-этот сервер для разработки
+    этот сервер для разработки
 </div>
 <?}?>
 <!--HEADER START-->
@@ -323,6 +352,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 </div>
 
+<div class="remodal mailing_success_modal" data-remodal-id="mailing_success_modal" data-remodal-options="hashTracking: false">
+    <button data-remodal-action="close" class="remodal-close"></button>
+    <div class="remodal-content">
+        <div class="img_wrapper">
+            <img src="{{ asset('/img/mail_success.svg')}}" alt="success">
+        </div>
+        <div class="title">Готово!</div>
+        <div class="instr">
+            Вы успешно подписались на рассылку, пожалуйста проверьте почту!
+        </div>
+    </div>
+</div>
+
 <div class="remodal report_modal" data-remodal-id="report_modal" data-remodal-options="hashTracking: false">
     <button data-remodal-action="close" class="remodal-close"></button>
     <div class="remodal-content">
@@ -344,6 +386,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
     </div>
 </div>
+
+<div class="remodal mailing_modal" data-remodal-id="mailing_modal" data-remodal-options="hashTracking: false">
+    <button data-remodal-action="close" class="remodal-close"></button>
+    <div class="remodal-content">
+        <div class="title">Подписаться на рассылку</div>
+        <div class="instr">
+            Привет! Ты выбираешь место, где поиграть, или работаешь в компьютерном клубе?
+        </div>
+
+        <form action="" method="post" id="mailing-form">
+            <div class="mailing_form_wrapper">
+                <input type="email" name="email" required>
+                <div class="btn_wrapper">
+                    <button type="submit">Подписаться</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="btn_wrapper">
+            <button type="button" class="log_in" id="gamer_mailing">Игрок</button>
+            <button type="button" id="owner_mailing">Представитель клуба</button>
+        </div>
+    </div>
+</div>
+
 <a data-remodal-target="get_geo"></a>
 <div class="remodal get_geo" data-remodal-id="get_geo">
     <button data-remodal-action="close" class="remodal-close"></button>
@@ -398,6 +465,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
             </div>
             <button type="button" class="report" data-remodal-target="report_modal">Сообщить об ошибке</button>
+            <button class="mailing" type="button" data-remodal-target="mailing_modal"></button>
             <div class="social_wrapper">
                 <div class="social_list">
                     <a href="https://vk.com/langameru" onclick="gtag('event', 'send', { 'event_category': 'vkontakte', 'event_action': 'click' });" target="_blank">
@@ -407,9 +475,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <img src="{{ asset('/img/icons/telegram.svg')}}" alt="logo">
                     </a>
                     @if(false)
-                    <a href="#">
-                        <img src="{{ asset('/img/icons/inst.svg')}}" alt="logo">
-                    </a>
+                        <a href="#">
+                            <img src="{{ asset('/img/icons/inst.svg')}}" alt="logo">
+                        </a>
                     @endif
                 </div>
             </div>
@@ -454,13 +522,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="https://cdn.jsdelivr.net/npm/mobile-detect@1.4.4/mobile-detect.min.js"></script>
 <script src="{{ asset('/js/inputmask.js') }}"></script>
 <script src="{{ asset('/js/dest/layout.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
-<script src="{{ asset('/js/src/10-search-club-by-map.js') }}?v={{time()}}{{ENV('JS_VERSION',0)}}"></script>
 <script src="{{ asset('/js/main.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
 @if(Auth::guest())
     <script>
         $('#log-in-form-popup').submit(function(e) {
             e.preventDefault();
-            ym(82365286,'reachGoal','lk');gtag('event', 'send', { 'event_category': 'lk', 'event_action': 'send' });
+            ym(82365286, 'reachGoal', 'lk');
+            gtag('event', 'send', {'event_category': 'lk', 'event_action': 'send'});
             let url = $(this).attr('action'),
                 msgs = $(this).find('.logmsg'),
                 form_groups = $(this).find('.form-group');
@@ -479,9 +547,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     location.reload();
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
-                    $.each(xhr.responseJSON.errors, function(key,value) {
-                        msgs.append('<p class="error">'+value+'</p>');
-                    }); 
+                    $.each(xhr.responseJSON.errors, function(key, value) {
+                        msgs.append('<p class="error">' + value + '</p>');
+                    });
                     form_groups.addClass('error');
                 }
             });
