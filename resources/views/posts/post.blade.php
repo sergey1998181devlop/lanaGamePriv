@@ -17,11 +17,12 @@
             <div class="article_page_main_banner_img_wrapper">
                 <div class="article_page_main_banner_img">
                     <img src="{{($post->image != '') ? url('storage/posts/'.$post->image) : asset('img/default-club-preview-image.svg')}}" alt="image">
+                    <div class="article_page_main_banner_title">
+                        <h2>{{$post->name}}</h2>
+                    </div>
+                    <a href="{{url('posts')}}" class="go_back">Назад</a>
                 </div>
-                <div class="article_page_main_banner_title">
-                    <h2>{{$post->name}}</h2>
-                </div>
-                <a href="{{url('posts')}}" class="go_back">Назад</a>
+
             </div>
         </div>
     </section>
