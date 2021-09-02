@@ -304,12 +304,16 @@ class clubsController extends Controller
             if(isset($filename[1])){
                 $filename=$filename[1];
                 if(file_exists(storage_path('app/public/clubs/images/'.$filename))){
-                    $destinationPath = storage_path('app/public/clubs/thumbnail');
-                        $img = ImageResize::make(storage_path('app/public/clubs/images/'.$filename));
-                        $img->resize(300,'auto', function ($constraint) {
-                            $constraint->aspectRatio();
-                    })->save($destinationPath.'/'.$filename);
-                    $club->club_thumbnail =  url('storage/clubs/thumbnail').'/'. $filename;
+                    $infoPath = pathinfo(storage_path('app/public/clubs/images/'.$filename));
+                    $extension = $infoPath['extension'];
+                    if($extension != 'jfif' &&  $extension != 'HEIC'){
+                        $destinationPath = storage_path('app/public/clubs/thumbnail');
+                            $img = ImageResize::make(storage_path('app/public/clubs/images/'.$filename));
+                            $img->resize(300,'auto', function ($constraint) {
+                                $constraint->aspectRatio();
+                        })->save($destinationPath.'/'.$filename);
+                        $club->club_thumbnail =  url('storage/clubs/thumbnail').'/'. $filename;
+                    }
                 }
             }
         }

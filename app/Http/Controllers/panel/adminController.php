@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\club;
 use App\langame_request;
 use App\report;
+use ImageResize;
 class adminController extends Controller
 {
     public function __construct()
@@ -18,6 +19,33 @@ class adminController extends Controller
 
     public function index()
     {
+        if(isset($_GET['test'])){
+            set_time_limit(0);
+            $clubs=club::select('id','main_preview_photo','club_thumbnail')->whereNotNull('main_preview_photo')->whereNull('club_thumbnail')->get();
+            $old = [];
+            foreach ($clubs as  $club) {
+                $club->club_thumbnail = '';
+                $filename = explode('clubs/images/',$club->main_preview_photo);
+                if(isset($filename[1])){
+                    $filename=$filename[1];
+                    if(file_exists(storage_path('app/public/clubs/images/'.$filename))){
+                        $destinationPath = storage_path('app/public/clubs/thumbnail');
+                            $img = ImageResize::make(storage_path('app/public/clubs/images/'.$filename));
+                            $img->resize(300,'auto', function ($constraint) {
+                                $constraint->aspectRatio();
+                        })->save($destinationPath.'/'.$filename);
+                        $club->club_thumbnail =  url('storage/clubs/thumbnail').'/'. $filename;
+                        $club->timestamps = false;
+                    $club->save();
+                    $old[]=$club->id;
+                 
+                    }
+                }
+                
+            }
+            print_r($old);
+                die();
+        }
         $newMessages = contact::whereNull('seen_at')->count();
         $newReports = report::whereNull('seen_at')->count();
         $newClubs= club::UnderEdit()->count();
