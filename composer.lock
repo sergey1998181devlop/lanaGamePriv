@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8dfae381d30863e705af8d5eb3a6dd16",
+    "content-hash": "614c31dd981e0ac1a22755d804d82579",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -768,16 +768,16 @@
         },
         {
             "name": "intervention/image",
-            "version": "dev-master",
+            "version": "2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Intervention/image.git",
-                "reference": "ecad8be4b2cd929561e1b2a2e18f63a5f11231a7"
+                "reference": "0925f10b259679b5d8ca58f3a2add9255ffcda45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/image/zipball/ecad8be4b2cd929561e1b2a2e18f63a5f11231a7",
-                "reference": "ecad8be4b2cd929561e1b2a2e18f63a5f11231a7",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/0925f10b259679b5d8ca58f3a2add9255ffcda45",
+                "reference": "0925f10b259679b5d8ca58f3a2add9255ffcda45",
                 "shasum": ""
             },
             "require": {
@@ -794,7 +794,6 @@
                 "ext-imagick": "to use Imagick based image processing.",
                 "intervention/imagecache": "Caching extension for the Intervention Image library"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -837,7 +836,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Intervention/image/issues",
-                "source": "https://github.com/Intervention/image/tree/master"
+                "source": "https://github.com/Intervention/image/tree/2.6.1"
             },
             "funding": [
                 {
@@ -849,7 +848,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-08-11T14:40:26+00:00"
+            "time": "2021-07-22T14:31:53+00:00"
         },
         {
             "name": "laravel/framework",
@@ -7130,9 +7129,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "intervention/image": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
