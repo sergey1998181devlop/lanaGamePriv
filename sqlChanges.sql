@@ -7,3 +7,5 @@ ALTER TABLE `clubs` ADD `deleted_at` TIMESTAMP NULL AFTER `updated_at`;:
 
 ALTER TABLE `clubs` ADD `unpublished_at` TIMESTAMP NULL DEFAULT NULL AFTER `deleted_at`, ADD `unpublished_by` INT NULL DEFAULT NULL AFTER `unpublished_at`;
 ALTER TABLE `clubs` ADD `deleted_by` INT NULL DEFAULT NULL AFTER `deleted_at`;
+
+ALTER TABLE `clubs` ADD `club_thumbnail` LONGTEXT NULL AFTER `main_preview_photo`;
