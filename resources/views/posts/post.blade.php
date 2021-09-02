@@ -11,17 +11,35 @@
             <div style="margin-bottom: 20px;">
                 <a class="btn btn-primary" href="{{url('post/edit/')}}/{{$post->id}}">Отредактировать</a>
                 <a class="btn btn-danger " data-remodal-target="deleteitem">Удалить</a>
-
             </div>
             @endif
             <div class="article_page_main_banner_img_wrapper">
                 <div class="article_page_main_banner_img">
                     <img src="{{($post->image != '') ? url('storage/posts/'.$post->image) : asset('img/default-club-preview-image.svg')}}" alt="image">
+                    <div class="article_page_main_banner_title">
+                        <h2>{{$post->name}}</h2>
+                    </div>
+                    <a href="{{url('posts')}}" class="go_back">Назад</a>
                 </div>
-                <div class="article_page_main_banner_title">
-                    <h2>{{$post->name}}</h2>
+                <div class="another_articles_wrapper">
+                    <div class="title">Читайте также</div>
+                    <div class="another_articles_list">
+                        <div class="another_articles_item">
+                            <a href="#">
+                                <img src="{{asset('img/default-club-preview-image.svg')}}" alt="article">
+                            </a>
+                            <div class="decor">Статьи</div>
+                            <div class="article_title">Как создать команду Counter-Strike?</div>
+                        </div>
+                        <div class="another_articles_item">
+                            <a href="#">
+                                <img src="{{asset('img/default-club-preview-image.svg')}}" alt="article">
+                            </a>
+                            <div class="decor">Статьи</div>
+                            <div class="article_title"> Бизнес план компьютерного клуба</div>
+                        </div>
+                    </div>
                 </div>
-                <a href="{{url('posts')}}" class="go_back">Назад</a>
             </div>
         </div>
     </section>
