@@ -21,25 +21,22 @@
                     </div>
                     <a href="{{url('posts')}}" class="go_back">Назад</a>
                 </div>
-                <div class="another_articles_wrapper">
-                    <div class="title">Читайте также</div>
-                    <div class="another_articles_list">
-                        <div class="another_articles_item">
-                            <a href="#">
-                                <img src="{{asset('img/default-club-preview-image.svg')}}" alt="article">
-                            </a>
-                            <div class="decor">Статьи</div>
-                            <div class="article_title">Как создать команду Counter-Strike?</div>
-                        </div>
-                        <div class="another_articles_item">
-                            <a href="#">
-                                <img src="{{asset('img/default-club-preview-image.svg')}}" alt="article">
-                            </a>
-                            <div class="decor">Статьи</div>
-                            <div class="article_title"> Бизнес план компьютерного клуба</div>
-                        </div>
+                @if(count($morePosts) > 0)
+                    <div class="another_articles_wrapper">
+                        <div class="title">Читайте также</div>
+                        @foreach($morePosts as $p)
+                            <div class="another_articles_list">
+                                <div class="another_articles_item">
+                                    <a href="{{url('post/read/'.$p->id.'/'.$p->url)}}">
+                                        <img src="{{($p->image != '') ? url('storage/posts/'.$p->image) : asset('img/default-club-preview-image.svg')}}" alt="article">
+                                    </a>
+                                    <div class="decor">Статьи</div>
+                                    <div class="article_title" title="{{$p->name}}">{{$p->name}}</div>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
-                </div>
+                @endif
             </div>
         </div>
     </section>

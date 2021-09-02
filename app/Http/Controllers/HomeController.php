@@ -144,7 +144,7 @@ class HomeController extends Controller
           }
           return response()->json(['html' => $html,'last'=>$clubs->lastPage()]);
         }
-        $posts=post::orderBy('created_at','desc')->limit(3)->get();
+        $posts=post::select('id','url','image','name','about')->orderBy('created_at','desc')->limit(3)->get();
         $postsCount=post::count();
         return view('welcome')->with(['posts'=>$posts,'postsCount'=>$postsCount,'clubs'=>$clubs,'now'=>$now,'today'=>$today]);
     }

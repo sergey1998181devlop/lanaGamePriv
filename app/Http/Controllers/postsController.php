@@ -16,11 +16,12 @@ class postsController extends Controller
         if(!$post ){
             abort(405);
         }
-           $views=$post->views;
-           $views++;
-           $post->views=$views;
-            $post->save();
-        return view('posts.post')->with(['post'=>$post]);
+        $views=$post->views;
+        $views++;
+        $post->views=$views;
+        $post->save();
+        $morePosts = post::select('id','url','image','name')->where('id','!=',$post->id)->inRandomOrder()->limit(2)->get();
+        return view('posts.post')->with(['post'=>$post,'morePosts'=>$morePosts]);
      }
      public function allposts(){
 
