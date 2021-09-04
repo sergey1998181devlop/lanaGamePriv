@@ -2333,6 +2333,7 @@ section.search_club_wrapper_by_map {
                     padding: 6px;
                     border-radius: 24px;
                     margin: 0 0 8px;
+                    transition: border-color 0.1s;
 
                     .club_card {
                         display: flex;
@@ -3785,7 +3786,7 @@ section.search_club_wrapper_by_map {
                             }
                         }
 
-                        &.active{
+                        &.active {
                             border: 3px solid #dc0000;
                         }
                     }
@@ -4168,8 +4169,8 @@ section.article_page_main_banner_wrapper {
             }
         }
 
-        .another_articles_wrapper{
-            .title{
+        .another_articles_wrapper {
+            .title {
                 font-style: normal;
                 font-weight: 700;
                 font-size: 24px;
@@ -4178,20 +4179,20 @@ section.article_page_main_banner_wrapper {
                 margin-bottom: 16px;
             }
 
-            .another_articles_list{
-                .another_articles_item{
+            .another_articles_list {
+                .another_articles_item {
                     position: relative;
                     width: 256px;
                     height: 256px;
                     border-radius: 20px;
 
-                    a{
+                    a {
                         display: block;
                         width: 100%;
                         height: 100%;
                         text-decoration: none;
 
-                        img{
+                        img {
                             display: block;
                             width: 100%;
                             height: 100%;
@@ -4200,7 +4201,7 @@ section.article_page_main_banner_wrapper {
                         }
                     }
 
-                    .decor{
+                    .decor {
                         position: absolute;
                         top: 14px;
                         left: 14px;
@@ -4218,11 +4219,11 @@ section.article_page_main_banner_wrapper {
                         font-weight: 500;
                         font-size: 16px;
                         line-height: 1;
-                        color: #F8F8F8;
+                        color: #f8f8f8;
                         pointer-events: none;
                     }
 
-                    .article_title{
+                    .article_title {
                         max-width: 220px;
                         position: absolute;
                         left: 14px;
@@ -4231,12 +4232,13 @@ section.article_page_main_banner_wrapper {
                         font-weight: 700;
                         font-size: 24px;
                         line-height: 1.2;
-                        color: #FFFFFF;
+                        color: #ffffff;
                         pointer-events: none;
+                        text-shadow: 2px 1px 0 rgba(0, 0, 0, 0.6);
                     }
                 }
 
-                .another_articles_item + .another_articles_item{
+                .another_articles_item + .another_articles_item {
                     margin-top: 18px;
                 }
             }
@@ -4280,7 +4282,7 @@ section.article_page_main_banner_wrapper {
                 left: 21px;
             }
 
-            .another_articles_wrapper{
+            .another_articles_wrapper {
                 display: none;
             }
         }
@@ -4438,7 +4440,6 @@ section.terms_of_use_content_wrapper {
 /*! SECTION PERSONAL PAGE START */
 section.personal_page_wrapper {
     min-height: calc(100vh - 331px);
-
 
     .personal_page {
         display: flex;
@@ -4815,50 +4816,6 @@ section.personal_page_wrapper {
                 justify-content: flex-start;
                 margin-top: -5px;
 
-                .club_list_navigation_tabs {
-                    padding: 0;
-                    margin: 0;
-                    list-style: none;
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: flex-start;
-                    margin: 0 -9px;
-
-                    li {
-                        a {
-                            display: block;
-                            position: relative;
-                            text-decoration: none;
-                            font-style: normal;
-                            font-weight: 500;
-                            font-size: 18px;
-                            line-height: 1;
-                            color: #000000;
-                            padding: 5px 0;
-                            margin: 0 9px;
-
-                            .qty {
-                                color: #dc0000;
-                            }
-
-                            &.active {
-
-                                &:before {
-                                    content: '';
-                                    position: absolute;
-                                    top: 100%;
-                                    left: 0;
-                                    display: block;
-                                    width: 100%;
-                                    height: 3px;
-                                    background-color: #dc0000;
-                                    border-radius: 2px;
-                                }
-                            }
-                        }
-                    }
-                }
-
                 .btn_wrapper {
                     .club_list_title {
                         display: none;
@@ -5081,64 +5038,6 @@ section.personal_page_wrapper {
                     justify-content: flex-start;
                     margin-top: 0;
 
-                    .club_list_navigation_tabs_wrapper {
-                        overflow: hidden;
-                        width: calc(100% + 30px);
-
-                        .club_list_navigation_tabs {
-                            overflow-x: auto;
-                            overflow-y: hidden;
-                            padding: 20px;
-                            margin: -20px;
-                            list-style: none;
-                            display: flex;
-                            flex-direction: row;
-                            justify-content: flex-start;
-
-                            li {
-                                flex-shrink: 0;
-
-                                a {
-                                    display: block;
-                                    position: relative;
-                                    text-decoration: none;
-                                    font-style: normal;
-                                    font-weight: 500;
-                                    font-size: 18px;
-                                    line-height: 1;
-                                    color: #000000;
-                                    padding: 5px 0;
-                                    margin: 0 9px;
-
-                                    &.active {
-
-                                        &:before {
-                                            content: '';
-                                            position: absolute;
-                                            top: 90%;
-                                            left: 0;
-                                            display: block;
-                                            width: 100%;
-                                            height: 3px;
-                                            background-color: #dc0000;
-                                            border-radius: 2px;
-                                        }
-                                    }
-                                }
-                            }
-
-                            &:after {
-                                content: '';
-                                display: block;
-                                height: 1px;
-                                width: 30px;
-                                flex-shrink: 0;
-                                color: transparent;
-                            }
-                        }
-                    }
-
-
                     .btn_wrapper {
                         display: flex;
                         flex-direction: row;
@@ -5243,7 +5142,415 @@ section.personal_page_wrapper {
         }
     }
 }
+
+.club_list_navigation_tabs_wrapper {
+    .club_list_navigation_tabs {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        margin: 0 -9px;
+
+        li {
+            a {
+                display: block;
+                position: relative;
+                text-decoration: none;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 1;
+                color: #000000;
+                padding: 5px 0;
+                margin: 0 9px;
+
+                .qty {
+                    color: #dc0000;
+                }
+
+                .decor {
+                    position: relative;
+                    font-size: 16px;
+                    color: #dc0000;
+                    padding-left: 28px;
+                    margin-left: 10px;
+
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        display: block;
+                        width: 20px;
+                        height: 20px;
+                        background-image: url("../img/dev.svg");
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: 20px;
+                    }
+                }
+
+                &.active {
+
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        display: block;
+                        width: 100%;
+                        height: 3px;
+                        background-color: #dc0000;
+                        border-radius: 2px;
+                    }
+                }
+
+                &.disabled {
+                    pointer-events: none;
+                    color: #999999;
+                }
+            }
+        }
+
+        &.offer {
+            margin: 0 -32px;
+
+            li {
+                a {
+                    margin: 0 32px;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 980px) {
+        overflow: hidden;
+        width: calc(100% + 13px);
+
+        .club_list_navigation_tabs {
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 20px;
+            margin: -20px;
+            list-style: none;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+
+            li {
+                flex-shrink: 0;
+
+                a {
+                    display: block;
+                    position: relative;
+                    text-decoration: none;
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 1;
+                    color: #000000;
+                    padding: 5px 0;
+                    margin: 0 9px;
+
+                    &.active {
+
+                        &:before {
+                            content: '';
+                            position: absolute;
+                            top: 90%;
+                            left: 0;
+                            display: block;
+                            width: 100%;
+                            height: 3px;
+                            background-color: #dc0000;
+                            border-radius: 2px;
+                        }
+                    }
+                }
+            }
+
+            &:after {
+                content: '';
+                display: block;
+                height: 1px;
+                width: 30px;
+                flex-shrink: 0;
+                color: transparent;
+            }
+
+            &.offer {
+                margin: -20px;
+
+                li {
+                    a {
+                        margin: 0 9px;
+                    }
+                }
+            }
+        }
+    }
+}
+
 /*! SECTION PERSONAL PAGE END */
+
+/*! SECTION CLUBS OFFERS PAGE START */
+section.clubs_offers_wrapper {
+    min-height: calc(100vh - 331px);
+    padding: 64px 0 0;
+
+    .clubs_offers_page_title {
+        margin: 0 0 32px;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 34px;
+        line-height: 1.3;
+        color: #000000;
+    }
+
+    .company_offers_wrapper {
+        position: relative;
+        padding: 69px 0 232px;
+        display: flex;
+        flex-direction: column;
+
+        .company_offers_list {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            margin: 0 -32px;
+
+            .offer_item {
+                text-decoration: none;
+                display: block;
+                margin: 0 32px 64px;
+                width: calc(100% / 3 - 64px);
+                background: #000000;
+                box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+                border-radius: 20px;
+                transition: box-shadow 0.2s;
+
+                .img_wrapper {
+                    margin: 0 auto;
+                    width: 248px;
+                    height: 180px;
+
+                    img {
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                    }
+                }
+
+                .info_wrapper {
+                    padding: 0 16px 16px;
+
+                    .descr {
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 22px;
+                        line-height: 1.2;
+                        color: #ffffff;
+                        margin-bottom: 68px;
+                    }
+
+                    .btn_wrapper {
+                        .btn_detail {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            justify-content: center;
+                            border: none;
+                            outline: none;
+                            text-decoration: none;
+                            margin-left: auto;
+                            padding: 8px 16px;
+                            width: 124px;
+                            height: 34px;
+                            background: #dc0000;
+                            border-radius: 10px;
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 18px;
+                            line-height: 1;
+                            color: #ffffff;
+                            cursor: pointer;
+                        }
+                    }
+                }
+
+                &:hover {
+                    box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.45);
+                }
+            }
+        }
+
+        .clubs_offers_list {
+            margin-bottom: 32px;
+
+            .offer_item {
+                text-decoration: none;
+                color: #000000;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                width: 764px;
+                height: 240px;
+                background: #ffffff;
+                box-shadow: 0px 0px 5.76793px rgba(0, 0, 0, 0.25);
+                border-radius: 20px;
+                margin-bottom: 32px;
+                transition: box-shadow 0.2s;
+
+                .img_wrapper {
+                    width: 356px;
+                    height: 240px;
+
+                    img {
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 20px 0 0 20px;
+                        object-fit: cover;
+                    }
+                }
+
+                .info_wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+
+                    padding: 16px;
+
+                    .title {
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 20px;
+                        line-height: 1;
+                        color: #000000;
+                        margin-bottom: 8px;
+                    }
+
+                    .descr {
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 18px;
+                        line-height: 1.3;
+                        color: #000000;
+                        margin-bottom: 16px;
+                    }
+
+                    .price {
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 24px;
+                        line-height: 1;
+                        color: #000000;
+                        margin-bottom: 16px;
+                    }
+
+                    .club_name, .date {
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 18px;
+                        line-height: 1;
+                        color: #000000;
+                    }
+
+                    .club_name {
+                        margin-bottom: 8px;
+                    }
+                }
+
+                &:hover {
+                    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+                }
+            }
+        }
+
+        .add_offer {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: -37px;
+            right: -120px;
+            text-decoration: none;
+            border: none;
+            outline: none;
+            width: 260px;
+            height: 46px;
+            background: #dc0000;
+            border-radius: 14px;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 1;
+            color: #ffffff;
+            cursor: pointer;
+            transition: box-shadow 0.2s;
+
+            &:hover {
+                box-shadow: 0 0 6px #dc0000;
+            }
+        }
+
+        .attention_text_wrapper {
+            display: block;
+            width: 260px;
+            height: 548px;
+            position: absolute;
+            top: 69px;
+            right: -121px;
+            padding: 32px 12px 12px;
+            background: #ffffff;
+            box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+
+            .img_wrapper {
+                width: 53px;
+                height: 53px;
+                margin: 0 auto 37px;
+
+                img {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            .title {
+                font-style: normal;
+                font-weight: 700;
+                font-size: 18px;
+                line-height: 1.2;
+                text-align: center;
+                color: #000000;
+                margin-bottom: 16px;
+            }
+
+            .instr {
+                p {
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 18px;
+                    line-height: 1.3;
+                    color: #000000;
+                    margin: 0 0 18px;
+
+                    span.text-decor {
+                        color: #dc0000;
+                    }
+                }
+            }
+        }
+    }
+}
+/*! SECTION CLUBS OFFERS PAGE END */
 
 /*! SECTION CLUB PAGE START */
 section.club_page_main_info_wrapper {
@@ -13390,24 +13697,24 @@ section.langame_software_wrapper {
             }
         }
 
-        .mailing_form_wrapper{
-            input{
+        .mailing_form_wrapper {
+            input {
                 display: block;
                 width: 100%;
                 height: 46px;
-                border: 2px solid rgba(0,0,0,.25);
+                border: 2px solid rgba(0, 0, 0, .25);
                 border-radius: 14px;
                 font-weight: 500;
                 font-size: 18px;
                 line-height: 1;
-                color: #000;
+                color: #000000;
                 text-align: center;
                 outline: 0;
                 padding: 5px;
                 margin-bottom: 32px;
             }
 
-            .btn_wrapper{
+            .btn_wrapper {
                 justify-content: center;
             }
         }
@@ -13490,10 +13797,10 @@ section.langame_software_wrapper {
     }
 
     .remodal-content {
-        .img_wrapper{
+        .img_wrapper {
             margin-bottom: 24px;
 
-            img{
+            img {
                 display: block;
                 width: 48px;
                 height: 48px;
@@ -13811,6 +14118,241 @@ section.langame_software_wrapper {
         @media (max-width: 600px) {
             background-color: #ffffff;
             padding-top: 0;
+        }
+    }
+}
+
+.company_offers_modal {
+    width: 824px;
+    height: auto;
+    background: #ffffff;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    padding: 32px;
+    text-align: left;
+
+    .remodal-close {
+        width: 28px;
+        height: 28px;
+        left: auto;
+        right: -10px;
+        top: -10px;
+        opacity: 1;
+        background-image: url("../img/cancel.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 34px 34px;
+        background-color: #ffffff;
+        border-radius: 50%;
+
+        &:before {
+            content: none;
+            display: none;
+        }
+    }
+
+    .remodal-content {
+        .title {
+            font-family: 'Gilroy', sans-serif;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 28px;
+            line-height: 1;
+            color: #000000;
+            text-align: left;
+            margin-bottom: 32px;
+        }
+
+        .offer_content_wrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            margin: 0 -32px;
+
+            .offer_content_item {
+                margin: 0 32px;
+
+                .img_wrapper {
+                    width: 256px;
+                    height: 144px;
+                    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+                    border-radius: 20px;
+                    background-color: #000000;
+                    margin-bottom: 32px;
+
+                    img {
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 20px;
+                        object-fit: contain;
+                    }
+                }
+            }
+
+            .subtitle {
+                font-style: normal;
+                font-weight: 700;
+                font-size: 20px;
+                line-height: 1;
+                text-align: left;
+                color: #000000;
+                margin-bottom: 16px;
+
+                &.text_decor {
+                    color: #dc0000;
+                }
+            }
+
+            .contact_name {
+                font-style: normal;
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 1;
+                color: #dc0000;
+                margin-bottom: 16px;
+            }
+
+            .offer_btn {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                border: none;
+                text-decoration: none;
+                outline: none;
+                width: 209px;
+                height: 46px;
+                background: #dc0000;
+                border-radius: 14px;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 1;
+                color: #ffffff;
+            }
+        }
+    }
+}
+
+.clubs_offers_modal {
+    width: 824px;
+    height: auto;
+    background: #ffffff;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    padding: 32px;
+    text-align: left;
+
+    .remodal-close {
+        width: 28px;
+        height: 28px;
+        left: unset;
+        left: auto;
+        right: -10px;
+        top: -10px;
+        opacity: 1;
+        background-image: url("../img/cancel.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 34px 34px;
+        background-color: #ffffff;
+        border-radius: 50%;
+
+
+        &:before {
+            content: none;
+            display: none;
+        }
+    }
+
+    .remodal-content {
+        .title {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            span {
+                font-family: 'Gilroy', sans-serif;
+                font-style: normal;
+                font-weight: 700;
+                font-size: 28px;
+                line-height: 1;
+                color: #000000;
+                text-align: left;
+                margin-bottom: 32px;
+            }
+        }
+
+        .offer_content_wrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            margin: 0 -32px;
+
+            .offer_content_item {
+                margin: 0 32px;
+
+                .img_wrapper {
+                    width: 256px;
+                    height: 144px;
+                    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+                    border-radius: 20px;
+                    background-color: #000000;
+                    margin-bottom: 32px;
+
+                    img {
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 20px;
+                        object-fit: cover;
+                    }
+                }
+            }
+
+            .subtitle {
+                font-style: normal;
+                font-weight: 700;
+                font-size: 20px;
+                line-height: 1;
+                text-align: left;
+                color: #000000;
+                margin-bottom: 16px;
+
+                &.text_decor {
+                    color: #dc0000;
+                }
+            }
+
+            .contact_name {
+                font-style: normal;
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 1;
+                color: #dc0000;
+                margin-bottom: 16px;
+            }
+
+            .offer_btn {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                border: none;
+                text-decoration: none;
+                outline: none;
+                width: 209px;
+                height: 46px;
+                background: #dc0000;
+                border-radius: 14px;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 1;
+                color: #ffffff;
+            }
         }
     }
 }
@@ -14148,6 +14690,7 @@ section.langame_software_wrapper {
 .pointer {
     cursor: pointer;
 }
+
 .btn {
     border-radius: 12px;
     text-align: center;
@@ -14170,15 +14713,18 @@ section.langame_software_wrapper {
     background-color: #dc0000;
     color: #ffffff;
 }
+
 .btn-primary {
     background-color: #00caff;
     color: #ffffff;
 }
+
 .club_active {
     margin-right: 18px;
     background: #d85d5d;
     color: #ffffff;
 }
+
 .club_comment {
     margin-right: 18px;
     background: #4475e2
@@ -14218,6 +14764,7 @@ section.langame_software_wrapper {
     padding: 5px;
     cursor: pointer;
 }
+
 .autocomplete-suggestions .autocomplete-suggestion:hover {
     color: #dc0000;
     background-color: #ffffff;

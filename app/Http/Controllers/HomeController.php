@@ -33,7 +33,7 @@ class HomeController extends Controller
     public function redirect_to_software(){
       return redirect('/software');
     }
-    
+
     public function contacts(){
       return view('about.contacts');
     }
@@ -41,12 +41,15 @@ class HomeController extends Controller
       return view('about.policy');
     }
     public function user_agreement(){
-      return view('about.user_agreemen');
+      return view('about.user_agreement');
     }
     public function about_us(){
       return view('about.about_us');
     }
-    
+    public function clubs_offers(){
+        return view('about.clubs_offers');
+    }
+
     public function index(Request $request)
     {
       if (empty($_COOKIE["lat"]) && empty($_COOKIE['lon'])){
@@ -98,7 +101,7 @@ class HomeController extends Controller
         $search_string = $request->input('search');
       }else{
         $search_string = "";
-      }      
+      }
       if($order == 'nearby'){ // тут делай что надо
           if ($request->input('show') == "map"){
               //  данныую функцию можешь изменить
@@ -202,7 +205,7 @@ class HomeController extends Controller
     $clubs = club::Published()->select('id','url','created_at')->whereNull('hidden_at')->get();
     $cites = city::select('id','name','en_name')->get();
     $posts = post::select('id','name','url','created_at')->get();
-    $otherLinks = ['about-us','software','register','personal/clubs','contacts','user-agreement','policy','login'];
+    $otherLinks = ['about-us','software','register','personal/clubs','contacts','user-agreement','policy','login', 'clubs-offers'];
     return view('about.sitemap')->with(['posts'=>$posts,'cities'=>$cites,'clubs'=>$clubs,'otherLinks'=>$otherLinks]);
   }
 }
