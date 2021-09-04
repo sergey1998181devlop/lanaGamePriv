@@ -1,10 +1,10 @@
                     <!--SECTION SEARCH CLUB START-->
-                    <section class="search_club_wrapper">
+                    <section class="sc_wrapper">
                         <div class="container">
                             <div class="search_club">
-                                <div class="search_club_sort_wrapper">
-                                    <div class="search_club_sort">
-                                        <div class="search_club_result">
+                                <div class="sc_sort_wrapper">
+                                    <div class="sc_sort">
+                                        <div class="sc_result">
                                             <span>Найдено:</span>
                                             <span class="search_qty">{{$clubs->total()}}</span>
                                         </div>
@@ -27,7 +27,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="search_club_show">
+                                    <div class="sc_show">
 
                                         <div class="show_by_list">
                                             <a><span>Список</span></a>
@@ -49,8 +49,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="search_club_list">
-                                    @foreach($clubs as $club)
+                                <div class="sc_list">
+                                    @foreach($clubs as $clubIndex => $club)
                                         @include('club')
                                     @endforeach
                                 </div>

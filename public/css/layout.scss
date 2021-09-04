@@ -132,12 +132,12 @@ input[type=number] {
     height: 100%;
     transition: box-shadow 0.2s;
 
-    .search_club_img_wrapper {
+    .sc_img_wrapper {
         position: relative;
         width: 100%;
         height: 220px;
 
-        .search_club_img {
+        .sc_img {
             width: 100%;
             height: 100%;
 
@@ -237,7 +237,7 @@ input[type=number] {
         }
     }
 
-    .search_club_info {
+    .sc_info {
         display: flex;
         flex-direction: column;
         padding: 12px 12px 46px;
@@ -364,18 +364,18 @@ input[type=number] {
             }
         }
 
-        .club_features_wrapper {
+        .cf_wrapper {
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
             align-items: stretch;
             margin: 0 -15px 28px;
 
-            .club_features_item {
+            .cf_item {
                 margin: 0 15px;
                 position: relative;
 
-                .club_features_img_wrapper {
+                .cf_img_wrapper {
                     img {
                         display: block;
                         width: 30px;
@@ -383,7 +383,7 @@ input[type=number] {
                     }
                 }
 
-                .club_features_qty {
+                .cf_qty {
                     display: block;
                     position: absolute;
                     top: 0;
@@ -404,7 +404,7 @@ input[type=number] {
                     }
                 }
 
-                .club_features_qty:empty + .club_features_img_wrapper {
+                .cf_qty:empty + .cf_img_wrapper {
                     display: none;
                 }
             }
@@ -1607,7 +1607,7 @@ input[type=number] {
 /*! SECTION CHOOSE CLUB INFO END */
 
 /*! SECTION SEARCH CLUB START */
-section.search_club_wrapper {
+section.sc_wrapper {
     .search_club {
         padding: 0 0 63px;
         border-bottom: 1px solid #d3d3d3;
@@ -1616,7 +1616,7 @@ section.search_club_wrapper {
         align-items: flex-start;
         justify-content: flex-start;
 
-        .search_club_sort_wrapper {
+        .sc_sort_wrapper {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -1625,13 +1625,13 @@ section.search_club_wrapper {
             padding: 0 36px 0 18px;
             margin-bottom: 32px;
 
-            .search_club_sort {
+            .sc_sort {
                 display: flex;
                 flex-direction: row;
                 justify-content: flex-start;
                 align-items: center;
 
-                .search_club_result {
+                .sc_result {
                     margin-right: 12px;
                     font-style: normal;
                     font-weight: 700;
@@ -1728,7 +1728,7 @@ section.search_club_wrapper {
                 }
             }
 
-            .search_club_show {
+            .sc_show {
                 display: flex;
                 flex-direction: row;
                 justify-content: flex-start;
@@ -1888,7 +1888,7 @@ section.search_club_wrapper {
             }
         }
 
-        .search_club_list {
+        .sc_list {
             display: flex;
             width: calc(100% + 44px);
             flex-direction: row;
@@ -1897,7 +1897,7 @@ section.search_club_wrapper {
             flex-wrap: wrap;
             margin: 0 -22px;
 
-            .search_club_item {
+            .sc_item {
                 width: calc(100% / 3 - 44px);
                 margin: 0 22px 32px;
             }
@@ -1913,20 +1913,20 @@ section.search_club_wrapper {
             align-items: flex-start;
             justify-content: flex-start;
 
-            .search_club_sort_wrapper {
+            .sc_sort_wrapper {
                 position: relative;
                 display: block;
                 width: 100%;
                 padding: 0;
                 margin-bottom: 32px;
 
-                .search_club_sort {
+                .sc_sort {
                     display: block;
                     flex-direction: unset;
                     justify-content: unset;
                     align-items: unset;
 
-                    .search_club_result {
+                    .sc_result {
                         margin-right: 0;
                         margin-bottom: 24px;
                     }
@@ -1962,7 +1962,7 @@ section.search_club_wrapper {
                     }
                 }
 
-                .search_club_show {
+                .sc_show {
                     position: absolute;
                     right: 0;
                     top: 32px;
@@ -2007,12 +2007,12 @@ section.search_club_wrapper {
                 }
             }
 
-            .search_club_list {
+            .sc_list {
                 display: block;
                 margin: 0 auto;
                 width: 100%;
 
-                .search_club_item {
+                .sc_item {
                     width: 294px;
                     margin: 0 auto 32px;
                 }
@@ -2023,9 +2023,9 @@ section.search_club_wrapper {
     @media (max-width: 500px) {
         .search_club {
 
-            .search_club_sort_wrapper {
+            .sc_sort_wrapper {
 
-                .search_club_show {
+                .sc_show {
                     .search {
 
                         .search_form {
@@ -2041,8 +2041,8 @@ section.search_club_wrapper {
 
     @media (max-width: 400px) {
         .search_club {
-            .search_club_sort_wrapper {
-                .search_club_sort {
+            .sc_sort_wrapper {
+                .sc_sort {
                     .sort_by {
                         .sort_by_options {
                             a {
@@ -2069,8 +2069,8 @@ section.search_club_wrapper {
 
     @media (max-width: 360px) {
         .search_club {
-            .search_club_sort_wrapper {
-                .search_club_sort {
+            .sc_sort_wrapper {
+                .sc_sort {
 
                     .sort_by {
                         .sort_by_title {
@@ -2102,17 +2102,17 @@ section.search_club_wrapper {
 /*! SECTION SEARCH CLUB END */
 
 /*! SECTION SEARCH CLUB BY MAP START */
-section.search_club_wrapper_by_map {
+section.sc_wrapper_by_map {
     position: relative;
 
-    #search_club_by_map {
+    #sc_by_map {
         display: block;
         width: 100%;
         height: 1080px;
         box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
     }
 
-    .search_club_by_map {
+    .sc_by_map {
         position: absolute;
         left: 64px;
         top: 64px;
@@ -2126,7 +2126,7 @@ section.search_club_wrapper_by_map {
         align-items: flex-start;
         justify-content: flex-start;
 
-        .search_club_sort_wrapper {
+        .sc_sort_wrapper {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -2136,13 +2136,13 @@ section.search_club_wrapper_by_map {
             margin-bottom: 0;
             border-bottom: 1px solid #d3d3d3;
 
-            .search_club_sort {
+            .sc_sort {
                 display: flex;
                 flex-direction: row;
                 justify-content: flex-start;
                 align-items: center;
 
-                .search_club_result {
+                .sc_result {
                     margin-right: 12px;
                     font-style: normal;
                     font-weight: 700;
@@ -2239,7 +2239,7 @@ section.search_club_wrapper_by_map {
                 }
             }
 
-            .search_club_show {
+            .sc_show {
                 display: flex;
                 flex-direction: row;
                 justify-content: flex-start;
@@ -2308,12 +2308,12 @@ section.search_club_wrapper_by_map {
             }
         }
 
-        .search_club_list_wrapper {
+        .sc_list_wrapper {
             width: 100%;
             overflow: hidden;
             height: 951px;
 
-            .search_club_list {
+            .sc_list {
                 position: relative;
                 display: flex;
                 margin: -20px;
@@ -2326,7 +2326,7 @@ section.search_club_wrapper_by_map {
                 flex-wrap: nowrap;
                 overflow-y: auto;
 
-                .search_club_item {
+                .sc_item {
                     position: relative;
                     z-index: 2;
                     border: 6px solid transparent;
@@ -2341,11 +2341,11 @@ section.search_club_wrapper_by_map {
                         width: 673px;
                         height: 220px;
 
-                        .search_club_img_wrapper {
+                        .sc_img_wrapper {
                             width: 294px;
                             height: 100%;
 
-                            .search_club_img {
+                            .sc_img {
                                 img {
                                     width: 100%;
                                     height: 100%;
@@ -2414,7 +2414,7 @@ section.search_club_wrapper_by_map {
                             }
                         }
 
-                        .search_club_info {
+                        .sc_info {
                             width: 306px;
                             display: flex;
                             flex-direction: column;
@@ -2542,7 +2542,7 @@ section.search_club_wrapper_by_map {
                                 }
                             }
 
-                            .club_features_wrapper {
+                            .cf_wrapper {
                                 position: absolute;
                                 top: 0;
                                 right: 0;
@@ -2555,11 +2555,11 @@ section.search_club_wrapper_by_map {
                                 padding: 0 24px 0 14px;
                                 border-left: 1px solid #d3d3d3;
 
-                                .club_features_item {
+                                .cf_item {
                                     margin: 10px 0;
                                     position: relative;
 
-                                    .club_features_img_wrapper {
+                                    .cf_img_wrapper {
                                         img {
                                             display: block;
                                             width: 30px;
@@ -2567,7 +2567,7 @@ section.search_club_wrapper_by_map {
                                         }
                                     }
 
-                                    .club_features_qty {
+                                    .cf_qty {
                                         display: block;
                                         position: absolute;
                                         top: 0;
@@ -2588,7 +2588,7 @@ section.search_club_wrapper_by_map {
                                         }
                                     }
 
-                                    .club_features_qty:empty + .club_features_img_wrapper {
+                                    .cf_qty:empty + .cf_img_wrapper {
                                         display: none;
                                     }
                                 }
@@ -2832,11 +2832,11 @@ section.search_club_wrapper_by_map {
         overflow: hidden;
         padding-top: 68px;
 
-        #search_club_by_map {
+        #sc_by_map {
             height: 980px;
         }
 
-        .search_club_by_map {
+        .sc_by_map {
             position: static;
             width: 100%;
             height: 0;
@@ -2845,7 +2845,7 @@ section.search_club_wrapper_by_map {
             border-radius: 0;
             display: block;
 
-            .search_club_sort_wrapper {
+            .sc_sort_wrapper {
                 position: absolute;
                 top: 0;
                 display: flex;
@@ -2857,13 +2857,13 @@ section.search_club_wrapper_by_map {
                 margin-bottom: 0;
                 border-bottom: none;
 
-                .search_club_sort {
+                .sc_sort {
                     display: flex;
                     flex-direction: row;
                     justify-content: flex-start;
                     align-items: center;
 
-                    .search_club_result {
+                    .sc_result {
                         margin-right: 12px;
                         font-style: normal;
                         font-weight: 700;
@@ -2960,7 +2960,7 @@ section.search_club_wrapper_by_map {
                     }
                 }
 
-                .search_club_show {
+                .sc_show {
                     display: flex;
                     flex-direction: row;
                     justify-content: flex-start;
@@ -3029,7 +3029,7 @@ section.search_club_wrapper_by_map {
                 }
             }
 
-            .search_club_list_wrapper {
+            .sc_list_wrapper {
                 position: absolute;
                 left: 0;
                 bottom: 53px;
@@ -3037,7 +3037,7 @@ section.search_club_wrapper_by_map {
                 height: 250px;
                 padding: 0 20px;
 
-                .search_club_list {
+                .sc_list {
                     display: flex;
                     padding: 15px 0 15px 15px;
                     flex-direction: row;
@@ -3046,7 +3046,7 @@ section.search_club_wrapper_by_map {
                     flex-wrap: nowrap;
                     overflow-x: auto;
 
-                    .search_club_item {
+                    .sc_item {
                         margin: 0 20px 0 0;
                         flex-shrink: 0;
 
@@ -3058,11 +3058,11 @@ section.search_club_wrapper_by_map {
                             height: 220px;
                             background-color: #ffffff;
 
-                            .search_club_img_wrapper {
+                            .sc_img_wrapper {
                                 width: 294px;
                                 height: 100%;
 
-                                .search_club_img {
+                                .sc_img {
                                     img {
                                         width: 100%;
                                         height: 100%;
@@ -3131,7 +3131,7 @@ section.search_club_wrapper_by_map {
                                 }
                             }
 
-                            .search_club_info {
+                            .sc_info {
                                 width: 306px;
                                 display: flex;
                                 flex-direction: column;
@@ -3260,7 +3260,7 @@ section.search_club_wrapper_by_map {
                                     }
                                 }
 
-                                .club_features_wrapper {
+                                .cf_wrapper {
                                     position: absolute;
                                     top: 0;
                                     right: 0;
@@ -3273,11 +3273,11 @@ section.search_club_wrapper_by_map {
                                     padding: 0 24px 0 14px;
                                     border-left: 1px solid #d3d3d3;
 
-                                    .club_features_item {
+                                    .cf_item {
                                         margin: 10px 0;
                                         position: relative;
 
-                                        .club_features_img_wrapper {
+                                        .cf_img_wrapper {
                                             img {
                                                 display: block;
                                                 width: 30px;
@@ -3285,7 +3285,7 @@ section.search_club_wrapper_by_map {
                                             }
                                         }
 
-                                        .club_features_qty {
+                                        .cf_qty {
                                             display: block;
                                             position: absolute;
                                             top: 0;
@@ -3306,7 +3306,7 @@ section.search_club_wrapper_by_map {
                                             }
                                         }
 
-                                        .club_features_qty:empty + .club_features_img_wrapper {
+                                        .cf_qty:empty + .cf_img_wrapper {
                                             display: none;
                                         }
                                     }
@@ -3523,24 +3523,24 @@ section.search_club_wrapper_by_map {
     @media (max-width: 760px) {
         padding-top: 130px;
 
-        #search_club_by_map {
+        #sc_by_map {
             height: 580px;
         }
 
-        .search_club_by_map {
-            .search_club_sort_wrapper {
+        .sc_by_map {
+            .sc_sort_wrapper {
                 position: absolute;
                 display: block;
                 width: 100%;
                 padding: 0 10px;
 
-                .search_club_sort {
+                .sc_sort {
                     display: block;
                     flex-direction: unset;
                     justify-content: unset;
                     align-items: unset;
 
-                    .search_club_result {
+                    .sc_result {
                         margin-right: 0;
                         margin-bottom: 24px;
                     }
@@ -3575,7 +3575,7 @@ section.search_club_wrapper_by_map {
                     }
                 }
 
-                .search_club_show {
+                .sc_show {
                     position: absolute;
                     right: 10px;
                     top: 32px;
@@ -3620,7 +3620,7 @@ section.search_club_wrapper_by_map {
                 }
             }
 
-            .search_club_list_wrapper {
+            .sc_list_wrapper {
                 position: absolute;
                 left: 0;
                 bottom: 14px;
@@ -3628,8 +3628,8 @@ section.search_club_wrapper_by_map {
                 height: 130px;
                 padding: 0 15px;
 
-                .search_club_list {
-                    .search_club_item {
+                .sc_list {
+                    .sc_item {
                         width: 362px;
                         height: 108px;
                         margin: 0 10px 0 0;
@@ -3643,12 +3643,12 @@ section.search_club_wrapper_by_map {
                             width: 100%;
                             height: 100%;
 
-                            .search_club_img_wrapper {
+                            .sc_img_wrapper {
                                 width: 108px;
                                 height: 100%;
                                 flex-shrink: 0;
 
-                                .search_club_img {
+                                .sc_img {
                                     img {
                                         width: 100%;
                                         height: 100%;
@@ -3680,7 +3680,7 @@ section.search_club_wrapper_by_map {
                                 }
                             }
 
-                            .search_club_info {
+                            .sc_info {
                                 width: 100%;
                                 display: flex;
                                 flex-direction: column;
@@ -3748,7 +3748,7 @@ section.search_club_wrapper_by_map {
                                     display: none;
                                 }
 
-                                .club_features_wrapper {
+                                .cf_wrapper {
                                     display: none;
                                 }
 
@@ -3797,9 +3797,9 @@ section.search_club_wrapper_by_map {
 
     @media (max-width: 400px) {
 
-        .search_club_by_map {
-            .search_club_sort_wrapper {
-                .search_club_sort {
+        .sc_by_map {
+            .sc_sort_wrapper {
+                .sc_sort {
                     .sort_by {
                         display: block;
                         flex-direction: unset;
@@ -3831,7 +3831,7 @@ section.search_club_wrapper_by_map {
                     }
                 }
 
-                .search_club_show {
+                .sc_show {
                     position: absolute;
                     right: 10px;
                     top: 32px;
@@ -14746,7 +14746,7 @@ section.langame_software_wrapper {
     text-align: right;
 }
 
-.club_card .search_club_info .club_price_wrapper .club_edit {
+.club_card .sc_info .club_price_wrapper .club_edit {
     background: unset;
 }
 

@@ -15,12 +15,12 @@ function echoCard($club,$type = 'published'){
     }else{
         $photo = asset('/img/default-club-preview-image.svg');
     }
-    $cart .=  '<div class="search_club_img_wrapper">
-        <div class="search_club_img">
+    $cart .=  '<div class="sc_img_wrapper">
+        <div class="sc_img">
             <img src="'.$photo.'" alt="club">
         </div>';
         if($club->qty_vip_pc > 0 || $club->food_drinks =='1' || $club->alcohol =='1'){
-        $cart .=  ' 
+        $cart .=  '
         <div class="club_services">';
            if($club->qty_vip_pc > 0)
             $cart .=  '  <img src="'.asset('/img/vip.svg').'" alt="icon">';
@@ -36,15 +36,15 @@ function echoCard($club,$type = 'published'){
                     <span>Акция</span>
                 </div>';
         }
-        
+
     $cart .=  '</div>
-            <div class="search_club_info">
+            <div class="sc_info">
                 <div class="club_name">
                     <span>'.htmlspecialchars($club->club_name).'</span>
                 </div>
                 <div class="rating_wrapper">
                     <div class="rating_stars"> ';
-                         
+
                         $cart .=echoRating($club->rating * 10,false);
                         $cart .=  '<span class="rating" >'.$club->rating .'</span></div>
                 </div>';
@@ -61,9 +61,9 @@ function echoCard($club,$type = 'published'){
                                 </div>
                         </div>';
                     }
-                   
+
             $cart .=  '
-                
+
                 <div class="club_address_wrapper">
                     <div class="address_img_wrapper">
                         <img src="'.asset('/img/point-red.svg').'" alt="location">
@@ -106,7 +106,7 @@ function echoCard($club,$type = 'published'){
                     '.$editForm .'
                 </div>';
                 }
-                
+
                 $cart .=  '</div>
                         </a>';
         echo $cart;

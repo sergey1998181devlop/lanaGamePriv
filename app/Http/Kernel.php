@@ -37,16 +37,17 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\TrackLastActiveAt::class,
+            \App\Http\Middleware\TruncateEmptyStringInHtml::class,
         ],
 
         'api' => [
             'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
-        'city' =>[
+        'city' => [
             'web',
-             \App\Http\Middleware\CitiesMiddleware::class
-         ],
+            \App\Http\Middleware\CitiesMiddleware::class,
+        ],
     ];
 
     /**

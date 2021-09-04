@@ -1,5 +1,12 @@
+<?php
+/**
+ * @var \App\club $club
+ * @var int $clubIndex
+ */
+$clubIndex = isset($clubIndex) ? $clubIndex : null;
+?>
 <?$isHidden = (isset($show) && $show === 'map' && $club->club_city != city(true)['id']) ? true : false ?>
-<div class="search_club_item <?=(isset($show) && $show === 'map') ? 'in_map' : null ?> <?=($isHidden) ? 'another_city' : null ?>"
+<div class="sc_item <?=(isset($show) && $show === 'map') ? 'in_map' : null ?> <?=($isHidden) ? 'another_city' : null ?>"
      data-id="{{$club->id}}"
      data-role-club
      data-lon="{{$club->lon}}"
@@ -7,13 +14,17 @@
      style="<?=($isHidden) ? 'display:none;' : null ?>"
 >
     <a href="{{url('clubs/'.$club->id.'/'.$club->url)}}" class="club_card">
-        <div class="search_club_img_wrapper">
-            <div class="search_club_img">
+        <div class="sc_img_wrapper">
+            <div class="sc_img">
                 @if($club->main_preview_photo != null)
-                  <?$main_preview_photo = ($club->club_thumbnail != null) ? $club->club_thumbnail : $club->main_preview_photo ;?>
-                    <img <?=($isHidden) ? 'asrc="' . $main_preview_photo . '"' : 'src="' . $main_preview_photo . '"' ?> class="main_preview_photo"
-                         onerror="this.src='{{ asset('/img/default-club-preview-image.svg')}}'"
-                         alt="club">
+                    <?php
+                    $main_preview_photo = ($club->club_thumbnail != null) ? $club->club_thumbnail : $club->main_preview_photo;
+                    $isLazyLoad = $clubIndex !== null && $clubIndex > 5;
+                    ?>
+                    <img src="<?= $isLazyLoad ? 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNc9R8AAlkBq1Ih+jkAAAAASUVORK5CYII=' : $main_preview_photo; ?>"
+                         data-src="<?= $main_preview_photo; ?>"
+                         class="main_preview_photo <?= $isLazyLoad ? 'lazy' : ''; ?>"
+                         alt="">
                 @else
                     <img src="{{ asset('/img/default-club-preview-image.svg')}}" alt="club">
                 @endif
@@ -41,7 +52,7 @@
                 </div>
             @endif
         </div>
-        <div class="search_club_info">
+        <div class="sc_info">
             <div class="club_name">
                 <span>{{$club->club_name}}</span>
             </div>
@@ -79,41 +90,41 @@
                     <?=(isset($show) && $show === 'map') ? $club->city->name . ', ' : null ?> {{$club->club_address}}
                 </div>
             </div>
-            <div class="club_features_wrapper">
-                <div class="club_features_item">
-                    <div class="club_features_img_wrapper">
+            <div class="cf_wrapper">
+                <div class="cf_item">
+                    <div class="cf_img_wrapper">
                         <img src="{{ asset('/img/pc.svg')}}" alt="icon">
                     </div>
-                    <div class="club_features_qty">
+                    <div class="cf_qty">
                         <span>{{$club->qty_pc}}</span>
                     </div>
                 </div>
                 @if($club->qty_console > 0 )
-                    <div class="club_features_item">
-                        <div class="club_features_img_wrapper">
+                    <div class="cf_item">
+                        <div class="cf_img_wrapper">
                             <img src="{{ asset('/img/playstation.svg')}}" alt="icon">
                         </div>
-                        <div class="club_features_qty">
+                        <div class="cf_qty">
                             <span>{{$club->qty_console}}</span>
                         </div>
                     </div>
                 @endif
                 @if($club->qty_vr > 0 )
-                    <div class="club_features_item">
-                        <div class="club_features_img_wrapper">
+                    <div class="cf_item">
+                        <div class="cf_img_wrapper">
                             <img src="{{ asset('/img/vr.svg')}}" alt="icon">
                         </div>
-                        <div class="club_features_qty">
+                        <div class="cf_qty">
                             <span>{{$club->qty_vr}}</span>
                         </div>
                     </div>
                 @endif
                 @if($club->qty_simulator > 0 )
-                    <div class="club_features_item">
-                        <div class="club_features_img_wrapper">
+                    <div class="cf_item">
+                        <div class="cf_img_wrapper">
                             <img src="{{ asset('/img/drive.svg')}}" alt="icon">
                         </div>
-                        <div class="club_features_qty">
+                        <div class="cf_qty">
                             <span>{{$club->qty_simulator}}</span>
                         </div>
                     </div>

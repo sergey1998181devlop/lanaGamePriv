@@ -1,13 +1,28 @@
+<?php
+/**
+ * @var \App\club[] $clubs
+ */
+$json = [];
+
+foreach ($clubs as $club) {
+    if ($club->id && $club->lat && $club->lon) {
+        $json[] = [
+            'id' => (int) $club->id,
+            'lat' => (float) $club->lat,
+            'lon' => (float) $club->lon,
+        ];
+    }
+}
+?>
+<script>
+    window.clubGeoList = <?= \json_encode($json); ?>;
+</script>
 <!--SECTION SEARCH CLUB BY MAP START-->
-<section class="search_club_wrapper_by_map">
-    <div id="search_club_by_map"></div>
-    <div class="search_club_by_map">
-        <div class="search_club_sort_wrapper">
-            <div class="search_club_sort">
-                <!-- <div class="search_club_result">
-                    <span>Найдено:</span>
-                    <span class="search_qty">{{$clubs->total()}}</span>
-                </div> -->
+<section class="sc_wrapper_by_map">
+    <div id="sc_by_map"></div>
+    <div class="sc_by_map">
+        <div class="sc_sort_wrapper">
+            <div class="sc_sort">
                 <div class="sort_by">
                     <div class="sort_by_title">
                         Сортировать:
@@ -25,7 +40,7 @@
                     </div>
                 </div>
             </div>
-            <div class="search_club_show">
+            <div class="sc_show">
                 <div class="show_by_list">
                     <a href="{{url('/').'/'.city()}}?show=list&order={{$order_by}}&order_key={{$order_key}}"><span></span></a>
                 </div>
@@ -34,9 +49,9 @@
                 </div>
             </div>
         </div>
-        <div class="search_club_list_wrapper">
-            <div class="search_club_list" data-search-club-by-map>
-                @foreach($clubs as $club)
+        <div class="sc_list_wrapper">
+            <div class="sc_list" data-search-club-by-map>
+                @foreach($clubs as $clubIndex => $club)
                     @include('club')
                 @endforeach
             </div>

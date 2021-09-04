@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 <div class="preview_wrapper">
     <a href="#" class="club_card">
-        <div class="search_club_img_wrapper">
-            <div class="search_club_img">
+        <div class="sc_img_wrapper">
+            <div class="sc_img">
                 <img src="{{asset('/img/default-club-preview-image.svg')}}" alt="club">
             </div>
             <div class="club_services">
@@ -24,7 +24,7 @@ declare(strict_types=1);
                 <span>Акция</span>
             </div>
         </div>
-        <div class="search_club_info">
+        <div class="sc_info">
             <div class="club_name">
                 <span></span>
             </div>
@@ -45,37 +45,37 @@ declare(strict_types=1);
                 </div>
                 <div class="club_address"></div>
             </div>
-            <div class="club_features_wrapper">
-                <div class="club_features_item">
-                    <div class="club_features_qty total_pc">
+            <div class="cf_wrapper">
+                <div class="cf_item">
+                    <div class="cf_qty total_pc">
                         <span></span>
                     </div>
-                    <div class="club_features_img_wrapper">
+                    <div class="cf_img_wrapper">
                         <img src="{{asset('/img/pc.svg')}}" alt="icon">
                     </div>
                 </div>
-                <div class="club_features_item">
-                    <div class="club_features_qty console">
+                <div class="cf_item">
+                    <div class="cf_qty console">
                         <span></span>
                     </div>
-                    <div class="club_features_img_wrapper">
+                    <div class="cf_img_wrapper">
                         <img src="{{asset('/img/playstation.svg')}}" alt="icon">
                     </div>
                 </div>
-                <div class="club_features_item">
-                    <div class="club_features_qty vr">
+                <div class="cf_item">
+                    <div class="cf_qty vr">
                         <span></span>
                     </div>
-                    <div class="club_features_img_wrapper">
+                    <div class="cf_img_wrapper">
                         <img src="{{asset('/img/vr.svg')}}" alt="icon">
                     </div>
 
                 </div>
-                <div class="club_features_item">
-                    <div class="club_features_qty autosim">
+                <div class="cf_item">
+                    <div class="cf_qty autosim">
                         <span></span>
                     </div>
-                    <div class="club_features_img_wrapper">
+                    <div class="cf_img_wrapper">
                         <img src="{{asset('/img/drive.svg')}}" alt="icon">
                     </div>
 

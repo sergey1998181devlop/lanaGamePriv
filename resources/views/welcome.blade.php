@@ -122,7 +122,7 @@
                 data: {'page': nextPage, 'search': $("#search-text").val()},
                 success: function(data) {
                     correntPage++;
-                    $('.search_club_list').append(data.html);
+                    $('.sc_list').append(data.html);
                     geo();
                     if (data.last == correntPage) {
                         $('#show_more_clubs').hide();
@@ -136,7 +136,7 @@
                 url: '{{url('/')}}/{{city()}}?order={{$order_by}}&order_key={{$order_key}}',
                 data: {'search': $("#search-text").val()},
                 success: function(data) {
-                    $('.search_club_list').html(data.html);
+                    $('.sc_list').html(data.html);
                     if (data.last == correntPage) {
                         $('#show_more_clubs').hide();
                     }else{

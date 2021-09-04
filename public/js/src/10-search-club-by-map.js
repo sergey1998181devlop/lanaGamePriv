@@ -1,10 +1,10 @@
 jQuery(function() {
-    let map = document.getElementById('search_club_by_map'),
+    let map = document.getElementById('sc_by_map'),
         clubs = [],
         activeClub = null,
         zoomTop = 400;
 
-    if (window.matchMedia('(max-width: 760px)').matches){
+    if (window.matchMedia('(max-width: 760px)').matches) {
         zoomTop = 100;
     }
 
@@ -22,76 +22,74 @@ jQuery(function() {
             wrapper = document.querySelector('[data-search-club-by-map]');
 
         let center = [
-                window.CITY_LAT,
-                window.CITY_LON
-            ];
+            window.CITY_LAT,
+            window.CITY_LON
+        ];
 
         let myMap = new ymaps.Map(map, {
-            center: fixCoordinatesCenter(center, 11),
-            zoom: 11,
-            behaviors: ['drag', 'dblClickZoom'],
-            controls: []
-        }),
-        /**
-         * Создадим кластеризатор, вызвав функцию-конструктор.
-         * Список всех опций доступен в документации.
-         * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/Clusterer.xml#constructor-summary
-         */
+                center: fixCoordinatesCenter(center, 11),
+                zoom: 11,
+                behaviors: ['drag', 'dblClickZoom'],
+                controls: []
+            }),
+            /**
+             * Создадим кластеризатор, вызвав функцию-конструктор.
+             * Список всех опций доступен в документации.
+             * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/Clusterer.xml#constructor-summary
+             */
             clusterer = new ymaps.Clusterer({
                 clusterIcons: [
                     {
                         href: '/img/icon-red-border.svg',
                         size: [40, 40],
                         offset: [-20, -20],
-                        color :'red',
+                        color: 'red'
                     },
                     {
                         href: '/img/icon-red-border.svg',
                         size: [60, 60],
-                        offset: [-30, -30],textColor :'red',
+                        offset: [-30, -30], textColor: 'red'
                     }],
-                  
-            /**
-             * Через кластеризатор можно указать только стили кластеров,
-             * стили для меток нужно назначать каждой метке отдельно.
-             * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/option.presetStorage.xml
-             */
-            // preset: 'islands#redClusterIcons',
-            /**
-             * Ставим true, если хотим кластеризовать только точки с одинаковыми координатами.
-             */
-            groupByCoordinates: false,
-            /**
-             * Опции кластеров указываем в кластеризаторе с префиксом "cluster".
-             * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/ClusterPlacemark.xml
-             */
-            clusterDisableClickZoom: false,
-            clusterHideIconOnBalloonOpen: false,
-            geoObjectHideIconOnBalloonOpen: false,
-            hasBalloon:false,
-            minClusterSize:4,
-            textColor :'red',
-            
-        })
+
+                /**
+                 * Через кластеризатор можно указать только стили кластеров,
+                 * стили для меток нужно назначать каждой метке отдельно.
+                 * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/option.presetStorage.xml
+                 */
+                // preset: 'islands#redClusterIcons',
+                /**
+                 * Ставим true, если хотим кластеризовать только точки с одинаковыми координатами.
+                 */
+                groupByCoordinates: false,
+                /**
+                 * Опции кластеров указываем в кластеризаторе с префиксом "cluster".
+                 * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/ClusterPlacemark.xml
+                 */
+                clusterDisableClickZoom: false,
+                clusterHideIconOnBalloonOpen: false,
+                geoObjectHideIconOnBalloonOpen: false,
+                hasBalloon: false,
+                minClusterSize: 4,
+                textColor: 'red'
+            });
 
         let zoomControl = new ymaps.control.ZoomControl({
             options: {
                 position: {left: 'auto', right: 10, top: zoomTop}
             }
         });
+
         myMap.controls.add(zoomControl);
 
-        jQuery('[data-role-club]').each(function() {
-            let $club = jQuery(this);
-
-            let placemark = new ymaps.Placemark([$club.data('lat'), $club.data('lon')], {}, {
+        for(let club of window.clubGeoList || []) {
+            let placemark = new ymaps.Placemark([club.lat, club.lon], {}, {
                 // Опции.
                 // Необходимо указать данный тип макета.
                 iconLayout: 'default#image',
                 // Своё изображение иконки метки.
                 iconImageHref: '/img/ballon.svg',
                 // Размеры метки.
-                iconImageSize: [42,60],
+                iconImageSize: [42, 60],
                 // Смещение левого верхнего угла иконки относительно
                 // её "ножки" (точки привязки).
                 iconImageOffset: [-14, -40],
@@ -99,29 +97,27 @@ jQuery(function() {
             });
 
             placemark.events.add('click', function() {
-                let clubId = $club.data('id');
+                let $club = jQuery(`.sc_list [data-id='${club.id}']`);
 
-                jQuery('[data-role-club]').removeClass('active');
-                $('.search_club_list .search_club_item.another_city').hide();
-                if($('.search_club_list [data-id='+clubId+']').hasClass('another_city')){
-                    if( typeof  $('.search_club_list [data-id='+clubId+'] .main_preview_photo').attr('src') == 'undefined'){
-                        $('.search_club_list [data-id='+clubId+'] .main_preview_photo').attr('src',$('.search_club_list [data-id='+clubId+'] .main_preview_photo').attr('asrc'))
-                    }
-                    $('.search_club_list [data-id='+clubId+']').show()
+                jQuery('.active[data-role-club]').removeClass('active');
+                jQuery('.sc_list .sc_item.another_city').hide();
+
+                if ($club.hasClass('another_city')) {
+                    $club.show();
                 }
-                activateClubById(clubId);
-                scrollToElement(wrapper, scrollParent, jQuery(`[data-id='${clubId}']`));
 
-                jQuery(`[data-id='${clubId}']`).addClass('active');
-                
+                activateClubById(club.id);
+                scrollToElement(wrapper, scrollParent, $club);
+
+                $club.addClass('active');
             });
 
             // myMap.geoObjects.add(placemark);
             clusterer.add(placemark);
             myMap.geoObjects.add(clusterer);
 
-            clubs.push({id: $club.data('id'), placemark});
-        });
+            clubs.push({id: club.id, placemark});
+        }
 
         jQuery(document).on('mouseover', '[data-search-club-by-map] [data-role-club][data-id]', function(e) {
             let $this = jQuery(this);
@@ -139,14 +135,14 @@ jQuery(function() {
             if (!club) {
                 return;
             }
-            
+
             if (activeClub) {
                 activeClub.placemark.options.set('iconImageHref', '/img/ballon.svg');
                 activeClub.placemark.options.set('zIndex', 1);
-            }           
+            }
             club.placemark.options.set('iconImageHref', '/img/active_ballon.svg');
             club.placemark.options.set('zIndex', 2);
-            
+
             myMap.setCenter(
                 fixCoordinatesCenter(club.placemark.geometry.getCoordinates(), myMap.getZoom()),
                 myMap.getZoom(),
@@ -187,14 +183,15 @@ jQuery(function() {
                 listScrollLeft = list[0].scrollLeft,
                 wrapperPaddingLeft = parseFloat(style.paddingTop ? style.paddingTop.replace('px', '') : '0');
 
-            list[0].scrollTop = elementOffsetTop - listOffsetTop + listScrollTop -wrapperHeight/2 + elemHeight/2;
+            list[0].scrollTop = elementOffsetTop - listOffsetTop + listScrollTop - wrapperHeight / 2 + elemHeight / 2;
             list[0].scrollLeft = elementOffsetLeft - listOffsetLeft + listScrollLeft - wrapperPaddingLeft;
         }
-        myMap.setBounds(clusterer.getBounds(), {
-            checkZoomRange: true
-        });
+
+        // myMap.setBounds(clusterer.getBounds(), {
+        //     checkZoomRange: true
+        // });
     });
-   
+
 });
 
 

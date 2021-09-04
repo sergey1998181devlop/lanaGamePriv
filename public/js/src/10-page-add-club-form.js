@@ -644,36 +644,36 @@ jQuery(function() {
                 marketingInput = jQuery('.marketing_event_wrapper .checkbox_wrapper input[type="checkbox"]'),
                 main_file = $main_preview_photo_hidden_input.val() || '/img/default-club-preview-image.svg';
 
-            $tab.find('.search_club_info .club_name span').text(clubName);
+            $tab.find('.sc_info .club_name span').text(clubName);
             $tab.find('.club_address_wrapper .club_address').text(clubAddress);
             $tab.find('.club_subway_wrapper .subway_station').text(clubSubway);
             $tab.find('.club_subway_wrapper .subway_img_wrapper')[0].style.setProperty('--subway-color', clubSubwayLineColor);
             $tab.find('.club_price_wrapper .club_price span').text(clubPrice);
 
-            $tab.find('.club_features_item .club_features_qty.total_pc').text(totalPc);
+            $tab.find('.cf_item .cf_qty.total_pc').text(totalPc);
 
             if (consoleQty === '') {
-                jQuery('.club_features_qty.console').closest('.club_features_item').hide();
+                jQuery('.cf_qty.console').closest('.cf_item').hide();
             } else {
-                jQuery('.club_features_qty.console').closest('.club_features_item').show();
-                $tab.find('.club_features_item .club_features_qty.console').text(consoleQty);
+                jQuery('.cf_qty.console').closest('.cf_item').show();
+                $tab.find('.cf_item .cf_qty.console').text(consoleQty);
             }
 
             if (vr === '') {
-                jQuery('.club_features_qty.vr').closest('.club_features_item').hide();
+                jQuery('.cf_qty.vr').closest('.cf_item').hide();
             } else {
-                jQuery('.club_features_qty.vr').closest('.club_features_item').show();
-                $tab.find('.club_features_item .club_features_qty.vr').text(vr);
+                jQuery('.cf_qty.vr').closest('.cf_item').show();
+                $tab.find('.cf_item .cf_qty.vr').text(vr);
             }
 
             if (autosim === '') {
-                jQuery('.club_features_qty.autosim').closest('.club_features_item').hide();
+                jQuery('.cf_qty.autosim').closest('.cf_item').hide();
             } else {
-                jQuery('.club_features_qty.autosim').closest('.club_features_item').show();
-                $tab.find('.club_features_item .club_features_qty.autosim').text(autosim);
+                jQuery('.cf_qty.autosim').closest('.cf_item').show();
+                $tab.find('.cf_item .cf_qty.autosim').text(autosim);
             }
 
-            $tab.find('.search_club_img_wrapper .search_club_img img').attr('src', main_file);
+            $tab.find('.sc_img_wrapper .sc_img img').attr('src', main_file);
 
             if (jQuery('input[data-food-service]').filter(':checked').length > 0) {
                 $tab.find('.club_services .food_services').show();

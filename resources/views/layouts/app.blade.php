@@ -100,11 +100,11 @@
     <noscript><img src="https://vk.com/rtrg?p=VK-RTRG-1054347-dW3vv" style="position:fixed; left:-999px;" alt=""/></noscript>
     <style>
         @media (max-width: 1500px) {
-            section.search_club_wrapper_by_map .search_club_by_map .search_club_sort_wrapper {
+            section.sc_wrapper_by_map .sc_by_map .sc_sort_wrapper {
                 padding-top: 10px;
             }
 
-            section.search_club_wrapper_by_map .search_club_by_map .search_club_sort_wrapper .search_club_show {
+            section.sc_wrapper_by_map .sc_by_map .sc_sort_wrapper .sc_show {
                 top: 0;
             }
         }
@@ -410,8 +410,8 @@
         </div>
 
         <form action="{{url('subscribe')}}" method="post" id="gamer-mailing-form">
-        @csrf
-        <input type="hidden" name="type" value="gamer">
+            @csrf
+            <input type="hidden" name="type" value="gamer">
             <div class="mailing_form_wrapper">
                 <input type="email" name="email" required>
                 <div class="btn_wrapper">
@@ -431,7 +431,7 @@
         </div>
 
         <form action="{{url('subscribe')}}" method="post" id="owner-mailing-form">
-        @csrf
+            @csrf
             <div class="mailing_form_wrapper">
                 <input type="hidden" name="type" value="owner">
                 <input type="email" name="email" required>
@@ -550,7 +550,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/simplebar/5.3.2/simplebar.min.js"
         integrity="sha512-t5ONTEmbf892tq6YhM2eSBdDALGVbnQgqSy5fez2Dki/raOHJxKuf1DWSyHs8qvXoNDg2aJ9RdukRj0lRspfAw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/17.3.1/lazyload.min.js"
+        integrity="sha512-lVcnjCLGjJTaZU55wD7H3f8SJVi6VV5cQRcmGuYcyIY607N/rzZGEl90lNgsiEhKygATryG/i6e5u2moDFs5kQ=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/mobile-detect@1.4.4/mobile-detect.min.js"></script>
 <script src="{{ asset('/js/inputmask.js') }}"></script>
 <script src="{{ asset('/js/dest/layout.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
