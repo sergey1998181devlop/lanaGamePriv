@@ -102,9 +102,11 @@
             <td>{{ ($user->created_at)}}</td>
             <td>{{ ($user->last_active_at === null) ? '' : timelabe($user->last_active_at)}}</td>
             <td>
+              @if(admin(2))
                 <button type="button" class="btn-sm btn btn-info editUserButton"  data-toggle="modal" data-target="#editUser">{{__('messages.edit')}}</button>
+              @endif
                 <button type="button" class="btn-sm btn btn-secondary  sendMailButton"  data-toggle="modal" data-target="#sendMail">Написать</button>
-            @if($user->id!=1)
+            @if(admin(2))
                 <button type="button" class="btn-sm btn btn-danger deleteUserButton"  data-toggle="modal" data-target="#deleteUser" userId="{{$user->id}}" userName="{{$user->name}}">{{__('messages.Delete')}}</button>
             @endif 
 

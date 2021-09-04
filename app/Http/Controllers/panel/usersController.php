@@ -13,7 +13,7 @@ class usersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('rule:2')->except('find');
+        $this->middleware('rule:2', ['except' => ['find', 'index', 'sendMail']]);
         $this->middleware('rule:1');
     }
     public function index(){
