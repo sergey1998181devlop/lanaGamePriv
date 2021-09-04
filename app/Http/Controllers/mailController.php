@@ -7,6 +7,7 @@ use App\contact;
 use App\report;
 use Auth;
 use App\langame_request;
+use App\subscribe;
 class mailController extends Controller
 {
     public function storeFromContacts(Request $request){
@@ -56,5 +57,15 @@ class mailController extends Controller
         $report->user_id =Auth::user()->id;
         if($report->save())
         return back()->with(['success'=>'Сообщение успешно отправлено']);
+    }
+    public function subscribe(Request $request){
+        $data = $request->validate([
+            'type' => ['required', 'string','in:gamer,owner'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+        ]);
+        $subscribe=subscribe::firstOrNew(['email'=>$request->input('email')]);
+        $subscribe->type=$request->input('type');
+        $subscribe->save();
+        return back()->with(['success'=>'успешно отправлено']);
     }
 }

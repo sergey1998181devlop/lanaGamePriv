@@ -409,7 +409,9 @@
             Оставь свою почту и получай информацю об акциях, розыгрышах и других интересных предложениях от клубов!
         </div>
 
-        <form action="" method="post" id="gamer-mailing-form">
+        <form action="{{url('subscribe')}}" method="post" id="gamer-mailing-form">
+        @csrf
+        <input type="hidden" name="type" value="gamer">
             <div class="mailing_form_wrapper">
                 <input type="email" name="email" required>
                 <div class="btn_wrapper">
@@ -428,8 +430,10 @@
             Подпишись на нашу рассылку, и будь в курсе обновлений сервиса, выгодных предложений от брендов и другой полезной информации!
         </div>
 
-        <form action="" method="post" id="owner-mailing-form">
+        <form action="{{url('subscribe')}}" method="post" id="owner-mailing-form">
+        @csrf
             <div class="mailing_form_wrapper">
+                <input type="hidden" name="type" value="owner">
                 <input type="email" name="email" required>
                 <div class="btn_wrapper">
                     <button type="submit">Подписаться</button>
