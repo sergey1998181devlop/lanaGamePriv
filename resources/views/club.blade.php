@@ -10,8 +10,8 @@
         <div class="search_club_img_wrapper">
             <div class="search_club_img">
                 @if($club->main_preview_photo != null)
-
-                    <img <?=($isHidden) ? 'asrc="' . $club->main_preview_photo . '"' : 'src="' . $club->main_preview_photo . '"' ?> class="main_preview_photo"
+                  <?$main_preview_photo = ($club->club_thumbnail != null) ? $club->club_thumbnail : $club->main_preview_photo ;?>
+                    <img <?=($isHidden) ? 'asrc="' . $main_preview_photo . '"' : 'src="' . $main_preview_photo . '"' ?> class="main_preview_photo"
                          onerror="this.src='{{ asset('/img/default-club-preview-image.svg')}}'"
                          alt="club">
                 @else

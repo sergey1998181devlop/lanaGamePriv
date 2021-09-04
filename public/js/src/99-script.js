@@ -205,14 +205,12 @@ jQuery(function() {
         jQuery('html, body').animate({scrollTop: jQuery(_href).offset().top + 'px'});
     });
 
-    jQuery('#gamer-mailing-form').on('submit', function(e) {
+    jQuery('#gamer-mailing-form,#owner-mailing-form').on('submit', function(e) {
         e.preventDefault();
-
         let $form = jQuery(this);
-
         jQuery.ajax({
             type: 'POST',
-            url: '',
+            url: $form.attr('action'),
             data: $form.serialize(),
             success: function() {
                 jQuery('[data-remodal-id="mailing_success_modal"]').remodal().open();
@@ -220,22 +218,9 @@ jQuery(function() {
         });
     });
 
-    jQuery('#owner-mailing-form').on('submit', function(e) {
-        e.preventDefault();
 
-        let $form = jQuery(this);
-
-        jQuery.ajax({
-            type: 'POST',
-            url: '',
-            data: $form.serialize(),
-            success: function() {
-                jQuery('[data-remodal-id="mailing_success_modal"]').remodal().open();
-            }
-        });
-    });
 
     jQuery('.remodal.mailing_modal').on('opening', function(e) {
-        jQuery(this).find('form input').val('');
+        jQuery(this).find('form input[name="email"]').val('');
     });
 });

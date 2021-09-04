@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\club;
 use App\langame_request;
 use App\report;
+use ImageResize;
 class adminController extends Controller
 {
     public function __construct()

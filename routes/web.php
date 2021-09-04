@@ -57,6 +57,7 @@ Route::get('searchMetro','HomeController@searchMetro');
 Route::post('messages/send','mailController@storeFromContacts');
 Route::post('langame/request','mailController@langameRequest');
 Route::post('report_error','mailController@reportError');
+Route::post('subscribe','mailController@subscribe');
 
 // прочие страницы
  Route::get('/langame-software','HomeController@redirect_to_software');

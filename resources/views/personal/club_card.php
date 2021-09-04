@@ -10,7 +10,11 @@ function echoCard($club,$type = 'published'){
     <form action="'.url('personal/club/'.$club->id.'/edit').'" method="get">
         <button type="submit" class="club_edit">Редактировать</button>
     </form> ';
-    $photo = ($club->main_preview_photo != null) ? $club->main_preview_photo  : asset('/img/default-club-preview-image.svg');
+    if($club->main_preview_photo != null){
+        $photo = ($club->club_thumbnail != null) ? $club->club_thumbnail : $club->main_preview_photo;
+    }else{
+        $photo = asset('/img/default-club-preview-image.svg');
+    }
     $cart .=  '<div class="search_club_img_wrapper">
         <div class="search_club_img">
             <img src="'.$photo.'" alt="club">
