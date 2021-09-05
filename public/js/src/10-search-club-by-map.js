@@ -85,11 +85,13 @@ jQuery(function() {
         jQuery(document).on('mouseover', '[data-search-club-by-map] [data-role-club][data-id]', function(e) {
             let $this = jQuery(this);
             jQuery('[data-role-club]').removeClass('active');
-            activateClubById($this.data('id'));
+            activateClubById($this.data('id'), Math.min(14, map.getZoom()));
             $this.addClass('active');
         });
 
-        function activateClubById(id) {
+        function activateClubById(id, zoom) {
+            zoom = zoom || map.getZoom();
+
             if (activeClubId === id) {
                 return;
             }
@@ -107,8 +109,8 @@ jQuery(function() {
             clubPlacemarks[id].options.set('zIndex', 2);
 
             map.setCenter(
-                fixCoordinatesCenter(clubPlacemarks[id].geometry.getCoordinates(), map.getZoom()),
-                map.getZoom(),
+                fixCoordinatesCenter(clubPlacemarks[id].geometry.getCoordinates(), zoom),
+                zoom,
                 {
                     duration: 800,
                     timingFunction: 'ease'
