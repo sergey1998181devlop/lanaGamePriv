@@ -108,7 +108,7 @@ $(document).ready( function() {
         /* No ordering applied by DataTables during initialisation */
         "order": []
     });
-})
+});
 
 $('.deleterequestButton.btn').click(function(){
     var id=$(this).attr('requestId');

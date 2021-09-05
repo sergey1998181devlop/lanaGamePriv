@@ -196,7 +196,7 @@
     <script>
       $('.userClubsCount').click(function(){
         $(this).closest('td').find('.userClubs').toggle();
-      })
+      });
 
       var table = $('#dataTable_').DataTable();
  

@@ -106,7 +106,7 @@ $(document).ready( function() {
         /* No ordering applied by DataTables during initialisation */
         "order": []
     });
-})
+});
 
 $('.deletereportButton.btn').click(function(){
     var id=$(this).attr('reportId');

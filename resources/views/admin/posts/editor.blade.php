@@ -74,13 +74,13 @@ function readURL(input){var i=1;var names=new Array();while(i>=0){
       var reader=new FileReader();
       reader.onload=function(e,file){name=e.target.fileName;
         $('.image-section #result-img').empty();
-            $('.image-section #result-img').append('<img class="img-responsive imgLink" style="max-width:100%" alt="Image three" src="'+e.target.result+'">')}
+            $('.image-section #result-img').append('<img class="img-responsive imgLink" style="max-width:100%" alt="Image three" src="'+e.target.result+'">')};
           reader.fileName=input.files[i].name;
           reader.readAsDataURL(input.files[i])
           }
-    i--}
+    i--};
     $('.image-section .fileContainer').removeClass('notsel');
-}
+};
 
 
 CKEDITOR.addCss('figure[class*=easyimage-gradient]::before { content: ""; position: absolute; top: 0; bottom: 0; left: 0; right: 0; }' +
@@ -95,8 +95,6 @@ extraPlugins : 'colorbutton,videoembed,easyimage',
 removeDialogTabs: 'link:advanced',
 height: 330,
 cloudServices_uploadUrl: 'saveImage',
-// Note: this is a token endpoint to be used for CKEditor 4 samples only. Images uploaded using this token may be deleted automatically at any moment.
-// To create your own token URL please visit https://ckeditor.com/ckeditor-cloud-services/.
 cloudServices_tokenUrl: 'https://33333.cke-cs.com/token/dev/ijrDsqFix838Gh3wGO3F77FSW94BwcLXprJ4APSp3XQ26xsUHTi0jcb1hoBt',
 easyimage_styles: {
   gradient1: {

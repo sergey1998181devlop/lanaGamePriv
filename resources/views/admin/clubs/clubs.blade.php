@@ -169,13 +169,13 @@
    var table = $('#dataTable_').DataTable();
    $('.club_comment_modal').click(function(){
      $('#club_comment_modal form').attr('action',"{{url('club/')}}/"+$(this).attr('data-id')+"/comment")
-   })
+   });
      $(document).on('click','.club_delete',function(e){
        e.preventDefault;
       $('#club_delete_modal form').attr('action',"{{url('panel/club/')}}/"+$(this).attr('data-id')+"/delete");
         $('#club_delete_modal .clubname').text($(this).attr('club-name'));
        $('#club_delete_modal').modal();
-     })
+     });
      var onlyPublished = <?=(isset($_GET['onlyPublished']) && $_GET['onlyPublished']==true)? 'true' : 'false' ?>;
      var SelectedCity = "<?=(isset($_GET['city'])) ? $_GET['city'] : '' ?>";
      $(document).on('change','#onlyPublished',function(e){
@@ -185,7 +185,7 @@
         window.location.href = "{{url('panel/clubs/clubs')}}?city="+SelectedCity;
 
        }
-     })
+     });
      //    in header
     $('#city_selector').on('select2:select', function(e) {
         window.location.href = '{{url("panel/clubs/clubs")}}' + '?city=' + e.params.data.id + '&onlyPublished=' +onlyPublished ;
