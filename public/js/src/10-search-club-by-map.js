@@ -80,43 +80,6 @@ jQuery(function() {
             renderMapPlacemarks();
         });
 
-        for (let club of window.clubGeoListz || []) {
-            let placemark = new ymaps.Placemark([club.lat, club.lon], {}, {
-                // Опции.
-                // Необходимо указать данный тип макета.
-                iconLayout: 'default#image',
-                // Своё изображение иконки метки.
-                iconImageHref: '/img/ballon.svg',
-                // Размеры метки.
-                iconImageSize: [42, 60],
-                // Смещение левого верхнего угла иконки относительно
-                // её "ножки" (точки привязки).
-                iconImageOffset: [-14, -40],
-                zIndex: 1
-            });
-
-            placemark.events.add('click', function() {
-                let $club = jQuery(`.sc_list [data-id='${club.id}']`);
-
-                jQuery('.active[data-role-club]').removeClass('active');
-                jQuery('.sc_list .sc_item.another_city').hide();
-
-                if ($club.hasClass('another_city')) {
-                    $club.show();
-                }
-
-                activateClubById(club.id);
-                scrollToElement(wrapper, scrollParent, $club);
-
-                $club.addClass('active');
-            });
-
-            // myMap.geoObjects.add(placemark);
-            clusterer.add(placemark);
-
-            clubPlacemarks[club.id] = placemark;
-        }
-
         map.geoObjects.add(clusterer);
 
         jQuery(document).on('mouseover', '[data-search-club-by-map] [data-role-club][data-id]', function(e) {
@@ -204,11 +167,9 @@ jQuery(function() {
                     clubPlacemarks[id] = clubPlacemarks[id] || createClubPlacemark(id, lon, lat);
 
                     clubPlacemarks[id].options.set('visible', true);
-                } else {
-                    // placemark not in visible area
-                    if (clubPlacemarks[id]) {
-                        clubPlacemarks[id].options.set('visible', false);
-                    }
+                } else if (clubPlacemarks[id]) {
+                    // placemark exists, but not in visible area
+                    clubPlacemarks[id].options.set('visible', false);
                 }
             }
         }
