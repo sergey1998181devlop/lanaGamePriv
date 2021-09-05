@@ -16,7 +16,7 @@
                     <div class="articles_item">
                         <a href="{{url('post/read/'.$post->id.'/'.$post->url)}}">
                             <div class="article_img_wrapper">
-                                <img src="{{($post->image != '') ? url('storage/posts/'.$post->image) : asset('img/default-club-preview-image.svg')}}" alt="club">
+                                <img src="{{($post->image != '') ? url('storage/posts/thumbnail/'.$post->image) : asset('img/default-club-preview-image.svg')}}" alt="club">
                             </div>
                             <div class="article_content_wrapper">
                                 <div class="article_title">
