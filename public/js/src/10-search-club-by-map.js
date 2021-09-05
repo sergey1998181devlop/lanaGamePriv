@@ -1,7 +1,8 @@
 jQuery(function() {
-    let map = document.getElementById('sc_by_map'),
-        clubs = [],
-        activeClub = null,
+    let $map = document.getElementById('sc_by_map'),
+        clubGeoList = window.clubGeoList || [],
+        clubPlacemarks = {},
+        activeClubId = null,
         zoomTop = 400;
 
     if (window.matchMedia('(max-width: 760px)').matches) {
@@ -9,7 +10,7 @@ jQuery(function() {
     }
 
 
-    if (!map) {
+    if (!$map) {
         return;
     }
 
@@ -19,15 +20,9 @@ jQuery(function() {
 
     ymaps.ready(() => {
         let scrollParent = jQuery('[data-search-club-by-map]'),
-            wrapper = document.querySelector('[data-search-club-by-map]');
-
-        let center = [
-            window.CITY_LAT,
-            window.CITY_LON
-        ];
-
-        let myMap = new ymaps.Map(map, {
-                center: fixCoordinatesCenter(center, 11),
+            wrapper = document.querySelector('[data-search-club-by-map]'),
+            map = new ymaps.Map($map, {
+                center: fixCoordinatesCenter([window.CITY_LAT, window.CITY_LON], 11),
                 zoom: 11,
                 behaviors: ['drag', 'dblClickZoom'],
                 controls: []
@@ -79,9 +74,13 @@ jQuery(function() {
             }
         });
 
-        myMap.controls.add(zoomControl);
+        map.controls.add(zoomControl);
 
-        for(let club of window.clubGeoList || []) {
+        map.events.add('boundschange', function(e) {
+            renderMapPlacemarks();
+        });
+
+        for (let club of window.clubGeoListz || []) {
             let placemark = new ymaps.Placemark([club.lat, club.lon], {}, {
                 // Опции.
                 // Необходимо указать данный тип макета.
@@ -114,10 +113,11 @@ jQuery(function() {
 
             // myMap.geoObjects.add(placemark);
             clusterer.add(placemark);
-            myMap.geoObjects.add(clusterer);
 
-            clubs.push({id: club.id, placemark});
+            clubPlacemarks[club.id] = placemark;
         }
+
+        map.geoObjects.add(clusterer);
 
         jQuery(document).on('mouseover', '[data-search-club-by-map] [data-role-club][data-id]', function(e) {
             let $this = jQuery(this);
@@ -127,44 +127,48 @@ jQuery(function() {
         });
 
         function activateClubById(id) {
-            if (activeClub && activeClub.id === id) {
+            if (activeClubId === id) {
                 return;
             }
 
-            let club = clubs.find((item) => item.id === id);
-            if (!club) {
+            if (!clubPlacemarks[id]) {
                 return;
             }
 
-            if (activeClub) {
-                activeClub.placemark.options.set('iconImageHref', '/img/ballon.svg');
-                activeClub.placemark.options.set('zIndex', 1);
+            if (clubPlacemarks[activeClubId]) {
+                clubPlacemarks[activeClubId].options.set('iconImageHref', '/img/ballon.svg');
+                clubPlacemarks[activeClubId].options.set('zIndex', 1);
             }
-            club.placemark.options.set('iconImageHref', '/img/active_ballon.svg');
-            club.placemark.options.set('zIndex', 2);
 
-            myMap.setCenter(
-                fixCoordinatesCenter(club.placemark.geometry.getCoordinates(), myMap.getZoom()),
-                myMap.getZoom(),
+            clubPlacemarks[id].options.set('iconImageHref', '/img/active_ballon.svg');
+            clubPlacemarks[id].options.set('zIndex', 2);
+
+            map.setCenter(
+                fixCoordinatesCenter(clubPlacemarks[id].geometry.getCoordinates(), map.getZoom()),
+                map.getZoom(),
                 {
                     duration: 800,
                     timingFunction: 'ease'
                 }
             );
 
-            activeClub = club;
+            activeClubId = id;
         }
 
         function fixCoordinatesCenter(coords, zoom) {
             let [x, y] = coords;
 
-            // if (window.matchMedia('(max-width: 760px)').matches) {
-            //     x -= 0.025 * 8 / zoom;
-            // } else if (window.matchMedia('(max-width: 1500px)').matches) {
-            //     x -= 0.05 * 8 / zoom;
-            // } else {
-            //     y -= 0.15 * 8 / zoom;
-            // }
+            if (zoom > 12) {
+                return coords;
+            }
+
+            if (window.matchMedia('(max-width: 760px)').matches) {
+                x -= 0.025 * 8 / zoom;
+            } else if (window.matchMedia('(max-width: 1500px)').matches) {
+                x -= 0.05 * 8 / zoom;
+            } else {
+                y -= 0.15 * 8 / zoom;
+            }
 
             return [x, y];
         }
@@ -186,6 +190,66 @@ jQuery(function() {
             list[0].scrollTop = elementOffsetTop - listOffsetTop + listScrollTop - wrapperHeight / 2 + elemHeight / 2;
             list[0].scrollLeft = elementOffsetLeft - listOffsetLeft + listScrollLeft - wrapperPaddingLeft;
         }
+
+        function renderMapPlacemarks() {
+            let bounds = map.getBounds(),
+                latMin = bounds[0][0],
+                latMax = bounds[1][0],
+                lonMin = bounds[0][1],
+                lonMax = bounds[1][1];
+
+            for (let {id, lon, lat} of clubGeoList) {
+                if (lat >= latMin && lat <= latMax && lon >= lonMin && lon <= lonMax) {
+                    // placemark in visible area
+                    clubPlacemarks[id] = clubPlacemarks[id] || createClubPlacemark(id, lon, lat);
+
+                    clubPlacemarks[id].options.set('visible', true);
+                } else {
+                    // placemark not in visible area
+                    if (clubPlacemarks[id]) {
+                        clubPlacemarks[id].options.set('visible', false);
+                    }
+                }
+            }
+        }
+
+        function createClubPlacemark(id, lon, lat) {
+            let placemark = new ymaps.Placemark([lat, lon], {}, {
+                // Опции.
+                // Необходимо указать данный тип макета.
+                iconLayout: 'default#image',
+                // Своё изображение иконки метки.
+                iconImageHref: '/img/ballon.svg',
+                // Размеры метки.
+                iconImageSize: [42, 60],
+                // Смещение левого верхнего угла иконки относительно
+                // её "ножки" (точки привязки).
+                iconImageOffset: [-14, -40],
+                zIndex: 1
+            });
+
+            placemark.events.add('click', function() {
+                let $club = jQuery(`.sc_list [data-id='${id}']`);
+
+                jQuery('.active[data-role-club]').removeClass('active');
+                jQuery('.sc_list .sc_item.another_city').hide();
+
+                if ($club.hasClass('another_city')) {
+                    $club.show();
+                }
+
+                activateClubById(id);
+                scrollToElement(wrapper, scrollParent, $club);
+
+                $club.addClass('active');
+            });
+
+            clusterer.add(placemark);
+
+            return placemark;
+        }
+
+        setTimeout(renderMapPlacemarks, 150);
 
         // myMap.setBounds(clusterer.getBounds(), {
         //     checkZoomRange: true
