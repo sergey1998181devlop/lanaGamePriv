@@ -100,7 +100,7 @@
           </div>
           <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('messages.cancel')}}</button>
-                  <button type="submit" class="btn btn-danger">{{__('messages.Delete')}}</button>
+                  <button type="submit" class="btn btn-primary">Сохранить</button>
           </div>
       </form>
     </div>
