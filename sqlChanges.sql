@@ -22,3 +22,5 @@ ALTER TABLE `subscribes`
   ALTER TABLE `subscribes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 COMMIT;
+
+ALTER TABLE `posts` ADD `order_no` INT NOT NULL DEFAULT '500' AFTER `views`, ADD `deleted_at` TIMESTAMP NULL DEFAULT NULL AFTER `order_no`;

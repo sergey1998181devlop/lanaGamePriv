@@ -164,9 +164,31 @@
         referrerpolicy="no-referrer"></script>
 <script src="{{asset('admin/vendor/datatables/jquery.dataTables.min.js')}}"></script>
   <script src="{{asset('admin/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
-  <script src="{{asset('admin/js/demo/datatables-demo.js')}}"></script>
 <script>
-   var table = $('#dataTable_').DataTable();
+   var table = $('#dataTable_').DataTable({
+      "language": {
+          "processing": "Подождите...",
+          "search": "Поиск:",
+          "lengthMenu": "Показать _MENU_ записей",
+          "info": "Записи с _START_ до _END_ из _TOTAL_ записей",
+          "infoEmpty": "Записи с 0 до 0 из 0 записей",
+          "infoFiltered": "(отфильтровано из _MAX_ записей)",
+          "infoPostFix": "",
+          "loadingRecords": "Загрузка записей...",
+          "zeroRecords": "Записи отсутствуют.",
+          "emptyTable": "В таблице отсутствуют данные",
+          "paginate": {
+              "first": "Первая",
+              "previous": "Предыдущая",
+              "next": "Следующая",
+              "last": "Последняя"
+          },
+          "aria": {
+              "sortAscending": ": активировать для сортировки столбца по возрастанию",
+              "sortDescending": ": активировать для сортировки столбца по убыванию"
+          }
+      }
+  } );
    $('.club_comment_modal').click(function(){
      $('#club_comment_modal form').attr('action',"{{url('club/')}}/"+$(this).attr('data-id')+"/comment")
    });

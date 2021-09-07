@@ -9,7 +9,7 @@ function customPostVal($name,$post = array()){
      }
        return '';
 }
-$action=$page == 'addnew' ? url('post/create') : url('post/update').'/'.$post->id;
+$action=$page == 'addPost' ? url('post/create') : url('post/update').'/'.$post->id;
 
 ?>
 

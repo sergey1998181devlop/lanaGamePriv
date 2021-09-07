@@ -10,11 +10,9 @@ include_once(resource_path('views/includes/functions.blade.php'));
 class postsController extends Controller
 {
     public function post($id,$url){
-
         $post=post::where('id',$id)->first();
-        
         if(!$post ){
-            abort(405);
+            abort(404);
         }
         $views=$post->views;
         $views++;
@@ -25,7 +23,7 @@ class postsController extends Controller
      }
      public function allposts(){
 
-        $posts=post::orderBy('created_at','desc')->paginate(10);
+        $posts=post::orderBy('order_no','desc')->orderBy('created_at','desc')->paginate(100);
 
         return view('posts.posts')->with(['posts'=>$posts]);
      }

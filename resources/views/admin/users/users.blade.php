@@ -1,10 +1,8 @@
-
-
 @extends('admin.layouts.app')
 @section('page')
 <?php $page='users';?>
 <title>Пользователи</title>
-@endsection
+
 <link href="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 <style>
 .userClubs p{
@@ -14,6 +12,7 @@
   cursor: pointer;
 }
 </style>
+@endsection
 @section('content')
 
 
@@ -133,7 +132,6 @@
 @section('scripts')
   <script src="{{asset('admin/vendor/datatables/jquery.dataTables.min.js')}}"></script>
   <script src="{{asset('admin/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
-  <script src="{{asset('admin/js/demo/datatables-demo.js')}}"></script>
 
   <script>
   
@@ -198,7 +196,30 @@
         $(this).closest('td').find('.userClubs').toggle();
       });
 
-      var table = $('#dataTable_').DataTable();
+      var table = $('#dataTable_').DataTable({
+      "language": {
+          "processing": "Подождите...",
+          "search": "Поиск:",
+          "lengthMenu": "Показать _MENU_ записей",
+          "info": "Записи с _START_ до _END_ из _TOTAL_ записей",
+          "infoEmpty": "Записи с 0 до 0 из 0 записей",
+          "infoFiltered": "(отфильтровано из _MAX_ записей)",
+          "infoPostFix": "",
+          "loadingRecords": "Загрузка записей...",
+          "zeroRecords": "Записи отсутствуют.",
+          "emptyTable": "В таблице отсутствуют данные",
+          "paginate": {
+              "first": "Первая",
+              "previous": "Предыдущая",
+              "next": "Следующая",
+              "last": "Последняя"
+          },
+          "aria": {
+              "sortAscending": ": активировать для сортировки столбца по возрастанию",
+              "sortDescending": ": активировать для сортировки столбца по убыванию"
+          }
+      }
+  } );
  
 // #myInput is a <input type="text"> element
  <?if(isset($_GET['search'])){?>

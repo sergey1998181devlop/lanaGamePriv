@@ -22,6 +22,10 @@ class postsController extends Controller
 {       
     $this->middleware('rule:1');  
 }
+public function index(){
+    $posts= post::select('id','url','name','views','order_no','created_at')->get();
+    return view('admin.posts.posts')->with(['posts'=>$posts]);
+}
 
 public function store(Request $request){
     $validatedData =  $this->validate($request ,[
@@ -117,29 +121,36 @@ public function saveImage(Request $request){
  
 }
 
-    public function delete(Request $request,$id)
-    {
-        $post=post::findorFail($id);
-     if($post->delete()){
+public function delete(Request $request,$id)
+{
+    $post=post::findorFail($id);
+    if($post->delete()){
         $this->ClearRemovedpost($post);
+    }
+    if($request->input('panel') == 1){
+        return back()->with('success','Операция выполнена успешно');
+    }
+    return redirect('/');
+}
+    public function ClearRemovedpost($post){
+    if(!empty($post->image)){
+                Storage::delete('public/posts/'.$post->image);
+            Storage::delete('public/posts/thumbnail/'.$post->image);
         }
-        return redirect('/');
     }
-     public function ClearRemovedpost($post){
-        if(!empty($post->image)){
-                 Storage::delete('public/posts/'.$post->image);
-                Storage::delete('public/posts/thumbnail/'.$post->image);
-         }
-     }
-    public function newPost(){
-        return view('admin.posts.add');
-    }
+public function newPost(){
+    return view('admin.posts.add');
+}
 
-     
-    
-    
-    
+public function reOrderPost(Request $request){
+    $validatedData =  $this->validate($request ,[
+        'order_no'=>'required|numeric|min:0',
+    ]);
+    $post=post::findorFail($request->input('id'));
+    $post->order_no = $request->input('order_no');
+    $post->save();
+    return back()->with('success','Операция выполнена успешно');
+}
 
-    
 }
 

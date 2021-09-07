@@ -1,11 +1,9 @@
-
-
 @extends('admin.layouts.app')
 @section('page')
 <?php $page='error-reports';?>
 <title>Сообщения об ошибке</title>
-@endsection
 <link href="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+@endsection
 @section('content')
 
 
@@ -84,13 +82,14 @@
             <form action="{{url('panel/error-reports/delete')}}" method="post">
                 {{ csrf_field() }}
                 <input type="number" hidden name="id" id="messageId">
-            <div class="modal-body">
-                    <p>Вы уверены,что хотите удалить сообщение?</p>
-            </div>
-            <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('messages.cancel')}}</button>
-                    <button type="submit" class="btn btn-danger">{{__('messages.Delete')}}</button>
-            </div>
+                <div class="modal-body">
+                        <p>Вы уверены,что хотите удалить сообщение?</p>
+                </div>
+                <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('messages.cancel')}}</button>
+                        <button type="submit" class="btn btn-danger">{{__('messages.Delete')}}</button>
+                </div>
+            </form>
           </div>
         </div>
       </div>
@@ -98,14 +97,33 @@
 @section('scripts')
   <script src="{{asset('admin/vendor/datatables/jquery.dataTables.min.js')}}"></script>
   <script src="{{asset('admin/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
-  <script src="{{asset('admin/js/demo/datatables-demo.js')}}"></script>
   <script>
 
 $(document).ready( function() {
     $('#dataTableN').dataTable({
-        /* No ordering applied by DataTables during initialisation */
-        "order": []
-    });
+      "language": {
+          "processing": "Подождите...",
+          "search": "Поиск:",
+          "lengthMenu": "Показать _MENU_ записей",
+          "info": "Записи с _START_ до _END_ из _TOTAL_ записей",
+          "infoEmpty": "Записи с 0 до 0 из 0 записей",
+          "infoFiltered": "(отфильтровано из _MAX_ записей)",
+          "infoPostFix": "",
+          "loadingRecords": "Загрузка записей...",
+          "zeroRecords": "Записи отсутствуют.",
+          "emptyTable": "В таблице отсутствуют данные",
+          "paginate": {
+              "first": "Первая",
+              "previous": "Предыдущая",
+              "next": "Следующая",
+              "last": "Последняя"
+          },
+          "aria": {
+              "sortAscending": ": активировать для сортировки столбца по возрастанию",
+              "sortDescending": ": активировать для сортировки столбца по убыванию"
+          }
+      }
+  } );
 });
 
 $('.deletereportButton.btn').click(function(){

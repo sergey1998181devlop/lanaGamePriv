@@ -2,7 +2,7 @@
 
 @extends('admin.layouts.app')
 @section('page')
-<?php $page='addnew';$title="addnew";$post=array();?>
+<?php $page='addPost';$title="addPost";$post=array();?>
 <title>размещать пост</title>
 
 <link rel="stylesheet" href="{{ asset('admin/css/write_article.css')}}">

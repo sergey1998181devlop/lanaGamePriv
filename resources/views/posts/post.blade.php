@@ -10,7 +10,7 @@
             @if(admin())
             <div style="margin-bottom: 20px;">
                 <a class="btn btn-primary" href="{{url('post/edit/')}}/{{$post->id}}">Отредактировать</a>
-                <a class="btn btn-danger " data-remodal-target="deleteitem">Удалить</a>
+                <a class="btn btn-danger " data-remodal-target="deleteitem" data-remodal-options="hashTracking: false">Удалить</a>
             </div>
             @endif
             <div class="article_page_main_banner_img_wrapper">
@@ -52,7 +52,7 @@
     </section>
     <!--SECTION ARTICLE PAGE MAIN CONTENT END-->
     @if(admin())
-        <div class="deleteitem_modal remodal admin_modal" id="deleteitem" data-remodal-id="deleteitem">
+        <div class="deleteitem_modal remodal admin_modal" id="deleteitem" data-remodal-id="deleteitem" data-remodal-options="hashTracking: false">
             <button data-remodal-action="close" class="remodal-close">Закрыть</button>
             <div class="remodal-content">
                 <form action="{{url('post/delete')}}/{{$post->id}}" method="post" style="dispaly:inline">

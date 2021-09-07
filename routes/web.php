@@ -100,7 +100,8 @@ Route::post('post/update/{id}','panel\postsController@update');
 Route::post('post/saveImage','panel\postsController@saveImage' );
 Route::post('post/delete/{id}','panel\postsController@delete' );
 Route::post('post/edit/saveImage','panel\postsController@saveImage' );
-
+Route::get('panel/posts/all','panel\postsController@index');
+Route::post('panel/posts/order_no','panel\postsController@reOrderPost');
 // клубы
 Route::get('panel/clubs/new-clubs','panel\clubsController@new_clubs');
 Route::get('panel/clubs/hidded-clubs','panel\clubsController@hidded_clubs');

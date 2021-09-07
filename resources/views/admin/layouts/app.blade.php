@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html  lang="RU">
 <head>
@@ -12,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="{{ asset('admin/css/sb-admin-2.min.css') }}?v=3" rel="stylesheet">
+  <link href="{{ asset('admin/css/sb-admin-2.min.css') }}?v=4" rel="stylesheet">
   <!-- <link href="{{ asset('css/css.css') }}" rel="stylesheet"> -->
   @yield('page')
   <title><?php echo (isset($title))  ?  $title : env('APP_NAME');?></title>
@@ -55,7 +54,7 @@
       </li>
   
       <li class="nav-item">
-          <a class="nav-link <?php if($page!="clubs" && $page!="changed-clubs") echo 'collapsed'; ?> " data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          <a class="nav-link <?=($page=="clubs" || $page=="hidded-clubs" || $page=="new-clubs" || $page=="deleted-clubs" || $page=="drafts") ? null: 'collapsed' ?>" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
               <i class="fas fa-network-wired"></i>
               <span>Клубы</span>
           </a>
@@ -72,14 +71,23 @@
           </div>
       </li>
 
-      <li class="nav-item <?php if($page=="addPost") echo 'active'; ?>">
-        <a class="nav-link" href="{{url('post/new')}}">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Добавить пост</span></a>
+      
+      <li class="nav-item">
+          <a class="nav-link <?php if($page!="posts" && $page!="addPost") echo 'collapsed'; ?> " data-toggle="collapse" data-target="#collapsePosts" aria-expanded="false" aria-controls="collapsePosts">
+          <i class="far fa-newspaper"></i>
+              <span>Статьи</span>
+          </a>
+        
+          <div id="collapsePosts" class="collapse <?=($page=="posts" || $page=="addPost") ? ' show': null ?> collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
+              <div class="bg-white py-2 collapse-inner rounded">
+                  <a class="collapse-item <?php if($page=="posts") echo 'active'; ?>" href="{{url('panel/posts/all')}}">Все</a>
+                  <a class="collapse-item <?php if($page=="addPost") echo 'active'; ?>" href="{{url('post/new')}}">Добавить пост</a>
+              </div>
+          </div>
       </li>
       <li class="nav-item">
-          <a class="nav-link <?php if($page=="users") echo 'collapsed'; ?> " data-toggle="collapse" data-target="#collapseUsers" aria-expanded="false" aria-controls="collapseUsers">
-              <i class="fas fa-network-wired"></i>
+          <a class="nav-link <?php if($page!="users") echo 'collapsed'; ?> " data-toggle="collapse" data-target="#collapseUsers" aria-expanded="false" aria-controls="collapseUsers">
+          <i class="fas fa-users"></i>
               <span>Пользователи</span>
           </a>
         
@@ -90,8 +98,8 @@
           </div>
       </li>
       <li class="nav-item">
-          <a class="nav-link <?php if($page!="clubs" && $page!="changed-clubs") echo 'collapsed'; ?> " data-toggle="collapse" data-target="#collapseTwoContact" aria-expanded="false" aria-controls="collapseTwo">
-              <i class="fas fa-fw fa-cog"></i>
+          <a class="nav-link <?=($page=="contacts" || $page=="langame_soft" || $page=="error-reports" )? null:'collapsed' ?> " data-toggle="collapse" data-target="#collapseTwoContact" aria-expanded="false" aria-controls="collapseTwo">
+          <i class="fas fa-comments"></i>
               <span>Обратная связь</span>
           </a>
         
