@@ -275,17 +275,33 @@
         </script>
     @endif
     <script src="{{ asset('/js/jquery.autocomplete.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
-    <script src="{{url('ckeditor5/ckeditor.js')}}"></script>
+    <script src="{{url('ck5/ckeditor.js')}}"></script>
     <script>
         ClassicEditor
             .create( document.querySelector( '#club-descr-input' ), {
-                toolbar: [ 'heading', '|', 'bold', 'italic','|', 'numberedList', 'bulletedList', 'link' ,'undo', 'redo', ]
-            } )
-            .then( editor => {
-                window.editor = editor;
-            } )
-            .catch( err => {
-                console.error( err.stack );
-            } );
+                toolbar: {
+					items: [
+						'bold',
+						'italic',
+						'underline',
+						'strikethrough',
+						'bulletedList',
+						'numberedList',
+						'|',
+						'undo',
+						'redo'
+					]
+				},
+				language: 'ru',
+					licenseKey: '',					
+				} )
+				.then( editor => {
+					window.editor = editor;
+				} )
+				.catch( error => {
+					console.error( 'Oops, something went wrong!' );
+					console.warn( 'Build id: lkxv7bp3c78d-1afjedfm0hw0' );
+					console.error( error );
+				} );
     </script>
 @endsection
