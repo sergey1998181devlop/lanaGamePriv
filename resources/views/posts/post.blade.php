@@ -30,7 +30,6 @@
                                     <a href="{{url('post/read/'.$p->id.'/'.$p->url)}}">
                                         <img src="{{($p->image != '') ? url('storage/posts/'.$p->image) : asset('img/default-club-preview-image.svg')}}" alt="article">
                                     </a>
-                                    <div class="decor">Статьи</div>
                                     <div class="article_title" title="{{$p->name}}">{{$p->name}}</div>
                                 </div>
                                 @endforeach

@@ -4140,6 +4140,7 @@ section.article_page_main_banner_wrapper {
                 font-size: 30px;
                 line-height: 1;
                 color: #ffffff;
+                text-shadow: 2px 1px 0 rgba(0, 0, 0, 0.6);
             }
         }
 
@@ -14528,6 +14529,29 @@ section.langame_software_wrapper {
 
             .offer_info_text_wrapper {
                 width: 424px;
+                height: 308px;
+
+                .offer_info_text{
+                    font-size: 20px;
+                    font-weight: 500;
+                    line-height: 1.2;
+                    height: 100%;
+
+                    .simplebar-track.simplebar-vertical {
+                        top: 0;
+                        width: 8px;
+                        left: unset;
+                        right: -20px;
+                        background: #DCDCDC;
+                        border-radius: 8px;
+
+                        .simplebar-scrollbar{
+                            height: 64px !important;
+                            background: #DC0000;
+                            border-radius: 8px;
+                        }
+                    }
+                }
             }
 
             .contact_name {
@@ -14648,6 +14672,17 @@ section.langame_software_wrapper {
 
                 .offer_info_text_wrapper {
                     width: 100%;
+                    height: auto;
+
+                    .offer_info_text{
+                        .simplebar-track.simplebar-vertical {
+                            background: transparent;
+
+                            .simplebar-scrollbar{
+                                background: transparent;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -14743,6 +14778,33 @@ section.langame_software_wrapper {
 
                 &.text_decor {
                     color: #dc0000;
+                }
+            }
+
+            .offer_info_text_wrapper {
+                width: 424px;
+                height: 422px;
+
+                .offer_info_text{
+                    font-size: 20px;
+                    font-weight: 500;
+                    line-height: 1.2;
+                    height: 100%;
+
+                    .simplebar-track.simplebar-vertical {
+                        top: 0;
+                        width: 8px;
+                        left: unset;
+                        right: -20px;
+                        background: #DCDCDC;
+                        border-radius: 8px;
+
+                        .simplebar-scrollbar{
+                            height: 64px !important;
+                            background: #DC0000;
+                            border-radius: 8px;
+                        }
+                    }
                 }
             }
 
@@ -14859,6 +14921,17 @@ section.langame_software_wrapper {
 
                 .offer_info_text_wrapper {
                     width: 100%;
+                    height: auto;
+
+                    .offer_info_text{
+                        .simplebar-track.simplebar-vertical {
+                            background: transparent;
+
+                            .simplebar-scrollbar{
+                                background: transparent;
+                            }
+                        }
+                    }
                 }
             }
         }
