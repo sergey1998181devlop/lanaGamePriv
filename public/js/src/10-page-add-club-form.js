@@ -354,31 +354,8 @@ jQuery(function() {
     })();
 
     function upload_file(file, type) {
-        return new Promise((resolve, reject) => {
-            let formData = new FormData();
-            if (type == 'price_list') {
-                var url = $form.attr('list-action');
-            } else {
-                var url = $form.attr('image-action');
-            }
-            formData.append('file', file, file.name);
-            formData.append('_token', $('[name="_token"]').val());
-
-            jQuery.ajax({
-                url: url,
-                method: 'post',
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function({data, error}) {
-                    if (error) {
-                        return reject(error);
-                    }
-
-                    resolve(data);
-                }
-            });
-        });
+        let url = type === 'price_list' ? $form.attr('list-action') : $form.attr('image-action');
+        return Layout.fileUpload(file, url);
     }
 
     // schedule validation

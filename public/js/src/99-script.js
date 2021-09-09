@@ -218,9 +218,12 @@ jQuery(function() {
         });
     });
 
-
-
     jQuery('.remodal.mailing_modal').on('opening', function(e) {
         jQuery(this).find('form input[name="email"]').val('');
+    });
+
+    jQuery('.offer_content_wrapper').on('click', '.show_offer_contacts', function(e) {
+        jQuery(this).closest(jQuery('.offer_content_wrapper')).find('.contacts_wrapper').show();
+        jQuery(this).hide();
     });
 });

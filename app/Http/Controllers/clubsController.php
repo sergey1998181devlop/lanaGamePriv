@@ -52,7 +52,7 @@ class clubsController extends Controller
         }else{
             $clubAr = club::CorrentUser()->findOrFail($id);
         }
-      
+
         $published = club::SelectCartFeilds()->CorrentUser()->Published()->get();
         $underModify = club::SelectCartFeilds()->CorrentUser()->UnderEdit()->get();
         $draft = club::SelectCartFeilds()->CorrentUser()->Draft()->get();
@@ -177,7 +177,7 @@ class clubsController extends Controller
                 $club->draft = '0';
                 $club->created_at =Carbon::now()->toDateTimeString();
             }
-            
+
         }else{
             $club = new club();
             $club->user_id=Auth::user()->id;
@@ -267,7 +267,7 @@ class clubsController extends Controller
             }else{
                 $errors[] = 'work_time';
             }
-            
+
         }else{
             $club->work_time = '1';
             $club->work_time_days = '';

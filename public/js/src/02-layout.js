@@ -85,6 +85,29 @@ window.Layout = (() => {
                     $this.data('select2').$dropdown.find(':input.select2-search__field').attr('placeholder', 'Поиск...');
                 });
             });
+        },
+
+        fileUpload(file, url = '/clubs/add-image'){
+            return new Promise((resolve, reject) => {
+                let formData = new FormData();
+                formData.append('file', file, file.name);
+                formData.append('_token', $('[name="_token"]').val());
+
+                jQuery.ajax({
+                    url: url,
+                    method: 'post',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function({data, error}) {
+                        if (error) {
+                            return reject(error);
+                        }
+
+                        resolve(data);
+                    }
+                });
+            });
         }
     };
 })();

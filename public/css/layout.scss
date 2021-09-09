@@ -4198,6 +4198,13 @@ section.article_page_main_banner_wrapper {
                             height: 100%;
                             border-radius: 20px;
                             object-fit: cover;
+                            transition: box-shadow 0.2s;
+                        }
+
+                        &:hover {
+                            img {
+                                box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                            }
                         }
                     }
 
@@ -4293,6 +4300,7 @@ section.article_page_main_content_wrapper {
     padding: 14px 0 112px;
 
     .article_page_main_content {
+        max-width: 1024px;
         font-size: 18px;
         line-height: 1.3;
     }
@@ -14124,6 +14132,7 @@ section.langame_software_wrapper {
 
 .company_offers_modal {
     width: 824px;
+    max-width: unset;
     height: auto;
     background: #ffffff;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
@@ -14204,6 +14213,10 @@ section.langame_software_wrapper {
                 }
             }
 
+            .offer_info_text_wrapper {
+                width: 424px;
+            }
+
             .contact_name {
                 font-style: normal;
                 font-weight: 500;
@@ -14230,6 +14243,50 @@ section.langame_software_wrapper {
                 font-size: 18px;
                 line-height: 1;
                 color: #ffffff;
+                cursor: pointer;
+                transition: box-shadow 0.2s;
+
+                &:hover {
+                    box-shadow: 0 0 6px #dc0000;
+                }
+            }
+
+            .contacts_wrapper {
+                display: none;
+                margin-top: 10px;
+
+                .club_contact {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    align-items: center;
+
+                    img {
+                        display: block;
+                        width: 23px;
+                        height: 23px;
+                        margin-right: 12px;
+                    }
+
+                    a {
+                        display: block;
+                        text-decoration: none;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 18px;
+                        line-height: 1;
+                        color: #000000;
+                        transition: color 0.2s;
+
+                        &:hover {
+                            color: #dc0000;
+                        }
+                    }
+                }
+
+                .club_contact + .club_contact {
+                    margin-top: 20px;
+                }
             }
         }
     }
@@ -14237,6 +14294,7 @@ section.langame_software_wrapper {
 
 .clubs_offers_modal {
     width: 824px;
+    max-width: unset;
     height: auto;
     background: #ffffff;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
@@ -14352,6 +14410,348 @@ section.langame_software_wrapper {
                 font-size: 18px;
                 line-height: 1;
                 color: #ffffff;
+                cursor: pointer;
+                transition: box-shadow 0.2s;
+
+                &:hover {
+                    box-shadow: 0 0 6px #dc0000;
+                }
+            }
+
+            .contacts_wrapper {
+                display: none;
+                margin-top: 10px;
+
+                .club_contact {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    align-items: center;
+
+                    img {
+                        display: block;
+                        width: 23px;
+                        height: 23px;
+                        margin-right: 12px;
+                    }
+
+                    a {
+                        display: block;
+                        text-decoration: none;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 18px;
+                        line-height: 1;
+                        color: #000000;
+                        transition: color 0.2s;
+
+                        &:hover {
+                            color: #dc0000;
+                        }
+                    }
+                }
+
+                .club_contact + .club_contact {
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
+}
+
+.add_offer_modal {
+    width: 734px;
+    height: auto;
+    background: #ffffff;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    padding: 32px;
+    text-align: left;
+
+    .remodal-close {
+        width: 28px;
+        height: 28px;
+        left: unset;
+        left: auto;
+        right: -10px;
+        top: -10px;
+        opacity: 1;
+        background-image: url("../img/cancel.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 34px 34px;
+        background-color: #ffffff;
+        border-radius: 50%;
+
+
+        &:before {
+            content: none;
+            display: none;
+        }
+    }
+
+    .remodal-content {
+        .top_wrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+
+            .title {
+                font-family: 'Gilroy', sans-serif;
+                font-style: normal;
+                font-weight: 700;
+                font-size: 28px;
+                line-height: 1;
+                color: #000000;
+                text-align: left;
+            }
+
+            .btn_wrapper {
+                button {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    border: none;
+                    outline: none;
+                    width: 186px;
+                    height: 46px;
+                    background: #dc0000;
+                    border-radius: 14px;
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 1;
+                    color: #ffffff;
+                    cursor: pointer;
+                    transition: box-shadow 0.2s;
+
+                    &:hover {
+                        box-shadow: 0 0 6px #dc0000;
+                    }
+                }
+            }
+        }
+
+        .forma {
+            .form-group {
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+
+                label {
+                    max-width: 238px;
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 1;
+                    color: #000000;
+                }
+
+                input {
+                    flex-shrink: 0;
+                    display: block;
+                    width: 372px;
+                    height: 46px;
+                    border: 2px solid rgba(0, 0, 0, 0.25);
+                    border-radius: 14px;
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 1;
+                    color: rgba(0, 0, 0, 1);
+                    text-align: center;
+                    outline: none;
+                    padding: 5px;
+
+                    &::placeholder {
+                        color: rgba(0, 0, 0, 0.25);
+                    }
+
+                    &#offer-price-input {
+                        background-image: url("../img/rub.svg");
+                        background-repeat: no-repeat;
+                        background-size: 12px 18px;
+                        background-position: center right 10px;
+                    }
+                }
+
+                &.required {
+                    label {
+                        position: relative;
+
+                        &:before {
+                            content: '*';
+                            position: absolute;
+                            top: 0;
+                            right: -10px;
+                            display: block;
+                            width: 3px;
+                            height: 3px;
+                            color: #dc0000;
+                        }
+                    }
+                }
+
+                &.descr {
+                    align-items: flex-start;
+
+                    label {
+                        margin-top: 20px;
+                    }
+
+                    textarea {
+                        display: block;
+                        padding: 12px;
+                        width: 372px;
+                        height: 230px;
+                        border: 2px solid rgba(0, 0, 0, 0.25);
+                        border-radius: 14px;
+                        font-weight: 500;
+                        font-size: 18px;
+                        line-height: 1;
+                        color: rgba(0, 0, 0, 1);
+                        outline: none;
+                        resize: none;
+                    }
+                }
+
+                .invalid-feedback {
+                    position: absolute;
+                    left: 0;
+                    top: 100%;
+                    display: block;
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 1;
+                    color: rgba(220, 0, 0, 0.6);
+                }
+
+                &.error {
+                    input {
+                        border: 2px solid rgba(220, 0, 0, 0.6);
+                    }
+                }
+            }
+
+            .add_photo_wrapper {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 32px 0;
+
+                .add_photo_title {
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 1;
+                    color: #000000;
+                }
+
+                .add_photo {
+                    label {
+                        position: relative;
+                        flex-shrink: 0;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: center;
+                        width: 237px;
+                        max-width: unset;
+                        height: 46px;
+                        border: 2px solid rgba(0, 0, 0, 1);
+                        border-radius: 14px;
+                        outline: none;
+                        background-color: transparent;
+                        transition: background-color 0.2s, border-color 0.2s;
+
+                        input {
+                            opacity: 0;
+                            position: absolute;
+                            z-index: -1;
+                        }
+
+                        span {
+                            font-weight: 500;
+                            font-size: 18px;
+                            line-height: 1;
+                            color: #000000;
+                            transition: color 0.2s;
+                        }
+
+                        &:before {
+                            content: '';
+                            position: absolute;
+                            top: 50%;
+                            left: 10px;
+                            display: block;
+                            width: 24px;
+                            height: 24px;
+                            background-image: url("../img/fill.svg");
+                            background-repeat: no-repeat;
+                            background-position: center;
+                            background-size: 24px 24px;
+                            transform: translateY(-50%);
+                        }
+
+                        &:hover {
+                            background-color: #dc0000;
+                            border-color: #dc0000;
+
+                            span {
+                                color: #ffffff;
+                            }
+
+                            &:before {
+                                background-image: url("../img/fill-white.svg");
+                            }
+                        }
+                    }
+                }
+            }
+
+            .offer_img_wrapper {
+                position: relative;
+                width: 100%;
+                height: 0;
+                padding-bottom: 66%;
+
+                img {
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center center;
+                    border-radius: 14px;
+                    box-shadow: 0 0 8px #cccccc;
+                }
+
+                button[data-role-remove-price-list-event] {
+                    position: absolute;
+                    top: -7px;
+                    right: -7px;
+                    display: block;
+                    width: 20px;
+                    height: 20px;
+                    background-image: url("../img/cancel.svg");
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: 24px 24px;
+                    background-color: #ffffff;
+                    border: none;
+                    border-radius: 50%;
+                    outline: none;
+                    cursor: pointer;
+                }
             }
         }
     }
@@ -14748,6 +15148,21 @@ section.langame_software_wrapper {
 
 .club_card .sc_info .club_price_wrapper .club_edit {
     background: unset;
+}
+
+.ck.ck-reset_all, .ck.ck-reset_all * {
+    border-top-left-radius: 14px !important;
+    border-top-right-radius: 14px !important;
+}
+
+.ck-rounded-corners .ck.ck-editor__main > .ck-editor__editable, .ck.ck-editor__main > .ck-editor__editable.ck-rounded-corners {
+    border-bottom-left-radius: 14px !important;
+    border-bottom-right-radius: 14px !important;
+    border: 1px solid rgba(0, 0, 0, 0.25) !important;
+}
+
+.ck.ck-editor__editable:not(.ck-editor__nested-editable).ck-focused {
+    box-shadow: none !important;
 }
 
 .autocomplete-suggestions {

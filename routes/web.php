@@ -66,7 +66,7 @@ Route::post('subscribe','mailController@subscribe');
  Route::get('/user-agreement','HomeController@user_agreement');
  Route::get('/software','HomeController@langame_software');
  Route::get('/about-us','HomeController@about_us');
-//  Route::get('/clubs-offers','HomeController@clubs_offers');
+ Route::get('/clubs-offers','HomeController@clubs_offers');
 
 
 
