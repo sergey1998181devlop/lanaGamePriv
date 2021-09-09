@@ -226,4 +226,9 @@ jQuery(function() {
         jQuery(this).closest(jQuery('.offer_content_wrapper')).find('.contacts_wrapper').show();
         jQuery(this).hide();
     });
+
+    jQuery('.offer_instr_toggle_mobile').on('click', function(e) {
+        jQuery(this).toggleClass('active');
+        jQuery(this).closest('.attention_text_wrapper').find('.instr').toggle();
+    });
 });

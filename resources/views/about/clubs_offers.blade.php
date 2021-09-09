@@ -133,6 +133,7 @@
                                         В любой непонятной ситуации - оставайтесь людьми.
                                     </p>
                                 </div>
+                                <button class="offer_instr_toggle_mobile"></button>
                             </div>
                             <div class="clubs_offers_list">
                                 <a href="#" class="offer_item" data-remodal-target="clubs_offers_modal">

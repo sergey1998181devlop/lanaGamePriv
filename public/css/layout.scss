@@ -5555,6 +5555,317 @@ section.clubs_offers_wrapper {
                     }
                 }
             }
+
+            .offer_instr_toggle_mobile {
+                display: none;
+            }
+        }
+    }
+
+    @media (max-width: 1100px){
+        overflow: hidden;
+
+        .company_offers_wrapper {
+            .company_offers_list {
+               max-width: 750px;
+                justify-content: center;
+                margin: 0 auto;
+
+                .offer_item {
+                    margin: 0 20px 32px;
+                    width: 320px;
+                }
+            }
+
+            .clubs_offers_list {
+                max-width: 750px;
+                margin: 0 auto 32px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+
+                .offer_item {
+                    display: block;
+                    width: 320px;
+                    height: auto;
+                    margin: 0 20px 32px;
+
+                    .img_wrapper {
+                        width: 100%;
+                        height: 260px;
+
+                        img {
+                            border-radius: 20px 20px 0 0;
+                        }
+                    }
+
+                    .info_wrapper {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+
+                        padding: 16px;
+
+                        .title {
+                            font-style: normal;
+                            font-weight: 700;
+                            font-size: 20px;
+                            line-height: 1;
+                            color: #000000;
+                            margin-bottom: 8px;
+                        }
+
+                        .descr {
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 18px;
+                            line-height: 1.3;
+                            color: #000000;
+                            margin-bottom: 16px;
+                        }
+
+                        .price {
+                            font-style: normal;
+                            font-weight: 700;
+                            font-size: 24px;
+                            line-height: 1;
+                            color: #000000;
+                            margin-bottom: 16px;
+                        }
+
+                        .club_name, .date {
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 18px;
+                            line-height: 1;
+                            color: #000000;
+                        }
+
+                        .club_name {
+                            margin-bottom: 8px;
+                        }
+                    }
+
+                    &:hover {
+                        box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+                    }
+                }
+            }
+
+            .add_offer {
+                position: static;
+                margin: 0 auto 64px;
+                width: 260px;
+                height: 46px;
+            }
+
+            .attention_text_wrapper {
+                width: 320px;
+                height: auto;
+                margin: 0 auto 64px;
+                position: static;
+
+                .instr{
+                    display: none;
+                }
+
+                .offer_instr_toggle_mobile {
+                    background: transparent;
+                    border: none;
+                    display: block;
+                    position: relative;
+                    width: 35px;
+                    height: 35px;
+                    margin: 0 auto;
+
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        display: block;
+                        width: 35px;
+                        height: 35px;
+                        background-image: url("../img/chevron-right.svg");
+                        background-repeat: no-repeat;
+                        background-size: 35px 35px;
+                        background-position: center;
+                    }
+
+                    &.active {
+                        &:before {
+                            transform: rotate(180deg);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 760px){
+
+        .clubs_offers_page_title {
+            margin: 0 0 27px;
+            font-size: 26px;
+        }
+
+        .company_offers_wrapper {
+            padding: 37px 0 152px;
+
+            .company_offers_list {
+                .offer_item {
+                    margin: 0 0 32px;
+                }
+            }
+
+            .clubs_offers_list {
+                margin: 0 auto 32px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+
+                .offer_item {
+                    display: block;
+                    width: 320px;
+                    height: auto;
+                    margin: 0 0 32px;
+
+                    .img_wrapper {
+                        width: 100%;
+                        height: 260px;
+
+                        img {
+                            border-radius: 20px 20px 0 0;
+                        }
+                    }
+
+                    .info_wrapper {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+
+                        padding: 16px;
+
+                        .title {
+                            font-style: normal;
+                            font-weight: 700;
+                            font-size: 20px;
+                            line-height: 1;
+                            color: #000000;
+                            margin-bottom: 8px;
+                        }
+
+                        .descr {
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 18px;
+                            line-height: 1.3;
+                            color: #000000;
+                            margin-bottom: 16px;
+                        }
+
+                        .price {
+                            font-style: normal;
+                            font-weight: 700;
+                            font-size: 24px;
+                            line-height: 1;
+                            color: #000000;
+                            margin-bottom: 16px;
+                        }
+
+                        .club_name, .date {
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 18px;
+                            line-height: 1;
+                            color: #000000;
+                        }
+
+                        .club_name {
+                            margin-bottom: 8px;
+                        }
+                    }
+
+                    &:hover {
+                        box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+                    }
+                }
+            }
+
+            .add_offer {
+                position: static;
+                margin: 0 auto 64px;
+                width: 260px;
+                height: 46px;
+            }
+
+            .attention_text_wrapper {
+                width: 320px;
+                height: auto;
+                margin: 0 auto 64px;
+                position: static;
+
+                .instr{
+                    display: none;
+                }
+
+                .offer_instr_toggle_mobile {
+                    background: transparent;
+                    border: none;
+                    display: block;
+                    position: relative;
+                    width: 35px;
+                    height: 35px;
+                    margin: 0 auto;
+
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        display: block;
+                        width: 35px;
+                        height: 35px;
+                        background-image: url("../img/chevron-right.svg");
+                        background-repeat: no-repeat;
+                        background-size: 35px 35px;
+                        background-position: center;
+                    }
+
+                    &.active {
+                        &:before {
+                            transform: rotate(180deg);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 340px){
+
+        .company_offers_wrapper {
+
+            .company_offers_list {
+                .offer_item {
+                    margin: 0 0 32px;
+                    width: 100%;
+                }
+            }
+
+            .clubs_offers_list {
+                .offer_item {
+                    width: 100%;
+                    margin: 0 0 32px;
+                }
+            }
+
+            .attention_text_wrapper {
+                width: 100%;
+                height: auto;
+            }
         }
     }
 }
@@ -14132,8 +14443,8 @@ section.langame_software_wrapper {
 
 .company_offers_modal {
     width: 824px;
+    height: 470px;
     max-width: unset;
-    height: auto;
     background: #ffffff;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
@@ -14161,6 +14472,8 @@ section.langame_software_wrapper {
     }
 
     .remodal-content {
+        height: 100%;
+
         .title {
             font-family: 'Gilroy', sans-serif;
             font-style: normal;
@@ -14286,6 +14599,55 @@ section.langame_software_wrapper {
 
                 .club_contact + .club_contact {
                     margin-top: 20px;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 980px){
+        width: 100%;
+        height: auto;
+        padding: 24px;
+
+        .remodal-content {
+            height: 100%;
+
+            .title {
+                font-size: 24px;
+                margin-bottom: 32px;
+            }
+
+            .offer_content_wrapper {
+                display: block;
+                margin: 0;
+
+                .offer_content_item {
+                    margin: 0;
+
+                    .img_wrapper {
+                        width: 256px;
+                        height: 144px;
+                        box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+                        border-radius: 20px;
+                        background-color: #000000;
+                        margin-bottom: 32px;
+
+                        img {
+                            display: block;
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 20px;
+                            object-fit: contain;
+                        }
+                    }
+                }
+
+                .offer_content_item + .offer_content_item{
+                    margin-top: 32px;
+                }
+
+                .offer_info_text_wrapper {
+                    width: 100%;
                 }
             }
         }
@@ -14453,6 +14815,50 @@ section.langame_software_wrapper {
 
                 .club_contact + .club_contact {
                     margin-top: 20px;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 980px){
+        width: 100%;
+        height: auto;
+        padding: 24px;
+
+        .remodal-content {
+            height: 100%;
+
+            .title {
+                flex-wrap: wrap;
+
+                span{
+                    font-size: 24px;
+                }
+            }
+
+            .offer_content_wrapper {
+                display: block;
+                margin: 0;
+
+                .offer_content_item {
+                    margin: 0;
+
+                    .img_wrapper {
+                        width: 256px;
+                        height: 144px;
+                        box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+                        border-radius: 20px;
+                        background-color: #000000;
+                        margin-bottom: 32px;
+                    }
+                }
+
+                .offer_content_item + .offer_content_item{
+                    margin-top: 32px;
+                }
+
+                .offer_info_text_wrapper {
+                    width: 100%;
                 }
             }
         }
@@ -14751,6 +15157,116 @@ section.langame_software_wrapper {
                     border-radius: 50%;
                     outline: none;
                     cursor: pointer;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 760px){
+        width: 100%;
+        padding: 24px 24px 96px;
+
+        .remodal-content {
+            position: relative;
+
+            .top_wrapper {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 32px;
+
+                .title {
+                    font-size: 24px;
+                }
+
+                .btn_wrapper {
+                    position: absolute;
+                    bottom: -70px;
+                    right: 50%;
+                    transform: translateX(50%);
+                }
+            }
+
+            .forma {
+                .form-group {
+                    position: relative;
+                    display: block;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 20px;
+
+                    label {
+                        display: inline-block;
+                        margin-bottom: 10px;
+                    }
+
+                    input {
+                        width: 100%;
+                    }
+
+                    &.required {
+                        label {
+                            position: relative;
+
+                            &:before {
+                                content: '*';
+                                position: absolute;
+                                top: 0;
+                                right: -10px;
+                                display: block;
+                                width: 3px;
+                                height: 3px;
+                                color: #dc0000;
+                            }
+                        }
+                    }
+
+                    &.descr {
+                        align-items: flex-start;
+
+                        label {
+                            margin-top: 0;
+                        }
+
+                        textarea {
+                            width: 100%;
+                        }
+                    }
+                }
+
+                .add_photo_wrapper {
+                    .add_photo {
+                        label {
+                            input {
+                                width: 237px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 400px){
+
+        .remodal-content {
+
+            .forma {
+
+                .add_photo_wrapper {
+                    display: block;
+
+                    .add_photo_title{
+                        margin-bottom: 10px;
+                    }
+
+                    .add_photo {
+                        label {
+                            width: 100%;
+                        }
+                    }
                 }
             }
         }
