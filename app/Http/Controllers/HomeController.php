@@ -47,6 +47,9 @@ class HomeController extends Controller
       return view('about.about_us');
     }
     public function clubs_offers(){
+      if(!env('DEV_SERVER','true')){
+        abort(404);
+      }
         return view('about.clubs_offers');
     }
 
