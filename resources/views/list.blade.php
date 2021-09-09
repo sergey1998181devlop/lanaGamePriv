@@ -22,8 +22,7 @@
                                                     рейтингу</a>
 
                                                 <a class="<?= $order_by === 'nearby' ? $order_key : ''; ?>"
-                                                href="{{url('/')}}/{{city()}}?order=nearby&order_key=<?= $order_by === 'nearby' && $order_key === 'asc' ? 'desc' : 'asc'; ?>">По
-                                                    близости</a>
+                                                href="{{url('/')}}/{{city()}}?order=nearby&order_key=<?= $order_by === 'nearby' && $order_key === 'asc' ? 'desc' : 'asc'; ?>">По близости</a>
                                             </div>
                                         </div>
                                     </div>

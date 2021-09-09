@@ -5,47 +5,49 @@
 @section('content')
     <!--SECTION ARTICLE PAGE MAIN BANNER START-->
 
-    <section class="article_page_main_banner_wrapper">
+    <section class="article_page_wrapper">
         <div class="container-fluid">
-            @if(admin())
-            <div style="margin-bottom: 20px;">
-                <a class="btn btn-primary" href="{{url('post/edit/')}}/{{$post->id}}">Отредактировать</a>
-                <a class="btn btn-danger " data-remodal-target="deleteitem" data-remodal-options="hashTracking: false">Удалить</a>
-            </div>
-            @endif
-            <div class="article_page_main_banner_img_wrapper">
-                <div class="article_page_main_banner_img">
-                    <img src="{{($post->image != '') ? url('storage/posts/'.$post->image) : asset('img/default-club-preview-image.svg')}}" alt="image">
-                    <div class="article_page_main_banner_title">
-                        <h2>{{$post->name}}</h2>
+            <div class="columns">
+                <main>
+                    @if(admin())
+                        <div style="margin-bottom: 20px;">
+                            <a class="btn btn-primary" href="{{url('post/edit/')}}/{{$post->id}}">Отредактировать</a>
+                            <a class="btn btn-danger " data-remodal-target="deleteitem" data-remodal-options="hashTracking: false">Удалить</a>
+                        </div>
+                    @endif
+
+                    <div class="article_page_main_banner_img_wrapper">
+                        <div class="article_page_main_banner_img">
+                            <img src="{{($post->image != '') ? url('storage/posts/'.$post->image) : asset('img/default-club-preview-image.svg')}}" alt="image">
+                            <div class="article_page_main_banner_title">
+                                <h2>{{$post->name}}</h2>
+                            </div>
+                            <a href="{{url('posts')}}" class="go_back">Назад</a>
+                        </div>
                     </div>
-                    <a href="{{url('posts')}}" class="go_back">Назад</a>
-                </div>
-                @if(count($morePosts) > 0)
-                    <div class="another_articles_wrapper">
-                        <div class="title">Читайте также</div>
+
+                    <div class="article_page_main_content">
+                        {!!$post->about!!}
+                    </div>
+                </main>
+
+                <aside>
+                    @if(count($morePosts) > 0)
+                        <div class="aside_articles_wrapper">
+                            <div class="title">Читайте также</div>
                             <div class="another_articles_list">
-                            @foreach($morePosts as $p)
-                                <div class="another_articles_item">
-                                    <a href="{{url('post/read/'.$p->id.'/'.$p->url)}}">
-                                        <img src="{{($p->image != '') ? url('storage/posts/'.$p->image) : asset('img/default-club-preview-image.svg')}}" alt="article">
-                                    </a>
-                                    <div class="article_title" title="{{$p->name}}">{{$p->name}}</div>
-                                </div>
+                                @foreach($morePosts as $p)
+                                    <div class="another_articles_item">
+                                        <a href="{{url('post/read/'.$p->id.'/'.$p->url)}}">
+                                            <img src="{{($p->image != '') ? url('storage/posts/'.$p->image) : asset('img/default-club-preview-image.svg')}}" alt="article">
+                                        </a>
+                                        <div class="article_title" title="{{$p->name}}">{{$p->name}}</div>
+                                    </div>
                                 @endforeach
                             </div>
-                    </div>
-                @endif
-            </div>
-        </div>
-    </section>
-    <!--SECTION ARTICLE PAGE MAIN BANNER END-->
-
-    <!--SECTION ARTICLE PAGE MAIN CONTENT START-->
-    <section class="article_page_main_content_wrapper">
-        <div class="container-fluid">
-            <div class="article_page_main_content">
-                {!!$post->about!!}
+                        </div>
+                    @endif
+                </aside>
             </div>
         </div>
     </section>
