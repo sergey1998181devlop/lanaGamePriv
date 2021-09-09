@@ -67,7 +67,7 @@ jQuery(function() {
     jQuery('.show_club_price_list_modal').remodal({
         appendTo: jQuery('.club_page_modals_wrapper'),
         hashTracking: false,
-        closeOnOutsideClick: false
+        // closeOnOutsideClick: false
     });
 
     jQuery('.tariffs_modal').remodal({
