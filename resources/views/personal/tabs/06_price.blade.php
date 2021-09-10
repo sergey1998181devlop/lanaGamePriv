@@ -35,7 +35,7 @@ declare(strict_types=1);
     </div>
 </div>
 <div class="add_photo_instruction">
-    Файл формата jpg, jpeg, png или pdf. Размер не более 5 Мб.
+    Файл формата jpg, jpeg, png. Размер не более 5 Мб.
 </div>
 
 
