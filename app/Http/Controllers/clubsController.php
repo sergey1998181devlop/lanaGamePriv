@@ -360,7 +360,7 @@ class clubsController extends Controller
     }
     public function savePriceList(Request $request){
         $data = $request->validate([
-            'file' => ['required', 'mimes:jpg,bmp,png,pdf','max:5500'],
+            'file' => ['required', 'mimes:jpg,bmp,png','max:5500'],
         ]);
         $message = $url = '';
         if ($request->hasFile('file')) {
