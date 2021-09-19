@@ -14,8 +14,10 @@
         "guzzlehttp/guzzle": "^6.3",
         "intervention/image": "^2.6",
         "laravel/framework": "^7.0",
+        "laravel/passport": "9.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "2.4",
+        "lcobucci/jwt": "3.3.3",
         "yandex/locator": "0.9.2"
     },
     "require-dev": {

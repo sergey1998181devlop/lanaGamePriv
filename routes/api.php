@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+Route::post('auth/login',   'Api\RegisterController@login' );
+Route::post('auth/register',   'Api\RegisterController@create' );
+Route::post('/auth/send_sms', 'Api\RegisterController@sendSMS');
+Route::post('/auth/verify_sms', 'Api\RegisterController@verifySMS');

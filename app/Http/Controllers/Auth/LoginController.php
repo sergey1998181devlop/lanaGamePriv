@@ -57,12 +57,6 @@ class LoginController extends Controller
 				'message' => 'Login Successful'
 			);
 			return response()->json($msg);
-		}else if (Auth::guard('web')->attempt(['phone' => $phone, 'password' => $password], $rememberToken)) {
-			$msg = array(
-				'status'  => 'success',
-				'message' => 'Login Successful'
-			);
-			return response()->json($msg);
 		}
 		 else {
 			$msg = array(
