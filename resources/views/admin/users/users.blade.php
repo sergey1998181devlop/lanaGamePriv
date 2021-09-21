@@ -37,7 +37,8 @@
           <tr>
             <th>№</th>
             <th>ФИО</th>
-            <th>Должность</th>
+            <th>Роль</th>
+            <th>Должность представителя</th>
             <th>Количество клубов</th>
             <th>Email</th>
             <th>Телефон</th>
@@ -59,6 +60,24 @@
             @else
             <td ></td>
             @endif
+            <td>
+              <?php
+              switch ($user->user_position) {
+                case '1':
+                 echo 'Владелец';
+                break;
+                case '2':
+                  echo 'Управляющий';
+                break;
+                case '3':
+                  echo 'Маркетинг-менеджер';
+                break;
+                case '4':
+                  echo 'Администратор';
+                break;
+              }
+              ?>
+            </td>
             <?
             $clubsCount = [];
             $userClubs = [];
