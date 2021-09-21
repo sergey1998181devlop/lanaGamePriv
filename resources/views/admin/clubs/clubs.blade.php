@@ -208,7 +208,6 @@
 
        }
      });
-     //    in header
     $('#city_selector').on('select2:select', function(e) {
         window.location.href = '{{url("panel/clubs/clubs")}}' + '?city=' + e.params.data.id + '&onlyPublished=' +onlyPublished ;
     });

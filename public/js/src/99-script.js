@@ -172,6 +172,8 @@ jQuery(function() {
     jQuery('#open_search_form').on('click', function(e){
         ym(82365286,'reachGoal','search');gtag('event', 'send', { 'event_category': 'search', 'event_action': 'click' });
         jQuery('.search .search_form').addClass('active');
+        jQuery('.search .search_form #search-text').focus();
+       
     });
 
 
