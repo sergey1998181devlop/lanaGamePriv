@@ -221,7 +221,6 @@
       }
   } );
  
-// #myInput is a <input type="text"> element
  <?if(isset($_GET['search'])){?>
   table.search("{{$_GET['search']}}" ).draw();
  <?}?>
