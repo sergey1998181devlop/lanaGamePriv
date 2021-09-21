@@ -11440,8 +11440,143 @@ section.langame_software_wrapper {
         }
     }
 }
-
 /*! SECTION ABOUT SERVICE END */
+
+/*! SECTION CITIES LIST PAGE START */
+section.cities_list_wrapper{
+    padding-top: 64px;
+
+    .cities_list_page_title{
+        margin: 0 0 32px;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 34px;
+        line-height: 1.3;
+        color: #000000;
+    }
+
+    .cities_list_search_wrapper{
+        position: relative;
+        margin-bottom: 42px;
+
+        input{
+            display: block;
+            width: 100%;
+            height: 55px;
+            background: #EEEEEE;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+            padding: 14px 14px 14px 56px;
+            color: #000000;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 1;
+
+            &::placeholder{
+                font-style: normal;
+                font-weight: 400;
+                font-size: 20px;
+                line-height: 1;
+                color: #AAAAAA;
+            }
+        }
+
+        &:before{
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 19px;
+            display: block;
+            width: 22px;
+            height: 22px;
+            background-image: url("../img/search-gray.svg");
+            background-repeat: no-repeat;
+            background-size: 21px 21px;
+            background-position: center;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+    }
+
+    .cities_list_checkbox_wrapper{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 42px;
+
+        .title{
+            font-family: 'Gilroy', sans-serif;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 1;
+            color: #DC0000;
+            margin-right: 96px;
+        }
+
+        .checkbox_item {
+            margin-right: 10px;
+
+            label {
+                input {
+                    opacity: 0;
+                    position: absolute;
+                    z-index: -1;
+                    width: 1px;
+                }
+
+                input:checked + span {
+                    color: #000000;
+                }
+
+                span {
+                    position: relative;
+                    cursor: pointer;
+                    font-family: 'Gilroy', sans-serif;
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 24px;
+                    line-height: 1;
+                    color: #DC0000;
+                }
+
+            }
+        }
+    }
+
+    .cities_list_wrapper{
+        column-count: 4;
+
+        ul.cities_list{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li{
+                a{
+                    display: block;
+                    font-family: 'Gilroy', sans-serif;
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 20px;
+                    line-height: 1;
+                    color: #000000;
+                    text-decoration: none;
+                    margin-bottom: 20px;
+                    transition: color 0.2s;
+
+                    &:hover{
+                        color: #dc3545;
+                    }
+                }
+            }
+        }
+    }
+}
+/*! SECTION CITIES LIST PAGE END */
 
 /*! MODALS START */
 .person_add_club_modal_wrapper .remodal-wrapper {
