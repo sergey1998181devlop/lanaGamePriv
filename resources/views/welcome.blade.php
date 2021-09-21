@@ -142,6 +142,7 @@
                     }else{
                         $('#show_more_clubs').show();
                     }
+                    $('.sc_result .search_qty').text(data.total)
                 }
             });
         });

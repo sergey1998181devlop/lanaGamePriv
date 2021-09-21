@@ -36,7 +36,7 @@
                                         </div>
 
                                         <div class="search">
-                                            <button type="button" id="open_search_form" onclick="ym(207485257,'reachGoal','search');gtag('event', 'send', { 'event_category': 'search', 'event_action': 'click' });">
+                                            <button type="button" id="open_search_form">
                                                 <img src="{{asset('/img/search.svg')}}" alt="search">
                                             </button>
                                             <form id="search-form" class="search_form">
