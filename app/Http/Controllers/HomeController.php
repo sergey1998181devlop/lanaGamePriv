@@ -52,6 +52,13 @@ class HomeController extends Controller
       }
         return view('about.clubs_offers');
     }
+    public function cities_list(){
+        $cities = city::query()->orderBy('name', 'asc')->get();
+
+        return view('about.cities_list', [
+            'cities' => $cities,
+        ]);
+    }
 
     public function index(Request $request)
     {
@@ -208,7 +215,7 @@ class HomeController extends Controller
     $clubs = club::Published()->select('id','url','created_at')->whereNull('hidden_at')->get();
     $cites = city::select('id','name','en_name')->get();
     $posts = post::select('id','name','url','created_at')->get();
-    $otherLinks = ['about-us','software','register','personal/clubs','contacts','user-agreement','policy','login', 'clubs-offers'];
+    $otherLinks = ['about-us','software','register','personal/clubs','contacts','user-agreement','policy','login', 'clubs-offers', 'cities'];
     return view('about.sitemap')->with(['posts'=>$posts,'cities'=>$cites,'clubs'=>$clubs,'otherLinks'=>$otherLinks]);
   }
 }
