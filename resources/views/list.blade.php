@@ -53,7 +53,7 @@
                                         @include('club')
                                     @endforeach
                                 </div>
-                                @if($clubs->total() > 6)
+                                @if($hasMoreClubs)
                                     <a id="show_more_clubs" class="show_more pointer">Показать ещё</a>
                                 @endif
                             </div>
