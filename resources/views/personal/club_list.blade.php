@@ -177,23 +177,23 @@
                             <ul class="club_list_navigation_tabs">
                                 <li>
                                     <a href="#tab1" @if(!$edit || $clubAr->published_at != null)class="active" @endif>
-                                        <span>Опубликованные</span>
+                                        <span>Опубликованные </span>
                                         @if(count($published) > 0)
-                                            <span class="qty">{{count($published)}}</span>
+                                            <span class="qty"> {{count($published)}}</span>
                                         @endif
                                     </a>
                                 </li>
                                 <li><a href="#tab2" @if($edit && $clubAr->draft != '1' && $clubAr->published_at == null)class="active" @endif>
-                                        <span>На модерации</span>
+                                        <span>На модерации </span>
                                         @if(count($underModify) > 0)
-                                            <span class="qty">{{count($underModify)}}</span>
+                                            <span class="qty"> {{count($underModify)}}</span>
                                         @endif
                                     </a>
                                 </li>
                                 <li><a href="#tab3" @if($edit && $clubAr->draft == '1')class="active" @endif>
-                                        <span>Черновики</span>
+                                        <span>Черновики </span>
                                         @if(count($draft) > 0)
-                                            <span class="qty">{{count($draft)}}</span>
+                                            <span class="qty"> {{count($draft)}}</span>
                                         @endif
                                     </a>
                                 </li>
