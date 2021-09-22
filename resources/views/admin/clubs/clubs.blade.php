@@ -44,6 +44,7 @@
             <th>№</th>
             <th>Название клуба</th>
             <th>Город</th>
+            <th>Телефона клуба</th>
             <th>владелец</th>
             <th>Статус</th>
             <th>Дата добавления</th>
@@ -60,6 +61,7 @@
             <td><a href="{{url('clubs/'.$club->id.'/'.$club->url)}}">{{$club->club_name}}</a></td>
 
             <td>@if(isset($club->city)){{$club->city->name}}@endif</td>
+            <td>{{$club->phone}}</td>
             <td><a href="{{url('panel/users')}}?search={{$club->user->phone}}">{{$club->user->name}}</a></td>
             <!-- status -->
             <?php
