@@ -22,3 +22,7 @@ Route::post('auth/register',   'Api\RegisterController@create' );
 Route::post('/auth/send_sms', 'Api\RegisterController@sendSMS');
 Route::post('/auth/verify_sms', 'Api\RegisterController@verifySMS');
 Route::get('/auth/user', 'Api\RegisterController@getUserData');
+
+
+Route::get('/getHomeData', 'Api\HomeController@index');
+Route::get('/getHomeClubs', 'Api\HomeController@getClubs');
