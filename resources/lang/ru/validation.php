@@ -116,10 +116,14 @@ return [
         ],
     ],
     'attributes'           => [
-        'address'               => 'Адрес',
+    'address'                   => 'Адрес',
+'club_address'                  => 'Адрес',
+        'lon'                   => 'Адрес',
+        'lat'                   => 'Адрес',
         'age'                   => 'Возраст',
         'available'             => 'Доступно',
         'city'                  => 'Город',
+        'club_city'             => 'Город',
         'content'               => 'Контент',
         'country'               => 'Страна',
         'current_password'      => 'Текущий пароль',
@@ -148,6 +152,14 @@ return [
         'year'                  => 'Год',
         'confirm_code'          => 'код подтверждения',
         'conf_code'          => 'код подтверждения',
+        'club_name'          => 'Название клуба',
+        'club_photos'          => 'Фото клуба',
+        'qty_pc'          => 'Общее кол-во ПК',
+        'club_min_price'  => 'Миниальная стоимость часа',
+        'work_time'  => 'График работы',
+        'configuration'  => 'Конфигурация оборудования',
+        
+        
         
 
     ],
