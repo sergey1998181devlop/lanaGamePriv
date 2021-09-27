@@ -46,7 +46,14 @@ jQuery(function() {
             $letterCheckboxes[i].checked=false;
         }
 
-        cityElements.forEach(e => e.style.display = '');
+        filteredLetters = $letterCheckboxes
+            .filter(':checked')
+            .map(function() {
+                return this.value.toLowerCase();
+            })
+            .toArray();
+
+        renderFilteredItems();
     });
 
     function renderFilteredItems() {
