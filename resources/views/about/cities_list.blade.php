@@ -16,7 +16,7 @@
                     @foreach(['А','Б','В','Г','Д','Е','Ж','З','И','К','Л','М','Н','О','П','Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ','Ы','Э','Ю','Я'] as $letter)
                         <div class="checkbox_item">
                             <label>
-                                <input type="checkbox" name="city_letter" value="{{ $letter }}">
+                                <input type="radio" name="city_letter" value="{{ $letter }}">
                                 <span>{{ $letter }}</span>
                             </label>
                         </div>
