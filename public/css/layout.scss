@@ -11463,6 +11463,7 @@ section.langame_software_wrapper {
 
 /*! SECTION CITIES LIST PAGE START */
 section.cities_list_wrapper {
+    min-height: calc(100vh - 331px);
     padding: 64px 0 240px;
 
     .cities_list_page_title {

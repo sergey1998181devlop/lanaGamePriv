@@ -27,9 +27,11 @@ jQuery(function() {
         filteredLetters = $letterCheckboxes
             .filter(':checked')
             .map(function() {
-                return this.value;
+                return this.value.toLowerCase();
             })
             .toArray();
+
+        console.log(filteredLetters, this.value);
 
         renderFilteredItems();
     });
@@ -50,6 +52,8 @@ jQuery(function() {
                 }
             }
         }
+
+        console.log(filteredLetters, filteredLetters.length);
 
         if (filterSearchValue.length > 0) {
             for (let cityName in cityLinksByName) {
