@@ -173,6 +173,7 @@
                 <select class="select_city" id="city_selector">
                     <option>{{city(true)['name']}}</option>
                 </select>
+                <a href="{{url('cities')}}">Все города</a>
             </div>
             <div class="mobile_menu_bg"></div>
             <div class="header_menu_wrapper">
@@ -311,6 +312,10 @@
 
                             <li>
                                 <a href="{{url('software')}}">LANGAME Software</a>
+                            </li>
+
+                            <li>
+                                <a href="{{url('cities')}}">Все города</a>
                             </li>
                         </ul>
                     </div>
@@ -497,7 +502,9 @@
                 </div>
             </div>
             <button type="button" class="report" data-remodal-target="report_modal">Сообщить об ошибке</button>
+            @if(false)
             <button class="mailing" type="button" data-remodal-target="mailing_modal"></button>
+            @endif
             <div class="social_wrapper">
                 <div class="social_list">
                     <a href="https://vk.com/langameru" onclick="gtag('event', 'send', { 'event_category': 'vkontakte', 'event_action': 'click' });" target="_blank">

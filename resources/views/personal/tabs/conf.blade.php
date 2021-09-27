@@ -443,6 +443,7 @@ $keybords = [
     'Trust GXT',
     'ZET Gaming',
     'Aorus',
+    'GIGABYTE',
     'Другое',
 ];
 $mouses = [
@@ -477,6 +478,7 @@ $mouses = [
     'Trust GXT',
     'ZET Gaming',
     'Aorus',
+    'GIGABYTE',
     'Другое',
 ];
 $headphones = [
@@ -515,6 +517,7 @@ $headphones = [
     'Trust GXT',
     'ZET Gaming',
     'Aorus',
+    'GIGABYTE',
     'Другое',
 ];
 $chairs = [
@@ -586,5 +589,6 @@ $monitors = [
     'Zowie',
     'ZET Gaming',
     'Aorus',
+    'GIGABYTE',
     'Другое',
 ];

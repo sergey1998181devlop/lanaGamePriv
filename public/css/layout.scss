@@ -766,6 +766,21 @@ input[type=number] {
                     }
                 }
             }
+
+            a{
+                display: block;
+                text-decoration: none;
+                color: #818080;
+                font-weight: 500;
+                position: absolute;
+                top: 25%;
+                right: -95px;
+                transition: color 0.2s;
+
+                &:hover{
+                    color: #dc3545;
+                }
+            }
         }
 
         .header_menu_wrapper {
@@ -1097,6 +1112,10 @@ input[type=number] {
                 body.mobile-menu-opened & {
                     opacity: 0;
                     pointer-events: none;
+                }
+
+                a{
+                    display: none;
                 }
             }
 
@@ -5580,12 +5599,12 @@ section.clubs_offers_wrapper {
         }
     }
 
-    @media (max-width: 1100px){
+    @media (max-width: 1100px) {
         overflow: hidden;
 
         .company_offers_wrapper {
             .company_offers_list {
-               max-width: 750px;
+                max-width: 750px;
                 justify-content: center;
                 margin: 0 auto;
 
@@ -5684,7 +5703,7 @@ section.clubs_offers_wrapper {
                 margin: 0 auto 64px;
                 position: static;
 
-                .instr{
+                .instr {
                     display: none;
                 }
 
@@ -5721,7 +5740,7 @@ section.clubs_offers_wrapper {
         }
     }
 
-    @media (max-width: 760px){
+    @media (max-width: 760px) {
 
         .clubs_offers_page_title {
             margin: 0 0 27px;
@@ -5825,7 +5844,7 @@ section.clubs_offers_wrapper {
                 margin: 0 auto 64px;
                 position: static;
 
-                .instr{
+                .instr {
                     display: none;
                 }
 
@@ -5862,7 +5881,7 @@ section.clubs_offers_wrapper {
         }
     }
 
-    @media (max-width: 340px){
+    @media (max-width: 340px) {
 
         .company_offers_wrapper {
 
@@ -11443,10 +11462,11 @@ section.langame_software_wrapper {
 /*! SECTION ABOUT SERVICE END */
 
 /*! SECTION CITIES LIST PAGE START */
-section.cities_list_wrapper{
-    padding-top: 64px;
+section.cities_list_wrapper {
+    min-height: calc(100vh - 331px);
+    padding: 64px 0 240px;
 
-    .cities_list_page_title{
+    .cities_list_page_title {
         margin: 0 0 32px;
         font-style: normal;
         font-weight: 500;
@@ -11455,15 +11475,15 @@ section.cities_list_wrapper{
         color: #000000;
     }
 
-    .cities_list_search_wrapper{
+    .cities_list_search_wrapper {
         position: relative;
         margin-bottom: 42px;
 
-        input{
+        input {
             display: block;
             width: 100%;
             height: 55px;
-            background: #EEEEEE;
+            background: #eeeeee;
             border-radius: 20px;
             border: none;
             outline: none;
@@ -11474,16 +11494,16 @@ section.cities_list_wrapper{
             font-size: 20px;
             line-height: 1;
 
-            &::placeholder{
+            &::placeholder {
                 font-style: normal;
                 font-weight: 400;
                 font-size: 20px;
                 line-height: 1;
-                color: #AAAAAA;
+                color: #aaaaaa;
             }
         }
 
-        &:before{
+        &:before {
             content: '';
             position: absolute;
             top: 50%;
@@ -11500,21 +11520,22 @@ section.cities_list_wrapper{
         }
     }
 
-    .cities_list_checkbox_wrapper{
+    .cities_list_checkbox_wrapper {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 42px;
 
-        .title{
+        .title {
             font-family: 'Gilroy', sans-serif;
             font-style: normal;
             font-weight: 700;
             font-size: 24px;
             line-height: 1;
-            color: #DC0000;
+            color: #dc0000;
             margin-right: 96px;
+            cursor: pointer;
         }
 
         .checkbox_item {
@@ -11540,37 +11561,85 @@ section.cities_list_wrapper{
                     font-weight: 400;
                     font-size: 24px;
                     line-height: 1;
-                    color: #DC0000;
+                    color: #dc0000;
                 }
 
             }
         }
     }
 
-    .cities_list_wrapper{
+    .cities_list_wrapper {
         column-count: 4;
 
-        ul.cities_list{
+        .cities_list {
             list-style: none;
             padding: 0;
             margin: 0;
 
-            li{
-                a{
-                    display: block;
-                    font-family: 'Gilroy', sans-serif;
-                    font-style: normal;
-                    font-weight: 400;
-                    font-size: 20px;
-                    line-height: 1;
-                    color: #000000;
-                    text-decoration: none;
-                    margin-bottom: 20px;
-                    transition: color 0.2s;
+            a {
+                display: block;
+                font-family: 'Gilroy', sans-serif;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 20px;
+                line-height: 1;
+                color: #000000;
+                text-decoration: none;
+                margin-bottom: 20px;
+                transition: color 0.2s;
 
-                    &:hover{
-                        color: #dc3545;
-                    }
+                &:hover {
+                    color: #dc3545;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 1000px){
+        padding: 64px 0 140px;
+
+        .cities_list_page_title {
+            margin: 0 0 16px;
+            font-size: 26px;
+        }
+
+        .cities_list_search_wrapper {
+
+            input {
+                display: block;
+                width: 100%;
+                height: 42px;
+                background: #eeeeee;
+                border-radius: 20px;
+                border: none;
+                outline: none;
+                padding: 10px 10px 10px 40px;
+                font-size: 18px;
+
+                &::placeholder {
+                    font-size: 18px;
+                }
+            }
+
+            &:before {
+                left: 15px;
+                width: 22px;
+                height: 22px;
+                background-size: 17px 17px;
+            }
+        }
+
+        .cities_list_checkbox_wrapper {
+            display: none;
+        }
+
+        .cities_list_wrapper {
+            column-count: 1;
+
+            .cities_list {
+                a {
+                    font-size: 18px;
+                    margin-bottom: 15px;
                 }
             }
         }
@@ -14695,7 +14764,7 @@ section.cities_list_wrapper{
                 width: 424px;
                 height: 308px;
 
-                .offer_info_text{
+                .offer_info_text {
                     font-size: 20px;
                     font-weight: 500;
                     line-height: 1.2;
@@ -14706,12 +14775,12 @@ section.cities_list_wrapper{
                         width: 8px;
                         left: unset;
                         right: -20px;
-                        background: #DCDCDC;
+                        background: #dcdcdc;
                         border-radius: 8px;
 
-                        .simplebar-scrollbar{
+                        .simplebar-scrollbar {
                             height: 64px !important;
-                            background: #DC0000;
+                            background: #dc0000;
                             border-radius: 8px;
                         }
                     }
@@ -14792,7 +14861,7 @@ section.cities_list_wrapper{
         }
     }
 
-    @media (max-width: 980px){
+    @media (max-width: 980px) {
         width: 100%;
         height: auto;
         padding: 24px;
@@ -14830,7 +14899,7 @@ section.cities_list_wrapper{
                     }
                 }
 
-                .offer_content_item + .offer_content_item{
+                .offer_content_item + .offer_content_item {
                     margin-top: 32px;
                 }
 
@@ -14838,11 +14907,11 @@ section.cities_list_wrapper{
                     width: 100%;
                     height: auto;
 
-                    .offer_info_text{
+                    .offer_info_text {
                         .simplebar-track.simplebar-vertical {
                             background: transparent;
 
-                            .simplebar-scrollbar{
+                            .simplebar-scrollbar {
                                 background: transparent;
                             }
                         }
@@ -14949,7 +15018,7 @@ section.cities_list_wrapper{
                 width: 424px;
                 height: 422px;
 
-                .offer_info_text{
+                .offer_info_text {
                     font-size: 20px;
                     font-weight: 500;
                     line-height: 1.2;
@@ -14960,12 +15029,12 @@ section.cities_list_wrapper{
                         width: 8px;
                         left: unset;
                         right: -20px;
-                        background: #DCDCDC;
+                        background: #dcdcdc;
                         border-radius: 8px;
 
-                        .simplebar-scrollbar{
+                        .simplebar-scrollbar {
                             height: 64px !important;
-                            background: #DC0000;
+                            background: #dc0000;
                             border-radius: 8px;
                         }
                     }
@@ -15046,7 +15115,7 @@ section.cities_list_wrapper{
         }
     }
 
-    @media (max-width: 980px){
+    @media (max-width: 980px) {
         width: 100%;
         height: auto;
         padding: 24px;
@@ -15057,7 +15126,7 @@ section.cities_list_wrapper{
             .title {
                 flex-wrap: wrap;
 
-                span{
+                span {
                     font-size: 24px;
                 }
             }
@@ -15079,7 +15148,7 @@ section.cities_list_wrapper{
                     }
                 }
 
-                .offer_content_item + .offer_content_item{
+                .offer_content_item + .offer_content_item {
                     margin-top: 32px;
                 }
 
@@ -15087,11 +15156,11 @@ section.cities_list_wrapper{
                     width: 100%;
                     height: auto;
 
-                    .offer_info_text{
+                    .offer_info_text {
                         .simplebar-track.simplebar-vertical {
                             background: transparent;
 
-                            .simplebar-scrollbar{
+                            .simplebar-scrollbar {
                                 background: transparent;
                             }
                         }
@@ -15399,7 +15468,7 @@ section.cities_list_wrapper{
         }
     }
 
-    @media (max-width: 760px){
+    @media (max-width: 760px) {
         width: 100%;
         padding: 24px 24px 96px;
 
@@ -15486,7 +15555,7 @@ section.cities_list_wrapper{
         }
     }
 
-    @media (max-width: 400px){
+    @media (max-width: 400px) {
 
         .remodal-content {
 
@@ -15495,7 +15564,7 @@ section.cities_list_wrapper{
                 .add_photo_wrapper {
                     display: block;
 
-                    .add_photo_title{
+                    .add_photo_title {
                         margin-bottom: 10px;
                     }
 
