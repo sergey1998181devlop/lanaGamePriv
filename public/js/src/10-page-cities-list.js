@@ -1,6 +1,7 @@
 jQuery(function() {
     let $form = jQuery('#cities-list-form'),
         $letterCheckboxes = $form.find('[name="city_letter"]'),
+        $uncheckFilter = jQuery('.cities_list_checkbox_wrapper .title'),
         filteredLetters = [],
         filterSearchValue = '',
         cityElements = [],
@@ -31,8 +32,6 @@ jQuery(function() {
             })
             .toArray();
 
-        console.log(filteredLetters, this.value);
-
         renderFilteredItems();
     });
 
@@ -40,6 +39,14 @@ jQuery(function() {
         filterSearchValue = convertSearchText(this.value);
 
         renderFilteredItems();
+    });
+
+    $uncheckFilter.on('click', function(e) {
+        for (let i=0 ;i<$letterCheckboxes.length; i++) {
+            $letterCheckboxes[i].checked=false;
+        }
+
+        cityElements.forEach(e => e.style.display = '');
     });
 
     function renderFilteredItems() {
@@ -52,8 +59,6 @@ jQuery(function() {
                 }
             }
         }
-
-        console.log(filteredLetters, filteredLetters.length);
 
         if (filterSearchValue.length > 0) {
             for (let cityName in cityLinksByName) {
