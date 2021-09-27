@@ -168,7 +168,7 @@ class HomeController extends Controller
           $b["results"][]=[ "text"=>'Все города', "data"=> 'all','id'=>'all' ,'has_metro' => 'false'];
       }
       if(($request->input('q'))){
-        $cities=city::select('id','name','en_name','metroMap','parentName')->where('name', 'like', '%' . $request->input('q') . '%')->orWhere('en_name', 'like', '%' . $request->input('q') . '%')->orderBy('order_no')->paginate(8);
+        $cities=city::select('id','name','en_name','metroMap','parentName')->where('name', 'like', $request->input('q') . '%')->orWhere('en_name', 'like', $request->input('q') . '%')->orderBy('order_no')->paginate(8);
       }else{
         $correntCity = city::select('id','name','en_name','metroMap','parentName')->find(($request->input('selected') ? $request->input('selected') : city(true)['id']));
         if(!isset($request->page) || $request->page == 1){
@@ -215,7 +215,7 @@ class HomeController extends Controller
     $clubs = club::Published()->select('id','url','created_at')->whereNull('hidden_at')->get();
     $cites = city::select('id','name','en_name')->get();
     $posts = post::select('id','name','url','created_at')->get();
-    $otherLinks = ['about-us','software','register','personal/clubs','contacts','user-agreement','policy','login', 'clubs-offers', 'cities'];
+    $otherLinks = ['about-us','software','register_club','personal/clubs','contacts','user-agreement','policy','login', 'clubs-offers', 'cities'];
     return view('about.sitemap')->with(['posts'=>$posts,'cities'=>$cites,'clubs'=>$clubs,'otherLinks'=>$otherLinks]);
   }
 }
