@@ -14,7 +14,19 @@ function city($all = false){
          return $city->en_name;
      }
 }
+function cityApi($city){
 
+    if($city != ''){
+        $city = App\city::where('id',$city)->first();
+        session()->put('city',$city);
+        session()->save();
+    }
+     else{
+        $city = App\city::where('en_name','moskva')->first();
+         session()->put('city',$city);
+         session()->save();
+     }
+}
 
 if(!function_exists('notReq')){
     function notReq($input){

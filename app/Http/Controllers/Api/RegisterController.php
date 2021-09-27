@@ -20,7 +20,10 @@ use Illuminate\Support\Str;
 class RegisterController extends Controller
 {
     use RegistersUsers;
-
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['only' => ['getUserData']]);
+    }
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -140,7 +143,6 @@ class RegisterController extends Controller
     }
   }
 
-
     public function login(Request $request)
     {
         if(Auth::attempt(['phone' => $request->phone, 'password' => $request->password])){ 
@@ -154,5 +156,8 @@ class RegisterController extends Controller
         else{
             return response()->json(['status'=>false,'msg'=>'Unauthorised'], 202);
         } 
+    }
+    public function getUserData(){
+        return response()->json(['status'=>true,'user'=>Auth::user()], 202);
     }
 }

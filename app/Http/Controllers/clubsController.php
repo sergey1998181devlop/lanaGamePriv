@@ -161,6 +161,7 @@ class clubsController extends Controller
                 'configuration' => ['required'],
             ]);
         }
+        
         $validationAr = [];
         $errors = [];
         if($update){
@@ -257,15 +258,19 @@ class clubsController extends Controller
                 if($request->input($day) == 'on'){
                     $daysAr[$day]['from'] = $request->input($day.'_work_from');
                     $daysAr[$day]['to'] = $request->input($day.'_work_to');
-                    if($request->input($day.'_work_from') == '' || $request->input($day.'_work_to')){
-                        $errors[] = 'work_time';
+                    if($request->input($day.'_work_from') == '' || $request->input($day.'_work_to') == ''){
+                        $errors['work_time'] = [
+                            'График работы заполнен неверно'
+                        ];
                     }
                 }
             }
             if(count($daysAr) > 0){
                 $club->work_time_days = serialize($daysAr);
             }else{
-                $errors[] = 'work_time';
+                $errors['work_time'] = [
+                    'График работы заполнен неверно'
+                ];
             }
 
         }else{
@@ -273,11 +278,19 @@ class clubsController extends Controller
             $club->work_time_days = '';
         }
         $club->configuration = serialize($request->input('configuration'));
-        if(!is_array($request->input('configuration'))) $errors[] = 'configuration';
+        if(!is_array($request->input('configuration'))){
+            $errors['configuration'] = [
+                'Конфигурация оборудования заполнена неверно'
+            ];
+        }
         if($request->input('marketing_event') == 'on'){
             $club->marketing_event = '1';
             $club->marketing_event_descr = serialize($request->input('marketing_event_descr'));
-            if(!is_array($request->input('marketing_event_descr'))) $errors[] = 'marketing_event';
+            if(!is_array($request->input('marketing_event_descr'))){
+                $errors['marketing_event'] = [
+                    'Акции заполнены неверно'
+                ];
+            } 
         }else{
             $club->marketing_event = '0';
             $club->marketing_event_descr = '';
@@ -294,7 +307,11 @@ class clubsController extends Controller
             if($request->input($input) == 'on')
             $payment_methods[]=$input;
         }
-        if(count($payment_methods) == 0) $errors[] = 'payment_methods';
+        if(count($payment_methods) == 0){
+            $errors['payment_methods'] = [
+                'способы оплаты заполнены неверно'
+            ];
+        }
         $club->payment_methods = implode(',',$payment_methods);
         $club->url=$this->clean($request->input('club_name'));
 
@@ -322,12 +339,20 @@ class clubsController extends Controller
         if(!admin() && !$this->isDraft){
             $data = $request->validate($validationAr);
             if(count($errors) > 0) {
-                return false;}
+                header('Content-type: application/json');
+                \http_response_code(422);
+                echo json_encode(['errors'=>$errors]);
+                exit();
+            }
         }
        if($club->save()){
            return true;
        }
-       return false;
+       
+       header('Content-type: application/json');
+       \http_response_code(422);
+       echo json_encode(['error'=>'Ошибка! обратитесь к администратору']);
+       exit();
     }
     public function saveImage(Request $request){
         $data = $request->validate([
