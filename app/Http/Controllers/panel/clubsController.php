@@ -20,7 +20,7 @@ class clubsController extends Controller
     }
     public function clubs()
     {
-        $newClubs= club::select('id','user_id','club_name','updated_at','url','phone','club_city','published_at','published_by','hidden_at','created_at','last_admin_edit','unpublished_at')->with(array('user' => function($query) {
+        $newClubs= club::select('id','user_id','club_name','updated_at','url','phone','club_instagram_link','club_vk_link','club_email','club_city','published_at','published_by','hidden_at','created_at','last_admin_edit','unpublished_at')->with(array('user' => function($query) {
             $query->select('id','name','phone');
             },'city' => function($query) {
                 $query->select('id','name');
