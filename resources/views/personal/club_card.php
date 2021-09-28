@@ -2,7 +2,7 @@
 
 function echoCard($club,$type = 'published'){
     if($type == 'published'){
-        $cart =  '<a href="'.url('clubs/'.$club->id.'/'.$club->url).'" class="club_card">';
+        $cart =  '<a href="'.url($club->id.'_computerniy_club_'.Str::slug($club->url).'_moskva').'" class="club_card">';
     }else{
         $cart =  '<a class="club_card">';
     }

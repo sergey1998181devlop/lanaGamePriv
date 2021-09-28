@@ -25,7 +25,7 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function redirectToCity(){
-      return redirect('Computerniy_club_Moskva');
+      return redirect('computerniy_club_moskva');
     }
     public function langame_software(){
       return view('about.langame_software');
@@ -172,7 +172,7 @@ class HomeController extends Controller
       }else{
         $correntCity = city::select('id','name','en_name','metroMap','parentName')->find(($request->input('selected') ? $request->input('selected') : city(true)['id']));
         if(!isset($request->page) || $request->page == 1){
-          $b["results"][]=[ "text"=> $correntCity->name, "data"=> "Computerniy_club_".ucfirst($correntCity->en_name),'id'=>$correntCity->id ,'has_metro' =>  $correntCity->metroMap ];
+          $b["results"][]=[ "text"=> $correntCity->name, "data"=> "computerniy_club_".$correntCity->en_name,'id'=>$correntCity->id ,'has_metro' =>  $correntCity->metroMap ];
         }
         $cities=city::select('id','name','en_name','metroMap','parentName')->where('id','!=',$correntCity->id)->orderBy('order_no')->paginate(8);
       }
@@ -183,7 +183,7 @@ class HomeController extends Controller
       }
       foreach ($cities as $city) {
 
-       $b["results"][]=[ "text"=> ($city->parentName != '') ? $city->name.', '.$city->parentName :  $city->name, "data"=> "Computerniy_club_".ucfirst($city->en_name),'id'=>$city->id,'has_metro' =>  $city->metroMap  ];
+       $b["results"][]=[ "text"=> ($city->parentName != '') ? $city->name.', '.$city->parentName :  $city->name, "data"=> "computerniy_club_".$city->en_name,'id'=>$city->id,'has_metro' =>  $city->metroMap  ];
       }
 
       return response($b);

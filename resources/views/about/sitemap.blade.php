@@ -2,14 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 @foreach ($cities as $city)
     <url>
-        <loc>{{url('/Computerniy_club_'.ucfirst($city->en_name))}}</loc>
+        <loc>{{url('/computerniy_club_'.$city->en_name)}}</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
 @endforeach
 @foreach ($clubs as $club)
     <url>
-        <loc>{{url('clubs/'.$club->id.'/'.$club->url)}}</loc>
+        <loc>{{url($club->id.'_computerniy_club_'.Str::slug($club->url).'_'.city())}}</loc>
         <lastmod>{{ $club->created_at }}</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
@@ -17,7 +17,7 @@
 @endforeach
 @foreach ($posts as $post)
     <url>
-        <loc>{{url('post/read/'.$post->id.'/'.$post->url)}}</loc>
+        <loc>{{url($post->id.'_statia_'.Str::slug($post->url))}}</loc>
         <lastmod>{{ $post->created_at }}</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>

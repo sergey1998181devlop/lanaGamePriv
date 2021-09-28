@@ -26,7 +26,7 @@
             <div class="cities_list_wrapper">
                 <div class="cities_list">
                     @foreach($cities as $city)
-                        <a href="{{url('/')}}/Computerniy_club_{{ ucfirst($city->en_name) }}" l="{{ \mb_substr($city->name, 0, 1) }}">
+                        <a href="{{url('/')}}/computerniy_club_{{ $city->en_name }}" l="{{ \mb_substr($city->name, 0, 1) }}">
                             {{ $city->name }}
                         </a>
                     @endforeach

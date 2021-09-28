@@ -38,7 +38,7 @@
            @foreach($clubs as $club) 
           <tr>
             <td name="id" val="{{$club->id}}">{{$i++}}</td>
-            <td><a href="{{url('clubs/'.$club->id.'/'.$club->url)}}">{{$club->club_name}}</a></td>
+            <td><a href="{{url($club->id.'_computerniy_club_'.Str::slug($club->url).'_'.$club->city_en_name)}}">{{$club->club_name}}</a></td>
 
             <td>{{$club->city->name}}</td>
             <td><a href="{{url('panel/users')}}?search={{$club->user->phone}}">{{$club->user->name}}</a></td>
@@ -58,7 +58,7 @@
             </td>
             <td>
             <a href="{{url('personal/club/'.$club->id.'/edit')}}" class="btn btn-sm btn-primary">Редактировать</a>
-            <a href="{{url('club/'.$club->id.'/active')}}" class="club_active btn-sm btn btn-success">Опубликовать</a>
+            <a href="{{url($club->id.'_computerniy_club_'.Str::slug($club->url).'_'.$club->city_en_name.'/active')}}" class="club_active btn-sm btn btn-success">Опубликовать</a>
             <a href="#" data-toggle="modal" data-target="#club_delete_modal" data-id="{{$club->id}}" club-name="{{$club->club_name}}"  href="{{url('panel/club/'.$club->id.'/delete')}}" class="btn btn-danger club_delete btn-sm">Удалить</a>
             </td>
           </tr>

@@ -62,7 +62,7 @@
                            data-remodal-target="change_user_modal"  data-remodal-options="hashTracking: false">Сменить владелеца</a>
                     @endif
                     @if($club->published_at == null && admin() && $club->deleted_at == null)
-                        <a href="{{url('club/'.$club->id.'/active')}}" class="club_active btn">Опубликовать</a>
+                        <a href="{{url($club->id.'_computerniy_club_'.Str::slug($club->url).'_'.$club->city["en_name"].'/active')}}" class="club_active btn">Опубликовать</a>
                         <button type="button" class="club_comment" data-remodal-target="club_comment_modal">Написать коммент</button>
                     @endif
                     @if(admin())

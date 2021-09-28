@@ -45,7 +45,7 @@ Route::get('personal/club/{id}/edit', 'clubsController@edit');
 Route::post('personal/club/{id}/update', 'clubsController@update');
 Route::post('personal/club/{id}/update-draft', 'clubsController@updateDraft');
 //Route::get('clubs/{id}/{url}','clubsController@index');
-Route::get('{id}_Computerniy_club_{url}_{city}','clubsController@index');
+Route::get('{id}_computerniy_club_{url}_{city}','clubsController@index');
 Route::post('clubs/add', 'clubsController@addClub');
 Route::post('clubs/add-draft', 'clubsController@addDraftClub');
 Route::post('clubs/add-list','clubsController@savePriceList' );
@@ -110,7 +110,7 @@ Route::get('panel/clubs/hidded-clubs','panel\clubsController@hidded_clubs');
 Route::get('panel/clubs/drafts','panel\clubsController@drafts');
 Route::get('panel/clubs/deleted-clubs','panel\clubsController@deleted_clubs');
 Route::get('panel/clubs/clubs','panel\clubsController@clubs');
-Route::get('club/{id}/active','panel\clubsController@active');
+Route::get('{id}_computerniy_club_{url}_{city}/active','panel\clubsController@active');
 Route::post('club/{id}/comment','panel\clubsController@comment');
 Route::post('panel/club/{id}/change-user','panel\clubsController@changeClubUser');
 Route::post('panel/club/{id}/delete','panel\clubsController@deleteClub');
@@ -134,6 +134,10 @@ Route::get('panel/comments/send-mails', 'panel\clubsController@sendMails');
 
 // редиректы
 Route::get('/register', function(){ return Redirect::to('/register_club', 301); });
+Route::get('clubs/{id}/{url}', function($id, $url){ return Redirect::to($id.'_computerniy_club_'.$url.'_moskva', 301); });
+//Route::get('/{city}', function($city){ return Redirect::to('/computerniy_club_'.$city, 301); });
+
+
 
 // должен быть последным, иначе остальные ссылки не сработают
-Route::get('/Computerniy_club_{city}', 'HomeController@index')->name('home')->middleware('city');
+Route::get('/computerniy_club_{city}', 'HomeController@index')->name('home')->middleware('city');

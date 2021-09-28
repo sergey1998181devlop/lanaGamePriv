@@ -20,7 +20,7 @@ class clubsController extends Controller
     }
     public function clubs()
     {
-        $newClubs= club::select('id','user_id','club_name','updated_at','url','phone','club_instagram_link','club_vk_link','club_email','club_city','published_at','published_by','hidden_at','created_at','last_admin_edit','unpublished_at')->with(array('user' => function($query) {
+        $newClubs= club::select('clubs.id','clubs.user_id','clubs.club_name','clubs.updated_at','clubs.url','clubs.phone','clubs.club_instagram_link','clubs.club_vk_link','clubs.club_email','clubs.club_city','clubs.published_at','clubs.published_by','clubs.hidden_at','clubs.created_at','clubs.last_admin_edit','clubs.unpublished_at', 'city.en_name as city_en_name')->leftJoin('cities as city', 'clubs.club_city', '=', 'city.id')->with(array('user' => function($query) {
             $query->select('id','name','phone');
             },'city' => function($query) {
                 $query->select('id','name');
@@ -44,7 +44,7 @@ class clubsController extends Controller
     }
     public function new_clubs()
     {
-        $newClubs= club::select('id','user_id','club_name','club_city','updated_at','created_at','url')->with(array('user' => function($query) {
+        $newClubs= club::select('clubs.id','clubs.user_id','clubs.club_name','clubs.club_city','clubs.updated_at','clubs.created_at','clubs.url', 'city.en_name as city_en_name')->leftJoin('cities as city', 'clubs.club_city', '=', 'city.id')->with(array('user' => function($query) {
         $query->select('id','name','phone');
     },'city' => function($query) {
         $query->select('id','name');
@@ -90,7 +90,7 @@ class clubsController extends Controller
         return view('admin.clubs.drafts')->with(['clubs'=>$clubs]);
     }
     public function active($id){
-        $club = club::select('published_at','published_by','unpublished_by','unpublished_at','draft','id','user_id','url')->UnderEdit()->findOrFail($id);
+        $club = club::select('clubs.published_at','clubs.published_by','clubs.unpublished_by','clubs.unpublished_at','clubs.draft','clubs.id','clubs.user_id','clubs.url', 'city.en_name as city_en_name')->leftJoin('cities as city', 'clubs.club_city', '=', 'city.id')->UnderEdit()->findOrFail($id);
         $club->published_at =Carbon::now()->toDateTimeString();
         $club->published_by =Auth::user()->id;
         $club->unpublished_at =null;
@@ -98,10 +98,10 @@ class clubsController extends Controller
         $club->last_admin_edit =Auth::user()->id;
         $club->save();
         $club->comments()->delete();
-        return redirect('clubs/'.$club->id.'/'.$club->url);
+        return redirect($club->id.'_computerniy_club_'.$club->url.'_'.$club->city_en_name);
     }
     public function comment($id,Request $request){
-        $club = club::select('published_at','published_by','draft','id','user_id','url','club_name')->findOrFail($id);
+        $club = club::select('clubs.published_at','clubs.published_by','clubs.draft','clubs.id','clubs.user_id','clubs.url','clubs.club_name', 'city.en_name as city_en_name')->leftJoin('cities as city', 'clubs.club_city', '=', 'city.id')->findOrFail($id);
         if( $club->published_at != null ){
             $club->published_at = null;
             $club->published_by =Auth::user()->id;
@@ -115,7 +115,7 @@ class clubsController extends Controller
         $comment ->comment =  $request->input('comment');
         $comment->created_by = Auth::user()->id;
         $comment -> save();
-        return redirect('clubs/'.$club->id.'/'.$club->url);
+        return redirect($club->id.'_computerniy_club_'.$club->url.'_'.$club->city_en_name);
     }
     public function changeClubUser($id,Request $request){
         $club = club::findOrFail($id);

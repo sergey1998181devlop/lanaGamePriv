@@ -71,7 +71,7 @@
                         @foreach($posts as $post)
 
                             <div class="articles_item">
-                                <a href="{{url('post/read/'.$post->id.'/'.$post->url)}}">
+                                <a href="{{url($post->id.'_statia_'.Str::slug($post->url))}}">
                                     <div class="article_img_wrapper">
                                         <img src="{{($post->image != '') ? url('storage/posts/thumbnail/'.$post->image) : asset('img/default-club-preview-image.svg')}}" alt="club">
                                     </div>
@@ -118,7 +118,7 @@
             var nextPage = correntPage + 1;
             jQuery.ajax({
                 type: 'get',
-                url: '{{url('/')}}/Computerniy_club_{{ucfirst(city())}}?order={{$order_by}}&order_key={{$order_key}}',
+                url: '{{url('/')}}/computerniy_club_{{city()}}?order={{$order_by}}&order_key={{$order_key}}',
                 data: {'page': nextPage, 'search': $("#search-text").val()},
                 success: function(data) {
                     correntPage++;
@@ -133,7 +133,7 @@
         $(document).on('keyup', '#search-text', function() {
             jQuery.ajax({
                 type: 'get',
-                url: '{{url('/')}}/Computerniy_club_{{ucfirst(city())}}?order={{$order_by}}&order_key={{$order_key}}',
+                url: '{{url('/')}}/computerniy_club_{{city()}}?order={{$order_by}}&order_key={{$order_key}}',
                 data: {'search': $("#search-text").val()},
                 success: function(data) {
                     $('.sc_list').html(data.html);
