@@ -36,10 +36,11 @@
         </thead>
         <tbody>
             <? $i = 1;?>
-           @foreach($clubs as $club) 
+           @foreach($clubs as $club)
+           <? $CUrl=url($club->id.'_computerniy_club_'.Str::slug($club->url).'_'.$club->city->en_name);?>
           <tr>
             <td name="id" val="{{$club->id}}">{{$i++}}</td>
-            <td><a href="{{url('clubs/'.$club->id.'/'.$club->url)}}">{{$club->club_name}}</a></td>
+            <td><a href="{{$CUrl}}">{{$club->club_name}}</a></td>
 
             <td>{{$club->city->name}}</td>
             <td><a href="{{url('panel/users')}}?search={{$club->user->phone}}">{{$club->user->name}}</a></td>

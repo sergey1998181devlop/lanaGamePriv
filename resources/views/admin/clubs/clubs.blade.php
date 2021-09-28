@@ -59,9 +59,10 @@
         <tbody>
             <? $i = 1;?>
            @foreach($clubs as $club) 
+           <? $CUrl=url($club->id.'_computerniy_club_'.Str::slug($club->url).'_'.$club->city->en_name);?>
           <tr>
             <td name="id" val="{{$club->id}}">{{$i++}}</td>
-            <td><a href="{{url($club->id.'_computerniy_club_'.Str::slug($club->url).'_'.$club->city_en_name)}}">{{$club->club_name}}</a></td>
+            <td><a href="{{url($club->id.'_computerniy_club_'.Str::slug($club->url).'_'.$club->city->en_name)}}">{{$club->club_name}}</a></td>
 
             <td>@if(isset($club->city)){{$club->city->name}}@endif</td>
             <td>{{$club->phone}}</td>
@@ -96,11 +97,11 @@
             <td>
               <a href="{{url('personal/club/'.$club->id.'/edit')}}" class="btn btn-sm btn-primary">Редактировать</a>
               <?if($club->published_at == null){?>
-                <a href="{{url($club->id.'_computerniy_club_'.Str::slug($club->url).'_'.$club->city_en_name.'/active')}}" class="club_active btn btn-sm btn-success">Опубликовать</a>
+                <a href="{{$CUrl}}/active" class="club_active btn btn-sm btn-success">Опубликовать</a>
                 <?}else{?>
                 <a href="#" data-toggle="modal" data-target="#club_comment_modal" data-id="{{$club->id}}" class="btn club_comment_modal btn-sm btn-secondary">Снять с публикации</a>
              <?}?>
-             <a href="{{url('clubs/'.$club->id.'/'.$club->url)}}?action=change_user" class="btn btn-warning btn-sm">Передать другому</a>
+             <a href="{{$CUrl}}?action=change_user" class="btn btn-warning btn-sm">Передать другому</a>
              <a   data-id="{{$club->id}}" club-name="{{$club->club_name}}" class="btn btn-danger club_delete btn-sm pointer">Удалить</a>
             
           </td>

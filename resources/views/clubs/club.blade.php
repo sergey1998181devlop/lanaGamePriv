@@ -797,7 +797,7 @@
             $(document).ready(function() {
                 jQuery('[data-remodal-id="success_modal"]').remodal().open();
             });
-            window.history.replaceState({}, document.title, $('meta[name="site"]').attr('content') +  '/clubs/'+'{{$club->id}}/{{$club->url}}');
+            window.history.replaceState({}, document.title, $('meta[name="site"]').attr('content') +  "/{{$club->id.'_computerniy_club_'.$club->url.'_'.$club->city->en_name.''}}");
         </script>
     @endif
     @if(isset($_GET['action']) && $_GET['action'] == 'change_user')
