@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('page')
-    <title>{{$club->club_name}} - LanGame</title>
-    <meta name="description" content="Компьютерный клуб - {{$club->club_name}}">
-    <meta name="keywords" content="LanGame,компьютерный клуб {{$club->club_name}},{{$club->club_name}},клуб,интернет"/>
+    <title>Компьютерный клуб {{$club->club_name}} {{$club->city["name"]}} - цены, отзывы, обзоры</title>
+    <meta name="description" content="Компьютерный клуб {{$club->club_name}} по адресу {{$club->club_full_address}} - расположение, цены, отзывы, рейтинг ({{$club->rating }} из 5), честные обзоры, новости, ближайшие мероприятия">
+    <meta name="keywords" content="компьютерный клуб {{$club->club_name}}, интернет кафе {{$club->club_name}}, киберклуб {{$club->club_name}}, {{$club->city["name"]}}"/>
 @endsection
 @section('content')
     <?php

@@ -165,7 +165,7 @@
     <div class="container-fluid">
         <div class="header_wrapper">
             <div class="header_logo_wrapper">
-                <a href="{{url('/')}}/{{city()}}">
+                <a href="{{url('/')}}/Computerniy_club_{{ucfirst(city())}}">
                     <img src="{{ asset('/img/logo.svg')}}" alt="logo">
                 </a>
             </div>
@@ -199,7 +199,7 @@
                                     <a href="{{url('personal/clubs')}}">Список клубов</a>
                                 </li>
                                 <li>
-                                    <a href="<?= Auth::guest() ? url('register') : url('personal/clubs') ?>?action=add_club">Добавить клуб</a>
+                                    <a href="<?= Auth::guest() ? url('register_club') : url('personal/clubs') ?>?action=add_club">Добавить клуб</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('logout') }}"
@@ -217,7 +217,7 @@
                     @if(Auth::guest())
                         <ul class="mob_main_menu">
                             <li>
-                                <a href="<?= Auth::guest() ? url('register') : url('personal/clubs') ?>?action=add_club">Добавить клуб</a>
+                                <a href="<?= Auth::guest() ? url('register_club') : url('personal/clubs') ?>?action=add_club">Добавить клуб</a>
                             </li>
                             <li>
                                 <a href="{{url('contacts')}}">Контакты</a>
@@ -236,7 +236,7 @@
                         @endif
 
                         <li>
-                            <a href="<?= Auth::guest() ? url('register') : url('personal/clubs') ?>?action=add_club">Добавить клуб</a>
+                            <a href="<?= Auth::guest() ? url('register_club') : url('personal/clubs') ?>?action=add_club">Добавить клуб</a>
                         </li>
                         <li>
                             <a href="{{url('contacts')}}">Контакты</a>
@@ -276,7 +276,7 @@
                                         </div>
                                     </div>
                                     <div class="btn_wrapper">
-                                        <a href="{{url('register')}}" class="registration">Регистрация</a>
+                                        <a href="{{url('register_club')}}" class="registration">Регистрация</a>
                                         <button type="submit">Продолжить</button>
                                     </div>
                                 </form>
@@ -288,7 +288,7 @@
                         <ul>
                             @if(Auth::guest())
                                 <li>
-                                    <a href="{{url('register')}}">Как попасть на LANGAME</a>
+                                    <a href="{{url('register_club')}}">Как попасть на LANGAME</a>
                                 </li>
                             @else
                                 <li>
@@ -492,7 +492,7 @@
                                 <a href="{{url('personal/clubs')}}">Личный кабинет владельца</a>
                             </li>
                             <li>
-                                <a href="{{url('register')}}">Как попасть на LANGAME</a>
+                                <a href="{{url('register_club')}}">Как попасть на LANGAME</a>
                             </li>
                             <li>
                                 <a href="{{url('software')}}">LANGAME Software</a>

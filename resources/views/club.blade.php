@@ -13,7 +13,7 @@ $clubIndex = isset($clubIndex) ? $clubIndex : null;
      data-lat="{{$club->lat}}"
      style="<?=($isHidden) ? 'display:none;' : null ?>"
 >
-    <a href="{{url('clubs/'.$club->id.'/'.$club->url)}}" class="club_card">
+    <a href="{{url($club->id.'_Computerniy_club_'.Str::slug($club->url).'_'.city())}}" class="club_card">
         <div class="sc_img_wrapper">
             <div class="sc_img">
                 @if($club->main_preview_photo != null)

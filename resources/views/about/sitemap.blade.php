@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 @foreach ($cities as $city)
     <url>
-        <loc>{{url('/'.$city->en_name)}}</loc>
+        <loc>{{url('/Computerniy_club_'.ucfirst($city->en_name))}}</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>

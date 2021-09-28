@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('page')
-<title>Регистрация - LanGame</title>
+<title>Регистрация на проекте LANGAME.RU для владельцев компьютерных клубов</title>
+<meta name="keywords" content="регистрация, Langame" />
+<meta name="description" content="У Вас есть компьютерный клуб? Тогда обязательно зарегистрируйте его на сайте LANGAME.RU" />
 @endsection
 @section('content')
 <!--SECTION ADD CLUB PAGE START-->
@@ -20,7 +22,7 @@
             </div>
             <div class="add_club_start_wrapper">
             @if(Auth::guest())
-                <form action="{{url('register/send_sms')}}" class="add_club_start" method="post" id="add-club-start-form">
+                <form action="{{url('register_club/send_sms')}}" class="add_club_start" method="post" id="add-club-start-form">
             @else
                 <form action="" class="add_club_start" method="post" id="add-club-start-form_authed">
             @endif    
@@ -48,7 +50,7 @@
                     </div>
                 </form>
                 @if(Auth::guest())
-                <form action="{{url('register/verify_sms')}}" method="post" class="add_class_confirm_code" id="add-club-code-confirm-form">
+                <form action="{{url('register_club/verify_sms')}}" method="post" class="add_class_confirm_code" id="add-club-code-confirm-form">
                 <input type="hidden" name="_token"  value="{{ csrf_token() }}">
                     <div class="forma">
                         <p>Введите код, отправленный на номер <span class="user_phone"></span></p>
@@ -101,7 +103,7 @@
             <div class="personal_main_content_wrapper">
                 <div class="user_profile_form_wrapper">
                     <div class="user_profile_title">Профиль</div>
-                    <form  method="post" action="{{ url('register/create') }}" class="user_profile">
+                    <form  method="post" action="{{ url('register_club/create') }}" class="user_profile">
                     @csrf
                     <input type="hidden" name="conf_code">
                         <div class="forma">

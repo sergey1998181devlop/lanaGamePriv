@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('page')
-    <title>LanGame - Выбери свой компьютерный клуб в {{city(true)['namePrepositional']}}</title>
-    <meta name="description" content="найди свой компьютерный клуб в {{city(true)['namePrepositional']}}">
-    <meta name="keywords" content="LanGame,компьютерный клуб в {{city(true)['namePrepositional']}},клуб,интернет"/>
+    <title>Лучшие компьютерные клубы в городе {{city(true)['name']}} в {{date("Y")}}</title>
+    <meta name="description" content="Все компьютерные клубы города {{city(true)['name']}} с их адресами ({{$count_clubs}}) в {{date('Y')}}. А также фото, отзывы, режим работы, цены, рейтинг и проводимые мероприятия.">
+    <meta name="keywords" content="Компьютерный клуб {{city(true)['name']}}, интернет-кафе {{city(true)['name']}}, киберклуб {{city(true)['name']}}, отзывы, цены"/>
 @endsection
 @section('content')
     <?
@@ -118,7 +118,7 @@
             var nextPage = correntPage + 1;
             jQuery.ajax({
                 type: 'get',
-                url: '{{url('/')}}/{{city()}}?order={{$order_by}}&order_key={{$order_key}}',
+                url: '{{url('/')}}/Computerniy_club_{{ucfirst(city())}}?order={{$order_by}}&order_key={{$order_key}}',
                 data: {'page': nextPage, 'search': $("#search-text").val()},
                 success: function(data) {
                     correntPage++;
@@ -133,7 +133,7 @@
         $(document).on('keyup', '#search-text', function() {
             jQuery.ajax({
                 type: 'get',
-                url: '{{url('/')}}/{{city()}}?order={{$order_by}}&order_key={{$order_key}}',
+                url: '{{url('/')}}/Computerniy_club_{{ucfirst(city())}}?order={{$order_by}}&order_key={{$order_key}}',
                 data: {'search': $("#search-text").val()},
                 success: function(data) {
                     $('.sc_list').html(data.html);

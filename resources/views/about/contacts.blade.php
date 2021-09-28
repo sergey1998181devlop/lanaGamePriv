@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('page')
-<title>Контакты - LanGame</title>
+<title>Контакты LANGAME.RU - телефон, адрес, электронная почта</title>
+<meta name="keywords" content="контакты, телефон, email, электронная почта, langame" />
+<meta name="description" content="Контакты LANGAME.RU - телефон, адрес, электронная почта, расположение офиса, форма обратной связи" />
 @endsection
 @section('content')
 <!--SECTION CONTACTS PAGE START-->

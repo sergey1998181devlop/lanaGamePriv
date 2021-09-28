@@ -15,14 +15,14 @@
 
                                             <div class="sort_by_options">
                                                 <a class="<?= $order_by === 'price' ? $order_key : ''; ?>"
-                                                href="{{url('/')}}/{{city()}}?order=price&order_key=<?= $order_by === 'price' && $order_key === 'asc' ? 'desc' : 'asc'; ?>"  onclick="ym(82365286,'reachGoal','sort_price');gtag('event', 'send', { 'event_category': 'sort_price', 'event_action': 'click' });">По цене</a>
+                                                href="{{url('/')}}/Computerniy_club_{{ucfirst(city())}}?order=price&order_key=<?= $order_by === 'price' && $order_key === 'asc' ? 'desc' : 'asc'; ?>"  onclick="ym(82365286,'reachGoal','sort_price');gtag('event', 'send', { 'event_category': 'sort_price', 'event_action': 'click' });">По цене</a>
 
                                                 <a class="<?= $order_by === 'rating' ? $order_key : ''; ?>"
-                                                href="{{url('/')}}/{{city()}}?order=rating&order_key=<?= $order_by === 'rating' && $order_key === 'asc' ? 'desc' : 'asc'; ?>"   onclick="ym(82365286,'reachGoal','sort_grade');gtag('event', 'send', { 'event_category': 'sort_grade', 'event_action': 'click' });">По
+                                                href="{{url('/')}}/Computerniy_club_{{ucfirst(city())}}?order=rating&order_key=<?= $order_by === 'rating' && $order_key === 'asc' ? 'desc' : 'asc'; ?>"   onclick="ym(82365286,'reachGoal','sort_grade');gtag('event', 'send', { 'event_category': 'sort_grade', 'event_action': 'click' });">По
                                                     рейтингу</a>
 
                                                 <a class="<?= $order_by === 'nearby' ? $order_key : ''; ?>"
-                                                href="{{url('/')}}/{{city()}}?order=nearby&order_key=<?= $order_by === 'nearby' && $order_key === 'asc' ? 'desc' : 'asc'; ?>">По близости</a>
+                                                href="{{url('/')}}/Computerniy_club_{{ucfirst(city())}}?order=nearby&order_key=<?= $order_by === 'nearby' && $order_key === 'asc' ? 'desc' : 'asc'; ?>">По близости</a>
                                             </div>
                                         </div>
                                     </div>
@@ -32,7 +32,7 @@
                                             <a><span>Список</span></a>
                                         </div>
                                         <div class="show_by_map">
-                                            <a href="{{url('/').'/'.city()}}?show=map&order={{$order_by}}&order_key={{$order_key}}"><span>На карте</span></a>
+                                            <a href="{{url('/').'/Computerniy_club_'.ucfirst(city())}}?show=map&order={{$order_by}}&order_key={{$order_key}}"><span>На карте</span></a>
                                         </div>
 
                                         <div class="search">

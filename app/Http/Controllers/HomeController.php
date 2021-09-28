@@ -25,7 +25,7 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function redirectToCity(){
-      return redirect('moskva');
+      return redirect('Computerniy_club_Moskva');
     }
     public function langame_software(){
       return view('about.langame_software');
@@ -159,7 +159,7 @@ class HomeController extends Controller
         }
         $posts=post::select('id','url','image','name','about')->orderBy('order_no','desc')->orderBy('created_at','desc')->limit(3)->get();
         $postsCount=post::count();
-        return view('welcome')->with(['posts'=>$posts,'postsCount'=>$postsCount,'clubs'=>$clubs,'now'=>$now,'today'=>$today,'hasMoreClubs'=>($clubs->total() > $paginate ) ? true : false]);
+        return view('welcome')->with(['count_clubs'=>$clubs->total(), 'posts'=>$posts,'postsCount'=>$postsCount,'clubs'=>$clubs,'now'=>$now,'today'=>$today,'hasMoreClubs'=>($clubs->total() > $paginate ) ? true : false]);
     }
     public function searchCities(Request $request){
       $b = array();
@@ -172,7 +172,7 @@ class HomeController extends Controller
       }else{
         $correntCity = city::select('id','name','en_name','metroMap','parentName')->find(($request->input('selected') ? $request->input('selected') : city(true)['id']));
         if(!isset($request->page) || $request->page == 1){
-          $b["results"][]=[ "text"=> $correntCity->name, "data"=> $correntCity->en_name,'id'=>$correntCity->id ,'has_metro' =>  $correntCity->metroMap ];
+          $b["results"][]=[ "text"=> $correntCity->name, "data"=> "Computerniy_club_".ucfirst($correntCity->en_name),'id'=>$correntCity->id ,'has_metro' =>  $correntCity->metroMap ];
         }
         $cities=city::select('id','name','en_name','metroMap','parentName')->where('id','!=',$correntCity->id)->orderBy('order_no')->paginate(8);
       }
@@ -183,7 +183,7 @@ class HomeController extends Controller
       }
       foreach ($cities as $city) {
 
-       $b["results"][]=[ "text"=> ($city->parentName != '') ? $city->name.', '.$city->parentName :  $city->name, "data"=> $city->en_name,'id'=>$city->id,'has_metro' =>  $city->metroMap  ];
+       $b["results"][]=[ "text"=> ($city->parentName != '') ? $city->name.', '.$city->parentName :  $city->name, "data"=> "Computerniy_club_".ucfirst($city->en_name),'id'=>$city->id,'has_metro' =>  $city->metroMap  ];
       }
 
       return response($b);

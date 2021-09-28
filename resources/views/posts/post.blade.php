@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('page')
-    <title>{{$post->name}} - LanGame</title>
+    <title>{{$post->name}} LANGAME.RU</title>
+    <meta name="description" content="{{$post->desc}} На сайте LANGAME.RU">
+    <meta name="keywords" content="{{$post->key}}"/>
 @endsection
 @section('content')
     <!--SECTION ARTICLE PAGE MAIN BANNER START-->
@@ -38,7 +40,7 @@
                             <div class="another_articles_list">
                                 @foreach($morePosts as $p)
                                     <div class="another_articles_item">
-                                        <a href="{{url('post/read/'.$p->id.'/'.$p->url)}}">
+                                        <a href="{{url($p->id.'_statia_'.Str::slug($p->url))}}">
                                             <img src="{{($p->image != '') ? url('storage/posts/'.$p->image) : asset('img/default-club-preview-image.svg')}}" alt="article">
                                         </a>
                                         <div class="article_title" title="{{$p->name}}">{{$p->name}}</div>

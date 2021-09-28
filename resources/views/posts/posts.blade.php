@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('page')
-<title>Статьи - LanGame</title>
+<title>Полезные статьи о жизни компьютерных клубов на сайте LANGAME.RU</title>
+<meta name="keywords" content="статьи, заметки, компьютерные клубы, киберспорт" />
+<meta name="description" content="Полезные статьи и заметки о жизни компьютерных клубов в России и в мире. Новости из жизни индустрии компьютерных клубов и киберспорта на сайте LANGAME.RU" />
 @endsection
 @section('content')
 
@@ -14,7 +16,7 @@
                 @if(isset( $posts) && count($posts)>0)
                 @foreach($posts as $post)
                     <div class="articles_item">
-                        <a href="{{url('post/read/'.$post->id.'/'.$post->url)}}">
+                        <a href="{{url($post->id.'_statia_'.Str::slug($post->url))}}">
                             <div class="article_img_wrapper">
                                 <img src="{{($post->image != '') ? url('storage/posts/thumbnail/'.$post->image) : asset('img/default-club-preview-image.svg')}}" alt="club">
                             </div>

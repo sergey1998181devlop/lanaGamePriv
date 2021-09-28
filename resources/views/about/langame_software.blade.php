@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('page')
-<title>LANGAME Software</title>
+<title>Программное обеспечение для компьютерных клубов LANGAME SOFTWARE</title>
+<meta name="keywords" content="Софт, компьютерный клуб, По, программное обеспечение, интернет кафе, киберклуб" />
+<meta name="description" content="LANGAME SOFTWARE - программное обеспечение для автоматизации работы компьютерных клубов, разработанное владельцами компьютерных клубов" />
 @endsection
 @section('content')
 <!--SECTION LANGAME SOFTWARE START-->

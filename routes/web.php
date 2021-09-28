@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/test',  'HomeController@sendNotification');
 
-
 Route::get('/', 'HomeController@redirectToCity');
 Route::get('/sitemap.xml','HomeController@siteMap' );
 // регистрация и авторизация
@@ -25,7 +24,7 @@ Route::post('/register/send_sms', 'Auth\RegisterController@sendSMS');
 Route::post('/register/verify_sms', 'Auth\RegisterController@verifySMS');
 Route::post('/register/create', 'Auth\RegisterController@create');
 Route::get('email/verify/{token}','Auth\RegisterController@verifyEmail')->name('user.verify');
-
+Route::get('/register_club', ['as' => 'auth.register', 'uses' => 'Auth\RegisterController@showRegistrationForm']);
 
 // личный кабинет
 
@@ -35,7 +34,8 @@ Route::post('profile/verify', 'personalController@verifySMS');
 Route::post('profile/update', 'personalController@update');
 Route::get('profile/verify/resend', 'personalController@resendVerfyEmail');
 // посты
-Route::get('post/read/{id}/{url}','postsController@post');
+//Route::get('post/read/{id}/{url}','postsController@post');
+Route::get('{id}_statia_{url}','postsController@post');
 Route::get('posts','postsController@allposts');
 
 // клубы
@@ -44,7 +44,8 @@ Route::get('personal/club/{id}/toggle', 'clubsController@toggle');
 Route::get('personal/club/{id}/edit', 'clubsController@edit');
 Route::post('personal/club/{id}/update', 'clubsController@update');
 Route::post('personal/club/{id}/update-draft', 'clubsController@updateDraft');
-Route::get('clubs/{id}/{url}','clubsController@index');
+//Route::get('clubs/{id}/{url}','clubsController@index');
+Route::get('{id}_Computerniy_club_{url}_{city}','clubsController@index');
 Route::post('clubs/add', 'clubsController@addClub');
 Route::post('clubs/add-draft', 'clubsController@addDraftClub');
 Route::post('clubs/add-list','clubsController@savePriceList' );
@@ -131,5 +132,8 @@ Route::get('/panel/langame-requests/toggle/{id}', 'panel\adminController@langame
 
 Route::get('panel/comments/send-mails', 'panel\clubsController@sendMails');
 
+// редиректы
+Route::get('/register', function(){ return Redirect::to('/register_club', 301); });
+
 // должен быть последным, иначе остальные ссылки не сработают
-Route::get('/{city}', 'HomeController@index')->name('home')->middleware('city');
+Route::get('/Computerniy_club_{city}', 'HomeController@index')->name('home')->middleware('city');

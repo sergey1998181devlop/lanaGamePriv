@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('page')
-    <title>О LANGAME</title>
+    <title>О проекте LANGAME.RU, цели, задачи и команда проекта LANGAME.RU</title>
+    <meta name="keywords" content="langame, langame ru" />
+    <meta name="description" content="Здесь рассказываем зачем нужен проект LANGAME.RU, кто стоит за этим проектом, какие цели и задачи мы ставим перед собой и самое главное ответ на вопрос зачем нужен проект LANGAME.RU" />
 @endsection
 @section('content')
     <!--SECTION ABOUT SERVICE START-->
@@ -429,7 +431,7 @@
                     Делать игры и киберспорт <span class="text_decor">доступными для каждого!</span>
                 </p>
             </div>
-            <a href="{{url('register')}}" class="learn_more">Вы с нами?</a>
+            <a href="{{url('register_club')}}" class="learn_more">Вы с нами?</a>
         </div>
     </section>
     <!--SECTION SERVICE BOTTOM BLOCK END-->
