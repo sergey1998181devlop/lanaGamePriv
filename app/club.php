@@ -33,7 +33,7 @@ class club extends Model
 
     public function scopeSelectCartFeilds($query)
     {
-        return $query->select('id','lat','lon','club_name','marketing_event','url','club_metro','club_address','qty_vip_pc','food_drinks','alcohol','hidden_at','main_preview_photo','rating','club_thumbnail');
+        return $query->select('id','lat','lon','club_name','marketing_event','url','club_metro','club_address','qty_vip_pc','food_drinks','alcohol','hidden_at','main_preview_photo','rating','club_thumbnail','club_city');
     }
     public function scopeSelectCartFeilds4Home($query, $lat, $lon)
     {

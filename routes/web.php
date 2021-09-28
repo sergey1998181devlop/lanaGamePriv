@@ -134,7 +134,7 @@ Route::get('panel/comments/send-mails', 'panel\clubsController@sendMails');
 
 // редиректы
 Route::get('/register', function(){ return Redirect::to('/register_club', 301); });
-Route::get('clubs/{id}/{url}', function($id, $url){ return Redirect::to($id.'_computerniy_club_'.$url.'_moskva', 301); });
+Route::get('clubs/{id}/{url}','clubsController@redirectOldClubsURLS');
 Route::get('post/read/{id}/{url}', function($id, $url){ return Redirect::to($id.'_statia_'.$url, 301); });
 //Route::get('/{city}', function($city){ return Redirect::to('/computerniy_club_'.$city, 301); });
 

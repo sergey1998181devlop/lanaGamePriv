@@ -8,6 +8,7 @@ use App\User;
 use Auth;
 use Carbon\Carbon;
 use ImageResize;
+use Str;
 include_once(resource_path('views/includes/functions.blade.php'));
 class clubsController extends Controller
 {
@@ -62,6 +63,9 @@ class clubsController extends Controller
     public function clubs(){
         $published = club::SelectCartFeilds()->CorrentUser()->Published()->with(array('metro'=>function($query) {
             $query->select('id','name','color');
+        },
+        'city' => function($query) {
+            $query->select('id','en_name');
         }))->get();
         $underModify = club::SelectCartFeilds()->CorrentUser()->UnderEdit()->with(array('metro'=>function($query) {
             $query->select('id','name','color');
@@ -407,5 +411,11 @@ class clubsController extends Controller
             "message"=> "An error occured while uploading the file."]
         ]);
 
+    }
+    public function redirectOldClubsURLS($id){
+        $club = club::where('id',$id)->select('id','club_city','url')->with(array('city' => function($query) {
+            $query->select('id','en_name');
+        }))->findOrFail($id);
+        return redirect($club->id.'_computerniy_club_'.Str::slug($club->url).'_'.$club->city->en_name);
     }
 }

@@ -1,8 +1,4 @@
 <?php
-/**
- * @var \App\club $club
- * @var int $clubIndex
- */
 $clubIndex = isset($clubIndex) ? $clubIndex : null;
 ?>
 <?$isHidden = (isset($show) && $show === 'map' && $club->club_city != city(true)['id']) ? true : false ?>
@@ -13,7 +9,7 @@ $clubIndex = isset($clubIndex) ? $clubIndex : null;
      data-lat="{{$club->lat}}"
      style="<?=($isHidden) ? 'display:none;' : null ?>"
 >
-    <a href="{{url($club->id.'_computerniy_club_'.Str::slug($club->url).'_'.city())}}" class="club_card">
+    <a href="{{url($club->id.'_computerniy_club_'.Str::slug($club->url).'_'.$club->city->en_name)}}" class="club_card">
         <div class="sc_img_wrapper">
             <div class="sc_img">
                 @if($club->main_preview_photo != null)

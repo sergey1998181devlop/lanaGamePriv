@@ -100,7 +100,7 @@ class clubsController extends Controller
         $club->last_admin_edit =Auth::user()->id;
         $club->save();
         $club->comments()->delete();
-        return redirect($club->id.'_computerniy_club_'.$club->url.'_'.$club->city->en_name);
+        return redirect($club->id.'_computerniy_club_'.Str::slug($club->url).'_'.$club->city->en_name);
     }
     public function comment($id,Request $request){
         $club = club::select('published_at','published_by','draft','id','user_id','url','club_name','club_city')->with(array('city' => function($query) {
@@ -119,7 +119,7 @@ class clubsController extends Controller
         $comment ->comment =  $request->input('comment');
         $comment->created_by = Auth::user()->id;
         $comment -> save();
-        return redirect($club->id.'_computerniy_club_'.$club->url.'_'.$club->city->en_name);
+        return redirect($club->id.'_computerniy_club_'.Str::slug($club->url).'_'.$club->city->en_name);
     }
     public function changeClubUser($id,Request $request){
         $club = club::with(array('city' => function($query) {
@@ -130,7 +130,7 @@ class clubsController extends Controller
         $club->last_admin_edit =Auth::user()->id;
 
         $club->save();
-        return redirect($club->id.'_computerniy_club_'.$club->url.'_'.$club->city->en_name.'/?status=success');
+        return redirect($club->id.'_computerniy_club_'.Str::slug($club->url).'_'.$club->city->en_name.'/?status=success');
     }
     public function sendMails(Request $request){
       if($request->input('s') != '!dw23@saf'){
@@ -166,7 +166,7 @@ class clubsController extends Controller
         $club->deleted_by=Auth::user()->id;
         $club->deleted_at=null;
         $club->save();
-        return redirect('clubs/'.$club->id.'/'.$club->url.'/?status=success');
+        return redirect('clubs/'.$club->id.'/'.Str::slug($club->url).'/?status=success');
     }
     
 }
