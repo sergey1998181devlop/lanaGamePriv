@@ -74,30 +74,30 @@ class club extends Model
     {
         return $this->belongsTo(metro::class,'club_metro');
     }
-    public static function boot() {
-        parent::boot();
-        static::deleting(function($club) {
-            if($club->club_price_file!=''){
-                $path_to_file = explode('storage/',$club->club_price_file);
-                if(isset($path_to_file[1])){
-                    $path_to_file = $path_to_file[1];
-                    if(file_exists(storage_path('app/public/'.$path_to_file))){
-                        unlink(storage_path('app/public/'.$path_to_file));}
-                }
-             }
-             if($club->club_photos!=''){
-                 $images = explode(',',$club->club_photos);
-                foreach($images as $link){
-                    $path_to_file = explode('storage/',$link);
-                        if(isset($path_to_file[1])){
-                            $path_to_file = $path_to_file[1];
-                            if(file_exists(storage_path('app/public/'.$path_to_file))){
-                                unlink(storage_path('app/public/'.$path_to_file));
-                            }
-                        }
-                }
-             }
-        }
-    );
-    }
+    // public static function boot() {
+    //     parent::boot();
+    //     static::deleting(function($club) {
+    //         // if($club->club_price_file!=''){
+    //         //     $path_to_file = explode('storage/',$club->club_price_file);
+    //         //     if(isset($path_to_file[1])){
+    //         //         $path_to_file = $path_to_file[1];
+    //         //         if(file_exists(storage_path('app/public/'.$path_to_file))){
+    //         //             unlink(storage_path('app/public/'.$path_to_file));}
+    //         //     }
+    //         //  }
+    //         //  if($club->club_photos!=''){
+    //         //      $images = explode(',',$club->club_photos);
+    //         //     foreach($images as $link){
+    //         //         $path_to_file = explode('storage/',$link);
+    //         //             if(isset($path_to_file[1])){
+    //         //                 $path_to_file = $path_to_file[1];
+    //         //                 if(file_exists(storage_path('app/public/'.$path_to_file))){
+    //         //                     unlink(storage_path('app/public/'.$path_to_file));
+    //         //                 }
+    //         //             }
+    //         //     }
+    //         //  }
+    //     }
+    // );
+    // }
 }
