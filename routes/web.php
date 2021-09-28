@@ -136,9 +136,8 @@ Route::get('panel/comments/send-mails', 'panel\clubsController@sendMails');
 Route::get('/register', function(){ return Redirect::to('/register_club', 301); });
 Route::get('clubs/{id}/{url}','clubsController@redirectOldClubsURLS');
 Route::get('post/read/{id}/{url}', function($id, $url){ return Redirect::to($id.'_statia_'.$url, 301); });
-//Route::get('/{city}', function($city){ return Redirect::to('/computerniy_club_'.$city, 301); });
 
-
-
-// должен быть последным, иначе остальные ссылки не сработают
 Route::get('/computerniy_club_{city}', 'HomeController@index')->name('home')->middleware('city');
+
+// должен быть последным, иначе остальные ссылки не сработают, потому что '/{city}' совпадает со всеми ссылками 
+Route::get('/{city}','HomeController@redirectOldCitiesURLs');

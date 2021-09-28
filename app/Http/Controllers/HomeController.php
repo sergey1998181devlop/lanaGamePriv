@@ -27,6 +27,12 @@ class HomeController extends Controller
     public function redirectToCity(){
       return redirect('computerniy_club_moskva');
     }
+    public function redirectOldCitiesURLs($city){
+      // проверяю, $city это точно адрес города?
+      $city=city::where('en_name',$city)->select('id','en_name')->firstOrFail(); 
+      return redirect('/computerniy_club_'.$city->en_name);
+    }
+    
     public function langame_software(){
       return view('about.langame_software');
     }
