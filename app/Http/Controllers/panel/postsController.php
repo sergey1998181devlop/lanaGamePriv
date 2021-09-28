@@ -10,7 +10,7 @@ use Image;
 use App\post;
 use App\User;
 use Illuminate\Support\Facades\Storage; 
-
+use Str;
 
 include_once(resource_path('views/includes/functions.blade.php'));
 class postsController extends Controller
@@ -48,10 +48,10 @@ public function store(Request $request){
     $post->name=$request->input('name');
     $post->about= $request->input('about');
     $post->image=$image;
-    $post->url=$this->clean($request->input('name'));
+    $post->url=ucwords(str_replace(" ","-",$request->input('name')));
     $post->save();
 
-return redirect('post/read/'.$post->id.'/'.$post->url);
+return  redirect(url($post->id.'_statia_'.Str::slug($post->url)));
 }
 public function clean($string) {
     $string = str_replace(' ', '-', $string);
@@ -87,8 +87,8 @@ public function update(Request $request,$id){
     $post->about= $request->input('about');
     $post->url=ucwords(str_replace(" ","-",$request->input('name')));
     $post->save();
-
-return redirect('post/read/'.$post->id.'/'.$post->url.'?edited');
+    
+return redirect(url($post->id.'_statia_'.Str::slug($post->url)).'?edited');
 }
 
 function postToUpdste($id){
