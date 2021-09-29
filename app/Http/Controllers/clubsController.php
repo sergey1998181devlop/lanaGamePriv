@@ -15,7 +15,7 @@ class clubsController extends Controller
     public $isDraft;
     public function __construct()
     {
-        $this->middleware('auth')->except('index');
+        $this->middleware('auth',['except' => ['index','redirectOldClubsURLS']]);
         $this->isDraft = false;
     }
     public function index($id){
