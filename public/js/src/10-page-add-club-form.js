@@ -65,11 +65,14 @@ jQuery(function() {
     $form.on('submit', function(e) {
         e.preventDefault();
 
+        $form.find('button[type="submit"]').addClass('disabled');
+
         jQuery.ajax({
             type: 'POST',
             url: $form.attr('action'),
             data: $form.serialize(),
             success: function() {
+                $form.find('button[type="submit"]').removeClass('disabled');
                 location.href = '/personal/clubs?status=success';
             }
         });

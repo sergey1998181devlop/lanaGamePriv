@@ -18,21 +18,21 @@
     ?>
     @if(count($clubs) > 0)
         <!--SECTION CHOOSE CLUB INFO START-->
-    <section class="choose_club_info_wrapper">
-        <div class="container">
-            <div class="choose_club_info">
-                <div class="choose_club_info_title">
-                    <h1>Выбери свой <br>
-                        компьютерный клуб в <span class="text_decor">{{city(true)['namePrepositional']}}</span>
-                    </h1>
-                </div>
-                <div class="choose_club_info_img">
-                    <img src="{{ asset('/img/choose.png')}}" alt="image">
+        <section class="choose_club_info_wrapper">
+            <div class="container">
+                <div class="choose_club_info">
+                    <div class="choose_club_info_title">
+                        <h1>Выбери свой <br>
+                            компьютерный клуб в <span class="text_decor">{{city(true)['namePrepositional']}}</span>
+                        </h1>
+                    </div>
+                    <div class="choose_club_info_img">
+                        <img src="{{ asset('/img/choose.png')}}" alt="image">
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!--SECTION CHOOSE CLUB INFO END-->
+        </section>
+        <!--SECTION CHOOSE CLUB INFO END-->
         @if($show == 'map')
             @include('map')
         @else
@@ -148,15 +148,15 @@
         });
     </script>
     @if($show == 'map')
-    <script>
-       @if(city(true)['lat'] != '' && city(true)['lon'] != '')
-        window.CITY_LAT = "{{city(true)['lat']}}";
-        window.CITY_LON = "{{city(true)['lon']}}";
-       @else
-        window.CITY_LAT = "55.7558";
-        window.CITY_LON = "37.6173";
-       @endif
-    </script>
+        <script>
+            @if(city(true)['lat'] != '' && city(true)['lon'] != '')
+                window.CITY_LAT = "{{city(true)['lat']}}";
+            window.CITY_LON = "{{city(true)['lon']}}";
+            @else
+                window.CITY_LAT = "55.7558";
+            window.CITY_LON = "37.6173";
+            @endif
+        </script>
 
     @endif
 @endsection
