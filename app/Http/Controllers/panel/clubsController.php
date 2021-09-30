@@ -11,6 +11,7 @@ use App\comment;
 use Auth;
 use Carbon\Carbon;
 use Notification;
+use Str;
 use App\Notifications\userNotification;
 class clubsController extends Controller
 {
