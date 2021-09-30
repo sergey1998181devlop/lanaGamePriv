@@ -13,7 +13,9 @@
  </style>         
 @endsection
 @section('content')
-
+<?php
+  $allRows =(isset($_GET['allRows']) && $_GET['allRows']=='true') ;
+?>
    <!-- Begin Page Content -->
    <div class="container-fluid">
 
@@ -35,6 +37,10 @@
     <input type="checkbox" class="form-check-input"  id="onlyPublished" <?=(isset($_GET['onlyPublished']) && $_GET['onlyPublished']=='true')?'checked' : null ?>>
     <label class="form-check-label" for="onlyPublished">Только опубликованые</label>
   </div>
+  <div class="form-check" style="display: inline-block;margin-left: 15px;">
+    <input type="checkbox" class="form-check-input"  id="allRows" <?=(isset($_GET['allRows']) && $_GET['allRows']=='true')?'checked' : null ?>>
+    <label class="form-check-label" for="allRows">Доп. столбцы </label>
+  </div>
   </div>
   <div class="card-body">
     <div class="table-responsive">
@@ -44,10 +50,12 @@
             <th>№</th>
             <th>Название клуба</th>
             <th>Город</th>
-            <th>Телефона клуба</th>
-            <th>Почта клуба</th>
-            <th>ВК клуба</th>
-            <th>Инста клуба</th>
+            <?if($allRows){?>
+              <th>Телефона клуба</th>
+              <th>Почта клуба</th>
+              <th>ВК клуба</th>
+              <th>Инста клуба</th>
+            <?}?>
             <th>владелец</th>
             <th>Статус</th>
             <th>Дата добавления</th>
@@ -65,10 +73,12 @@
             <td><a href="{{url($club->id.'_computerniy_club_'.Str::slug($club->url).'_'.$club->city->en_name)}}">{{$club->club_name}}</a></td>
 
             <td>@if(isset($club->city)){{$club->city->name}}@endif</td>
-            <td>{{$club->phone}}</td>
-            <td><a href="mailto:{{$club->club_email}}">{{$club->club_email}}</a></td>
-            <td><a href="{{$club->club_vk_link}}">{{$club->club_vk_link}}</a></td>
-            <td><a href="{{$club->club_instagram_link}}">{{$club->club_instagram_link}}</a></td>
+            <?if($allRows){?>
+              <td>{{$club->phone}}</td>
+              <td><a href="mailto:{{$club->club_email}}">{{$club->club_email}}</a></td>
+              <td><a href="{{$club->club_vk_link}}">{{$club->club_vk_link}}</a></td>
+              <td><a href="{{$club->club_instagram_link}}">{{$club->club_instagram_link}}</a></td>
+            <?}?>
             <td><a href="{{url('panel/users')}}?search={{$club->user->phone}}">{{$club->user->name}}</a></td>
             <!-- status -->
             <?php
@@ -208,17 +218,27 @@
        $('#club_delete_modal').modal();
      });
      var onlyPublished = <?=(isset($_GET['onlyPublished']) && $_GET['onlyPublished']==true)? 'true' : 'false' ?>;
+     var allRows = <?=(isset($_GET['allRows']) && $_GET['allRows']==true)? 'true' : 'false' ?>;
      var SelectedCity = "<?=(isset($_GET['city'])) ? $_GET['city'] : '' ?>";
+     
      $(document).on('change','#onlyPublished',function(e){
        if($(this).is(':checked')){
-        window.location.href = "{{url('panel/clubs/clubs')}}?city="+SelectedCity+"&onlyPublished=true";
+        window.location.href = "{{url('panel/clubs/clubs')}}?city="+SelectedCity+"&onlyPublished=true&allRows="+allRows;
        }else{
-        window.location.href = "{{url('panel/clubs/clubs')}}?city="+SelectedCity;
+        window.location.href = "{{url('panel/clubs/clubs')}}?city="+SelectedCity+"&allRows="+allRows;
 
        }
      });
+     $(document).on('change','#allRows',function(e){
+       if($(this).is(':checked')){
+        window.location.href = "{{url('panel/clubs/clubs')}}?city="+SelectedCity+"&allRows=true&onlyPublished="+onlyPublished ;
+       }else{
+        window.location.href = "{{url('panel/clubs/clubs')}}?city="+SelectedCity+"&onlyPublished="+onlyPublished;
+       }
+     });
+     
     $('#city_selector').on('select2:select', function(e) {
-        window.location.href = '{{url("panel/clubs/clubs")}}' + '?city=' + e.params.data.id + '&onlyPublished=' +onlyPublished ;
+        window.location.href = '{{url("panel/clubs/clubs")}}' + '?city=' + e.params.data.id + '&onlyPublished=' +onlyPublished+'&allRows='+allRows ;
     });
 
     $('#city_selector').select2({
