@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/test',  'HomeController@sendNotification');
 
-Route::get('/', 'HomeController@redirectToCity');
+Route::get('/', 'HomeController@homePage');
 Route::get('/sitemap.xml','HomeController@siteMap' );
 // регистрация и авторизация
 Auth::routes();

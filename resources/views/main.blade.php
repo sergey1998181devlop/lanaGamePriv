@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('page')
-    <title>Лучшие компьютерные клубы в городе {{city(true)['name']}} в {{date("Y")}}</title>
+    <title>Лучшие компьютерные клубы в России</title>
     <meta name="description"
-          content="Все компьютерные клубы города {{city(true)['name']}} с их адресами ({{$count_clubs}}) в {{date('Y')}}. А также фото, отзывы, режим работы, цены, рейтинг и проводимые мероприятия.">
-    <meta name="keywords" content="Компьютерный клуб {{city(true)['name']}}, интернет-кафе {{city(true)['name']}}, киберклуб {{city(true)['name']}}, отзывы, цены"/>
+          content="Все компьютерные клубы в России с их адресами в {{date('Y')}}. А также фото, отзывы, режим работы, цены, рейтинг и проводимые мероприятия.">
+    <meta name="keywords" content="Компьютерный клуб, интернет-кафе, киберклуб, отзывы, цены"/>
 @endsection
 @section('content')
 
@@ -48,7 +48,7 @@
                             @include('club')
                         @endforeach
                     </div>
-                    <a href="" id="choose_city" class="show_more pointer">Выбрать свой город</a>
+                    <a href="{{url('cities')}}" id="choose_city" class="show_more pointer">Выбрать свой город</a>
                 </div>
             </div>
         </section>
@@ -120,7 +120,7 @@
                     </div>
                 </div>
                 <div class="our_goals_item last_mob">
-                    <a href="">Зарегистрироваться</a>
+                    <a href="{{url('register_club')}}">Зарегистрироваться</a>
                 </div>
             </div>
         </div>
@@ -148,7 +148,7 @@
                             </div>
                             <div class="descr">
                                 Программа для управления компьютерным клубом и приложение для гостей собственной разработки.
-                                <a href="" class="text_decor">Подробнее</a>
+                                <a href="{{url('software')}}" class="text_decor">Подробнее</a>
                             </div>
                         </li>
                         <li>
@@ -157,7 +157,7 @@
                             </div>
                             <div class="descr">
                                 Доверительное управление, бугхалтерия, удалённый администратор, замена детских дисков на серверное решение и другие услуги.
-                                <a href="" class="text_decor">Написать</a>
+                                <a href="{{url('contacts')}}" class="text_decor">Написать</a>
                             </div>
                         </li>
                     </ul>
@@ -224,7 +224,7 @@
                         И вместе с вами мы создадим будущее бизнеса и культуры компьютерных клубов.
                     </div>
                     <div class="btn_wrapper">
-                        <a href="#">Я - представитель клуба</a>
+                        <a href="<?= Auth::guest() ? url('register_club') : url('personal/clubs') ?>?action=add_club">Я - представитель клуба</a>
                         <a class="secondary" href="#">Я выбираю компьютерный клуб</a>
                     </div>
                 </div>

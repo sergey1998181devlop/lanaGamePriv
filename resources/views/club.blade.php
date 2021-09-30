@@ -83,7 +83,7 @@ $clubIndex = isset($clubIndex) ? $clubIndex : null;
                     <img src="{{ asset('/img/point-red.svg')}}" alt="location">
                 </div>
                 <div class="club_address">
-                    <?=(isset($show) && $show === 'map') ? $club->city->name . ', ' : null ?> {{$club->club_address}}
+                    <?=((isset($show) && $show === 'map') || isset($mainPage)) ? $club->city->name . ', ' : null ?> {{$club->club_address}}
                 </div>
             </div>
             <div class="cf_wrapper">

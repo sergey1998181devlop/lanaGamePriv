@@ -169,12 +169,14 @@
                     <img src="{{ asset('/img/logo.svg')}}" alt="logo">
                 </a>
             </div>
+            @if(!isset($mainPage))
             <div class="select2_wrapper select_city_wrapper">
                 <select class="select_city" id="city_selector">
                     <option>{{city(true)['name']}}</option>
                 </select>
                 <a href="{{url('cities')}}">Все города</a>
             </div>
+            @endif
             <div class="mobile_menu_bg"></div>
             <div class="header_menu_wrapper">
                 <a href="#" class="mobile_menu_btn">
