@@ -165,7 +165,7 @@
     <div class="container-fluid">
         <div class="header_wrapper">
             <div class="header_logo_wrapper">
-                <a href="{{url('/')}}/computerniy_club_{{city()}}">
+                <a href="{{url('/')}}">
                     <img src="{{ asset('/img/logo.svg')}}" alt="logo">
                 </a>
             </div>

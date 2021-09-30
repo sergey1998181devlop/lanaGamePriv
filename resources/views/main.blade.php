@@ -8,14 +8,14 @@
 @section('content')
 
     <!--SECTION CHOOSE CLUB INFO START-->
-    <section class="main_choose_club_info_wrapper">
+    <section class="main_choose_club_info_wrapper" id="block-main-choose-club-info">
         <div class="container">
             <div class="choose_club_info">
                 <div class="choose_club_info_title">
                     <div class="title">
                         <span>Всё про компьютерные<br> клубы</span>
                         <div class="select2_wrapper select_city_wrapper">
-                            <select class="select_city" id="all_city_selector">
+                            <select class="select_city" id="city_selector">
                                 <option>в России</option>
                                 <option>{{city(true)['name']}}</option>
                             </select>
@@ -225,7 +225,7 @@
                     </div>
                     <div class="btn_wrapper">
                         <a href="<?= Auth::guest() ? url('register_club') : url('personal/clubs') ?>?action=add_club">Я - представитель клуба</a>
-                        <a class="secondary" href="#">Я выбираю компьютерный клуб</a>
+                        <a class="secondary" href="#block-main-choose-club-info" data-open-select-city>Я выбираю компьютерный клуб</a>
                     </div>
                 </div>
                 <div class="choose_club_info_img">

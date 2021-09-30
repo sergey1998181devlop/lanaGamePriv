@@ -2,10 +2,6 @@ jQuery(function() {
 
     Layout.initSelect2();
 
-    // jQuery('.club_page_services_list .club_services_mobile_toggle').addClass('active');
-    // jQuery('.club_page_services_list .mob_hide').addClass('active');
-
-
     jQuery('.club_page_services_list .club_services_mobile_toggle').on('click', function(e) {
         jQuery(this).toggleClass('active')
             .closest('.club_page_services_list').toggleClass('mob_toggle')
@@ -173,9 +169,8 @@ jQuery(function() {
         ym(82365286,'reachGoal','search');gtag('event', 'send', { 'event_category': 'search', 'event_action': 'click' });
         jQuery('.search .search_form').addClass('active');
         jQuery('.search .search_form #search-text').focus();
-       
-    });
 
+    });
 
     jQuery('#close_search_form').on('click', function(e){
         jQuery('.search .search_form').removeClass('active');
@@ -232,5 +227,12 @@ jQuery(function() {
     jQuery('.offer_instr_toggle_mobile').on('click', function(e) {
         jQuery(this).toggleClass('active');
         jQuery(this).closest('.attention_text_wrapper').find('.instr').toggle();
+    });
+
+    jQuery('[data-open-select-city]').on('click', function(e) {
+        $('#city_selector').select2('open');
+        e.preventDefault();
+        const _href = jQuery(this).attr('href');
+        jQuery('html, body').animate({scrollTop: jQuery(_href).offset().top + 'px'});
     });
 });
