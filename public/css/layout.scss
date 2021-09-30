@@ -1441,7 +1441,7 @@ input[type=number] {
                     top: 46px;
                     left: 106px;
                     width: 148px;
-                    z-index: 3000;
+                    z-index: 1;
 
                     .select2 {
                         display: block;
@@ -1575,7 +1575,7 @@ input[type=number] {
                         top: 32px;
                         left: 84px;
                         width: 148px;
-                        z-index: 3000;
+                        z-index: 1;
                     }
                 }
             }
