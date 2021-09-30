@@ -469,7 +469,7 @@
         <div class="footer_top">
             <div class="footer_logo_wrapper">
                 <div class="logo_wrapper">
-                    <a href="{{url('/')}}/{{city()}}">
+                    <a href="{{url('/')}}">
                         <img src="{{ asset('/img/logo.svg')}}" alt="logo">
                     </a>
                 </div>
