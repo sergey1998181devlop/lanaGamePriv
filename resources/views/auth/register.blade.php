@@ -25,7 +25,7 @@
                 <form action="{{url('register/send_sms')}}" class="add_club_start" method="post" id="add-club-start-form">
             @else
                 <form action="" class="add_club_start" method="post" id="add-club-start-form_authed">
-            @endif    
+            @endif
                 <input type="hidden" name="_token"  value="{{ csrf_token() }}">
 
                     <div class="forma">
@@ -58,7 +58,7 @@
                             <input type="text" name="code" data-code-input>
                             <span class="error"></span>
                         </div>
-                        <a class="code_resend disabled" id="reSendCode">Отправить повторно <span class="hide">через</span> <span id="countdown">3:00</span></a>
+                        <a class="code_resend disabled" id="reSendCode">Отправить повторно <span class="hide">через </span> <span id="countdown">3:00</span></a>
                     </div>
                     <div class="btn_wrapper">
                         <a class="step_back">Назад</a>

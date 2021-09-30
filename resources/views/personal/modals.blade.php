@@ -44,7 +44,7 @@
                     </div>
 
                     <div class="form_tab form_tab_08_club_formalization" data-next-button-text="Отправить на модерацию">
-                    @include("personal.tabs.08_club_formalization")
+                        @include("personal.tabs.08_club_formalization")
                     </div>
 
                     <div class="form_tab form_tab_09_club_preview">

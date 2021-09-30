@@ -164,11 +164,11 @@ jQuery(function() {
         jQuery('#rating-input').on('input change', function(e) {
             let $this = jQuery(this);
 
-            if($this.length === 0){
+            if ($this.length === 0) {
                 return;
             }
 
-            if ($this.val() < 0 || $this.val() > 5){
+            if ($this.val() < 0 || $this.val() > 5) {
                 $this.val('');
             }
         });
@@ -184,7 +184,7 @@ jQuery(function() {
             return new Promise((resolve, reject) => {
                 let hasErrors = false;
 
-                if(is_admin) {
+                if (is_admin) {
                     return resolve();
                 }
 
@@ -242,26 +242,84 @@ jQuery(function() {
     (() => {
         let $tab = jQuery('.form_tab_08_club_formalization'),
             $photo_error = $tab.find('.add_photo_error'),
+            $progressbar = $tab.find('.upload-progress'),
             files = $club_photo_hidden_input.val().split(',').filter(x => !!x),
-            main_file = $main_preview_photo_hidden_input.val();
+            main_file = $main_preview_photo_hidden_input.val(),
+            is_uploading = false;
 
         $club_photo_file_input.on('change', function() {
-            let current_gallery_image_count = files.length;
+            let promises = [],
+                sizes = new Map();
 
+            $photo_error.text('');
+            $progressbar.css({width: 0});
+
+            is_uploading = true;
+            $tab.addClass('uploading');
+
+            if ((files.length + this.files.length) > max_image_count) {
+                $photo_error.text(`Возможно загрузить только ${max_image_count} изображений`);
+
+                return;
+            }
+
+            // File validation
             for (let file of this.files) {
-                if (current_gallery_image_count >= max_image_count) {
-                    break;
+                if (['image/jpeg', 'image/png'].includes(file.type) === false) {
+                    $photo_error.text(`Файл "${file.name}" имеет недопустимый формат`);
+
+                    return;
                 }
 
-                ++current_gallery_image_count;
+                if (file.size > 5 * 1024 * 1024) {
+                    $photo_error.text(`Файл "${file.name}" превышает допустимый размер`);
 
-                upload_file(file, 'image').then((data) => {
-                    addFile(data);
-                });
+                    return;
+                }
+            }
+
+            // File upload
+            for (let file of this.files) {
+                promises.push(upload_file(
+                    file,
+                    'image',
+                    (uploaded, total) => sizes.set(file, {uploaded, total})
+                ));
             }
 
             setTimeout(() => $club_photo_file_input.attr('type', 'hidden'), 0);
             setTimeout(() => $club_photo_file_input.attr('type', 'file'), 50);
+
+            let renderProgressBarInterval = setInterval(() => {
+                let uploadedPercents = getTotalUploadedPercent() * 100;
+
+                $progressbar.css({width: `${uploadedPercents}%`});
+            }, 50);
+
+            Promise.all(promises)
+                .then((results) => {
+                    for (let img_url of results) {
+                        addFile(img_url);
+                    }
+                })
+                .finally(() => {
+                    is_uploading = false;
+                    $tab.removeClass('uploading');
+
+                    clearInterval(renderProgressBarInterval);
+                });
+
+            function getTotalUploadedPercent() {
+                let uploadedAll = 0,
+                    totalAll = 0;
+
+                for (let {uploaded, total} of sizes.values()) {
+                    uploadedAll += uploaded;
+                    totalAll += total;
+                }
+
+                return uploadedAll / totalAll;
+            }
         });
 
         $form.on('click', '.add_photo_item .remove_photo', function(e) {
@@ -337,11 +395,17 @@ jQuery(function() {
             return new Promise((resolve, reject) => {
                 let hasErrors = false;
 
-                if(is_admin) {
-                    return resolve();
+                $photo_error.text('');
+
+                if (is_uploading) {
+                    $photo_error.text('Необходимо дождаться загрузки фотографий');
+
+                    return reject();
                 }
 
-                $photo_error.text('');
+                if (is_admin) {
+                    return resolve();
+                }
 
                 if (!main_file) {
                     $photo_error.text('Необходимо загрузить хотя бы одну фотографию');
@@ -353,9 +417,9 @@ jQuery(function() {
         });
     })();
 
-    function upload_file(file, type) {
+    function upload_file(file, type, onprogress) {
         let url = type === 'price_list' ? $form.attr('list-action') : $form.attr('image-action');
-        return Layout.fileUpload(file, url);
+        return Layout.fileUpload(file, url, onprogress);
     }
 
     // schedule validation
@@ -368,7 +432,7 @@ jQuery(function() {
             return new Promise((resolve, reject) => {
                 let hasErrors = false;
 
-                if(is_admin) {
+                if (is_admin) {
                     return resolve();
                 }
 

@@ -13,6 +13,7 @@ class User extends Authenticatable
 {
     use Notifiable,HasApiTokens;
 
+
     /**
      * The attributes that are mass assignable.
      *
@@ -73,7 +74,7 @@ class User extends Authenticatable
                         if(file_exists(storage_path('app/public/'.$path_to_file))){
                             unlink(storage_path('app/public/'.$path_to_file));}
                     }
-                    
+
                  }
                  if($club->club_photos!=''){
                      $images = explode(',',$club->club_photos);
@@ -85,10 +86,10 @@ class User extends Authenticatable
                                 unlink(storage_path('app/public/'.$path_to_file));
                             }
                         }
-                        
+
                     }
                  }
-                $club->forceDelete(); 
+                $club->forceDelete();
              });
              DB::table('sms_codes')->where('phone',$user->phone)->delete();
              DB::table('users_verify')->where('user_id',$user->id)->delete();

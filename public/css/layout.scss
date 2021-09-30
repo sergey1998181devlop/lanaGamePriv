@@ -767,7 +767,7 @@ input[type=number] {
                 }
             }
 
-            a{
+            a {
                 display: block;
                 text-decoration: none;
                 color: #818080;
@@ -777,7 +777,7 @@ input[type=number] {
                 right: -95px;
                 transition: color 0.2s;
 
-                &:hover{
+                &:hover {
                     color: #dc3545;
                 }
             }
@@ -1114,7 +1114,7 @@ input[type=number] {
                     pointer-events: none;
                 }
 
-                a{
+                a {
                     display: none;
                 }
             }
@@ -11595,7 +11595,7 @@ section.cities_list_wrapper {
         }
     }
 
-    @media (max-width: 1000px){
+    @media (max-width: 1000px) {
         padding: 64px 0 140px;
 
         .cities_list_page_title {
@@ -12297,16 +12297,39 @@ section.cities_list_wrapper {
                                 }
                             }
 
+                            .upload-progress-wrapper {
+                                opacity: 0;
+                                display: block;
+                                position: relative;
+                                width: 100%;
+                                height: 15px;
+                                background-color: #e5e5e5;
+                                border-radius: 12px;
+                                margin: 0 0 5px;
+
+                                .upload-progress {
+                                    transition: width 0.2s;
+                                    display: block;
+                                    position: absolute;
+                                    width: 0;
+                                    height: 100%;
+                                    top: 0;
+                                    left: 0;
+                                    background-color: #dc0000;
+                                    border-radius: 12px;
+                                }
+                            }
+
                             .add_photo_instruction {
                                 margin-bottom: 5px;
                             }
 
                             .add_photo_error {
-                                position: absolute;
                                 display: block;
                                 width: 100%;
                                 text-align: left;
                                 color: #f19999;
+                                margin-bottom: 5px;
                             }
 
                             .photo_gallery {
@@ -12963,6 +12986,12 @@ section.cities_list_wrapper {
                                 line-height: 1;
                                 text-align: center;
                                 padding: 14px 32px;
+                            }
+                        }
+
+                        .form_tab_08_club_formalization.uploading{
+                            .upload-progress-wrapper{
+                                opacity: 1;
                             }
                         }
                     }

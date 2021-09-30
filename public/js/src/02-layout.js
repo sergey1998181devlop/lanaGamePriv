@@ -87,26 +87,40 @@ window.Layout = (() => {
             });
         },
 
-        fileUpload(file, url = '/clubs/add-image'){
+        fileUpload(file, url = '/clubs/add-image', onprogress = null) {
             return new Promise((resolve, reject) => {
-                let formData = new FormData();
+                let xhr = new XMLHttpRequest(),
+                    formData = new FormData();
+
                 formData.append('file', file, file.name);
                 formData.append('_token', $('[name="_token"]').val());
 
-                jQuery.ajax({
-                    url: url,
-                    method: 'post',
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function({data, error}) {
-                        if (error) {
-                            return reject(error);
+                if (typeof onprogress === 'function') {
+                    onprogress(0, file.size);
+                }
+
+                xhr.upload.onprogress = function(event) {
+                    if (typeof onprogress === 'function') {
+                        onprogress(event.loaded, event.total);
+                    }
+                };
+
+                xhr.onload = xhr.onerror = function() {
+                    try {
+                        let response = JSON.parse(xhr.responseText);
+
+                        if (response.error) {
+                            return reject(response.error);
                         }
 
-                        resolve(data);
+                        resolve(response.data);
+                    } catch (e) {
+                        return reject(e.message);
                     }
-                });
+                };
+
+                xhr.open('POST', url, true);
+                xhr.send(formData);
             });
         }
     };
