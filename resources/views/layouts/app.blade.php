@@ -350,6 +350,7 @@
 @yield('content')
 <!-- MODALS -->
 
+<noindex>
 <div class="remodal success_modal" data-remodal-id="success_modal" data-remodal-options="hashTracking: false">
     <button data-remodal-action="close" class="remodal-close"></button>
     <div class="remodal-content">
@@ -459,7 +460,7 @@
         </div>
     </div>
 </div>
-
+</noindex>
 <div class="club_page_modals_wrapper"></div>
 
 <!-- END OF MODALS -->
