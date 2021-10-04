@@ -143,6 +143,10 @@
                  <div class="col-md-10 offset-md-1"><textarea class="form-control" name="comment" cols="30" rows="10" required></textarea></div>
                   
               </div>
+              <div class="checkbox_holder form-group" style="margin-top: 10px;">
+                  <input type="checkbox" class=""  name="send_mail" id="send_mail">
+                  <label for="send_mail">Отправить письмо владельцу</label>
+              </div>
           </div>
       <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('messages.cancel')}}</button>

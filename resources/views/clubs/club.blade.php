@@ -3,6 +3,29 @@
     <title>Компьютерный клуб {{$club->club_name}} {{$club->city["name"]}} - цены, отзывы, обзоры</title>
     <meta name="description" content="Компьютерный клуб {{$club->club_name}} по адресу {{$club->club_full_address}} - расположение, цены, отзывы, рейтинг ({{$club->rating }} из 5), честные обзоры, новости, ближайшие мероприятия">
     <meta name="keywords" content="компьютерный клуб {{$club->club_name}}, интернет кафе {{$club->club_name}}, киберклуб {{$club->club_name}}, {{$club->city["name"]}}"/>
+
+    <style>
+        .comment{
+            position: relative;
+        }
+        .comment button[data-role-remove-comment]{
+            position: absolute;
+            top: -7px;
+            right: -7px;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background-image: url(../img/cancel.svg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 24px 24px;
+            background-color: #fff;
+            border: 0;
+            border-radius: 50%;
+            outline: 0;
+            cursor: pointer;
+        }
+    </style>
 @endsection
 @section('content')
     <?php
@@ -27,6 +50,9 @@
                 <div class="club_comments">
                     @foreach($comments as $comment)
                         <div class="comment">
+                            @if(admin())
+                                <button type="button" data-role-remove-comment data-id="{{$comment->id}}"></button>
+                            @endif
                             <div class="comment-header">
                                 {{timelabe($comment->created_at)}}
                                 @if(admin())
@@ -713,6 +739,10 @@
                         <div class="textarea-holder">
                             <textarea name="comment" cols="30" rows="10" required></textarea>
                         </div>
+                        <div class="checkbox_holder" style="margin-top: 10px;">
+                            <input type="checkbox" name="send_mail" id="send_mail">
+                            <label for="send_mail">Отправить письмо владельцу</label>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-danger">Отправить</button>
                 </form>
@@ -808,5 +838,28 @@
             });
         </script>
     @endif
-    
+    @if(admin())
+        <script>
+            $('.comment button[data-role-remove-comment]').click(function(){
+                var id = $(this).attr('data-id'),
+                comment = $(this).closest('.comment');
+                comment.css('background','#ccc');
+                    $.ajax({
+                    url: "{{url('club').'/'.$club->id.'/remove_comment'}}",
+                    type: 'post',
+                    data: {
+                        'id': id,
+                        '_token':$('[name="_token"]').val()
+                    },
+                    success: function(data) {
+                        comment.remove();
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        comment.css('background','');
+                    }
+                });
+
+            })
+        </script>
+    @endif
 @endsection

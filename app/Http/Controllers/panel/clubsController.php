@@ -119,8 +119,15 @@ class clubsController extends Controller
         $comment ->club_id =  $id;
         $comment ->comment =  $request->input('comment');
         $comment->created_by = Auth::user()->id;
+        $comment->send_mail=($request->input('send_mail') == 'on') ? '1' : '0';
         $comment -> save();
         return redirect($club->id.'_computerniy_club_'.Str::slug($club->url).'_'.$club->city->en_name);
+    }
+    public function removeComment($club_id,Request $request){
+        $comment = comment::where('id',$request->input('id'))->where('club_id',$club_id)->delete();
+        if($comment){
+            return response()->json(['status'=>true]);
+        }
     }
     public function changeClubUser($id,Request $request){
         $club = club::with(array('city' => function($query) {
@@ -137,7 +144,7 @@ class clubsController extends Controller
       if($request->input('s') != '!dw23@saf'){
           return '';
       }
-      $comments = comment::whereNull('sent_at')->with(array('club' => function($query) {
+      $comments = comment::whereNull('sent_at')->where('send_mail','1')->with(array('club' => function($query) {
             $query->select('id','club_name','user_id');
         },'club.user'))->get();
         

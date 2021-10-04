@@ -112,6 +112,7 @@ Route::get('panel/clubs/deleted-clubs','panel\clubsController@deleted_clubs');
 Route::get('panel/clubs/clubs','panel\clubsController@clubs');
 Route::get('{id}_computerniy_club_{url}_{city}/active','panel\clubsController@active');
 Route::post('club/{id}/comment','panel\clubsController@comment');
+Route::post('club/{club_id}/remove_comment','panel\clubsController@removeComment');
 Route::post('panel/club/{id}/change-user','panel\clubsController@changeClubUser');
 Route::post('panel/club/{id}/delete','panel\clubsController@deleteClub');
 Route::get('panel/club/{id}/recover','panel\clubsController@recoverClub');
