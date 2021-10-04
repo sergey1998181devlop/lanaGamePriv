@@ -142,7 +142,8 @@ class clubsController extends Controller
     }
     public function sendMails(Request $request){
       if($request->input('s') != '!dw23@saf'){
-          return '';
+          echo 'false';
+          return;
       }
       $comments = comment::whereNull('sent_at')->where('send_mail','1')->with(array('club' => function($query) {
             $query->select('id','club_name','user_id');
@@ -161,6 +162,8 @@ class clubsController extends Controller
             $comment->sent_at = Carbon::now()->toDateTimeString();
             $comment->save();
       }
+      echo count($comments);
+      return;
     }
     public function deleteClub($id){
         $club = club::findOrFail($id);
