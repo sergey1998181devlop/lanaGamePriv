@@ -27,7 +27,6 @@ Route::get('email/verify/{token}','Auth\RegisterController@verifyEmail')->name('
 Route::get('/register_club', ['as' => 'auth.register', 'uses' => 'Auth\RegisterController@showRegistrationForm']);
 
 // личный кабинет
-
 Route::get('personal/profile', 'personalController@profile');
 Route::post('profile/sendSMS', 'personalController@sendSMS');
 Route::post('profile/verify', 'personalController@verifySMS');
@@ -105,6 +104,7 @@ Route::post('post/edit/saveImage','panel\postsController@saveImage' );
 Route::get('panel/posts/all','panel\postsController@index');
 Route::post('panel/posts/order_no','panel\postsController@reOrderPost');
 // клубы
+Route::get('panel/export_clubs', 'panel\clubsController@exportClubs');
 Route::get('panel/clubs/new-clubs','panel\clubsController@new_clubs');
 Route::get('panel/clubs/hidded-clubs','panel\clubsController@hidded_clubs');
 Route::get('panel/clubs/drafts','panel\clubsController@drafts');

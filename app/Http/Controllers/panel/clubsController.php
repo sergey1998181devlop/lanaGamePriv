@@ -179,5 +179,12 @@ class clubsController extends Controller
         $club->save();
         return redirect('clubs/'.$club->id.'/'.Str::slug($club->url).'/?status=success');
     }
-    
+    public function exportClubs(){
+        $сlubs= club::with(array('user' => function($query) {
+            $query->select('id','name','phone');
+            },'city' => function($query) {
+                $query->select('id','name','en_name','parentName');
+        }))->where('draft','0')->orderBy('updated_at','DESC')->get();
+        $file = (new \App\Jobs\PHPExcl())->createFile($сlubs);
+    }
 }
