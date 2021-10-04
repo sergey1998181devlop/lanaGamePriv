@@ -92,7 +92,7 @@ class HomeController extends Controller
         $lon = $_COOKIE["lon"];
         setcookie("geo", "browser");
       }
-      $clubs= club::SelectCartFeilds4Home($lat, $lon)->Published()->where('club_city',637640)->whereNull('hidden_at')->with(array('metro'=>function($query) {
+      $clubs= club::SelectCartFeilds4Home($lat, $lon)->Published()->whereNull('hidden_at')->with(array('metro'=>function($query) {
         $query->select('id','name','color');
       }))->where('rating', '>' ,4)->inRandomOrder()->limit(3)->get();
       $posts=post::select('id','url','image','name','about')->orderBy('order_no','desc')->orderBy('created_at','desc')->limit(3)->get();
