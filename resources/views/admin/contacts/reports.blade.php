@@ -101,6 +101,7 @@
 
 $(document).ready( function() {
     $('#dataTableN').dataTable({
+      "ordering": false,
       "language": {
           "processing": "Подождите...",
           "search": "Поиск:",
