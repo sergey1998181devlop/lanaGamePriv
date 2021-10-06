@@ -26,9 +26,11 @@ class adminController extends Controller
         return view('admin.home')->with(['newMessages'=>$newMessages,'newClubs'=>$newClubs,'newLangameRequests'=>$newLangameRequests,'newReports'=>$newReports]);
     }
     public function contacts(){
-        $messages = contact::select('id','name','phone','email','created_at','seen_at')->orderBy('seen_at','asc')->orderBy('created_at','desc')->get();
+        $messages = contact::select('id','name','phone','email','created_at','seen_at')->whereNull('seen_at')->orderBy('created_at','DESC')->get();
+        $messagesR = contact::select('id','name','phone','email','created_at','seen_at')->whereNotNull('seen_at')->orderBy('created_at','DESC')->get();
         $newCount = contact::whereNull('seen_at')->count();
-        return view('admin.contacts.contacts')->with(['messages'=>$messages,'newCount'=>$newCount]);
+        $new_collection = $messages->merge($messagesR);
+        return view('admin.contacts.contacts')->with(['messages'=>$new_collection,'newCount'=>$newCount]);
     }
     public function getMessage(Request $request)
     {
@@ -51,9 +53,11 @@ class adminController extends Controller
         return back()->with('success',__('messages.Success'));
     }
     public function langameRequests(){
-        $langame_requests = langame_request::orderBy('seen_at','asc')->orderBy('created_at','desc')->with('city_name')->get();
+        $langame_requests = langame_request::whereNull('seen_at')->orderBy('created_at','DESC')->with('city_name')->get();
+        $langame_requestsR = langame_request::whereNotNull('seen_at')->orderBy('created_at','DESC')->with('city_name')->get();
         $newCount = langame_request::whereNull('seen_at')->count();
-        return view('admin.contacts.langame_software')->with(['requests'=>$langame_requests,'newCount'=>$newCount]);
+        $new_collection = $langame_requests->merge($langame_requestsR);
+        return view('admin.contacts.langame_software')->with(['requests'=>$new_collection,'newCount'=>$newCount]);
     }
     public function deleteRequest(Request $request)
     {
@@ -73,9 +77,11 @@ class adminController extends Controller
         return back()->with('success',__('messages.Success'));
     }
     public function errorReports(){
-        $reports = report::orderBy('seen_at','asc')->orderBy('created_at','desc')->get();
+        $reports = report::whereNull('seen_at')->orderBy('created_at','desc')->get();
+        $reportsR = report::whereNotNull('seen_at')->orderBy('created_at','desc')->get();
         $newCount = report::whereNull('seen_at')->count();
-        return view('admin.contacts.reports')->with(['reports'=>$reports,'newCount'=>$newCount]);
+        $new_collection = $reports->merge($reportsR);
+        return view('admin.contacts.reports')->with(['reports'=>$new_collection,'newCount'=>$newCount]);
     }
     
     public function getReports(Request $request)

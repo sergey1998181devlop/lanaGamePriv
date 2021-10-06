@@ -41,6 +41,11 @@
     <input type="checkbox" class="form-check-input"  id="allRows" <?=(isset($_GET['allRows']) && $_GET['allRows']=='true')?'checked' : null ?>>
     <label class="form-check-label" for="allRows">Доп. столбцы </label>
   </div>
+  <div style="float:right">
+    <a href="{{url('panel/export_clubs')}}" target="_blank">
+      Export
+    </a>
+  </div>
   </div>
   <div class="card-body">
     <div class="table-responsive">
@@ -142,6 +147,10 @@
               <div class="form-group row">
                  <div class="col-md-10 offset-md-1"><textarea class="form-control" name="comment" cols="30" rows="10" required></textarea></div>
                   
+              </div>
+              <div class="checkbox_holder form-group" style="margin-top: 10px;">
+                  <input type="checkbox" class=""  name="send_mail" id="send_mail">
+                  <label for="send_mail">Отправить письмо владельцу</label>
               </div>
           </div>
       <div class="modal-footer">

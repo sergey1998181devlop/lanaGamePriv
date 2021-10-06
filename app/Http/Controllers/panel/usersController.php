@@ -17,7 +17,7 @@ class usersController extends Controller
         $this->middleware('rule:1');
     }
     public function index(){
-        $users=User::all();
+        $users=User::orderBy('created_at','DESC')->get();
         return view('admin.users.users')->with(['users'=>$users]);
     }
     public function edit(Request $request){
