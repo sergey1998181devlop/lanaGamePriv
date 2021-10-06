@@ -300,7 +300,7 @@
             <div class="langame_software_present">
                 <div class="present_item">
                     <div class="img_wrapper">
-                        <img src="{{ asset('/img/service/present.png')}}" alt="image">
+                        <img src="{{ asset('/img/service/present1.png')}}" alt="image">
                     </div>
                 </div>
                 <div class="present_item">
