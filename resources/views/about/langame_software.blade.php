@@ -300,16 +300,13 @@
             <div class="langame_software_present">
                 <div class="present_item">
                     <div class="img_wrapper">
-                        <img src="{{ asset('/img/service/present.png')}}" alt="image">
+                        <img src="{{ asset('/img/service/present1.png')}}" alt="image">
                     </div>
                 </div>
                 <div class="present_item">
                     <p>
-                        Подарочный пакет на 6 месяцев актуален
-                        только для
+                        Оставьте заявку и получите 6 месяцев тарифа «Профессиональный» в подарок после официального релиза LANGAME Software!
                     </p>
-                    <p class="text_decor">10 первых заявок</p>
-                    <p>Торопитесь!</p>
                     <a href="#block-langame_software_request" class="learn_more">Оформить заявку</a>
                 </div>
             </div>
