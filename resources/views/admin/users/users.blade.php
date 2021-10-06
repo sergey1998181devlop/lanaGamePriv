@@ -216,6 +216,7 @@
       });
 
       var table = $('#dataTable_').DataTable({
+        "ordering": false,
       "language": {
           "processing": "Подождите...",
           "search": "Поиск:",
