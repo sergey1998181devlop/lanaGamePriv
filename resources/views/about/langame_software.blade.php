@@ -300,13 +300,16 @@
             <div class="langame_software_present">
                 <div class="present_item">
                     <div class="img_wrapper">
-                        <img src="{{ asset('/img/service/present1.png')}}" alt="image">
+                        <img src="{{ asset('/img/service/present.png')}}" alt="image">
                     </div>
                 </div>
                 <div class="present_item">
                     <p>
-                        Оставьте заявку и получите 6 месяцев тарифа «Профессиональный» в подарок после официального релиза LANGAME Software!
+                        Подарочный пакет на 6 месяцев актуален
+                        только для
                     </p>
+                    <p class="text_decor">10 первых заявок</p>
+                    <p>Торопитесь!</p>
                     <a href="#block-langame_software_request" class="learn_more">Оформить заявку</a>
                 </div>
             </div>
@@ -386,6 +389,14 @@
                                 </label>
                             </div>
                         </div>
+                    </div>
+                    <div class="recaptcha-holder">
+                        <div class="g-recaptcha" data-sitekey="{{env('RECAPCHA_PUB')}}"></div>
+                    </div>
+                    <div class="recaptcha-msg">
+                        @error('g-recaptcha-response')
+                        {{ $message }}
+                        @enderror
                     </div>
                     <button type="submit" onclick="gtag('event', 'send', { 'event_category': 'add-club-request-form', 'event_action': 'send' });">Отправить заявку</button>
                 </form>
@@ -529,6 +540,14 @@ $tariffs = [
 <!--SECTION LANGAME SOFTWARE END-->
 @endsection
 @section('scripts')
+<script>
+    $( document ).ready(function(){
+        $(document).on('submit','#add-club-request-form',function(e){
+            var response = grecaptcha.getResponse();
+                if(response.length == 0){e.preventDefault();$(this).find('.recaptcha-msg').empty().text('Необходимо пройти капчу');return;}
+        })
+    });
+</script>
 @if(session('success'))
 <script>
     $( document ).ready(function(){

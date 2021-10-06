@@ -383,6 +383,14 @@
             <div class="forma">
                 <textarea name="message" id="report-message-input" maxlength="1500" required></textarea>
             </div>
+            <div class="recaptcha-holder">
+                <div class="g-recaptcha" data-sitekey="{{env('RECAPCHA_PUB')}}"></div>
+            </div>
+            <div class="recaptcha-msg">
+                @error('g-recaptcha-response')
+                {{ $message }}
+                @enderror
+            </div>
             <div class="btn_wrapper">
                 <button type="submit">Отправить</button>
             </div>
@@ -564,10 +572,19 @@
         integrity="sha512-lVcnjCLGjJTaZU55wD7H3f8SJVi6VV5cQRcmGuYcyIY607N/rzZGEl90lNgsiEhKygATryG/i6e5u2moDFs5kQ=="
         crossorigin="anonymous"
         referrerpolicy="no-referrer"></script>
+<script src="https://www.google.com/recaptcha/api.js?hl=ru" async defer></script>
 <script src="https://cdn.jsdelivr.net/npm/mobile-detect@1.4.4/mobile-detect.min.js"></script>
 <script src="{{ asset('/js/inputmask.js') }}"></script>
 <script src="{{ asset('/js/dest/layout.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
 <script src="{{ asset('/js/main.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
+<script>
+    $( document ).ready(function(){
+        $(document).on('submit','#report-form',function(e){
+            var response = grecaptcha.getResponse();
+                if(response.length == 0){e.preventDefault();$(this).find('.recaptcha-msg').empty().text('Необходимо пройти капчу');return;}
+        })
+    });
+</script>
 @if(Auth::guest())
     <script>
         $('#log-in-form-popup').submit(function(e) {

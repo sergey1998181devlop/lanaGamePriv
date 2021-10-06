@@ -8,14 +8,17 @@ use App\report;
 use Auth;
 use App\langame_request;
 use App\subscribe;
+use Illuminate\Validation\ValidationException;
 class mailController extends Controller
 {
     public function storeFromContacts(Request $request){
+        
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'message' => ['required'],
         ]);
+        $this->reCaptcha($request);
         $contact = new contact();
         $contact->name = $request->input('name');
         $contact->email = $request->input('email');
@@ -34,6 +37,7 @@ class mailController extends Controller
             'city' => ['required'],
             'club_name' => ['required']
         ]);
+        $this->reCaptcha($request);
         $langame_request = new langame_request();
         $langame_request->name = $request->input('name');
         $langame_request->email = $request->input('email');
@@ -50,6 +54,7 @@ class mailController extends Controller
         $data = $request->validate([
             'message' => ['required'],
         ]);
+        $this->reCaptcha($request);
         $report = new report();
         $report->message = $request->input('message');
         $report->url =$request->input('url');
@@ -67,5 +72,15 @@ class mailController extends Controller
         $subscribe->type=$request->input('type');
         $subscribe->save();
         return back()->with(['success'=>'успешно отправлено']);
+    }
+    public function reCaptcha($request){
+        if($request->input('g-recaptcha-response')=='')
+            throw ValidationException::withMessages(['g-recaptcha-response' => 'Необходимо пройти капчу']);
+        $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode(env('RECAPCHA_SEC')) .  '&response=' . urlencode($request->input('g-recaptcha-response'));
+        $response = file_get_contents($url);
+        $responseKeys = json_decode($response,true);
+        if(!$responseKeys["success"]){
+            throw ValidationException::withMessages(['g-recaptcha-response' => 'Необходимо пройти капчу']);
+        }
     }
 }

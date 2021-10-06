@@ -77,6 +77,14 @@
                         @enderror
                     </div>
                 </div>
+                <div class="recaptcha-holder">
+                    <div class="g-recaptcha" data-sitekey="{{env('RECAPCHA_PUB')}}"></div>
+                </div>            
+                <div class="recaptcha-msg">
+                    @error('g-recaptcha-response')
+                    {{ $message }}
+                    @enderror
+                </div>
                 <button type="submit">Отправить</button>
             </form>
         </div>
@@ -86,11 +94,20 @@
 
 @endsection
 @section('scripts')
+<script>
+    $( document ).ready(function(){
+        $(document).on('submit','#contact-us-form',function(e){
+            var response = grecaptcha.getResponse();
+                if(response.length == 0){e.preventDefault();$(this).find('.recaptcha-msg').empty().text('Необходимо пройти капчу');return;}
+        })
+    });
+</script>
 @if(session('success'))
 <script>
     $( document ).ready(function(){
         jQuery('[data-remodal-id="success_modal"]').remodal().open();
     });
+
 </script>
 @endif
 @endsection
