@@ -118,11 +118,16 @@ input[type=number] {
 }
 
 .recaptcha-holder{
+    display: flex;
+    justify-content: flex-end;
     margin: 0 0 20px;
 }
 
 .recaptcha-msg{
     margin: 0 0 10px;
+    text-align: end;
+    color: #dc0000;
+    font-weight: 500;
 }
 
 @media(max-width: 980px) {
