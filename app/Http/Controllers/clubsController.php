@@ -281,11 +281,22 @@ class clubsController extends Controller
             $club->work_time = '1';
             $club->work_time_days = '';
         }
-        $club->configuration = serialize($request->input('configuration'));
+        
         if(!is_array($request->input('configuration'))){
+            
             $errors['configuration'] = [
                 'Конфигурация оборудования заполнена неверно'
             ];
+        }else{
+            $configuration = $request->input('configuration');
+            foreach ($configuration as $key=> $zone) {
+                // дюймы и герцы вместе
+                $type = isset($configuration[$key]['monitor_type']) ? $configuration[$key]['monitor_type'] : '';
+                $hertz = isset($configuration[$key]['monitor_hertz']) ? $configuration[$key]['monitor_hertz'] .' Гц' : '';
+                unset($configuration[$key]['monitor_hertz']);
+                $configuration[$key]['monitor_type']=$type . ' ' .$hertz;
+           }
+            $club->configuration = serialize($configuration);
         }
         if($request->input('marketing_event') == 'on'){
             $club->marketing_event = '1';

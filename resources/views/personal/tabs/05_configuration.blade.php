@@ -17,7 +17,7 @@ declare(strict_types=1);
                 <li data-nav-tab="1" data-block="vip_pc">
                     <a href="#" data-show-tab="1"></a>
                 </li>
-                @if($edit && is_array($configuration) && count($configuration) > 2)
+                @if($edit && is_array($configuration) && count($configuration) > 1)
                     <?foreach($configuration as $key=>$confTap){
                          if($key == 0 || $key== 1)continue;
                          ?>
@@ -213,6 +213,15 @@ declare(strict_types=1);
                                 <option value=""></option>
                                 @foreach ($monitor_types as $vendor)
                                 <option value="{{$vendor}}" {{(getConf('monitor_type','0') == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
+                                @endforeach
+                            </select>
+                            <div class="error"></div>
+                        </div>
+                        <div class="select2_wrapper">
+                            <select id="monitor-hertz-0" name="configuration[0][monitor_hertz]" data-placeholder="Гц" required>
+                                <option value=""></option>
+                                @foreach ($monitor_hertz as $vendor)
+                                <option value="{{$vendor}}" {{(getConf('monitor_hertz','0') == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
                                 @endforeach
                             </select>
                             <div class="error"></div>
@@ -419,6 +428,15 @@ declare(strict_types=1);
                             </select>
                             <div class="error"></div>
                         </div>
+                        <div class="select2_wrapper">
+                            <select id="monitor-hertz-1" name="configuration[1][monitor_hertz]" data-placeholder="Гц" required>
+                                <option value=""></option>
+                                @foreach ($monitor_hertz as $vendor)
+                                <option value="{{$vendor}}" {{(getConf('monitor_hertz','1') == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
+                                @endforeach
+                            </select>
+                            <div class="error"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -437,7 +455,7 @@ declare(strict_types=1);
                 </div>
             </div>
         </div>
-        @if($edit && is_array($configuration) && count($configuration) > 2)
+        @if($edit && is_array($configuration) && count($configuration) > 1)
             <?foreach($configuration as $tabKey=>$confTap){
                     if($tabKey == 0 || $tabKey== 1)continue;
                     ?>
@@ -628,6 +646,15 @@ declare(strict_types=1);
                         <select id="monitor-type-{n}" name="configuration[{n}][monitor_type]" data-placeholder="Тип" required>
                             <option value=""></option>
                             @foreach ($monitor_types as $vendor)
+                            <option value="{{$vendor}}">{{$vendor}}</option>
+                            @endforeach
+                        </select>
+                        <div class="error"></div>
+                    </div>
+                    <div class="select2_wrapper">
+                        <select id="monitor-hertz-{n}" name="configuration[{n}][monitor_hertz]" data-placeholder="Гц" required>
+                            <option value=""></option>
+                            @foreach ($monitor_hertz as $vendor)
                             <option value="{{$vendor}}">{{$vendor}}</option>
                             @endforeach
                         </select>

@@ -183,6 +183,15 @@
                     </select>
                     <div class="error"></div>
                 </div>
+                <div class="select2_wrapper">
+                    <select id="monitor-hertz-{{$tabKey}}" name="configuration[{{$tabKey}}][monitor_hertz]" data-placeholder="Гц" required>
+                        <option value=""></option>
+                        @foreach ($monitor_hertz as $vendor)
+                        <option value="{{$vendor}}" {{(getConf('monitor_hertz',$tabKey) == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
+                        @endforeach
+                    </select>
+                    <div class="error"></div>
+                </div>
             </div>
         </div>
     </div>
