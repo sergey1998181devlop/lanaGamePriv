@@ -909,4 +909,12 @@
             })
         </script>
     @endif
+    <script>
+        $( document ).ready(function(){
+            $(document).on('submit','#report-club-form',function(e){
+                var response = grecaptcha.getResponse();
+                    if(response.length == 0){e.preventDefault();$(this).find('.recaptcha-msg').empty().text('Необходимо пройти капчу');return;}
+            })
+        });
+    </script>
 @endsection
