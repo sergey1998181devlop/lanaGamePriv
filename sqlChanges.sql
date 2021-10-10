@@ -25,4 +25,6 @@
 
 -- ALTER TABLE `posts` ADD `order_no` INT NOT NULL DEFAULT '500' AFTER `views`, ADD `deleted_at` TIMESTAMP NULL DEFAULT NULL AFTER `order_no`;
 
-ALTER TABLE `comments` ADD `send_mail` ENUM('0','1') NOT NULL DEFAULT '0' AFTER `comment`;
+-- ALTER TABLE `comments` ADD `send_mail` ENUM('0','1') NOT NULL DEFAULT '0' AFTER `comment`;
+
+ALTER TABLE `clubs` ADD `tsena` TINYINT(1) NOT NULL DEFAULT '0' AFTER `with_own_food`;

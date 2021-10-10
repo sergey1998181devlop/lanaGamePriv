@@ -338,6 +338,12 @@
                             <span>Можно со своей едой</span>
                         </div>
                     @endif
+                    @if($club->tsena == '1')
+                        <div class="club_page_services_item mob_hide">
+                            <img src="{{asset('/img/icons/tsena.svg')}}" alt="icons">
+                            <span>Сцена и зрительный зал</span>
+                        </div>
+                    @endif
                     <button class="club_services_mobile_toggle"></button>
                 </div>
             </div>

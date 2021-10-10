@@ -117,6 +117,7 @@ class clubsController extends Controller
             'smoke',
             'print',
             'with_own_food',
+            'tsena',
         ];
     }
 

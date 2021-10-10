@@ -92,4 +92,11 @@ declare(strict_types=1);
             <span>Можно со своей едой</span>
         </label>
     </div>
+    <div class="checkbox_item">
+        <label>
+            <input type="checkbox" {{(clubValue('tsena') == '1') ? 'checked' : null}} name="tsena">
+            <span class="activator"><span></span></span>
+            <span>Есть сцена и зрительный зал</span>
+        </label>
+    </div>
 </div>
