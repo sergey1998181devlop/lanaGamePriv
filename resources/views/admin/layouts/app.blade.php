@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="{{ asset('admin/css/sb-admin-2.min.css') }}?v=4" rel="stylesheet">
+  <link href="{{ asset('admin/css/sb-admin-2.min.css') }}?v=5" rel="stylesheet">
   <!-- <link href="{{ asset('css/css.css') }}" rel="stylesheet"> -->
   @yield('page')
   <title><?php echo (isset($title))  ?  $title : env('APP_NAME');?></title>
@@ -97,17 +97,24 @@
               </div>
           </div>
       </li>
+      <?
+        $newMessagesC = \App\contact::whereNull('seen_at')->count();
+        $newReportsC = \App\report::whereNull('seen_at')->count();
+        $newClubErrorsC= \App\club_report::whereNull('seen_at')->count();
+        $newLangameRequestsC= \App\langame_request::whereNull('seen_at')->count();
+      ?>
       <li class="nav-item">
           <a class="nav-link <?=($page=="contacts" || $page=="langame_soft" || $page=="error-reports" )? null:'collapsed' ?> " data-toggle="collapse" data-target="#collapseTwoContact" aria-expanded="false" aria-controls="collapseTwo">
           <i class="fas fa-comments"></i>
-              <span>Обратная связь</span>
+              <span>Обратная связь <span class="badge badge-pill badge-warning">{{$newMessagesC + $newReportsC + $newClubErrorsC + $newLangameRequestsC}}</span></span>
           </a>
         
-          <div id="collapseTwoContact" class="collapse <?=($page=="contacts" || $page=="langame_soft" || $page=="error-reports" )? ' show': null ?> collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
+          <div id="collapseTwoContact" class="collapse <?=($page=="contacts" || $page=="langame_soft" || $page=="error-reports" || $page=="club_errors"  )? ' show': null ?> collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
               <div class="bg-white py-2 collapse-inner rounded">
-                  <a class="collapse-item<?=($page=="contacts")? ' active': null ?>" href="{{url('/panel/contacts')}}">Форма напишите нам</a>
-                  <a class="collapse-item<?=($page=="langame_soft")? ' active': null ?>" href="{{url('/panel/langame-requests')}}">Заявки LanGame Software</a>
-                  <a class="collapse-item<?=($page=="error-reports")? ' active': null ?>" href="{{url('/panel/error-reports')}}">Сообщения об ошибках</a>
+                  <a class="collapse-item<?=($page=="contacts")? ' active': null ?>" href="{{url('/panel/contacts')}}">Напишите нам <span class="badge badge-pill badge-warning">{{$newMessagesC}}</span></a>
+                  <a class="collapse-item<?=($page=="langame_soft")? ' active': null ?>" href="{{url('/panel/langame-requests')}}">Заявки LanGame Soft. <span class="badge badge-pill badge-warning">{{$newLangameRequestsC}}</span></a>
+                  <a class="collapse-item<?=($page=="error-reports")? ' active': null ?>" href="{{url('/panel/error-reports')}}">Сообщения об ошибках <span class="badge badge-pill badge-warning">{{$newReportsC}}</span></a>
+                  <a class="collapse-item<?=($page=="club_errors")? ' active': null ?>" href="{{url('/panel/club-error-reports')}}">Комментария к клубам <span class="badge badge-pill badge-warning">{{$newClubErrorsC}}</span></a>
               </div>
           </div>
       </li>

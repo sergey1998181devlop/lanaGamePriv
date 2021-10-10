@@ -57,6 +57,7 @@ Route::get('searchMetro','HomeController@searchMetro');
 Route::post('messages/send','mailController@storeFromContacts');
 Route::post('langame/request','mailController@langameRequest');
 Route::post('report_error','mailController@reportError');
+Route::post('report_club_error','mailController@reportClubError');
 Route::post('subscribe','mailController@subscribe');
 
 // прочие страницы
@@ -129,6 +130,9 @@ Route::get('/panel/langame-requests', 'panel\adminController@langameRequests');
 Route::post('/panel/langame-requests/delete', 'panel\adminController@deleteRequest');
 Route::get('/panel/langame-requests/toggle/{id}', 'panel\adminController@langameRequestsToggle');
 
+Route::get('/panel/club-error-reports', 'panel\adminController@clubErrorReports');
+Route::get('/panel/club-get-report', 'panel\adminController@clubGetReport');
+Route::post('panel/club-error-reports/delete', 'panel\adminController@deleteClubErrorReport');
 // cron
 
 Route::get('panel/comments/send-mails', 'panel\clubsController@sendMails');

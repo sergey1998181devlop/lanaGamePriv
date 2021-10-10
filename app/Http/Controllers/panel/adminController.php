@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\club;
 use App\langame_request;
 use App\report;
+use App\club_report;
 use ImageResize;
 class adminController extends Controller
 {
@@ -83,6 +84,13 @@ class adminController extends Controller
         $new_collection = $reports->merge($reportsR);
         return view('admin.contacts.reports')->with(['reports'=>$new_collection,'newCount'=>$newCount]);
     }
+    public function clubErrorReports(){
+        $reports = club_report::whereNull('seen_at')->orderBy('created_at','desc')->get();
+        $reportsR = club_report::whereNotNull('seen_at')->orderBy('created_at','desc')->get();
+        $newCount = club_report::whereNull('seen_at')->count();
+        $new_collection = $reports->merge($reportsR);
+        return view('admin.contacts.club_errors')->with(['reports'=>$new_collection,'newCount'=>$newCount]);
+    }
     
     public function getReports(Request $request)
     {
@@ -95,10 +103,29 @@ class adminController extends Controller
         $html .= '<p>'.$report->created_at.'</p>';
         return response()->json(['status'=>'success','html'=>$html], 202);
     }
+    public function clubGetReport(Request $request)
+    {
+        $report = club_report::findOrFail($request->input('id'));
+        if($report->seen_at == null){
+            $report->seen_at = Carbon::now()->toDateTimeString();
+            $report->save();
+        }
+        $html = '<h4>'.$report->message.'</h4>';
+        $html .= '<p>'.$report->created_at.'</p>';
+        return response()->json(['status'=>'success','html'=>$html], 202);
+    }
+    
     public function deleteErrorReport(Request $request)
     {
         $report = report::findOrFail($request->input('id'));
         $report->delete();
         return back()->with('success',__('messages.Success'));
     }
+    public function deleteClubErrorReport(Request $request)
+    {
+        $report = club_report::findOrFail($request->input('id'));
+        $report->delete();
+        return back()->with('success',__('messages.Success'));
+    }
+    
 }

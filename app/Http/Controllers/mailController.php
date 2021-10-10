@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\contact;
 use App\report;
+use App\club_report;
 use Auth;
 use App\langame_request;
 use App\subscribe;
@@ -63,6 +64,24 @@ class mailController extends Controller
         if($report->save())
         return back()->with(['success'=>'Сообщение успешно отправлено']);
     }
+    public function reportClubError(Request $request){
+        $data = $request->validate([
+            'message' => ['required'],
+        ]);
+        $this->reCaptcha($request);
+        $report = new club_report();
+        $report->name = $request->input('name');
+        $report->email = $request->input('email');
+        $report->message = $request->input('message');
+        if($request->input('phone') != '')
+        $report->phone = $request->input('phone');
+        $report->url =$request->input('url');
+        if(!Auth::guest())
+        $report->user_id =Auth::user()->id;
+        if($report->save())
+        return back()->with(['success'=>'Сообщение успешно отправлено']);
+    }
+    
     public function subscribe(Request $request){
         $data = $request->validate([
             'type' => ['required', 'string','in:gamer,owner'],

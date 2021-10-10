@@ -73,6 +73,9 @@
                 </div>
 
                 <div class="main_info_btn_wrapper">
+                    <a class="btn" data-remodal-target="report_club_modal" style="padding: 12px 0;margin: 0 15px;cursor: pointer;">
+                        <img src="{{asset('/img/icons/wrmsg.svg')}}" alt="">
+                    </a>
                     @if($club->deleted_at != null)
                     <a
                            style="background:#ff6328;border: 2px solid black;color:#000;margin-right: 5px;font-size: 14px;    cursor: auto;"
@@ -757,7 +760,45 @@
 
     @endif
 
-
+    <div class="remodal report_modal report_club_modal" data-remodal-id="report_club_modal" data-remodal-options="hashTracking: false">
+    <button data-remodal-action="close" class="remodal-close"></button>
+    <div class="remodal-content">
+        <div class="title">Комментарий к клубу</div>
+        <form action="{{url('report_club_error')}}" method="post" id="report-club-form">
+            @csrf
+            <input type="hidden" name="url" value="{{url()->current()}}">
+            <div class="forma">
+                <div class="form-group required @error('name') error @enderror">
+                    <label for="contact-us-name-input">Имя *</label>
+                    <input id="contact-us-name-input" name="name" value="{{ old('name') }}"  type="text" placeholder=""  required>
+                </div>
+                <div class="form-group required @error('email') error @enderror">
+                    <label for="contact-us-email-input">Email *</label>
+                    <input id="contact-us-email-input" name="email" value="{{ old('email') }}" type="email" placeholder=""  required>
+                </div>
+                <div class="form-group @error('phone') error @enderror">
+                    <label for="contact-us-phone-input">Контактный телефон</label>
+                    <input id="contact-us-phone-input" name="phone" value="{{ old('phone') }}" type="tel" placeholder="+7 (___) ___-__-__">
+                </div>
+                <div class="form-group descr required @error('message') error @enderror">
+                    <label for="contact-us-message-input">Текст сообщения *</label>
+                    <textarea name="message" id="contact-us-message-input" maxlength="1500" required></textarea>
+                </div>
+            </div>
+            <div class="recaptcha-holder">
+                <div class="g-recaptcha" data-sitekey="{{env('RECAPCHA_PUB')}}"></div>
+            </div>
+            <div class="recaptcha-msg">
+                @error('g-recaptcha-response')
+                {{ $message }}
+                @enderror
+            </div>
+            <div class="btn_wrapper">
+                <button type="submit">Отправить</button>
+            </div>
+        </form>
+    </div>
+</div>
     <div class="show_club_photo_modal" data-remodal-id="club_photo_modal"  data-remodal-options="hashTracking: false">
         <button data-remodal-action="close" class="remodal-close">Закрыть</button>
         <div class="remodal-content">
