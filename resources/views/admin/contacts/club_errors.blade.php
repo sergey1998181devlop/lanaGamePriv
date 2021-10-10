@@ -28,6 +28,7 @@
             <th>{{__('messages.Name')}}</th>
             <th>{{__('messages.Email')}}</th>
             <th>{{__('messages.phone')}}</th>    
+            <th>Страница</th>
             <th>Отпралено</th>        
             <th>Действие</th>
           </tr>
@@ -39,6 +40,7 @@
             <th>{{__('messages.Name')}}</th>
             <th>{{__('messages.Email')}}</th>
             <th>{{__('messages.phone')}}</th>
+            <th>Страница</th>
             <th>Отпралено</th>
             <th>Действие</th>
           </tr>
@@ -51,6 +53,7 @@
             <td name="name" >{{$report->name}}</td>
             <td name="email">{{$report->email}}</td>
             <td name="phone">{{$report->phone}}</td>
+            <td><a href="{{$report->url}}">Посмотреть клуб</a></td>
             <td>{{$report->created_at}}</td>
             <td>
                 <button type="button" class="btn-sm btn btn-info showMessage" contactId="{{$report->id}}" data-toggle="modal" data-target="#showMessage">Посмотреть</button>
