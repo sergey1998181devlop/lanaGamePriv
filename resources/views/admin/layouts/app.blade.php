@@ -111,10 +111,10 @@
         
           <div id="collapseTwoContact" class="collapse <?=($page=="contacts" || $page=="langame_soft" || $page=="error-reports" || $page=="club_errors"  )? ' show': null ?> collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
               <div class="bg-white py-2 collapse-inner rounded">
-                  <a class="collapse-item<?=($page=="contacts")? ' active': null ?>" href="{{url('/panel/contacts')}}">Напишите нам <span class="badge badge-pill badge-warning">{{$newMessagesC}}</span></a>
-                  <a class="collapse-item<?=($page=="langame_soft")? ' active': null ?>" href="{{url('/panel/langame-requests')}}">Заявки LanGame Soft. <span class="badge badge-pill badge-warning">{{$newLangameRequestsC}}</span></a>
-                  <a class="collapse-item<?=($page=="error-reports")? ' active': null ?>" href="{{url('/panel/error-reports')}}">Сообщения об ошибках <span class="badge badge-pill badge-warning">{{$newReportsC}}</span></a>
-                  <a class="collapse-item<?=($page=="club_errors")? ' active': null ?>" href="{{url('/panel/club-error-reports')}}">Комментария к клубам <span class="badge badge-pill badge-warning">{{$newClubErrorsC}}</span></a>
+                  <a class="collapse-item<?=($page=="contacts")? ' active': null ?>" href="{{url('/panel/contacts')}}">Напишите нам <span class="badge badge-pill badge-warning">{{$newMessagesC > 0 ? $newMessagesC : null}}</span></a>
+                  <a class="collapse-item<?=($page=="langame_soft")? ' active': null ?>" href="{{url('/panel/langame-requests')}}">Заявки LanGame Soft. <span class="badge badge-pill badge-warning">{{$newLangameRequestsC > 0 ? $newLangameRequestsC : null}}</span></a>
+                  <a class="collapse-item<?=($page=="error-reports")? ' active': null ?>" href="{{url('/panel/error-reports')}}">Сообщения об ошибках <span class="badge badge-pill badge-warning">{{$newReportsC > 0 ? $newReportsC : null}}</span></a>
+                  <a class="collapse-item<?=($page=="club_errors")? ' active': null ?>" href="{{url('/panel/club-error-reports')}}">Комментария к клубам <span class="badge badge-pill badge-warning">{{$newClubErrorsC > 0 ? $newClubErrorsC : null}}</span></a>
               </div>
           </div>
       </li>
