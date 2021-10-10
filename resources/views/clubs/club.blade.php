@@ -782,7 +782,7 @@
                 </div>
                 <div class="form-group descr required @error('message') error @enderror">
                     <label for="contact-us-message-input">Текст сообщения *</label>
-                    <textarea name="message" id="contact-us-message-input" maxlength="1500" required></textarea>
+                    <textarea name="message" id="contact-us-message-input" value="{{ old('message') }}" maxlength="1500" required></textarea>
                 </div>
             </div>
             <div class="recaptcha-holder">
