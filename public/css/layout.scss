@@ -14149,73 +14149,6 @@ section.cities_list_wrapper {
     padding: 0;
     background-color: #212121;
 
-    .remodal.show_club_price_list_modal {
-        position: relative;
-        max-width: 800px;
-        background-color: transparent;
-
-        .remodal-close {
-            width: 129px;
-            top: 50px;
-            left: 100%;
-            font-style: normal;
-            font-weight: 500;
-            font-size: 18px;
-            line-height: 1;
-            color: #ffffff;
-
-            &:before {
-                content: '';
-                display: block;
-                width: 23px;
-                height: 23px;
-                position: absolute;
-                top: 50%;
-                left: -2px;
-                background-image: url("../img/white_cancel.svg");
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: 23px 23px;
-                transform: translateY(-50%);
-            }
-        }
-
-        .remodal-content {
-            .club_price_list_wrapper {
-                img {
-                    display: block;
-                    width: 100%;
-                    height: 100%;
-                }
-            }
-        }
-
-        @media (max-width: 800px) {
-            position: relative;
-            max-width: 100%;
-            width: 100%;
-            background-color: transparent;
-
-
-            .remodal-close {
-                top: -2px;
-                left: unset;
-                right: 6px;
-            }
-
-            .remodal-content {
-                .club_price_list_wrapper {
-                    img {
-                        width: 100%;
-                        height: 100%;
-                        max-height: 600px;
-                        object-fit: contain;
-                    }
-                }
-            }
-        }
-    }
-
     .remodal.show_club_photo_modal {
         position: relative;
         max-width: 1000px;
@@ -14381,6 +14314,73 @@ section.cities_list_wrapper {
 
             .counter_slide {
                 top: -134px;
+            }
+        }
+    }
+}
+
+.show_club_price_list_modal {
+    position: relative;
+    max-width: 800px;
+    background-color: #ffffff;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    padding: 26px;
+
+    .remodal-close {
+        width: 28px;
+        height: 28px;
+        left: unset;
+        left: auto;
+        right: -10px;
+        top: -10px;
+        opacity: 1;
+        background-image: url("../img/cancel.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 34px 34px;
+        background-color: #ffffff;
+        border-radius: 50%;
+
+
+        &:before {
+            content: none;
+            display: none;
+        }
+    }
+
+    .remodal-content {
+        .club_price_list_wrapper {
+            img {
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+    @media (max-width: 800px) {
+        padding: 16px;
+        max-width: 100%;
+        width: 100%;
+
+        .remodal-close {
+            width: 24px;
+            height: 24px;
+            left: unset;
+            left: auto;
+            right: -6px;
+            top: -9px;
+        }
+
+        .remodal-content {
+            .club_price_list_wrapper {
+                img {
+                    width: 100%;
+                    height: 100%;
+                    max-height: 600px;
+                    object-fit: contain;
+                }
             }
         }
     }

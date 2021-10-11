@@ -827,8 +827,8 @@
         </div>
     </div>
     @if(substr($club->club_price_file, strrpos($club->club_price_file, '.') + 1) != 'pdf')
-        <div class="show_club_price_list_modal" data-remodal-id="club_price_list_modal"  data-remodal-options="hashTracking: false">
-            <button data-remodal-action="close" class="remodal-close">Закрыть</button>
+        <div class="remodal show_club_price_list_modal" data-remodal-id="club_price_list_modal"  data-remodal-options="hashTracking: false">
+            <button data-remodal-action="close" class="remodal-close"></button>
             <div class="remodal-content">
                 <div class="club_price_list_wrapper">
                     <a href="{{$club->club_price_file}}" data-fancybox>
