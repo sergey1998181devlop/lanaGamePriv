@@ -144,13 +144,6 @@
                 goToPrevTab,
                 validateActiveTab
             };
-
-            return {
-                showTab,
-                goToNextTab,
-                goToPrevTab,
-                validateActiveTab
-            };
         }
     });
 })();

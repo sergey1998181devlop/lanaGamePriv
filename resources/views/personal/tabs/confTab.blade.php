@@ -2,7 +2,10 @@
     <div class="form-group">
         <div class="pc_config">Оборудование</div>
         <div class="pc_config">
-            <input type="text" value="{{getConf('conf_name',$tabKey)}}" name="configuration[{{$tabKey}}][conf_name]" placeholder="Введите название">
+            <div class="common_info_wrapper">
+                <input type="text" value="{{getConf('conf_name',$tabKey)}}" name="configuration[{{$tabKey}}][conf_name]" placeholder="Введите название">
+                <input type="text" class="qty" value="" name="configuration[{{$tabKey}}][pc_quantity]" placeholder="Количество ПК" data-new-area-qty-pc>
+            </div>
         </div>
     </div>
     <div class="form-group">
@@ -16,7 +19,7 @@
                         @foreach($cpus as $key=>$vendor)
                             <option value="{{$key}}" {{(getConf('cpu_vendor',$tabKey) === $key) ? 'selected' : null}}>{{$key}}</option>
                         @endforeach
-                        
+
                     </select>
                     <div class="error"></div>
                 </div>
@@ -169,16 +172,16 @@
                         <option value=""></option>
                         <option value="1" {{(getConf('monitor_vendor',$tabKey) == '1') ? 'selected' : null}}>Фирма</option>
                         @foreach ($monitors as $vendor)
-                        <option value="{{$vendor}}" {{(getConf('monitor_vendor',$tabKey) == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
+                            <option value="{{$vendor}}" {{(getConf('monitor_vendor',$tabKey) == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
                         @endforeach
                     </select>
                     <div class="error"></div>
                 </div>
                 <div class="select2_wrapper">
-                    <select id="monitor-type-{{$tabKey}}" name="configuration[{{$tabKey}}][monitor_type]" data-placeholder="Тип" required required>
+                    <select id="monitor-type-{{$tabKey}}" name="configuration[{{$tabKey}}][monitor_type]" data-placeholder="Дюймы" required required>
                         <option value=""></option>
                         @foreach ($monitor_types as $vendor)
-                        <option value="{{$vendor}}" {{(getConf('monitor_type',$tabKey) == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
+                            <option value="{{$vendor}}" {{(getConf('monitor_type',$tabKey) == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
                         @endforeach
                     </select>
                     <div class="error"></div>
@@ -187,7 +190,7 @@
                     <select id="monitor-hertz-{{$tabKey}}" name="configuration[{{$tabKey}}][monitor_hertz]" data-placeholder="Гц" required>
                         <option value=""></option>
                         @foreach ($monitor_hertz as $vendor)
-                        <option value="{{$vendor}}" {{(getConf('monitor_hertz',$tabKey) == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
+                            <option value="{{$vendor}}" {{(getConf('monitor_hertz',$tabKey) == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
                         @endforeach
                     </select>
                     <div class="error"></div>

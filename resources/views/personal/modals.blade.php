@@ -23,6 +23,10 @@
                     @include("personal.tabs.02_basic_services")
                     </div>
 
+                    <div class="form_tab form_tab_05_configuration">
+                        @include("personal.tabs.05_configuration")
+                    </div>
+
                     <div class="form_tab form_tab_03_advanced_services">
                     @include("personal.tabs.03_advanced_services")
                     </div>
@@ -31,9 +35,7 @@
                     @include("personal.tabs.04_schedule")
                     </div>
 
-                    <div class="form_tab form_tab_05_configuration">
-                    @include("personal.tabs.05_configuration")
-                    </div>
+
 
                     <div class="form_tab form_tab_06_price">
                     @include("personal.tabs.06_price")

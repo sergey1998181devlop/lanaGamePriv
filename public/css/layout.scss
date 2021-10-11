@@ -12813,6 +12813,22 @@ section.cities_list_wrapper {
                                         font-weight: 700;
                                         color: #000000;
                                     }
+
+                                    .common_info_wrapper{
+                                        display: flex;
+                                        flex-direction: row;
+                                        justify-content: flex-start;
+                                        width: 372px;
+
+                                        input{
+                                            width: 120px;
+                                            text-align: left;
+
+                                            &.qty{
+                                                color: #dc3545;
+                                            }
+                                        }
+                                    }
                                 }
 
                                 &.required {

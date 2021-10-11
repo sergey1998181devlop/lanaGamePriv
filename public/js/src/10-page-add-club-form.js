@@ -532,7 +532,8 @@ jQuery(function() {
      * Configuration tabs
      */
     (() => {
-        let $configuration = jQuery('[data-role="pc-configuration"]'),
+        let $tab = jQuery('.form_tab_05_configuration'),
+            $configuration = jQuery('[data-role="pc-configuration"]'),
             $navs = $configuration.find('[data-role="pc-configuration-nav"]'),
             $tabs = $configuration.find('[data-role="pc-configuration-tabs"]'),
             $tab_tpl = jQuery('#configuration-tab-template'),
@@ -540,11 +541,23 @@ jQuery(function() {
             tab_tpl_html = $tab_tpl.html(),
             tab_count = $tabs.find('[data-role="pc-configuration-tab"]').length,
             last_tab_index = tab_count - 1,
-            active_tab_index = last_tab_index;
+            active_tab_index = last_tab_index,
+            $input_common_area_qty_pc = jQuery('[data-common-area-qty-pc]'),
+            $input_vip_area_qty_pc = jQuery('[data-vip-area-qty-pc]');
+
 
         if ($configuration.length === 0) {
             return;
         }
+
+        $tab.on('open', function() {
+            let $qty_pc_val = jQuery('[name="qty_pc"]').val(),
+                $qty_vip_pc_val = jQuery('[name="qty_vip_pc"]').val(),
+                $qty_common_val = $qty_pc_val - $qty_vip_pc_val;
+
+            $input_common_area_qty_pc.val(`${$qty_common_val} ПК`);
+            $input_vip_area_qty_pc.val(`${$qty_vip_pc_val} ПК`);
+        });
 
         $create_tab_button.on('click', function(e) {
             e.preventDefault();

@@ -19,12 +19,12 @@ declare(strict_types=1);
                 </li>
                 @if($edit && is_array($configuration) && count($configuration) > 1)
                     <?foreach($configuration as $key=>$confTap){
-                         if($key == 0 || $key== 1)continue;
-                         ?>
-                        <li data-nav-tab="{{$key}}">
-                            <a href="#" data-show-tab="{{$key}}"></a>
-                            <button type="button" data-remove-tab="{{$key}}"></button>
-                        </li>
+                    if ($key == 0 || $key == 1) continue;
+                    ?>
+                    <li data-nav-tab="{{$key}}">
+                        <a href="#" data-show-tab="{{$key}}"></a>
+                        <button type="button" data-remove-tab="{{$key}}"></button>
+                    </li>
                     <?}?>
                 @endif
             </ul>
@@ -38,8 +38,11 @@ declare(strict_types=1);
             <div class="form-group">
                 <div class="pc_config">Оборудование</div>
                 <div class="pc_config">
-                    <input type="text" value="1. Общий зал" readonly>
-                    <input type="hidden" value="Общий зал" name="configuration[0][conf_name]" readonly>
+                    <div class="common_info_wrapper">
+                        <input type="text" value="1. Общий зал" readonly>
+                        <input type="hidden" value="Общий зал" name="configuration[0][conf_name]" readonly>
+                        <input type="text" class="qty" value="" name="configuration[0][pc_quantity]" readonly data-common-area-qty-pc>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
@@ -203,7 +206,7 @@ declare(strict_types=1);
                             <select id="monitor-vendor-0" name="configuration[0][monitor_vendor]" data-placeholder="Фирма" required>
                                 <option value=""></option>
                                 @foreach ($monitors as $vendor)
-                                <option value="{{$vendor}}" {{(getConf('monitor_vendor','0') == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
+                                    <option value="{{$vendor}}" {{(getConf('monitor_vendor','0') == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
                                 @endforeach
                             </select>
                             <div class="error"></div>
@@ -212,7 +215,7 @@ declare(strict_types=1);
                             <select id="monitor-type-0" name="configuration[0][monitor_type]" data-placeholder="Дюймы" required>
                                 <option value=""></option>
                                 @foreach ($monitor_types as $vendor)
-                                <option value="{{$vendor}}" {{(getConf('monitor_type','0') == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
+                                    <option value="{{$vendor}}" {{(getConf('monitor_type','0') == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
                                 @endforeach
                             </select>
                             <div class="error"></div>
@@ -221,7 +224,7 @@ declare(strict_types=1);
                             <select id="monitor-hertz-0" name="configuration[0][monitor_hertz]" data-placeholder="Гц" required>
                                 <option value=""></option>
                                 @foreach ($monitor_hertz as $vendor)
-                                <option value="{{$vendor}}" {{(getConf('monitor_hertz','0') == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
+                                    <option value="{{$vendor}}" {{(getConf('monitor_hertz','0') == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
                                 @endforeach
                             </select>
                             <div class="error"></div>
@@ -249,8 +252,11 @@ declare(strict_types=1);
             <div class="form-group">
                 <div class="pc_config">Оборудование</div>
                 <div class="pc_config">
-                    <input type="text" class="vip_placeholder" value="2. VIP" placeholder="2. VIP" readonly>
-                    <input type="hidden" value="VIP" name="configuration[1][conf_name]" readonly>
+                    <div class="common_info_wrapper">
+                        <input type="text" class="vip_placeholder" value="2. VIP" placeholder="2. VIP" readonly>
+                        <input type="hidden" value="VIP" name="configuration[1][conf_name]" readonly>
+                        <input type="text" class="qty" value="" name="configuration[1][pc_quantity]" readonly data-vip-area-qty-pc>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
@@ -414,7 +420,7 @@ declare(strict_types=1);
                             <select id="monitor-vendor-1" name="configuration[1][monitor_vendor]" data-placeholder="Фирма" required>
                                 <option value=""></option>
                                 @foreach ($monitors as $vendor)
-                                <option value="{{$vendor}}" {{(getConf('monitor_vendor','1') == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
+                                    <option value="{{$vendor}}" {{(getConf('monitor_vendor','1') == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
                                 @endforeach
                             </select>
                             <div class="error"></div>
@@ -423,7 +429,7 @@ declare(strict_types=1);
                             <select id="monitor-type-1" name="configuration[1][monitor_type]" data-placeholder="Тип" required>
                                 <option value=""></option>
                                 @foreach ($monitor_types as $vendor)
-                                <option value="{{$vendor}}" {{(getConf('monitor_type','1') == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
+                                    <option value="{{$vendor}}" {{(getConf('monitor_type','1') == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
                                 @endforeach
                             </select>
                             <div class="error"></div>
@@ -432,7 +438,7 @@ declare(strict_types=1);
                             <select id="monitor-hertz-1" name="configuration[1][monitor_hertz]" data-placeholder="Гц" required>
                                 <option value=""></option>
                                 @foreach ($monitor_hertz as $vendor)
-                                <option value="{{$vendor}}" {{(getConf('monitor_hertz','1') == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
+                                    <option value="{{$vendor}}" {{(getConf('monitor_hertz','1') == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
                                 @endforeach
                             </select>
                             <div class="error"></div>
@@ -457,9 +463,9 @@ declare(strict_types=1);
         </div>
         @if($edit && is_array($configuration) && count($configuration) > 1)
             <?foreach($configuration as $tabKey=>$confTap){
-                    if($tabKey == 0 || $tabKey== 1)continue;
-                    ?>
-                @include('personal.tabs.confTab')
+            if ($tabKey == 0 || $tabKey == 1) continue;
+            ?>
+            @include('personal.tabs.confTab')
             <?}?>
         @endif
     </div>
@@ -483,9 +489,9 @@ declare(strict_types=1);
                     <div class="select2_wrapper">
                         <select id="cpu-vendor-{n}" name="configuration[{n}][cpu_vendor]" data-placeholder="Фирма" required>
                             <option value=""></option>
-                                @foreach($cpus as $key=>$vendor)
-                                    <option value="{{$key}}">{{$key}}</option>
-                                @endforeach
+                            @foreach($cpus as $key=>$vendor)
+                                <option value="{{$key}}">{{$key}}</option>
+                            @endforeach
                         </select>
                         <div class="error"></div>
                     </div>
@@ -493,10 +499,10 @@ declare(strict_types=1);
                         <select id="cpu-model-{n}" name="configuration[{n}][cpu_model]" data-placeholder="Модель" data-select2-depends-on="#cpu-vendor-{n}" required>
                             <option value=""></option>
                             @foreach($cpus as $key=>$vendor)
-                                    @foreach($vendor as $model)
-                                        <option value="{{$model}}" data-depend-value="{{$key}}">{{$model}}</option>
-                                    @endforeach
+                                @foreach($vendor as $model)
+                                    <option value="{{$model}}" data-depend-value="{{$key}}">{{$model}}</option>
                                 @endforeach
+                            @endforeach
                         </select>
                         <div class="error"></div>
                     </div>
@@ -510,9 +516,9 @@ declare(strict_types=1);
                     <div class="select2_wrapper">
                         <select id="video-vendor-{n}" name="configuration[{n}][video_vendor]" data-placeholder="Фирма" required>
                             <option value=""></option>
-                                @foreach($videoCards as $key=>$vendor)
-                                    <option value="{{$key}}">{{$key}}</option>
-                                @endforeach
+                            @foreach($videoCards as $key=>$vendor)
+                                <option value="{{$key}}">{{$key}}</option>
+                            @endforeach
                         </select>
                         <div class="error"></div>
                     </div>
@@ -520,10 +526,10 @@ declare(strict_types=1);
                         <select id="video-model-{n}" name="configuration[{n}][video_model]" data-placeholder="Модель" data-select2-depends-on="#video-vendor-{n}" required>
                             <option value=""></option>
                             @foreach($videoCards as $key=>$vendor)
-                                    @foreach($vendor as $model)
-                                        <option value="{{$model}}" data-depend-value="{{$key}}">{{$model}}</option>
-                                    @endforeach
+                                @foreach($vendor as $model)
+                                    <option value="{{$model}}" data-depend-value="{{$key}}">{{$model}}</option>
                                 @endforeach
+                            @endforeach
                         </select>
                         <div class="error"></div>
                     </div>
@@ -549,9 +555,9 @@ declare(strict_types=1);
                     <div class="select2_wrapper">
                         <select id="memory-type-{n}" name="configuration[{n}][memory_type]" data-placeholder="Тип" required>
                             <option value=""></option>
-                                <option value="DDR3">DDR3</option>
-                                <option value="DDR4">DDR4</option>
-                                <option value="DDR5">DDR5</option>
+                            <option value="DDR3">DDR3</option>
+                            <option value="DDR4">DDR4</option>
+                            <option value="DDR5">DDR5</option>
                         </select>
                         <div class="error"></div>
                     </div>
@@ -579,9 +585,9 @@ declare(strict_types=1);
                 <div class="select2_wrapper">
                     <select id="keyboard-vendor-{n}" name="configuration[{n}][keyboard_vendor]" data-placeholder="Фирма" required>
                         <option value=""></option>
-                            @foreach ($keybords as $vendor)
-                                <option value="{{$vendor}}">{{$vendor}}</option>
-                            @endforeach
+                        @foreach ($keybords as $vendor)
+                            <option value="{{$vendor}}">{{$vendor}}</option>
+                        @endforeach
                     </select>
                     <div class="error"></div>
                 </div>
@@ -593,9 +599,9 @@ declare(strict_types=1);
                 <div class="select2_wrapper">
                     <select id="mouse-vendor-{n}" name="configuration[{n}][mouse_vendor]" data-placeholder="Фирма" required>
                         <option value=""></option>
-                            @foreach ($mouses as $vendor)
-                                <option value="{{$vendor}}">{{$vendor}}</option>
-                            @endforeach
+                        @foreach ($mouses as $vendor)
+                            <option value="{{$vendor}}">{{$vendor}}</option>
+                        @endforeach
                     </select>
                     <div class="error"></div>
                 </div>
@@ -607,9 +613,9 @@ declare(strict_types=1);
                 <div class="select2_wrapper">
                     <select id="headphone-vendor-{n}" name="configuration[{n}][headphone_vendor]" data-placeholder="Фирма" required>
                         <option value=""></option>
-                            @foreach ($headphones as $vendor)
-                                <option value="{{$vendor}}">{{$vendor}}</option>
-                            @endforeach
+                        @foreach ($headphones as $vendor)
+                            <option value="{{$vendor}}">{{$vendor}}</option>
+                        @endforeach
                     </select>
                     <div class="error"></div>
                 </div>
@@ -621,9 +627,9 @@ declare(strict_types=1);
                 <div class="select2_wrapper">
                     <select id="chair-vendor-{n}" name="configuration[{n}][chair_vendor]" data-placeholder="Фирма" required>
                         <option value=""></option>
-                            @foreach ($chairs as $vendor)
-                                <option value="{{$vendor}}">{{$vendor}}</option>
-                            @endforeach
+                        @foreach ($chairs as $vendor)
+                            <option value="{{$vendor}}">{{$vendor}}</option>
+                        @endforeach
                     </select>
                     <div class="error"></div>
                 </div>
@@ -637,7 +643,7 @@ declare(strict_types=1);
                         <select id="monitor-vendor-{n}" name="configuration[{n}][monitor_vendor]" data-placeholder="Фирма" required>
                             <option value=""></option>
                             @foreach ($monitors as $vendor)
-                            <option value="{{$vendor}}">{{$vendor}}</option>
+                                <option value="{{$vendor}}">{{$vendor}}</option>
                             @endforeach
                         </select>
                         <div class="error"></div>
@@ -646,7 +652,7 @@ declare(strict_types=1);
                         <select id="monitor-type-{n}" name="configuration[{n}][monitor_type]" data-placeholder="Тип" required>
                             <option value=""></option>
                             @foreach ($monitor_types as $vendor)
-                            <option value="{{$vendor}}">{{$vendor}}</option>
+                                <option value="{{$vendor}}">{{$vendor}}</option>
                             @endforeach
                         </select>
                         <div class="error"></div>
@@ -655,7 +661,7 @@ declare(strict_types=1);
                         <select id="monitor-hertz-{n}" name="configuration[{n}][monitor_hertz]" data-placeholder="Гц" required>
                             <option value=""></option>
                             @foreach ($monitor_hertz as $vendor)
-                            <option value="{{$vendor}}">{{$vendor}}</option>
+                                <option value="{{$vendor}}">{{$vendor}}</option>
                             @endforeach
                         </select>
                         <div class="error"></div>
@@ -670,8 +676,8 @@ declare(strict_types=1);
                     <select id="internet-{n}" name="configuration[{n}][internet]" data-placeholder="Скорость" required>
                         <option value=""></option>
                         <option value="<100 Мбит">&lt;100 Мбит</option>
-                            <option value=">100 Мбит">&gt;100 Мбит</option>
-                            <option value=">1 Гбит">&gt;1 Гбит</option>
+                        <option value=">100 Мбит">&gt;100 Мбит</option>
+                        <option value=">1 Гбит">&gt;1 Гбит</option>
                     </select>
                     <div class="error"></div>
                 </div>
