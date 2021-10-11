@@ -802,8 +802,8 @@
         </form>
     </div>
 </div>
-    <div class="show_club_photo_modal" data-remodal-id="club_photo_modal"  data-remodal-options="hashTracking: false">
-        <button data-remodal-action="close" class="remodal-close">Закрыть</button>
+    <div class="remodal show_club_photo_modal" data-remodal-id="club_photo_modal"  data-remodal-options="hashTracking: false">
+        <button data-remodal-action="close" class="remodal-close"></button>
         <div class="remodal-content">
             <div class="counter_slide" id="show_club_photo_counter_slide">
                 1/10

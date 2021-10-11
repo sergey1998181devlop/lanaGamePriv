@@ -71,11 +71,11 @@ jQuery(function() {
         hashTracking: false
     });
 
-    jQuery('.show_club_photo_modal').remodal({
-        appendTo: jQuery('.club_page_modals_wrapper'),
-        hashTracking: false,
-        closeOnOutsideClick: false
-    });
+    // jQuery('.show_club_photo_modal').remodal({
+    //     appendTo: jQuery('.club_page_modals_wrapper'),
+    //     hashTracking: false,
+    //     closeOnOutsideClick: false
+    // });
 
     jQuery('.club_page_reviews_list').slick({
         infinite: false,

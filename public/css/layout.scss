@@ -14148,49 +14148,127 @@ section.cities_list_wrapper {
 .club_page_modals_wrapper .remodal-wrapper {
     padding: 0;
     background-color: #212121;
+}
 
-    .remodal.show_club_photo_modal {
+.remodal.show_club_photo_modal {
+    position: relative;
+    max-width: 1000px;
+    background-color: #ffffff;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    padding: 26px;
+
+    .remodal-close {
+        width: 28px;
+        height: 28px;
+        left: unset;
+        left: auto;
+        right: -10px;
+        top: -10px;
+        opacity: 1;
+        background-image: url("../img/cancel.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 34px 34px;
+        background-color: #ffffff;
+        border-radius: 50%;
+
+
+        &:before {
+            content: none;
+            display: none;
+        }
+    }
+
+    .counter_slide {
+        position: absolute;
+        width: 100%;
+        top: -60px;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 1;
+        color: #ffffff;
+        text-align: center;
+    }
+
+    .remodal-content {
         position: relative;
-        max-width: 1000px;
+
+        .club_photo_modal_wrapper {
+            position: relative;
+            width: 922px;
+            height: 518px;
+            margin: 0 auto;
+
+            img, iframe {
+                display: block;
+                width: 922px;
+                height: 518px;
+                object-fit: cover;
+                object-position: center;
+            }
+
+            .slick-arrow {
+                display: block;
+                width: 81px;
+                height: 81px;
+                position: absolute;
+                background: none;
+                border: none;
+                top: 50%;
+                transform: translateY(-50%);
+
+                img {
+                    display: block;
+                    width: 46px;
+                    height: 46px;
+                    object-fit: contain;
+                }
+
+                &.slick-next {
+                    right: -120px;
+
+                    img{
+                        margin-left: auto;
+                    }
+                }
+
+                &.slick-prev {
+                    left: -120px;
+
+                    img{
+                        margin-right: auto;
+                    }
+                }
+            }
+
+            &:not(.slick-initialized) {
+                .slide_item:not(:first-child) {
+                    opacity: 0;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 1100px) {
+        position: relative;
+        max-width: 100%;
+        width: 100%;
         background-color: transparent;
+        padding: 35px 0;
 
         .remodal-close {
-            width: 129px;
-            top: -43px;
+            text-align: end;
+            top: -164px;
             left: unset;
-            right: -60px;
-            font-style: normal;
-            font-weight: 500;
-            font-size: 18px;
-            line-height: 1;
-            color: #ffffff;
-
-            &:before {
-                content: '';
-                display: block;
-                width: 23px;
-                height: 23px;
-                position: absolute;
-                top: 50%;
-                left: -2px;
-                background-image: url("../img/white_cancel.svg");
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: 23px 23px;
-                transform: translateY(-50%);
-            }
+            right: 20px;
+            width: 100px;
+            z-index: 5;
         }
 
         .counter_slide {
-            position: absolute;
-            width: 100%;
-            top: -60px;
-            font-style: normal;
-            font-weight: 500;
-            font-size: 18px;
-            line-height: 1;
-            color: #ffffff;
-            text-align: center;
+            top: -190px;
         }
 
         .remodal-content {
@@ -14198,123 +14276,51 @@ section.cities_list_wrapper {
 
             .club_photo_modal_wrapper {
                 position: relative;
-                width: 922px;
-                height: 518px;
+                width: 100%;
+                height: auto;
                 margin: 0 auto;
 
                 img, iframe {
                     display: block;
-                    width: 922px;
-                    height: 518px;
-                    object-fit: cover;
-                    object-position: center;
+                    width: 100%;
+                    height: auto;
                 }
 
                 .slick-arrow {
-                    display: block;
-                    width: 55px;
-                    height: 55px;
-                    position: absolute;
-                    background: none;
-                    border: none;
-                    top: 50%;
-                    transform: translateY(-50%);
+                    z-index: 1;
 
                     img {
                         display: block;
-                        width: 46px;
-                        height: 46px;
-                        object-fit: contain;
+                        width: 36px;
+                        height: 36px;
                     }
 
                     &.slick-next {
-                        right: -120px;
+                        right: 15px;
                     }
 
                     &.slick-prev {
-                        left: -120px;
+                        left: 15px;
                     }
                 }
 
                 &:not(.slick-initialized) {
-                    .slide_item:not(:first-child) {
+                    .slide_item {
                         opacity: 0;
                     }
                 }
             }
         }
 
-        @media (max-width: 1100px) {
-            position: relative;
-            max-width: 100%;
-            width: 100%;
-            background-color: transparent;
-            padding: 35px 0;
+    }
 
-            .remodal-close {
-                text-align: end;
-                top: -164px;
-                left: unset;
-                right: 20px;
-                width: 100px;
-                z-index: 5;
-            }
-
-            .counter_slide {
-                top: -190px;
-            }
-
-            .remodal-content {
-                position: relative;
-
-                .club_photo_modal_wrapper {
-                    position: relative;
-                    width: 100%;
-                    height: auto;
-                    margin: 0 auto;
-
-                    img, iframe {
-                        display: block;
-                        width: 100%;
-                        height: auto;
-                    }
-
-                    .slick-arrow {
-                        z-index: 1;
-
-                        img {
-                            display: block;
-                            width: 36px;
-                            height: 36px;
-                        }
-
-                        &.slick-next {
-                            right: 15px;
-                        }
-
-                        &.slick-prev {
-                            left: 15px;
-                        }
-                    }
-
-                    &:not(.slick-initialized) {
-                        .slide_item {
-                            opacity: 0;
-                        }
-                    }
-                }
-            }
-
+    @media (max-width: 700px) {
+        .remodal-close {
+            top: -109px;
         }
 
-        @media (max-width: 700px) {
-            .remodal-close {
-                top: -109px;
-            }
-
-            .counter_slide {
-                top: -134px;
-            }
+        .counter_slide {
+            top: -134px;
         }
     }
 }
