@@ -6650,6 +6650,7 @@ section.club_page_main_info_wrapper {
                         margin-right: 0;
                         background: transparent;
                         color: #dc0000;
+                        padding: 0 32px;
                         cursor: auto;
 
                         &:hover {
@@ -6670,6 +6671,7 @@ section.club_page_main_info_wrapper {
                 &.report{
                     padding: 0;
                     background-color: transparent;
+                    margin-right: 16px;
                 }
             }
         }
