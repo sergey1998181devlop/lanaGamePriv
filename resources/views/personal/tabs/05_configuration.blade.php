@@ -209,7 +209,7 @@ declare(strict_types=1);
                             <div class="error"></div>
                         </div>
                         <div class="select2_wrapper">
-                            <select id="monitor-type-0" name="configuration[0][monitor_type]" data-placeholder="Тип" required>
+                            <select id="monitor-type-0" name="configuration[0][monitor_type]" data-placeholder="Дюймы" required>
                                 <option value=""></option>
                                 @foreach ($monitor_types as $vendor)
                                 <option value="{{$vendor}}" {{(getConf('monitor_type','0') == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
