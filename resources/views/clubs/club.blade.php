@@ -70,12 +70,12 @@
             <div class="club_page_main_info_top">
                 <div class="main_info_title approve">
                     <span>{{$club->club_name}}</span>
-                </div>
-
-                <div class="main_info_btn_wrapper">
                     <button class="report" data-remodal-target="report_club_modal">
                         <img src="{{asset('/img/icons/wrmsg.svg')}}" alt="">
                     </button>
+                </div>
+
+                <div class="main_info_btn_wrapper">
                     @if($club->deleted_at != null)
                     <a
                            style="background:#ff6328;border: 2px solid black;color:#000;margin-right: 5px;font-size: 14px;    cursor: auto;"
