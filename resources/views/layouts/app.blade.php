@@ -582,6 +582,8 @@
         $(document).on('submit','#report-form',function(e){
             var response = grecaptcha.getResponse();
                 if(response.length == 0){e.preventDefault();$(this).find('.recaptcha-msg').empty().text('Необходимо пройти капчу');return;}
+                ym(82365286,'reachGoal','error');
+                gtag('event', 'click', {'event_category': 'error', 'event_action': 'click'});
         })
     });
 </script>
