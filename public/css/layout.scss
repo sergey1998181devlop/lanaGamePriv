@@ -6666,6 +6666,11 @@ section.club_page_main_info_wrapper {
                         box-shadow: 0 0 8px #dc0000;
                     }
                 }
+
+                &.report{
+                    padding: 0;
+                    background-color: transparent;
+                }
             }
         }
     }
@@ -6818,7 +6823,23 @@ section.club_page_main_info_wrapper {
             }
 
             .main_info_btn_wrapper {
-                display: none;
+                button {
+                    display: none;
+
+                    &.club_calling {
+                        display: none;
+                    }
+
+                    &.club_booking {
+                        display: none;
+                    }
+
+                    &.report{
+                        display: block;
+                        padding: 0;
+                        background-color: transparent;
+                    }
+                }
             }
         }
 
@@ -14875,6 +14896,286 @@ section.cities_list_wrapper {
                iframe{
                    width: 100% !important;
                }
+            }
+
+            .instr {
+                font-style: normal;
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 23px;
+                text-align: left;
+                color: #000000;
+
+                a {
+                    color: #000000;
+                }
+            }
+        }
+    }
+}
+
+.report_club_modal{
+    width: 436px;
+    height: auto;
+    background: #ffffff;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    padding: 16px 32px 32px;
+
+    .remodal-close {
+        width: 28px;
+        height: 28px;
+        left: unset;
+        left: auto;
+        right: -10px;
+        top: -10px;
+        opacity: 1;
+        background-image: url("../img/cancel.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 34px 34px;
+        background-color: #ffffff;
+        border-radius: 50%;
+
+
+        &:before {
+            content: none;
+            display: none;
+        }
+    }
+
+    .remodal-content {
+        .title {
+            font-style: normal;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 100%;
+            text-align: left;
+            color: #000000;
+            margin-bottom: 16px;
+        }
+
+        .instr{
+            margin-bottom: 32px;
+        }
+
+        form {
+            .forma {
+                text-align: left;
+                margin-bottom: 32px;
+
+                .form-group {
+                    position: relative;
+                    display: block;
+                    margin-bottom: 20px;
+
+                    label {
+                        display: inline-block;
+                        margin-bottom: 14px;
+                        max-width: 238px;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 18px;
+                        line-height: 1;
+                        color: #000000;
+                    }
+
+                    input {
+                        flex-shrink: 0;
+                        display: block;
+                        width: 100%;
+                        height: 46px;
+                        border: 2px solid rgba(0, 0, 0, 0.25);
+                        border-radius: 14px;
+                        font-weight: 500;
+                        font-size: 18px;
+                        line-height: 1;
+                        color: rgba(0, 0, 0, 1);
+                        text-align: center;
+                        outline: none;
+                        padding: 5px;
+
+                        &::placeholder {
+                            color: rgba(0, 0, 0, 0.25);
+                        }
+
+                        &#min-price-input {
+                            background-image: url("../img/rub.svg");
+                            background-repeat: no-repeat;
+                            background-size: 12px 18px;
+                            background-position: center right 10px;
+                        }
+                    }
+
+                    &.required {
+                        label {
+                            position: relative;
+
+                            &:before {
+                                content: '*';
+                                position: absolute;
+                                top: 0;
+                                right: -10px;
+                                display: block;
+                                width: 3px;
+                                height: 3px;
+                                color: #dc0000;
+                            }
+                        }
+                    }
+
+                    &.descr {
+                        align-items: flex-start;
+
+                        label {
+                            margin-top: 20px;
+                        }
+
+                        textarea {
+                            display: block;
+                            padding: 12px;
+                            width: 372px;
+                            height: 230px;
+                            border: 2px solid rgba(0, 0, 0, 0.25);
+                            border-radius: 14px;
+                            font-weight: 500;
+                            font-size: 18px;
+                            line-height: 1;
+                            color: rgba(0, 0, 0, 1);
+                            outline: none;
+                            resize: none;
+                        }
+                    }
+
+                    .invalid-feedback {
+                        position: absolute;
+                        left: 0;
+                        top: 100%;
+                        display: block;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 18px;
+                        line-height: 1;
+                        color: rgba(220, 0, 0, 0.6);
+                    }
+
+                    &.error {
+                        input {
+                            border: 2px solid rgba(220, 0, 0, 0.6);
+                        }
+                    }
+                }
+            }
+
+            button {
+                display: block;
+                border: none;
+                background: #dc0000;
+                border-radius: 14px;
+                padding: 14px 32px;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 1;
+                text-align: center;
+                color: #ffffff;
+                margin-left: auto;
+
+                &:hover {
+                    box-shadow: 0 0 6px #dc0000;
+                }
+            }
+        }
+
+        .recaptcha-holder{
+            margin: 0 0 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .recaptcha-msg{
+            text-align: center;
+        }
+
+        .instr {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 23px;
+            text-align: left;
+            color: #000000;
+
+            a {
+                color: #000000;
+            }
+        }
+    }
+
+    @media (max-width: 500px) {
+        width: 350px;
+
+        .remodal-close {
+            width: 24px;
+            height: 24px;
+            left: unset;
+            left: auto;
+            right: -6px;
+            top: -9px;
+        }
+
+        .remodal-content {
+            .title {
+                font-weight: 700;
+                font-size: 20px;
+            }
+
+            form {
+                margin-bottom: 32px;
+
+                textarea {
+                    display: block;
+                    padding: 12px;
+                    width: 100%;
+                    height: 230px;
+                    border: 2px solid rgba(0, 0, 0, 0.25);
+                    border-radius: 14px;
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 1;
+                    color: rgba(0, 0, 0, 1);
+                    outline: none;
+                    resize: none;
+                    margin-bottom: 32px;
+                }
+
+                .btn_wrapper {
+                    button {
+                        display: block;
+                        border: none;
+                        background: #dc0000;
+                        border-radius: 14px;
+                        padding: 14px 32px;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 18px;
+                        line-height: 1;
+                        text-align: center;
+                        color: #ffffff;
+                        margin: 0 auto;
+
+                        &:hover {
+                            box-shadow: 0 0 6px #dc0000;
+                        }
+                    }
+                }
+            }
+
+            .recaptcha-holder{
+                padding: 0 10px;
+
+                iframe{
+                    width: 100% !important;
+                }
             }
 
             .instr {
