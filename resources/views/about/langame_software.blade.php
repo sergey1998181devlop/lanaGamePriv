@@ -315,7 +315,7 @@
     <div class="langame_software_content" id="block-langame_software_request">
             <div class="add_club_request_wrapper">
                 <div class="title">Оформить заявку</div>
-                <form action="{{url('langame/request')}}" method="post" id="add-club-request-form">
+                <form action="{{url('langame/request')}}" method="post" id="add-club-request-form" data-recaptcha-form>
                     {{ csrf_field() }}
                     <div class="forma">
                         <div class="form-group required @error('name')error @enderror">
@@ -388,14 +388,14 @@
                         </div>
                     </div>
                     <div class="recaptcha-holder">
-                        <div class="g-recaptcha" data-sitekey="{{env('RECAPCHA_PUB')}}"></div>
+                        <div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="{{env('RECAPCHA_PUB')}}"></div>
                     </div>
                     <div class="recaptcha-msg">
                         @error('g-recaptcha-response')
                         {{ $message }}
                         @enderror
                     </div>
-                    <button type="submit" data-captcha-activator onclick="gtag('event', 'send', { 'event_category': 'add-club-request-form', 'event_action': 'send' });">Отправить заявку</button>
+                    <button type="submit" onclick="gtag('event', 'send', { 'event_category': 'add-club-request-form', 'event_action': 'send' });">Отправить заявку</button>
                 </form>
             </div>
     </div>
