@@ -10,7 +10,7 @@ declare(strict_types=1);
     <label for="qty_pc-input">Общее кол-во ПК</label>
     <div class="input_wrapper">
         <input id="qty_pc-input" name="qty_pc" value="{{clubValue('qty_pc')}}" type="number" placeholder="Количество" min="1" step="1" required>
-        <div class="error"></div>
+        <div class="error qty_error"></div>
     </div>
 </div>
 <div class="form-group">

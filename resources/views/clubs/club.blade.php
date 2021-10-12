@@ -425,7 +425,10 @@
                                         <tr>
                                             <th>Оборудование</th>
                                             @foreach($configuration as $val)
-                                                <th>{{isset($val['conf_name'])? $val['conf_name'] : null}} {{isset($val['pc_quantity'])? intval($val['pc_quantity']).' ПК' : null}}</th>
+                                                <th>
+                                                    {{isset($val['conf_name'])? $val['conf_name'] : null}}
+                                                    <span class="text_decor">{{isset($val['pc_quantity'])? intval($val['pc_quantity']).' ПК' : null}}</span>
+                                                </th>
                                                 <? foreach ($val as $key => $value) {
                                                     $configurationAr[$key][] = $value;
                                                 }?>

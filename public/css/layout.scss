@@ -13468,6 +13468,11 @@ section.cities_list_wrapper {
                             .pc_configuration_content_wrapper {
                                 .main-error {
                                     margin-bottom: 10px;
+                                    color: #000000;
+
+                                    &.active{
+                                        color: #dc3545;
+                                    }
                                 }
 
                                 .tab:not(.active) {
