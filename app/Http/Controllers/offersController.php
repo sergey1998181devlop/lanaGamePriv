@@ -47,16 +47,16 @@ class offersController extends Controller
         $filename = explode('/storage/',$request->input('offer_photos'));
 
          $offer=new offer;
-         $offer->name=$request->input('name');
+         $offer->name=$user->name;
          $offer->about= $request->input('about');
          $offer->description= $request->input('description');
          $offer->user_name= $request->input('user_name');
-         $offer->user_phone= $request->input('user_phone');
+         $offer->user_phone= $user->phone;
          $offer->price= $request->input('price');
-         $offer->user_link= $request->input('user_link');
-         $offer->user_email= $request->input('user_email');
+         $offer->user_link= $user->name;
+         $offer->user_email= $user->email;
          $offer->type= "newClub";
-         $offer->image="../../".$filename[1];
+         $offer->image="../".$filename[1];
          $offer->url=ucwords(str_replace(" ","-",$request->input('name')));
          $offer->save();
      

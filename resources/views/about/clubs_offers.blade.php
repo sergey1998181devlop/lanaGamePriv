@@ -33,7 +33,7 @@
                                     @foreach($offersBrand as $offer)
                                         <a href="#" class="offer_item" data-remodal-target="company_offers_modal_{{$offer->id}}">
                                             <div class="img_wrapper">
-                                                <img src="{{($offer->image != '') ? url('storage/offers/thumbnail/'.$offer->image) : asset('img/default-club-preview-image.svg')}}" alt="image">
+                                                <img src="{{($offer->image != '') ? url('storage/offers/'.$offer->image) : asset('img/default-club-preview-image.svg')}}" alt="image">
                                             </div>
                                             <div class="info_wrapper">
                                                 <div class="descr">
@@ -51,21 +51,25 @@
                                                 <div class="offer_content_wrapper">
                                                     <div class="offer_content_item">
                                                         <div class="img_wrapper">
-                                                            <img src="{{($offer->image != '') ? url('storage/offers/thumbnail/'.$offer->image) : asset('img/default-club-preview-image.svg')}}" alt="image">
+                                                            <img src="{{($offer->image != '') ? url('storage/offers/'.$offer->image) : asset('img/default-club-preview-image.svg')}}" alt="image">
                                                         </div>
                                                         <div class="subtitle">Контактное лицо</div>
                                                         <div class="contact_name">{{$offer->user_name}}</div>
                                                         <button type="button" class="offer_btn show_offer_contacts" >Показать контакт</button>
                                                         <div class="contacts_wrapper">
+                                                            @if( $offer->phone != "" )
                                                             <div class="club_contact">
                                                                 <img src="{{asset('/img/phone.svg')}}" alt="phone">
                                                                 <a href="tel:{{$offer->phone}}">{{$offer->user_phone}}</a>
                                                             </div>
+                                                            @endif
 
+                                                            @if( $offer->user_email != "" )
                                                             <div class="club_contact">
                                                                 <img src="{{asset('/img/mail.svg')}}" alt="email">
                                                                 <a href="mailto:{{$offer->user_email}}">{{$offer->user_email}}</a>
                                                             </div>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                     <div class="offer_content_item">
@@ -115,7 +119,7 @@
                                 
                                         <a href="#" class="offer_item" data-remodal-target="clubs_offers_modal_{{$offer->id}}">
                                             <div class="img_wrapper">
-                                                <img src="{{($offer->image != '') ? url('storage/offers/thumbnail/'.$offer->image) : asset('img/default-club-preview-image.svg')}}" alt="image">
+                                                <img src="{{($offer->image != '') ? url('storage/offers/'.$offer->image) : asset('img/default-club-preview-image.svg')}}" alt="image">
                                             </div>
                                             <div class="info_wrapper">
                                                 <div class="info_item">
@@ -141,7 +145,7 @@
                                                 <div class="offer_content_wrapper">
                                                     <div class="offer_content_item">
                                                         <div class="img_wrapper">
-                                                            <img src="{{($offer->image != '') ? url('storage/offers/thumbnail/'.$offer->image) : asset('img/default-club-preview-image.svg')}}" alt="image">
+                                                            <img src="{{($offer->image != '') ? url('storage/offers/'.$offer->image) : asset('img/default-club-preview-image.svg')}}" alt="image">
                                                         </div>
                                                         <div class="subtitle">Клуб</div>
                                                         <div class="contact_name">{{$offer->user_link}}</div>
@@ -151,15 +155,18 @@
                                                         <div class="contact_name">{{$offer->user_name}}</div>
                                                         <button type="button" class="offer_btn show_offer_contacts">Показать контакт</button>
                                                         <div class="contacts_wrapper">
+                                                            @if( $offer->user_phone != "" )
                                                             <div class="club_contact">
                                                                 <img src="{{asset('/img/phone.svg')}}" alt="phone">
                                                                 <a href="tel:{{$offer->user_phone}}">{{$offer->user_phone}}</a>
                                                             </div>
-
+                                                            @endif
+                                                            @if( $offer->user_email != "" )
                                                             <div class="club_contact">
                                                                 <img src="{{asset('/img/mail.svg')}}" alt="email">
                                                                 <a href="mailto:{{$offer->user_email}}">{{$offer->user_email}}</a>
                                                             </div>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                     <div class="offer_content_item">
@@ -192,7 +199,7 @@
         <button data-remodal-action="close" class="remodal-close"></button>
         <div class="remodal-content">
             <form action="/clubs-offers/add" method="post" id="add-offer-form">
-          {{ csrf_field() }}
+            {{ csrf_field() }}
                 <div class="top_wrapper">
                     <div class="title">Добавить объявление</div>
                     <div class="btn_wrapper">
