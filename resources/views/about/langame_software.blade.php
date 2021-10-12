@@ -537,14 +537,7 @@ $tariffs = [
 <!--SECTION LANGAME SOFTWARE END-->
 @endsection
 @section('scripts')
-<script>
-    $( document ).ready(function(){
-        $(document).on('submit','#add-club-request-form',function(e){
-            var response = grecaptcha.getResponse();
-                if(response.length == 0){e.preventDefault();$(this).find('.recaptcha-msg').empty().text('Необходимо пройти капчу');return;}
-        })
-    });
-</script>
+
 @if(session('success'))
 <script>
     $( document ).ready(function(){
