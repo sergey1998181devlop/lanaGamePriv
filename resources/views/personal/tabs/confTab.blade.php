@@ -4,7 +4,7 @@
         <div class="pc_config">
             <div class="common_info_wrapper">
                 <input type="text" value="{{getConf('conf_name',$tabKey)}}" name="configuration[{{$tabKey}}][conf_name]" placeholder="Введите название">
-                <input type="text" class="qty" value="" name="configuration[{{$tabKey}}][pc_quantity]" placeholder="Количество ПК" data-new-area-qty-pc>
+                <input type="text" class="qty" value="{{getConf('pc_quantity',$tabKey)}}" name="configuration[{{$tabKey}}][pc_quantity]" placeholder="Количество ПК" data-new-area-qty-pc>
             </div>
         </div>
     </div>

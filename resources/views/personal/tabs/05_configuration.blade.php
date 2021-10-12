@@ -41,7 +41,7 @@ declare(strict_types=1);
                     <div class="common_info_wrapper">
                         <input type="text" value="1. Общий зал" readonly>
                         <input type="hidden" value="Общий зал" name="configuration[0][conf_name]" readonly>
-                        <input type="text" class="qty" value="" name="configuration[0][pc_quantity]" readonly data-common-area-qty-pc>
+                        <input type="text" class="qty" value="{{getConf('pc_quantity','0')}}" name="configuration[0][pc_quantity]" readonly data-common-area-qty-pc>
                     </div>
                 </div>
             </div>
@@ -255,7 +255,7 @@ declare(strict_types=1);
                     <div class="common_info_wrapper vip">
                         <input type="text" class="vip_placeholder" value="2. VIP" placeholder="2. VIP" readonly>
                         <input type="hidden" value="VIP" name="configuration[1][conf_name]" readonly>
-                        <input type="text" class="qty" value="" name="configuration[1][pc_quantity]" readonly data-vip-area-qty-pc>
+                        <input type="text" class="qty" value="{{getConf('pc_quantity','1')}}" name="configuration[1][pc_quantity]" readonly data-vip-area-qty-pc>
                     </div>
                 </div>
             </div>
