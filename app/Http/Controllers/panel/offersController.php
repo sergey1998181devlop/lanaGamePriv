@@ -29,7 +29,6 @@ public function index(){
 
 public function store(Request $request){
     $validatedData =  $this->validate($request ,[
-        'about'=>'required',
          'name'=>'required',
          'img'=>'required|image|mimes:jpeg,png,jpg',
     ]);
@@ -50,6 +49,9 @@ public function store(Request $request){
     $offer->description= $request->input('description');
     $offer->user_name= $request->input('user_name');
     $offer->user_phone= $request->input('user_phone');
+    $offer->price= $request->input('price');
+    $offer->user_link= $request->input('user_link');
+    $offer->type= $request->input('type');
     $offer->image=$image;
     $offer->url=ucwords(str_replace(" ","-",$request->input('name')));
     $offer->save();
@@ -63,7 +65,6 @@ public function clean($string) {
 
 public function update(Request $request,$id){
     $validatedData =  $this->validate($request ,[
-        'about'=>'required',
          'name'=>'required',
     ]);
     $offer=offer::findOrFail($id);
@@ -91,6 +92,9 @@ public function update(Request $request,$id){
     $offer->description= $request->input('description');
     $offer->user_name= $request->input('user_name');
     $offer->user_phone= $request->input('user_phone');
+    $offer->price= $request->input('price');
+    $offer->user_link= $request->input('user_link');
+    $offer->type= $request->input('type');
     $offer->url=ucwords(str_replace(" ","-",$request->input('name')));
     $offer->save();
     
@@ -99,7 +103,11 @@ return redirect(url("/clubs-offers"));
 
 function offerToUpdste($id){
     $offer=offer::findOrFail($id);
-     return view('admin.offers.edit')->with(['offer'=>$offer]);
+    if ($offer->type=="newClub"){
+        return view('admin.offers_clubs.edit')->with(['offer'=>$offer]);
+    }else{
+        return view('admin.offers.edit')->with(['offer'=>$offer]);
+    }
 }
 
 public function saveImage(Request $request){
@@ -146,6 +154,9 @@ public function delete(Request $request,$id)
     }
 public function newOffer(){
     return view('admin.offers.add');
+}
+public function newOfferClub(){
+    return view('admin.offers_clubs.add');
 }
 
 public function reOrderOffer(Request $request){
