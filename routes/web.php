@@ -96,7 +96,7 @@ Route::get('panel/find-user','panel\usersController@find');
 
 Route::get('post/new','panel\postsController@newPost');
 Route::get('offers/newBrand','panel\offersController@newOffer');
-Route::get('offers/newClub','panel\offersController@newOffer');
+Route::get('offers/newClub','panel\offersController@newOfferClub');
 Route::post('users/sendMail','panel\usersController@sendMail');
 
 
@@ -116,7 +116,7 @@ Route::post('offer/create','panel\offersController@store' );
 Route::get('offer/edit/{id}','panel\offersController@offerToUpdste');
 Route::post('offer/update/{id}','panel\offersController@update');
 Route::post('offer/saveImage','panel\offersController@saveImage' );
-Route::post('offer/delete/{id}','panel\offersController@delete' );
+Route::get('offer/delete/{id}','panel\offersController@delete' );
 Route::post('offer/edit/saveImage','panel\offersController@saveImage' );
 Route::get('panel/offers/all','panel\offersController@index');
 Route::post('panel/offers/order_no','panel\offersController@reOrderOffer');

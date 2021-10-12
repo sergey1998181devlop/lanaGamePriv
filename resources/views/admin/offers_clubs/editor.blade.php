@@ -19,15 +19,15 @@ $action=$page == 'addOffer' ? url('offer/create') : url('offer/update').'/'.$off
 					<div class="row justify-content-center">
 						<div class="col-12">
                         <form action="{{$action}}" id="offerForm" method="POST" enctype="multipart/form-data">
-                            <input type=hidden name="type" value="newBrand">
+                            <input type=hidden name="type" value="newClub">
                             {{ csrf_field() }} 
                             
 							<div class="write-article-section">
 							
                                
 								<div class="write-article-content">
-                  <label for="name_offer">Заголовок</label>
-                  <input type="text" id="name_offer" value="{{customOfferVal('name',$offer)}}" name="name" placeholder="Заголовок">
+                  <label for="name_offer">Заголовок объявления</label>
+                  <input type="text" id="name_offer" value="{{customOfferVal('name',$offer)}}" name="name" placeholder="Заголовок объявления">
                 </div>
                                 <div class="write-article-editor image-section" style="width: 50%;float: left;">
                                     <div id="result-img" class="text-center">
@@ -42,7 +42,7 @@ $action=$page == 'addOffer' ? url('offer/create') : url('offer/update').'/'.$off
                                           <span class="up">изменить</span>
                                           @endif
                                           <span class="chng">изменить</span>
-                                          <span class="title">Загрузить логотип</span> 
+                                          <span class="title">Загрузить фото</span> 
                                         </span>
                                         <input type="file" onchange="readURL(this)"  accept="image/jpg, image/jpeg,image/png"  name="img" id="addoffer-imgs" style="display: none;"  />
                                     </label>
@@ -52,22 +52,17 @@ $action=$page == 'addOffer' ? url('offer/create') : url('offer/update').'/'.$off
                                         <div style="margin:15px;"></div>
 
                                 <div class="write-article-editor">
-                                    <label for="about">Краткое описание КП</label>
-                                    <textarea name="about" id="editor"  style="min-height:200px;">{{customOfferVal('about',$offer)}}</textarea>
-                                    <div style="margin:15px;"></div>
-                                </div>
-                                <div class="write-article-editor">
                                     <label for="description">Подробное описание</label>
                                     <textarea name="description" id="editor2"  style="min-height:200px;">{{customOfferVal('description',$offer)}}</textarea>
                                     <div style="margin:15px;"></div>
                                 </div>       
 								<div class="write-article-content">
-                  <label for="user_name">Представитель</label>
-                  <input type="text" id="user_name" value="{{customOfferVal('user_name',$offer)}}" name="user_name" placeholder="Представитель">
+                  <label for="price">Цена</label>
+                  <input type="text" id="price" value="{{customOfferVal('price',$offer)}}" name="price" placeholder="Цена">
                 </div>       
 								<div class="write-article-content">
-                  <label for="user_phone">Контакт</label>
-                  <input type="text" id="user_phone" value="{{customOfferVal('user_phone',$offer)}}" name="user_phone" placeholder="Контакт">
+                  <label for="user_link">Ссылка на клуб</label>
+                  <input type="text" id="user_link" value="{{customOfferVal('user_link',$offer)}}" name="user_link" placeholder="Ссылка на клуб">
                 </div>
                                     <div class="write-article-header">
                                         <button type="submit"  class="publish">Опубликовать</button>
