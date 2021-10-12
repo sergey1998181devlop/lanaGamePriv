@@ -252,7 +252,7 @@ declare(strict_types=1);
             <div class="form-group">
                 <div class="pc_config">Оборудование</div>
                 <div class="pc_config">
-                    <div class="common_info_wrapper">
+                    <div class="common_info_wrapper vip">
                         <input type="text" class="vip_placeholder" value="2. VIP" placeholder="2. VIP" readonly>
                         <input type="hidden" value="VIP" name="configuration[1][conf_name]" readonly>
                         <input type="text" class="qty" value="" name="configuration[1][pc_quantity]" readonly data-vip-area-qty-pc>
@@ -479,7 +479,10 @@ declare(strict_types=1);
         <div class="form-group">
             <div class="pc_config">Оборудование</div>
             <div class="pc_config">
-                <input type="text" name="configuration[{n}][conf_name]" placeholder="Введите название">
+                <div class="common_info_wrapper new_area">
+                    <input type="text" name="configuration[{n}][conf_name]" placeholder="Введите название">
+                    <input type="text" class="qty" value="" name="configuration[{n}][pc_quantity]" placeholder="| Количество ПК" data-new-area-qty-pc>
+                </div>
             </div>
         </div>
         <div class="form-group">
@@ -649,7 +652,7 @@ declare(strict_types=1);
                         <div class="error"></div>
                     </div>
                     <div class="select2_wrapper">
-                        <select id="monitor-type-{n}" name="configuration[{n}][monitor_type]" data-placeholder="Тип" required>
+                        <select id="monitor-type-{n}" name="configuration[{n}][monitor_type]" data-placeholder="Дюймы" required>
                             <option value=""></option>
                             @foreach ($monitor_types as $vendor)
                                 <option value="{{$vendor}}">{{$vendor}}</option>

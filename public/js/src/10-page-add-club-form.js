@@ -551,13 +551,26 @@ jQuery(function() {
         }
 
         $tab.on('open', function() {
+            recalc_qty_pc();
+        });
+
+        $tab.on('change', '[data-new-area-qty-pc]', function (e) {
+            recalc_qty_pc();
+        });
+
+        function recalc_qty_pc() {
             let $qty_pc_val = jQuery('[name="qty_pc"]').val(),
                 $qty_vip_pc_val = jQuery('[name="qty_vip_pc"]').val(),
+                $input_new_area = jQuery('[data-new-area-qty-pc]'),
                 $qty_common_val = $qty_pc_val - $qty_vip_pc_val;
+
+            $input_new_area.each(function() {
+                $qty_common_val = $qty_common_val - this.value;
+            });
 
             $input_common_area_qty_pc.val(`${$qty_common_val} ПК`);
             $input_vip_area_qty_pc.val(`${$qty_vip_pc_val} ПК`);
-        });
+        }
 
         $create_tab_button.on('click', function(e) {
             e.preventDefault();

@@ -12828,6 +12828,18 @@ section.cities_list_wrapper {
                                                 color: #dc3545;
                                             }
                                         }
+
+                                        &.vip{
+                                            input{
+                                                width: 65px;
+                                            }
+                                        }
+
+                                        &.new_area{
+                                            input{
+                                                width: 50%;
+                                            }
+                                        }
                                     }
                                 }
 
