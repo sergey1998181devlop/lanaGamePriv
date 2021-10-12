@@ -86,6 +86,20 @@
           </div>
       </li>
       <li class="nav-item">
+          <a class="nav-link <?php if($page!="offers" && $page!="addOffers") echo 'collapsed'; ?> " data-toggle="collapse" data-target="#collapseOffers" aria-expanded="false" aria-controls="collapsePosts">
+          <i class="far fa-newspaper"></i>
+              <span>Объявления</span>
+          </a>
+        
+          <div id="collapseOffers" class="collapse <?=($page=="offers" || $page=="addOffers") ? ' show': null ?> collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
+              <div class="bg-white py-2 collapse-inner rounded">
+                  <a class="collapse-item <?php if($page=="offers") echo 'active'; ?>" href="{{url('panel/offers/all')}}">Все</a>
+                  <a class="collapse-item <?php if($page=="addOffersBrand") echo 'active'; ?>" href="{{url('offers/newBrand')}}">Добавить от бренда</a>
+                  <a class="collapse-item <?php if($page=="addOffersClub") echo 'active'; ?>" href="{{url('offers/newClub')}}">Добавить от клуба</a>
+              </div>
+          </div>
+      </li>
+      <li class="nav-item">
           <a class="nav-link <?php if($page!="users") echo 'collapsed'; ?> " data-toggle="collapse" data-target="#collapseUsers" aria-expanded="false" aria-controls="collapseUsers">
           <i class="fas fa-users"></i>
               <span>Пользователи</span>

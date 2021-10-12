@@ -1,0 +1,162 @@
+<?php
+
+namespace App\Http\Controllers\Panel;
+
+use Illuminate\Http\Request;
+use Auth;
+use App\Http\Controllers\Controller; 
+use App\Jobs\save_image;
+use Image;
+use App\offer;
+use App\User;
+use Illuminate\Support\Facades\Storage; 
+use Str;
+
+include_once(resource_path('views/includes/functions.blade.php'));
+class offersController extends Controller
+{
+    public $email;
+    public $name;
+    public $offerName;
+    public function __construct()
+{       
+    $this->middleware('rule:1');  
+}
+public function index(){
+    $offers= offer::select('id','url','name','views','order_no','created_at')->get();
+    return view('admin.offers.offers')->with(['offers'=>$offers]);
+}
+
+public function store(Request $request){
+    $validatedData =  $this->validate($request ,[
+        'about'=>'required',
+         'name'=>'required',
+         'img'=>'required|image|mimes:jpeg,png,jpg',
+    ]);
+
+    $errors=array();
+    $user=Auth::user();
+  
+    if (count($errors) > 0){
+        return back()->withInput()->withErrors($errors);
+            }
+            $image=(new save_image())->saveImage($request->file('img'),'offers') ;
+    if (count($errors) > 0){
+        return back()->withInput()->withErrors($errors);
+        }
+    $offer=new offer;
+    $offer->name=$request->input('name');
+    $offer->about= $request->input('about');
+    $offer->description= $request->input('description');
+    $offer->user_name= $request->input('user_name');
+    $offer->user_phone= $request->input('user_phone');
+    $offer->image=$image;
+    $offer->url=ucwords(str_replace(" ","-",$request->input('name')));
+    $offer->save();
+
+return  redirect(url("/clubs-offers"));
+}
+public function clean($string) {
+    $string = str_replace(' ', '-', $string);
+    return str_ireplace( array("'",'"','?',',' , ';', '<', '>','~','!','@','#','$','%','^','&','*','(',')','+','№','|','/',"\'",'`','{','}',':','=' ), '', $string); 
+}
+
+public function update(Request $request,$id){
+    $validatedData =  $this->validate($request ,[
+        'about'=>'required',
+         'name'=>'required',
+    ]);
+    $offer=offer::findOrFail($id);
+    $errors=array();
+  
+    if (count($errors) > 0){
+        return back()->withInput()->withErrors($errors);
+            }
+ 
+         if($request->hasFile('img'))
+         {
+            $validatedData =  $this->validate($request ,[
+                'img.*'=>'image|mimes:jpeg,png,jpg,',
+            ]);
+            $newImage=(new save_image())->saveImage($request->file('img'),'offers') ;
+            (new save_image())->remove_images($offer->image,'offers') ;
+            $offer->image=$newImage;
+         }
+    if (count($errors) > 0){
+        return back()->withInput()->withErrors($errors);
+        }
+
+    $offer->name=$request->input('name');
+    $offer->about= $request->input('about');
+    $offer->description= $request->input('description');
+    $offer->user_name= $request->input('user_name');
+    $offer->user_phone= $request->input('user_phone');
+    $offer->url=ucwords(str_replace(" ","-",$request->input('name')));
+    $offer->save();
+    
+return redirect(url("/clubs-offers"));
+}
+
+function offerToUpdste($id){
+    $offer=offer::findOrFail($id);
+     return view('admin.offers.edit')->with(['offer'=>$offer]);
+}
+
+public function saveImage(Request $request){
+    
+    $message = $url = '';
+    if ($request->hasFile('file')) {
+        $file = $request->file('file');
+        if ($file->isValid()) {
+            $uniqie=time().uniqid();
+            $filename = $uniqie.preg_replace('/\s+/', '_', $file->getClientOriginalName()) ;
+            $file->move(storage_path('app/public/imagesInoffers/'), $filename);
+            $url = url('storage/imagesInoffers/').'/'. $filename;
+            return response()->json(['uploaded' => '1', "fileName"=> $filename ,
+            "url"=>$url,'default'=> $url]);
+        } else {
+            $message = 'An error occured while uploading the file.';
+        }
+    } else {
+        $message = 'No file uploaded.';
+    }
+    
+    return response()->json(['uploaded' => '0', "error"=> [
+        "message"=> "An error occured while uploading the file."]
+    ]);
+ 
+}
+
+public function delete(Request $request,$id)
+{
+    $offer=offer::findorFail($id);
+    if($offer->delete()){
+        $this->ClearRemovedoffer($offer);
+    }
+    if($request->input('panel') == 1){
+        return back()->with('success','Операция выполнена успешно');
+    }
+    return redirect('/');
+}
+    public function ClearRemovedoffer($offer){
+    if(!empty($offer->image)){
+                Storage::delete('public/offers/'.$offer->image);
+            Storage::delete('public/offers/thumbnail/'.$offer->image);
+        }
+    }
+public function newOffer(){
+    return view('admin.offers.add');
+}
+
+public function reOrderOffer(Request $request){
+    $validatedData =  $this->validate($request ,[
+        'order_no'=>'required|numeric|min:0',
+    ]);
+    $offer=offer::findorFail($request->input('id'));
+    $offer->order_no = $request->input('order_no');
+    $offer->save();
+    return back()->with('success','Операция выполнена успешно');
+}
+
+}
+
