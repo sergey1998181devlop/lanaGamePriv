@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\post;
 use App\club;
+use App\offer;
 use App\city;
 use App\metro;
 use View;
@@ -53,10 +54,9 @@ class HomeController extends Controller
       return view('about.about_us');
     }
     public function clubs_offers(){
-      if(!env('DEV_SERVER','true')){
-        abort(404);
-      }
-        return view('about.clubs_offers');
+      $offersBrand=offer::select('*')->where('type', '=', 'newBrand')->orderBy('order_no','desc')->orderBy('created_at','desc')->get();
+      $offersClub=offer::select('*')->where('type', '=', 'newClub')->orderBy('order_no','desc')->orderBy('created_at','desc')->get();
+      return view('about.clubs_offers')->with(['offersBrand'=>$offersBrand,'offersClub'=>$offersClub]);
     }
     public function cities_list(){
         $cities = city::query()->orderBy('name', 'asc')->get();

@@ -28,87 +28,61 @@
                 <div class="tab" id="tab4">
                     <div class="club_list_content">
                         <div class="company_offers_wrapper">
-                            <div class="company_offers_list">
-                                <a href="#" class="offer_item" data-remodal-target="company_offers_modal">
-                                    <div class="img_wrapper">
-                                        <img src="{{ asset('/img/msi.png')}}" alt="image">
-                                    </div>
-                                    <div class="info_wrapper">
-                                        <div class="descr">
-                                            Аксессуары в подарок при покупке набора комплектующих
+                            @if(isset( $offersBrand  ) && count($offersBrand)>0)
+                                <div class="company_offers_list">
+                                    @foreach($offersBrand as $offer)
+                                        <a href="#" class="offer_item" data-remodal-target="company_offers_modal_{{$offer->id}}">
+                                            <div class="img_wrapper">
+                                                <img src="{{($offer->image != '') ? url('storage/offers/thumbnail/'.$offer->image) : asset('img/default-club-preview-image.svg')}}" alt="image">
+                                            </div>
+                                            <div class="info_wrapper">
+                                                <div class="descr">
+                                                    {{strip_tags($offer->about)}}
+                                                </div>
+                                                <div class="btn_wrapper">
+                                                    <button type="button" class="btn_detail">Подробнее</button>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="remodal company_offers_modal" data-remodal-id="company_offers_modal_{{$offer->id}}" data-remodal-options="hashTracking: false">
+                                            <button data-remodal-action="close" class="remodal-close"></button>
+                                            <div class="remodal-content">
+                                                <div class="title">{{strip_tags($offer->about)}}</div>
+                                                <div class="offer_content_wrapper">
+                                                    <div class="offer_content_item">
+                                                        <div class="img_wrapper">
+                                                            <img src="{{($offer->image != '') ? url('storage/offers/thumbnail/'.$offer->image) : asset('img/default-club-preview-image.svg')}}" alt="image">
+                                                        </div>
+                                                        <div class="subtitle">Контактное лицо</div>
+                                                        <div class="contact_name">{{$offer->user_name}}</div>
+                                                        <button type="button" class="offer_btn show_offer_contacts" >Показать контакт</button>
+                                                        <div class="contacts_wrapper">
+                                                            <div class="club_contact">
+                                                                <img src="{{asset('/img/phone.svg')}}" alt="phone">
+                                                                <a href="tel:{{$offer->phone}}">{{$offer->user_phone}}</a>
+                                                            </div>
+
+                                                            <div class="club_contact">
+                                                                <img src="{{asset('/img/mail.svg')}}" alt="email">
+                                                                <a href="mailto:{{$offer->user_email}}">{{$offer->user_email}}</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="offer_content_item">
+                                                        <div class="subtitle text_decor">Подробные условия</div>
+                                                        <div class="offer_info_text_wrapper">
+                                                            <div class="offer_info_text" data-simplebar>
+                                                                {!!$offer->description!!}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="btn_wrapper">
-                                            <button type="button" class="btn_detail">Подробнее</button>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="#" class="offer_item">
-                                    <div class="img_wrapper">
-                                        <img src="{{ asset('/img/dxracer.png')}}" alt="image">
-                                    </div>
-                                    <div class="info_wrapper">
-                                        <div class="descr">
-                                            Аксессуары в подарок при покупке набора комплектующих
-                                        </div>
-                                        <div class="btn_wrapper">
-                                            <button type="button" class="btn_detail">Подробнее</button>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="#" class="offer_item">
-                                    <div class="img_wrapper">
-                                        <img src="{{ asset('/img/redragon.png')}}" alt="image">
-                                    </div>
-                                    <div class="info_wrapper">
-                                        <div class="descr">
-                                            Аксессуары в подарок при покупке набора комплектующих
-                                        </div>
-                                        <div class="btn_wrapper">
-                                            <button type="button" class="btn_detail">Подробнее</button>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="#" class="offer_item">
-                                    <div class="img_wrapper">
-                                        <img src="{{ asset('/img/steel.png')}}" alt="image">
-                                    </div>
-                                    <div class="info_wrapper">
-                                        <div class="descr">
-                                            Аксессуары в подарок при покупке набора комплектующих
-                                        </div>
-                                        <div class="btn_wrapper">
-                                            <button type="button" class="btn_detail">Подробнее</button>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="#" class="offer_item">
-                                    <div class="img_wrapper">
-                                        <img src="{{ asset('/img/eon.png')}}" alt="image">
-                                    </div>
-                                    <div class="info_wrapper">
-                                        <div class="descr">
-                                            Аксессуары в подарок при покупке набора комплектующих
-                                        </div>
-                                        <div class="btn_wrapper">
-                                            <button type="button" class="btn_detail">Подробнее</button>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="#" class="offer_item">
-                                    <div class="img_wrapper">
-                                        <img src="{{ asset('/img/razer.png')}}" alt="image">
-                                    </div>
-                                    <div class="info_wrapper">
-                                        <div class="descr">
-                                            Аксессуары в подарок при покупке набора комплектующих
-                                        </div>
-                                        <div class="btn_wrapper">
-                                            <button type="button" class="btn_detail">Подробнее</button>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <a id="show_more_company_offers" class="show_more pointer">Показать ещё</a>
+                                    @endforeach
+                                </div>
+                                <a id="show_more_company_offers" class="show_more pointer">Показать ещё</a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -135,63 +109,75 @@
                                 </div>
                                 <button class="offer_instr_toggle_mobile"></button>
                             </div>
-                            <div class="clubs_offers_list">
-                                <a href="#" class="offer_item" data-remodal-target="clubs_offers_modal">
-                                    <div class="img_wrapper">
-                                        <img src="{{ asset('/img/mouse.png')}}" alt="image">
-                                    </div>
-                                    <div class="info_wrapper">
-                                        <div class="info_item">
-                                            <div class="title">БУ Периферия</div>
-                                            <div class="descr">
-                                                БУ игровые мышки, клавиатуры в хорошем состоянии, 10 комплектов
+                            @if(isset( $offersClub ) && count($offersClub)>0)
+                                <div class="clubs_offers_list">
+                                    @foreach($offersClub as $offer)
+                                
+                                        <a href="#" class="offer_item" data-remodal-target="clubs_offers_modal_{{$offer->id}}">
+                                            <div class="img_wrapper">
+                                                <img src="{{($offer->image != '') ? url('storage/offers/thumbnail/'.$offer->image) : asset('img/default-club-preview-image.svg')}}" alt="image">
+                                            </div>
+                                            <div class="info_wrapper">
+                                                <div class="info_item">
+                                                    <div class="title">{{$offer->name}}</div>
+                                                    <div class="descr">
+                                                    {{$offer->about}}
+                                                    </div>
+                                                </div>
+                                                <div class="info_item">
+                                                    <div class="price">{{$offer->price}} ₽</div>
+                                                    <div class="club_name">Клуб: <span>{{$offer->user_link}}</span></div>
+                                                    <div class="date">Дата публикации: <span>{{$offer->created_at}}</span></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="remodal clubs_offers_modal" data-remodal-id="clubs_offers_modal_{{$offer->id}}" data-remodal-options="hashTracking: false">
+                                            <button data-remodal-action="close" class="remodal-close"></button>
+                                            <div class="remodal-content">
+                                                <div class="title">
+                                                    <span>{{$offer->name}}</span>
+                                                    <span>{{$offer->price}} ₽</span>
+                                                </div>
+                                                <div class="offer_content_wrapper">
+                                                    <div class="offer_content_item">
+                                                        <div class="img_wrapper">
+                                                            <img src="{{($offer->image != '') ? url('storage/offers/thumbnail/'.$offer->image) : asset('img/default-club-preview-image.svg')}}" alt="image">
+                                                        </div>
+                                                        <div class="subtitle">Клуб</div>
+                                                        <div class="contact_name">{{$offer->user_link}}</div>
+                                                        <div class="subtitle">Дата публикации</div>
+                                                        <div class="contact_name">{{$offer->created_at}}</div>
+                                                        <div class="subtitle">Контактное лицо</div>
+                                                        <div class="contact_name">{{$offer->user_name}}</div>
+                                                        <button type="button" class="offer_btn show_offer_contacts">Показать контакт</button>
+                                                        <div class="contacts_wrapper">
+                                                            <div class="club_contact">
+                                                                <img src="{{asset('/img/phone.svg')}}" alt="phone">
+                                                                <a href="tel:{{$offer->user_phone}}">{{$offer->user_phone}}</a>
+                                                            </div>
+
+                                                            <div class="club_contact">
+                                                                <img src="{{asset('/img/mail.svg')}}" alt="email">
+                                                                <a href="mailto:{{$offer->user_email}}">{{$offer->user_email}}</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="offer_content_item">
+                                                        <div class="subtitle text_decor">Описание</div>
+                                                        <div class="offer_info_text_wrapper">
+                                                            <div class="offer_info_text" data-simplebar>
+                                                                {!!$offer->description!!}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="info_item">
-                                            <div class="price">6.000 ₽</div>
-                                            <div class="club_name">Клуб: <span>Кибертында</span></div>
-                                            <div class="date">Дата публикации: <span>24.07.2021</span></div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="#" class="offer_item" data-remodal-target="clubs_offers_modal">
-                                    <div class="img_wrapper">
-                                        <img src="{{ asset('/img/mouse.png')}}" alt="image">
-                                    </div>
-                                    <div class="info_wrapper">
-                                        <div class="info_item">
-                                            <div class="title">БУ Периферия</div>
-                                            <div class="descr">
-                                                БУ игровые мышки, клавиатуры в хорошем состоянии, 10 комплектов
-                                            </div>
-                                        </div>
-                                        <div class="info_item">
-                                            <div class="price">6.000 ₽</div>
-                                            <div class="club_name">Клуб: <span>Кибертында</span></div>
-                                            <div class="date">Дата публикации: <span>24.07.2021</span></div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="#" class="offer_item" data-remodal-target="clubs_offers_modal">
-                                    <div class="img_wrapper">
-                                        <img src="{{ asset('/img/mouse.png')}}" alt="image">
-                                    </div>
-                                    <div class="info_wrapper">
-                                        <div class="info_item">
-                                            <div class="title">БУ Периферия</div>
-                                            <div class="descr">
-                                                БУ игровые мышки, клавиатуры в хорошем состоянии, 10 комплектов
-                                            </div>
-                                        </div>
-                                        <div class="info_item">
-                                            <div class="price">6.000 ₽</div>
-                                            <div class="club_name">Клуб: <span>Кибертында</span></div>
-                                            <div class="date">Дата публикации: <span>24.07.2021</span></div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <a id="show_more_club_offers" class="show_more pointer">Показать ещё</a>
+
+                                    @endforeach
+                                </div>
+                                <a id="show_more_club_offers" class="show_more pointer">Показать ещё</a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -201,139 +187,6 @@
             </div>
         </div>
     </section>
-
-    <div class="remodal company_offers_modal" data-remodal-id="company_offers_modal" data-remodal-options="hashTracking: false">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <div class="remodal-content">
-            <div class="title">Предложение от компании MSI</div>
-            <div class="offer_content_wrapper">
-                <div class="offer_content_item">
-                    <div class="img_wrapper">
-                        <img src="{{ asset('/img/dxracer.png')}}" alt="image">
-                    </div>
-                    <div class="subtitle">Контактное лицо</div>
-                    <div class="contact_name">Аркадий Лещ</div>
-                    <button type="button" class="offer_btn show_offer_contacts" >Показать контакт</button>
-                    <div class="contacts_wrapper">
-                        <div class="club_contact">
-                            <img src="{{asset('/img/phone.svg')}}" alt="phone">
-                            <a href="tel:+7(495)999-99-99">+7(495)999-99-99</a>
-                        </div>
-
-                        <div class="club_contact">
-                            <img src="{{asset('/img/mail.svg')}}" alt="email">
-                            <a href="mailto:hello@langame.ru">hello@langame.ru</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="offer_content_item">
-                    <div class="subtitle text_decor">Подробные условия</div>
-                    <div class="offer_info_text_wrapper">
-                        <div class="offer_info_text" data-simplebar>
-                            Купи 10 материнских плат и получи мышку в подарок. Купи 5 мониторов и получи лещща.
-                            Купи 10 материнских плат и получи мышку в подарок. Купи 5 мониторов
-                            и получи лещща. Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща. Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща. Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща. Купи 10 материнских плат и получи
-                            мышку в подарок. Купи 5 мониторов и получи лещща.
-                            Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща. Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща.
-                            Купи 5 мониторов и получи лещща. Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща.
-                            Купи 5 мониторов и получи лещща. Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща.
-                            Купи 5 мониторов и получи лещща. Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща.Купи 5 мониторов и получи лещща. Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща.Купи 5 мониторов и получи лещща. Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща.
-                            Купи 5 мониторов и получи лещща. Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща.
-                            Купи 5 мониторов и получи лещща. Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща.
-                            Купи 5 мониторов и получи лещща. Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща.
-                            Купи 5 мониторов и получи лещща. Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="remodal clubs_offers_modal" data-remodal-id="clubs_offers_modal" data-remodal-options="hashTracking: false">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <div class="remodal-content">
-            <div class="title">
-                <span>БУ Периферия</span>
-                <span>6.000 ₽</span>
-            </div>
-            <div class="offer_content_wrapper">
-                <div class="offer_content_item">
-                    <div class="img_wrapper">
-                        <img src="{{ asset('/img/mouse.png')}}" alt="image">
-                    </div>
-                    <div class="subtitle">Клуб</div>
-                    <div class="contact_name">Кибертында</div>
-                    <div class="subtitle">Дата публикации</div>
-                    <div class="contact_name">24.07.2021</div>
-                    <div class="subtitle">Контактное лицо</div>
-                    <div class="contact_name">Аркадий Лещ</div>
-                    <button type="button" class="offer_btn show_offer_contacts">Показать контакт</button>
-                    <div class="contacts_wrapper">
-                        <div class="club_contact">
-                            <img src="{{asset('/img/phone.svg')}}" alt="phone">
-                            <a href="tel:+7(495)999-99-99">+7(495)999-99-99</a>
-                        </div>
-
-                        <div class="club_contact">
-                            <img src="{{asset('/img/mail.svg')}}" alt="email">
-                            <a href="mailto:hello@langame.ru">hello@langame.ru</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="offer_content_item">
-                    <div class="subtitle text_decor">Описание</div>
-                    <div class="offer_info_text_wrapper">
-                        <div class="offer_info_text" data-simplebar>
-                            Купи 10 материнских плат и получи мышку в подарок. Купи 5 мониторов и получи лещща.
-                            Купи 10 материнских плат и получи мышку в подарок. Купи 5 мониторов
-                            и получи лещща. Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща. Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща. Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща. Купи 10 материнских плат и получи
-                            мышку в подарок. Купи 5 мониторов и получи лещща.
-                            Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща. Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща.
-                            Купи 10 материнских плат и получи мышку в подарок. Купи 5 мониторов и получи лещща.
-                            Купи 10 материнских плат и получи мышку в подарок. Купи 5 мониторов
-                            и получи лещща. Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща. Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща. Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща. Купи 10 материнских плат и получи
-                            мышку в подарок. Купи 5 мониторов и получи лещща.
-                            Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща. Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща.
-                            Купи 10 материнских плат и получи мышку в подарок. Купи 5 мониторов и получи лещща.
-                            Купи 10 материнских плат и получи мышку в подарок. Купи 5 мониторов
-                            и получи лещща. Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща. Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща. Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща. Купи 10 материнских плат и получи
-                            мышку в подарок. Купи 5 мониторов и получи лещща.
-                            Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща. Купи 10 материнских плат и получи мышку в подарок.
-                            Купи 5 мониторов и получи лещща.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="remodal add_offer_modal" data-remodal-id="add_offer_modal" data-remodal-options="hashTracking: false">
         <button data-remodal-action="close" class="remodal-close"></button>
