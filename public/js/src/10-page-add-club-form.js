@@ -554,8 +554,41 @@ jQuery(function() {
             recalc_qty_pc();
         });
 
+
         $tab.on('change', '[data-new-area-qty-pc]', function (e) {
             recalc_qty_pc();
+        });
+
+        let KEY_BACKSPACE = 8,
+            KEY_TAB = 9,
+            KEY_DELETE = 46,
+            KEY_ENTER = 13,
+            CODE_ALLOWED_KEYBOARD_KEYS = [
+                112, /* F1 */  48, /* 0 main keyboard */ 96,  /* 0 side keyboard */
+                113, /* F2 */  49, /* 1 main keyboard */ 97,  /* 1 side keyboard */
+                114, /* F3 */  50, /* 2 main keyboard */ 98,  /* 2 side keyboard */
+                115, /* F4 */  51, /* 3 main keyboard */ 99,  /* 3 side keyboard */
+                116, /* F5 */  52, /* 4 main keyboard */ 100, /* 4 side keyboard */
+                117, /* F6 */  53, /* 5 main keyboard */ 101, /* 5 side keyboard */
+                118, /* F7 */  54, /* 6 main keyboard */ 102, /* 6 side keyboard */
+                119, /* F8 */  55, /* 7 main keyboard */ 103, /* 7 side keyboard */
+                120, /* F9 */  56, /* 8 main keyboard */ 104, /* 8 side keyboard */
+                121, /* F10 */ 57, /* 9 main keyboard */ 105, /* 9 side keyboard */
+                122, /* F11 */
+                123, /* F12 */
+
+                KEY_BACKSPACE,
+                KEY_TAB,
+                KEY_DELETE,
+                KEY_ENTER
+            ];
+
+        $tab.on('keydown', '[data-new-area-qty-pc]', function(e) {
+            let key = e.keyCode || e.which;
+
+            if (CODE_ALLOWED_KEYBOARD_KEYS.indexOf(key) === -1) {
+                e.preventDefault();
+            }
         });
 
         function recalc_qty_pc() {
@@ -566,6 +599,16 @@ jQuery(function() {
 
             $input_new_area.each(function() {
                 $qty_common_val = $qty_common_val - this.value;
+
+                if($qty_common_val <= 1){
+                    jQuery('[data-role="pc-configuration-tab"] .main-error').addClass('active').text('Проверьте правильность введенных данных, вы превысили общее количество ПК');
+
+                    $qty_common_val = +$qty_common_val + (+this.value);
+                    this.value = '';
+                    console.log($qty_common_val,this.value);
+                } else{
+                    jQuery('[data-role="pc-configuration-tab"] .main-error').removeClass('active').text('Заполните всю информацию об оборудовании в дополнительной зоне или удалите ее');
+                }
             });
 
             $input_common_area_qty_pc.val(`${$qty_common_val} ПК`);
