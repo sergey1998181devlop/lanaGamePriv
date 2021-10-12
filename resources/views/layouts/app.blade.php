@@ -377,14 +377,14 @@
     <button data-remodal-action="close" class="remodal-close"></button>
     <div class="remodal-content">
         <div class="title">Экспресс - отчёт об ошибке</div>
-        <form action="{{url('report_error')}}" method="post" id="report-form">
+        <form action="{{url('report_error')}}" method="post" id="report-form" data-recaptcha-form>
             @csrf
             <input type="hidden" name="url" value="{{url()->current()}}">
             <div class="forma">
                 <textarea name="message" id="report-message-input" maxlength="1500" required></textarea>
             </div>
             <div class="recaptcha-holder">
-                <div class="g-recaptcha" data-sitekey="{{env('RECAPCHA_PUB')}}"></div>
+                <div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="{{env('RECAPCHA_PUB')}}"></div>
             </div>
             <div class="recaptcha-msg">
                 @error('g-recaptcha-response')
@@ -392,7 +392,7 @@
                 @enderror
             </div>
             <div class="btn_wrapper">
-                <button type="submit" data-captcha-activator>Отправить</button>
+                <button type="submit">Отправить</button>
             </div>
         </form>
         <div class="instr">
@@ -582,8 +582,6 @@
         $(document).on('submit','#report-form',function(e){
             ym(82365286,'reachGoal','error');
             gtag('event', 'click', {'event_category': 'error', 'event_action': 'click'});
-            var response = grecaptcha.getResponse();
-                if(response.length == 0){e.preventDefault();$(this).find('.recaptcha-msg').empty().text('Необходимо пройти капчу');return;}
         })
     });
 </script>

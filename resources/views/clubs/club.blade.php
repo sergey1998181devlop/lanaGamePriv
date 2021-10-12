@@ -770,7 +770,7 @@
             описании или оставить заявку на передачу управления
             представителю клуба.
         </div>
-        <form action="{{url('report_club_error')}}" method="post" id="report-club-form">
+        <form action="{{url('report_club_error')}}" method="post" id="report-club-form" data-recaptcha-form>
             @csrf
             <input type="hidden" name="url" value="{{url()->current()}}">
             <div class="forma">
@@ -792,7 +792,7 @@
                 </div>
             </div>
             <div class="recaptcha-holder">
-                <div class="g-recaptcha" data-sitekey="{{env('RECAPCHA_PUB')}}"></div>
+                <div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="{{env('RECAPCHA_PUB')}}"></div>
             </div>
             <div class="recaptcha-msg">
                 @error('g-recaptcha-response')
@@ -800,7 +800,7 @@
                 @enderror
             </div>
             <div class="btn_wrapper">
-                <button type="submit" data-captcha-activator>Отправить</button>
+                <button type="submit">Отправить</button>
             </div>
         </form>
     </div>
@@ -915,12 +915,4 @@
             })
         </script>
     @endif
-    <script>
-        $( document ).ready(function(){
-            $(document).on('submit','#report-club-form',function(e){
-                var response = grecaptcha.getResponse();
-                    if(response.length == 0){e.preventDefault();$(this).find('.recaptcha-msg').empty().text('Необходимо пройти капчу');return;}
-            })
-        });
-    </script>
 @endsection

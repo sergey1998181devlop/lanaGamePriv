@@ -209,9 +209,9 @@ class save_image
                     mkdir(storage_path('app/public/'.$folder.'/thumbnail/'.date("Y").'/'.date("M")), 0777, true);
                 }
                 if (strtolower($extension) != "jpg" && strtolower($extension) != "jpeg" ) {
-                    $jpg =Image::make($file)->encode('jpg', 75);
-                    $jpg->save(storage_path('app/public/'.$folder.'/'.date("Y").'/'.date("M").'/'. $fileWithoutExtenstion.'.jpg'), 70);
-                    $jpg->save(storage_path('app/public/'.$folder.'/thumbnail/'.date("Y").'/'.date("M").'/'. $fileWithoutExtenstion.'.jpg'), 70);
+                    $jpg =Image::make($file)->encode('jpg', 100);
+                    $jpg->save(storage_path('app/public/'.$folder.'/'.date("Y").'/'.date("M").'/'. $fileWithoutExtenstion.'.jpg'), 100);
+                    $jpg->save(storage_path('app/public/'.$folder.'/thumbnail/'.date("Y").'/'.date("M").'/'. $fileWithoutExtenstion.'.jpg'), 100);
                     $extension='jpg';
                 $filenametostore ='store'.$uniqid.'.'.$extension;
                 $thumbnailpath = storage_path('app/public/'.$folder.'/thumbnail/'.date("Y").'/'.date("M").'/'.$filenametostore);

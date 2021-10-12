@@ -117,8 +117,8 @@ jQuery(function() {
     let scrollLeft = 0,
         totalPhoto = jQuery('.club_page_photo_list .club_page_photo_item').length;
 
-    jQuery('.club_page_photo_list').on('scroll',function(e) {
-        let direction = this.scrollLeft >= scrollLeft  ? 'right' : 'left';
+    jQuery('.club_page_photo_list').on('scroll', function(e) {
+        let direction = this.scrollLeft >= scrollLeft ? 'right' : 'left';
 
         scrollLeft = this.scrollLeft;
 
@@ -157,22 +157,23 @@ jQuery(function() {
     });
 
     jQuery(document).on('click', function(e) {
-        if(jQuery('.header_menu .log_in_block_wrapper').is(':visible')
+        if (jQuery('.header_menu .log_in_block_wrapper').is(':visible')
             && jQuery(e.target).closest('.log_in_block_wrapper').length === 0
-            && !jQuery(e.target).is('.log_in_form_toggle')){
+            && !jQuery(e.target).is('.log_in_form_toggle')) {
             jQuery('.header_menu .log_in_block_wrapper').hide();
             jQuery('.log_in_form_toggle').removeClass('active');
         }
     });
 
-    jQuery('#open_search_form').on('click', function(e){
-        ym(82365286,'reachGoal','search');gtag('event', 'send', { 'event_category': 'search', 'event_action': 'click' });
+    jQuery('#open_search_form').on('click', function(e) {
+        ym(82365286, 'reachGoal', 'search');
+        gtag('event', 'send', {'event_category': 'search', 'event_action': 'click'});
         jQuery('.search .search_form').addClass('active');
         jQuery('.search .search_form #search-text').focus();
 
     });
 
-    jQuery('#close_search_form').on('click', function(e){
+    jQuery('#close_search_form').on('click', function(e) {
         jQuery('.search .search_form').removeClass('active');
     });
 
@@ -236,7 +237,21 @@ jQuery(function() {
         jQuery('html, body').animate({scrollTop: jQuery(_href).offset().top + 'px'});
     });
 
-    jQuery('[data-captcha-activator]').on('click', function () {
-        jQuery(this).closest('form').find('.recaptcha-holder').addClass('active');
+    jQuery('[data-recaptcha-form]').on('submit', function(e) {
+        let $form = jQuery(this),
+            response = window.grecaptcha.getResponse();
+
+        if (!response) {
+            e.preventDefault();
+
+            window.recaptchaForm = this;
+
+            $form.find('.recaptcha-holder').addClass('active');
+            $form.find('[type="submit"]').hide();
+        }
     });
 });
+
+function recaptchaCallback() {
+    window.recaptchaForm?.submit();
+}

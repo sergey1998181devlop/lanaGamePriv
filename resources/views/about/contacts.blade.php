@@ -37,7 +37,7 @@
         </div>
         <div class="contacts_page_title">Напишите нам</div>
         <div class="contact_us_wrapper">
-            <form action="{{url('messages/send')}}" method="post" id="contact-us-form">
+            <form action="{{url('messages/send')}}" method="post" id="contact-us-form" data-recaptcha-form>
             {{ csrf_field() }}
                 <div class="forma">
                     <div class="form-group required @error('name') error @enderror">
@@ -78,14 +78,14 @@
                     </div>
                 </div>
                 <div class="recaptcha-holder">
-                    <div class="g-recaptcha" data-sitekey="{{env('RECAPCHA_PUB')}}"></div>
+                    <div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="{{env('RECAPCHA_PUB')}}"></div>
                 </div>
                 <div class="recaptcha-msg">
                     @error('g-recaptcha-response')
                     {{ $message }}
                     @enderror
                 </div>
-                <button type="submit" data-captcha-activator>Отправить</button>
+                <button type="submit">Отправить</button>
             </form>
         </div>
     </div>
@@ -94,14 +94,6 @@
 
 @endsection
 @section('scripts')
-<script>
-    $( document ).ready(function(){
-        $(document).on('submit','#contact-us-form',function(e){
-            var response = grecaptcha.getResponse();
-                if(response.length == 0){e.preventDefault();$(this).find('.recaptcha-msg').empty().text('Необходимо пройти капчу');return;}
-        })
-    });
-</script>
 @if(session('success'))
 <script>
     $( document ).ready(function(){

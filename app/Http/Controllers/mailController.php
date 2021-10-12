@@ -13,7 +13,7 @@ use Illuminate\Validation\ValidationException;
 class mailController extends Controller
 {
     public function storeFromContacts(Request $request){
-        
+
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
@@ -81,7 +81,7 @@ class mailController extends Controller
         if($report->save())
         return back()->with(['success'=>'Сообщение успешно отправлено']);
     }
-    
+
     public function subscribe(Request $request){
         $data = $request->validate([
             'type' => ['required', 'string','in:gamer,owner'],
