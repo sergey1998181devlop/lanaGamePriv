@@ -235,4 +235,8 @@ jQuery(function() {
         const _href = jQuery(this).attr('href');
         jQuery('html, body').animate({scrollTop: jQuery(_href).offset().top + 'px'});
     });
+
+    jQuery('[data-captcha-activator]').on('click', function () {
+        jQuery(this).closest('form').find('.recaptcha-holder').addClass('active');
+    });
 });

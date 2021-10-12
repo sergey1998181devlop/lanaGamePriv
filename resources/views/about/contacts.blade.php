@@ -79,13 +79,13 @@
                 </div>
                 <div class="recaptcha-holder">
                     <div class="g-recaptcha" data-sitekey="{{env('RECAPCHA_PUB')}}"></div>
-                </div>            
+                </div>
                 <div class="recaptcha-msg">
                     @error('g-recaptcha-response')
                     {{ $message }}
                     @enderror
                 </div>
-                <button type="submit">Отправить</button>
+                <button type="submit" data-captcha-activator>Отправить</button>
             </form>
         </div>
     </div>

@@ -395,7 +395,7 @@
                         {{ $message }}
                         @enderror
                     </div>
-                    <button type="submit" onclick="gtag('event', 'send', { 'event_category': 'add-club-request-form', 'event_action': 'send' });">Отправить заявку</button>
+                    <button type="submit" data-captcha-activator onclick="gtag('event', 'send', { 'event_category': 'add-club-request-form', 'event_action': 'send' });">Отправить заявку</button>
                 </form>
             </div>
     </div>
