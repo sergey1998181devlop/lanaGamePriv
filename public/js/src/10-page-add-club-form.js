@@ -187,8 +187,10 @@ jQuery(function() {
         $tab.data('form-wizard-tab-validation', function() {
             return new Promise((resolve, reject) => {
                 let hasErrors = false,
-                    $qty_pc_val = jQuery('[name="qty_pc"]').val(),
-                    $qty_vip_pc_val = jQuery('[name="qty_vip_pc"]').val();
+                    $qty_pc_val = +jQuery('[name="qty_pc"]').val(),
+                    $qty_vip_pc_val = +jQuery('[name="qty_vip_pc"]').val();
+
+                console.log($qty_pc_val, $qty_vip_pc_val);
 
                 jQuery('.error.qty_error').text('');
 
