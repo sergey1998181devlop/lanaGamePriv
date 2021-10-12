@@ -7,6 +7,7 @@ use App\post;
 use App\club;
 use App\offer;
 use App\city;
+use Auth;
 use App\metro;
 use View;
 use DateTime;
@@ -54,6 +55,7 @@ class HomeController extends Controller
       return view('about.about_us');
     }
     public function clubs_offers(){
+      if(Auth::guest()) return redirect("/login");
       $offersBrand=offer::select('*')->where('type', '=', 'newBrand')->orderBy('order_no','desc')->orderBy('created_at','desc')->get();
       $offersClub=offer::select('*')->where('type', '=', 'newClub')->orderBy('order_no','desc')->orderBy('created_at','desc')->get();
       return view('about.clubs_offers')->with(['offersBrand'=>$offersBrand,'offersClub'=>$offersClub]);
