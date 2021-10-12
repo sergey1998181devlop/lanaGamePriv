@@ -47,7 +47,7 @@ class offersController extends Controller
         $filename = explode('/storage/',$request->input('offer_photos'));
 
          $offer=new offer;
-         $offer->name=$user->name;
+         $offer->name=$request->input('name');
          $offer->about= $request->input('about');
          $offer->description= $request->input('description');
          $offer->user_name= $request->input('user_name');
