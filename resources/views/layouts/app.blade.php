@@ -392,7 +392,7 @@
                 @enderror
             </div>
             <div class="btn_wrapper">
-                <button type="submit">Отправить</button>
+                <button type="submit" data-captcha-activator>Отправить</button>
             </div>
         </form>
         <div class="instr">

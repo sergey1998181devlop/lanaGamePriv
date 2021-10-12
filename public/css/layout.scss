@@ -118,9 +118,13 @@ input[type=number] {
 }
 
 .recaptcha-holder {
-    display: flex;
+    display: none;
     justify-content: flex-end;
     margin: 0 0 20px;
+
+    &.active{
+        display: flex;
+    }
 }
 
 .recaptcha-msg {
@@ -14846,8 +14850,12 @@ section.cities_list_wrapper {
 
         .recaptcha-holder {
             margin: 0 0 20px;
-            display: flex;
+            display: none;
             justify-content: center;
+
+            &.active{
+                display: flex;
+            }
         }
 
         .recaptcha-msg {
@@ -15131,8 +15139,12 @@ section.cities_list_wrapper {
 
         .recaptcha-holder {
             margin: 0 0 20px;
-            display: flex;
+            display: none;
             justify-content: center;
+
+            &.active{
+                display: flex;
+            }
         }
 
         .recaptcha-msg {
