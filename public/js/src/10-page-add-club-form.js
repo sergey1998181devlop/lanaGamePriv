@@ -178,6 +178,30 @@ jQuery(function() {
 
     })();
 
+    // basic services validation
+
+    (() => {
+        let $tab = jQuery('.form_tab_02_basic_services');
+
+
+        $tab.data('form-wizard-tab-validation', function() {
+            return new Promise((resolve, reject) => {
+                let hasErrors = false,
+                    $qty_pc_val = jQuery('[name="qty_pc"]').val(),
+                    $qty_vip_pc_val = jQuery('[name="qty_vip_pc"]').val();
+
+                jQuery('.error.qty_error').text('');
+
+                if ($qty_vip_pc_val > $qty_pc_val) {
+                    jQuery('.error.qty_error').text('Количество VIP ПК превышает общее количество ПК');
+                    hasErrors = true;
+                }
+
+                return hasErrors ? reject() : resolve();
+            });
+        });
+    })();
+
     // url validation
 
     (() => {
@@ -600,14 +624,21 @@ jQuery(function() {
             $input_new_area.each(function() {
                 $qty_common_val = $qty_common_val - this.value;
 
-                if($qty_common_val <= 1){
-                    jQuery('[data-role="pc-configuration-tab"] .main-error').addClass('active').text('Проверьте правильность введенных данных, вы превысили общее количество ПК');
+                if($qty_common_val < 1){
+                    jQuery(this)
+                        .closest(jQuery('[data-role="pc-configuration-tab"]'))
+                            .find(jQuery('.main-error'))
+                            .addClass('active')
+                            .text('Проверьте правильность введенных данных, вы превысили общее количество ПК');
 
                     $qty_common_val = +$qty_common_val + (+this.value);
                     this.value = '';
-                    console.log($qty_common_val,this.value);
                 } else{
-                    jQuery('[data-role="pc-configuration-tab"] .main-error').removeClass('active').text('Заполните всю информацию об оборудовании в дополнительной зоне или удалите ее');
+                    jQuery(this)
+                        .closest(jQuery('[data-role="pc-configuration-tab"]'))
+                            .find(jQuery('.main-error'))
+                            .removeClass('active')
+                            .text('Заполните всю информацию об оборудовании в дополнительной зоне или удалите ее');
                 }
             });
 
