@@ -37,6 +37,10 @@ Route::get('profile/verify/resend', 'personalController@resendVerfyEmail');
 Route::get('{id}_statia_{url}','postsController@post');
 Route::get('posts','postsController@allposts');
 
+// объявления 
+Route::get('{id}_offer_{url}','offersController@offer');
+Route::get('offers','offersController@alloffers');
+
 // клубы
 Route::get('personal/clubs', 'clubsController@clubs');
 Route::get('personal/club/{id}/toggle', 'clubsController@toggle');
@@ -91,6 +95,8 @@ Route::get('users/toggleadmin/{id}','panel\usersController@toggleadmin');
 Route::get('panel/find-user','panel\usersController@find');
 
 Route::get('post/new','panel\postsController@newPost');
+Route::get('offers/newBrand','panel\offersController@newOffer');
+Route::get('offers/newClub','panel\offersController@newOffer');
 Route::post('users/sendMail','panel\usersController@sendMail');
 
 
@@ -104,6 +110,18 @@ Route::post('post/delete/{id}','panel\postsController@delete' );
 Route::post('post/edit/saveImage','panel\postsController@saveImage' );
 Route::get('panel/posts/all','panel\postsController@index');
 Route::post('panel/posts/order_no','panel\postsController@reOrderPost');
+
+// объявления
+Route::post('offer/create','panel\offersController@store' );
+Route::get('offer/edit/{id}','panel\offersController@offerToUpdste');
+Route::post('offer/update/{id}','panel\offersController@update');
+Route::post('offer/saveImage','panel\offersController@saveImage' );
+Route::post('offer/delete/{id}','panel\offersController@delete' );
+Route::post('offer/edit/saveImage','panel\offersController@saveImage' );
+Route::get('panel/offers/all','panel\offersController@index');
+Route::post('panel/offers/order_no','panel\offersController@reOrderOffer');
+
+
 // клубы
 Route::get('panel/export_clubs', 'panel\clubsController@exportClubs');
 Route::get('panel/clubs/new-clubs','panel\clubsController@new_clubs');
