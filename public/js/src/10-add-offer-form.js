@@ -10,10 +10,10 @@ jQuery(function() {
 
         jQuery.ajax({
             type: 'POST',
-            url: '',
+            url: $form.attr('action'),
             data: $form.serialize(),
             success: function() {
-                location.href = '';
+                $form.text("Объявление успешно отправлено. Ожидайте обратной связи.");
             }
         });
     });
@@ -44,4 +44,3 @@ jQuery(function() {
         $upload_hidden_input.val(img_url);
     }
 });
-

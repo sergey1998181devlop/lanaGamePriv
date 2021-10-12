@@ -191,7 +191,8 @@
     <div class="remodal add_offer_modal" data-remodal-id="add_offer_modal" data-remodal-options="hashTracking: false">
         <button data-remodal-action="close" class="remodal-close"></button>
         <div class="remodal-content">
-            <form action="" method="post" id="add-offer-form">
+            <form action="/clubs-offers/add" method="post" id="add-offer-form">
+          {{ csrf_field() }}
                 <div class="top_wrapper">
                     <div class="title">Добавить объявление</div>
                     <div class="btn_wrapper">
@@ -205,7 +206,7 @@
                     </div>
                     <div class="form-group descr required">
                         <label for="offer-descr-input">Описание объявления</label>
-                        <textarea name="message" id="offer-descr-input" maxlength="1500" required></textarea>
+                        <textarea name="description" id="offer-descr-input" maxlength="1500" required></textarea>
                     </div>
                     <div class="form-group required">
                         <label for="offer-price-input">Цена</label>

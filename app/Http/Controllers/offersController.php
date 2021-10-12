@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller; 
 
 use App\offer;
+use Auth;
 include_once(resource_path('views/includes/functions.blade.php')); 
 class offersController extends Controller
 {
@@ -26,6 +27,40 @@ class offersController extends Controller
         $offers=offer::orderBy('order_no','desc')->orderBy('created_at','desc')->paginate(100);
 
         return view('offers.offers')->with(['offers'=>$offers]);
+     }
+     public function addFromUser(Request $request){
+         $validatedData =  $this->validate($request ,[
+              'name'=>'required',
+              'offer_photos'=>'required',
+         ]);
+     
+         $errors=array();
+         $user=Auth::user();
+       
+         if (count($errors) > 0){
+             return back()->withInput()->withErrors($errors);
+            }
+         if (count($errors) > 0){
+             return back()->withInput()->withErrors($errors);
+             }
+
+        $filename = explode('/storage/',$request->input('offer_photos'));
+
+         $offer=new offer;
+         $offer->name=$request->input('name');
+         $offer->about= $request->input('about');
+         $offer->description= $request->input('description');
+         $offer->user_name= $request->input('user_name');
+         $offer->user_phone= $request->input('user_phone');
+         $offer->price= $request->input('price');
+         $offer->user_link= $request->input('user_link');
+         $offer->user_email= $request->input('user_email');
+         $offer->type= "newClub";
+         $offer->image="../../".$filename[1];
+         $offer->url=ucwords(str_replace(" ","-",$request->input('name')));
+         $offer->save();
+     
+         return true;
      }
      
 }
