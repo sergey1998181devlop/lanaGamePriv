@@ -51,6 +51,7 @@ public function store(Request $request){
     $offer->user_phone= $request->input('user_phone');
     $offer->price= $request->input('price');
     $offer->user_link= $request->input('user_link');
+    $offer->user_email= $request->input('user_email');
     $offer->type= $request->input('type');
     $offer->image=$image;
     $offer->url=ucwords(str_replace(" ","-",$request->input('name')));
@@ -94,6 +95,7 @@ public function update(Request $request,$id){
     $offer->user_phone= $request->input('user_phone');
     $offer->price= $request->input('price');
     $offer->user_link= $request->input('user_link');
+    $offer->user_email= $request->input('user_email');
     $offer->type= $request->input('type');
     $offer->url=ucwords(str_replace(" ","-",$request->input('name')));
     $offer->save();
