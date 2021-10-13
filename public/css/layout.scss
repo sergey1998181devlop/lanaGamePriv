@@ -15822,15 +15822,13 @@ section.cities_list_wrapper {
         }
 
         .offer_content_wrapper {
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            margin: 0 -32px;
             height: 320px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: auto auto;
+            grid-gap: 10px;
 
             .offer_content_item {
-                margin: 0 32px;
-
                 .img_wrapper {
                     width: 256px;
                     height: 144px;
@@ -15978,6 +15976,8 @@ section.cities_list_wrapper {
 
             .offer_content_wrapper {
                 display: block;
+                grid-template-columns: unset;
+                grid-gap: unset;
                 height: auto;
                 margin: 0;
 
