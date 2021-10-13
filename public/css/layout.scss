@@ -15826,6 +15826,7 @@ section.cities_list_wrapper {
             flex-direction: row;
             justify-content: flex-start;
             margin: 0 -32px;
+            height: 320px;
 
             .offer_content_item {
                 margin: 0 32px;
@@ -15864,7 +15865,7 @@ section.cities_list_wrapper {
 
             .offer_info_text_wrapper {
                 width: 424px;
-                height: 308px;
+                height: 285px;
 
                 .offer_info_text {
                     font-size: 20px;
@@ -15978,6 +15979,7 @@ section.cities_list_wrapper {
 
             .offer_content_wrapper {
                 display: block;
+                height: auto;
                 margin: 0;
 
                 .offer_content_item {
