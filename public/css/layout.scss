@@ -6029,7 +6029,7 @@ section.personal_page_wrapper {
 
 /*! SECTION CLUBS OFFERS PAGE START */
 section.clubs_offers_wrapper {
-    min-height: calc(100vh - 331px);
+    min-height: 850px;
     padding: 64px 0 0;
 
     .clubs_offers_page_title {
@@ -6051,10 +6051,12 @@ section.clubs_offers_wrapper {
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
+            align-items: stretch;
             flex-wrap: wrap;
             margin: 0 -32px;
 
             .offer_item {
+                position: relative;
                 text-decoration: none;
                 display: block;
                 margin: 0 32px 64px;
@@ -6063,11 +6065,12 @@ section.clubs_offers_wrapper {
                 box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
                 border-radius: 20px;
                 transition: box-shadow 0.2s;
+                padding: 16px 16px 50px;
 
                 .img_wrapper {
-                    margin: 0 auto;
-                    width: 248px;
-                    height: 180px;
+                    margin: 0 auto 10px;
+                    width: 100%;
+                    height: 160px;
 
                     img {
                         display: block;
@@ -6078,7 +6081,6 @@ section.clubs_offers_wrapper {
                 }
 
                 .info_wrapper {
-                    padding: 0 16px 16px;
 
                     .descr {
                         font-style: normal;
@@ -6086,10 +6088,14 @@ section.clubs_offers_wrapper {
                         font-size: 22px;
                         line-height: 1.2;
                         color: #ffffff;
-                        margin-bottom: 68px;
+                        margin-bottom: 10px;
                     }
 
                     .btn_wrapper {
+                        position: absolute;
+                        right: 16px;
+                        bottom: 16px;
+
                         .btn_detail {
                             display: flex;
                             flex-direction: row;
