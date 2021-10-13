@@ -6066,6 +6066,7 @@ section.clubs_offers_wrapper {
                 border-radius: 20px;
                 transition: box-shadow 0.2s;
                 padding: 16px 16px 50px;
+                min-height: 404px;
 
                 .img_wrapper {
                     margin: 0 auto 10px;
@@ -6081,14 +6082,13 @@ section.clubs_offers_wrapper {
                 }
 
                 .info_wrapper {
-
                     .descr {
                         font-style: normal;
                         font-weight: 700;
                         font-size: 22px;
                         line-height: 1.2;
                         color: #ffffff;
-                        margin-bottom: 10px;
+                        margin-bottom: 30px;
                     }
 
                     .btn_wrapper {
