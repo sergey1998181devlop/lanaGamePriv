@@ -15,7 +15,7 @@
 
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">Объявления<span class="badge badge-pill badge-warning">{{count($offers)}}</span></h1>
-
+<a href="/offers/newClub">Добавить</a>
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">

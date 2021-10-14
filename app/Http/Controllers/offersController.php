@@ -50,7 +50,7 @@ class offersController extends Controller
          $offer->name=$request->input('name');
          $offer->about= $request->input('about');
          $offer->description= $request->input('description');
-         $offer->user_name= $request->input('user_name');
+         $offer->user_name= $user->name;
          $offer->user_phone= $user->phone;
          $offer->price= $request->input('price');
          $offer->user_link= $user->name;

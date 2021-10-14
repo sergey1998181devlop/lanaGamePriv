@@ -93,9 +93,8 @@
         
           <div id="collapseOffers" class="collapse <?=($page=="offers" || $page=="addOffers") ? ' show': null ?> collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
               <div class="bg-white py-2 collapse-inner rounded">
-                  <a class="collapse-item <?php if($page=="offers") echo 'active'; ?>" href="{{url('panel/offers/all')}}">Все</a>
-                  <a class="collapse-item <?php if($page=="addOffersBrand") echo 'active'; ?>" href="{{url('offers/newBrand')}}">Добавить от бренда</a>
-                  <a class="collapse-item <?php if($page=="addOffersClub") echo 'active'; ?>" href="{{url('offers/newClub')}}">Добавить от клуба</a>
+                  <a class="collapse-item <?php if($page=="all") echo 'active'; ?>" href="{{url('panel/offers/all')}}">От брендов</a>
+                  <a class="collapse-item <?php if($page=="allClub") echo 'active'; ?>" href="{{url('panel/offers/allClub')}}">От клубов</a>
               </div>
           </div>
       </li>

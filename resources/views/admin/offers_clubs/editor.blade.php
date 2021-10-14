@@ -67,7 +67,11 @@ $action=$page == 'addOffer' ? url('offer/create') : url('offer/update').'/'.$off
 								<div class="write-article-content">
                   <label for="user_phone">Телефон</label>
                   <input type="text" id="user_phone" value="{{customOfferVal('user_phone',$offer)}}" name="user_phone" placeholder="Телефон">
-                </div>       
+                </div>         
+								<div class="write-article-content">
+                  <label for="user_name">Контактное лицо</label>
+                  <input type="text" id="user_name" value="{{customOfferVal('user_phone',$offer)}}" name="user_name" placeholder="Контактное лицо">
+                </div>     
 								<div class="write-article-content">
                   <label for="user_email">Email</label>
                   <input type="text" id="user_email" value="{{customOfferVal('user_email',$offer)}}" name="user_email" placeholder="Email">

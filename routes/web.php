@@ -119,6 +119,7 @@ Route::post('offer/saveImage','panel\offersController@saveImage' );
 Route::get('offer/delete/{id}','panel\offersController@delete' );
 Route::post('offer/edit/saveImage','panel\offersController@saveImage' );
 Route::get('panel/offers/all','panel\offersController@index');
+Route::get('panel/offers/allClub','panel\offersController@indexClub');
 Route::post('panel/offers/order_no','panel\offersController@reOrderOffer');
 Route::post('clubs-offers/add', 'offersController@addFromUser');
 

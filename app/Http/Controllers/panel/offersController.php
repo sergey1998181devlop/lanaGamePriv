@@ -23,8 +23,12 @@ class offersController extends Controller
     $this->middleware('rule:1');  
 }
 public function index(){
-    $offers= offer::select('id','url','name','views','order_no','created_at')->get();
+    $offers= offer::select('id','url','name','views','order_no','created_at')->where('type','=','newBrand')->get();
     return view('admin.offers.offers')->with(['offers'=>$offers]);
+}
+public function indexClub(){
+    $offers= offer::select('id','url','name','views','order_no','created_at')->where('type','=','newClub')->get();
+    return view('admin.offers_clubs.offers')->with(['offers'=>$offers]);
 }
 
 public function store(Request $request){
