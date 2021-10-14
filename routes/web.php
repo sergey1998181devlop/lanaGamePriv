@@ -117,6 +117,8 @@ Route::get('offer/edit/{id}','panel\offersController@offerToUpdste');
 Route::post('offer/update/{id}','panel\offersController@update');
 Route::post('offer/saveImage','panel\offersController@saveImage' );
 Route::get('offer/delete/{id}','panel\offersController@delete' );
+Route::get('offer/active/{id}','panel\offersController@active' );
+Route::get('offer/deactive/{id}','panel\offersController@deactive' );
 Route::post('offer/edit/saveImage','panel\offersController@saveImage' );
 Route::get('panel/offers/all','panel\offersController@index');
 Route::get('panel/offers/allClub','panel\offersController@indexClub');
