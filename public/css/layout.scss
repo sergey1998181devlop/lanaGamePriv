@@ -6047,6 +6047,11 @@ section.clubs_offers_wrapper {
         display: flex;
         flex-direction: column;
 
+        .instr{
+            font-size: 18px;
+            font-weight: 500;
+        }
+
         .company_offers_list {
             display: flex;
             flex-direction: row;

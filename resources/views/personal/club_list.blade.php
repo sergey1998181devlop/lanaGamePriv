@@ -165,6 +165,12 @@
                             </svg>
                             <span>Список клубов</span>
                         </a>
+                        <a href="{{url('clubs-offers')}}">
+                            <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-svg-offer"></use>
+                            </svg>
+                            <span>Биржа предложений</span>
+                        </a>
                         <a href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();" class="exit">
@@ -298,7 +304,7 @@
 					]
 				},
 				language: 'ru',
-					licenseKey: '',					
+					licenseKey: '',
 				} )
 				.then( editor => {
 					window.editor = editor;

@@ -113,10 +113,13 @@
                                 </div>
                                 <button class="offer_instr_toggle_mobile"></button>
                             </div>
+                            <div class="instr">
+                                Здесь пока нет объявлений от клубов. Будьте первыми!
+                            </div>
                             @if(isset( $offersClub ) && count($offersClub)>0)
                                 <div class="clubs_offers_list">
                                     @foreach($offersClub as $offer)
-                                
+
                                         <a href="#" class="offer_item" data-remodal-target="clubs_offers_modal_{{$offer->id}}">
                                             <div class="img_wrapper">
                                                 <img src="{{($offer->image != '') ? url('storage/offers/'.$offer->image) : asset('img/default-club-preview-image.svg')}}" alt="image">
