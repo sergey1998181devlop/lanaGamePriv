@@ -14,8 +14,8 @@
    <div class="container-fluid">
 
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Объявления<span class="badge badge-pill badge-warning">{{count($offers)}}</span></h1>
-
+<h1 class="h3 mb-2 text-gray-800">Объявления<span class="badge badge-pill badge-warning">{{count($offers)}}</span>&nbsp;
+<a class="btn-sm btn btn-info" href="/offers/newClub">Добавить</a></h1>
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
@@ -28,6 +28,7 @@
           <tr>
             <th>Заголовок</th>
             <th>Дата добавления</th>
+            <th>Статус</th>
             <th>Действие</th>
           </tr>
         </thead>
@@ -36,8 +37,21 @@
           <tr>  
             <td name="name"><a href="/clubs-offers">{{$offer->name}}</a></td>
             <td name="phone">{{$offer->created_at}}</td>
+            <?php
+             if($offer->published_at != null){
+                $status = "Опубликован";
+             }else{
+                $status = "Снят с публикации";
+             }
+            ?>
+            <td>{{$status}}</td>
             <td>
                 <a class="btn-sm btn btn-info" href="{{url('offer/edit/')}}/{{$offer->id}}">Отредактировать</a>
+                <?if($offer->published_at == null){?>
+                    <a href="{{url('offer/active')}}/{{$offer->id}}" class="club_active btn btn-sm btn-success">Опубликовать</a>
+                  <?}else{?>
+                    <a href="{{url('offer/deactive')}}/{{$offer->id}}" class="club_active btn btn-sm btn-success">Снять с публикации</a>
+                <?}?>
                 <button type="button" class="btn-sm btn btn-danger deleteOfferButton"  data-toggle="modal" data-target="#deleteOffer" contactId="{{$offer->id}}" contactName="{{$offer->name}}">{{__('messages.Delete')}}</button>
             </td>
           </tr>

@@ -57,7 +57,7 @@ class HomeController extends Controller
     public function clubs_offers(){
       if(Auth::guest()) return redirect("/login");
       $offersBrand=offer::select('*')->where('type', '=', 'newBrand')->orderBy('order_no','desc')->orderBy('created_at','desc')->get();
-      $offersClub=offer::select('*')->where('type', '=', 'newClub')->orderBy('order_no','desc')->orderBy('created_at','desc')->get();
+      $offersClub=offer::select('*')->where('type', '=', 'newClub')->where('published_at','!=', null)->orderBy('order_no','desc')->orderBy('created_at','desc')->get();
       return view('about.clubs_offers')->with(['offersBrand'=>$offersBrand,'offersClub'=>$offersClub]);
     }
     public function cities_list(){

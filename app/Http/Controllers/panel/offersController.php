@@ -9,6 +9,8 @@ use App\Jobs\save_image;
 use Image;
 use App\offer;
 use App\User;
+use Carbon\Carbon;
+use Notification;
 use Illuminate\Support\Facades\Storage; 
 use Str;
 
@@ -23,10 +25,34 @@ class offersController extends Controller
     $this->middleware('rule:1');  
 }
 public function index(){
-    $offers= offer::select('id','url','name','views','order_no','created_at')->get();
+    $offers= offer::select('id','url','name','views','order_no','created_at')->where('type','=','newBrand')->get();
     return view('admin.offers.offers')->with(['offers'=>$offers]);
 }
+public function indexClub(){
+    $offers= offer::select('*')->where('type','=','newClub')->get();
+    return view('admin.offers_clubs.offers')->with(['offers'=>$offers]);
+}
 
+public function active($id){
+    $offer=offer::where('id',$id)->first();
+    $offer->published_at =Carbon::now()->toDateTimeString();
+    $offer->published_by =Auth::user()->id;
+    $offer->unpublished_at =null;
+    $offer->unpublished_by =null;
+    $offer->last_admin_edit =Auth::user()->id;
+    $offer->save();
+    return redirect(url("panel/offers/allClub"));
+}
+public function deactive($id){
+    $offer=offer::where('id',$id)->first();
+    $offer->published_at =null;
+    $offer->published_by =Auth::user()->id;
+    $offer->unpublished_at =null;
+    $offer->unpublished_by =null;
+    $offer->last_admin_edit =Auth::user()->id;
+    $offer->save();
+    return redirect(url("panel/offers/allClub"));
+}
 public function store(Request $request){
     $validatedData =  $this->validate($request ,[
          'name'=>'required',

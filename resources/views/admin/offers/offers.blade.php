@@ -14,8 +14,8 @@
    <div class="container-fluid">
 
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Объявления<span class="badge badge-pill badge-warning">{{count($offers)}}</span></h1>
-
+<h1 class="h3 mb-2 text-gray-800">Объявления<span class="badge badge-pill badge-warning">{{count($offers)}}</span>&nbsp;
+<a class="btn-sm btn btn-info" href="/offers/newBrand">Добавить</a></h1>
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
@@ -31,7 +31,7 @@
             <th>Действие</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody>          
            @foreach($offers as $offer) 
           <tr>  
             <td name="name"><a href="/clubs-offers">{{$offer->name}}</a></td>
