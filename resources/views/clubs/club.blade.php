@@ -859,7 +859,6 @@
                         iconColor: '#735184'
                     }));
             }
-
         </script>
     @endif
     @if(admin())
@@ -875,7 +874,7 @@
             });
         </script>
     @endif
-    @if(isset($_GET['status']) && $_GET['status'] == 'success')
+    @if(session('success') || (isset($_GET['status']) && $_GET['status'] === 'success'))
         <script>
             $(document).ready(function() {
                 jQuery('[data-remodal-id="success_modal"]').remodal().open();
@@ -911,7 +910,6 @@
                         comment.css('background','');
                     }
                 });
-
             })
         </script>
     @endif
