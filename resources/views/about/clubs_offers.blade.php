@@ -31,7 +31,7 @@
                             @if(isset( $offersBrand  ) && count($offersBrand)>0)
                                 <div class="company_offers_list">
                                     @foreach($offersBrand as $offer)
-                                        <a href="#" class="offer_item" data-remodal-target="company_offers_modal_{{$offer->id}}">
+                                        <a href="#" class="offer_item" data-id="{{$offer->id}}" data-remodal-target="company_offers_modal_{{$offer->id}}">
                                             <div class="img_wrapper">
                                                 <img src="{{($offer->image != '') ? url('storage/offers/'.$offer->image) : asset('img/default-club-preview-image.svg')}}" alt="image">
                                             </div>
@@ -55,7 +55,7 @@
                                                         </div>
                                                         <div class="subtitle">Контактное лицо</div>
                                                         <div class="contact_name">{{$offer->user_name}}</div>
-                                                        <button type="button" class="offer_btn show_offer_contacts" >Показать контакт</button>
+                                                        <button type="button" class="offer_btn show_offer_contacts" data-id="{{$offer->id}}" >Показать контакт</button>
                                                         <div class="contacts_wrapper">
                                                             @if( $offer->user_phone != "" )
                                                             <div class="club_contact">
@@ -124,7 +124,7 @@
                                 <div class="clubs_offers_list">
                                     @foreach($offersClub as $offer)
 
-                                        <a href="#" class="offer_item" data-remodal-target="clubs_offers_modal_{{$offer->id}}">
+                                        <a href="#" class="offer_item" data-id="{{$offer->id}}" data-remodal-target="clubs_offers_modal_{{$offer->id}}">
                                             <div class="img_wrapper">
                                                 <img src="{{($offer->image != '') ? url('storage/offers/'.$offer->image) : asset('img/default-club-preview-image.svg')}}" alt="image">
                                             </div>
@@ -160,7 +160,7 @@
                                                         <div class="contact_name">{{$offer->created_at}}</div>
                                                         <div class="subtitle">Контактное лицо</div>
                                                         <div class="contact_name">{{$offer->user_name}}</div>
-                                                        <button type="button" class="offer_btn show_offer_contacts">Показать контакт</button>
+                                                        <button type="button" class="offer_btn show_offer_contacts" data-id="{{$offer->id}}" >Показать контакт</button>
                                                         <div class="contacts_wrapper">
                                                             @if( $offer->user_phone != "" )
                                                             <div class="club_contact">
@@ -247,4 +247,29 @@
             </form>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).on('click', '.offer_item', function() {
+            jQuery.ajax({
+                type: 'get',
+                url: '{{url('/')}}/offer/views/'+$(this).attr("data-id"),
+                data: '',
+                success: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+        $(document).on('click', '.show_offer_contacts', function() {
+            jQuery.ajax({
+                type: 'get',
+                url: '{{url('/')}}/offer/views_click/'+$(this).attr("data-id"),
+                data: '',
+                success: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+    </script>
 @endsection

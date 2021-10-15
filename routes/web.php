@@ -115,6 +115,8 @@ Route::post('panel/posts/order_no','panel\postsController@reOrderPost');
 Route::post('offer/create','panel\offersController@store' );
 Route::get('offer/edit/{id}','panel\offersController@offerToUpdste');
 Route::post('offer/update/{id}','panel\offersController@update');
+Route::get('offer/views/{id}','offersController@views');
+Route::get('offer/views_click/{id}','offersController@views_click');
 Route::post('offer/saveImage','panel\offersController@saveImage' );
 Route::get('offer/delete/{id}','panel\offersController@delete' );
 Route::get('offer/active/{id}','panel\offersController@active' );

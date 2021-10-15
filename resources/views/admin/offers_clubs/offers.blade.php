@@ -28,6 +28,8 @@
           <tr>
             <th>Заголовок</th>
             <th>Дата добавления</th>
+            <th>Просмотров</th>
+            <th>Показать контакт</th>
             <th>Статус</th>
             <th>Действие</th>
           </tr>
@@ -37,6 +39,8 @@
           <tr>  
             <td name="name"><a href="/clubs-offers">{{$offer->name}}</a></td>
             <td name="phone">{{$offer->created_at}}</td>
+            <td name="views">{{$offer->views}}</td>
+            <td name="views_click">{{$offer->views_click}}</td>
             <?php
              if($offer->published_at != null){
                 $status = "Опубликован";

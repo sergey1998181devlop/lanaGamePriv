@@ -120,7 +120,7 @@
       <li class="nav-item">
           <a class="nav-link <?=($page=="contacts" || $page=="langame_soft" || $page=="error-reports" )? null:'collapsed' ?> " data-toggle="collapse" data-target="#collapseTwoContact" aria-expanded="false" aria-controls="collapseTwo">
           <i class="fas fa-comments"></i>
-              <span>Обратная связь  {{$totalMsgs > 0 ? '<span class="badge badge-pill badge-warning">'.$totalMsgs.'</span>' : null}} </span>
+              <span>Обратная связь  {!!$totalMsgs > 0 ? '<span class="badge badge-pill badge-warning">'.$totalMsgs.'</span>' : null!!} </span>
           </a>
         
           <div id="collapseTwoContact" class="collapse <?=($page=="contacts" || $page=="langame_soft" || $page=="error-reports" || $page=="club_errors"  )? ' show': null ?> collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
