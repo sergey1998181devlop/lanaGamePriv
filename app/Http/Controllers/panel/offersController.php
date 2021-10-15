@@ -25,7 +25,7 @@ class offersController extends Controller
     $this->middleware('rule:1');  
 }
 public function index(){
-    $offers= offer::select('id','url','name','views','order_no','created_at')->where('type','=','newBrand')->get();
+    $offers= offer::select('id','url','name','views','views_click','order_no','created_at')->where('type','=','newBrand')->get();
     return view('admin.offers.offers')->with(['offers'=>$offers]);
 }
 public function indexClub(){

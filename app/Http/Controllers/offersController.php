@@ -10,6 +10,26 @@ use Auth;
 include_once(resource_path('views/includes/functions.blade.php')); 
 class offersController extends Controller
 {
+    public function views($id){
+        $offer=offer::where('id',$id)->first();
+        if(!$offer ){
+            abort(404);
+        }
+        $views=$offer->views;
+        $views++;
+        $offer->views=$views;
+        $offer->save();
+    }
+    public function views_click($id){
+        $offer=offer::where('id',$id)->first();
+        if(!$offer ){
+            abort(404);
+        }
+        $views_click=$offer->views_click;
+        $views_click++;
+        $offer->views_click=$views_click;
+        $offer->save();
+    }
     public function offer($id,$url){
         $offer=offer::where('id',$id)->first();
         if(!$offer ){
