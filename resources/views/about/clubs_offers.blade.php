@@ -57,10 +57,10 @@
                                                         <div class="contact_name">{{$offer->user_name}}</div>
                                                         <button type="button" class="offer_btn show_offer_contacts" >Показать контакт</button>
                                                         <div class="contacts_wrapper">
-                                                            @if( $offer->phone != "" )
+                                                            @if( $offer->user_phone != "" )
                                                             <div class="club_contact">
                                                                 <img src="{{asset('/img/phone.svg')}}" alt="phone">
-                                                                <a href="tel:{{$offer->phone}}">{{$offer->user_phone}}</a>
+                                                                <a href="tel:{{$offer->user_phone}}">{{$offer->user_phone}}</a>
                                                             </div>
                                                             @endif
 
@@ -85,7 +85,9 @@
                                         </div>
                                     @endforeach
                                 </div>
-                                <a id="show_more_company_offers" class="show_more pointer">Показать ещё</a>
+                                @if(isset( $offersBrand ) && count($offersBrand)>6)
+                                    <a id="show_more_company_offers" class="show_more pointer">Показать ещё</a>
+                                @endif
                             @endif
                         </div>
                     </div>
@@ -113,9 +115,11 @@
                                 </div>
                                 <button class="offer_instr_toggle_mobile"></button>
                             </div>
-                            <div class="instr">
-                                Здесь пока нет объявлений от клубов. Будьте первыми!
-                            </div>
+                            @if(count($offersClub)==0)
+                                <div class="instr">
+                                    Здесь пока нет объявлений от клубов. Будьте первыми!
+                                </div>
+                            @endif
                             @if(isset( $offersClub ) && count($offersClub)>0)
                                 <div class="clubs_offers_list">
                                     @foreach($offersClub as $offer)
@@ -186,7 +190,9 @@
 
                                     @endforeach
                                 </div>
-                                <a id="show_more_club_offers" class="show_more pointer">Показать ещё</a>
+                                @if(isset( $offersClub ) && count($offersClub)>6)
+                                    <a id="show_more_club_offers" class="show_more pointer">Показать ещё</a>
+                                @endif
                             @endif
                         </div>
                     </div>
