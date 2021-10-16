@@ -371,6 +371,12 @@ class clubsController extends Controller
        exit();
     }
     public function saveImage(Request $request){
+       $this->imageSaver($request,'clubs');
+    }
+    public function savePriceList(Request $request){
+        $this->imageSaver($request,'clubs/lists');
+    }
+    public function imageSaver($request,$folder = 'clubs'){
         $data = $request->validate([
             'file' => ['required', 'image','max:5500'],
         ]);
@@ -380,49 +386,23 @@ class clubsController extends Controller
             if ($file->isValid()) {
                 $uniqie=time().uniqid();
                 $filename = $uniqie.preg_replace('/\s+/', '_', $file->getClientOriginalName());
-                $file->move(storage_path('app/public/clubs/images/'), $filename);
-                $url = url('storage/clubs/images').'/'. $filename;
-                return response()->json(['data'=>$url]);
-            } else {
-                $message = 'An error occured while uploading the file.';
+                $subPath = date("Y").'/'.date("M").'/'.date("d");
+                if (!file_exists(storage_path('app/public/'.$folder.'/'.$subPath))) {
+                    mkdir(storage_path('app/public/'.$folder.'/'.$subPath), 0777, true);
+                }
+                $file->move(storage_path('app/public/'.$folder.'/'.$subPath), $filename);
+                $url = url('storage/'.$folder).'/'.$subPath.'/'.$filename;
+                header('Content-type: application/json');
+                \http_response_code(200);
+                echo json_encode(['status'=>true,'data'=>$url]);
+                exit();
             }
-        } else {
-            $message = 'No file uploaded.';
         }
-
-        return response()->json(['uploaded' => '0', "error"=> [
-            "message"=> "An error occured while uploading the file."]
-        ]);
-
+        throw ValidationException::withMessages(['file' => 'Произошла ошибка при загрузке файла']);
     }
     public function clean($string) {
         $string = str_replace(' ', '-', $string);
         return str_ireplace( array("'",'"','?',',' , ';', '<', '>','~','!','@','#','$','%','^','&','*','(',')','+','№','|','/',"\'",'`','{','}',':','=' ), '', $string); 
-    }
-    public function savePriceList(Request $request){
-        $data = $request->validate([
-            'file' => ['required', 'mimes:jpg,bmp,png','max:5500'],
-        ]);
-        $message = $url = '';
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            if ($file->isValid()) {
-                $uniqie=time().uniqid();
-                $filename = $uniqie.preg_replace('/\s+/', '_', $file->getClientOriginalName()) ;
-                $file->move(storage_path('app/public/clubs/lists'), $filename);
-                $url = url('storage/clubs/lists').'/'. $filename;
-                return response()->json(['data'=>$url]);
-            } else {
-                $message = 'An error occured while uploading the file.';
-            }
-        } else {
-            $message = 'No file uploaded.';
-        }
-
-        return response()->json(['uploaded' => '0', "error"=> [
-            "message"=> "An error occured while uploading the file."]
-        ]);
-
     }
     public function redirectOldClubsURLS($id){
         $club = club::where('id',$id)->select('id','club_city','url')->with(array('city' => function($query) {
