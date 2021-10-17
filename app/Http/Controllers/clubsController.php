@@ -9,6 +9,7 @@ use Auth;
 use Carbon\Carbon;
 use ImageResize;
 use Str;
+use Illuminate\Support\Facades\Validator;
 include_once(resource_path('views/includes/functions.blade.php'));
 class clubsController extends Controller
 {
@@ -355,10 +356,7 @@ class clubsController extends Controller
         if(!admin() && !$this->isDraft){
             $data = $request->validate($validationAr);
             if(count($errors) > 0) {
-                header('Content-type: application/json');
-                \http_response_code(422);
-                echo json_encode(['errors'=>$errors]);
-                exit();
+                jsonValidationException($errors);
             }
         }
        if($club->save()){
@@ -371,58 +369,41 @@ class clubsController extends Controller
        exit();
     }
     public function saveImage(Request $request){
-        $data = $request->validate([
-            'file' => ['required', 'image','max:5500'],
+       $this->imageSaver($request,'clubs');
+    }
+    public function savePriceList(Request $request){
+        $this->imageSaver($request,'clubs/lists');
+    }
+    public function imageSaver(Request $request,$folder = 'clubs'){
+        $validator = Validator::make($request->all(), [
+            'file' => ['required', 'image','max:5500']
         ]);
+        if ($validator->fails()) {
+            jsonValidationException(['file' => $validator->errors()->first()]);
+        }
         $message = $url = '';
         if ($request->hasFile('file')) {
             $file = $request->file('file');
             if ($file->isValid()) {
                 $uniqie=time().uniqid();
                 $filename = $uniqie.preg_replace('/\s+/', '_', $file->getClientOriginalName());
-                $file->move(storage_path('app/public/clubs/images/'), $filename);
-                $url = url('storage/clubs/images').'/'. $filename;
-                return response()->json(['data'=>$url]);
-            } else {
-                $message = 'An error occured while uploading the file.';
+                $subPath = date("Y").'/'.date("M").'/'.date("d");
+                if (!file_exists(storage_path('app/public/'.$folder.'/'.$subPath))) {
+                    mkdir(storage_path('app/public/'.$folder.'/'.$subPath), 0777, true);
+                }
+                $file->move(storage_path('app/public/'.$folder.'/'.$subPath), $filename);
+                $url = url('storage/'.$folder).'/'.$subPath.'/'.$filename;
+                header('Content-type: application/json');
+                \http_response_code(200);
+                echo json_encode(['status'=>true,'data'=>$url]);
+                exit();
             }
-        } else {
-            $message = 'No file uploaded.';
         }
-
-        return response()->json(['uploaded' => '0', "error"=> [
-            "message"=> "An error occured while uploading the file."]
-        ]);
-
+        jsonValidationException(['file' => 'Произошла ошибка при загрузке файла']);
     }
     public function clean($string) {
         $string = str_replace(' ', '-', $string);
         return str_ireplace( array("'",'"','?',',' , ';', '<', '>','~','!','@','#','$','%','^','&','*','(',')','+','№','|','/',"\'",'`','{','}',':','=' ), '', $string); 
-    }
-    public function savePriceList(Request $request){
-        $data = $request->validate([
-            'file' => ['required', 'mimes:jpg,bmp,png','max:5500'],
-        ]);
-        $message = $url = '';
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            if ($file->isValid()) {
-                $uniqie=time().uniqid();
-                $filename = $uniqie.preg_replace('/\s+/', '_', $file->getClientOriginalName()) ;
-                $file->move(storage_path('app/public/clubs/lists'), $filename);
-                $url = url('storage/clubs/lists').'/'. $filename;
-                return response()->json(['data'=>$url]);
-            } else {
-                $message = 'An error occured while uploading the file.';
-            }
-        } else {
-            $message = 'No file uploaded.';
-        }
-
-        return response()->json(['uploaded' => '0', "error"=> [
-            "message"=> "An error occured while uploading the file."]
-        ]);
-
     }
     public function redirectOldClubsURLS($id){
         $club = club::where('id',$id)->select('id','club_city','url')->with(array('city' => function($query) {

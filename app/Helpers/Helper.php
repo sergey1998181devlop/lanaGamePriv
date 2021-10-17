@@ -48,5 +48,11 @@ function notVerifed(){
     }
     return true;
 }
+function jsonValidationException($errors = []){
+    header('Content-type: application/json');
+    \http_response_code(422);
+    echo json_encode(['status'=>false,'errors'=>$errors]);
+    exit();
+}
 
 ?>
