@@ -135,10 +135,10 @@ jQuery(function() {
                 onSelect: function(suggestion) {
 
                     var coor = suggestion.data.split(' ');
-                    $('#add-club-form #lat').val(coor[1]);
-                    $('#add-club-form #lon').val(coor[0]);
-                    $('#add-club-form #club_address').val(suggestion.address);
-                    $('#add-club-form #club_full_address').val(suggestion.value);
+                    $('#add-club-form #lat').val(coor[1]).trigger('change');
+                    $('#add-club-form #lon').val(coor[0]).trigger('change');
+                    $('#add-club-form #club_address').val(suggestion.address).trigger('change');
+                    $('#add-club-form #club_full_address').val(suggestion.value).trigger('change');
                     jQuery('.error.address_error').text('');
                 }
             });
@@ -189,8 +189,6 @@ jQuery(function() {
                 let hasErrors = false,
                     $qty_pc_val = +jQuery('[name="qty_pc"]').val(),
                     $qty_vip_pc_val = +jQuery('[name="qty_vip_pc"]').val();
-
-                console.log($qty_pc_val, $qty_vip_pc_val);
 
                 jQuery('.error.qty_error').text('');
 
@@ -330,6 +328,9 @@ jQuery(function() {
                     for (let img_url of results) {
                         addFile(img_url);
                     }
+                })
+                .catch(error => {
+                    $photo_error.text(error);
                 })
                 .finally(() => {
                     is_uploading = false;
@@ -748,17 +749,17 @@ jQuery(function() {
 
 
         add_button.on('click', function(e) {
-            ++index;
             parent_list.append(`
              <div class="form-group" >
-                <label for="marketing-event-input[${index}]">Акция №</label>
+                <label for="marketing-event-input_${index}">Акция №</label>
                 <div class="input_wrapper" >
-                    <input id="marketing-event-input[${index}]" name="marketing_event_descr[]" type="text" placeholder="Описание акции" required>
+                    <input id="marketing-event-input_${index}" name="marketing_event_descr[${index}]" type="text" placeholder="Описание акции" required>
                     <div class="error"></div>
                 </div>
                 <button type="button" data-role-remove-marketing-event></button>
             </div>
             `);
+            ++index;
             add_button.prop('disabled', index >= 5);
         });
 
