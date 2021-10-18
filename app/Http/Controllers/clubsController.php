@@ -14,6 +14,7 @@ include_once(resource_path('views/includes/functions.blade.php'));
 class clubsController extends Controller
 {
     public $isDraft;
+    public $club_id;
     public function __construct()
     {
         $this->middleware('auth',['except' => ['index','redirectOldClubsURLS']]);
@@ -129,9 +130,10 @@ class clubsController extends Controller
         return response()->json('error',402);
     }
     public function addDraftClub(Request $request){
+
         $this->isDraft = true;
         if($this->store($request)){
-            return response()->json('success',202);
+            return response()->json(['status'=>'success','club_id'=>$this->club_id],202);
         }
         return response()->json('error',402);
 
@@ -360,6 +362,7 @@ class clubsController extends Controller
             }
         }
        if($club->save()){
+            $this->club_id = $club->id;
            return true;
        }
        
