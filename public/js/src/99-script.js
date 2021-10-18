@@ -238,6 +238,19 @@ jQuery(function() {
             $form.find('[type="submit"]').hide();
         }
     });
+
+    jQuery('#report-club-form').on('submit', function(e) {
+        e.preventDefault();
+
+        jQuery.ajax({
+            type: 'POST',
+            url: jQuery(this).attr('action'),
+            data: jQuery(this).serialize(),
+            success: function() {
+                jQuery('[data-remodal-id="success_modal"]').remodal().open();
+            }
+        });
+    });
 });
 
 function recaptchaCallback() {

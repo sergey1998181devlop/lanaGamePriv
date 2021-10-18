@@ -13,8 +13,9 @@ jQuery(function() {
         $club_price_file_text = jQuery('#add-price-file-text'),
         $add_photo_preview = jQuery('#add_photo_preview'),
         $add_photo_list = jQuery('#add_photo_list'),
+        draft_url = $form.attr('draft-action'),
+        club_id,
         max_image_count = 10;
-
 
     if ($form.length === 0) {
         return;
@@ -49,14 +50,19 @@ jQuery(function() {
 
     $form.on('show-tab', function(e, tabIndex) {
         jQuery('.person_add_club_modal_wrapper .remodal-wrapper').stop().animate({scrollTop: 0}, 300);
-        jQuery.ajax({
-            type: 'POST',
-            url: $form.attr('draft-action'),
-            data: $form.serialize(),
-            success: function() {
-
-            }
-        });
+        if (!$form.hasClass("edit_club_form")) {
+            jQuery.ajax({
+                type: 'POST',
+                url: draft_url,
+                data: $form.serialize(),
+                success(data) {
+                    if(data.club_id) {
+                        club_id = data.club_id;
+                    }
+                    draft_url = `/personal/club/${club_id}/update-draft`;
+                }
+            });
+        }
     });
 
     $save_draft.on('click', function(e) {
