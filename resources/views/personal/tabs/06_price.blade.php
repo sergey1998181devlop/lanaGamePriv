@@ -51,9 +51,9 @@ declare(strict_types=1);
     <div class="marketing_event" data-block="marketing_event">
         <div class="marketing_event_list">
             <div class="form-group" >
-                <label for="marketing-event-input[1]">Акция №</label>
+                <label for="marketing-event-input_1">Акция №</label>
                 <div class="input_wrapper" >
-                    <input id="marketing-event-input[1]" name="marketing_event_descr[]" value="{{getMarketingEvents(0)}}" type="text" placeholder="Описание акции" required>
+                    <input id="marketing-event-input_1" name="marketing_event_descr[0]" value="{{getMarketingEvents(0)}}" type="text" placeholder="Описание акции" required>
                     <div class="error"></div>
                 </div>
             </div>
@@ -62,9 +62,9 @@ declare(strict_types=1);
             <?foreach($events as $key=>$event){
                 if($key == 0)continue;?>
                     <div class="form-group">
-                            <label for="marketing-event-input[{{$key+1}}]">Акция №</label>
+                            <label for="marketing-event-input_{{$key+1}}">Акция №</label>
                             <div class="input_wrapper">
-                                <input id="marketing-event-input[{{$key+1}}]" value="{{$event}}" name="marketing_event_descr[]" type="text" placeholder="Описание акции" required="">
+                                <input id="marketing-event-input_{{$key+1}}" value="{{$event}}" name="marketing_event_descr[{{$key+1}}]" type="text" placeholder="Описание акции" required="">
                                 <div class="error"></div>
                             </div>
                             <button type="button" data-role-remove-marketing-event=""></button>

@@ -113,9 +113,17 @@ window.Layout = (() => {
                             return reject(response.error);
                         }
 
-                        resolve(response.data);
+                        if(response?.errors?.file){
+                            return reject(response?.errors?.file);
+                        }
+
+                        if(xhr.status >= 400){
+                            return reject('Произошла непредвиденная ошибка');
+                        }else{
+                            resolve(response.data);
+                        }
                     } catch (e) {
-                        return reject(e.message);
+                        return reject('Произошла непредвиденная ошибка');
                     }
                 };
 

@@ -21,7 +21,8 @@
                           list-action="{{url('clubs/add-list')}}"
                           image-action="{{url('clubs/add-image')}}"
                           method="post"
-                          id="add-club-form">
+                          id="add-club-form"
+                          data-auto-save="add-club-form">
                         @endif
                         {{ csrf_field() }}
                         <div class="forma">
