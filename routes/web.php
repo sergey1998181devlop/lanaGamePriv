@@ -141,6 +141,9 @@ Route::post('club/{club_id}/remove_comment','panel\clubsController@removeComment
 Route::post('panel/club/{id}/change-user','panel\clubsController@changeClubUser');
 Route::post('panel/club/{id}/delete','panel\clubsController@deleteClub');
 Route::get('panel/club/{id}/recover','panel\clubsController@recoverClub');
+Route::post('panel/club/toggle-closed','panel\clubsController@toggleClosed');
+
+
 // обратная связь
 Route::get('/panel/contacts', 'panel\adminController@contacts');
 Route::get('/panel/getMessage', 'panel\adminController@getMessage');

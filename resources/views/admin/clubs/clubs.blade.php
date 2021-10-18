@@ -118,7 +118,7 @@
              <?}?>
              <a href="{{$CUrl}}?action=change_user" class="btn btn-warning btn-sm">Передать другому</a>
              <a   data-id="{{$club->id}}" club-name="{{$club->club_name}}" class="btn btn-danger club_delete btn-sm pointer">Удалить</a>
-            
+            <label><input type="checkbox" name="closed" class="closed_checkbox" data-id="{{$club->id}}" <?= $club->closed ? 'checked' : null ?>>&#160;Закрыто навсегда</label>
           </td>
           </tr>
           @endforeach
@@ -193,6 +193,7 @@
 <script src="{{asset('admin/vendor/datatables/jquery.dataTables.min.js')}}"></script>
   <script src="{{asset('admin/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
 <script>
+  
    var table = $('#dataTable_').DataTable({
       "language": {
           "processing": "Подождите...",
@@ -258,5 +259,23 @@
         cache: true
     });
 
+</script>
+<script>
+  $(document).on('change','.closed_checkbox',function(){
+    var id=$(this).attr('data-id');
+    $.ajax({
+        url: "{{url('panel/club/toggle-closed')}}",
+        type: 'post',
+        dataType: 'json',
+        data: {
+            'id': id,
+            '_token': $('[name="_token"]').val()
+        },
+        success: function(data) {
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+        }
+    });
+  })
 </script>
 @endsection

@@ -103,35 +103,38 @@
                            data-remodal-target="club_comment_modal"
                            class="btn">Снять с публикации</a>
                     @endif
-
-                    <?php
-                    $showCallButton = true;
-                    if ($club->work_time == '2' && is_array($schedule_item)) {
-                        if (!isset($schedule_item[strtolower(date("l"))])) {
-                            $showCallButton = false;
-                        } else {
-                            if (!empty($schedule_item[strtolower(date("l"))]['from']) && !empty($schedule_item[strtolower(date("l"))]['to'])) {
-                                $now = new DateTime();
-                                $begin = new DateTime($schedule_item[strtolower(date("l"))]['from']);
-                                if (explode(":", $schedule_item[strtolower(date("l"))]['to'])[0]<explode(":", $schedule_item[strtolower(date("l"))]['from'])[0]){
-                                    $end = new DateTime($schedule_item[strtolower(date("l"))]['to']);
-                                    $end->add(new DateInterval("P1D"));
-                                }else{
-                                    $end = new DateTime($schedule_item[strtolower(date("l"))]['to']);
-                                }
-                                if ($now >= $begin && $now <= $end) {
-                                    $showCallButton = true;
-                                } else {
-                                    $showCallButton = false;
+                    @if($club->closed == '1')
+                        <button type="button" class="club_calling closed">Закрыто навсегда</button>
+                    @else
+                        <?php
+                        $showCallButton = true;
+                        if ($club->work_time == '2' && is_array($schedule_item)) {
+                            if (!isset($schedule_item[strtolower(date("l"))])) {
+                                $showCallButton = false;
+                            } else {
+                                if (!empty($schedule_item[strtolower(date("l"))]['from']) && !empty($schedule_item[strtolower(date("l"))]['to'])) {
+                                    $now = new DateTime();
+                                    $begin = new DateTime($schedule_item[strtolower(date("l"))]['from']);
+                                    if (explode(":", $schedule_item[strtolower(date("l"))]['to'])[0]<explode(":", $schedule_item[strtolower(date("l"))]['from'])[0]){
+                                        $end = new DateTime($schedule_item[strtolower(date("l"))]['to']);
+                                        $end->add(new DateInterval("P1D"));
+                                    }else{
+                                        $end = new DateTime($schedule_item[strtolower(date("l"))]['to']);
+                                    }
+                                    if ($now >= $begin && $now <= $end) {
+                                        $showCallButton = true;
+                                    } else {
+                                        $showCallButton = false;
+                                    }
                                 }
                             }
                         }
-                    }
-                    ?>
-                    @if($showCallButton)
-                        <button type="button" class="club_calling" data-remodal-target="club_phone_modal" onclick="ym(82365286,'reachGoal','phone');gtag('event', 'send', { 'event_category': 'phone', 'event_action': 'click' });">Позвонить</button>
-                    @else
-                        <button type="button" class="club_calling closed">Закрыт</button>
+                        ?>
+                        @if($showCallButton)
+                            <button type="button" class="club_calling" data-remodal-target="club_phone_modal" onclick="ym(82365286,'reachGoal','phone');gtag('event', 'send', { 'event_category': 'phone', 'event_action': 'click' });">Позвонить</button>
+                        @else
+                            <button type="button" class="club_calling closed">Закрыт</button>
+                        @endif
                     @endif
                 </div>
             </div>
@@ -693,10 +696,14 @@
         <div class="container">
             <div class="club_price_wrapper">
                 <div class="club_price">Аренда от {{$club->club_min_price}} ₽/час</div>
-                @if($showCallButton)
-                    <a href="tel:84958749900" class="club_calling">Позвонить</a>
+                @if($club->closed == '1')
+                    <a class="club_calling closed">Закрыто навсегда</a>
                 @else
-                    <a class="club_calling closed">Закрыт</a>
+                    @if($showCallButton)
+                        <a href="tel:84958749900" class="club_calling">Позвонить</a>
+                    @else
+                        <a class="club_calling closed">Закрыт</a>
+                    @endif
                 @endif
             </div>
         </div>
