@@ -49,6 +49,14 @@ jQuery(function() {
 
     $form.on('show-tab', function(e, tabIndex) {
         jQuery('.person_add_club_modal_wrapper .remodal-wrapper').stop().animate({scrollTop: 0}, 300);
+        jQuery.ajax({
+            type: 'POST',
+            url: $form.attr('draft-action'),
+            data: $form.serialize(),
+            success: function() {
+
+            }
+        });
     });
 
     $save_draft.on('click', function(e) {
