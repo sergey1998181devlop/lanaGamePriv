@@ -184,6 +184,7 @@ class HomeController extends Controller
             }
 
       }
+      $totalClubsWithoutClosed = ($request->input('show') == "map") ? $clubs->total() : club::Published()->whereNull('hidden_at')->where('closed','0')->CorrentCity()->count();
        $now = new DateTime();
        $today = strtolower(date("l"));
         if(\Request::ajax())
@@ -200,7 +201,8 @@ class HomeController extends Controller
         }
         $posts=post::select('id','url','image','name','about')->orderBy('order_no','desc')->orderBy('created_at','desc')->limit(3)->get();
         $postsCount=post::count();
-        return view('welcome')->with(['count_clubs'=>$clubs->total(), 'posts'=>$posts,'postsCount'=>$postsCount,'clubs'=>$clubs,'now'=>$now,'today'=>$today,'hasMoreClubs'=>($clubs->total() > $paginate ) ? true : false]);
+        
+        return view('welcome')->with(['count_clubs'=>$clubs->total(),'totalClubsWithoutClosed'=>$totalClubsWithoutClosed, 'posts'=>$posts,'postsCount'=>$postsCount,'clubs'=>$clubs,'now'=>$now,'today'=>$today,'hasMoreClubs'=>($clubs->total() > $paginate ) ? true : false]);
     }
     public function searchCities(Request $request){
       $b = array();

@@ -41,7 +41,8 @@ class clubsController extends Controller
          }
         }
         $newClubs=$newClubs->get();
-        return view('admin.clubs.clubs')->with(['clubs'=>$newClubs,'city'=>$city]);
+        $totalClubsWithoutClosed = club::where('draft','0')->where('closed','0')->count();
+        return view('admin.clubs.clubs')->with(['clubs'=>$newClubs,'city'=>$city,'totalClubsWithoutClosed'=>$totalClubsWithoutClosed]);
     }
     public function new_clubs()
     {

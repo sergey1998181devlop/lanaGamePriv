@@ -6,7 +6,7 @@
                                     <div class="sc_sort">
                                         <div class="sc_result">
                                             <span>Найдено: </span>
-                                            <span class="search_qty">{{$clubs->total()}}</span>
+                                            <span class="search_qty">{{$totalClubsWithoutClosed}}</span>
                                         </div>
                                         <div class="sort_by">
                                             <div class="sort_by_title">
