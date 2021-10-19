@@ -54,5 +54,16 @@ function jsonValidationException($errors = []){
     echo json_encode(['status'=>false,'errors'=>$errors]);
     exit();
 }
-
+function player(){
+    if(!Auth::guest() && Auth::user()->type == App\User::USER_PLAYER){
+        return true;
+    }
+    return false;
+}
+function owner(){
+    if(!Auth::guest() && Auth::user()->type == App\User::USER_OWNER){
+        return true;
+    }
+    return false;
+}
 ?>

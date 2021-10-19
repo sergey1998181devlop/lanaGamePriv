@@ -25,18 +25,20 @@ function customOldVal($name,$item){
                         </svg>
                         <span>Профиль</span>
                     </a>
-                    <a href="{{url('personal/clubs')}}">
-                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-svg-file"></use>
-                        </svg>
-                        <span>Список клубов</span>
-                    </a>
-                    <a href="{{url('clubs-offers')}}">
-                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-svg-offer"></use>
-                        </svg>
-                        <span>Биржа предложений</span>
-                    </a>
+                    @if(owner())
+                        <a href="{{url('personal/clubs')}}">
+                            <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-svg-file"></use>
+                            </svg>
+                            <span>Список клубов</span>
+                        </a>
+                        <a href="{{url('clubs-offers')}}">
+                            <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-svg-offer"></use>
+                            </svg>
+                            <span>Биржа предложений</span>
+                        </a>
+                    @endif
                     <a  href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();" class="exit">
@@ -77,7 +79,7 @@ function customOldVal($name,$item){
                                 <label for="user-email-input">Email</label>
                                 <input id="user-email-input" name="email" type="email" value="{{customOldVal('email',$user)}}" placeholder="" required>
                             </div>
-
+                            @if(owner())
                             <div class="form-group required">
                                 <label for="user-position-input">Должность представителя</label>
                                 <div class="select2_wrapper select_user_position_wrapper">
@@ -89,6 +91,35 @@ function customOldVal($name,$item){
                                     </select>
                                 </div>
                             </div>
+                            @elseif(player())
+                            <div class="form-group required">
+                            <label for="user-select-сity">Город</label>
+                            <div class="input_wrapper">
+                                <div class="select2_wrapper">
+                                <?php
+                                 $selected_city=customOldVal('city',$user);
+                                 if($selected_city != ''){
+                                    $selected_city = App\city::where('id',$selected_city)->select('id','name')->first();
+                                 }else{
+                                    $selected_city=false;
+                                 }
+                                ?>
+                                <select id="user-select-сity" name="city"   class="select2_input"  data-placeholder="Выберите город">
+                                    @if($selected_city)
+                                    <option value="{{$selected_city->id}}">{{$selected_city->name}}</option>
+                                    @else
+                                    <option value=""></option>
+                                    @endif
+                                </select>
+                                </div>
+                            </div>
+                            @error('city')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                            @endif
                             <div class="form-group password">
                                 <label for="user-password-input">Сменить пароль</label>
 
@@ -107,4 +138,16 @@ function customOldVal($name,$item){
 </section>
 <!--SECTION PERSONAL PAGE END-->
 
+@endsection
+@section('scripts')
+<script>
+     $('#user-select-сity').select2({
+        ajax: {
+            url: $('meta[name="site"]').attr('content') +'/searchCities',
+            dataType: 'json'
+        },
+        cache: true
+    });
+
+</script>
 @endsection

@@ -32,3 +32,5 @@ ALTER TABLE `clubs` ADD `closed` ENUM('0','1') NOT NULL DEFAULT '0' AFTER `draft
 
 
 ALTER TABLE `users` ADD `city` INT NULL AFTER `rules`, ADD `type` ENUM('owner','player') NOT NULL DEFAULT 'owner' AFTER `city`;
+
+ALTER TABLE `users` CHANGE `user_position` `user_position` ENUM('1','2','3','4') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '1';

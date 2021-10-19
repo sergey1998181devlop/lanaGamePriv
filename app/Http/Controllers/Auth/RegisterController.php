@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Carbon;
 use App\sms_code;
+use App\city;
 use App\Jobs\SMSRU;
 use Auth;
 use App\UserVerify;
@@ -82,12 +83,24 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:5', 'confirmed'],
             'phone' => ['required', 'numeric','digits:10', 'unique:users'],
-            'user_position'=>['required','numeric','min:1','max:4'],
             'conf_code'=>['required'],
         ]);
 
         if(!$this->verify($request->input('phone'),$request->input('conf_code'))){
             return response()->json(['status'=>'success','error'=>'Неверный код'], 202);
+        }
+        $type = $request->input('user_type') == 'player' ?'player' : 'owner';
+        $city = null;
+        if($type == 'player'){
+            $data = $request->validate([
+                'city'=>['required'],
+            ]);
+            $city =  $request->input('city');
+            city::findOrFail($city);
+        }else{
+            $data = $request->validate([
+                'user_position'=>['required','numeric','min:1','max:4'],
+            ]);
         }
         $user =  User::create([
             'name' => $request->input('name'),
@@ -95,6 +108,8 @@ class RegisterController extends Controller
             'phone' => $request->input('phone'),
             'user_position' =>$request->input('user_position'),
             'password' => Hash::make($request->input('password')),
+            'type' => $type,
+            'city' =>$city
         ]);
         Auth::login($user);
         $token = Str::random(64);

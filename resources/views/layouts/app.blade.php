@@ -202,12 +202,14 @@
                                 <li>
                                     <a href="{{url('personal/profile')}}">Профиль</a>
                                 </li>
-                                <li>
-                                    <a href="{{url('personal/clubs')}}">Список клубов</a>
-                                </li>
-                                <li>
-                                    <a href="<?= Auth::guest() ? url('register_club') : url('personal/clubs') ?>?action=add_club">Добавить клуб</a>
-                                </li>
+                                @if(!player())
+                                    <li>
+                                        <a href="{{url('personal/clubs')}}">Список клубов</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?= url('personal/clubs') ?>?action=add_club">Добавить клуб</a>
+                                    </li>
+                                @endif
                                 <li>
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -241,10 +243,11 @@
                                 <a href="<?=url('panel')?>">Панель</a>
                             </li>
                         @endif
-
-                        <li>
-                            <a href="<?= Auth::guest() ? url('register_club') : url('personal/clubs') ?>?action=add_club">Добавить клуб</a>
-                        </li>
+                        @if(!player())
+                            <li>
+                                <a href="<?= Auth::guest() ? url('register_club') : url('personal/clubs') ?>?action=add_club">Добавить клуб</a>
+                            </li>
+                        @endif
                         <li>
                             <a href="{{url('contacts')}}">Контакты</a>
                         </li>
@@ -254,7 +257,7 @@
                             </li>
                         @else
                             <li>
-                                <a href="{{url('personal/clubs')}}">Личный кабинет</a>
+                                <a href="{{(owner()) ? url('personal/clubs') :  url('personal/profile')}}">Личный кабинет</a>
                             </li>
                         @endif
                     </ul>
@@ -262,7 +265,6 @@
                         <div class="log_in_block_wrapper log_in_page_wrapper" style="display: none;">
                             <div class="log_in_page_title">
                                 <span>Вход в личный кабинет</span>
-                                <span class="instr">Для представителей компьютерных клубов</span>
                             </div>
                             <div class="log_in_wrapper">
                                 <form action="{{ route('login') }}" method="post" id="log-in-form-popup">
@@ -283,7 +285,7 @@
                                         </div>
                                     </div>
                                     <div class="btn_wrapper">
-                                        <a href="{{url('register_club')}}" class="registration">Регистрация</a>
+                                        <a href="{{url('registration')}}" class="registration">Регистрация</a>
                                         <button type="submit">Продолжить</button>
                                     </div>
                                 </form>
@@ -504,9 +506,11 @@
                     <div class="footer_content_item">
                         <h4>Владельцам клубов</h4>
                         <ul>
+                        @if(!player())
                             <li>
                                 <a href="{{url('personal/clubs')}}">Личный кабинет владельца</a>
                             </li>
+                        @endif
                             <li>
                                 <a href="{{url('register_club')}}">Как попасть на LANGAME</a>
                             </li>
