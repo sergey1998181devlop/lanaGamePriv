@@ -5876,6 +5876,8 @@ section.personal_page_wrapper {
 }
 
 .club_list_navigation_tabs_wrapper {
+    max-width: 764px;
+
     .club_list_navigation_tabs {
         padding: 0;
         margin: 0;
@@ -5947,11 +5949,12 @@ section.personal_page_wrapper {
         }
 
         &.offer {
-            margin: 0 -32px;
+            margin: 0 -15px;
 
             li {
                 a {
-                    margin: 0 32px;
+                    margin: 0 15px;
+                    font-size: 17px;
                 }
             }
         }
@@ -6205,6 +6208,75 @@ section.clubs_offers_wrapper {
 
                     .club_name {
                         margin-bottom: 8px;
+                    }
+
+                    .club_status_wrapper {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-start;
+                        align-items: center;
+                        margin-bottom: 12px;
+
+                        span {
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 18px;
+                            line-height: 1;
+                            color: #000000;
+                        }
+
+                        img {
+                            display: block;
+                            width: 22px;
+                            height: 22px;
+                            margin-right: 12px;
+                        }
+                    }
+
+                    .club_edit {
+                        position: relative;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-end;
+                        align-items: center;
+                        padding: 0 12px;
+                        width: 173px;
+                        height: 34px;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 18px;
+                        line-height: 23px;
+                        text-align: center;
+                        color: #dc0000;
+                        border-radius: 12px;
+                        border: 2px solid #dc0000;
+                        cursor: pointer;
+                        background-color: #ffffff;
+                        transition: background-color 0.2s;
+
+                        &:before {
+                            content: '';
+                            display: block;
+                            width: 18px;
+                            height: 18px;
+                            position: absolute;
+                            top: 50%;
+                            left: 10px;
+                            background-image: url("../img/edit.svg");
+                            background-repeat: no-repeat;
+                            background-position: center;
+                            background-size: 13px 13px;
+                            transform: translateY(-50%);
+                        }
+
+                        &:hover {
+                            background-color: #dc0000;
+                            color: #ffffff;
+
+                            &:before {
+                                background-image: url("../img/edit-white.svg");
+                            }
+                        }
                     }
                 }
 
