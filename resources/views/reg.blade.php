@@ -16,7 +16,7 @@
                     <div class="img_wrapper">
                         <img src="{{ asset('/img/reg_owner.png')}}" alt="image">
                     </div>
-                    <button type="button" class="btn" data-btn-club-owner-reg>Я - представитель клуба</button>
+                    <a href="#block-reg" class="btn" data-btn-club-owner-reg>Я - представитель клуба</a>
                     <div class="instr">
                         Хочу разместить информацию о своей площадке и
                         присоединиться к профессиональному сообществу
@@ -26,7 +26,7 @@
                     <div class="img_wrapper">
                         <img src="{{ asset('/img/reg_gamer.png')}}" alt="image">
                     </div>
-                    <button type="button" class="btn" data-btn-club-gamer-reg>Я - ланнер</button>
+                    <a href="#block-reg" class="btn" data-btn-club-gamer-reg>Я - ланнер</a>
                     <div class="instr">
                         Активно посещаю компьютерные клубы.
                         Хочу находить лучшие площадки,
@@ -35,7 +35,7 @@
                 </div>
             </div>
 
-            <div class="form_reg_wrapper">
+            <div class="form_reg_wrapper" id="block-reg">
                 <div class="page_title">Регистрация представителя компьютерного клуба</div>
                 <div class="add_club_start_wrapper">
                     @if(Auth::guest())

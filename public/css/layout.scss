@@ -1473,6 +1473,7 @@ input[type=number] {
             }
 
             .btn {
+                display: block;
                 width: 100%;
                 background-color: #DC0000;
                 color: #ffffff;
@@ -1497,6 +1498,10 @@ input[type=number] {
     .form_reg_wrapper {
         padding-top: 128px;
         display: none;
+
+        .page_title {
+            margin-bottom: 32px;
+        }
     }
 
     .add_club_start_wrapper {
