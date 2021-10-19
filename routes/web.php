@@ -37,7 +37,7 @@ Route::get('profile/verify/resend', 'personalController@resendVerfyEmail');
 Route::get('{id}_statia_{url}','postsController@post');
 Route::get('posts','postsController@allposts');
 
-// объявления 
+// объявления
 Route::get('{id}_offer_{url}','offersController@offer');
 Route::get('offers','offersController@alloffers');
 
@@ -73,6 +73,7 @@ Route::post('subscribe','mailController@subscribe');
  Route::get('/about-us','HomeController@about_us');
  Route::get('/clubs-offers','HomeController@clubs_offers');
  Route::get('/cities','HomeController@cities_list');
+ Route::get('/registration','HomeController@reg');
 
 
 
@@ -171,5 +172,5 @@ Route::get('post/read/{id}/{url}', function($id, $url){ return Redirect::to($id.
 
 Route::get('/computerniy_club_{city}', 'HomeController@index')->name('home')->middleware('city');
 
-// должен быть последным, иначе остальные ссылки не сработают, потому что '/{city}' совпадает со всеми ссылками 
+// должен быть последным, иначе остальные ссылки не сработают, потому что '/{city}' совпадает со всеми ссылками
 Route::get('/{city}','HomeController@redirectOldCitiesURLs');

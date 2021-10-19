@@ -31,10 +31,13 @@ class HomeController extends Controller
     }
     public function redirectOldCitiesURLs($city){
       // проверяю, $city это точно адрес города?
-      $city=city::where('en_name',$city)->select('id','en_name')->firstOrFail(); 
+      $city=city::where('en_name',$city)->select('id','en_name')->firstOrFail();
       return redirect('/computerniy_club_'.$city->en_name);
     }
-    
+    public function reg(){
+        return view('reg');
+    }
+
     public function langame_software(){
       return view('about.langame_software');
     }
@@ -201,7 +204,7 @@ class HomeController extends Controller
         }
         $posts=post::select('id','url','image','name','about')->orderBy('order_no','desc')->orderBy('created_at','desc')->limit(3)->get();
         $postsCount=post::count();
-        
+
         return view('welcome')->with(['count_clubs'=>$clubs->total(),'totalClubsWithoutClosed'=>$totalClubsWithoutClosed, 'posts'=>$posts,'postsCount'=>$postsCount,'clubs'=>$clubs,'now'=>$now,'today'=>$today,'hasMoreClubs'=>($clubs->total() > $paginate ) ? true : false]);
     }
     public function searchCities(Request $request){
@@ -258,7 +261,7 @@ class HomeController extends Controller
     $clubs = club::Published()->select('id','url','created_at')->whereNull('hidden_at')->get();
     $cites = city::select('id','name','en_name')->get();
     $posts = post::select('id','name','url','created_at')->get();
-    $otherLinks = ['about-us','software','register_club','personal/clubs','contacts','user-agreement','policy','login', 'clubs-offers', 'cities'];
+    $otherLinks = ['about-us','software','register_club','personal/clubs','contacts','user-agreement','policy','login', 'clubs-offers', 'cities', 'registration'];
     return view('about.sitemap')->with(['posts'=>$posts,'cities'=>$cites,'clubs'=>$clubs,'otherLinks'=>$otherLinks]);
   }
 }
