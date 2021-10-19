@@ -34,9 +34,6 @@ class HomeController extends Controller
       $city=city::where('en_name',$city)->select('id','en_name')->firstOrFail();
       return redirect('/computerniy_club_'.$city->en_name);
     }
-    public function reg(){
-        return view('reg');
-    }
 
     public function langame_software(){
       return view('about.langame_software');

@@ -199,4 +199,7 @@ class RegisterController extends Controller
   
       return redirect()->route('login')->with('verifyEmailMessage', $message);
     }
+    public function registration(){
+        return view('auth.register')->with(['showOptions'=>true]);
+    }
 }

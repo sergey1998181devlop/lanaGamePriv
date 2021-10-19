@@ -73,7 +73,7 @@ Route::post('subscribe','mailController@subscribe');
  Route::get('/about-us','HomeController@about_us');
  Route::get('/clubs-offers','HomeController@clubs_offers');
  Route::get('/cities','HomeController@cities_list');
- Route::get('/registration','HomeController@reg');
+ Route::get('/registration','Auth\RegisterController@registration');
 
 
 
