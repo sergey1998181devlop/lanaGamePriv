@@ -29,3 +29,6 @@
 
 
 ALTER TABLE `clubs` ADD `closed` ENUM('0','1') NOT NULL DEFAULT '0' AFTER `draft`;
+
+
+ALTER TABLE `users` ADD `city` INT NULL AFTER `rules`, ADD `type` ENUM('owner','player') NOT NULL DEFAULT 'owner' AFTER `city`;
