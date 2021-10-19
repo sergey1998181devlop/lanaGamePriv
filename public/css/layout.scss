@@ -1449,10 +1449,12 @@ input[type=number] {
 /*! HEADER END */
 
 /*! SECTION REGISTRATION START */
-.main_reg_wrapper {
-    min-height: calc(100vh - 331px);
+.main_reg_wrapper.add_club_page_start_wrapper{
+    height: auto;
     padding: 64px 0 138px;
+}
 
+.main_reg_wrapper {
     .main_reg_list {
         display: flex;
         flex-direction: row;

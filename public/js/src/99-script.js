@@ -204,16 +204,6 @@ jQuery(function() {
         });
     });
 
-    jQuery('[data-btn-club-owner-reg]').on('click', function(e) {
-        jQuery(this).closest('.main_reg_wrapper').find('.form_reg_wrapper').find('.page_title').text('Регистрация представителя компьютерного клуба');
-        jQuery(this).closest('.main_reg_wrapper').find('.form_reg_wrapper').show();
-    });
-
-    jQuery('[data-btn-club-gamer-reg]').on('click', function(e) {
-        jQuery(this).closest('.main_reg_wrapper').find('.form_reg_wrapper').find('.page_title').text('Регистрация ланнера');
-        jQuery(this).closest('.main_reg_wrapper').find('.form_reg_wrapper').show();
-    });
-
     jQuery('.remodal.mailing_modal').on('opening', function(e) {
         jQuery(this).find('form input[name="email"]').val('');
     });

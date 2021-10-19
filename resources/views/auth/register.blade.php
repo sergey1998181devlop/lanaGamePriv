@@ -195,7 +195,6 @@
                     @csrf
                     <input type="hidden" name="conf_code">
                     <input type="hidden" name="user_type" value="owner">
-                    <!-- <input type="hidden" name="user_type" value="player"> -->
 
                         <div class="forma">
                             <div class="form-group required">
@@ -227,7 +226,7 @@
                                 </div>
                             </div>
                             @endif
-                            <div class="form-group required">
+                            <div class="form-group required owner">
                                 <label for="user-position-input">Должность представителя</label>
                                 <div class="select2_wrapper select_user_position_wrapper">
                                     <select id="user-position-input" name="user_position" class="select2_input" data-placeholder="Выбрать из списка" required>
