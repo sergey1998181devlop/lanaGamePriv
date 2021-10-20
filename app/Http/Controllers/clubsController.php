@@ -41,7 +41,10 @@ class clubsController extends Controller
             if(count($comments) > 0)
             return view('clubs.club')->with(['club'=>$club,'comments'=>$comments ]);
         }
-        $liked = false;
+        $views=$club->views;
+        $views++;
+        $post->club=$views;
+        $club->save();
 
         return view('clubs.club')->with(['club'=>$club]);
     }
