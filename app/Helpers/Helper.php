@@ -66,4 +66,9 @@ function owner(){
     }
     return false;
 }
+function clubLiked($club_id){
+  if(!player())return false;
+  if(App\liked_club::where('club_id',$club_id)->where('user_id',Auth::user()->id)->count() > 0)return true;
+  return false;
+}
 ?>
