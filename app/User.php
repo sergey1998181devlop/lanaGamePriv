@@ -13,6 +13,8 @@ class User extends Authenticatable
 {
     use Notifiable,HasApiTokens;
 
+    public const USER_PLAYER = 'player';
+    public const USER_OWNER = 'owner';
 
     /**
      * The attributes that are mass assignable.
@@ -20,7 +22,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','phone','user_position',
+        'name', 'email', 'password','phone','user_position','type','city',
     ];
 
     /**

@@ -10,6 +10,10 @@ use Auth;
 include_once(resource_path('views/includes/functions.blade.php')); 
 class offersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('owner');
+    }
     public function views($id){
         $offer=offer::where('id',$id)->first();
         if(!$offer ){

@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <div class="btn_wrapper">
-                        <a href="{{url('register_club')}}" class="registration">Регистрация</a>
+                        <a href="{{url('registration')}}" class="registration">Регистрация</a>
                         <button type="submit">Продолжить</button>
                     </div>
                 </form>

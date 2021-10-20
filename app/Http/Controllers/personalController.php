@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use App\UserVerify;
 use Mail;
 use Illuminate\Support\Str;
+use App\city;
 include_once(resource_path('views/includes/functions.blade.php')); 
 
 class personalController extends Controller
@@ -99,8 +100,17 @@ class personalController extends Controller
   public function update(Request $request){
     $data = $request->validate([
         'name' => ['required', 'string', 'max:255'],
-        'user_position'=>['required','numeric','min:1','max:4'],
     ]);
+    if(owner()){
+        $data = $request->validate([
+            'user_position'=>['required','numeric','min:1','max:4'],
+        ]);
+    }elseif(player()){
+        $data = $request->validate([
+            'city' => ['required']
+        ]);
+        city::findOrFail($request->input('city'));
+    }
     $user = Auth::user();
     if($request->input('email') != $user->email){
         $data = $request->validate([
@@ -115,7 +125,11 @@ class personalController extends Controller
         $user->password = Hash::make($request->input('password'));
    }
    $user->name = $request->input('name');
+   if(owner()){
    $user->user_position = $request->input('user_position');
+   }elseif(player()){
+   $user->city = $request->input('city');
+   }
    if($user->save()){
     return response()->json(['status'=>'success'], 202);
    }
