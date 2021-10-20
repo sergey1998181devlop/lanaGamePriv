@@ -7324,7 +7324,7 @@ section.club_page_main_info_wrapper {
                 transition: box-shadow 0.2s;
 
                 &.club_calling {
-                    margin-right: 18px;
+                    margin-left: 18px;
                     background: #000000;
                     transition: box-shadow 0.2s;
 
@@ -7352,6 +7352,19 @@ section.club_page_main_info_wrapper {
                     &:hover {
                         box-shadow: 0 0 8px #dc0000;
                     }
+                }
+
+                &.favorite{
+                    width: 46px;
+                    height: 46px;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 1px;
+                    background: #FFFFFF;
+                    box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+                    border-radius: 50%;
                 }
             }
         }
