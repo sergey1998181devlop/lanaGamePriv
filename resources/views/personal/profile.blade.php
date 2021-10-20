@@ -60,7 +60,7 @@ function customOldVal($name,$item){
                                 <label for="user-name-input">ФИО представителя</label>
                                 <input id="user-name-input" name="name" type="text" value="{{customOldVal('name',$user)}}" placeholder="" required>
                             </div>
-                            @elseif(player())
+                            @if(player())
                                 <div class="form-group required player">
                                     <label for="profile-select-сity">Город</label>
                                     <div class="select2_wrapper select_user_position_wrapper">
