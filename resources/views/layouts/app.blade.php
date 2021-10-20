@@ -501,6 +501,9 @@
                             <li>
                                 <a href="{{url('contacts')}}">Обратная связь</a>
                             </li>
+                            <li>
+                                <a href="{{url('registration')}}">Регистрация для игроков</a>
+                            </li>
                         </ul>
                     </div>
                     <div class="footer_content_item">
@@ -516,6 +519,9 @@
                             </li>
                             <li>
                                 <a href="{{url('software')}}">LANGAME Software</a>
+                            </li>
+                            <li>
+                                <a href="{{url('registration')}}">Регистрация для клубов</a>
                             </li>
                         </ul>
                     </div>
