@@ -92,33 +92,26 @@ function customOldVal($name,$item){
                                 </div>
                             </div>
                             @elseif(player())
-                            <div class="form-group required">
-                            <label for="user-select-сity">Город</label>
-                            <div class="input_wrapper">
-                                <div class="select2_wrapper">
-                                <?php
-                                 $selected_city=customOldVal('city',$user);
-                                 if($selected_city != ''){
-                                    $selected_city = App\city::where('id',$selected_city)->select('id','name')->first();
-                                 }else{
-                                    $selected_city=false;
-                                 }
-                                ?>
-                                <select id="user-select-сity" name="city"   class="select2_input"  data-placeholder="Выберите город">
-                                    @if($selected_city)
-                                    <option value="{{$selected_city->id}}">{{$selected_city->name}}</option>
-                                    @else
-                                    <option value=""></option>
-                                    @endif
-                                </select>
+                            <div class="form-group required player">
+                                <label for="profile-select-сity">Город</label>
+                                <div class="select2_wrapper select_user_position_wrapper">
+                                    <?php
+                                        $selected_city=customOldVal('city',$user);
+                                        if($selected_city != ''){
+                                           $selected_city = App\city::where('id',$selected_city)->select('id','name')->first();
+                                        }else{
+                                           $selected_city=false;
+                                        }
+                                    ?>
+                                    <select id="profile-select-сity" name="city" required data-placeholder="Выберите город">
+                                        @if($selected_city)
+                                        <option value="{{$selected_city->id}}">{{$selected_city->name}}</option>
+                                        @else
+                                        <option value=""></option>
+                                        @endif
+                                    </select>
                                 </div>
                             </div>
-                            @error('city')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
                             @endif
                             <div class="form-group password">
                                 <label for="user-password-input">Сменить пароль</label>
@@ -141,7 +134,7 @@ function customOldVal($name,$item){
 @endsection
 @section('scripts')
 <script>
-     $('#user-select-сity').select2({
+     $('#profile-select-сity').select2({
         ajax: {
             url: $('meta[name="site"]').attr('content') +'/searchCities',
             dataType: 'json'
