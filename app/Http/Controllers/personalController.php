@@ -12,6 +12,7 @@ use App\UserVerify;
 use Mail;
 use Illuminate\Support\Str;
 use App\city;
+use App\club;
 include_once(resource_path('views/includes/functions.blade.php')); 
 
 class personalController extends Controller
@@ -19,12 +20,25 @@ class personalController extends Controller
     public function __construct()
     {   
         $this->middleware('auth');
+        $this->middleware('player',['only' => ['likedClubs']]);
     }
 
 
     public function profile(){
         $user = Auth::user();
         return view('personal/profile')->with('user',$user);
+    }
+    public function likedClubs(){
+        $user_id= Auth::user()->id;
+        $clubs = club::whereHas('liked', function ($q) use ($user_id) {
+            $q->where('user_id', $user_id);
+        })->with(array('metro'=>function($query) {
+            $query->select('id','name','color');
+        },
+        'city' => function($query) {
+            $query->select('id','en_name');
+        }))->get();
+        return view('personal/liked')->with('clubs',$clubs);
     }
     public function sendSMS(Request $request){
         

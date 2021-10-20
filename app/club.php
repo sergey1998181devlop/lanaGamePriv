@@ -75,6 +75,12 @@ class club extends Model
     {
         return $this->belongsTo(metro::class,'club_metro');
     }
+    public function liked() {
+        return $this->hasMany('App\liked_club','club_id');
+    }
+    public function userLiked() {
+        return $this->liked();
+    }
     // public static function boot() {
     //     parent::boot();
     //     static::deleting(function($club) {
