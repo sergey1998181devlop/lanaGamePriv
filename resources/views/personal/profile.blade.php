@@ -113,6 +113,7 @@ function customOldVal($name,$item){
                                     </select>
                                 </div>
                             </div>
+                            @endif
                                 <div class="form-group password">
                                 <label for="user-password-input">Сменить пароль</label>
 
