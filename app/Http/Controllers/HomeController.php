@@ -61,8 +61,8 @@ class HomeController extends Controller
       return view('about.about_us');
     }
     public function clubs_offers(){
-      $offersBrand=offer::select('*')->where('type', '=', 'newBrand')->orderBy('order_no','desc')->orderBy('created_at','desc')->paginate(6);
-      $offersClub=offer::select('*')->where('type', '=', 'newClub')->where('published_at','!=', null)->orderBy('order_no','desc')->orderBy('created_at','desc')->paginate(6);
+      $offersBrand=offer::select('*')->where('type', '=', 'newBrand')->orderBy('order_no','desc')->orderBy('created_at','desc')->paginate(66);
+      $offersClub=offer::select('*')->where('type', '=', 'newClub')->where('published_at','!=', null)->orderBy('order_no','desc')->orderBy('created_at','desc')->paginate(66);
       return view('about.clubs_offers')->with(['offersBrand'=>$offersBrand,'offersClub'=>$offersClub]);
     }
     public function cities_list(){
