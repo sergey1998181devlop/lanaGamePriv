@@ -43,7 +43,7 @@ class clubsController extends Controller
         }
         $views=$club->views;
         $views++;
-        $post->club=$views;
+        $club->views=$views;
         $club->save();
 
         return view('clubs.club')->with(['club'=>$club]);
