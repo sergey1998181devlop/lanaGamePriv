@@ -477,7 +477,6 @@
 </div>
 </noindex>
 <div class="club_page_modals_wrapper"></div>
-
 <!-- END OF MODALS -->
 <!--FOOTER START-->
 <footer class="footer">

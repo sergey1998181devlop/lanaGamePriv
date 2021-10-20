@@ -204,6 +204,18 @@ jQuery(function() {
         });
     });
 
+    jQuery('[data-like-club]').on('click', function(e) {
+        e.preventDefault();
+
+        jQuery.ajax({
+            type: 'POST',
+            url: /like-club/?club_id={},
+            success: function() {
+
+            }
+        });
+    });
+
     jQuery('.remodal.mailing_modal').on('opening', function(e) {
         jQuery(this).find('form input[name="email"]').val('');
     });
