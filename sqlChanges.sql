@@ -34,3 +34,20 @@ ALTER TABLE `clubs` ADD `closed` ENUM('0','1') NOT NULL DEFAULT '0' AFTER `draft
 ALTER TABLE `users` ADD `city` INT NULL AFTER `rules`, ADD `type` ENUM('owner','player') NOT NULL DEFAULT 'owner' AFTER `city`;
 
 ALTER TABLE `users` CHANGE `user_position` `user_position` ENUM('1','2','3','4') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '1';
+
+ALTER TABLE `clubs` ADD `views` INT NOT NULL DEFAULT '0' AFTER `rating`;
+
+CREATE TABLE `liked_clubs` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `club_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `liked_clubs`
+  ADD PRIMARY KEY (`id`);
+
+  ALTER TABLE `liked_clubs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+COMMIT;

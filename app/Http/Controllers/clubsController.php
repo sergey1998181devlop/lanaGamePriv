@@ -9,6 +9,7 @@ use Auth;
 use Carbon\Carbon;
 use ImageResize;
 use Str;
+use App\liked_club;
 use Illuminate\Support\Facades\Validator;
 include_once(resource_path('views/includes/functions.blade.php'));
 class clubsController extends Controller
@@ -17,7 +18,8 @@ class clubsController extends Controller
     public $club_id;
     public function __construct()
     {
-        $this->middleware('owner',['except' => ['index','redirectOldClubsURLS']]);        
+        $this->middleware('owner',['except' => ['index','redirectOldClubsURLS','likeClub']]);        
+        $this->middleware('player',['only' => ['likeClub','unLikeClub']]);
         $this->isDraft = false;
     }
     public function index($id){
@@ -39,6 +41,7 @@ class clubsController extends Controller
             if(count($comments) > 0)
             return view('clubs.club')->with(['club'=>$club,'comments'=>$comments ]);
         }
+        $liked = false;
 
         return view('clubs.club')->with(['club'=>$club]);
     }
@@ -414,4 +417,27 @@ class clubsController extends Controller
         }))->findOrFail($id);
         return redirect($club->id.'_computerniy_club_'.Str::slug($club->url).'_'.$club->city->en_name);
     }
+      
+  public function likeClub(Request $request){
+    $data = $request->validate([
+        'club_id' => ['required']
+    ]);
+    if(club::where('id',$request->input('club_id'))->count() == 0){
+        return response()->json(['status'=>false],400);
+    }
+    $liked_club = liked_club::firstOrCreate(['user_id'=>Auth::user()->id,'club_id'=>$request->input('club_id')]);
+    if($liked_club){
+        return response()->json(['status'=>true]);
+    }else{
+        return response()->json(['status'=>false],400);
+    }
+  }
+  public function unLikeClub(Request $request){
+    $data = $request->validate([
+        'club_id' => ['required']
+    ]);
+    $liked_club = liked_club::where('club_id',$request->input('club_id'))->where('user_id',Auth::user()->id)->delete();
+
+    return response()->json(['status'=>true]);
+  }
 }
