@@ -174,7 +174,7 @@
                         </svg>
                         <span>Профиль</span>
                     </a>
-                    <a>
+                    <a class="club_list_link">
                         <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-svg-file"></use>
                         </svg>
@@ -213,7 +213,7 @@
                                 <input id="user-email-input" name="email" type="email" placeholder="" required>
                             </div>
                             @if(isset($showOptions))
-                            <div class="form-group required">
+                            <div class="form-group required player">
                                 <label for="registration-select-сity">Город</label>
                                 <div class="select2_wrapper select_user_position_wrapper">
                                     <?php
@@ -240,7 +240,6 @@
                             </div>
                             <div class="form-group password">
                                 <label for="user-password-input">Придумайте пароль</label>
-
                                 <div class="user_password">
                                     <input id="user-password-input" name="password" type="password" placeholder="Введите пароль">
                                     <input id="user-password-again-input" name="password_confirmation" type="password" placeholder="Повторите">

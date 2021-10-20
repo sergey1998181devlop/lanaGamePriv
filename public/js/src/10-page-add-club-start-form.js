@@ -12,16 +12,18 @@ jQuery(function() {
 
     jQuery('[data-btn-club-owner-reg]').on('click', function(e) {
         jQuery(this).closest('.main_reg_wrapper').find('.form_reg_wrapper').show().find('.page_title').text('Регистрация представителя компьютерного клуба');
-
         $lastForm.find('input[name="user_type"]').val('owner');
         $lastForm.find('.form-group.owner').show().find('select').prop('disabled', false);
+        $lastForm.find('.form-group.player').hide().find('select').prop('disabled', true);
+
     });
 
     jQuery('[data-btn-club-gamer-reg]').on('click', function(e) {
         jQuery(this).closest('.main_reg_wrapper').find('.form_reg_wrapper').show().find('.page_title').text('Регистрация ланнера');
-
         $lastForm.find('input[name="user_type"]').val('player');
         $lastForm.find('.form-group.owner').hide().find('select').prop('disabled', true);
+        $lastForm.find('.form-group.player').show().find('select').prop('disabled', false);
+        $lastForm.find('.club_list_link').hide();
     });
 
     $secondForm.find('input[name="code"]').codeInput();
