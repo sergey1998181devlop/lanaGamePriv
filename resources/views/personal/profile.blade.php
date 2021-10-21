@@ -39,13 +39,15 @@ function customOldVal($name,$item){
                             <span>Биржа предложений</span>
                         </a>
                     @endif
+                    @if(false)
                     @if(player())
-                        <a href="{{url('personal/clubs')}}">
+                        <a href="{{url('personal/liked')}}">
                             <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-svg-file"></use>
                             </svg>
                             <span>Избранное</span>
                         </a>
+                    @endif
                     @endif
                     <a  href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -65,7 +67,7 @@ function customOldVal($name,$item){
                     {{ csrf_field() }}
                         <div class="forma">
                             <div class="form-group required">
-                                <label for="user-name-input">ФИО представителя</label>
+                                <label for="user-name-input">ФИО</label>
                                 <input id="user-name-input" name="name" type="text" value="{{customOldVal('name',$user)}}" placeholder="" required>
                             </div>
                             @if(player())
