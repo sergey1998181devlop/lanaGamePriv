@@ -35,16 +35,25 @@
                 <div class="personal_main_content_wrapper">
                     <div class="club_list_navigation_wrapper">
                         <div class="club_list_navigation_tabs_wrapper">
+                            <ul class="club_list_navigation_tabs">
+                                <li>
+                                    <a href="#tab1" class="active">
+                                        <span>Клубы, которые вы отметили</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
 
                     <div class="club_list_content_tabs">
-                        <div class="club_list_content">
-                            @foreach($clubs as $club)
-                                <div class="club_list_item">
-                                    @include('club')
-                                </div>
-                            @endforeach
+                        <div class="tab">
+                            <div class="club_list_content">
+                                @foreach($clubs as $club)
+                                    <div class="club_list_item">
+                                        @include('club')
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -52,7 +61,5 @@
         </div>
     </section>
     <!--SECTION PERSONAL PAGE END-->
-
-
 @endsection
 

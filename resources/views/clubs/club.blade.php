@@ -1,14 +1,16 @@
 @extends('layouts.app')
 @section('page')
     <title>Компьютерный клуб {{$club->club_name}} {{$club->city["name"]}} - цены, отзывы, обзоры</title>
-    <meta name="description" content="Компьютерный клуб {{$club->club_name}} по адресу {{$club->club_full_address}} - расположение, цены, отзывы, рейтинг ({{$club->rating }} из 5), честные обзоры, новости, ближайшие мероприятия">
+    <meta name="description"
+          content="Компьютерный клуб {{$club->club_name}} по адресу {{$club->club_full_address}} - расположение, цены, отзывы, рейтинг ({{$club->rating }} из 5), честные обзоры, новости, ближайшие мероприятия">
     <meta name="keywords" content="компьютерный клуб {{$club->club_name}}, интернет кафе {{$club->club_name}}, киберклуб {{$club->club_name}}, {{$club->city["name"]}}"/>
     <meta name="club_id" content="{{$club->id}}">
     <style>
-        .comment{
+        .comment {
             position: relative;
         }
-        .comment button[data-role-remove-comment]{
+
+        .comment button[data-role-remove-comment] {
             position: absolute;
             top: -7px;
             right: -7px;
@@ -77,9 +79,9 @@
 
                 <div class="main_info_btn_wrapper">
                     @if($club->deleted_at != null)
-                    <a
-                           style="background:#ff6328;border: 2px solid black;color:#000;margin-right: 5px;font-size: 14px;    cursor: auto;"
-                           class="btn">Клуб удален</a>
+                        <a
+                            style="background:#ff6328;border: 2px solid black;color:#000;margin-right: 5px;font-size: 14px;    cursor: auto;"
+                            class="btn">Клуб удален</a>
                         <a href="{{url('panel/club/'.$club->id.'/recover')}}"
                            style="background:#5a985a;color:#000;margin-right: 5px;font-size: 14px;"
                            class="btn">Вернуть</a>
@@ -88,14 +90,14 @@
                         <a href="{{url('personal/club/'.$club->id.'/edit')}}"
                            style="background:#cb8e20;color:#000;margin-right: 5px;font-size: 14px;"
                            class="btn"
-                           data-remodal-target="change_user_modal"  data-remodal-options="hashTracking: false">Сменить владелеца</a>
+                           data-remodal-target="change_user_modal" data-remodal-options="hashTracking: false">Сменить владелеца</a>
                     @endif
                     @if($club->published_at == null && admin() && $club->deleted_at == null)
                         <a href="{{url($club->id.'_computerniy_club_'.Str::slug($club->url).'_'.$club->city["en_name"].'/active')}}" class="club_active btn">Опубликовать</a>
                         <button type="button" class="club_comment" data-remodal-target="club_comment_modal">Написать коммент</button>
                     @endif
                     @if(admin())
-                    <a href="{{url('personal/club/'.$club->id.'/edit')}}" style="background:#1f42ff;color:#fff;margin-right: 5px;" class="btn">Редактировать</a>
+                        <a href="{{url('personal/club/'.$club->id.'/edit')}}" style="background:#1f42ff;color:#fff;margin-right: 5px;" class="btn">Редактировать</a>
                     @endif
                     @if(admin() && $club->published_at != null &&  $club->deleted_at == null)
                         <a href="{{url('personal/club/'.$club->id.'/edit')}}"
@@ -115,10 +117,10 @@
                                 if (!empty($schedule_item[strtolower(date("l"))]['from']) && !empty($schedule_item[strtolower(date("l"))]['to'])) {
                                     $now = new DateTime();
                                     $begin = new DateTime($schedule_item[strtolower(date("l"))]['from']);
-                                    if (explode(":", $schedule_item[strtolower(date("l"))]['to'])[0]<explode(":", $schedule_item[strtolower(date("l"))]['from'])[0]){
+                                    if (explode(":", $schedule_item[strtolower(date("l"))]['to'])[0] < explode(":", $schedule_item[strtolower(date("l"))]['from'])[0]) {
                                         $end = new DateTime($schedule_item[strtolower(date("l"))]['to']);
                                         $end->add(new DateInterval("P1D"));
-                                    }else{
+                                    } else {
                                         $end = new DateTime($schedule_item[strtolower(date("l"))]['to']);
                                     }
                                     if ($now >= $begin && $now <= $end) {
@@ -130,20 +132,31 @@
                             }
                         }
                         ?>
-                            @if(false)
-                            <form action="" method="post">
-                                <button type="submit" class="favorite" data-like-club><img src="{{asset('/img/icons/like.svg')}}" alt="like"></button>
+
+                        @if(player())
+                                <form action="" method="post" data-like-club-form class="<?=clubLiked($club->id) ? 'liked' : 'notLiked'?>">
+                                {{ csrf_field() }}
+                                <button type="submit" class="favorite" data-like-club><img src="{{asset('/img/icons/like-gray.svg')}}" alt="like"></button>
                             </form>
-                            @endif
-                            @if($showCallButton)
-                            <button type="button" class="club_calling" data-remodal-target="club_phone_modal" onclick="ym(82365286,'reachGoal','phone');gtag('event', 'send', { 'event_category': 'phone', 'event_action': 'click' });">Позвонить</button>
+                            <form action="" method="post" class="unlike_club" style="display: none" data-unlike-club-form>
+                                {{ csrf_field() }}
+                                <button type="submit" class="favorite" data-unlike-club><img src="{{asset('/img/icons/like.svg')}}" alt="like"></button>
+                            </form>
+                        @endif
+
+                        @if($showCallButton)
+                            <button type="button"
+                                    class="club_calling"
+                                    data-remodal-target="club_phone_modal"
+                                    onclick="ym(82365286,'reachGoal','phone');gtag('event', 'send', { 'event_category': 'phone', 'event_action': 'click' });">Позвонить
+                            </button>
                         @else
                             <button type="button" class="club_calling closed">Закрыт</button>
                         @endif
                     @endif
-                        @if(false)
-                    <?=clubLiked($club->id) ? 'liked' : 'notLiked'?>
-                        @endif
+                    @if(false)
+
+                    @endif
                 </div>
             </div>
             <div class="club_page_main_info_bottom">
@@ -216,7 +229,7 @@
 
                         <?php } ?>
 
-                            <button type="button" class="@if(count($images) < 5) hidden-lg @endif" data-remodal-target="club_photo_modal">Показать все фото</button>
+                        <button type="button" class="@if(count($images) < 5) hidden-lg @endif" data-remodal-target="club_photo_modal">Показать все фото</button>
                     </div>
                 </div>
                 <span class="counter"></span>
@@ -726,7 +739,7 @@
     </div>
 
     @if(admin())
-        <div class="change_user_modal remodal admin_modal" id="change_user_modal" data-remodal-id="change_user_modal"  data-remodal-options="hashTracking: false">
+        <div class="change_user_modal remodal admin_modal" id="change_user_modal" data-remodal-id="change_user_modal" data-remodal-options="hashTracking: false">
             <button data-remodal-action="close" class="remodal-close">Закрыть</button>
             <div class="remodal-content">
                 <form action="{{url('panel/club/'.$club->id.'/change-user')}}" method="post" style="dispaly:inline">
@@ -750,7 +763,7 @@
                 </form>
             </div>
         </div>
-        <div class="club_comment_modal remodal admin_modal" id="club_comment_modal" data-remodal-id="club_comment_modal"  data-remodal-options="hashTracking: false">
+        <div class="club_comment_modal remodal admin_modal" id="club_comment_modal" data-remodal-id="club_comment_modal" data-remodal-options="hashTracking: false">
             <button data-remodal-action="close" class="remodal-close">Закрыть</button>
             <div class="remodal-content">
                 <form action="{{url('club/')}}/{{$club->id}}/comment" method="post" style="dispaly:inline">
@@ -777,50 +790,50 @@
     @endif
 
     <div class="remodal report_modal report_club_modal" data-remodal-id="report_club_modal" data-remodal-options="hashTracking: false">
-    <button data-remodal-action="close" class="remodal-close"></button>
-    <div class="remodal-content">
-        <div class="title">Комментарий к клубу</div>
-        <div class="instr">
-            С помощью этой формы можно указать на неточности в
-            описании или оставить заявку на передачу управления
-            представителю клуба.
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <div class="remodal-content">
+            <div class="title">Комментарий к клубу</div>
+            <div class="instr">
+                С помощью этой формы можно указать на неточности в
+                описании или оставить заявку на передачу управления
+                представителю клуба.
+            </div>
+            <form action="{{url('report_club_error')}}" method="post" id="report-club-form" data-recaptcha-form>
+                @csrf
+                <input type="hidden" name="url" value="{{url()->current()}}">
+                <div class="forma">
+                    <div class="form-group required @error('name') error @enderror">
+                        <label for="contact-us-name-input">Имя</label>
+                        <input id="contact-us-name-input" name="name" value="{{ old('name') }}" type="text" placeholder="" required>
+                    </div>
+                    <div class="form-group required @error('email') error @enderror">
+                        <label for="contact-us-email-input">Email</label>
+                        <input id="contact-us-email-input" name="email" value="{{ old('email') }}" type="email" placeholder="" required>
+                    </div>
+                    <div class="form-group @error('phone') error @enderror">
+                        <label for="contact-us-phone-input">Контактный телефон</label>
+                        <input id="contact-us-phone-input" name="phone" value="{{ old('phone') }}" type="tel" placeholder="+7 (___) ___-__-__">
+                    </div>
+                    <div class="form-group required @error('message') error @enderror">
+                        <label for="contact-us-message-input">Текст сообщения</label>
+                        <textarea name="message" id="contact-us-message-input" value="{{ old('message') }}" maxlength="1500" required></textarea>
+                    </div>
+                </div>
+                <div class="recaptcha-holder">
+                    <div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="{{env('RECAPCHA_PUB')}}"></div>
+                </div>
+                <div class="recaptcha-msg">
+                    @error('g-recaptcha-response')
+                    {{ $message }}
+                    @enderror
+                </div>
+                <div class="btn_wrapper">
+                    <button type="submit">Отправить</button>
+                </div>
+            </form>
         </div>
-        <form action="{{url('report_club_error')}}" method="post" id="report-club-form" data-recaptcha-form>
-            @csrf
-            <input type="hidden" name="url" value="{{url()->current()}}">
-            <div class="forma">
-                <div class="form-group required @error('name') error @enderror">
-                    <label for="contact-us-name-input">Имя</label>
-                    <input id="contact-us-name-input" name="name" value="{{ old('name') }}"  type="text" placeholder=""  required>
-                </div>
-                <div class="form-group required @error('email') error @enderror">
-                    <label for="contact-us-email-input">Email</label>
-                    <input id="contact-us-email-input" name="email" value="{{ old('email') }}" type="email" placeholder=""  required>
-                </div>
-                <div class="form-group @error('phone') error @enderror">
-                    <label for="contact-us-phone-input">Контактный телефон</label>
-                    <input id="contact-us-phone-input" name="phone" value="{{ old('phone') }}" type="tel" placeholder="+7 (___) ___-__-__">
-                </div>
-                <div class="form-group required @error('message') error @enderror">
-                    <label for="contact-us-message-input">Текст сообщения</label>
-                    <textarea name="message" id="contact-us-message-input" value="{{ old('message') }}" maxlength="1500" required></textarea>
-                </div>
-            </div>
-            <div class="recaptcha-holder">
-                <div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="{{env('RECAPCHA_PUB')}}"></div>
-            </div>
-            <div class="recaptcha-msg">
-                @error('g-recaptcha-response')
-                {{ $message }}
-                @enderror
-            </div>
-            <div class="btn_wrapper">
-                <button type="submit">Отправить</button>
-            </div>
-        </form>
     </div>
-</div>
-    <div class="remodal show_club_photo_modal" data-remodal-id="club_photo_modal"  data-remodal-options="hashTracking: false">
+    <div class="remodal show_club_photo_modal" data-remodal-id="club_photo_modal" data-remodal-options="hashTracking: false">
         <button data-remodal-action="close" class="remodal-close"></button>
         <div class="remodal-content">
             <div class="counter_slide" id="show_club_photo_counter_slide">
@@ -845,7 +858,7 @@
         </div>
     </div>
     @if(substr($club->club_price_file, strrpos($club->club_price_file, '.') + 1) != 'pdf')
-        <div class="remodal show_club_price_list_modal" data-remodal-id="club_price_list_modal"  data-remodal-options="hashTracking: false">
+        <div class="remodal show_club_price_list_modal" data-remodal-id="club_price_list_modal" data-remodal-options="hashTracking: false">
             <button data-remodal-action="close" class="remodal-close"></button>
             <div class="remodal-content">
                 <div class="club_price_list_wrapper">
@@ -894,38 +907,38 @@
             $(document).ready(function() {
                 jQuery('[data-remodal-id="success_modal"]').remodal().open();
             });
-            window.history.replaceState({}, document.title, $('meta[name="site"]').attr('content') +  "/{{$club->id.'_computerniy_club_'.$club->url.'_'.$club->city->en_name.''}}");
+            window.history.replaceState({}, document.title, $('meta[name="site"]').attr('content') + "/{{$club->id.'_computerniy_club_'.$club->url.'_'.$club->city->en_name.''}}");
         </script>
     @endif
     @if(isset($_GET['action']) && $_GET['action'] == 'change_user')
         <script>
             $(document).ready(function() {
                 jQuery('[data-remodal-id="change_user_modal"]').remodal().open();
-                jQuery('[data-remodal-id="change_user_modal"] #select_new_user').focus()
+                jQuery('[data-remodal-id="change_user_modal"] #select_new_user').focus();
             });
         </script>
     @endif
     @if(admin())
         <script>
-            $('.comment button[data-role-remove-comment]').click(function(){
+            $('.comment button[data-role-remove-comment]').click(function() {
                 var id = $(this).attr('data-id'),
-                comment = $(this).closest('.comment');
-                comment.css('background','#ccc');
-                    $.ajax({
+                    comment = $(this).closest('.comment');
+                comment.css('background', '#cccccc');
+                $.ajax({
                     url: "{{url('club').'/'.$club->id.'/remove_comment'}}",
                     type: 'post',
                     data: {
                         'id': id,
-                        '_token':$('[name="_token"]').val()
+                        '_token': $('[name="_token"]').val()
                     },
                     success: function(data) {
                         comment.remove();
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
-                        comment.css('background','');
+                        comment.css('background', '');
                     }
                 });
-            })
+            });
         </script>
     @endif
 @endsection
