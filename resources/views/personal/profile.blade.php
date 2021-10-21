@@ -41,9 +41,9 @@ function customOldVal($name,$item){
                     @endif
                     @if(false)
                     @if(player())
-                        <a href="{{url('personal/liked')}}">
+                        <a href="{{url('personal/liked-club')}}">
                             <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-svg-file"></use>
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-svg-like"></use>
                             </svg>
                             <span>Избранное</span>
                         </a>
