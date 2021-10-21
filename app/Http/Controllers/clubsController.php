@@ -18,7 +18,7 @@ class clubsController extends Controller
     public $club_id;
     public function __construct()
     {
-        $this->middleware('owner',['except' => ['index','redirectOldClubsURLS','likeClub']]);        
+        $this->middleware('owner',['except' => ['index','redirectOldClubsURLS','likeClub','unLikeClub']]);        
         $this->middleware('player',['only' => ['likeClub','unLikeClub']]);
         $this->isDraft = false;
     }
