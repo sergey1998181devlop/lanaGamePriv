@@ -43,6 +43,7 @@ public function active($id){
     $offer->save();
     return redirect(url("panel/offers/allClub"));
 }
+
 public function deactive($id){
     $offer=offer::where('id',$id)->first();
     $offer->published_at =null;
@@ -83,7 +84,7 @@ public function store(Request $request){
     $offer->url=ucwords(str_replace(" ","-",$request->input('name')));
     $offer->save();
 
-return  redirect(url("/clubs-offers"));
+    return redirect(url("panel/offers/allClub"));
 }
 public function clean($string) {
     $string = str_replace(' ', '-', $string);
@@ -126,7 +127,7 @@ public function update(Request $request,$id){
     $offer->url=ucwords(str_replace(" ","-",$request->input('name')));
     $offer->save();
     
-return redirect(url("/clubs-offers"));
+    return redirect(url("panel/offers/allClub"));
 }
 
 function offerToUpdste($id){

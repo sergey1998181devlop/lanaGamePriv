@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller; 
 
 use App\offer;
+use App\club;
 use Auth;
 include_once(resource_path('views/includes/functions.blade.php')); 
 class offersController extends Controller
@@ -61,6 +62,7 @@ class offersController extends Controller
          $errors=array();
          $user=Auth::user();
        
+         $club = club::select('id','url','club_name')->where('user_id','=',$user->id)->first();
          if (count($errors) > 0){
              return back()->withInput()->withErrors($errors);
             }
@@ -77,7 +79,7 @@ class offersController extends Controller
          $offer->user_name= $user->name;
          $offer->user_phone= $user->phone;
          $offer->price= $request->input('price');
-         $offer->user_link= $user->name;
+         $offer->user_link= $club->club_name;
          $offer->user_email= $user->email;
          $offer->type= "newClub";
          $offer->image="../".$filename[1];
