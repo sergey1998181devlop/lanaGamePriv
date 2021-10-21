@@ -82,6 +82,9 @@ public function store(Request $request){
     $offer->type= $request->input('type');
     $offer->image=$image;
     $offer->url=ucwords(str_replace(" ","-",$request->input('name')));
+    
+    $offer->published_at =Carbon::now()->toDateTimeString();
+
     $offer->save();
 
     return redirect(url("panel/offers/allClub"));
@@ -125,6 +128,9 @@ public function update(Request $request,$id){
     $offer->user_email= $request->input('user_email');
     $offer->type= $request->input('type');
     $offer->url=ucwords(str_replace(" ","-",$request->input('name')));
+    
+    $offer->published_at =Carbon::now()->toDateTimeString();
+
     $offer->save();
     
     return redirect(url("panel/offers/allClub"));

@@ -79,7 +79,7 @@ class offersController extends Controller
          $offer->user_name= $user->name;
          $offer->user_phone= $user->phone;
          $offer->price= $request->input('price');
-         $offer->user_link= $club->club_name;
+         $offer->user_link= $club->id;
          $offer->user_email= $user->email;
          $offer->type= "newClub";
          $offer->image="../".$filename[1];
