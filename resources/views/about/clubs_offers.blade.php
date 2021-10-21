@@ -146,7 +146,7 @@
                                                 </div>
                                                 <div class="info_item">
                                                     <div class="price">{{$offer->price}} ₽</div>
-                                                    <div class="club_name">Клуб: <span>{{$offer->user_link}}</span></div>
+                                                    <div class="club_name">Клуб: <span>{{$offer->club_name}}</span></div>
                                                     <div class="date">Дата публикации: <span>{{$offer->created_at}}</span></div>
                                                 </div>
                                             </div>
@@ -165,7 +165,7 @@
                                                                  alt="image">
                                                         </div>
                                                         <div class="subtitle">Клуб</div>
-                                                        <div class="contact_name">{{$offer->user_link}}</div>
+                                                        <div class="contact_name"><a href="/{{$offer->clubsid}}_computerniy_club_{{$offer->url}}_moskva">{{$offer->club_name}}</a></div>
                                                         <div class="subtitle">Дата публикации</div>
                                                         <div class="contact_name">{{$offer->created_at}}</div>
                                                         <div class="subtitle">Контактное лицо</div>

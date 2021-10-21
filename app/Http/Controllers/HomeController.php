@@ -63,8 +63,8 @@ class HomeController extends Controller
     public function clubs_offers(){
       $user=Auth::user();
       $offersBrand=offer::select('*')->where('type', '=', 'newBrand')->orderBy('order_no','desc')->orderBy('created_at','desc')->paginate(66);
-      $offersClub=offer::select('*')->where('type', '=', 'newClub')->where('published_at','!=', null)->orderBy('order_no','desc')->orderBy('created_at','desc')->paginate(66);
-      $offersMyClub=offer::select('*')->where('user_email','=', $user->email)->where('deleted_at','=', null)->paginate(66);
+      $offersClub=offer::select('*', 'clubs.id as clubsid')->where('type', '=', 'newClub')->where('offers.published_at','!=', null)->orderBy('order_no','desc')->leftJoin('clubs','clubs.id', '=', 'offers.user_link')->orderBy('offers.created_at','desc')->paginate(66);
+      $offersMyClub=offer::select('*')->where('offers.user_email','=', $user->email)->where('offers.deleted_at','=', null)->leftJoin('clubs','clubs.id', '=', 'offers.user_link')->paginate(66);
       return view('about.clubs_offers')->with(['offersBrand'=>$offersBrand,'offersClub'=>$offersClub, 'offersMyClub'=>$offersMyClub]);
     }
     public function cities_list(){
