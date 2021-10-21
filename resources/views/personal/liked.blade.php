@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('page')
     <title>Избранное</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <?$page="likedClubs";?>
 @endsection
 @section('content')

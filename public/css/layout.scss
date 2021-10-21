@@ -6196,8 +6196,27 @@ section.personal_page_wrapper {
                         margin: 0 -39px;
 
                         .club_list_item {
+                            position: relative;
                             width: calc(100% / 2 - 78px);
                             margin: 0 39px 32px;
+
+                            button[data-role-remove-liked-club]{
+                                position: absolute;
+                                top: -7px;
+                                right: -7px;
+                                display: block;
+                                width: 20px;
+                                height: 20px;
+                                background-image: url("../img/cancel.svg");
+                                background-repeat: no-repeat;
+                                background-position: center;
+                                background-size: 24px 24px;
+                                background-color: #ffffff;
+                                border: none;
+                                border-radius: 50%;
+                                outline: none;
+                                cursor: pointer;
+                            }
                         }
 
                         &.moderation {
