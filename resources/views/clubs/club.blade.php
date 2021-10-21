@@ -130,8 +130,10 @@
                             }
                         }
                         ?>
-                        <button type="button" class="favorite" data-like-club><img src="{{asset('/img/icons/like.svg')}}" alt="like"></button>
-                        @if($showCallButton)
+                            <form action="" method="post">
+                                <button type="submit" class="favorite" data-like-club><img src="{{asset('/img/icons/like.svg')}}" alt="like"></button>
+                            </form>
+                            @if($showCallButton)
                             <button type="button" class="club_calling" data-remodal-target="club_phone_modal" onclick="ym(82365286,'reachGoal','phone');gtag('event', 'send', { 'event_category': 'phone', 'event_action': 'click' });">Позвонить</button>
                         @else
                             <button type="button" class="club_calling closed">Закрыт</button>

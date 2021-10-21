@@ -205,11 +205,15 @@ jQuery(function() {
     });
 
     jQuery('[data-like-club]').on('click', function(e) {
+        let  club_id= jQuery('meta[name="club_id"]').attr('content');
+
         e.preventDefault();
+
+        console.log(club_id);
 
         jQuery.ajax({
             type: 'POST',
-            url: /like-club/?club_id={},
+            url: `/like-club/?${club_id}={}`,
             success: function() {
 
             }
