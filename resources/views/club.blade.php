@@ -1,8 +1,9 @@
 <?php
 $clubIndex = isset($clubIndex) ? $clubIndex : null;
+$likedClubs = (isset($page) && $page=='likedClubs') ? true : false;
 ?>
 <?$isHidden = (isset($show) && $show === 'map' && $club->club_city != city(true)['id']) ? true : false ?>
-<div class="sc_item <?=(isset($show) && $show === 'map') ? 'in_map' : null ?> <?=($isHidden) ? 'another_city' : null ?>"
+<div class="sc_item <?=(isset($show) && $show === 'map') ? 'in_map' : null ?> <?=($isHidden) ? 'another_city' : null ?> <?= $likedClubs ? 'liked_list' : null?>"
      data-id="{{$club->id}}"
      data-role-club
      data-lon="{{$club->lon}}"

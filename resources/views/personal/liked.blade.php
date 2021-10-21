@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('page')
     <title>Избранное</title>
+    <?$page="likedClubs";?>
 @endsection
 @section('content')
     <!--SECTION PERSONAL PAGE START-->
