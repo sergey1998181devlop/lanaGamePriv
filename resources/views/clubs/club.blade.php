@@ -141,7 +141,9 @@
                             <button type="button" class="club_calling closed">Закрыт</button>
                         @endif
                     @endif
+                        @if(false)
                     <?=clubLiked($club->id) ? 'liked' : 'notLiked'?>
+                        @endif
                 </div>
             </div>
             <div class="club_page_main_info_bottom">
