@@ -29,10 +29,37 @@ class personalController extends Controller
         return view('personal/profile')->with('user',$user);
     }
     public function likedClubs(){
+        if (empty($_COOKIE["lat"]) && empty($_COOKIE['lon'])){
+            $api_yandex = new \Yandex\Locator\Api('AP2BymABAAAAAqumUgIAzSJaePpJPDsATaQ5CtyPNtLdC60AAAAAAAAAAABVXZbOLoQ1EhZSTVkNehJDKsp9Dg==');
+            $api_yandex->setIp($_SERVER['REMOTE_ADDR']);
+            $lat = '';
+            $lon = '';
+            try {
+                $api_yandex->load();
+                $response = $api_yandex->getResponse();
+                $lat = $response->getLatitude();
+                $lon = $response->getLongitude();
+                setcookie("lat", $lat);
+                setcookie("lon", $lon);
+                setcookie("geo", "yandex");
+            } catch (\Yandex\Locator\Exception\CurlError $ex) {
+                // ошибка curl
+            } catch (\Yandex\Locator\Exception\ServerError $ex) {
+                // ошибка Яндекса
+            } catch (\Yandex\Locator\Exception $ex) {
+                // какая-то другая ошибка (запроса, например)
+            }
+    
+          }else{
+            $lat = $_COOKIE["lat"];
+            $lon = $_COOKIE["lon"];
+            setcookie("geo", "browser");
+          }
+    
         $user_id= Auth::user()->id;
-        $clubs = club::whereHas('liked', function ($q) use ($user_id) {
+        $clubs = club::SelectCartFeilds4Home($lat, $lon)->whereHas('liked', function ($q) use ($user_id) {
             $q->where('user_id', $user_id);
-        })->with(array('metro'=>function($query) {
+        })->Published()->whereNull('hidden_at')->with(array('metro'=>function($query) {
             $query->select('id','name','color');
         },
         'city' => function($query) {

@@ -40,9 +40,11 @@
 
                     <div class="club_list_content_tabs">
                         <div class="club_list_content">
-                            <div class="club_list_item">
-
-                            </div>
+                            @foreach($clubs as $club)
+                                <div class="club_list_item">
+                                    @include('club')
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
