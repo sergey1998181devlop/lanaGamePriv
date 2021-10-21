@@ -91,7 +91,7 @@
                                         </div>
                                     @endforeach
                                 </div>
-                                @if(isset( $offersBrand ) && count($offersBrand)>6)
+                                @if(isset( $offersBrand ) && count($offersBrand)>66)
                                     <a id="show_more_company_offers" class="show_more pointer">Показать ещё</a>
                                 @endif
                             @endif
