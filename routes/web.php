@@ -28,7 +28,7 @@ Route::get('/register_club', ['as' => 'auth.register', 'uses' => 'Auth\RegisterC
 
 // личный кабинет
 Route::get('personal/profile', 'personalController@profile');
-Route::get('personal/liked-club', 'personalController@likedClubs');
+Route::get('personal/liked', 'personalController@likedClubs');
 Route::post('profile/sendSMS', 'personalController@sendSMS');
 Route::post('profile/verify', 'personalController@verifySMS');
 Route::post('profile/update', 'personalController@update');
