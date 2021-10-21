@@ -43,6 +43,7 @@ public function active($id){
     $offer->save();
     return redirect(url("panel/offers/allClub"));
 }
+
 public function deactive($id){
     $offer=offer::where('id',$id)->first();
     $offer->published_at =null;
@@ -81,9 +82,12 @@ public function store(Request $request){
     $offer->type= $request->input('type');
     $offer->image=$image;
     $offer->url=ucwords(str_replace(" ","-",$request->input('name')));
+    
+    $offer->published_at =Carbon::now()->toDateTimeString();
+
     $offer->save();
 
-return  redirect(url("/clubs-offers"));
+    return redirect(url("panel/offers/allClub"));
 }
 public function clean($string) {
     $string = str_replace(' ', '-', $string);
@@ -124,9 +128,12 @@ public function update(Request $request,$id){
     $offer->user_email= $request->input('user_email');
     $offer->type= $request->input('type');
     $offer->url=ucwords(str_replace(" ","-",$request->input('name')));
+    
+    $offer->published_at =Carbon::now()->toDateTimeString();
+
     $offer->save();
     
-return redirect(url("/clubs-offers"));
+    return redirect(url("panel/offers/allClub"));
 }
 
 function offerToUpdste($id){

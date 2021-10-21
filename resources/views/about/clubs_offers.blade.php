@@ -17,10 +17,12 @@
                             <span>От других клубов</span>
                         </a>
                     </li>
+                    @if(isset( $offersMyClub ) && count($offersMyClub)>0)
                     <li><a href="#tab6">
                             <span>Мои объявления</span>
                         </a>
                     </li>
+                    @endif
                     <li><a href="#tab7" class="disabled">
                             <span>Совместные закупки</span>
                             <span class="decor">В разработке</span>
@@ -144,7 +146,7 @@
                                                 </div>
                                                 <div class="info_item">
                                                     <div class="price">{{$offer->price}} ₽</div>
-                                                    <div class="club_name">Клуб: <span>{{$offer->user_link}}</span></div>
+                                                    <div class="club_name">Клуб: <span>{{$offer->club_name}}</span></div>
                                                     <div class="date">Дата публикации: <span>{{$offer->created_at}}</span></div>
                                                 </div>
                                             </div>
@@ -163,7 +165,7 @@
                                                                  alt="image">
                                                         </div>
                                                         <div class="subtitle">Клуб</div>
-                                                        <div class="contact_name">{{$offer->user_link}}</div>
+                                                        <div class="contact_name"><a href="/{{$offer->clubsid}}_computerniy_club_{{$offer->url}}_moskva">{{$offer->club_name}}</a></div>
                                                         <div class="subtitle">Дата публикации</div>
                                                         <div class="contact_name">{{$offer->created_at}}</div>
                                                         <div class="subtitle">Контактное лицо</div>
@@ -209,30 +211,42 @@
                     <div class="club_list_content">
                         <div class="company_offers_wrapper">
                             <button type="button" class="add_offer" data-remodal-target="add_offer_modal">Добавить объявление</button>
-                            <div class="clubs_offers_list">
-                                <a href="#" class="offer_item" data-remodal-target="clubs_offers_modal">
-                                    <div class="img_wrapper">
-                                        <img src="{{asset('img/default-club-preview-image.svg')}}" alt="image">
-                                    </div>
-                                    <div class="info_wrapper">
-                                        <div class="info_item">
-                                            <div class="title">Б/У Компьютеры</div>
-                                        </div>
-                                        <div class="info_item">
-                                            <div class="price">500 ₽</div>
-                                            <div class="club_name">Клуб: <span>Клуб</span></div>
-                                            <div class="date">Дата публикации: <span>19.10.2021</span></div>
-                                        </div>
-                                        <div class="club_status_wrapper">
-                                            <img src="{{asset('/img/time-slot.svg')}}" alt="icon">
-                                            <span>На модерации</span>
-                                        </div>
-                                        <form action="" method="get">
-                                            <button type="submit" class="club_edit">Редактировать</button>
-                                        </form>
-                                    </div>
-                                </a>
-                            </div>
+                            @if(isset( $offersMyClub ) && count($offersMyClub)>0)
+                                <div class="clubs_offers_list">
+                                    @foreach($offersMyClub as $offer)
+                                        <a href="#" class="offer_item" data-remodal-target="clubs_offers_modal">
+                                            <div class="img_wrapper">
+                                                <img src="/storage/clubs/{{$offer->image}}" alt="image">
+                                            </div>
+                                            <div class="info_wrapper">
+                                                <div class="info_item">
+                                                    <div class="title">{{$offer->name}}</div>
+                                                </div>
+                                                <div class="info_item">
+                                                    <div class="price">{{$offer->price}} ₽</div>
+                                                    <div class="club_name">Клуб: <span>{{$offer->user_link}}</span></div>
+                                                    <div class="date">Дата публикации: <span>{{$offer->published_at}}</span></div>
+                                                </div>
+                                                <div class="club_status_wrapper">
+                                                    <img src="{{asset('/img/time-slot.svg')}}" alt="icon">
+                                                    <span>
+                                                        @if($offer->published_at != null)
+                                                            Опубликован
+                                                        @else
+                                                            На модерации
+                                                        @endif
+                                                    </span>
+                                                </div>
+                                                <?/*
+                                                <form action="" method="get">
+                                                    <button type="submit" class="club_edit">Редактировать</button>
+                                                </form>
+                                                */?>
+                                            </div>
+                                        </a>
+                                    @endforeach
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
