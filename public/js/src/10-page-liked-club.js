@@ -61,7 +61,7 @@ jQuery(function() {
             data: $form.serialize(),
             url: `/unlike-club/?club_id=${club_id}`,
             success: function() {
-                location.href = '/personal/liked-club';
+                location.href = '/personal/liked';
             }
         });
     });
