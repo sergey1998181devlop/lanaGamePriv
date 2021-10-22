@@ -1,11 +1,4 @@
 jQuery(function() {
-    const guest = jQuery('meta[name="user-role"]').attr('content') === 'guest';
-
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
 
     jQuery('.sc_item.liked_list').closest('.club_list_item').append(
         `<form action="" method="post">
@@ -19,7 +12,7 @@ jQuery(function() {
     }
 
     jQuery('[data-like-club]').on('click', function(e) {
-        if(guest){
+        if(!Layout.isPlayer()){
             jQuery('[data-remodal-id="success_modal"]')
                 .find('.title')
                 .html('Если не хотите потерять понравившийся клуб, <a href="/registration">зарегистрируйтесь</a> или <a href="/login">авторизуйтесь</a> на сайте как ланнер.')

@@ -8,9 +8,13 @@
     <link rel="icon" href="{{url('/')}}/favicon.ico" type="image/x-icon">
     <meta name="site" content="{{url('/')}}">
 
+
+
     @if(admin())
-        <meta name="user-role" content="admin">
-    @elseif(owner())
+        <meta name="is_admin" content="1">
+    @endif
+
+    @if(owner())
         <meta name="user-role" content="owner">
     @elseif(player())
         <meta name="user-role" content="player">

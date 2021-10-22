@@ -1,4 +1,10 @@
 jQuery(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     jQuery.fn.select2.amd.define('select2/data/dependsOnSelectAdapter', ['select2/data/array', 'select2/utils'], function(ArrayAdapter, Utils) {
         function DependsOnSelectAdapter($element, options) {
             DependsOnSelectAdapter.__super__.constructor.call(this, $element, options);
@@ -57,6 +63,19 @@ jQuery(function() {
 
 window.Layout = (() => {
     return {
+        isAdmin(){
+            return  jQuery('meta[name="is_admin"]').attr('content') === '1';
+            },
+        isPlayer(){
+            return  jQuery('meta[name="user-role"]').attr('content') === 'player';
+        },
+        isOwner(){
+            return  jQuery('meta[name="user-role"]').attr('content') === 'owner';
+        },
+        isGuest(){
+            return  jQuery('meta[name="user-role"]').attr('content') === 'guest';
+        },
+
         initSelect2() {
             jQuery('.select2_wrapper select:not([data-select2-id]):not([data-select2-skip-auto-init])').each(function() {
                 let $this = jQuery(this),
