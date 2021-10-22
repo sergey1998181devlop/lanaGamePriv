@@ -29,7 +29,7 @@ class HomeController extends Controller
 
     public function __construct()
     {
-        $this->middleware('owner',['only' => ['searchMetro','clubs_offers']]);        
+        $this->middleware('owner',['only' => ['searchMetro']]);        
     }
 
     public function redirectToCity(){
