@@ -76,6 +76,13 @@ window.Layout = (() => {
             return  jQuery('meta[name="user-role"]').attr('content') === 'guest';
         },
 
+        showInfoModal(text){
+            jQuery('[data-remodal-id="success_modal"]')
+                .find('.title')
+                .html(text)
+            jQuery('[data-remodal-id="success_modal"]').remodal().open();
+        },
+
         initSelect2() {
             jQuery('.select2_wrapper select:not([data-select2-id]):not([data-select2-skip-auto-init])').each(function() {
                 let $this = jQuery(this),

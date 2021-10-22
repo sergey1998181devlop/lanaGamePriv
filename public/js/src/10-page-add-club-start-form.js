@@ -1,5 +1,4 @@
 jQuery(function() {
-    const guest = jQuery('meta[name="user-role"]').attr('content') === 'guest';
     let $firstForm = jQuery('#add-club-start-form'),
         $secondForm = jQuery('#add-club-code-confirm-form'),
         $step_back = $secondForm.find('.step_back'),
@@ -12,38 +11,37 @@ jQuery(function() {
     }
 
     jQuery('[data-btn-club-owner-reg]').on('click', function(e) {
-        console.log(guest);
-        if(!guest){
-            jQuery('[data-remodal-id="success_modal"]')
-                .find('.title')
-                .text('Вы уже авторизованы.')
-            jQuery('[data-remodal-id="success_modal"]').remodal().open();
+        if(Layout.isGuest()){
+            jQuery(this).closest('.main_reg_wrapper').find('.form_reg_wrapper').show().find('.page_title').text('Регистрация представителя компьютерного клуба');
+            $lastForm.find('input[name="user_type"]').val('owner');
+            $lastForm.find('.form-group.owner').show().find('select').prop('disabled', false);
+            $lastForm.find('.form-group.player').hide().find('select').prop('disabled', true);
+        }else{
+            Layout.showInfoModal('Вы уже авторизованы.');
         }
-        jQuery(this).closest('.main_reg_wrapper').find('.form_reg_wrapper').show().find('.page_title').text('Регистрация представителя компьютерного клуба');
-        $lastForm.find('input[name="user_type"]').val('owner');
-        $lastForm.find('.form-group.owner').show().find('select').prop('disabled', false);
-        $lastForm.find('.form-group.player').hide().find('select').prop('disabled', true);
-
     });
 
     jQuery('[data-btn-club-gamer-reg]').on('click', function(e) {
-        if(!guest){
-            jQuery('[data-remodal-id="success_modal"]')
-                .find('.title')
-                .text('Вы уже авторизованы.')
-            jQuery('[data-remodal-id="success_modal"]').remodal().open();
+        if(Layout.isGuest()){
+            jQuery(this).closest('.main_reg_wrapper').find('.form_reg_wrapper').show().find('.page_title').text('Регистрация ланнера');
+            $lastForm.find('input[name="user_type"]').val('player');
+            $lastForm.find('.form-group.owner').hide().find('select').prop('disabled', true);
+            $lastForm.find('.form-group.player').show().find('select').prop('disabled', false);
+            $lastForm.find('.club_list_link').hide();
+        } else{
+            Layout.showInfoModal('Вы уже авторизованы.');
         }
-        jQuery(this).closest('.main_reg_wrapper').find('.form_reg_wrapper').show().find('.page_title').text('Регистрация ланнера');
-        $lastForm.find('input[name="user_type"]').val('player');
-        $lastForm.find('.form-group.owner').hide().find('select').prop('disabled', true);
-        $lastForm.find('.form-group.player').show().find('select').prop('disabled', false);
-        $lastForm.find('.club_list_link').hide();
     });
 
     $secondForm.find('input[name="code"]').codeInput();
 
     $firstForm.on('submit', function(e) {
         e.preventDefault();
+
+        if(!Layout.isGuest()){
+            Layout.showInfoModal('Вы уже авторизованы.');
+            return;
+        }
 
         phoneNumber = $firstForm.find('input[name="phone"]').val();
 

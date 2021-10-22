@@ -6186,6 +6186,17 @@ section.personal_page_wrapper {
                 padding: 38px 0 0;
 
                 .tab {
+                    .instr{
+                        font-size: 16px;
+                        font-weight: 400;
+                        color: #000000;
+                        line-height: 1.4;
+
+                        a{
+                            color: #dc0000;
+                            text-decoration: none;
+                        }
+                    }
                     .club_list_content {
                         width: calc(100% + 78px);
                         display: flex;

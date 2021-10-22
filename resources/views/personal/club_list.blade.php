@@ -2,18 +2,20 @@
 @section('page')
     <title>Список клубов - LanGame</title>
     <style>
-        .ck.ck-content.ck-editor__editable{
+        .ck.ck-content.ck-editor__editable {
             height: 250px;
         }
-        .ck.ck-reset.ck-editor{
-            max-width:500px;
-            width:400px;
+
+        .ck.ck-reset.ck-editor {
+            max-width: 500px;
+            width: 400px;
         }
-        @media (max-width:500px) {
-            .ck.ck-reset.ck-editor{
-            max-width:100%;
-            width:100%;
-        }
+
+        @media (max-width: 500px) {
+            .ck.ck-reset.ck-editor {
+                max-width: 100%;
+                width: 100%;
+            }
         }
     </style>
 @endsection
@@ -38,10 +40,10 @@
         if (canBeUnserialized($clubAr->configuration)) {
             $configuration = unserialize($clubAr->configuration);
             // Разделить дюймы и герцы в мониторах
-            foreach ($configuration as $key=> $zone) {
-                 $mon_t = array_filter(explode(' ',str_replace('Гц','',$zone['monitor_type'])));
-                 $configuration[$key]['monitor_type']=(isset($mon_t[0])) ? $mon_t[0] : '';
-                  $configuration[$key]['monitor_hertz']=(isset($mon_t[1])) ? $mon_t[1] : '';
+            foreach ($configuration as $key => $zone) {
+                $mon_t = array_filter(explode(' ', str_replace('Гц', '', $zone['monitor_type'])));
+                $configuration[$key]['monitor_type'] = (isset($mon_t[0])) ? $mon_t[0] : '';
+                $configuration[$key]['monitor_hertz'] = (isset($mon_t[1])) ? $mon_t[1] : '';
             }
         }
         $marketing_events = [];
@@ -114,7 +116,7 @@
             if ($edit && is_array($schedule_item) && isset($schedule_item[$day])) {
                 $selected = ($schedule_item[$day][$fromOrTo] == $value) ? 'selected' : null;
             }
-            echo '<option value="' . $value . '" ' . $selected . '>' . $value . '</option>';
+            echo '<option value="'.$value.'" '.$selected.'>'.$value.'</option>';
         }
     }
     function getConf($name, $key)
@@ -227,6 +229,24 @@
                                     Для повторной отправки <a href="{{url('profile/verify/resend')}}">нажмите сюда.</a>
                                 </div>
                             @endif
+                            @if(count($published)==0 && count($underModify)==0 && count($draft)==0)
+                                <div class="instr">
+                                    Привет! Добро пожаловать на <span class="text_decor">langame.ru</span> - платформу для компьютерных клубов.
+                                    <br>
+                                    <br>
+                                    Если ваша площадка уже есть на нашем сайте, и вы хотите управлять информацией на ней,
+                                    просто запросите её перенос на ваш аккаунт. Для этого достаточно нажать иконку рядом с названием клуба и
+                                    заполнить появившуюся форму.
+                                    <br>
+                                    <br>
+                                    А если вы не нашли ваш клуб на портале, то можете добавить его прямо сейчас. Просто нажмите кнопку "Добавить"
+                                    и заполните все необходимые данные. После подтверждения вашей почты и прохождения модерации,
+                                    клуб обязательно появится в поиске.
+                                    <br>
+                                    <br>
+                                    Спасибо, что участвуете в развитии LAN-культуры!
+                                </div>
+                            @endif
                             <div class="club_list_content">
                                 @foreach($published as $club)
                                     <div class="club_list_item">
@@ -291,30 +311,30 @@
     <script src="{{url('ck5/ckeditor.js')}}"></script>
     <script>
         ClassicEditor
-            .create( document.querySelector( '#club-descr-input' ), {
+            .create(document.querySelector('#club-descr-input'), {
                 toolbar: {
-					items: [
-						'bold',
-						'italic',
-						'underline',
-						'strikethrough',
-						'bulletedList',
-						'numberedList',
-						'|',
-						'undo',
-						'redo'
-					]
-				},
-				language: 'ru',
-					licenseKey: '',
-				} )
-				.then( editor => {
-					window.editor = editor;
-				} )
-				.catch( error => {
-					console.error( 'Oops, something went wrong!' );
-					console.warn( 'Build id: lkxv7bp3c78d-1afjedfm0hw0' );
-					console.error( error );
-				} );
+                    items: [
+                        'bold',
+                        'italic',
+                        'underline',
+                        'strikethrough',
+                        'bulletedList',
+                        'numberedList',
+                        '|',
+                        'undo',
+                        'redo'
+                    ]
+                },
+                language: 'ru',
+                licenseKey: ''
+            })
+            .then(editor => {
+                window.editor = editor;
+            })
+            .catch(error => {
+                console.error('Oops, something went wrong!');
+                console.warn('Build id: lkxv7bp3c78d-1afjedfm0hw0');
+                console.error(error);
+            });
     </script>
 @endsection

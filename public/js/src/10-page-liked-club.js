@@ -13,10 +13,7 @@ jQuery(function() {
 
     jQuery('[data-like-club]').on('click', function(e) {
         if(!Layout.isPlayer()){
-            jQuery('[data-remodal-id="success_modal"]')
-                .find('.title')
-                .html('Если не хотите потерять понравившийся клуб, <a href="/registration">зарегистрируйтесь</a> или <a href="/login">авторизуйтесь</a> на сайте как ланнер.')
-            jQuery('[data-remodal-id="success_modal"]').remodal().open();
+            Layout.showInfoModal('Если не хотите потерять понравившийся клуб, <a href="/registration">зарегистрируйтесь</a> или <a href="/login">авторизуйтесь</a> на сайте как ланнер.');
         }
         let $form = jQuery(this).closest('form'),
             club_id = jQuery('meta[name="club_id"]').attr('content');
