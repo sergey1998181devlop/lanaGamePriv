@@ -37,7 +37,7 @@
                             @if(isset( $offersBrand  ) && count($offersBrand)>0)
                                 <div class="company_offers_list">
                                     @foreach($offersBrand as $offer)
-                                        <a href="#" class="offer_item" data-id="{{$offer->id}}" data-remodal-target="<?= player() ? 'company_offers_alert' : 'company_offers_modal_'.$offer->id?>">
+                                        <a href="#" class="offer_item" data-id="{{$offer->id}}" data-remodal-target="<?= !owner() ? 'company_offers_alert' : 'company_offers_modal_'.$offer->id?>">
                                             <div class="img_wrapper">
                                                 <img src="{{($offer->image != '') ? url('storage/offers/'.$offer->image) : asset('img/default-club-preview-image.svg')}}"
                                                      alt="image">
@@ -105,7 +105,7 @@
                 <div class="tab" id="tab5" style="display: none">
                     <div class="club_list_content">
                         <div class="company_offers_wrapper">
-                            <button type="button" class="add_offer" data-remodal-target="<?= !owner() ? 'company_offers_alert' : 'add_offer_modal'?>" data-remodal-target="">Добавить объявление</button>
+                            <button type="button" class="add_offer" data-remodal-target="<?= !owner() ? 'company_offers_alert' : 'add_offer_modal'?>">Добавить объявление</button>
                             <div class="attention_text_wrapper">
                                 <div class="img_wrapper">
                                     <img src="{{ asset('/img/attention.svg')}}" alt="image">
@@ -134,7 +134,7 @@
                                 <div class="clubs_offers_list">
                                     @foreach($offersClub as $offer)
 
-                                        <a href="#" class="offer_item" data-id="{{$offer->id}}" data-remodal-target="clubs_offers_modal_{{$offer->id}}">
+                                        <a href="#" class="offer_item" data-id="{{$offer->id}}" data-remodal-target="<?= !owner() ? 'company_offers_alert' : 'clubs_offers_modal_'.$offer->id?>">
                                             <div class="img_wrapper">
                                                 <img src="{{($offer->image != '') ? url('storage/offers/'.$offer->image) : asset('img/default-club-preview-image.svg')}}"
                                                      alt="image">
@@ -305,8 +305,13 @@
         </div>
     </div>
     @else
-    <div class="remodal company_offers_modal" data-remodal-id="company_offers_alert" data-remodal-options="hashTracking: false">
+    <div class="remodal success_modal" data-remodal-id="company_offers_alert" data-remodal-options="hashTracking: false">
         <button data-remodal-action="close" class="remodal-close"></button>
+        <div class="remodal-content">
+            <div class="club_phone_wrapper">
+                <p class="title">Для просмотра подробной информации <a href="{{url('register_club')}}">зарегистрируйтесь</a> или <a href="{{url('login')}}">авторизуйтесь</a> как представитель клуба.</p>
+            </div>
+        </div>
     </div>
     @endif
 @endsection

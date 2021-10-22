@@ -15251,9 +15251,14 @@ section.cities_list_wrapper {
                 font-style: normal;
                 font-weight: 500;
                 font-size: 25px;
-                line-height: 1;
+                line-height: 1.3;
                 text-align: center;
                 color: #000000;
+
+                a{
+                    color: #dc0000;
+                    text-decoration: none;
+                }
             }
         }
     }
