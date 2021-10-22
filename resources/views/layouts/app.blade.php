@@ -532,11 +532,9 @@
                             <li>
                                 <a href="{{url('registration')}}">Регистрация для клубов</a>
                             </li>
-                            @if(false)
                             <li>
                                 <a href="{{url('clubs-offers')}}">Биржа предложений</a>
                             </li>
-                            @endif
                         </ul>
                     </div>
                 </div>
