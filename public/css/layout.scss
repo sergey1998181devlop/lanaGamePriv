@@ -15265,7 +15265,7 @@ section.cities_list_wrapper {
 
     @media (max-width: 700px) {
         width: 300px;
-        height: 66px;
+        height: auto;
         background: #ffffff;
         box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
@@ -15283,7 +15283,7 @@ section.cities_list_wrapper {
         .remodal-content {
             .club_phone_wrapper {
                 border-radius: 18px;
-                height: 50px;
+                height: auto;
 
                 p {
                     font-size: 22px;
