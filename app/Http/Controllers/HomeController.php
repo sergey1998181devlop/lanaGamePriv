@@ -157,6 +157,7 @@ class HomeController extends Controller
         $order_key = "ASC";
       }
       $paginate = 9;
+      $paginateRand=999999999; //для создании рандомный порядок
       if ($request->input('show') == "map"){
         $paginate = 999999999999999; // показать все
       }
@@ -180,7 +181,19 @@ class HomeController extends Controller
         }));
       }
       if($order == ''){
-        $clubs=$clubs->inRandomOrder();
+        if(\Request::ajax())
+        {
+          if(isset($_COOKIE["randOrder"])){
+            $randOrder = $_COOKIE["randOrder"];
+          }else{
+            $randOrder = rand(10,$paginateRand);
+            setcookie("randOrder", $randOrder);
+          }
+        }else{
+         $randOrder = rand(10,$paginateRand);
+         setcookie("randOrder", $randOrder);
+        }
+        $clubs=$clubs->inRandomOrder($randOrder);
       }else{
         $clubs=$clubs->orderBy($order,$order_key);
       }
