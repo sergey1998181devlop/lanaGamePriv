@@ -51,11 +51,7 @@
                                                 </div>
                                             </div>
                                         </a>
-                                        @if(player())
-                                            <div class="remodal company_offers_modal" data-remodal-id="company_offers_alert" data-remodal-options="hashTracking: false">
-                                                <button data-remodal-action="close" class="remodal-close"></button>
-                                            </div>
-                                        @else
+                                        @if(!player())
                                         <div class="remodal company_offers_modal" data-remodal-id="company_offers_modal_{{$offer->id}}" data-remodal-options="hashTracking: false">
                                             <button data-remodal-action="close" class="remodal-close"></button>
                                             <div class="remodal-content">
@@ -109,7 +105,7 @@
                 <div class="tab" id="tab5" style="display: none">
                     <div class="club_list_content">
                         <div class="company_offers_wrapper">
-                            <button type="button" class="add_offer" data-remodal-target="add_offer_modal">Добавить объявление</button>
+                            <button type="button" class="add_offer" data-remodal-target="<?= !owner() ? 'company_offers_alert' : 'add_offer_modal'?>" data-remodal-target="">Добавить объявление</button>
                             <div class="attention_text_wrapper">
                                 <div class="img_wrapper">
                                     <img src="{{ asset('/img/attention.svg')}}" alt="image">
@@ -213,6 +209,7 @@
                         </div>
                     </div>
                 </div>
+                @if(owner())
                 <div class="tab" id="tab6" style="display: none">
                     <div class="club_list_content">
                         <div class="company_offers_wrapper">
@@ -256,13 +253,14 @@
                         </div>
                     </div>
                 </div>
+                @endif
                 <div class="tab" id="tab7" style="display: none">
                     <div class="club_list_content"></div>
                 </div>
             </div>
         </div>
     </section>
-
+    @if(owner())
     <div class="remodal add_offer_modal" data-remodal-id="add_offer_modal" data-remodal-options="hashTracking: false">
         <button data-remodal-action="close" class="remodal-close"></button>
         <div class="remodal-content">
@@ -306,6 +304,11 @@
             </form>
         </div>
     </div>
+    @else
+    <div class="remodal company_offers_modal" data-remodal-id="company_offers_alert" data-remodal-options="hashTracking: false">
+        <button data-remodal-action="close" class="remodal-close"></button>
+    </div>
+    @endif
 @endsection
 
 @section('scripts')
