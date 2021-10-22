@@ -7,8 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="{{url('/')}}/favicon.ico" type="image/x-icon">
     <meta name="site" content="{{url('/')}}">
+
     @if(admin())
-        <meta name="is-admin" content="1">
+        <meta name="user-role" content="admin">
+    @elseif(owner())
+        <meta name="user-role" content="owner">
+    @elseif(player())
+        <meta name="user-role" content="player">
+    @else
+        <meta name="user-role" content="guest">
     @endif
     <meta name="yandex-verification" content="32e051951e8b0c78"/>
     <meta name="google-site-verification" content="hxlJwydJQGGNf58k_xhPIcvSaIB1Vb3LplRFOPUyl0g"/>
@@ -286,7 +293,6 @@
                                                 <p class="logmsg"></p>
                                                 <a href="{{ route('password.request') }}" class="forgot_password">Забыл пароль</a>
                                             </div>
-
                                         </div>
                                     </div>
                                     <div class="btn_wrapper">
@@ -298,7 +304,6 @@
                         </div>
                     @endif
                     <div class="mob_menu_item">
-
                         <ul>
                             @if(Auth::guest())
                                 <li>
@@ -527,6 +532,11 @@
                             <li>
                                 <a href="{{url('registration')}}">Регистрация для клубов</a>
                             </li>
+                            @if(false)
+                            <li>
+                                <a href="{{url('clubs-offers')}}">Биржа предложений</a>
+                            </li>
+                            @endif
                         </ul>
                     </div>
                 </div>
