@@ -37,7 +37,7 @@
                             @if(isset( $offersBrand  ) && count($offersBrand)>0)
                                 <div class="company_offers_list">
                                     @foreach($offersBrand as $offer)
-                                        <a href="#" class="offer_item" data-id="{{$offer->id}}" data-remodal-target="company_offers_modal_{{$offer->id}}">
+                                        <a href="#" class="offer_item" data-id="{{$offer->id}}" data-remodal-target="<?= player() ? 'company_offers_alert' : 'company_offers_modal_'.$offer->id?>">
                                             <div class="img_wrapper">
                                                 <img src="{{($offer->image != '') ? url('storage/offers/'.$offer->image) : asset('img/default-club-preview-image.svg')}}"
                                                      alt="image">
@@ -51,6 +51,11 @@
                                                 </div>
                                             </div>
                                         </a>
+                                        @if(player())
+                                            <div class="remodal company_offers_modal" data-remodal-id="company_offers_alert" data-remodal-options="hashTracking: false">
+                                                <button data-remodal-action="close" class="remodal-close"></button>
+                                            </div>
+                                        @else
                                         <div class="remodal company_offers_modal" data-remodal-id="company_offers_modal_{{$offer->id}}" data-remodal-options="hashTracking: false">
                                             <button data-remodal-action="close" class="remodal-close"></button>
                                             <div class="remodal-content">
@@ -91,6 +96,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @endif
                                     @endforeach
                                 </div>
                                 @if(isset( $offersBrand ) && count($offersBrand)>66)
