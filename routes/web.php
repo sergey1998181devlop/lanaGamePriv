@@ -56,7 +56,7 @@ Route::post('clubs/add-list','clubsController@savePriceList' );
 Route::post('clubs/add-image','clubsController@saveImage' );
 
 Route::get('searchCities','HomeController@searchCities');
-Route::post('searchMetro','HomeController@searchMetro');
+Route::get('searchMetro','HomeController@searchMetro');
 Route::post('like-club','clubsController@likeClub');
 Route::post('unlike-club','clubsController@unLikeClub');
 
