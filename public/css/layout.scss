@@ -7319,6 +7319,7 @@ section.club_page_main_info_wrapper {
             color: #000000;
 
             .report {
+                position: relative;
                 display: block;
                 border: none;
                 outline: none;
@@ -7334,6 +7335,27 @@ section.club_page_main_info_wrapper {
                 padding: 5px;
                 background-color: transparent;
                 margin-left: 10px;
+
+                &:before{
+                    content: 'Отправить комментарий к клубу';
+                    display: none;
+                    position: absolute;
+                    top: 50%;
+                    left: 110%;
+                    width: 185px;
+                    background-color: #ffffff;
+                    border-radius: 12px;
+                    padding: 10px;
+                    color: #000000;
+                    font-size: 11px;
+                    transform: translateY(-50%);
+                }
+
+                &:hover{
+                    &:before{
+                        display: block;
+                    }
+                }
             }
         }
 
