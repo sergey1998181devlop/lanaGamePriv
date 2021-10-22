@@ -132,18 +132,14 @@
                             }
                         }
                         ?>
-
-
-                            <form action="" method="post" data-like-club-form class="<?=clubLiked($club->id) ? 'liked' : 'notLiked'?>">
-                                {{ csrf_field() }}
-                                <button type="submit" class="favorite" data-like-club><img src="{{asset('/img/icons/like-gray.svg')}}" alt="like"></button>
-                            </form>
-                            <form action="" method="post" class="unlike_club" style="display: none" data-unlike-club-form>
-                                {{ csrf_field() }}
-                                <button type="submit" class="favorite" data-unlike-club><img src="{{asset('/img/icons/like.svg')}}" alt="like"></button>
-                            </form>
-
-
+                        <form action="" method="post" data-like-club-form class="<?=clubLiked($club->id) ? 'liked' : 'notLiked'?>">
+                            {{ csrf_field() }}
+                            <button type="submit" class="favorite" data-like-club><img src="{{asset('/img/icons/like-gray.svg')}}" alt="like"></button>
+                        </form>
+                        <form action="" method="post" class="unlike_club" style="display: none" data-unlike-club-form>
+                            {{ csrf_field() }}
+                            <button type="submit" class="favorite" data-unlike-club><img src="{{asset('/img/icons/like.svg')}}" alt="like"></button>
+                        </form>
                         @if($showCallButton)
                             <button type="button"
                                     class="club_calling"
@@ -717,6 +713,14 @@
         <div class="container">
             <div class="club_price_wrapper">
                 <div class="club_price">Аренда от {{$club->club_min_price}} ₽/час</div>
+                <form action="" method="post" data-like-club-form class="<?=clubLiked($club->id) ? 'liked' : 'notLiked'?>">
+                    {{ csrf_field() }}
+                    <button type="submit" class="favorite" data-like-club><img src="{{asset('/img/icons/like-gray.svg')}}" alt="like"></button>
+                </form>
+                <form action="" method="post" class="unlike_club" style="display: none" data-unlike-club-form>
+                    {{ csrf_field() }}
+                    <button type="submit" class="favorite" data-unlike-club><img src="{{asset('/img/icons/like.svg')}}" alt="like"></button>
+                </form>
                 @if($club->closed == '1')
                     <a class="club_calling closed">Закрыто навсегда</a>
                 @else
