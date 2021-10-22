@@ -1,4 +1,6 @@
 jQuery(function() {
+    const guest = jQuery('meta[name="user-role"]').attr('content') === 'guest';
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -17,6 +19,12 @@ jQuery(function() {
     }
 
     jQuery('[data-like-club]').on('click', function(e) {
+        if(guest){
+            jQuery('[data-remodal-id="success_modal"]')
+                .find('.title')
+                .text('Если не хотите потерять понравившийся клуб, зарегистрируйтесь или авторизуйтесь на сайте.')
+            jQuery('[data-remodal-id="success_modal"]').remodal().open();
+        }
         let $form = jQuery(this).closest('form'),
             club_id = jQuery('meta[name="club_id"]').attr('content');
 

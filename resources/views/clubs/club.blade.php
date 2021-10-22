@@ -133,7 +133,7 @@
                         }
                         ?>
 
-                        @if(player())
+
                             <form action="" method="post" data-like-club-form class="<?=clubLiked($club->id) ? 'liked' : 'notLiked'?>">
                                 {{ csrf_field() }}
                                 <button type="submit" class="favorite" data-like-club><img src="{{asset('/img/icons/like-gray.svg')}}" alt="like"></button>
@@ -142,7 +142,7 @@
                                 {{ csrf_field() }}
                                 <button type="submit" class="favorite" data-unlike-club><img src="{{asset('/img/icons/like.svg')}}" alt="like"></button>
                             </form>
-                        @endif
+
 
                         @if($showCallButton)
                             <button type="button"

@@ -241,6 +241,10 @@ jQuery(function() {
         }
     });
 
+    jQuery('#search-form').on('submit', function(e) {
+        e.preventDefault();
+    });
+
     jQuery('#report-club-form').on('submit', function(e) {
         e.preventDefault();
 

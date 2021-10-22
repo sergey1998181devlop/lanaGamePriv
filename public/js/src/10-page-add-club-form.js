@@ -1,5 +1,5 @@
 jQuery(function() {
-    const is_admin = jQuery('meta[name="is-admin"]').attr('content') === '1';
+    const admin = jQuery('meta[name="user-role"]').attr('content') === 'admin';
 
     let $form = jQuery('#add-club-form'),
         $city_input = jQuery('#select-сity'),
@@ -32,7 +32,7 @@ jQuery(function() {
         tabSelector: '.form_tab'
     });
 
-    if (is_admin) {
+    if (admin) {
         $form.find('input[required], select[required], textarea[required]')
             .prop('required', false)
             .attr('required', null);
@@ -225,7 +225,7 @@ jQuery(function() {
             return new Promise((resolve, reject) => {
                 let hasErrors = false;
 
-                if (is_admin) {
+                if (admin) {
                     return resolve();
                 }
 
@@ -447,7 +447,7 @@ jQuery(function() {
                     return reject();
                 }
 
-                if (is_admin) {
+                if (admin) {
                     return resolve();
                 }
 
@@ -476,7 +476,7 @@ jQuery(function() {
             return new Promise((resolve, reject) => {
                 let hasErrors = false;
 
-                if (is_admin) {
+                if (admin) {
                     return resolve();
                 }
 
