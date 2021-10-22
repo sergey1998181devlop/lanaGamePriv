@@ -22,7 +22,7 @@ jQuery(function() {
         if(guest){
             jQuery('[data-remodal-id="success_modal"]')
                 .find('.title')
-                .text('Если не хотите потерять понравившийся клуб, зарегистрируйтесь или авторизуйтесь на сайте.')
+                .html('Если не хотите потерять понравившийся клуб, <a href="/registration">зарегистрируйтесь</a> или <a href="/login">авторизуйтесь</a> на сайте как ланнер.')
             jQuery('[data-remodal-id="success_modal"]').remodal().open();
         }
         let $form = jQuery(this).closest('form'),
