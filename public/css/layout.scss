@@ -6196,6 +6196,14 @@ section.personal_page_wrapper {
                             color: #dc0000;
                             text-decoration: none;
                         }
+
+                        span{
+                            img{
+                                width: 20px;
+                                height: 20px;
+                                margin: 0 3px -5px;
+                            }
+                        }
                     }
                     .club_list_content {
                         width: calc(100% + 78px);
