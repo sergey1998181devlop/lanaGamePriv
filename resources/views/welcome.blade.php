@@ -6,11 +6,13 @@
 @endsection
 @section('content')
     <?
-    $order_by = 'price';
+    $order_by = '';
     if (isset($_GET['order']) && $_GET['order'] == 'nearby') {
         $order_by = 'nearby';
     } elseif (isset($_GET['order']) && $_GET['order'] == 'rating') {
         $order_by = 'rating';
+    } elseif (isset($_GET['order']) && $_GET['order'] == 'price') {
+        $order_by = 'price';
     }
     $order_key = isset($_GET['order_key']) && \in_array($_GET['order_key'], ['asc', 'desc']) ? $_GET['order_key'] : 'asc';
     $show = 'list';

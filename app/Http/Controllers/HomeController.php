@@ -29,7 +29,7 @@ class HomeController extends Controller
 
     public function __construct()
     {
-        $this->middleware('owner',['only' => ['searchMetro','clubs_offers']]);
+        $this->middleware('owner',['only' => ['searchMetro']]);
     }
 
     public function redirectToCity(){
@@ -139,13 +139,16 @@ class HomeController extends Controller
         setcookie("geo", "browser");
       }
 
-      $order = 'club_min_price';
+      $order = '';
       $order_key='ASC';
       if($request->input('order') == 'nearby'){
         $order = 'nearby';
       }elseif ($request->input('order') == 'rating') {
         $order = 'rating';
         $order_key='DESC';
+      }elseif ($request->input('order') == 'price') {
+        $order = 'club_min_price';
+        $order_key='ASC';
       }
       if ($request->input('order_key') == "desc"){
         $order_key = "DESC";
@@ -154,6 +157,7 @@ class HomeController extends Controller
         $order_key = "ASC";
       }
       $paginate = 9;
+      $paginateRand=999999999; //для создании рандомный порядок
       if ($request->input('show') == "map"){
         $paginate = 999999999999999; // показать все
       }
@@ -162,35 +166,39 @@ class HomeController extends Controller
       }else{
         $search_string = "";
       }
-      if($order == 'nearby'){
-          if ($request->input('show') == "map"){
-              $clubs= club::SelectCartFeilds4Home($lat, $lon)->Published()->whereNull('hidden_at')->where('closed','0')->with(array('metro'=>function($query) {
-                $query->select('id','name','color');
-              },'city'=>function($query) {
-                $query->select('id','name');
-              }))->orderBy($order,$order_key)->paginate($paginate);
-          }else{
-              $clubs= club::SelectCartFeilds4Home($lat, $lon)->Published()->CorrentCity()->whereNull('hidden_at')->with(array('metro'=>function($query) {
-                $query->select('id','name','color');
-              }))->orderBy('closed')->orderBy($order,$order_key)->paginate($paginate);
-          }
 
+      $clubs= club::SelectCartFeilds4Home($lat, $lon)->Published()->whereNull('hidden_at');
 
+      if ($request->input('show') == "map"){
+        $clubs=$clubs->where('closed','0')->with(array('metro'=>function($query) {
+          $query->select('id','name','color');
+        },'city'=>function($query) {
+          $query->select('id','name');
+        }));
       }else{
-
-            if ($request->input('show') == "map"){
-              $clubs= club::SelectCartFeilds4Home($lat, $lon)->Published()->whereNull('hidden_at')->where('closed','0')->where('club_name', 'like', '%'.$search_string.'%')->with(array('metro'=>function($query) {
-                $query->select('id','name','color');
-              },'city'=>function($query) {
-                $query->select('id','name');
-              }))->orderBy($order,$order_key)->paginate($paginate);
-            }else{
-              $clubs= club::SelectCartFeilds4Home($lat, $lon)->Published()->CorrentCity()->whereNull('hidden_at')->where('club_name', 'like', '%'.$search_string.'%')->with(array('metro'=>function($query) {
-                $query->select('id','name','color');
-              }))->orderBy('closed')->orderBy($order,$order_key)->paginate($paginate);
-            }
-
+        $clubs=$clubs->CorrentCity()->whereNull('hidden_at')->where('club_name', 'like', '%'.$search_string.'%')->orderBy('closed')->with(array('metro'=>function($query) {
+          $query->select('id','name','color');
+        }));
       }
+      if($order == ''){
+        if(\Request::ajax())
+        {
+          if(isset($_COOKIE["randOrder"])){
+            $randOrder = $_COOKIE["randOrder"];
+          }else{
+            $randOrder = rand(10,$paginateRand);
+            setcookie("randOrder", $randOrder);
+          }
+        }else{
+         $randOrder = rand(10,$paginateRand);
+         setcookie("randOrder", $randOrder);
+        }
+        $clubs=$clubs->inRandomOrder($randOrder);
+      }else{
+        $clubs=$clubs->orderBy($order,$order_key);
+      }
+      $clubs=$clubs->paginate($paginate);
+
       $totalClubsWithoutClosed = ($request->input('show') == "map") ? $clubs->total() : club::Published()->whereNull('hidden_at')->where('closed','0')->CorrentCity()->count();
        $now = new DateTime();
        $today = strtolower(date("l"));

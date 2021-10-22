@@ -339,27 +339,30 @@ class clubsController extends Controller
         }
         $club->payment_methods = implode(',',$payment_methods);
         $club->url=$this->clean($request->input('club_name'));
-
         if($club->main_preview_photo != $request->input('main_preview_photo')){
+            
             $club->club_thumbnail = '';
-            $filename = explode('clubs/images/',$request->input('main_preview_photo'));
+            $filename = explode('clubs/',$request->input('main_preview_photo'));
             if(isset($filename[1])){
+               
                 $filename=$filename[1];
-                if(file_exists(storage_path('app/public/clubs/images/'.$filename))){
-                    $infoPath = pathinfo(storage_path('app/public/clubs/images/'.$filename));
-                    $extension = $infoPath['extension'];
-                    if($extension != 'jfif' &&  $extension != 'HEIC'){
-                        $destinationPath = storage_path('app/public/clubs/thumbnail');
-                            $img = ImageResize::make(storage_path('app/public/clubs/images/'.$filename));
+                if(file_exists(storage_path('app/public/clubs/'.$filename))){
+                    $infoPath = pathinfo(storage_path('app/public/clubs/'.$filename));
+                    $subPath = date("Y").'/'.date("M").'/'.date("d");
+                    if (!file_exists(storage_path('app/public/clubs/thumbnail/'.$subPath))) {
+                        mkdir(storage_path('app/public/clubs/thumbnail/'.$subPath), 0777, true);
+                    }
+                    if($infoPath['extension'] != 'jfif' &&  $infoPath['extension'] != 'HEIC'){
+                        $destinationPath = storage_path('app/public/clubs/thumbnail/'.$subPath);
+                            $img = ImageResize::make(storage_path('app/public/clubs/'.$filename));
                             $img->resize(300,'auto', function ($constraint) {
                                 $constraint->aspectRatio();
-                        })->save($destinationPath.'/'.$filename);
-                        $club->club_thumbnail =  url('storage/clubs/thumbnail').'/'. $filename;
+                        })->save($destinationPath.'/'.$infoPath['basename']);
+                        $club->club_thumbnail =  url('storage/clubs/thumbnail').'/'.$subPath.'/'. $infoPath['basename'];
                     }
                 }
             }
         }
-
         $club->main_preview_photo = $request->input('main_preview_photo');
         if(!admin() && !$this->isDraft){
             $data = $request->validate($validationAr);
