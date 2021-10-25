@@ -174,7 +174,7 @@ public function delete(Request $request,$id)
 {
     $offer=offer::findorFail($id);
     if($offer->delete()){
-        $this->ClearRemovedoffer($offer);
+        // $this->ClearRemovedoffer($offer);
     }
     if($request->input('panel') == 1){
         return back()->with('success','Операция выполнена успешно');

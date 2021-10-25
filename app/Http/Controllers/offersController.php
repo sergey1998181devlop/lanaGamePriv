@@ -16,7 +16,7 @@ class offersController extends Controller
         $this->middleware('owner');
     }
     public function views($id){
-        $offer=offer::where('id',$id)->first();
+        $offer=offer::select('id','views')->where('id',$id)->first();
         if(!$offer ){
             abort(404);
         }
@@ -26,7 +26,7 @@ class offersController extends Controller
         $offer->save();
     }
     public function views_click($id){
-        $offer=offer::where('id',$id)->first();
+        $offer=offer::select('id','views_click')->where('id',$id)->first();
         if(!$offer ){
             abort(404);
         }
@@ -47,12 +47,6 @@ class offersController extends Controller
         $moreOffers = offer::select('id','url','image','name')->where('id','!=',$offer->id)->inRandomOrder()->limit(2)->get();
         return view('offers.offer')->with(['offer'=>$offer,'moreOffers'=>$moreOffers]);
      }
-     public function alloffers(){
-
-        $offers=offer::orderBy('order_no','desc')->orderBy('created_at','desc')->paginate(100);
-
-        return view('offers.offers')->with(['offers'=>$offers]);
-     }
      public function addFromUser(Request $request){
          $validatedData =  $this->validate($request ,[
               'name'=>'required',
@@ -62,13 +56,9 @@ class offersController extends Controller
          $errors=array();
          $user=Auth::user();
        
-         $club = club::select('id','url','club_name')->where('user_id','=',$user->id)->first();
          if (count($errors) > 0){
              return back()->withInput()->withErrors($errors);
             }
-         if (count($errors) > 0){
-             return back()->withInput()->withErrors($errors);
-             }
 
         $filename = explode('/storage/',$request->input('offer_photos'));
 
@@ -76,16 +66,12 @@ class offersController extends Controller
          $offer->name=$request->input('name');
          $offer->about= $request->input('about');
          $offer->description= $request->input('description');
-         $offer->user_name= $user->name;
-         $offer->user_phone= $user->phone;
+         $offer->user_id = Auth::user()->id;
          $offer->price= $request->input('price');
-         $offer->user_link= $club->id;
-         $offer->user_email= $user->email;
          $offer->type= "newClub";
          $offer->image="../".$filename[1];
          $offer->url=ucwords(str_replace(" ","-",$request->input('name')));
          $offer->save();
-     
          return true;
      }
      

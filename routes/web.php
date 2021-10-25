@@ -40,7 +40,6 @@ Route::get('posts','postsController@allposts');
 
 // объявления
 Route::get('{id}_offer_{url}','offersController@offer');
-Route::get('offers','offersController@alloffers');
 
 // клубы
 Route::get('personal/clubs', 'clubsController@clubs');

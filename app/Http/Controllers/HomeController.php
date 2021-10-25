@@ -63,12 +63,16 @@ class HomeController extends Controller
     public function clubs_offers(){
       $offersMyClub = [];
       if(owner()){
-        $user=Auth::user();
-        $offersMyClub=offer::select('*')->where('offers.user_email','=', $user->email)->where('offers.deleted_at','=', null)->leftJoin('clubs','clubs.id', '=', 'offers.user_link')->paginate(66);
+        $offersMyClub=offer::where('offers.user_id', Auth::user()->id)->get();
       }
-      $offersBrand=offer::select('*')->where('type', '=', 'newBrand')->orderBy('order_no','desc')->orderBy('created_at','desc')->paginate(66);
-      $offersClub=offer::select('*', 'clubs.id as clubsid')->where('type', '=', 'newClub')->where('offers.published_at','!=', null)->orderBy('order_no','desc')->leftJoin('clubs','clubs.id', '=', 'offers.user_link')->orderBy('offers.created_at','desc')->paginate(66);
-      
+      $offersBrand=offer::where('type', 'newBrand')->orderBy('order_no','desc')->orderBy('created_at','desc')->get();
+      $offersClub=offer::where('type', 'newClub')->where('published_at','!=', null)->with(array('user'=>function($query) {
+        $query->select('id','name','phone','email');
+      },
+      'firstClub'=>function($query) {
+        $query->select('id','club_name','user_id','url','club_city')->with('city:id,en_name');
+      }
+      ))->orderBy('order_no','desc')->orderBy('created_at','desc')->get();
       return view('about.clubs_offers')->with(['offersBrand'=>$offersBrand,'offersClub'=>$offersClub, 'offersMyClub'=>$offersMyClub]);
     }
     public function cities_list(){

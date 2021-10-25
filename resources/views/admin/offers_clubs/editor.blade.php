@@ -2,10 +2,23 @@
 function customOfferVal($name,$offer = array()){
     if(!empty(old($name))){return old($name);}
     
-    if(!empty($offer)){
+    if(!empty($offer) && $offer->$name != ''){
        return $offer->$name;}
        if($name=="type" && isset($_GET['type'])){
         return $_GET['type'];
+     }
+     if(isset($offer->user)){
+       switch ($name) {
+        case 'user_phone':
+          return $offer->user->phone;
+        break;
+        case 'user_name':
+          return $offer->user->name;
+        break;
+        case 'user_email':
+          return $offer->user->email;
+        break;
+       }
      }
        return '';
 }
@@ -60,10 +73,10 @@ $action=$page == 'addOffer' ? url('offer/create') : url('offer/update').'/'.$off
                   <label for="price">Цена</label>
                   <input type="text" id="price" value="{{customOfferVal('price',$offer)}}" name="price" placeholder="Цена">
                 </div>       
-								<div class="write-article-content">
+								<!-- <div class="write-article-content">
                   <label for="user_link">Ссылка на клуб</label>
                   <input type="text" id="user_link" value="{{customOfferVal('user_link',$offer)}}" name="user_link" placeholder="Ссылка на клуб">
-                </div>       
+                </div>        -->
 								<div class="write-article-content">
                   <label for="user_phone">Телефон</label>
                   <input type="text" id="user_phone" value="{{customOfferVal('user_phone',$offer)}}" name="user_phone" placeholder="Телефон">

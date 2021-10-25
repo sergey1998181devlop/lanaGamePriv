@@ -148,7 +148,12 @@
                                                 </div>
                                                 <div class="info_item">
                                                     <div class="price">{{$offer->price}} ₽</div>
-                                                    <div class="club_name">Клуб: <span>{{$offer->club_name}}</span></div>
+                                                    @isset($offer->firstClub)
+                                                    @if(count($offer->firstClub) > 0)
+                                                    <div class="club_name">Клуб: <span>{{$offer->firstClub->first()->club_name}}</span></div>
+                                                    @endif
+                                                    @endisset
+                                                    
                                                     <div class="date">Дата публикации: <span>{{$offer->created_at}}</span></div>
                                                 </div>
                                             </div>
@@ -166,24 +171,32 @@
                                                             <img src="{{($offer->image != '') ? url('storage/offers/'.$offer->image) : asset('img/default-club-preview-image.svg')}}"
                                                                  alt="image">
                                                         </div>
+                                                        
+                                                        @isset($offer->firstClub)
+                                                        @if(count($offer->firstClub) > 0)
                                                         <div class="subtitle">Клуб</div>
-                                                        <div class="contact_name"><a href="/{{$offer->clubsid}}_computerniy_club_{{$offer->url}}_moskva">{{$offer->club_name}}</a></div>
+                                                        <div class="contact_name"><a href="/{{$offer->firstClub->first()->id}}_computerniy_club_{{$offer->firstClub->first()->url}}_{{$offer->firstClub->first()->city->en_name}}">{{$offer->firstClub->first()->club_name}}</a></div>
+                                                        @endif
+                                                        @endisset
+                                                        
                                                         <div class="subtitle">Дата публикации</div>
                                                         <div class="contact_name">{{$offer->created_at}}</div>
+                                                        @if($offer->user_name!= "" || isset($offer->user) )
                                                         <div class="subtitle">Контактное лицо</div>
-                                                        <div class="contact_name">{{$offer->user_name}}</div>
+                                                        <div class="contact_name">{{$offer->user_name != '' ? $offer->user_name : $offer->user->name}}</div>
+                                                        @endif
                                                         <button type="button" class="offer_btn show_offer_contacts" data-id="{{$offer->id}}">Показать контакт</button>
                                                         <div class="contacts_wrapper">
-                                                            @if( $offer->user_phone != "" )
+                                                            @if($offer->user_phone!= "" || isset($offer->user) != "" )
                                                                 <div class="club_contact">
                                                                     <img src="{{asset('/img/phone.svg')}}" alt="phone">
-                                                                    <a href="tel:{{$offer->user_phone}}">{{$offer->user_phone}}</a>
+                                                                    <a href="tel:{{$offer->user_phone!= "" ? $offer->user_phone : '+7'.$offer->user->phone}}">{{$offer->user_phone!= "" ? $offer->user_phone : '8'.$offer->user->phone}}</a>
                                                                 </div>
                                                             @endif
-                                                            @if( $offer->user_email != "" )
+                                                            @if($offer->user_email!= "" || isset($offer->user) != "" )
                                                                 <div class="club_contact">
                                                                     <img src="{{asset('/img/mail.svg')}}" alt="email">
-                                                                    <a href="mailto:{{$offer->user_email}}">{{$offer->user_email}}</a>
+                                                                    <a href="mailto:{{$offer->user_email!= "" ? $offer->user_email : $offer->user->email}}">{{$offer->user_email!= "" ? $offer->user_email : $offer->user->email}}</a>
                                                                 </div>
                                                             @endif
                                                         </div>
@@ -227,18 +240,21 @@
                                                 </div>
                                                 <div class="info_item">
                                                     <div class="price">{{$offer->price}} ₽</div>
-                                                    <div class="club_name">Клуб: <span>{{$offer->user_link}}</span></div>
+                                                    @if($offer->published_at != null)
                                                     <div class="date">Дата публикации: <span>{{$offer->published_at}}</span></div>
+                                                    @else
+                                                    <div class="date">Дата создании: <span>{{$offer->created_at}}</span></div>
+                                                    @endif
                                                 </div>
                                                 <div class="club_status_wrapper">
-                                                    <img src="{{asset('/img/time-slot.svg')}}" alt="icon">
-                                                    <span>
                                                         @if($offer->published_at != null)
-                                                            Опубликован
+                                                        <span>  Опубликован </span>
                                                         @else
+                                                        <img src="{{asset('/img/time-slot.svg')}}" alt="icon">
+                                                        <span>
                                                             На модерации
+                                                        </span>
                                                         @endif
-                                                    </span>
                                                 </div>
                                                 <?/*
                                                 <form action="" method="get">
@@ -319,6 +335,7 @@
 @section('scripts')
     <script>
         $(document).on('click', '.offer_item', function() {
+            if(typeof $(this).attr('data-id') === 'undefined')return;
             jQuery.ajax({
                 type: 'get',
                 url: '{{url('/')}}/offer/views/' + $(this).attr('data-id'),
@@ -329,6 +346,7 @@
             });
         });
         $(document).on('click', '.show_offer_contacts', function() {
+            if(typeof $(this).attr('data-id') === 'undefined')return;   
             jQuery.ajax({
                 type: 'get',
                 url: '{{url('/')}}/offer/views_click/' + $(this).attr('data-id'),
