@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\contact;
 use Carbon\Carbon;
 use App\club;
+use App\offer;
 use App\langame_request;
 use App\report;
 use App\club_report;
@@ -23,8 +24,9 @@ class adminController extends Controller
         $newMessages = contact::whereNull('seen_at')->count();
         $newReports = report::whereNull('seen_at')->count();
         $newClubs= club::UnderEdit()->count();
+        $newOffersClubs = offer::where('type', 'newClub')->where('published_at','=', null)->paginate(99999)->total();
         $newLangameRequests= langame_request::whereNull('seen_at')->count();
-        return view('admin.home')->with(['newMessages'=>$newMessages,'newClubs'=>$newClubs,'newLangameRequests'=>$newLangameRequests,'newReports'=>$newReports]);
+        return view('admin.home')->with(['newMessages'=>$newMessages,'newClubs'=>$newClubs,'newOffersClubs'=>$newOffersClubs,'newLangameRequests'=>$newLangameRequests,'newReports'=>$newReports]);
     }
     public function contacts(){
         $messages = contact::select('id','name','phone','email','created_at','seen_at')->whereNull('seen_at')->orderBy('created_at','DESC')->get();
