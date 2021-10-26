@@ -30,6 +30,7 @@
             <th>Дата добавления</th>
             <th>Просмотров</th>
             <th>Показать контакт</th>
+            <th>Приоритет</th>
             <th>Статус</th>
             <th>Действие</th>
           </tr>
@@ -41,6 +42,7 @@
             <td name="phone">{{$offer->created_at}}</td>
             <td name="views">{{$offer->views}}</td>
             <td name="views_click">{{$offer->views_click}}</td>
+            <td><button type="button" class="btn-sm btn btn-primary reOrderOfferButton"  data-toggle="modal" data-target="#reOrderOffer" contactId="{{$offer->id}}">{{$offer->order_no}}</button></td>
             <?php
              if($offer->published_at != null){
                 $status = "Опубликован";

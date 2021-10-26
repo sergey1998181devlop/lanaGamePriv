@@ -95,7 +95,7 @@
                                         @endif
                                     @endforeach
                                 </div>
-                                @if(isset( $offersBrand ) && count($offersBrand)>66)
+                                @if($hasMoreOffersBrand)
                                     <a id="show_more_company_offers" class="show_more pointer">Показать ещё</a>
                                 @endif
                             @endif
@@ -353,6 +353,24 @@
                 data: '',
                 success: function(data) {
                     console.log(data);
+                }
+            });
+        });
+        
+        let correntPage = 1;
+        $(document).on('click', '#show_more_company_offers', function() {
+            var nextPage = correntPage + 1;
+            jQuery.ajax({
+                type: 'get',
+                url: '{{url('/')}}/clubs-offers',
+                data: {'page': nextPage},
+                success: function(data) {
+                    correntPage++;
+                    $('.company_offers_list').append(data.html);
+                    $('.remodal').remodal();
+                    if (data.last == correntPage) {
+                        $('#show_more_company_offers').hide();
+                    }
                 }
             });
         });

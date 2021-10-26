@@ -62,10 +62,11 @@ class HomeController extends Controller
     }
     public function clubs_offers(){
       $offersMyClub = [];
+      $paginate = 6;
       if(owner()){
         $offersMyClub=offer::where('offers.user_id', Auth::user()->id)->get();
       }
-      $offersBrand=offer::where('type', 'newBrand')->orderBy('order_no','desc')->orderBy('created_at','desc')->get();
+      $offersBrand=offer::where('type', 'newBrand')->orderBy('order_no','desc')->orderBy('created_at','desc')->paginate($paginate);
       $offersClub=offer::where('type', 'newClub')->where('published_at','!=', null)->with(array('user'=>function($query) {
         $query->select('id','name','phone','email');
       },
@@ -73,7 +74,18 @@ class HomeController extends Controller
         $query->select('id','club_name','user_id','url','club_city')->with('city:id,en_name');
       }
       ))->orderBy('order_no','desc')->orderBy('created_at','desc')->get();
-      return view('about.clubs_offers')->with(['offersBrand'=>$offersBrand,'offersClub'=>$offersClub, 'offersMyClub'=>$offersMyClub]);
+      if(\Request::ajax())
+      {
+        $html = '';
+        foreach ($offersBrand as $offer) {
+          $view = View::make('offer', [
+              'offer' => $offer
+          ]);
+          $html .= $view->render();
+        }
+        return response()->json(['html' => $html,'last'=>$offersBrand->lastPage(),'total'=>$offersBrand->total()]);
+      }
+      return view('about.clubs_offers')->with(['offersBrand'=>$offersBrand,'offersClub'=>$offersClub, 'offersMyClub'=>$offersMyClub, 'hasMoreOffersBrand'=>($offersBrand->total() > $paginate ) ? true : false]);
     }
     public function cities_list(){
         $cities = city::query()->orderBy('name', 'asc')->get();
@@ -115,7 +127,7 @@ class HomeController extends Controller
       $posts=post::select('id','url','image','name','about')->orderBy('order_no','desc')->orderBy('created_at','desc')->limit(3)->get();
       $postsCount=post::count();
       $now = new DateTime();
-       $today = strtolower(date("l"));
+      $today = strtolower(date("l"));
       return view('main')->with(['clubs'=>$clubs,'posts'=>$posts,'postsCount'=>$postsCount,'now'=>$now,'today'=>$today,'mainPage'=>true]);
     }
     public function index(Request $request)

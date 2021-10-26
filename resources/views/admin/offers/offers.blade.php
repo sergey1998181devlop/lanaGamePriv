@@ -30,6 +30,7 @@
             <th>Дата добавления</th>
             <th>Просмотров</th>
             <th>Показать контакт</th>
+            <th>Приоритет</th>
             <th>Действие</th>
           </tr>
         </thead>
@@ -40,6 +41,7 @@
             <td name="phone">{{$offer->created_at}}</td>
             <td name="views">{{$offer->views}}</td>
             <td name="views_click">{{$offer->views_click}}</td>
+            <td><button type="button" class="btn-sm btn btn-primary reOrderOfferButton"  data-toggle="modal" data-target="#reOrderOffer" contactId="{{$offer->id}}">{{$offer->order_no}}</button></td>
             <td>
                 <a class="btn-sm btn btn-info" href="{{url('offer/edit/')}}/{{$offer->id}}">Отредактировать</a>
                 <button type="button" class="btn-sm btn btn-danger deleteOfferButton"  data-toggle="modal" data-target="#deleteOffer" contactId="{{$offer->id}}" contactName="{{$offer->name}}">{{__('messages.Delete')}}</button>
