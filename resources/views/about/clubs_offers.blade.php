@@ -368,6 +368,7 @@
                     correntPage++;
                     $('.company_offers_list').append(data.html);
                     $('.remodal').remodal();
+                    jQuery(".offer_content_wrapper").on("click",".show_offer_contacts",function(e){jQuery(this).closest(jQuery(".offer_content_wrapper")).find(".contacts_wrapper").show(),jQuery(this).hide()});
                     if (data.last == correntPage) {
                         $('#show_more_company_offers').hide();
                     }
