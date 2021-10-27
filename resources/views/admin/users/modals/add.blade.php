@@ -57,7 +57,7 @@
                             <label for="rule_" class="col-md-4 col-form-label text-md-right">Тип</label>
                             <div class="col-md-6">
                                 <select name="rules" id="rule_">
-                                <option value="0">Снять права</option>
+                                <option value="0">Нет прав</option>
                                 <option value="1" selected>Админ</option>
                                 <option value="2">Супер-админ</option>
                                 </select>

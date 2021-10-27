@@ -56,7 +56,7 @@
             @elseif(($user->rules == '2'))
             <td name="rules" val="{{$user->rules}}">Супер-админ</td>
             @else
-            <td ></td>
+            <td name="rules" val="0"></td>
             @endif
             <td name="email" val="{{$user->email}}">{{$user->email}}</td>
             <td name="phone" val="{{$user->phone}}">{{$user->phone}}</td>

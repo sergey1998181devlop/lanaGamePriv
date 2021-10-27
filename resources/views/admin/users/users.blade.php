@@ -58,7 +58,7 @@
             @elseif(($user->rules == '2'))
             <td name="rules" val="{{$user->rules}}">Супер-админ</td>
             @else
-            <td ></td>
+            <td name="rules" val="0"></td>
             @endif
             <td>
               <?php
