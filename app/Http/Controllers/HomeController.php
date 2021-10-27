@@ -67,7 +67,7 @@ class HomeController extends Controller
         $offersMyClub=offer::where('offers.user_id', Auth::user()->id)->get();
       }
       $offersBrand=offer::where('type', 'newBrand')->orderBy('order_no','desc')->orderBy('created_at','desc')->paginate($paginate);
-      $offersClub=offer::select('*', 'offers.name as name', 'offers.published_at as published_at','clubs.id as clubsid')->where('offers.type', '=', 'newClub')->where('offers.published_at','!=', null)->leftJoin('clubs','clubs.id', '=', 'offers.user_link')->leftJoin('cities','cities.id','=','clubs.club_city')->orderBy('offers.order_no','desc')->orderBy('offers.created_at','desc')->get();
+      $offersClub=offer::select('*', 'offers.name as name', 'offers.created_at as created_at','clubs.id as clubsid')->where('offers.type', '=', 'newClub')->where('offers.published_at','!=', null)->leftJoin('clubs','clubs.id', '=', 'offers.user_link')->leftJoin('cities','cities.id','=','clubs.club_city')->orderBy('offers.order_no','desc')->orderBy('offers.created_at','desc')->get();
       
       if(\Request::ajax())
       {
