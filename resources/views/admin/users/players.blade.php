@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 @section('page')
-<?php $page='users';?>
-<title>Представители клубов</title>
+<?php $page='players';?>
+<title>Ланнеры</title>
 
 <link href="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 <style>
@@ -20,7 +20,7 @@
    <div class="container-fluid">
 
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Представители клубов<span class="badge badge-pill badge-warning">{{count($users)}}</span></h1>
+<h1 class="h3 mb-2 text-gray-800">Ланнеры<span class="badge badge-pill badge-warning">{{count($users)}}</span></h1>
 
 
 <!-- DataTales Example -->
@@ -38,8 +38,6 @@
             <th>№</th>
             <th>ФИО</th>
             <th>Роль</th>
-            <th>Должность представителя</th>
-            <th>Количество клубов</th>
             <th>Email</th>
             <th>Телефон</th>
             <th>Статус активации почты</th>
@@ -60,60 +58,6 @@
             @else
             <td ></td>
             @endif
-            <td>
-              <?php
-              switch ($user->user_position) {
-                case '1':
-                 echo 'Владелец';
-                break;
-                case '2':
-                  echo 'Управляющий';
-                break;
-                case '3':
-                  echo 'Маркетинг-менеджер';
-                break;
-                case '4':
-                  echo 'Администратор';
-                break;
-              }
-              ?>
-            </td>
-            <?
-            $clubsCount = [];
-            $userClubs = [];
-            if(count($user->clubsPublished) > 0 ){
-              $clubsCount []=' опуб.('.count($user->clubsPublished).')';
-              $userClubs[] ='<p><strong>Опубликованные</strong></p>';
-              foreach($user->clubsPublished as $club){
-                $userClubs[] = '<p><a href="'.url('clubs/'.$club->id.'/'.$club->url).'">'.$club->club_name.'</a></p>';
-              }
-            }
-            if(count($user->clubsUnderEdit) > 0 ){
-              $clubsCount []=' на мод.('.count($user->clubsUnderEdit).')';
-              $userClubs[] ='<p><strong>На модерации</strong></p>';
-              foreach($user->clubsUnderEdit as $club){
-                $userClubs[] = '<p><a href="'.url('clubs/'.$club->id.'/'.$club->url).'">'.$club->club_name.'</a></p>';
-              }
-            }
-            if(count($user->clubsDraft) > 0 ){
-              $clubsCount []=' черн.('.count($user->clubsDraft).')';
-              $userClubs[] ='<p><strong>Черновики</strong></p>';
-              foreach($user->clubsDraft as $club){
-                if($club->club_name == '')continue;
-                $userClubs[] = '<p>'.$club->club_name.'</p>';
-              }
-            }
-            $clubsCount = implode(', ', $clubsCount);
-            $userClubs = implode('',$userClubs);
-            ?>
-            <td>
-             <span class="userClubsCount">{{$clubsCount}}</span> 
-              
-              <div class="userClubs" style="display:none;">
-                {!!$userClubs!!}
-              </div>
-            
-            </td>
             <td name="email" val="{{$user->email}}">{{$user->email}}</td>
             <td name="phone" val="{{$user->phone}}">{{$user->phone}}</td>
             <td>{!!($user->email_verified_at === null) ? 'не активирована' : '<span style="color:green">активирована</span>'!!}</td>

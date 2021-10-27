@@ -17,8 +17,12 @@ class usersController extends Controller
         $this->middleware('rule:1');
     }
     public function index(){
-        $users=User::orderBy('created_at','DESC')->get();
+        $users=User::where('type','owner')->orderBy('created_at','DESC')->get();
         return view('admin.users.users')->with(['users'=>$users]);
+    }
+    public function players(){
+        $users=User::where('type','player')->orderBy('created_at','DESC')->get();
+        return view('admin.users.players')->with(['users'=>$users]);
     }
     public function edit(Request $request){
         $validatedData =  $this->validate($request ,[

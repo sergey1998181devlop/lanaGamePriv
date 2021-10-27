@@ -92,6 +92,7 @@ Route::get('/panel', 'panel\adminController@index');
 
 // users
 Route::get('panel/users','panel\usersController@index');
+Route::get('panel/players','panel\usersController@players');
 Route::post('users/register','panel\usersController@register');
 Route::post('users/edit','panel\usersController@edit');
 Route::post('users/delete','panel\usersController@delete');

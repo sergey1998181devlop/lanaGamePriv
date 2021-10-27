@@ -104,9 +104,11 @@
               <span>Пользователи</span>
           </a>
         
-          <div id="collapseUsers" class="collapse <?=($page=="users") ? ' show': null ?> collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
+          <div id="collapseUsers" class="collapse <?=($page=="users" || $page=="players") ? ' show': null ?> collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
               <div class="bg-white py-2 collapse-inner rounded">
-                  <a class="collapse-item <?php if($page=="users") echo 'active'; ?>" href="{{url('panel/users')}}">Все пользователи</a>
+                  <a class="collapse-item <?php if($page=="users") echo 'active'; ?>" href="{{url('panel/users')}}">Представители клубов</a>
+                  <a class="collapse-item <?php if($page=="players") echo 'active'; ?>" href="{{url('panel/players')}}">Ланнеры</a>
+                  
               </div>
           </div>
       </li>
