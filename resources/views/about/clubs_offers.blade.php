@@ -148,9 +148,9 @@
                                                 </div>
                                                 <div class="info_item">
                                                     <div class="price">{{$offer->price}} ₽</div>
-                                                    @isset($offer->firstClub)
-                                                    @if(count($offer->firstClub) > 0)
-                                                    <div class="club_name">Клуб: <span>{{$offer->firstClub->first()->club_name}}</span></div>
+                                                    @isset($offer->clubsid)
+                                                    @if($offer->clubsid > 0)
+                                                    <div class="club_name">Клуб: <span>{{$offer->club_name}}</span></div>
                                                     @endif
                                                     @endisset
                                                     
@@ -172,18 +172,18 @@
                                                                  alt="image">
                                                         </div>
                                                         
-                                                        @isset($offer->firstClub)
-                                                        @if(count($offer->firstClub) > 0)
+                                                        @isset($offer->clubsid)
+                                                        @if($offer->clubsid > 0)
                                                         <div class="subtitle">Клуб</div>
-                                                        <div class="contact_name"><a href="/{{$offer->firstClub->first()->id}}_computerniy_club_{{$offer->firstClub->first()->url}}_{{$offer->firstClub->first()->city->en_name}}">{{$offer->firstClub->first()->club_name}}</a></div>
+                                                        <div class="contact_name"><a href="/{{$offer->clubsid}}_computerniy_club_{{$offer->url}}_{{$offer->en_name}}">{{$offer->club_name}}</a></div>
                                                         @endif
                                                         @endisset
                                                         
                                                         <div class="subtitle">Дата публикации</div>
                                                         <div class="contact_name">{{$offer->created_at}}</div>
-                                                        @if($offer->user_name!= "" || isset($offer->user) )
+                                                        @if($offer->user_name!= "")
                                                         <div class="subtitle">Контактное лицо</div>
-                                                        <div class="contact_name">{{$offer->user_name != '' ? $offer->user_name : $offer->user->name}}</div>
+                                                        <div class="contact_name">{{$offer->user_name}}</div>
                                                         @endif
                                                         <button type="button" class="offer_btn show_offer_contacts" data-id="{{$offer->id}}">Показать контакт</button>
                                                         <div class="contacts_wrapper">
