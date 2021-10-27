@@ -59,8 +59,14 @@ class mailController extends Controller
         $report = new report();
         $report->message = $request->input('message');
         $report->url =$request->input('url');
-        $report->REMOTE_ADDR =$_SERVER['REMOTE_ADDR'];
-        $report->HTTP_X_FORWARDED_FOR =$_SERVER['HTTP_X_FORWARDED_FOR'];
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        $report->REMOTE_ADDR =$ip;
         
         if(!Auth::guest())
         $report->user_id =Auth::user()->id;
