@@ -86,15 +86,15 @@
           </div>
       </li>
       <li class="nav-item">
-          <a class="nav-link <?php if($page!="offers" && $page!="addOffers") echo 'collapsed'; ?> " data-toggle="collapse" data-target="#collapseOffers" aria-expanded="false" aria-controls="collapsePosts">
+          <a class="nav-link <?php if($page!="offers" && $page!="offersClubs" ) echo 'collapsed'; ?> " data-toggle="collapse" data-target="#collapseOffers" aria-expanded="false" aria-controls="collapsePosts">
           <i class="far fa-newspaper"></i>
               <span>Объявления</span>
           </a>
         
-          <div id="collapseOffers" class="collapse <?=($page=="offers" || $page=="addOffers") ? ' show': null ?> collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
+          <div id="collapseOffers" class="collapse <?=($page=="offers" || $page=="offersClubs") ? ' show': null ?> collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
               <div class="bg-white py-2 collapse-inner rounded">
-                  <a class="collapse-item <?php if($page=="all") echo 'active'; ?>" href="{{url('panel/offers/all')}}">От брендов</a>
-                  <a class="collapse-item <?php if($page=="allClub") echo 'active'; ?>" href="{{url('panel/offers/allClub')}}">От клубов</a>
+                  <a class="collapse-item <?php if($page=="offers") echo 'active'; ?>" href="{{url('panel/offers/all')}}">От брендов</a>
+                  <a class="collapse-item <?php if($page=="offersClubs") echo 'active'; ?>" href="{{url('panel/offers/allClub')}}">От клубов</a>
               </div>
           </div>
       </li>

@@ -54,8 +54,6 @@ class offersController extends Controller
          ]);
      
          $errors=array();
-         $user=Auth::user();
-         $club = club::select('id','url','club_name')->where('user_id','=',$user->id)->first();
 
          if (count($errors) > 0){
              return back()->withInput()->withErrors($errors);
@@ -66,12 +64,11 @@ class offersController extends Controller
          $offer=new offer;
          $offer->name=$request->input('name');
          $offer->about= $request->input('about');
-         $offer->description= $request->input('description');
+         $offer->description= strip_tags($request->input('description'));
          $offer->user_id = Auth::user()->id;
          $offer->price= $request->input('price');
          $offer->type= "newClub";
          $offer->image="../".$filename[1];
-         $offer->user_link= $club->id;
          $offer->url=ucwords(str_replace(" ","-",$request->input('name')));
          $offer->save();
          return true;

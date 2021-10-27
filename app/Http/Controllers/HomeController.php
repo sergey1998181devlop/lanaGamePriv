@@ -17,52 +17,12 @@ use Carbon\Carbon;
 include_once(resource_path('views/includes/functions.blade.php'));
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
 
     public function __construct()
     {
         $this->middleware('owner',['only' => ['searchMetro']]);
     }
 
-    public function redirectToCity(){
-      return redirect('computerniy_club_moskva');
-    }
-    public function redirectOldCitiesURLs($city){
-      // проверяю, $city это точно адрес города?
-      $city=city::where('en_name',$city)->select('id','en_name')->firstOrFail();
-      return redirect('/computerniy_club_'.$city->en_name);
-    }
-
-    public function langame_software(){
-      return view('about.langame_software');
-    }
-    public function redirect_to_software(){
-      return redirect('/software');
-    }
-
-    public function contacts(){
-      return view('about.contacts');
-    }
-    public function policy(){
-      return view('about.policy');
-    }
-    public function user_agreement(){
-      return view('about.user_agreement');
-    }
-    public function about_us(){
-      return view('about.about_us');
-    }
     public function clubs_offers(){
       $offersMyClub = [];
       $paginate = 6;
@@ -70,8 +30,8 @@ class HomeController extends Controller
         $offersMyClub=offer::where('offers.user_id', Auth::user()->id)->get();
       }
       $offersBrand=offer::where('type', 'newBrand')->orderBy('order_no','desc')->orderBy('created_at','desc')->paginate($paginate);
-      $offersClub=offer::select('*', 'offers.name as name', 'offers.created_at as created_at','clubs.id as clubsid')->where('offers.type', '=', 'newClub')->where('offers.published_at','!=', null)->leftJoin('clubs','clubs.id', '=', 'offers.user_link')->leftJoin('cities','cities.id','=','clubs.club_city')->orderBy('offers.order_no','desc')->orderBy('offers.created_at','desc')->get();
-      
+      $offersClub=offer::where('type', 'newClub')->where('published_at','!=', null)->with('user','linkedClub','firstClub')
+      ->orderBy('order_no','desc')->orderBy('created_at','desc')->get();
       if(\Request::ajax())
       {
         $html = '';
@@ -297,5 +257,33 @@ class HomeController extends Controller
     $posts = post::select('id','name','url','created_at')->get();
     $otherLinks = ['about-us','software','register_club','personal/clubs','contacts','user-agreement','policy','login', 'clubs-offers', 'cities', 'registration'];
     return view('about.sitemap')->with(['posts'=>$posts,'cities'=>$cites,'clubs'=>$clubs,'otherLinks'=>$otherLinks]);
+  }
+  public function redirectToCity(){
+    return redirect('computerniy_club_moskva');
+  }
+  public function redirectOldCitiesURLs($city){
+    // проверяю, $city это точно адрес города?
+    $city=city::where('en_name',$city)->select('id','en_name')->firstOrFail();
+    return redirect('/computerniy_club_'.$city->en_name);
+  }
+
+  public function langame_software(){
+    return view('about.langame_software');
+  }
+  public function redirect_to_software(){
+    return redirect('/software');
+  }
+
+  public function contacts(){
+    return view('about.contacts');
+  }
+  public function policy(){
+    return view('about.policy');
+  }
+  public function user_agreement(){
+    return view('about.user_agreement');
+  }
+  public function about_us(){
+    return view('about.about_us');
   }
 }

@@ -148,12 +148,11 @@
                                                 </div>
                                                 <div class="info_item">
                                                     <div class="price">{{$offer->price}} ₽</div>
-                                                    @isset($offer->clubsid)
-                                                    @if($offer->clubsid > 0)
-                                                    <div class="club_name">Клуб: <span>{{$offer->club_name}}</span></div>
-                                                    @endif
-                                                    @endisset
-                                                    
+                                                    @if($offer->linkedClub()->exists())
+                                                    <div class="club_name">Клуб: <span>{{$offer->linkedClub->club_name}}</span></div>
+                                                    @elseif($offer->firstClub()->exists())
+                                                        <div class="club_name">Клуб: <span>{{$offer->firstClub->club_name}}</span></div>
+                                                    @endif 
                                                     <div class="date">Дата публикации: <span>{{$offer->created_at}}</span></div>
                                                 </div>
                                             </div>
@@ -171,19 +170,23 @@
                                                             <img src="{{($offer->image != '') ? url('storage/offers/'.$offer->image) : asset('img/default-club-preview-image.svg')}}"
                                                                  alt="image">
                                                         </div>
-                                                        
-                                                        @isset($offer->clubsid)
-                                                        @if($offer->clubsid > 0)
-                                                        <div class="subtitle">Клуб</div>
-                                                        <div class="contact_name"><a href="/{{$offer->clubsid}}_computerniy_club_{{$offer->url}}_{{$offer->en_name}}">{{$offer->club_name}}</a></div>
+                                                        @if($offer->linkedClub()->exists())
+                                                            <div class="subtitle">Клуб</div>
+                                                            <div class="contact_name">
+                                                                <a href="/{{$offer->linkedClub->id}}_computerniy_club_{{Str::slug($offer->linkedClub->url)}}_{{$offer->linkedClub->city->en_name}}">{{$offer->linkedClub->club_name}}</a>
+                                                            </div>
+                                                        @elseif($offer->firstClub()->exists())
+                                                            <div class="subtitle">Клуб</div>
+                                                            <div class="contact_name">
+                                                                <a href="/{{$offer->firstClub->id}}_computerniy_club_{{Str::slug($offer->firstClub->url)}}_{{$offer->firstClub->city->en_name}}">{{$offer->firstClub->club_name}}</a>
+                                                            </div>
                                                         @endif
-                                                        @endisset
-                                                        
+
                                                         <div class="subtitle">Дата публикации</div>
                                                         <div class="contact_name">{{$offer->created_at}}</div>
-                                                        @if($offer->user_name!= "")
+                                                        @if($offer->user_name!= "" || isset($offer->user) )
                                                         <div class="subtitle">Контактное лицо</div>
-                                                        <div class="contact_name">{{$offer->user_name}}</div>
+                                                        <div class="contact_name">{{$offer->user_name != '' ? $offer->user_name : $offer->user->name}}</div>
                                                         @endif
                                                         <button type="button" class="offer_btn show_offer_contacts" data-id="{{$offer->id}}">Показать контакт</button>
                                                         <div class="contacts_wrapper">

@@ -74,8 +74,8 @@ $action=$page == 'addOffer' ? url('offer/create') : url('offer/update').'/'.$off
                   <input type="text" id="price" value="{{customOfferVal('price',$offer)}}" name="price" placeholder="Цена">
                 </div>       
 								<div class="write-article-content">
-                  <label for="user_link">Ссылка на клуб</label>
-                  <input type="text" id="user_link" value="{{customOfferVal('user_link',$offer)}}" name="user_link" placeholder="Ссылка на клуб">
+                  <label for="user_link">Номер клуба (id)</label>
+                  <input type="text" id="user_link" value="{{customOfferVal('user_link',$offer)}}" name="user_link" placeholder="Номер клуба">
                 </div>
 								<div class="write-article-content">
                   <label for="user_phone">Телефон</label>

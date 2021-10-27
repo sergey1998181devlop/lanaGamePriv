@@ -2,7 +2,7 @@
 
 @extends('admin.layouts.app')
 @section('page')
-<?php $page='offers';?>
+<?php $page='offersClubs';?>
 <title>Все объявления</title>
 <link href="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 @endsection
