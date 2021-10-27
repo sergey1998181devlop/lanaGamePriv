@@ -444,7 +444,7 @@ $keybords = [
     'ZET Gaming',
     'Aorus',
     'GIGABYTE',
-    'Другое',
+    'Нет информации',
 ];
 $mouses = [
     'HyperX',
@@ -479,7 +479,7 @@ $mouses = [
     'ZET Gaming',
     'Aorus',
     'GIGABYTE',
-    'Другое',
+    'Нет информации',
 ];
 $headphones = [
     'HyperX',
@@ -518,7 +518,7 @@ $headphones = [
     'ZET Gaming',
     'Aorus',
     'GIGABYTE',
-    'Другое',
+    'Нет информации',
 ];
 $chairs = [
     'Acer',
@@ -544,7 +544,7 @@ $chairs = [
     'Trust GXT',
     'ZET Gaming',
     'Aorus',
-    'Другое',
+    'Нет информации',
 ];
 $monitor_types = [
     '22"',
@@ -606,5 +606,5 @@ $monitors = [
     'ZET Gaming',
     'Aorus',
     'GIGABYTE',
-    'Другое',
+    'Нет информации',
 ];

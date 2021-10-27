@@ -754,11 +754,16 @@
                     {{ csrf_field() }}
                     <input type="hidden" name="club_id" value="{{$club->id}}">
                     <div class="modal-header">
-                        <h4 class="modal-title">Сменить владелеца клуба</h4>
+                        <h4 class="modal-title">Сменить владелеца клуба
+                            <br>
+                            <small style="font-size: 13px;">Текущий владелец {{$club->user->name}} {{$club->user->phone}}</small>
+                        </h4>
+                        
                     </div>
                     <div class="modal-body">
-
+                    
                         <div class="form-group required">
+                            
                             <label for="select_new_user">Выберите нового владелеца</label>
                             <div class="input_wrapper">
                                 <input id="select_new_user" type="text" placeholder="" autocomplete="false" autocomplete="chrome-off" required>
