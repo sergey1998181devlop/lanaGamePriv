@@ -11,6 +11,9 @@ use Auth;
 use App\metro;
 use View;
 use DateTime;
+use DB;
+use Carbon\Carbon;
+
 include_once(resource_path('views/includes/functions.blade.php'));
 class HomeController extends Controller
 {
@@ -242,6 +245,10 @@ class HomeController extends Controller
       }
       if(($request->input('q'))){
         $cities=city::select('id','name','en_name','metroMap','parentName')->where('name', 'like', $request->input('q') . '%')->orWhere('en_name', 'like', $request->input('q') . '%')->orderBy('order_no')->paginate(8);
+        if($cities->total() == 0){
+          $now =Carbon::now()->toDateTimeString();
+          $cities_searchs =DB::statement('insert into cities_searchs (query,created_at,updated_at) values ("'.$request->input('q').'","'.$now.'","'.$now.'")');
+        }
       }else{
         $correntCity = city::select('id','name','en_name','metroMap','parentName')->find(($request->input('selected') ? $request->input('selected') : city(true)['id']));
         if(!isset($request->page) || $request->page == 1){
