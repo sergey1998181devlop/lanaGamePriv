@@ -11,8 +11,6 @@ use Auth;
 use App\metro;
 use View;
 use DateTime;
-use DB;
-use Carbon\Carbon;
 include_once(resource_path('views/includes/functions.blade.php'));
 class HomeController extends Controller
 {
@@ -69,7 +67,7 @@ class HomeController extends Controller
         $offersMyClub=offer::where('offers.user_id', Auth::user()->id)->get();
       }
       $offersBrand=offer::where('type', 'newBrand')->orderBy('order_no','desc')->orderBy('created_at','desc')->paginate($paginate);
-      $offersClub=offer::select('*', 'clubs.id as clubsid')->where('offers.type', '=', 'newClub')->where('offers.published_at','!=', null)->leftJoin('clubs','clubs.id', '=', 'offers.user_link')->leftJoin('cities','cities.id','=','clubs.club_city')->orderBy('offers.order_no','desc')->orderBy('offers.created_at','desc')->get();
+      $offersClub=offer::select('*', 'offers.name as name', 'offers.published_at as published_at','clubs.id as clubsid')->where('offers.type', '=', 'newClub')->where('offers.published_at','!=', null)->leftJoin('clubs','clubs.id', '=', 'offers.user_link')->leftJoin('cities','cities.id','=','clubs.club_city')->orderBy('offers.order_no','desc')->orderBy('offers.created_at','desc')->get();
       
       if(\Request::ajax())
       {
@@ -244,10 +242,6 @@ class HomeController extends Controller
       }
       if(($request->input('q'))){
         $cities=city::select('id','name','en_name','metroMap','parentName')->where('name', 'like', $request->input('q') . '%')->orWhere('en_name', 'like', $request->input('q') . '%')->orderBy('order_no')->paginate(8);
-        if($cities->total() == 0){
-          $now =Carbon::now()->toDateTimeString();
-          $cities_searchs =DB::statement('insert into cities_searchs (query,created_at,updated_at) values ("'.$request->input('q').'","'.$now.'","'.$now.'")');
-        }
       }else{
         $correntCity = city::select('id','name','en_name','metroMap','parentName')->find(($request->input('selected') ? $request->input('selected') : city(true)['id']));
         if(!isset($request->page) || $request->page == 1){
