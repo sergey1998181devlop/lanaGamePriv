@@ -1,5 +1,11 @@
 <?php
 
+if ( $_SERVER['REQUEST_URI'] != strtolower( $_SERVER['REQUEST_URI']) ) {
+    header('Location: http://'.$_SERVER['HTTP_HOST'] . 
+            strtolower($_SERVER['REQUEST_URI']), true, 301);
+    exit();
+}
+
 use Illuminate\Support\Facades\Route;
 
 /*
