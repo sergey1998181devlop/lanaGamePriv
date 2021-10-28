@@ -1,6 +1,6 @@
 <?php
 
-if ( $_SERVER['REQUEST_URI'] != strtolower( $_SERVER['REQUEST_URI']) ) {
+if ( $_SERVER['REQUEST_URI'] != strtolower( $_SERVER['REQUEST_URI']) && !isset($_GET['gclid']) && !isset($_GET['utm']) ) {
     header('Location: http://'.$_SERVER['HTTP_HOST'] . 
             strtolower($_SERVER['REQUEST_URI']), true, 301);
     exit();
