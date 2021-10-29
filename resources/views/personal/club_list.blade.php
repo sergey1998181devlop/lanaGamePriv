@@ -41,7 +41,7 @@
             $configuration = unserialize($clubAr->configuration);
             // Разделить дюймы и герцы в мониторах
             foreach ($configuration as $key => $zone) {
-                $mon_t = array_filter(explode(' ', str_replace('Гц', '', $zone['monitor_type'])));
+                $mon_t = isset($zone['monitor_type']) ? array_filter(explode(' ', str_replace('Гц', '', $zone['monitor_type']))) : [];
                 $configuration[$key]['monitor_type'] = (isset($mon_t[0])) ? $mon_t[0] : '';
                 $configuration[$key]['monitor_hertz'] = (isset($mon_t[1])) ? $mon_t[1] : '';
             }
