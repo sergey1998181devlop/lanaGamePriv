@@ -174,7 +174,7 @@
 
     @if(isset( $posts) && count($posts)>0)
         <!--SECTION ARTICLES START-->
-        <section class="articles_wrapper">
+        <section class="articles_wrapper" id="block-articles">
             <div class="container">
                 <div class="descr_title">Полезный контент</div>
                 <div class="main_descr">

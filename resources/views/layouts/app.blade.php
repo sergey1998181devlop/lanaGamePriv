@@ -225,7 +225,7 @@
                                     <li>
                                         <a href="{{url('clubs-offers')}}">Биржа предложений</a>
                                     </li>
-                                    @endif
+                                @endif
                                 <li>
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -271,7 +271,7 @@
                             </li>
                         @endif
                         <li>
-                            <a href="{{url('contacts')}}">Контакты</a>
+                            <a href="#block-articles">Блог</a>
                         </li>
                         @if(Auth::guest())
                             <li>
@@ -521,6 +521,9 @@
                                 <a href="{{url('contacts')}}">Обратная связь</a>
                             </li>
                             <li>
+                                <a href="#block-articles">Блог</a>
+                            </li>
+                            <li>
                                 <a href="{{url('registration')}}">Регистрация для игроков</a>
                             </li>
                         </ul>
@@ -540,10 +543,10 @@
                                 <a href="{{url('software')}}">LANGAME Software</a>
                             </li>
                             <li>
-                                <a href="{{url('registration')}}">Регистрация для клубов</a>
+                                <a href="{{url('clubs-offers')}}">Биржа предложений</a>
                             </li>
                             <li>
-                                <a href="{{url('clubs-offers')}}">Биржа предложений</a>
+                                <a href="{{url('registration')}}">Регистрация для клубов</a>
                             </li>
                         </ul>
                     </div>

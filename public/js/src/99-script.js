@@ -204,7 +204,9 @@ jQuery(function() {
         });
     });
 
-
+    jQuery('[data-fancybox]').fancybox({
+        loop: true
+    });
 
     jQuery('.remodal.mailing_modal').on('opening', function(e) {
         jQuery(this).find('form input[name="email"]').val('');

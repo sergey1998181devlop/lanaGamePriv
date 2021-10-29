@@ -65,7 +65,7 @@
 
     @if(isset( $posts) && count($posts)>0)
         <!--SECTION ARTICLES START-->
-        <section class="articles_wrapper">
+        <section class="articles_wrapper" id="block-articles">
             <div class="container">
                 <h2>Наш блог</h2>
                 <div class="articles">
