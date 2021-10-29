@@ -8,7 +8,7 @@ use PHPExcel_Style_Fill;
 use PHPExcel_Style_Border;
 use PHPExcel_Writer_Excel2007;
 use File;
-
+use Str;
 class PHPExcl
 {
     public function createFile($clubs){
@@ -69,6 +69,8 @@ class PHPExcl
     $objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(30);
     $objPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(30);
     $objPHPExcel->getActiveSheet()->getColumnDimension('H')->setWidth(30);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(30);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('J')->setWidth(30);
     
     
     $objPHPExcel->getActiveSheet()->SetCellValue('A'.$rowCount,'№')->setSharedStyle($main, 'A'.$rowCount);
@@ -78,7 +80,9 @@ class PHPExcl
     $objPHPExcel->getActiveSheet()->SetCellValue('E'.$rowCount,'Регион')->setSharedStyle($main, 'E'.$rowCount);
     $objPHPExcel->getActiveSheet()->SetCellValue('F'.$rowCount,'группа вк')->setSharedStyle($main, 'F'.$rowCount);
     $objPHPExcel->getActiveSheet()->SetCellValue('G'.$rowCount,'Телефон')->setSharedStyle($main, 'G'.$rowCount);
-    $objPHPExcel->getActiveSheet()->SetCellValue('H'.$rowCount,'Ссылка на клуб')->setSharedStyle($main, 'H'.$rowCount);
+    $objPHPExcel->getActiveSheet()->SetCellValue('H'.$rowCount,'Клуб на сайте')->setSharedStyle($main, 'H'.$rowCount);
+    $objPHPExcel->getActiveSheet()->SetCellValue('I'.$rowCount,'Внешняя ссылка')->setSharedStyle($main, 'I'.$rowCount);
+    $objPHPExcel->getActiveSheet()->SetCellValue('J'.$rowCount,'Ссылка на Instagram')->setSharedStyle($main, 'J'.$rowCount);
     
     
 
@@ -90,6 +94,8 @@ class PHPExcl
     $objPHPExcel->getActiveSheet()->getStyle("F".$rowCount.":F".($rowCount + count($clubs)))->applyFromArray($table);
     $objPHPExcel->getActiveSheet()->getStyle("G".$rowCount.":G".($rowCount + count($clubs)))->applyFromArray($table);
     $objPHPExcel->getActiveSheet()->getStyle("H".$rowCount.":H".($rowCount + count($clubs)))->applyFromArray($table);
+    $objPHPExcel->getActiveSheet()->getStyle("I".$rowCount.":I".($rowCount + count($clubs)))->applyFromArray($table);
+    $objPHPExcel->getActiveSheet()->getStyle("J".$rowCount.":J".($rowCount + count($clubs)))->applyFromArray($table);
     $rowCount = 2;
     foreach($clubs as $club){
     
@@ -100,7 +106,9 @@ class PHPExcl
         $objPHPExcel->getActiveSheet()->SetCellValue('E'.$rowCount,$club->city->parentName);
         $objPHPExcel->getActiveSheet()->SetCellValue('F'.$rowCount,$club->club_vk_link);
         $objPHPExcel->getActiveSheet()->SetCellValue('G'.$rowCount,$club->phone);
-        $objPHPExcel->getActiveSheet()->SetCellValue('H'.$rowCount,$club->club_link);
+        $objPHPExcel->getActiveSheet()->SetCellValue('H'.$rowCount,url($club->id.'_computerniy_club_'.Str::slug($club->url).'_'.$club->city->en_name));
+        $objPHPExcel->getActiveSheet()->SetCellValue('I'.$rowCount,$club->club_link);
+        $objPHPExcel->getActiveSheet()->SetCellValue('J'.$rowCount,$club->club_instagram_link);
         $rowCount ++;
     }
     $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
