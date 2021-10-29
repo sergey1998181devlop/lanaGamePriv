@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\post;
-use App\club;
-use App\offer;
 use App\city;
-use Auth;
+use App\club;
 use App\metro;
-use View;
+use App\offer;
+use App\post;
+use Auth;
+use Carbon\Carbon;
 use DateTime;
 use DB;
-use Carbon\Carbon;
+use Illuminate\Http\Request;
+use View;
 
 include_once(resource_path('views/includes/functions.blade.php'));
 class HomeController extends Controller
@@ -86,7 +86,16 @@ class HomeController extends Controller
       $postsCount=post::count();
       $now = new DateTime();
       $today = strtolower(date("l"));
-      return view('main')->with(['clubs'=>$clubs,'posts'=>$posts,'postsCount'=>$postsCount,'now'=>$now,'today'=>$today,'mainPage'=>true]);
+
+      return view('main')->with([
+          'clubs' => $clubs,
+          'posts' => $posts,
+          'postsCount' => $postsCount,
+          'now' => $now,
+          'today' => $today,
+          'mainPage' => true,
+          'headerBlogLinkWithAnchor' => true,
+      ]);
     }
     public function index(Request $request)
     {
@@ -195,7 +204,17 @@ class HomeController extends Controller
         $posts=post::select('id','url','image','name','about')->orderBy('order_no','desc')->orderBy('created_at','desc')->limit(3)->get();
         $postsCount=post::count();
 
-        return view('welcome')->with(['count_clubs'=>$clubs->total(),'totalClubsWithoutClosed'=>$totalClubsWithoutClosed, 'posts'=>$posts,'postsCount'=>$postsCount,'clubs'=>$clubs,'now'=>$now,'today'=>$today,'hasMoreClubs'=>($clubs->total() > $paginate ) ? true : false]);
+        return view('welcome')->with([
+            'count_clubs' => $clubs->total(),
+            'totalClubsWithoutClosed' => $totalClubsWithoutClosed,
+            'posts' => $posts,
+            'postsCount' => $postsCount,
+            'clubs' => $clubs,
+            'now' => $now,
+            'today' => $today,
+            'hasMoreClubs' => $clubs->total() > $paginate,
+            'headerBlogLinkWithAnchor' => true,
+        ]);
     }
     public function searchCities(Request $request){
       $b = array();

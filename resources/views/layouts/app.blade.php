@@ -270,9 +270,17 @@
                                 <a href="{{url('clubs-offers')}}">Биржа предложений</a>
                             </li>
                         @endif
-                        <li>
-                            <a href="#block-articles">Блог</a>
-                        </li>
+
+                        @if($headerBlogLinkWithAnchor ?? false)
+                            <li>
+                                <a href="#block-articles">Блог</a>
+                            </li>
+                        @else
+                            <li>
+                                <a href="{{url('posts')}}">Блог</a>
+                            </li>
+                        @endif
+
                         @if(Auth::guest())
                             <li>
                                 <a href=# class="log_in_form_toggle">Войти</a>
@@ -520,9 +528,15 @@
                             <li>
                                 <a href="{{url('contacts')}}">Обратная связь</a>
                             </li>
-                            <li>
-                                <a href="#block-articles">Блог</a>
-                            </li>
+                            @if($headerBlogLinkWithAnchor ?? false)
+                                <li>
+                                    <a href="#block-articles">Блог</a>
+                                </li>
+                            @else
+                                <li>
+                                    <a href="{{url('posts')}}">Блог</a>
+                                </li>
+                            @endif
                             <li>
                                 <a href="{{url('registration')}}">Регистрация для игроков</a>
                             </li>
