@@ -578,11 +578,9 @@
                     <a href="https://t.me/langameru" onclick="gtag('event', 'send', { 'event_category': 'telegram', 'event_action': 'click' });" target="_blank">
                         <img src="{{ asset('/img/icons/telegram.svg')}}" alt="logo">
                     </a>
-                    @if(false)
-                        <a href="#">
-                            <img src="{{ asset('/img/icons/inst.svg')}}" alt="logo">
-                        </a>
-                    @endif
+                    <a href="https://www.instagram.com/langame.ru" target="_blank">
+                        <img src="{{ asset('/img/icons/inst.svg')}}" alt="logo">
+                    </a>
                 </div>
             </div>
         </div>
