@@ -461,7 +461,7 @@
                                                 <td>Процессор</td>
                                                 @foreach($configurationAr['cpu_vendor'] as $key=>$val)
                                                     <?$cv= isset($configurationAr['cpu_model'][$key]) ? $val .' '. $configurationAr['cpu_model'][$key] : $val?>
-                                                    <td>{{$cv != '' ? $val : 'Нет информации' }}</td>
+                                                    <td>{{$cv == '' || $cv == 'Другое' ? 'Нет информации' : $val }}</td>
                                                 @endforeach
                                             </tr>
                                         @endif
@@ -470,7 +470,7 @@
                                                 <td>Видеокарта</td>
                                                 @foreach($configurationAr['video_vendor'] as $key=>$val)
                                                     <?$cv= isset($configurationAr['video_model'][$key]) ? $val .' '. $configurationAr['video_model'][$key] : $val?>
-                                                    <td>{{$cv != '' ? $val : 'Нет информации' }}</td>
+                                                    <td>{{$cv == '' || $cv == 'Другое' ? 'Нет информации' : $val }}</td>
                                                 @endforeach
                                             </tr>
                                         @endif
@@ -479,7 +479,7 @@
                                                 <td>Оперативная память</td>
                                                 @foreach($configurationAr['memory_size'] as $key=>$val)
                                                     <?$cv= isset($configurationAr['memory_type'][$key]) ? $val .' '. $configurationAr['memory_type'][$key] : $val?>
-                                                    <td>{{$cv != '' ? $val : 'Нет информации' }}</td>
+                                                    <td>{{$cv == '' || $cv == 'Другое' ? 'Нет информации' : $val }}</td>
                                                 @endforeach
                                             </tr>
                                         @endif
@@ -487,7 +487,7 @@
                                             <tr>
                                                 <td>Жёсткий диск</td>
                                                 @foreach($configurationAr['hard_disc_type'] as $val)
-                                                    <td>{{$val != '' ? $val : 'Нет информации' }}</td>
+                                                    <td>{{$val == '' || $val == 'Другое' ? 'Нет информации' : $val }} {{$val == '' || $val == 'Другое' ? 'Нет информации' : $val }}</td>
                                                 @endforeach
                                             </tr>
                                         @endif
@@ -495,7 +495,7 @@
                                             <tr>
                                                 <td>Клавиатура</td>
                                                 @foreach($configurationAr['keyboard_vendor'] as $val)
-                                                    <td>{{$val != '' ? $val : 'Нет информации' }}</td>
+                                                    <td>{{$val == '' || $val == 'Другое' ? 'Нет информации' : $val }}</td>
                                                 @endforeach
                                             </tr>
                                         @endif
@@ -503,7 +503,7 @@
                                             <tr>
                                                 <td>Мышь</td>
                                                 @foreach($configurationAr['mouse_vendor'] as $val)
-                                                    <td>{{$val != '' ? $val : 'Нет информации' }}</td>
+                                                    <td>{{$val == '' || $val == 'Другое' ? 'Нет информации' : $val }}</td>
                                                 @endforeach
                                             </tr>
                                         @endif
@@ -511,7 +511,7 @@
                                             <tr>
                                                 <td>Гарнитура</td>
                                                 @foreach($configurationAr['headphone_vendor'] as $val)
-                                                    <td>{{$val != '' ? $val : 'Нет информации' }}</td>
+                                                    <td>{{$val == '' || $val == 'Другое' ? 'Нет информации' : $val }}</td>
                                                 @endforeach
                                             </tr>
                                         @endif
@@ -519,7 +519,7 @@
                                             <tr>
                                                 <td>Кресло</td>
                                                 @foreach($configurationAr['chair_vendor'] as $val)
-                                                    <td>{{$val != '' ? $val : 'Нет информации' }}</td>
+                                                    <td>{{$val == '' || $val == 'Другое' ? 'Нет информации' : $val }}</td>
                                                 @endforeach
                                             </tr>
                                         @endif
@@ -528,7 +528,7 @@
                                                 <td>Монитор</td>
                                                 @foreach($configurationAr['monitor_vendor'] as $key=>$val)
                                                 <?$cv= isset($configurationAr['monitor_type'][$key]) ? $val .' '. $configurationAr['monitor_type'][$key] : $val?>
-                                                    <td>{{$cv != '' ? $val : 'Нет информации' }}</td>
+                                                    <td>{{$cv == '' || $cv == 'Другое' ? 'Нет информации' : $val }}</td>
                                                 @endforeach
                                             </tr>
                                         @endif
@@ -536,7 +536,7 @@
                                             <tr>
                                                 <td>Интернет</td>
                                                 @foreach($configurationAr['internet'] as $val)
-                                                    <td>{{$val != '' ? $val : 'Нет информации' }}</td>
+                                                    <td>{{$val == '' || $val == 'Другое' ? 'Нет информации' : $val }}</td>
                                                 @endforeach
                                             </tr>
                                         @endif

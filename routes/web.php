@@ -1,11 +1,4 @@
 <?php
-
-if ( $_SERVER['REQUEST_URI'] != strtolower( $_SERVER['REQUEST_URI']) && !isset($_GET['gclid']) && !isset($_GET['utm']) && empty($_POST) && stripos($_SERVER['REQUEST_URI'],'personal')===false && stripos($_SERVER['REQUEST_URI'],'panel')===false) {
-    //header('Location: https://'.$_SERVER['HTTP_HOST'] . 
-    //        strtolower($_SERVER['REQUEST_URI']), true, 301);
-    //exit();
-}
-
 use Illuminate\Support\Facades\Route;
 
 /*
