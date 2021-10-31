@@ -22,7 +22,7 @@ class adminController extends Controller
     public function index()
     {
         $newMessages = contact::whereNull('seen_at')->count();
-        $newReports = report::whereNull('seen_at')->count();
+        $newReports = report::whereNull('seen_at')->WithoutSpam()->count();
         $newClubs= club::UnderEdit()->count();
         $newOffersClubs = offer::where('type', 'newClub')->where('published_at','=', null)->paginate(99999)->total();
         $newLangameRequests= langame_request::whereNull('seen_at')->count();
@@ -80,9 +80,9 @@ class adminController extends Controller
         return back()->with('success',__('messages.Success'));
     }
     public function errorReports(){
-        $reports = report::whereNull('seen_at')->orderBy('created_at','desc')->get();
-        $reportsR = report::whereNotNull('seen_at')->orderBy('created_at','desc')->get();
-        $newCount = report::whereNull('seen_at')->count();
+        $reports = report::whereNull('seen_at')->WithoutSpam()->orderBy('created_at','desc')->get();
+        $reportsR = report::whereNotNull('seen_at')->WithoutSpam()->orderBy('created_at','desc')->get();
+        $newCount = report::whereNull('seen_at')->WithoutSpam()->count();
         $new_collection = $reports->merge($reportsR);
         return view('admin.contacts.reports')->with(['reports'=>$new_collection,'newCount'=>$newCount]);
     }
