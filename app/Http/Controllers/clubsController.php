@@ -398,7 +398,7 @@ class clubsController extends Controller
             $file = $request->file('file');
             if ($file->isValid()) {
                 $uniqie=time().uniqid();
-                $filename = $uniqie.preg_replace('/\s+/', '_', $file->getClientOriginalName());
+                $filename = $uniqie.'.'.$file->getClientOriginalExtension();
                 $subPath = date("Y").'/'.date("M").'/'.date("d");
                 if (!file_exists(storage_path('app/public/'.$folder.'/'.$subPath))) {
                     mkdir(storage_path('app/public/'.$folder.'/'.$subPath), 0777, true);
