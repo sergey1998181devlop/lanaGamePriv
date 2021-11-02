@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="{{url('/')}}/favicon.ico" type="image/x-icon">
     <meta name="site" content="{{url('/')}}">
-
+    <link rel="canonical" href="{{ url()->current() }}" />
     @if(admin())
         <meta name="is_admin" content="1">
     @endif
