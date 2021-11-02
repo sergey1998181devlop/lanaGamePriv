@@ -114,7 +114,7 @@
       </li>
       <?
         $newMessagesC = \App\contact::whereNull('seen_at')->count();
-        $newReportsC = \App\report::whereNull('seen_at')->count();
+        $newReportsC = \App\report::whereNull('seen_at')->WithoutSpam()->count();
         $newClubErrorsC= \App\club_report::whereNull('seen_at')->count();
         $newLangameRequestsC= \App\langame_request::whereNull('seen_at')->count();
         $totalMsgs = $newMessagesC + $newReportsC + $newClubErrorsC + $newLangameRequestsC;
