@@ -48,6 +48,13 @@
     ?>
     <section class="club_page_main_info_wrapper" data-track-sticky>
         <div class="container">
+            <nav aria-label="breadcrumb">
+                <ul class="breadcrumbs">
+                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Главная</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('/computerniy_club') }}_{{$club->city["en_name"]}}">Клубы {{$club->city["name"]}}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Компьютерный клуб {{$club->club_name}}</li>
+                </ul>
+            </nav>
             @if(isset($comments))
                 <div class="club_comments">
                     @foreach($comments as $comment)

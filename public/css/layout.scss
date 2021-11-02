@@ -17869,3 +17869,21 @@ section.cities_list_wrapper {
     color: #dc0000;
     background-color: #ffffff;
 }
+ul.breadcrumbs {
+    display: flex;
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+li.breadcrumb-item {
+    margin-left: 11px;
+}
+
+li.breadcrumb-item a {
+    color: #858484;
+}
+
+li.breadcrumb-item {
+    color: #474747;
+}
