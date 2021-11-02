@@ -1,3 +1,4 @@
+<?php header("Content-Type: application/xml;");?>
 <?php echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 @foreach ($cities as $city)
@@ -9,7 +10,7 @@
 @endforeach
 @foreach ($clubs as $club)
     <url>
-        <loc>{{url($club->id.'_computerniy_club_'.Str::slug($club->url).'_'.city())}}</loc>
+        <loc>{{url($club->id.'_computerniy_club_'.Str::slug($club->url).'_'.$club->city->en_name)}}</loc>
         <lastmod>{{ $club->created_at }}</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>

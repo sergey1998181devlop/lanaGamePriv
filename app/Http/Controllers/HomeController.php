@@ -271,7 +271,9 @@ class HomeController extends Controller
      return response($b);
    }
    public function siteMap(){
-    $clubs = club::Published()->select('id','url','created_at')->whereNull('hidden_at')->get();
+    $clubs = club::Published()->select('id','url','created_at','club_city')->whereNull('hidden_at')->with(array('city' => function($query) {
+      $query->select('id','name', 'en_name');
+  }))->get();
     $cites = city::select('id','name','en_name')->get();
     $posts = post::select('id','name','url','created_at')->get();
     $otherLinks = ['about-us','software','register_club','personal/clubs','contacts','user-agreement','policy','login', 'clubs-offers', 'cities', 'registration'];
