@@ -22,7 +22,7 @@ class clubsController extends Controller
         $this->middleware('player',['only' => ['likeClub','unLikeClub']]);
         $this->isDraft = false;
     }
-    public function index($id){
+    public function index($id, $url, $city){
         $lon = isset($_COOKIE['lon']) ? $_COOKIE['lon'] : 0;
         $lat =isset($_COOKIE['lat']) ? $_COOKIE['lat'] : 0 ;
         $club = club::where('id',$id)->select('*', club::raw('round(1.6 * ( 3959 * acos( cos( radians("'.$lat.'") ) * cos( radians( lat ) ) * cos( radians( lon ) - radians("'.$lon.'") ) + sin( radians("'.$lat.'") ) * sin( radians( lat ) ) ) ),1) AS nearby'))->where('draft','0')->with(array('city' => function($query) {
@@ -40,6 +40,9 @@ class clubsController extends Controller
             $comments = $club->comments;
             if(count($comments) > 0)
             return view('clubs.club')->with(['club'=>$club,'comments'=>$comments ]);
+        }
+        if ($url != Str::slug($club->url) || $city != $club->city->en_name){
+            return redirect($club->id.'_computerniy_club_'.Str::slug($club->url).'_'.$club->city->en_name);
         }
         $views=$club->views;
         $views++;
