@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('page')
-    <title>Компьютерный клуб {{$club->club_name}} {{$club->city["name"]}} - цены, отзывы, обзоры</title>
+    <title>Компьютерный клуб {{$club->club_name}} {{$club->city["name"]}} {{$club->club_address}} - цены, отзывы, обзоры</title>
     <meta name="description"
           content="Компьютерный клуб {{$club->club_name}} по адресу {{$club->club_full_address}} - расположение, цены, отзывы, рейтинг ({{$club->rating }} из 5), честные обзоры, новости, ближайшие мероприятия">
     <meta name="keywords" content="компьютерный клуб {{$club->club_name}}, интернет кафе {{$club->club_name}}, киберклуб {{$club->club_name}}, {{$club->city["name"]}}"/>
@@ -78,7 +78,7 @@
             @endif
             <div class="club_page_main_info_top">
                 <div class="main_info_title approve">
-                    <span>{{$club->club_name}}</span>
+                <span><h1 class="main_info_title approve">{{$club->club_name}}</h1></span>
                     <button class="report" data-remodal-target="report_club_modal">
                         <img src="{{asset('/img/icons/wrmsg.svg')}}" alt="">
                     </button>

@@ -5421,6 +5421,15 @@ section.article_page_wrapper {
                     left: 32px;
                     bottom: 32px;
 
+                    h1 {
+                        margin: 0;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 30px;
+                        line-height: 1;
+                        color: #ffffff;
+                        text-shadow: 2px 1px 0 rgba(0, 0, 0, 0.6);
+                    }
                     h2 {
                         margin: 0;
                         font-style: normal;
@@ -7324,6 +7333,7 @@ section.club_page_main_info_wrapper {
             font-size: 34px;
             line-height: 1.2;
             color: #000000;
+            margin: 0;
 
             .report {
                 position: relative;
