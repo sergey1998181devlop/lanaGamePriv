@@ -17874,8 +17874,12 @@ ul.breadcrumbs {
     list-style: none;
     margin-left: 0;
     padding-left: 0;
+    font-size: 12px;
 }
-
+li.breadcrumb-item:first-child {
+    margin-left:0px;
+    padding-left:0px;
+}
 li.breadcrumb-item {
     margin-left: 11px;
 }
