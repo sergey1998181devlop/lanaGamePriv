@@ -494,7 +494,7 @@
                                             <tr>
                                                 <td>Жёсткий диск</td>
                                                 @foreach($configurationAr['hard_disc_type'] as $val)
-                                                    <td>{{$val == '' || $val == 'Другое' ? 'Нет информации' : $val }} {{$val == '' || $val == 'Другое' ? 'Нет информации' : $val }}</td>
+                                                    <td>{{$val == '' || $val == 'Другое' ? 'Нет информации' : $val }}</td>
                                                 @endforeach
                                             </tr>
                                         @endif
