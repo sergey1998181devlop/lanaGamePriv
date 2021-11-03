@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller; 
+use Str;
 
 use App\post;
 include_once(resource_path('views/includes/functions.blade.php')); 
@@ -13,6 +14,9 @@ class postsController extends Controller
         $post=post::where('id',$id)->first();
         if(!$post ){
             abort(404);
+        }
+        if ($url != Str::slug($post->url)){
+            return redirect($post->id.'_statia_'.Str::slug($post->url));
         }
         $views=$post->views;
         $views++;
