@@ -468,7 +468,7 @@
                                                 <td>Процессор</td>
                                                 @foreach($configurationAr['cpu_vendor'] as $key=>$val)
                                                     <?$cv= isset($configurationAr['cpu_model'][$key]) ? $val .' '. $configurationAr['cpu_model'][$key] : $val?>
-                                                    <td>{{$cv == '' || $cv == 'Другое' ? 'Нет информации' : $val }}</td>
+                                                    <td>{{$cv == '' || $cv == 'Другое' ? 'Нет информации' : $cv }}</td>
                                                 @endforeach
                                             </tr>
                                         @endif
@@ -477,7 +477,7 @@
                                                 <td>Видеокарта</td>
                                                 @foreach($configurationAr['video_vendor'] as $key=>$val)
                                                     <?$cv= isset($configurationAr['video_model'][$key]) ? $val .' '. $configurationAr['video_model'][$key] : $val?>
-                                                    <td>{{$cv == '' || $cv == 'Другое' ? 'Нет информации' : $val }}</td>
+                                                    <td>{{$cv == '' || $cv == 'Другое' ? 'Нет информации' : $cv }}</td>
                                                 @endforeach
                                             </tr>
                                         @endif
@@ -486,7 +486,7 @@
                                                 <td>Оперативная память</td>
                                                 @foreach($configurationAr['memory_size'] as $key=>$val)
                                                     <?$cv= isset($configurationAr['memory_type'][$key]) ? $val .' '. $configurationAr['memory_type'][$key] : $val?>
-                                                    <td>{{$cv == '' || $cv == 'Другое' ? 'Нет информации' : $val }}</td>
+                                                    <td>{{$cv == '' || $cv == 'Другое' ? 'Нет информации' : $cv }}</td>
                                                 @endforeach
                                             </tr>
                                         @endif
@@ -535,7 +535,7 @@
                                                 <td>Монитор</td>
                                                 @foreach($configurationAr['monitor_vendor'] as $key=>$val)
                                                 <?$cv= isset($configurationAr['monitor_type'][$key]) ? $val .' '. $configurationAr['monitor_type'][$key] : $val?>
-                                                    <td>{{$cv == '' || $cv == 'Другое' ? 'Нет информации' : $val }}</td>
+                                                    <td>{{$cv == '' || $cv == 'Другое' ? 'Нет информации' : $cv }}</td>
                                                 @endforeach
                                             </tr>
                                         @endif
