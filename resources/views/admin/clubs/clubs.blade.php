@@ -22,18 +22,19 @@
 
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">Все клубы <?=$onyPublished  ? '(опубликованые)' : null ?> <?=($city != 'all') ? '('.$city.')': '' ?><span class="badge badge-pill badge-warning">{{count($clubs) }}</span></h1>
-<p>Опубликованые <?=$total['published']?>
+<p>Опубликованые <b><?=$total['published']?></b>
 <?if($total['publishedClosed'] > 0 || $total['publishedHidden'] > 0) {
   echo ' из них ';
-  if($total['publishedClosed'] > 0 ) echo $total['publishedClosed'].' закрытых';
+  echo '<b>'.($total['published'] - $total['publishedClosed'] - $total['publishedHidden']).'</b> опубликованые с открытым статусом, ';
+  if($total['publishedClosed'] > 0 ) echo '<b>'.$total['publishedClosed'].'</b> закрытых';
   
   if($total['publishedHidden'] > 0 ){
     if($total['publishedClosed'] > 0 )echo ', ';
-    echo $total['publishedHidden'].' снятых владельцами';
+    echo '<b>'.$total['publishedHidden'].'</b> снятых владельцами';
   } 
 } ?>
 </p>
-<?if(!$onyPublished && $total['underEdit'] > 0 ){?><p style="margin-top:-1rem;">На модерации <?=$total['underEdit']?><?=$total['underEditClosed'] > 0 ? ' из них '.$total['underEditClosed'].' закрытых' : ''?></p><?}?>
+<?if(!$onyPublished && $total['underEdit'] > 0 ){?><p style="margin-top:-1rem;">На модерации <b><?=$total['underEdit']?></b><?=$total['underEditClosed'] > 0 ? ' из них <b>'.$total['underEditClosed'].'</b> закрытых' : ''?></p><?}?>
 
 
 <!-- DataTales Example -->
