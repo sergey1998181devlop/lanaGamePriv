@@ -21,11 +21,11 @@
    <div class="container-fluid">
 
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Все клубы <?=$onyPublished  ? '(опубликованые)' : null ?> <?=($city != 'all') ? '('.$city.')': '' ?><span class="badge badge-pill badge-warning">{{count($clubs) }}</span></h1>
-<p>Опубликованые <b><?=$total['published']?></b>
+<h1 class="h3 mb-2 text-gray-800">Все клубы <?=$onyPublished  ? '(опубликованные)' : null ?> <?=($city != 'all') ? '('.$city.')': '' ?><span class="badge badge-pill badge-warning">{{count($clubs) }}</span></h1>
+<p>Опубликованные <b><?=$total['published']?></b>
 <?if($total['publishedClosed'] > 0 || $total['publishedHidden'] > 0) {
   echo ' из них ';
-  echo '<b>'.($total['published'] - $total['publishedClosed'] - $total['publishedHidden']).'</b> опубликованые с открытым статусом, ';
+  echo '<b>'.($total['published'] - $total['publishedClosed'] - $total['publishedHidden']).'</b> опубликованные с открытым статусом, ';
   if($total['publishedClosed'] > 0 ) echo '<b>'.$total['publishedClosed'].'</b> закрытых';
   
   if($total['publishedHidden'] > 0 ){
@@ -49,7 +49,7 @@
   </div>
   <div class="form-check" style="display: inline-block;margin-left: 15px;">
     <input type="checkbox" class="form-check-input"  id="onlyPublished" <?=$onyPublished?'checked' : null ?>>
-    <label class="form-check-label" for="onlyPublished">Только опубликованые</label>
+    <label class="form-check-label" for="onlyPublished">Только опубликованные</label>
   </div>
   <div class="form-check" style="display: inline-block;margin-left: 15px;">
     <input type="checkbox" class="form-check-input"  id="allRows" <?=$allRows ? 'checked' : null ?>>
