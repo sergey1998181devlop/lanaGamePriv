@@ -33,7 +33,7 @@
   } 
 } ?>
 </p>
-<?if(!$onyPublished){?><p style="margin-top:-1rem;">На модерации <?=$total['underEdit']?><?=$total['underEditClosed'] > 0 ? ' из них '.$total['underEditClosed'].' закрытых' : ''?></p><?}?>
+<?if(!$onyPublished && $total['underEdit'] > 0 ){?><p style="margin-top:-1rem;">На модерации <?=$total['underEdit']?><?=$total['underEditClosed'] > 0 ? ' из них '.$total['underEditClosed'].' закрытых' : ''?></p><?}?>
 
 
 <!-- DataTales Example -->
