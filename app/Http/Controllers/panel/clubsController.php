@@ -32,17 +32,35 @@ class clubsController extends Controller
         if(isset($_GET['onlyPublished']) && $_GET['onlyPublished'] == 'true'){
             $newClubs=$newClubs->Published();
         }
+
+        $total['published'] = club::Published();
+        $total['underEdit'] = club::UnderEdit();
+        $total['publishedClosed']=club::Published()->where('closed','1');
+        $total['publishedHidden']=club::Published()->whereNotNull('hidden_at');
+        $total['underEditClosed']=club::UnderEdit()->where('closed','1');
         $city = 'all';
         if(isset($_GET['city']) && $_GET['city'] != ''){
          $selectedCity = city::find($_GET['city']);
          if($selectedCity){
             $newClubs=$newClubs->where('club_city',$selectedCity->id);
             $city = $selectedCity->name;
+
+            $total['published'] =$total['published']->where('club_city',$selectedCity->id);
+            $total['underEdit'] = $total['underEdit']->where('club_city',$selectedCity->id);
+            $total['publishedClosed']= $total['publishedClosed']->where('club_city',$selectedCity->id);
+            $total['publishedHidden']=$total['publishedHidden']->where('club_city',$selectedCity->id);
+            $total['underEditClosed']=$total['underEditClosed']->where('club_city',$selectedCity->id);
          }
         }
         $newClubs=$newClubs->get();
-        $totalClubsWithoutClosed = club::where('draft','0')->where('closed','0')->count();
-        return view('admin.clubs.clubs')->with(['clubs'=>$newClubs,'city'=>$city,'totalClubsWithoutClosed'=>$totalClubsWithoutClosed]);
+        $total['published'] =$total['published']->count();
+        $total['underEdit'] = $total['underEdit']->count();
+        $total['publishedClosed']= $total['publishedClosed']->count();
+        $total['publishedHidden']=$total['publishedHidden']->count();
+        $total['underEditClosed']=$total['underEditClosed']->count();
+        
+
+        return view('admin.clubs.clubs')->with(['clubs'=>$newClubs,'city'=>$city,'total'=>$total]);
     }
     public function new_clubs()
     {

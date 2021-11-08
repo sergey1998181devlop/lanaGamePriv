@@ -15,12 +15,25 @@
 @section('content')
 <?php
   $allRows =(isset($_GET['allRows']) && $_GET['allRows']=='true') ;
+  $onyPublished = (isset($_GET['onlyPublished']) && $_GET['onlyPublished']=='true');
 ?>
    <!-- Begin Page Content -->
    <div class="container-fluid">
 
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Все клубы <?=($city != 'all') ? '('.$city.')': '' ?><span class="badge badge-pill badge-warning">{{$totalClubsWithoutClosed }}</span></h1>
+<h1 class="h3 mb-2 text-gray-800">Все клубы <?=$onyPublished  ? '(опубликованые)' : null ?> <?=($city != 'all') ? '('.$city.')': '' ?><span class="badge badge-pill badge-warning">{{count($clubs) }}</span></h1>
+<p>Опубликованые <?=$total['published']?>
+<?if($total['publishedClosed'] > 0 || $total['publishedHidden'] > 0) {
+  echo ' из них ';
+  if($total['publishedClosed'] > 0 ) echo $total['publishedClosed'].' закрытых';
+  
+  if($total['publishedHidden'] > 0 ){
+    if($total['publishedClosed'] > 0 )echo ', ';
+    echo $total['publishedHidden'].' снятых владельцами';
+  } 
+} ?>
+</p>
+<?if(!$onyPublished){?><p style="margin-top:-1rem;">На модерации <?=$total['underEdit']?><?=$total['underEditClosed'] > 0 ? ' из них '.$total['underEditClosed'].' закрытых' : ''?></p><?}?>
 
 
 <!-- DataTales Example -->
@@ -34,11 +47,11 @@
       </select>
   </div>
   <div class="form-check" style="display: inline-block;margin-left: 15px;">
-    <input type="checkbox" class="form-check-input"  id="onlyPublished" <?=(isset($_GET['onlyPublished']) && $_GET['onlyPublished']=='true')?'checked' : null ?>>
+    <input type="checkbox" class="form-check-input"  id="onlyPublished" <?=$onyPublished?'checked' : null ?>>
     <label class="form-check-label" for="onlyPublished">Только опубликованые</label>
   </div>
   <div class="form-check" style="display: inline-block;margin-left: 15px;">
-    <input type="checkbox" class="form-check-input"  id="allRows" <?=(isset($_GET['allRows']) && $_GET['allRows']=='true')?'checked' : null ?>>
+    <input type="checkbox" class="form-check-input"  id="allRows" <?=$allRows ? 'checked' : null ?>>
     <label class="form-check-label" for="allRows">Доп. столбцы </label>
   </div>
   <div style="float:right">
@@ -227,8 +240,8 @@
         $('#club_delete_modal .clubname').text($(this).attr('club-name'));
        $('#club_delete_modal').modal();
      });
-     var onlyPublished = <?=(isset($_GET['onlyPublished']) && $_GET['onlyPublished']==true)? 'true' : 'false' ?>;
-     var allRows = <?=(isset($_GET['allRows']) && $_GET['allRows']==true)? 'true' : 'false' ?>;
+     var onlyPublished = <?=$onyPublished ? 'true' : 'false' ?>;
+     var allRows = <?=$allRows ? 'true' : 'false' ?>;
      var SelectedCity = "<?=(isset($_GET['city'])) ? $_GET['city'] : '' ?>";
      
      $(document).on('change','#onlyPublished',function(e){
