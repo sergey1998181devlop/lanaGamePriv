@@ -31,13 +31,32 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:5', 'confirmed'],
             'phone' => ['required', 'numeric','digits:10', 'unique:users'],
-            'user_position'=>['required','numeric','min:1','max:4'],
             'conf_code'=>['required'],
         ]);
         if($validator->fails()){
             return response()->json(['status'=>false,'msg'=>'Validation Error','errors'=>$validator->errors()], 202);
         }
-
+        $type = $request->input('user_type') == 'player' ?'player' : 'owner';
+        $city = null;
+        if($type == 'player'){
+            $validator = Validator::make($request->all(), [
+                'city'=>['required'],
+            ]);
+            if($validator->fails()){
+                return response()->json(['status'=>false,'msg'=>'Validation Error','errors'=>$validator->errors()], 202);
+            }
+            $city =  $request->input('city');
+            if(!city::first($city)){
+                jsonValidationException(['city' => 'Город не определен']);
+            }
+        }else{
+            $validator = Validator::make($request->all(), [
+                'user_position'=>['required','numeric','min:1','max:4'],
+            ]);
+            if($validator->fails()){
+                return response()->json(['status'=>false,'msg'=>'Validation Error','errors'=>$validator->errors()], 202);
+            }
+        }
         if(!$this->verify($request->input('phone'),$request->input('conf_code'))){
             return response()->json(['status'=>false,'error'=>'Неверный код'], 202);
         }
@@ -47,6 +66,8 @@ class RegisterController extends Controller
             'phone' => $request->input('phone'),
             'user_position' =>$request->input('user_position'),
             'password' => Hash::make($request->input('password')),
+            'type' => $type,
+            'city' =>$city
         ]);
         Auth::login($user);
         $token = Str::random(64);
