@@ -16,6 +16,7 @@ class HomeController extends Controller
         $data['posts'] =post::select('id','url','image','name','about')->orderBy('order_no','desc')->orderBy('created_at','desc')->limit(3)->get();
         $data['hasMorePosts'] = (post::count() > 3 )? true : false;
         $data['cities']= $this->searchCities($request,true);
+        $data['status']=true;
         return response()->json($data, 202);
     }
    public function getClubs(Request $request){
