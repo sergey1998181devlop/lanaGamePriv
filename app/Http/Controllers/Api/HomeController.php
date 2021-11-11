@@ -100,6 +100,38 @@ class HomeController extends Controller
     }
      $now = new DateTime();
      $today = strtolower(date("l"));
+     foreach($clubs as $club){
+      if($club->closed == '1'){
+        $openStatus = 'closedAlways';
+      }else{
+        $openStatus = 'open';
+        if ($club->work_time == '2') {
+          $schedule_item = unserialize($club->work_time_days);
+        }
+        if ($club->work_time == '2' && is_array($schedule_item)) {
+            if (!isset($schedule_item[strtolower($today)])) {
+                $openStatus = 'closed';
+            } else {
+                if (!empty($schedule_item[strtolower($today)]['from']) && !empty($schedule_item[strtolower($today)]['to'])) {
+                    $now = new DateTime();
+                    $begin = new DateTime($schedule_item[strtolower($today)]['from']);
+                    if (explode(":", $schedule_item[strtolower($today)]['to'])[0] < explode(":", $schedule_item[strtolower($today)]['from'])[0]) {
+                        $end = new DateTime($schedule_item[strtolower($today)]['to']);
+                        $end->add(new DateInterval("P1D"));
+                    } else {
+                        $end = new DateTime($schedule_item[strtolower($today)]['to']);
+                    }
+                    if ($now >= $begin && $now <= $end) {
+                        $openStatus = 'open';
+                    } else {
+                        $openStatus = 'closed';
+                    }
+                }
+            }
+        }
+      }
+      $club->openStatus = $openStatus;
+     }
 
      return ['clubs'=>$clubs,'now'=>$now,'today'=>$today ];
    }
