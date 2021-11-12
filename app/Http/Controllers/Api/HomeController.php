@@ -13,7 +13,12 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $data = $this->getClubs($request);
-        $data['posts'] =post::select('id','url','image','name','about')->orderBy('order_no','desc')->orderBy('created_at','desc')->limit(3)->get();
+        $posts = post::select('id','url','image','name','about')->orderBy('order_no','desc')->orderBy('created_at','desc')->limit(3)->get();
+        foreach ($posts as $post) {
+          $post->image = ($post->image != '') ? url('storage/posts/thumbnail/'.$post->image) : asset('img/default-club-preview-image.svg');
+          $post->about=strip_tags($post->about);
+        }
+        $data['posts'] =$posts ;
         $data['hasMorePosts'] = (post::count() > 3 )? true : false;
         $data['cities']= $this->searchCities($request,true);
         $data['status']=true;
