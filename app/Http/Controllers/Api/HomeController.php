@@ -16,7 +16,7 @@ class HomeController extends Controller
         $posts = post::select('id','url','image','name','about')->orderBy('order_no','desc')->orderBy('created_at','desc')->limit(3)->get();
         foreach ($posts as $post) {
           $post->image = ($post->image != '') ? url('storage/posts/thumbnail/'.$post->image) : asset('img/default-club-preview-image.svg');
-          $post->about=strip_tags($post->about);
+          $post->about=substr(strip_tags($post->about), 0, 200);
         }
         $data['posts'] =$posts ;
         $data['hasMorePosts'] = (post::count() > 3 )? true : false;
