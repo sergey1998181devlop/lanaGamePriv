@@ -21,6 +21,7 @@ class postsController extends Controller
         $views=$post->views;
         $views++;
         $post->views=$views;
+        $post->timestamps = false;
         $post->save();
         $morePosts = post::select('id','url','image','name')->where('id','!=',$post->id)->inRandomOrder()->limit(2)->get();
         return view('posts.post')->with(['post'=>$post,'morePosts'=>$morePosts]);

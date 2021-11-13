@@ -83,6 +83,7 @@ class RegisterController extends Controller
         $success['name'] =  $user->name;
         $success['phone'] =  $user->phone;
         $success['email'] =  $user->email;
+        $success['user_type'] =  $user->user_type;
         $user->createToken('MyApp')-> accessToken;
         return response()->json(['status'=>true,'data'=>$success], 202);
     }
@@ -172,6 +173,7 @@ class RegisterController extends Controller
             $success['name'] =  $user->name;
             $success['phone'] =  $user->phone;
             $success['email'] =  $user->email;
+            $success['user_type'] =  $user->user_type;
             return response()->json(['status'=>true,'data'=>$success], 202);
         }
         else{
