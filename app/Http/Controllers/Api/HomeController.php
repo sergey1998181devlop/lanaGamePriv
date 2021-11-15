@@ -142,27 +142,37 @@ class HomeController extends Controller
 
      return ['clubs'=>$clubs,'now'=>$now,'today'=>$today ];
    }
-    public function searchCities(Request $request,$forIndex = false){
-        $b = array();
-        if(($request->input('q'))){
-          $cities=city::select('id','name','en_name','metroMap','parentName')->where('name', 'like', '%' . $request->input('q') . '%')->orWhere('en_name', 'like', '%' . $request->input('q') . '%')->orderBy('order_no')->paginate(8);
-        }else{
-          $correntCity = city::select('id','name','en_name','metroMap','parentName')->find(($request->input('selected') ? $request->input('selected') : city(true)['id']));
-          if(!isset($request->page) || $request->page == 1){
-            $b["results"][]=[ "text"=> $correntCity->name, "data"=> $correntCity->en_name,'id'=>$correntCity->id ,'has_metro' =>  $correntCity->metroMap ];
-          }
-          $cities=city::select('id','name','en_name','metroMap','parentName')->where('id','!=',$correntCity->id)->orderBy('order_no')->paginate(8);
+   
+     public function searchCities(Request $request,$forIndex = false){
+      $b = array();
+      if($request->input('hasAll') && $request->input('hasAll') == 'true'){
+          $b["results"][]=[ "text"=>'Все города', "data"=> 'all','id'=>'all' ,'has_metro' => 'false'];
+      }
+      if(($request->input('q'))){
+        $cities=city::select('id','name','metroMap','parentName')->where('name', 'like', $request->input('q') . '%')->orWhere('en_name', 'like', $request->input('q') . '%')->orderBy('order_no')->paginate(8);
+        if($cities->total() == 0){
+          $now =Carbon::now()->toDateTimeString();
+          $cities_searchs =DB::statement('insert into cities_searchs (query,created_at,updated_at) values ("'.$request->input('q').'","'.$now.'","'.$now.'")');
         }
-        if($cities->lastPage() > $cities->currentPage() ){
-          $b["pagination"]= [
-            "more"=> true
-          ];
+      }else{
+        $correntCity = city::select('id','name','metroMap','parentName')->find(($request->input('current') ? $request->input('current') : city(true)['id']));
+        if(!isset($request->page) || $request->page == 1){
+          $b["results"][]=[ "text"=> $correntCity->name,'id'=>$correntCity->id ,'has_metro' =>  $correntCity->metroMap ];
         }
-        foreach ($cities as $city) {
-  
-         $b["results"][]=[ "text"=> ($city->parentName != '') ? $city->name.', '.$city->parentName :  $city->name, "data"=> $city->en_name,'id'=>$city->id,'has_metro' =>  $city->metroMap  ];
-        }
-        if($forIndex)return $b["results"];
-        return response($b);
-     }
+        $cities=city::select('id','name','metroMap','parentName')->where('id','!=',$correntCity->id)->orderBy('order_no')->paginate(8);
+      }
+      if($cities->lastPage() > $cities->currentPage() ){
+        $b["hasMore"]= [
+          "more"=> true
+        ];
+      }
+      foreach ($cities as $city) {
+
+       $b["results"][]=[ "text"=> ($city->parentName != '') ? $city->name.', '.$city->parentName :  $city->name,'id'=>$city->id,'has_metro' =>  $city->metroMap  ];
+      }
+      if($forIndex)return $b["results"];
+      return response($b);
+      $b['status']=true;
+        return response()->json($b, 202);
+   }
 }

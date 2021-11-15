@@ -26,6 +26,7 @@ Route::get('/auth/user', 'Api\RegisterController@getUserData');
 
 Route::get('/getHomeData', 'Api\HomeController@index');
 Route::get('/getHomeClubs', 'Api\HomeController@getClubs');
+Route::get('/searchCities', 'Api\HomeController@searchCities');
 
 Route::get('/getPosts', 'Api\postsController@allposts');
 Route::get('/getPost/{id}', 'Api\postsController@post');
