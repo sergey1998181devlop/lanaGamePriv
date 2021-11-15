@@ -142,7 +142,7 @@ class HomeController extends Controller
 
      return ['clubs'=>$clubs,'now'=>$now,'today'=>$today ];
    }
-   
+
      public function searchCities(Request $request,$forIndex = false){
       $b = array();
       if($request->input('hasAll') && $request->input('hasAll') == 'true'){
@@ -162,9 +162,9 @@ class HomeController extends Controller
         $cities=city::select('id','name','metroMap','parentName')->where('id','!=',$correntCity->id)->orderBy('order_no')->paginate(8);
       }
       if($cities->lastPage() > $cities->currentPage() ){
-        $b["hasMore"]= [
-          "more"=> true
-        ];
+        $b["hasMore"]= true;
+      }else{
+        $b["hasMore"]= false;
       }
       foreach ($cities as $city) {
 
