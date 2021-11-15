@@ -157,7 +157,7 @@ class HomeController extends Controller
       }else{
         $correntCity = city::select('id','name','metroMap','parentName')->find(($request->input('current') ? $request->input('current') : city(true)['id']));
         if(!isset($request->page) || $request->page == 1){
-          $b["results"][]=[ "text"=> $correntCity->name,'id'=>$correntCity->id ,'has_metro' =>  $correntCity->metroMap ];
+          $b["results"][]=[ "name" => $correntCity->name, "text"=> ($correntCity->parentName != '') ? $correntCity->name.', '.$correntCity->parentName :  $correntCity->name,'id'=>$correntCity->id ,'has_metro' =>  $correntCity->metroMap ];
         }
         $cities=city::select('id','name','metroMap','parentName')->where('id','!=',$correntCity->id)->orderBy('order_no')->paginate(8);
       }
@@ -168,7 +168,7 @@ class HomeController extends Controller
       }
       foreach ($cities as $city) {
 
-       $b["results"][]=[ "text"=> ($city->parentName != '') ? $city->name.', '.$city->parentName :  $city->name,'id'=>$city->id,'has_metro' =>  $city->metroMap  ];
+       $b["results"][]=[ "name" => $city->name,"text"=> ($city->parentName != '') ? $city->name.', '.$city->parentName :  $city->name,'id'=>$city->id,'has_metro' =>  $city->metroMap  ];
       }
       if($forIndex)return $b["results"];
       return response($b);
