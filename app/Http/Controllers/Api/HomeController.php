@@ -22,6 +22,7 @@ class HomeController extends Controller
         $data['posts'] =$posts ;
         $data['hasMorePosts'] = (post::count() > 3 )? true : false;
         $data['cities']= $this->searchCities($request,true);
+        $data['current_city']=city(true);
         $data['status']=true;
         return response()->json($data, 202);
     }
@@ -123,7 +124,7 @@ class HomeController extends Controller
                     $begin = new DateTime($schedule_item[strtolower($today)]['from']);
                     if (explode(":", $schedule_item[strtolower($today)]['to'])[0] < explode(":", $schedule_item[strtolower($today)]['from'])[0]) {
                         $end = new DateTime($schedule_item[strtolower($today)]['to']);
-                        $end->add(new DateInterval("P1D"));
+                        $end->add(new \DateInterval("P1D"));
                     } else {
                         $end = new DateTime($schedule_item[strtolower($today)]['to']);
                     }
