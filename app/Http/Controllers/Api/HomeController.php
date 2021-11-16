@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        $data = $this->getClubs($request);
+        $data = $this->getClubs($request,true);
         $posts = post::select('id','url','image','name','about')->orderBy('order_no','desc')->orderBy('created_at','desc')->limit(3)->get();
         foreach ($posts as $post) {
           $post->image = ($post->image != '') ? url('storage/posts/thumbnail/'.$post->image) : asset('img/default-club-preview-image.svg');
@@ -26,7 +26,7 @@ class HomeController extends Controller
         $data['status']=true;
         return response()->json($data, 202);
     }
-   public function getClubs(Request $request){
+   public function getClubs(Request $request,$forIndex = false){
     cityApi($request->input('city')); //сохранить город в сессию
     if (empty($_GET["lat"]) && empty($_GET['lon'])){
       $api_yandex = new \Yandex\Locator\Api('AP2BymABAAAAAqumUgIAzSJaePpJPDsATaQ5CtyPNtLdC60AAAAAAAAAAABVXZbOLoQ1EhZSTVkNehJDKsp9Dg==');
@@ -139,8 +139,10 @@ class HomeController extends Controller
       }
       $club->openStatus = $openStatus;
      }
-
+     if($forIndex)
      return ['clubs'=>$clubs,'now'=>$now,'today'=>$today ];
+     return response()->json(['status'=>true,'clubs'=>$clubs,'now'=>$now,'today'=>$today ], 202);
+
    }
 
      public function searchCities(Request $request,$forIndex = false){
