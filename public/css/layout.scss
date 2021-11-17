@@ -14646,7 +14646,7 @@ section.cities_list_wrapper {
                                         display: flex;
                                         flex-direction: row;
                                         justify-content: flex-start;
-                                        width: 372px;
+                                        width: 100% !important;
 
                                         input {
                                             width: 120px;
