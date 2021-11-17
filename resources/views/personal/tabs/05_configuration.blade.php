@@ -201,7 +201,7 @@ declare(strict_types=1);
             <div class="form-group">
                 <label for="monitor-vendor-0">Монитор</label>
                 <div class="input_wrapper">
-                    <div class="pc_config_select">
+                    <div class="pc_config_select monitor">
                         <div class="select2_wrapper">
                             <select id="monitor-vendor-0" name="configuration[0][monitor_vendor]" data-placeholder="Фирма" required>
                                 <option value=""></option>
@@ -415,7 +415,7 @@ declare(strict_types=1);
             <div class="form-group">
                 <label for="monitor-vendor-1">Монитор</label>
                 <div class="input_wrapper">
-                    <div class="pc_config_select">
+                    <div class="pc_config_select monitor">
                         <div class="select2_wrapper">
                             <select id="monitor-vendor-1" name="configuration[1][monitor_vendor]" data-placeholder="Фирма" required>
                                 <option value=""></option>
@@ -641,7 +641,7 @@ declare(strict_types=1);
         <div class="form-group">
             <label for="monitor-vendor-{n}">Монитор</label>
             <div class="input_wrapper">
-                <div class="pc_config_select">
+                <div class="pc_config_select monitor">
                     <div class="select2_wrapper">
                         <select id="monitor-vendor-{n}" name="configuration[{n}][monitor_vendor]" data-placeholder="Фирма" required>
                             <option value=""></option>

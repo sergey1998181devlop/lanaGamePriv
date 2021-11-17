@@ -166,7 +166,7 @@
     <div class="form-group">
         <label for="monitor-vendor-{{$tabKey}}">Монитор</label>
         <div class="input_wrapper">
-            <div class="pc_config_select">
+            <div class="pc_config_select monitor">
                 <div class="select2_wrapper">
                     <select id="monitor-vendor-{{$tabKey}}" name="configuration[{{$tabKey}}][monitor_vendor]" data-placeholder="Фирма" required required>
                         <option value=""></option>
