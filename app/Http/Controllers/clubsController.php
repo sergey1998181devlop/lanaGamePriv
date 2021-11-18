@@ -239,16 +239,33 @@ class clubsController extends Controller
         }else{
             $club->qty_simulator = 0;
         }
+        $club->console = '0';
+        $club->console_type = null;
+        $club->qty_console = 0;
+        $club->console_type_1 = null;
+        $club->qty_console_1 = 0;
+        $club->console_type_2 = null;
+        $club->qty_console_2 = 0;
+        $club->console_type_3 = null;
+        $club->qty_console_3 = 0;
        if($request->input('console') == 'on'){
             $club->console = '1';
-            $club->console_type = $request->input('console_type');
-            $club->qty_console = $request->input('qty_console');
-            $validationAr['qty_console'] = ['required','numeric','min:1'];
+            foreach ($request->input('console_type') as $key => $value) {
+                if(!isset($consX)){
+                    $club->console_type =  $value;
+                    $club->qty_console =  $request->input('qty_console')[$key] ? $request->input('qty_console')[$key] : 0;
+                    $consX = 1;
+                }else{
+                    $cName = 'console_type_'.$consX;
+                    $qtyName = 'qty_console_'.$consX;
+                    $club->$cName =  $value;
+                    $club->$qtyName =  $request->input('qty_console')[$key] ? $request->input('qty_console')[$key] : 0 ;
+                    $consX++;
+                }
+                if($consX == 4) break;
+            }
+            $validationAr['qty_console'] = ['required'];
             $validationAr['console_type'] = ['required'];
-        }else{
-            $club->console = '0';
-            $club->console_type = '0';
-            $club->qty_console = 0;
         }
         if($request->input('food_drinks') == 'on'){
             $club->food_drinks = '1';

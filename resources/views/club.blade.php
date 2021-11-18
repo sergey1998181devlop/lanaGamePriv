@@ -102,7 +102,7 @@ $likedClubs = (isset($page) && $page=='likedClubs') ? true : false;
                             <img src="{{ asset('/img/playstation.svg')}}" alt="icon">
                         </div>
                         <div class="cf_qty">
-                            <span>{{$club->qty_console}}</span>
+                            <span>{{$club->qty_console + $club->qty_console_1 + $club->qty_console_2 + $club->qty_console_3}}</span>
                         </div>
                     </div>
                 @endif

@@ -576,11 +576,13 @@ $monitor_hertz = [
 ];
 $consoles = [
     'PS4',
+    'PS4 Slim',
     'PS4 Pro',
     'PS5',
+    'Xbox One S',
+    'Xbox One X',
     'Xbox Series S',
-    'Xbox Series X',
-    'PS + Xbox'
+    'Xbox Series X'
 ];
 $foods = [
     'Продажа через администратора',

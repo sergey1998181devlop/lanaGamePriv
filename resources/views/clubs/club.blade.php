@@ -254,10 +254,12 @@
                     @if($club->console == '1')
                         <?
                         $message = msgfmt_create('ru_RU', '{count, plural, one{# консоль} few{# консоли} many{# консолей} other{# консоли}}');
+                        $count_cons = $club->qty_console + $club->qty_console_1 + $club->qty_console_2 + $club->qty_console_3;
+                        $cons_types = implode(', ',array_unique(array_filter([$club->console_type,$club->console_type_1,$club->console_type_2,$club->console_type_3])));
                         ?>
                         <div class="club_page_services_item">
                             <img src="{{asset('/img/icons/playstation.svg')}}" alt="icons">
-                            <span>{{$message->format(['count' => $club->qty_console]) . PHP_EOL}} {{$club->console_type}}</span>
+                            <span>{{$message->format(['count' => $count_cons]) . PHP_EOL}} {{$cons_types}}</span>
                         </div>
                     @endif
                     @if($club->qty_vip_pc > 0)
