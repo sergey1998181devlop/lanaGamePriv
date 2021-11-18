@@ -35,9 +35,11 @@ declare(strict_types=1);
         </label>
     </div>
     <div class="input_wrapper" data-block="console">
+        <button type="button" data-role="console-add-tab"></button>
+
         <div class="console_select">
             <div class="select2_wrapper">
-                <select class="type" id="console-type" name="console_type" data-select2-without-search required data-placeholder="Тип">
+                <select class="type" id="console-type" name="console_type[]" data-select2-without-search required data-placeholder="Тип">
                     <option value=""></option>
                     @foreach($consoles as $vendor)
                         <option value="{{$vendor}}" {{(clubValue('console_type') == $vendor ) ? 'selected' : null}}>{{$vendor}}</option>
@@ -95,3 +97,21 @@ declare(strict_types=1);
         <div class="error"></div>
     </div>
 </div>
+
+
+
+<script type="text/html" id="console-select-template">
+    <div class="console_select">
+        <button type="button" data-role-remove-console></button>
+        <div class="select2_wrapper">
+            <select class="type" id="console-type-{n}" name="console_type[{n}]" data-select2-without-search required data-placeholder="Тип">
+                <option value=""></option>
+                @foreach($consoles as $vendor)
+                <option value="{{$vendor}}" {{(clubValue('console_type') == $vendor ) ? 'selected' : null}}>{{$vendor}}</option>
+                @endforeach
+            </select>
+            <div class="error"></div>
+        </div>
+        <input id="qty_console-input-{n}" name="qty_console[{n}]" value="{{clubValue('qty_console')}}" type="number" placeholder="Количество" min="1" step="1" required>
+    </div>
+</script>

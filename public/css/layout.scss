@@ -13460,6 +13460,7 @@ section.cities_list_wrapper {
                                     }
 
                                     .console_select {
+                                        position: relative;
                                         display: flex;
                                         flex-direction: row;
                                         justify-content: flex-start;
@@ -13471,6 +13472,71 @@ section.cities_list_wrapper {
 
                                         input {
                                             width: 180px;
+                                        }
+
+                                        button[data-role-remove-console] {
+                                            position: absolute;
+                                            top: -7px;
+                                            right: -7px;
+                                            display: block;
+                                            width: 20px;
+                                            height: 20px;
+                                            background-image: url("../img/cancel.svg");
+                                            background-repeat: no-repeat;
+                                            background-position: center;
+                                            background-size: 24px 24px;
+                                            background-color: #ffffff;
+                                            border: none;
+                                            border-radius: 50%;
+                                            outline: none;
+                                            cursor: pointer;
+                                        }
+                                    }
+
+                                    .console_select + .console_select{
+                                        margin-top: 15px;
+                                    }
+
+                                    button[data-role="console-add-tab"]{
+                                        position: absolute;
+                                        top: 6px;
+                                        right: -45px;
+                                        width: 36px;
+                                        height: 36px;
+                                        border: none;
+                                        outline: none;
+                                        border-radius: 14px;
+                                        background-color: #dc0000;
+                                        cursor: pointer;
+                                        transition: background-color 0.2s;
+
+                                        &:before{
+                                            content: '';
+                                            position: absolute;
+                                            top: 50%;
+                                            left: 50%;
+                                            width: 2px;
+                                            height: 20px;
+                                            background-color: #ffffff;
+                                            border-radius: 4px;
+                                            transform: translate(-50%, -50%);
+                                        }
+
+                                        &:after{
+                                            content: '';
+                                            position: absolute;
+                                            top: 50%;
+                                            left: 50%;
+                                            width: 20px;
+                                            height: 2px;
+                                            background-color: #ffffff;
+                                            border-radius: 4px;
+                                            transform: translate(-50%, -50%);
+                                        }
+
+                                        &:disabled{
+                                            cursor: auto;
+                                            background-color: #bfbfbf;
                                         }
                                     }
                                 }
@@ -14769,6 +14835,25 @@ section.cities_list_wrapper {
 
                                             input {
                                                 width: calc(50% - 6px);
+                                            }
+                                        }
+
+                                        button[data-role="console-add-tab"]{
+                                            position: absolute;
+                                            top: -43px;
+                                            right: 0;
+                                            width: 28px;
+                                            height: 28px;
+                                            border-radius: 9px;
+
+                                            &:before{
+                                                height: 13px;
+                                                border-radius: 2px;
+                                            }
+
+                                            &:after{
+                                                width: 13px;
+                                                border-radius: 2px;
                                             }
                                         }
                                     }

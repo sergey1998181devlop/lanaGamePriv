@@ -745,10 +745,44 @@ jQuery(function() {
             if ($configuration.is(':visible')) {
                 let $tabWithError = $configuration.find('.tab .form-group.has-error').eq(0).closest('.tab');
 
-
                 show_tab($tabWithError.data('tab'));
             }
         });
+    })();
+
+    /**
+     * Add console
+     */
+
+    (() => {
+        let $console_select_tmp_html = jQuery('#console-select-template').html(),
+            add_button = jQuery('[data-role="console-add-tab"]'),
+            parent_list = jQuery('[data-block="console"]'),
+            index = parent_list.find('.console_select').length;
+
+        add_button.on('click', function(e) {
+            parent_list.append(generate_tab_html());
+
+            Layout.initSelect2();
+
+            ++index;
+
+            add_button.prop('disabled', index >= 4);
+        });
+
+        parent_list.on('click', '[data-role-remove-console]', function(e) {
+            e.preventDefault();
+            jQuery(this).closest('.console_select').remove();
+            --index;
+            add_button.prop('disabled', index >= 4);
+        });
+
+        function generate_tab_html() {
+            let random = Math.random() * 1000,
+                id = random.toFixed(0);
+            console.log(random, id);
+            return $console_select_tmp_html.replace(/\{n\}/g, `${id}`);
+        }
     })();
 
     /**
