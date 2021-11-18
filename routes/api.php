@@ -31,3 +31,5 @@ Route::get('/searchCities', 'Api\HomeController@searchCities');
 Route::get('/getPosts', 'Api\postsController@allposts');
 Route::get('/getPost/{id}', 'Api\postsController@post');
 
+
+Route::get('/club/{id}', 'Api\clubsController@index');

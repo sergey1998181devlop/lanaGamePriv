@@ -8,6 +8,8 @@ use App\club;
 use App\city;
 use App\metro;
 use DateTime;
+use Carbon\Carbon;
+use DB;
 class HomeController extends Controller
 {
     public function index(Request $request)
@@ -173,7 +175,6 @@ class HomeController extends Controller
        $b["results"][]=[ "name" => $city->name,"text"=> ($city->parentName != '') ? $city->name.', '.$city->parentName :  $city->name,'id'=>$city->id,'has_metro' =>  $city->metroMap  ];
       }
       if($forIndex)return $b["results"];
-      return response($b);
       $b['status']=true;
         return response()->json($b, 202);
    }
