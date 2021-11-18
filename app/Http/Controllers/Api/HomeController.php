@@ -9,6 +9,7 @@ use App\city;
 use App\metro;
 use DateTime;
 use Carbon\Carbon;
+use DB;
 class HomeController extends Controller
 {
     public function index(Request $request)
