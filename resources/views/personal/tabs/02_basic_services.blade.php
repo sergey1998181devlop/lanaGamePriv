@@ -35,9 +35,9 @@ declare(strict_types=1);
         </label>
     </div>
     <div class="input_wrapper" data-block="console">
-    
+
         <button type="button" data-role="console-add-tab" @if($edit && clubValue('console_type_3')) disabled @endif></button>
-    
+
         <div class="console_select">
             <div class="select2_wrapper">
                 <select class="type" id="console-type" name="console_type[]" data-select2-without-search required data-placeholder="Тип">
@@ -50,54 +50,70 @@ declare(strict_types=1);
             </div>
             <input id="qty_console-input" name="qty_console[]" value="{{clubValue('qty_console')}}" type="number" placeholder="Количество" min="1" step="1" required>
         </div>
-        @if($edit)
-            @if(clubValue('console_type_1'))
-            <div class="console_select">
-            <button type="button" data-role-remove-console=""></button>
-                <div class="select2_wrapper">
-                    <select class="type" id="console-type_1" name="console_type[1]" data-select2-without-search required data-placeholder="Тип">
-                        <option value=""></option>
-                        @foreach($consoles as $vendor)
-                            <option value="{{$vendor}}" {{(clubValue('console_type_1') == $vendor ) ? 'selected' : null}}>{{$vendor}}</option>
-                        @endforeach
-                    </select>
-                    <div class="error"></div>
-                </div>
-                <input id="qty_console-input" name="qty_console[1]" value="{{clubValue('qty_console_1')}}" type="number" placeholder="Количество" min="1" step="1" required>
-            </div>
-                @if(clubValue('console_type_2'))
+
+    </div>
+</div>
+<div class="additional_console_wrapper">
+    @if($edit)
+        @if(clubValue('console_type_1'))
+            <div class="form-group">
                 <div class="console_select">
-                <button type="button" data-role-remove-console=""></button>
+                    <button type="button" data-role-remove-console=""></button>
                     <div class="select2_wrapper">
-                        <select class="type" id="console-type_2" name="console_type[2]" data-select2-without-search required data-placeholder="Тип">
+                        <select class="type" id="console-type_1" name="console_type[1]" data-select2-without-search required data-placeholder="Тип">
                             <option value=""></option>
                             @foreach($consoles as $vendor)
-                                <option value="{{$vendor}}" {{(clubValue('console_type_2') == $vendor ) ? 'selected' : null}}>{{$vendor}}</option>
+                                <option value="{{$vendor}}" {{(clubValue('console_type_1') == $vendor ) ? 'selected' : null}}>{{$vendor}}</option>
                             @endforeach
                         </select>
                         <div class="error"></div>
                     </div>
-                    <input id="qty_console-input" name="qty_console[2]" value="{{clubValue('qty_console_2')}}" type="number" placeholder="Количество" min="1" step="1" required>
+                    <input id="qty_console-input" name="qty_console[1]" value="{{clubValue('qty_console_1')}}" type="number" placeholder="Количество" min="1" step="1" required>
                 </div>
-                    @if(clubValue('console_type_3'))
+            </div>
+            @if(clubValue('console_type_2'))
+                <div class="form-group">
                     <div class="console_select">
-                    <button type="button" data-role-remove-console=""></button>
+                        <button type="button" data-role-remove-console=""></button>
                         <div class="select2_wrapper">
-                            <select class="type" id="console-type_3" name="console_type[3]" data-select2-without-search required data-placeholder="Тип">
+                            <select class="type" id="console-type_2" name="console_type[2]" data-select2-without-search required data-placeholder="Тип">
                                 <option value=""></option>
                                 @foreach($consoles as $vendor)
-                                    <option value="{{$vendor}}" {{(clubValue('console_type_3') == $vendor ) ? 'selected' : null}}>{{$vendor}}</option>
+                                    <option value="{{$vendor}}" {{(clubValue('console_type_2') == $vendor ) ? 'selected' : null}}>{{$vendor}}</option>
                                 @endforeach
                             </select>
                             <div class="error"></div>
                         </div>
-                        <input id="qty_console-input" name="qty_console[3]" value="{{clubValue('qty_console_3')}}" type="number" placeholder="Количество" min="1" step="1" required>
+                        <input id="qty_console-input" name="qty_console[2]" value="{{clubValue('qty_console_2')}}" type="number" placeholder="Количество" min="1" step="1" required>
                     </div>
-                    @endif
+                </div>
+                @if(clubValue('console_type_3'))
+                    <div class="form-group">
+                        <div class="console_select">
+                            <button type="button" data-role-remove-console=""></button>
+                            <div class="select2_wrapper">
+                                <select class="type" id="console-type_3" name="console_type[3]" data-select2-without-search required data-placeholder="Тип">
+                                    <option value=""></option>
+                                    @foreach($consoles as $vendor)
+                                        <option value="{{$vendor}}" {{(clubValue('console_type_3') == $vendor ) ? 'selected' : null}}>{{$vendor}}</option>
+                                    @endforeach
+                                </select>
+                                <div class="error"></div>
+                            </div>
+                            <input id="qty_console-input"
+                                   name="qty_console[3]"
+                                   value="{{clubValue('qty_console_3')}}"
+                                   type="number"
+                                   placeholder="Количество"
+                                   min="1"
+                                   step="1"
+                                   required>
+                        </div>
+                    </div>
                 @endif
             @endif
         @endif
-    </div>
+    @endif
 </div>
 <div class="form-group">
     <div class="checkbox_qty_wrapper">
@@ -111,9 +127,9 @@ declare(strict_types=1);
         <div class="select2_wrapper">
             <select class="type" id="food-drink-type" name="food_drink_type" data-select2-without-search required data-placeholder="Тип">
                 <option value=""></option>
-                    @foreach($foods as $type)
-                        <option value="{{$type}}" {{(clubValue('food_drink_type') == $type ) ? 'selected' : null}}>{{$type}}</option>
-                    @endforeach
+                @foreach($foods as $type)
+                    <option value="{{$type}}" {{(clubValue('food_drink_type') == $type ) ? 'selected' : null}}>{{$type}}</option>
+                @endforeach
             </select>
             <div class="error"></div>
         </div>
@@ -128,7 +144,7 @@ declare(strict_types=1);
         </label>
     </div>
     <div class="input_wrapper" data-block="vr">
-        <input id="qty_vr-input" name="qty_vr"  value="{{clubValue('qty_vr')}}" type="number" placeholder="Количество" min="1" step="1" required>
+        <input id="qty_vr-input" name="qty_vr" value="{{clubValue('qty_vr')}}" type="number" placeholder="Количество" min="1" step="1" required>
         <div class="error"></div>
     </div>
 </div>
@@ -146,20 +162,20 @@ declare(strict_types=1);
     </div>
 </div>
 
-
-
 <script type="text/html" id="console-select-template">
-    <div class="console_select">
-        <button type="button" data-role-remove-console></button>
-        <div class="select2_wrapper">
-            <select class="type" id="console-type-{n}" name="console_type[{n}]" data-select2-without-search required data-placeholder="Тип">
-                <option value=""></option>
-                @foreach($consoles as $vendor)
-                <option value="{{$vendor}}" {{(clubValue('console_type') == $vendor ) ? 'selected' : null}}>{{$vendor}}</option>
-                @endforeach
-            </select>
-            <div class="error"></div>
+    <div class="form-group">
+        <div class="console_select">
+            <button type="button" data-role-remove-console></button>
+            <div class="select2_wrapper">
+                <select class="type" id="console-type-{n}" name="console_type[{n}]" data-select2-without-search required data-placeholder="Тип">
+                    <option value=""></option>
+                    @foreach($consoles as $vendor)
+                        <option value="{{$vendor}}" {{(clubValue('console_type') == $vendor ) ? 'selected' : null}}>{{$vendor}}</option>
+                    @endforeach
+                </select>
+                <div class="error"></div>
+            </div>
+            <input id="qty_console-input-{n}" name="qty_console[{n}]" value="{{clubValue('qty_console')}}" type="number" placeholder="Количество" min="1" step="1" required>
         </div>
-        <input id="qty_console-input-{n}" name="qty_console[{n}]" value="{{clubValue('qty_console')}}" type="number" placeholder="Количество" min="1" step="1" required>
     </div>
 </script>

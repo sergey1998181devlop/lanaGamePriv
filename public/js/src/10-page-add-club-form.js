@@ -757,7 +757,7 @@ jQuery(function() {
     (() => {
         let $console_select_tmp_html = jQuery('#console-select-template').html(),
             add_button = jQuery('[data-role="console-add-tab"]'),
-            parent_list = jQuery('[data-block="console"]'),
+            parent_list = jQuery('.additional_console_wrapper'),
             index = parent_list.find('.console_select').length;
 
         add_button.on('click', function(e) {
@@ -767,20 +767,19 @@ jQuery(function() {
 
             ++index;
 
-            add_button.prop('disabled', index >= 4);
+            add_button.prop('disabled', index >= 3);
         });
 
         parent_list.on('click', '[data-role-remove-console]', function(e) {
             e.preventDefault();
-            jQuery(this).closest('.console_select').remove();
+            jQuery(this).closest('.form-group').remove();
             --index;
-            add_button.prop('disabled', index >= 4);
+            add_button.prop('disabled', index >= 3);
         });
 
         function generate_tab_html() {
             let random = Math.random() * 1000,
                 id = random.toFixed(0);
-            console.log(random, id);
             return $console_select_tmp_html.replace(/\{n\}/g, `${id}`);
         }
     })();
