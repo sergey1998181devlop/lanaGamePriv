@@ -157,9 +157,6 @@
                             <button type="button" class="club_calling closed">Закрыт</button>
                         @endif
                     @endif
-                    @if(false)
-
-                    @endif
                 </div>
             </div>
             <div class="club_page_main_info_bottom">
@@ -222,6 +219,10 @@
 
                         <?php
                         $images = array_filter(explode(',', $club->club_photos));
+                        if (($key = array_search($club->main_preview_photo, $images)) !== false) {
+                            unset($images[$key]);
+                        }
+                        array_unshift($images,$club->main_preview_photo);
                         foreach ($images as $value) {
                         ?>
                         <div class="club_page_photo_item">
@@ -738,7 +739,7 @@
                     <a class="club_calling closed">Закрыто навсегда</a>
                 @else
                     @if($showCallButton)
-                        <a href="tel:84958749900" class="club_calling">Позвонить</a>
+                        <a href="tel:{{$club->phone}}" class="club_calling">Позвонить</a>
                     @else
                         <a class="club_calling closed">Закрыт</a>
                     @endif
