@@ -4,6 +4,7 @@ jQuery(function() {
         $step_back = $secondForm.find('.step_back'),
         $lastForm = jQuery('#personal_info_register'),
         codeFormInterval,
+        regForm = document.querySelector('#main-registration-form'),
         phoneNumber = null;
 
     if ($firstForm.length === 0) {
@@ -12,12 +13,20 @@ jQuery(function() {
 
     jQuery('[data-btn-club-owner-reg]').on('click', function(e) {
         if(Layout.isGuest()){
-            jQuery(this).closest('.main_reg_wrapper').find('.form_reg_wrapper').show().find('.page_title').text('Регистрация представителя компьютерного клуба');
+            jQuery(this).closest('.main_reg_wrapper')
+                .find('.form_reg_wrapper')
+                .show()
+                .find('.page_title')
+                .text('Регистрация представителя компьютерного клуба');
             $lastForm.find('input[name="user_type"]').val('owner');
             $lastForm.find('.form-group.owner').show().find('select').prop('disabled', false);
             $lastForm.find('.form-group.player').hide().find('select').prop('disabled', true);
         }else{
             Layout.showInfoModal('Вы уже авторизованы.');
+        }
+
+        if(regForm){
+            regForm.scrollIntoView({behavior: 'smooth'});
         }
     });
 
@@ -30,6 +39,10 @@ jQuery(function() {
             $lastForm.find('.club_list_link').hide();
         } else{
             Layout.showInfoModal('Вы уже авторизованы.');
+        }
+
+        if(regForm){
+            regForm.scrollIntoView({behavior: 'smooth'});
         }
     });
 

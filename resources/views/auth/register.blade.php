@@ -106,7 +106,7 @@
                     </div>
                 </div>
 
-                <div class="form_reg_wrapper">
+                <div class="form_reg_wrapper" id="main-registration-form">
                     <div class="page_title">Регистрация представителя компьютерного клуба</div>
                     <div class="add_club_start_wrapper">
                         <form action="{{url('register/send_sms')}}" class="add_club_start" method="post" id="add-club-start-form">
