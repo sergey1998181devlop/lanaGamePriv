@@ -1,8 +1,14 @@
 @extends('layouts.app')
 @section('page')
-    <title>Лучшие компьютерные клубы в городе {{city(true)['name']}} {{city(true)['parentName']}} в {{date("Y")}}</title>
-    <meta name="description" content="Все компьютерные клубы города {{city(true)['name']}} {{city(true)['parentName']}} с их адресами ({{$count_clubs}}) в {{date('Y')}}. А также фото, отзывы, режим работы, цены, рейтинг и проводимые мероприятия.">
-    <meta name="keywords" content="Компьютерный клуб {{city(true)['name']}}, интернет-кафе {{city(true)['name']}}, киберклуб {{city(true)['name']}}, отзывы, цены"/>
+    @if(city(true)['id'] != 1)
+        <title>Лучшие компьютерные клубы в городе {{city(true)['name']}} {{city(true)['parentName']}} в {{date("Y")}}</title>
+        <meta name="description" content="Все компьютерные клубы города {{city(true)['name']}} {{city(true)['parentName']}} с их адресами ({{$count_clubs}}) в {{date('Y')}}. А также фото, отзывы, режим работы, цены, рейтинг и проводимые мероприятия.">
+        <meta name="keywords" content="Компьютерный клуб {{city(true)['name']}}, интернет-кафе {{city(true)['name']}}, киберклуб {{city(true)['name']}}, отзывы, цены"/>
+    @else
+        <title>Лучшие компьютерные клубы России в {{date("Y")}}</title>
+        <meta name="description" content="Все компьютерные клубы России с их адресами ({{$count_clubs}}) в {{date('Y')}}. А также фото, отзывы, режим работы, цены, рейтинг и проводимые мероприятия.">
+        <meta name="keywords" content="Компьютерный клуб России, интернет-кафе России, киберклуб России, отзывы, цены"/>
+    @endif
 @endsection
 @section('content')
     <?
