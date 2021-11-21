@@ -454,15 +454,16 @@
                                     <thead>
                                         <tr>
                                             <th>Оборудование</th>
-                                            @foreach($configuration as $val)
+                                            <?foreach($configuration as $val){
+                                                if(isset($val['pc_quantity']) && (int) $val['pc_quantity'] < 1) continue;  ?>
                                                 <th>
                                                     {{isset($val['conf_name'])? $val['conf_name'] : null}}
-                                                    <span class="text_decor">{{isset($val['pc_quantity'])? intval($val['pc_quantity']).' ПК' : null}}</span>
+                                                    <span class="text_decor">{{isset($val['pc_quantity'])? (int) $val['pc_quantity'].' ПК' : null}}</span>
                                                 </th>
                                                 <? foreach ($val as $key => $value) {
                                                     $configurationAr[$key][] = $value;
-                                                }?>
-                                            @endforeach
+                                                }
+                                            }?>
                                         </tr>
                                     </thead>
                                     <tbody>

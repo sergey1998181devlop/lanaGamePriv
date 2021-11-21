@@ -21,7 +21,9 @@ declare(strict_types=1);
             <select id="select-сity" name="club_city" data-select2-skip-auto-init required data-placeholder="Выберите город">
                 <option value=""></option>
                 @if(!$edit)
-                <option value="{{city(true)['id']}}" selected >{{city(true)['name']}}</option>
+                    @if(city(true)['id'] != 1)
+                        <option value="{{city(true)['id']}}" selected >{{city(true)['name']}}</option>
+                    @endif
                 @else
                    @if($clubAr->club_city != '')
                       @if($curCity = App\city::select('id','name','metroMap')->find($clubAr->club_city))

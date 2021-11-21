@@ -2,7 +2,7 @@
 $clubIndex = isset($clubIndex) ? $clubIndex : null;
 $likedClubs = (isset($page) && $page=='likedClubs') ? true : false;
 ?>
-<?$isHidden = (isset($show) && $show === 'map' && $club->club_city != city(true)['id']) ? true : false ?>
+<?$isHidden = (isset($show) && $show === 'map' && (city(true)['id'] != 1 && $club->club_city != city(true)['id'])) ? true : false ?>
 <div class="sc_item <?=(isset($show) && $show === 'map') ? 'in_map' : null ?> <?=($isHidden) ? 'another_city' : null ?> <?= $likedClubs ? 'liked_list' : null?>"
      data-id="{{$club->id}}"
      data-role-club
@@ -84,7 +84,7 @@ $likedClubs = (isset($page) && $page=='likedClubs') ? true : false;
                     <img src="{{ asset('/img/point-red.svg')}}" alt="location">
                 </div>
                 <div class="club_address">
-                    <?=((isset($show) && $show === 'map') || isset($mainPage)) ? $club->city->name . ', ' : null ?> {{$club->club_address}}
+                    <?=((isset($show) && $show === 'map') || isset($mainPage) || city(true)['id'] == 1) ? $club->city->name . ', ' : null ?> {{$club->club_address}}
                 </div>
             </div>
             <div class="cf_wrapper">

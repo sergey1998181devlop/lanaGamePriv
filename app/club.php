@@ -63,7 +63,9 @@ class club extends Model
     
     public function scopeCorrentCity($query)
     {
-        return $query->where('club_city', city(true)['id']);
+
+        if(city(true)['id'] != 1){
+        return $query->where('club_city', city(true)['id']);}
     }
 
     public function city()

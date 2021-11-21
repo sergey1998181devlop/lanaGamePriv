@@ -13,7 +13,6 @@ use DateTime;
 use DB;
 use Illuminate\Http\Request;
 use View;
-
 include_once(resource_path('views/includes/functions.blade.php'));
 class HomeController extends Controller
 {
@@ -160,7 +159,7 @@ class HomeController extends Controller
         $clubs=$clubs->where('closed','0')->with(array('metro'=>function($query) {
           $query->select('id','name','color');
         },'city'=>function($query) {
-          $query->select('id','name');
+          $query->select('id','name','en_name');
         }));
       }else{
         $clubs=$clubs->CorrentCity()->whereNull('hidden_at')->where('club_name', 'like', '%'.$search_string.'%')->orderBy('closed')->with(array('metro'=>function($query) {
@@ -223,17 +222,30 @@ class HomeController extends Controller
           $b["results"][]=[ "text"=>'Все города', "data"=> 'all','id'=>'all' ,'has_metro' => 'false'];
       }
       if(($request->input('q'))){
+        if(($request->input('withR') && $request->input('withR') == 'true') && (!$request->input('page') || $request->input('page') == 1)){
+        if (strpos("вся россия",mb_strtolower($request->input('q'),'UTF-8')) !== false) {
+          $b["results"][]=[ "text"=>'Вся Россия', "data"=> 'computerniy_club_rossiya','id'=>'0' ,'has_metro' => 'false'];
+        }
+        }
         $cities=city::select('id','name','en_name','metroMap','parentName')->where('name', 'like', $request->input('q') . '%')->orWhere('en_name', 'like', $request->input('q') . '%')->orderBy('order_no')->paginate(8);
         if($cities->total() == 0){
           $now =Carbon::now()->toDateTimeString();
           $cities_searchs =DB::statement('insert into cities_searchs (query,created_at,updated_at) values ("'.$request->input('q').'","'.$now.'","'.$now.'")');
         }
       }else{
+        if($request->input('withR') && $request->input('withR') == 'true'){
+          if(!$request->input('page') || $request->input('page') == 1)
+          $b["results"][]=[ "text"=>'Вся Россия', "data"=> 'computerniy_club_rossiya','id'=>'0' ,'has_metro' => 'false'];
+        }
         $correntCity = city::select('id','name','en_name','metroMap','parentName')->find(($request->input('selected') ? $request->input('selected') : city(true)['id']));
-        if(!isset($request->page) || $request->page == 1){
+        if($correntCity && !isset($request->page) || $request->page == 1){
           $b["results"][]=[ "text"=> $correntCity->name, "data"=> "computerniy_club_".$correntCity->en_name,'id'=>$correntCity->id ,'has_metro' =>  $correntCity->metroMap ];
         }
-        $cities=city::select('id','name','en_name','metroMap','parentName')->where('id','!=',$correntCity->id)->orderBy('order_no')->paginate(8);
+        $cities=city::select('id','name','en_name','metroMap','parentName');
+        if($correntCity){
+          $cities = $cities->where('id','!=',$correntCity->id);
+        }
+        $cities = $cities->orderBy('order_no')->paginate(8);
       }
       if($cities->lastPage() > $cities->currentPage() ){
         $b["pagination"]= [

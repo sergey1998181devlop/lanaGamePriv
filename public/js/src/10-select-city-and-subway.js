@@ -8,7 +8,7 @@ jQuery(function() {
 
     $('#city_selector').select2({
         ajax: {
-            url: $('meta[name="site"]').attr('content') + '/searchCities',
+            url: $('meta[name="site"]').attr('content') + '/searchCities?withR=true',
             dataType: 'json'
         },
         cache: true

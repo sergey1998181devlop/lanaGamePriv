@@ -25,6 +25,9 @@
             </form>
             <div class="cities_list_wrapper">
                 <div class="cities_list">
+                    <a href="{{url('/')}}/computerniy_club_rossiya" l="{{ \mb_substr('Россия', 0, 1) }}">
+                        Вся Россия
+                        </a>
                     @foreach($cities as $city)
                         <a href="{{url('/')}}/computerniy_club_{{ $city->en_name }}" l="{{ \mb_substr($city->name, 0, 1) }}">
                             {{ $city->name }}

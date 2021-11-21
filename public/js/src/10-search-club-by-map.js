@@ -22,7 +22,7 @@ jQuery(function() {
         let scrollParent = jQuery('[data-search-club-by-map]'),
             wrapper = document.querySelector('[data-search-club-by-map]'),
             map = new ymaps.Map($map, {
-                center: fixCoordinatesCenter([window.CITY_LAT, window.CITY_LON], 11),
+                center: fixCoordinatesCenter([window.CITY_LAT, window.CITY_LON], window.MAP_ZOOM),
                 zoom: 11,
                 behaviors: ['drag', 'dblClickZoom'],
                 controls: []

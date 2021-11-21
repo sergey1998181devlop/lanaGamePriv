@@ -158,6 +158,7 @@
                 window.CITY_LAT = "55.7558";
             window.CITY_LON = "37.6173";
             @endif
+            window.MAP_ZOOM = {{city(true)['id'] == 1 ? 5 : 11}}
         </script>
 
     @endif

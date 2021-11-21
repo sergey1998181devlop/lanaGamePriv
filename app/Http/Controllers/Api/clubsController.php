@@ -17,7 +17,7 @@ class clubsController extends Controller
             $query->select('id','name');
         },'metro'=>function($query) {
             $query->select('id','name','color');
-        }))->first()->makeHidden(['draft','url','created_at','club_thumbnail','deleted_at','deleted_by','unpublished_at','unpublished_by','hidden_at','published_by','last_admin_edit']);
+        }))->first()->makeHidden(['draft','url','created_at','club_thumbnail','deleted_at','deleted_by','unpublished_at','unpublished_by','published_by','last_admin_edit']);
         if(!$club){
             return response()->json(['status'=>false,'msg'=>'non_found'], 202);
         }
