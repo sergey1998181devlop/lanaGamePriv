@@ -2,11 +2,13 @@
 @section('page')
     @if(city(true)['id'] != 1)
         <title>Лучшие компьютерные клубы в городе {{city(true)['name']}} {{city(true)['parentName']}} в {{date("Y")}}</title>
-        <meta name="description" content="Все компьютерные клубы города {{city(true)['name']}} {{city(true)['parentName']}} с их адресами ({{$count_clubs}}) в {{date('Y')}}. А также фото, отзывы, режим работы, цены, рейтинг и проводимые мероприятия.">
+        <meta name="description"
+              content="Все компьютерные клубы города {{city(true)['name']}} {{city(true)['parentName']}} с их адресами ({{$count_clubs}}) в {{date('Y')}}. А также фото, отзывы, режим работы, цены, рейтинг и проводимые мероприятия.">
         <meta name="keywords" content="Компьютерный клуб {{city(true)['name']}}, интернет-кафе {{city(true)['name']}}, киберклуб {{city(true)['name']}}, отзывы, цены"/>
     @else
         <title>Лучшие компьютерные клубы России в {{date("Y")}}</title>
-        <meta name="description" content="Все компьютерные клубы России с их адресами ({{$count_clubs}}) в {{date('Y')}}. А также фото, отзывы, режим работы, цены, рейтинг и проводимые мероприятия.">
+        <meta name="description"
+              content="Все компьютерные клубы России с их адресами ({{$count_clubs}}) в {{date('Y')}}. А также фото, отзывы, режим работы, цены, рейтинг и проводимые мероприятия.">
         <meta name="keywords" content="Компьютерный клуб России, интернет-кафе России, киберклуб России, отзывы, цены"/>
     @endif
 @endsection
@@ -22,7 +24,9 @@
     }
     $order_key = isset($_GET['order_key']) && \in_array($_GET['order_key'], ['asc', 'desc']) ? $_GET['order_key'] : 'asc';
     $show = 'list';
-    if(isset($_GET['show']) && $_GET['show'] == 'map'){ $show = 'map';}
+    if (isset($_GET['show']) && $_GET['show'] == 'map') {
+        $show = 'map';
+    }
     ?>
     @if(count($clubs) > 0)
         <!--SECTION CHOOSE CLUB INFO START-->
@@ -127,7 +131,7 @@
             jQuery.ajax({
                 type: 'get',
                 url: '{{url('/')}}/computerniy_club_{{city()}}?order={{$order_by}}&order_key={{$order_key}}',
-                data: {'page': nextPage, 'search': $("#search-text").val()},
+                data: {'page': nextPage, 'search': $('#search-text').val()},
                 success: function(data) {
                     correntPage++;
                     $('.sc_list').append(data.html);
@@ -142,30 +146,32 @@
             jQuery.ajax({
                 type: 'get',
                 url: '{{url('/')}}/computerniy_club_{{city()}}?order={{$order_by}}&order_key={{$order_key}}',
-                data: {'search': $("#search-text").val()},
+                data: {'search': $('#search-text').val()},
                 success: function(data) {
                     $('.sc_list').html(data.html);
                     if (data.last == correntPage) {
                         $('#show_more_clubs').hide();
-                    }else{
+                    } else {
                         $('#show_more_clubs').show();
                     }
-                    $('.sc_result .search_qty').text(data.total)
+                    $('.sc_result .search_qty').text(data.total);
                 }
             });
         });
     </script>
     @if($show == 'map')
         <script>
-            @if(city(true)['lat'] != '' && city(true)['lon'] != '')
+            @if(city(true)['id'] !== 1)
                 window.CITY_LAT = "{{city(true)['lat']}}";
             window.CITY_LON = "{{city(true)['lon']}}";
+            window.MAP_ZOOM = 11;
+            window.IS_GLOBAL_MAP = false;
             @else
-                window.CITY_LAT = "55.7558";
-            window.CITY_LON = "37.6173";
+                window.CITY_LAT = '55.7558';
+            window.CITY_LON = '29.6173';
+            window.MAP_ZOOM = 3.5;
+            window.IS_GLOBAL_MAP = true;
             @endif
-            window.MAP_ZOOM = {{city(true)['id'] == 1 ? 5 : 11}}
         </script>
-
     @endif
 @endsection

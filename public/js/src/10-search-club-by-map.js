@@ -23,7 +23,7 @@ jQuery(function() {
             wrapper = document.querySelector('[data-search-club-by-map]'),
             map = new ymaps.Map($map, {
                 center: fixCoordinatesCenter([window.CITY_LAT, window.CITY_LON], window.MAP_ZOOM),
-                zoom: 11,
+                zoom: window.MAP_ZOOM,
                 behaviors: ['drag', 'dblClickZoom'],
                 controls: []
             }),
@@ -108,14 +108,16 @@ jQuery(function() {
             clubPlacemarks[id].options.set('iconImageHref', '/img/active_ballon.svg');
             clubPlacemarks[id].options.set('zIndex', 2);
 
-            map.setCenter(
-                fixCoordinatesCenter(clubPlacemarks[id].geometry.getCoordinates(), zoom),
-                zoom,
-                {
-                    duration: 800,
-                    timingFunction: 'ease'
-                }
-            );
+            if (!window.IS_GLOBAL_MAP) {
+                map.setCenter(
+                    fixCoordinatesCenter(clubPlacemarks[id].geometry.getCoordinates(), zoom),
+                    zoom,
+                    {
+                        duration: 800,
+                        timingFunction: 'ease'
+                    }
+                );
+            }
 
             activeClubId = id;
         }
