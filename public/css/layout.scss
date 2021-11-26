@@ -3677,10 +3677,11 @@ section.sc_wrapper_by_map {
                             width: 306px;
                             display: flex;
                             flex-direction: column;
+                            justify-content: space-between;
                             padding: 12px;
 
                             .club_name {
-                                margin-bottom: 8px;
+                                margin-bottom: 0;
 
                                 span {
                                     font-style: normal;
@@ -3710,7 +3711,7 @@ section.sc_wrapper_by_map {
                                 flex-direction: row;
                                 justify-content: flex-start;
                                 align-items: center;
-                                margin-bottom: 16px;
+                                margin-bottom: 0;
 
                                 .rating_stars {
                                     display: flex;
@@ -3753,7 +3754,7 @@ section.sc_wrapper_by_map {
                                 flex-direction: row;
                                 justify-content: flex-start;
                                 align-items: center;
-                                margin-bottom: 12px;
+                                margin-bottom: 0;
 
                                 .subway_img_wrapper {
                                     margin-right: 8px;
@@ -3780,7 +3781,7 @@ section.sc_wrapper_by_map {
                                 justify-content: flex-start;
                                 align-items: center;
                                 min-height: 52px;
-                                margin-bottom: 12px;
+                                margin-bottom: 0;
 
                                 .address_img_wrapper {
                                     margin-right: 10px;
