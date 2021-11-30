@@ -74,6 +74,7 @@
               <th>Почта клуба</th>
               <th>ВК клуба</th>
               <th>Инста клуба</th>
+              <th>Ссылка на клуб</th>
             <?}?>
             <th>владелец</th>
             <th>Статус</th>
@@ -94,9 +95,10 @@
             <td>@if(isset($club->city)){{$club->city->name}}@endif</td>
             <?if($allRows){?>
               <td>{{$club->phone}}</td>
-              <td><a href="mailto:{{$club->club_email}}">{{$club->club_email}}</a></td>
-              <td><a href="{{$club->club_vk_link}}">{{$club->club_vk_link}}</a></td>
-              <td><a href="{{$club->club_instagram_link}}">{{$club->club_instagram_link}}</a></td>
+              <td style="max-width:100px"><a href="mailto:{{$club->club_email}}">{{$club->club_email}}</a></td>
+              <td style="max-width:100px"><a href="{{$club->club_vk_link}}">{{$club->club_vk_link}}</a></td>
+              <td style="max-width:100px"><a href="{{$club->club_instagram_link}}">{{$club->club_instagram_link}}</a></td>
+              <td style="max-width:100px"><a href="{{$club->club_link}}" style="max-height:100px;overflow: hidden;display: block;" title="{{$club->club_link}}">{{$club->club_link}}</a></td>
             <?}?>
             <td><a href="{{url('panel/users')}}?search={{$club->user->phone}}">{{$club->user->name}}</a></td>
             <!-- status -->
