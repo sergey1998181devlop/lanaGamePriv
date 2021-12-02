@@ -148,7 +148,7 @@ class clubsController extends Controller
             $club->marketing_event = unserialize($club->marketing_event_descr);
             
         }else{
-            $club->marketing_event = 'null';
+            $club->marketing_event = null;
         }
         unset($club->marketing_event_descr);
         $payment_list = array_filter(explode(',', $club->payment_methods));
