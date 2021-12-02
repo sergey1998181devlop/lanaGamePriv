@@ -47,6 +47,7 @@ class clubsController extends Controller
         $views=$club->views;
         $views++;
         $club->views=$views;
+        $club->timestamps = false;
         $club->save();
 
         return view('clubs.club')->with(['club'=>$club]);

@@ -30,6 +30,7 @@ class clubsController extends Controller
         $views=$club->views;
         $views++;
         $club->views=$views;
+        $club->timestamps = false;
         $club->save();
         // club status
         $now = new DateTime();
