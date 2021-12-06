@@ -92,25 +92,25 @@ class clubsController extends Controller
         // Услуги
         $services = [];
         $message = msgfmt_create('ru_RU', '{count, plural, one{# компьютер} few{# компьютера} many{# компьютеров} other{# компьютера}}');
-        $services['qty_pc'] = $message->format(['count' => $club->qty_pc]) . PHP_EOL;
+        $services['qty_pc'] = $message->format(['count' => $club->qty_pc]);
 
         if($club->console == '1'){
             $message = msgfmt_create('ru_RU', '{count, plural, one{# консоль} few{# консоли} many{# консолей} other{# консоли}}');
             $count_cons = $club->qty_console + $club->qty_console_1 + $club->qty_console_2 + $club->qty_console_3;
             $cons_types = implode(', ',array_unique(array_filter([$club->console_type,$club->console_type_1,$club->console_type_2,$club->console_type_3])));
-            $services['consoles'] = $message->format(['count' => $count_cons]) . PHP_EOL .$cons_types;
+            $services['consoles'] = $message->format(['count' => $count_cons]).' '.$cons_types;
         }
         if($club->qty_vip_pc > 0){
             $message = msgfmt_create('ru_RU', '{count, plural, one{# компьютер} few{# компьютера} many{# компьютеров} other{# компьютера}}');
-            $services['qty_vip_pc'] = $message->format(['count' => $club->qty_vip_pc]) . PHP_EOL;
+            $services['qty_vip_pc'] = $message->format(['count' => $club->qty_vip_pc]);
         }
         if($club->qty_simulator > 0){
             $message = msgfmt_create('ru_RU', '{count, plural, one{# устройство} few{# устройства} many{# устройств} other{# устройства}}');
-            $services['qty_simulator'] = $message->format(['count' => $club->qty_simulator]) . PHP_EOL;
+            $services['qty_simulator'] = $message->format(['count' => $club->qty_simulator]);
         }
         if($club->qty_vr > 0){
             $message = msgfmt_create('ru_RU', '{count, plural, one{# устройство} few{# устройства} many{# устройств} other{# устройства}}');
-            $services['qty_vr'] = $message->format(['count' => $club->qty_vr]) . PHP_EOL;
+            $services['qty_vr'] = $message->format(['count' => $club->qty_vr]);
         }
         if($club->food_drinks == '1'){
             $services['food_drinks'] = $club->food_drink_type;
@@ -135,7 +135,11 @@ class clubsController extends Controller
 
         // configirations
         if(canBeUnserialized($club->configuration)){
-            $club->configuration = unserialize($club->configuration);
+            $club_configuration =[];
+            foreach ( unserialize($club->configuration) as $key => $value) {
+                $club_configuration[] = $value;
+            }
+            $club->configuration = $club_configuration;
         }else{
             $club->configuration = '';
         }
@@ -144,7 +148,7 @@ class clubsController extends Controller
             $club->marketing_event = unserialize($club->marketing_event_descr);
             
         }else{
-            $club->marketing_event = 'null';
+            $club->marketing_event = null;
         }
         unset($club->marketing_event_descr);
         $payment_list = array_filter(explode(',', $club->payment_methods));
