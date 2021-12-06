@@ -14,6 +14,7 @@ use App\sms_code;
 use App\Jobs\SMSRU;
 use Auth;
 use App\UserVerify;
+use App\city;
 use Mail;
 use Illuminate\Support\Str;
 
