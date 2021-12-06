@@ -47,7 +47,7 @@ class RegisterController extends Controller
                 return response()->json(['status'=>false,'msg'=>'Validation Error','errors'=>$validator->errors()], 202);
             }
             $city =  $request->input('city');
-            if(!city::first($city)){
+            if(!city::where('id',$city)->first('id')){
                 jsonValidationException(['city' => 'Город не определен']);
             }
         }else{
