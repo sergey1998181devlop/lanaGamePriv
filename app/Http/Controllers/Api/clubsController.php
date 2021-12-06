@@ -42,6 +42,8 @@ class clubsController extends Controller
             if ($club->work_time == '2') {
               $schedule_item = unserialize($club->work_time_days);
               $club->work_time_days =$schedule_item;
+            }else{
+                unset($club->work_time_days);
             }
             if ($club->work_time == '2' && is_array($schedule_item)) {
                 if (!isset($schedule_item[strtolower($today)])) {

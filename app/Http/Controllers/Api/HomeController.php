@@ -141,6 +141,7 @@ class HomeController extends Controller
       }
       $club->openStatus = $openStatus;
      }
+     unset($club->work_time_days,$schedule_item);
      if($forIndex)
      return ['clubs'=>$clubs,'now'=>$now,'today'=>$today ];
      return response()->json(['status'=>true,'clubs'=>$clubs,'now'=>$now,'today'=>$today ], 202);
