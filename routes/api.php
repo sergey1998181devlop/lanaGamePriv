@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 Route::post('auth/login',   'Api\RegisterController@login' );
+Route::post('auth/password/email',   'Api\RegisterController@resetPassword' );
 Route::post('auth/register',   'Api\RegisterController@create' );
 Route::post('/auth/send_sms', 'Api\RegisterController@sendSMS');
 Route::post('/auth/verify_sms', 'Api\RegisterController@verifySMS');

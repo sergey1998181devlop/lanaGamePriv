@@ -18,6 +18,9 @@ use App\city;
 use Mail;
 use Illuminate\Support\Str;
 
+use Notification;
+use App\Notifications\ResetPasswordNotification;
+
 class RegisterController extends Controller
 {
     use RegistersUsers;
@@ -183,5 +186,16 @@ class RegisterController extends Controller
     }
     public function getUserData(){
         return response()->json(['status'=>true,'user'=>Auth::user()], 202);
+    }
+
+    public function resetPassword(Request $request){
+        $user = user::where('email', $request->input('email'))
+        ->first();
+        if (!$user) {
+            return response()->json(['status'=>false,'msg'=>'такой адрес не найден'], 202);
+        }
+        $token = app('auth.password.broker')->createToken($user);
+        Notification::send($user, new ResetPasswordNotification($token));
+        return response()->json(['status'=>true], 202);
     }
 }
