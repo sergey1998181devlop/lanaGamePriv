@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Str;
 
 use App\post;
-include_once(resource_path('views/includes/functions.blade.php')); 
 class postsController extends Controller
 {
     public function post($id){

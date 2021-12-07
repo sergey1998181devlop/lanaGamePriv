@@ -100,7 +100,7 @@ function customOldVal($name,$item){
                                         <div class="code_wrapper">
                                             <input type="text" name="code">
                                         </div>
-                                        <a  class="code_resend disabled pointer" id="reSendCodeProfile">Отправить повторно <span class="hide">через</span>
+                                        <a  class="code_resend disabled pointer" id="reSendCodeProfile">Отправить повторно <span class="hide">через </span>
                                             <span id="countdown">3:00</span></a>
                                     </div>
                                 </div>

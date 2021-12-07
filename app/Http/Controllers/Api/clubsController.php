@@ -7,7 +7,6 @@ use Str;
 use App\club;
 use DateTime;
 use Carbon\Carbon;
-include_once(resource_path('views/includes/functions.blade.php')); 
 class clubsController extends Controller
 {
     public function index($id,Request $request){

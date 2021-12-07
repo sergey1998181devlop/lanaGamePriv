@@ -23,6 +23,9 @@ Route::post('auth/register',   'Api\RegisterController@create' );
 Route::post('/auth/send_sms', 'Api\RegisterController@sendSMS');
 Route::post('/auth/verify_sms', 'Api\RegisterController@verifySMS');
 Route::get('/auth/user', 'Api\RegisterController@getUserData');
+Route::post('/profile/update', 'Api\personalController@update');
+Route::post('/profile/sendSMS', 'Api\personalController@sendSMS');
+Route::post('/profile/verifySMS', 'Api\personalController@verifySMS');
 
 
 Route::get('/getHomeData', 'Api\HomeController@index');
