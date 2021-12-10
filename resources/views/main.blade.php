@@ -194,7 +194,7 @@
                                             {{$post->name}}
                                         </div>
                                         <div class="article_descr">
-                                            {{ \Illuminate\Support\Str::limit(strip_tags($post->about),150, '...')}}
+                                            {!! \Illuminate\Support\Str::limit(strip_tags($post->about),150, '...')!!}
                                         </div>
                                         <p>Читать дальше</p>
                                     </div>
