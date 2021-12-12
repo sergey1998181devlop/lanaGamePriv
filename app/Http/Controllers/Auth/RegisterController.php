@@ -178,7 +178,7 @@ class RegisterController extends Controller
         }
     }
     public function verify($phone,$code){
-        $sms_code = sms_code::where('code',$code)->where('phone',$phone)->first();
+        $sms_code = sms_code::where('code',$code)->where('phone',$phone)->where('created_at', '>=', Carbon::now()->subMinutes(30)->toDateTimeString())->first();
         if($sms_code){
             return true;
         }else{

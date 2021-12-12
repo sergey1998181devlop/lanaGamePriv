@@ -32,7 +32,7 @@ class RegisterController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'string', 'min:5', 'confirmed'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
             'phone' => ['required', 'numeric','digits:10', 'unique:users'],
             'conf_code'=>['required'],
         ]);
@@ -103,10 +103,15 @@ class RegisterController extends Controller
     }
 
     public function sendSMS(Request $request){
-        
-        $validator = Validator::make($request->all(), [
-            'phone' => ['required', 'numeric','digits:10', 'unique:users'],
-        ]);
+        if($request->input('resetPassword') == 'true'){
+            $validator = Validator::make($request->all(), [
+                'phone' => ['required', 'numeric','digits:10', 'exists:users'],
+            ]);
+        }else{
+            $validator = Validator::make($request->all(), [
+                'phone' => ['required', 'numeric','digits:10', 'unique:users'],
+            ]);
+        }
 
         if($validator->fails()){
             return response()->json(['status'=>false,'msg'=>'Validation Error','errors'=>$validator->errors()], 202);
@@ -156,7 +161,7 @@ class RegisterController extends Controller
         }
     }
     public function verify($phone,$code){
-        $sms_code = sms_code::where('code',$code)->where('phone',$phone)->first();
+        $sms_code = sms_code::where('code',$code)->where('phone',$phone)->where('created_at', '>=', Carbon::now()->subMinutes(30)->toDateTimeString())->first();
         if($sms_code){
             return true;
         }else{
@@ -197,12 +202,28 @@ class RegisterController extends Controller
     public function getUserData(){
         return response()->json(['status'=>true,'user'=>Auth::user()], 202);
     }
-
+    public function resetPasswordViaPhone(Request $request){
+        $validator = Validator::make($request->all(), [
+            'phone' => ['required', 'numeric','digits:10', 'exists:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'conf_code'=>['required'],
+        ]);
+        if($validator->fails()){
+            return response()->json(['status'=>false,'msg'=>'Validation Error','errors'=>$validator->errors()], 202);
+        }
+        if(!$this->verify($request->input('phone'),$request->input('conf_code'))){
+            return response()->json(['status'=>false,'error'=>'Неверный код'], 202);
+        }
+        $user = User::where("phone", $request->input('phone'))->update(["password" => Hash::make($request->input('password'))]);
+        if($user)
+        return response()->json(['status'=>true], 202);
+        return response()->json(['status'=>false,'msg'=>'Что-то не так'], 202);
+    }
     public function resetPassword(Request $request){
         $user = user::where('email', $request->input('email'))
         ->first();
         if (!$user) {
-            return response()->json(['status'=>false,'msg'=>'такой адрес не найден'], 202);
+            return response()->json(['status'=>false,'msg'=>'Данный адрес не зарегистрирован в системе'], 202);
         }
         $token = app('auth.password.broker')->createToken($user);
         Notification::send($user, new ResetPasswordNotification($token));

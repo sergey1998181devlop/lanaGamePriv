@@ -47,7 +47,7 @@ class personalController extends Controller
         }
        if(!empty($request->input('password')) && $request->input('password') != ''){
             $data = $request->validate([
-                'password' => ['required', 'string', 'min:5', 'confirmed'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
             ]);
             $user->password = Hash::make($request->input('password'));
        }
@@ -111,7 +111,7 @@ class personalController extends Controller
         }
     }
     public function verify($phone,$code){
-        $sms_code = sms_code::where('code',$code)->where('phone',$phone)->first();
+        $sms_code = sms_code::where('code',$code)->where('phone',$phone)->where('created_at', '>=', Carbon::now()->subMinutes(30)->toDateTimeString())->first();
         if($sms_code){
             return true;
         }else{
