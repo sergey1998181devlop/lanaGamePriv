@@ -38,7 +38,8 @@ Route::get('/getPost/{id}', 'Api\postsController@post');
 
 Route::get('/getClub/{id}', 'Api\clubsController@index');
 Route::get('/user_agreement', function(){
-    // Route::view('about/user_agreement_text');
-    return View::make("about.user_agreement_text");
-//   return include('../views/about/user_agreement_text.blade.php');
+    return response()->json([
+        'status' => true,
+        'data' => view('about.user_agreement_text')->render()
+    ]); 
 });
