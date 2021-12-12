@@ -32,7 +32,6 @@ class RegisterController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:5', 'confirmed'],
             'phone' => ['required', 'numeric','digits:10', 'unique:users'],
             'conf_code'=>['required'],
@@ -49,6 +48,14 @@ class RegisterController extends Controller
             if($validator->fails()){
                 return response()->json(['status'=>false,'msg'=>'Validation Error','errors'=>$validator->errors()], 202);
             }
+            if($request->input('email') != ''){
+                $validator = Validator::make($request->all(), [
+                    'email' => ['string', 'email', 'max:255', 'unique:users'],
+                ]);
+                if($validator->fails()){
+                    return response()->json(['status'=>false,'msg'=>'Validation Error','errors'=>$validator->errors()], 202);
+                }
+            }
             $city =  $request->input('city');
             if(!city::where('id',$city)->first('id')){
                 jsonValidationException(['city' => 'Город не определен']);
@@ -56,6 +63,7 @@ class RegisterController extends Controller
         }else{
             $validator = Validator::make($request->all(), [
                 'user_position'=>['required','numeric','min:1','max:4'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             ]);
             if($validator->fails()){
                 return response()->json(['status'=>false,'msg'=>'Validation Error','errors'=>$validator->errors()], 202);
@@ -79,10 +87,12 @@ class RegisterController extends Controller
             'user_id' => $user->id, 
             'token' => $token
           ]);
-          Mail::send('emails.user.emailVerificationEmail', ['token' => $token], function($message) use($user){
-            $message->to($user->email);
-            $message->subject('Завершение регистрации на Langame');
-        });
+        if($request->input('email') != ''){
+            Mail::send('emails.user.emailVerificationEmail', ['token' => $token], function($message) use($user){
+                $message->to($user->email);
+                $message->subject('Завершение регистрации на Langame');
+            });
+        }
         $success['token'] =  $user->createToken('MyApp')-> accessToken; 
         $success['name'] =  $user->name;
         $success['phone'] =  $user->phone;

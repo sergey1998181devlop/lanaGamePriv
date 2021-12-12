@@ -80,7 +80,6 @@ class RegisterController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:5', 'confirmed'],
             'phone' => ['required', 'numeric','digits:10', 'unique:users'],
             'conf_code'=>['required'],
@@ -97,9 +96,15 @@ class RegisterController extends Controller
             ]);
             $city =  $request->input('city');
             city::findOrFail($city);
+            if($request->input('email') != ''){
+                $request->validate([
+                    'email' => ['string', 'email', 'max:255', 'unique:users']
+                ]);
+            }
         }else{
             $data = $request->validate([
                 'user_position'=>['required','numeric','min:1','max:4'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             ]);
         }
         $user =  User::create([
@@ -117,11 +122,13 @@ class RegisterController extends Controller
             'user_id' => $user->id, 
             'token' => $token
           ]);
-          Mail::send('emails.user.emailVerificationEmail', ['token' => $token], function($message) use($user){
-            $message->to($user->email);
-            $message->subject('Завершение регистрации на Langame');
-        });
-       
+          
+        if($request->input('email') != ''){
+            Mail::send('emails.user.emailVerificationEmail', ['token' => $token], function($message) use($user){
+                $message->to($user->email);
+                $message->subject('Завершение регистрации на Langame');
+            });
+        }
 
     }
 

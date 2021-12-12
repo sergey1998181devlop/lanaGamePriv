@@ -34,9 +34,15 @@ class personalController extends Controller
         }
         $user = Auth::user();
         if($request->input('email') != $user->email){
-            $data = $request->validate([
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users']
-            ]);
+            if(owner()){
+                $data = $request->validate([
+                    'email' => ['required', 'string', 'email', 'max:255', 'unique:users']
+                ]);
+            }elseif($request->input('email') !=''){
+                $data = $request->validate([
+                    'email' => ['string', 'email', 'max:255', 'unique:users']
+                ]);
+            }
             $user->email = $request->input('email');
         }
        if(!empty($request->input('password')) && $request->input('password') != ''){

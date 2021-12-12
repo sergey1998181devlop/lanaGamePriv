@@ -105,9 +105,9 @@ function customOldVal($name,$item){
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group required">
+                            <div class="form-group @if(owner()) required @endif">
                                 <label for="user-email-input">Email</label>
-                                <input id="user-email-input" name="email" type="email" value="{{customOldVal('email',$user)}}" placeholder="" required>
+                                <input id="user-email-input" name="email" type="email" value="{{customOldVal('email',$user)}}" placeholder="" @if(owner()) required @endif>
                             </div>
                             @if(owner())
                             <div class="form-group required">
