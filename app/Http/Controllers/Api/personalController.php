@@ -70,11 +70,12 @@ class personalController extends Controller
         ]);
         $sms_code = sms_code::where('phone',$request->input('phone'))->first();
         if($sms_code){
-            if($sms_code->created_at->diffInSeconds(Carbon::now()) > 180){
+            $diffInSeconds = $sms_code->created_at->diffInSeconds(Carbon::now());
+            if($diffInSeconds > 180){
                 $sms_code->delete();
                $send =  $this->send($request);
             }else{
-                return response()->json(['status'=>false,'msg'=>'codeSentWithin3Minutes'], 202);
+                return response()->json(['status'=>false,'msg'=>'codeSentWithin3Minutes','leftSeconds'=>(180 - $diffInSeconds)], 202);
             }
 
         }else{
