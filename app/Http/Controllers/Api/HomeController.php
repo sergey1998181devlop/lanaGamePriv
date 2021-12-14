@@ -160,9 +160,11 @@ class HomeController extends Controller
           $cities_searchs =DB::statement('insert into cities_searchs (query,created_at,updated_at) values ("'.$request->input('q').'","'.$now.'","'.$now.'")');
         }
       }else{
-        $correntCity = city::select('id','name','metroMap','parentName')->find(($request->input('current') ? $request->input('current') : city(true)['id']));
+        $correntCity = city::select('id','name','metroMap','parentName','namePrepositional','lat','lon')->find(($request->input('current') ? $request->input('current') : city(true)['id']));
         if(!isset($request->page) || $request->page == 1){
-          $b["results"][]=[ "name" => $correntCity->name, "text"=> ($correntCity->parentName != '') ? $correntCity->name.', '.$correntCity->parentName :  $correntCity->name,'id'=>$correntCity->id ,'has_metro' =>  $correntCity->metroMap ];
+          $b["results"][]=[ "name" => $correntCity->name, "text"=> ($correntCity->parentName != '') ? $correntCity->name.', '.$correntCity->parentName :  $correntCity->name,'id'=>$correntCity->id ,'has_metro' =>  $correntCity->metroMap,'namePrepositional'=>$correntCity->namePrepositional,'lat'=>$correntCity->lat,'lon'=>$correntCity->lon];
+          $b['status']=true;
+        return response()->json($b, 202);
         }
         $cities=city::select('id','name','metroMap','parentName')->where('id','!=',$correntCity->id)->orderBy('order_no')->paginate(8);
       }
