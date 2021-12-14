@@ -165,9 +165,8 @@ class HomeController extends Controller
           $b["results"][]=[ "name" => $correntCity->name, "text"=> ($correntCity->parentName != '') ? $correntCity->name.', '.$correntCity->parentName :  $correntCity->name,'id'=>$correntCity->id ,'has_metro' =>  $correntCity->metroMap,'namePrepositional'=>$correntCity->namePrepositional,'lat'=>$correntCity->lat,'lon'=>$correntCity->lon];
           if($request->input('onlyCorrent') == 'true'){
             $b['status']=true;
-          }
-          
-        return response()->json($b, 202);
+            return response()->json($b, 202);
+          }        
         }
         $cities=city::select('id','name','metroMap','parentName')->where('id','!=',$correntCity->id)->orderBy('order_no')->paginate(8);
       }
