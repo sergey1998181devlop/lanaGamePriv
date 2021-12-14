@@ -9,6 +9,7 @@ use App\city;
 use App\sms_code;
 use App\Jobs\SMSRU;
 use Carbon;
+use Illuminate\Support\Facades\Hash;
 class personalController extends Controller
 {
     public function __construct()
