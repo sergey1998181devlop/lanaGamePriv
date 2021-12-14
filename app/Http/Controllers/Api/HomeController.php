@@ -163,7 +163,10 @@ class HomeController extends Controller
         $correntCity = city::select('id','name','metroMap','parentName','namePrepositional','lat','lon')->find(($request->input('current') ? $request->input('current') : city(true)['id']));
         if(!isset($request->page) || $request->page == 1){
           $b["results"][]=[ "name" => $correntCity->name, "text"=> ($correntCity->parentName != '') ? $correntCity->name.', '.$correntCity->parentName :  $correntCity->name,'id'=>$correntCity->id ,'has_metro' =>  $correntCity->metroMap,'namePrepositional'=>$correntCity->namePrepositional,'lat'=>$correntCity->lat,'lon'=>$correntCity->lon];
-          $b['status']=true;
+          if($request->input('onlyCorrent') == 'true'){
+            $b['status']=true;
+          }
+          
         return response()->json($b, 202);
         }
         $cities=city::select('id','name','metroMap','parentName')->where('id','!=',$correntCity->id)->orderBy('order_no')->paginate(8);
