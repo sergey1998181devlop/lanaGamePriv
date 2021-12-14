@@ -54,7 +54,6 @@ function customOldVal($name,$item){
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-svg-cancel"></use>
                         </svg>
                         <span>Выйти</span>
-
                     </a>
                 </div>
             </div>
