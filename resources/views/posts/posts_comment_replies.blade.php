@@ -1,4 +1,6 @@
+@if(!isset($fromController))
 <ul>
+ @endif   
     @foreach($comments as $comment)
 
 
@@ -59,4 +61,6 @@
             @include('posts.posts_comment_replies', ['comments' => $comment->replies])
         </li>
     @endforeach
+    @if(!isset($fromController))
     </ul>
+    @endif 

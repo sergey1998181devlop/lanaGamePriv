@@ -21,7 +21,8 @@ class CommentController extends Controller
         if($comment=$post->comments()->save($comment)){
             $view = View::make('posts.posts_comment_replies', [
                 'comments' => [$comment],
-                'post'=>$post
+                'post'=>$post,
+                'fromController' =>true
             ]);
             $html= $view->render();
             return response()->json(['status'=>true,'id'=>$comment->id,'html'=>$html,'user_name'=>$request->user()->name,'user_type'=> $request->user()->type == 'player' ? 'Игрок' : 'Представитель клуба']);
