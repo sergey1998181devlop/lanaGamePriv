@@ -33,14 +33,21 @@
                     </div>
 
                     <div class="article_comments_wrapper">
-                        <div class="comment_qty">308 комментариев</div>
+                        <?
+                            $messageForComments = msgfmt_create('ru_RU', '{count, plural, one{# комментарий} few{# комментария} many{# комментариев} other{# комментария}}');
+                        ?>
+                        @if($post->comments_total_count > 0)                        
+                            <div class="comment_qty">{{$messageForComments->format(['count' => $post->comments_total_count]) . PHP_EOL}}</div>
+                        @endif
                         <div class="comments_sort_wrapper">
                             <a href="#" class="active">Популярные</a>
                             <a href="#">По порядку</a>
                         </div>
                         <div class="add_comment_wrapper">
-                            <form action="" id="add_article_comment">
-                                <textarea placeholder="Написать комментарий..."></textarea>
+                            <form action="{{ route('comment.add') }}" method="post" id="add_article_comment">
+                            @csrf
+                            <input type="hidden" name="post_id" value="{{ $post->id }}" />
+                                <textarea name="comment_body" placeholder="Написать комментарий..."></textarea>
                                 <label>
                                     <input type="file" id="add-image-article-comment" accept="image/*">
                                 </label>
@@ -48,193 +55,7 @@
                             </form>
                         </div>
                         <div class="comments_list_wrapper">
-                            <ul>
-                                <li>
-                                    <div class="comment_item">
-                                        <div class="top_wrapper">
-                                            <div class="user_info_wrapper">
-                                                <div class="user_avatar">
-                                                    <img src="{{asset('/img/avatar.svg')}}" alt="avatar">
-                                                </div>
-                                                <div class="user_info">
-                                                    <div class="user_name">
-                                                        <span>Федор Лукин</span>
-                                                    </div>
-                                                    <div class="user_detail">
-                                                        <span>Представитель клуба</span>
-                                                        <span>5.12.2021</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="comment_rating" data-comment-rating-wrapper>
-                                                <button type="button" class="minus" data-btn-comment-rating-minus></button>
-                                                <div class="rating">0</div>
-                                                <button type="button" class="plus" data-btn-comment-rating-plus></button>
-                                            </div>
-                                        </div>
-                                        <div class="comment_content_wrapper">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam asperiores aspernatur at, autem consectetur deleniti dicta earum
-                                            eligendi
-                                            et eveniet expedita facilis fugit illum incidunt ipsam ipsum laborum minus modi mollitia officia possimus quaerat quas quasi
-                                            repellat reprehenderit rerum sapiente sed sequi sint, soluta totam veniam, voluptatibus. Ex, nihil.
-                                        </div>
-                                        <div class="btn_wrapper">
-                                            <button type="button" class="comment_reply" data-article-comment-reply>Ответить</button>
-                                        </div>
-                                    </div>
-                                    <button class="show_branch" data-show-branch-comments>Развернуть ветку</button>
-                                    <ul>
-                                        <li>
-                                            <button type="button" class="hide_branch" data-hide-branch></button>
-                                        </li>
-                                        <li>
-                                            <div class="comment_item">
-                                                <div class="top_wrapper">
-                                                    <div class="user_info_wrapper">
-                                                        <div class="user_avatar">
-                                                            <img src="{{asset('/img/avatar.svg')}}" alt="avatar">
-                                                        </div>
-                                                        <div class="user_info">
-                                                            <div class="user_name">
-                                                                <span>Федор Лукин</span>
-                                                            </div>
-                                                            <div class="user_detail">
-                                                                <span>Представитель клуба</span>
-                                                                <span>5.12.2021</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="comment_rating" data-comment-rating-wrapper>
-                                                        <button type="button" class="minus" data-btn-comment-rating-minus></button>
-                                                        <div class="rating">0</div>
-                                                        <button type="button" class="plus" data-btn-comment-rating-plus></button>
-                                                    </div>
-                                                </div>
-                                                <div class="comment_content_wrapper">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam asperiores aspernatur at, autem consectetur deleniti dicta
-                                                    earum eligendi
-                                                    et eveniet expedita facilis fugit illum incidunt ipsam ipsum laborum minus modi mollitia officia possimus quaerat quas quasi
-                                                    repellat reprehenderit rerum sapiente sed sequi sint, soluta totam veniam, voluptatibus. Ex, nihil.
-                                                </div>
-                                                <div class="btn_wrapper">
-                                                    <button type="button" class="comment_reply" data-article-comment-reply>Ответить</button>
-                                                </div>
-                                            </div>
-                                            <button class="show_branch" data-show-branch-comments>16 комментариев</button>
-                                            <ul>
-                                                <li>
-                                                    <button type="button" class="hide_branch" data-hide-branch></button>
-                                                </li>
-                                                <li>
-                                                    <div class="comment_item">
-                                                        <div class="top_wrapper">
-                                                            <div class="user_info_wrapper">
-                                                                <div class="user_avatar">
-                                                                    <img src="{{asset('/img/avatar.svg')}}" alt="avatar">
-                                                                </div>
-                                                                <div class="user_info">
-                                                                    <div class="user_name">
-                                                                        <span>Федор Лукин</span>
-                                                                    </div>
-                                                                    <div class="user_detail">
-                                                                        <span>Представитель клуба</span>
-                                                                        <span>5.12.2021</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="comment_rating" data-comment-rating-wrapper>
-                                                                <button type="button" class="minus" data-btn-comment-rating-minus></button>
-                                                                <div class="rating plus">150</div>
-                                                                <button type="button" class="plus" data-btn-comment-rating-plus></button>
-                                                            </div>
-                                                        </div>
-                                                        <div class="comment_content_wrapper">
-                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam asperiores aspernatur at, autem consectetur
-                                                            deleniti dicta earum eligendi
-                                                            et eveniet expedita facilis fugit illum incidunt ipsam ipsum laborum minus modi mollitia officia possimus quaerat quas
-                                                            quasi
-                                                            repellat reprehenderit rerum sapiente sed sequi sint, soluta totam veniam, voluptatibus. Ex, nihil.
-                                                        </div>
-                                                        <div class="btn_wrapper">
-                                                            <button type="button" class="comment_reply" data-article-comment-reply>Ответить</button>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="comment_item">
-                                                        <div class="top_wrapper">
-                                                            <div class="user_info_wrapper">
-                                                                <div class="user_avatar">
-                                                                    <img src="{{asset('/img/avatar.svg')}}" alt="avatar">
-                                                                </div>
-                                                                <div class="user_info">
-                                                                    <div class="user_name">
-                                                                        <span>Федор Лукин</span>
-                                                                    </div>
-                                                                    <div class="user_detail">
-                                                                        <span>Представитель клуба</span>
-                                                                        <span>5.12.2021</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="comment_rating" data-comment-rating-wrapper>
-                                                                <button type="button" class="minus" data-btn-comment-rating-minus></button>
-                                                                <div class="rating plus">150</div>
-                                                                <button type="button" class="plus" data-btn-comment-rating-plus></button>
-                                                            </div>
-                                                        </div>
-                                                        <div class="comment_content_wrapper">
-                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam asperiores aspernatur at, autem consectetur
-                                                            deleniti dicta earum eligendi
-                                                            et eveniet expedita facilis fugit illum incidunt ipsam ipsum laborum minus modi mollitia officia possimus quaerat quas
-                                                            quasi
-                                                            repellat reprehenderit rerum sapiente sed sequi sint, soluta totam veniam, voluptatibus. Ex, nihil.
-                                                        </div>
-                                                        <div class="btn_wrapper">
-                                                            <button type="button" class="comment_reply" data-article-comment-reply>Ответить</button>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="comment_item">
-                                                        <div class="top_wrapper">
-                                                            <div class="user_info_wrapper">
-                                                                <div class="user_avatar">
-                                                                    <img src="{{asset('/img/avatar.svg')}}" alt="avatar">
-                                                                </div>
-                                                                <div class="user_info">
-                                                                    <div class="user_name">
-                                                                        <span>Федор Лукин</span>
-                                                                    </div>
-                                                                    <div class="user_detail">
-                                                                        <span>Представитель клуба</span>
-                                                                        <span>5.12.2021</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="comment_rating" data-comment-rating-wrapper>
-                                                                <button type="button" class="minus" data-btn-comment-rating-minus></button>
-                                                                <div class="rating plus">150</div>
-                                                                <button type="button" class="plus" data-btn-comment-rating-plus></button>
-                                                            </div>
-                                                        </div>
-                                                        <div class="comment_content_wrapper">
-                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam asperiores aspernatur at, autem consectetur
-                                                            deleniti dicta earum eligendi
-                                                            et eveniet expedita facilis fugit illum incidunt ipsam ipsum laborum minus modi mollitia officia possimus quaerat quas
-                                                            quasi
-                                                            repellat reprehenderit rerum sapiente sed sequi sint, soluta totam veniam, voluptatibus. Ex, nihil.
-                                                        </div>
-                                                        <div class="btn_wrapper">
-                                                            <button type="button" class="comment_reply" data-article-comment-reply>Ответить</button>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
+                        @include('posts.posts_comment_replies', ['comments' => $post->comments])
                         </div>
                     </div>
                 </main>

@@ -36,7 +36,7 @@ Route::get('profile/verify/resend', 'personalController@resendVerfyEmail');
 //Route::get('post/read/{id}/{url}','postsController@post');
 Route::get('{id}_statia_{url}','postsController@post');
 Route::get('posts','postsController@allposts');
-
+Route::post('/comment/store', 'CommentController@store')->name('comment.add');
 // объявления
 Route::get('{id}_offer_{url}','offersController@offer');
 

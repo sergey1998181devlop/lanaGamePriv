@@ -11,7 +11,7 @@ include_once(resource_path('views/includes/functions.blade.php'));
 class postsController extends Controller
 {
     public function post($id,$url){
-        $post=post::where('id',$id)->first();
+        $post=post::where('id',$id)->withCount('commentsTotal')->first();
         if(!$post ){
             abort(404);
         }
