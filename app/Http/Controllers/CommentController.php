@@ -16,11 +16,10 @@ class CommentController extends Controller
             $comment->parent_id = $request->get('comment_id');
         }
         $post = post::find($request->get('post_id'));
-        if($post->comments()->save($comment)){
-            return back();
+        if($comment=$post->comments()->save($comment)){
+            return response()->json(['status'=>true,'id'=>$comment->id]);
         }
-
-        
+        return response()->json(['status'=>false]);
     }
 
 }
