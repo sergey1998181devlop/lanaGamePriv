@@ -36,7 +36,7 @@
                     {{ $comment->body }}
                 </div>
                 <div class="btn_wrapper">
-                    <button type="button" class="comment_reply" data-article-comment-reply data-post-id="{{$post->id}}" data-parent-id="{{$comment->id}}">Ответить</button>
+                    <button type="button" class="comment_reply" data-article-comment-reply data-post-id="{{$post->id}}" data-comment-id="{{$comment->id}}">Ответить</button>
                 </div>
             </div>
             @if(count($comment->replies) > 0)
