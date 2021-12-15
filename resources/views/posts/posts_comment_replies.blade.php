@@ -1,14 +1,23 @@
 <ul>
     @foreach($comments as $comment)
 
-   
+
         @if($comment->parent_id != '')
             <li>
                 <button type="button" class="hide_branch" data-hide-branch></button>
             </li>
         @endif
         <li>
-            <div class="comment_item">
+            <div class="comment_item"
+            {{-- class="comment_item vote-plus"  если пользователь голосовал +1 --}}
+            {{-- class="comment_item vote-minus" если пользователь голосовал -1 --}}
+                 data-post-id="{{$post->id}}"
+                 data-comment-id="{{$comment->id}}"
+                 data-rating-saved-vote=""
+            {{-- data-rating-saved-vote=""      если пользователь еще не голосовал --}}
+            {{-- data-rating-saved-vote="plus"  если пользователь голосовал +1 --}}
+            {{-- data-rating-saved-vote="minus" если пользователь голосовал -1 --}}
+            >
                 <div class="top_wrapper">
                     <div class="user_info_wrapper">
                         @if(false)
@@ -26,17 +35,22 @@
                             </div>
                         </div>
                     </div>
-                    <div class="comment_rating" data-comment-rating-wrapper>
-                        <button type="button" class="minus" data-btn-comment-rating-minus></button>
-                        <div class="rating">0</div>
-                        <button type="button" class="plus" data-btn-comment-rating-plus></button>
+                    <div class="comment_rating">
+                        <button type="button" class="minus" data-rating-vote="minus"></button>
+                        <div class="rating"
+                        {{-- class="rating plus"  если суммарный рейтинг > 0 --}}
+                        {{-- class="rating minus" если суммарный рейтинг < 0 --}}
+                        >
+                            0
+                        </div>
+                        <button type="button" class="plus" data-rating-vote="plus"></button>
                     </div>
                 </div>
                 <div class="comment_content_wrapper">
                     {{ $comment->body }}
                 </div>
                 <div class="btn_wrapper">
-                    <button type="button" class="comment_reply" data-article-comment-reply data-post-id="{{$post->id}}" data-comment-id="{{$comment->id}}">Ответить</button>
+                    <button type="button" class="comment_reply" data-article-comment-reply>Ответить</button>
                 </div>
             </div>
             @if(count($comment->replies) > 0)
@@ -44,7 +58,5 @@
             @endif
             @include('posts.posts_comment_replies', ['comments' => $comment->replies])
         </li>
-    
-
     @endforeach
     </ul>

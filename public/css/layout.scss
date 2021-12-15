@@ -5637,7 +5637,7 @@ section.article_page_wrapper {
                             padding-left: 16px;
                             display: none;
 
-                            .hide_branch{
+                            .hide_branch {
                                 position: absolute;
                                 top: 0;
                                 left: 0;
@@ -5646,28 +5646,16 @@ section.article_page_wrapper {
                                 outline: none;
                                 box-shadow: none;
                                 background-color: transparent;
-                                width: 2px;
+                                border-left: 2px solid #d3d3d3;
+                                width: 10px;
                                 height: 100%;
-                                padding: 0 15px 0 0;
+                                padding: 2px;
                                 margin: 0;
                                 cursor: pointer;
+                                transition: border-left-color 0.2s;
 
-                                &:before{
-                                    content: '';
-                                    position: absolute;
-                                    top: 0;
-                                    left: 0;
-                                    display: block;
-                                    width: 2px;
-                                    height: 100%;
-                                    background-color: #d3d3d3;
-                                    transition: background-color 0.2s;
-                                }
-
-                                &:hover{
-                                    &:before{
-                                        background-color: #DC0000;
-                                    }
+                                &:hover {
+                                    border-left-color: #dc0000;
                                 }
                             }
                         }
@@ -5715,6 +5703,9 @@ section.article_page_wrapper {
                                     }
 
                                     .user_detail {
+                                        display: flex;
+                                        flex-direction: row;
+                                        justify-content: flex-start;
                                         font-style: normal;
                                         font-weight: 500;
                                         font-size: 16px;
@@ -5759,7 +5750,7 @@ section.article_page_wrapper {
                                     }
 
                                     &.minus {
-                                        color: #DC0000;
+                                        color: #dc0000;
                                     }
                                 }
 
@@ -5770,8 +5761,8 @@ section.article_page_wrapper {
                                     border: none;
                                     outline: none;
                                     box-shadow: none;
-                                    width: 15px;
-                                    height: 15px;
+                                    width: 17px;
+                                    height: 17px;
                                     cursor: pointer;
 
                                     &.minus {
@@ -5784,9 +5775,9 @@ section.article_page_wrapper {
                                             top: 50%;
                                             display: block;
                                             width: 100%;
-                                            height: 2px;
-                                            background-color: #000000;
-                                            transform: translateY(-50%);
+                                            height: 100%;
+                                            background-image: url("../img/minus.svg");
+                                            background-repeat: no-repeat;
                                         }
                                     }
 
@@ -5797,27 +5788,16 @@ section.article_page_wrapper {
                                             content: '';
                                             position: absolute;
                                             left: 0;
-                                            top: 50%;
-                                            display: block;
-                                            width: 100%;
-                                            height: 2px;
-                                            background-color: #000000;
-                                            transform: translateY(-50%);
-                                        }
-
-                                        &:after {
-                                            content: '';
-                                            position: absolute;
-                                            left: 49%;
                                             top: 0;
                                             display: block;
-                                            width: 2px;
+                                            width: 100%;
                                             height: 100%;
-                                            background-color: #000000;
+                                            background-image: url("../img/plus_com.svg");
+                                            background-repeat: no-repeat;
                                         }
                                     }
 
-                                    &:disabled{
+                                    &:disabled {
                                         opacity: 0.5;
                                         cursor: auto;
                                     }
@@ -5864,10 +5844,12 @@ section.article_page_wrapper {
                         font-weight: 900;
                         font-size: 18px;
                         line-height: 1;
-                        padding: 2px 0;
+                        padding: 2px;
                         color: #dc0000;
                         cursor: pointer;
                         margin-bottom: 16px;
+                        min-width: 150px;
+                        text-align: left;
                     }
                 }
             }
@@ -6065,7 +6047,7 @@ section.article_page_wrapper {
                                     right: 0;
                                     bottom: 0;
 
-                                    &.mob_position{
+                                    &.mob_position {
                                         bottom: 166px;
                                     }
                                 }
