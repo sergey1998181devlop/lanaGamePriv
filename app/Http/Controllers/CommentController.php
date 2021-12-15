@@ -24,7 +24,7 @@ class CommentController extends Controller
                 'post'=>$post
             ]);
             $html= $view->render();
-            return response()->json(['status'=>true,'id'=>$comment->id,'html'=>$html]);
+            return response()->json(['status'=>true,'id'=>$comment->id,'html'=>$html,'user_name'=>$request->user()->name,'user_type'=> $request->user()->type == 'player' ? 'Игрок' : 'Представитель клуба']);
         }
         return response()->json(['status'=>false]);
     }
