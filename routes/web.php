@@ -33,10 +33,11 @@ Route::post('profile/verify', 'personalController@verifySMS');
 Route::post('profile/update', 'personalController@update');
 Route::get('profile/verify/resend', 'personalController@resendVerfyEmail');
 // посты
-//Route::get('post/read/{id}/{url}','postsController@post');
 Route::get('{id}_statia_{url}','postsController@post');
 Route::get('posts','postsController@allposts');
 Route::post('/comment/store', 'CommentController@store')->name('comment.add');
+Route::post('post/like', 'CommentController@like')->name('like');
+Route::post('post/dislike', 'CommentController@unlike')->name('unlike');
 // объявления
 Route::get('{id}_offer_{url}','offersController@offer');
 
