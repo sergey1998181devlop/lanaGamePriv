@@ -624,6 +624,10 @@
         integrity="sha512-lVcnjCLGjJTaZU55wD7H3f8SJVi6VV5cQRcmGuYcyIY607N/rzZGEl90lNgsiEhKygATryG/i6e5u2moDFs5kQ=="
         crossorigin="anonymous"
         referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-messageformat/9.0.2/intl-messageformat.min.js"
+        integrity="sha512-uGIOqaLIi8I30qAnPLfrEnecDDi08AcCrg7gzGp/XrDafLJl/NIilHwAm1Wl2FLiTSf10D5vM70108k3oMjK5Q=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
 <script src="https://www.google.com/recaptcha/api.js?hl=ru" async defer></script>
 <script src="https://cdn.jsdelivr.net/npm/mobile-detect@1.4.4/mobile-detect.min.js"></script>
 <script src="{{ asset('/js/inputmask.js') }}"></script>

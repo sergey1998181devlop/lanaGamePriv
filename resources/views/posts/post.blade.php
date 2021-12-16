@@ -36,7 +36,7 @@
                         <?
                             $messageForComments = msgfmt_create('ru_RU', '{count, plural, one{# комментарий} few{# комментария} many{# комментариев} other{# комментария}}');
                         ?>
-                        @if($post->comments_total_count > 0)                        
+                        @if($post->comments_total_count > 0)
                             <div class="comment_qty">{{$messageForComments->format(['count' => $post->comments_total_count]) . PHP_EOL}}</div>
                         @endif
                         <div class="comments_sort_wrapper">
@@ -44,7 +44,7 @@
                             <a href="#">По порядку</a>
                         </div>
                         <div class="add_comment_wrapper">
-                            <form action="{{ route('comment.add') }}" method="post" id="add_article_comment">
+                            <form action="{{ route('comment.add') }}" method="post" id="add_article_comment" class="main_comment_form">
                             @csrf
                             <input type="hidden" name="post_id" value="{{ $post->id }}" />
                                 <textarea name="comment_body" placeholder="Написать комментарий..."></textarea>

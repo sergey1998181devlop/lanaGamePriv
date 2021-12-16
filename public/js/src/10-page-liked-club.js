@@ -14,21 +14,22 @@ jQuery(function() {
     jQuery('[data-like-club]').on('click', function(e) {
         if(!Layout.isPlayer()){
             Layout.showInfoModal('Если не хотите потерять понравившийся клуб, <a href="/registration">зарегистрируйтесь</a> или <a href="/login">авторизуйтесь</a> на сайте как ланнер.');
+        } else{
+            let $form = jQuery(this).closest('form'),
+                club_id = jQuery('meta[name="club_id"]').attr('content');
+
+            e.preventDefault();
+
+            jQuery.ajax({
+                type: 'POST',
+                data: $form.serialize(),
+                url: `/like-club/?club_id=${club_id}`,
+                success: function() {
+                    jQuery('[data-like-club-form]').hide();
+                    jQuery('[data-unlike-club-form]').show();
+                }
+            });
         }
-        let $form = jQuery(this).closest('form'),
-            club_id = jQuery('meta[name="club_id"]').attr('content');
-
-        e.preventDefault();
-
-        jQuery.ajax({
-            type: 'POST',
-            data: $form.serialize(),
-            url: `/like-club/?club_id=${club_id}`,
-            success: function() {
-                jQuery('[data-like-club-form]').hide();
-                jQuery('[data-unlike-club-form]').show();
-            }
-        });
     });
 
     jQuery('[data-unlike-club]').on('click', function(e) {

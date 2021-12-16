@@ -1,6 +1,6 @@
 @if(!isset($fromController))
 <ul>
- @endif   
+ @endif
     @foreach($comments as $comment)
 
 
@@ -63,4 +63,4 @@
     @endforeach
     @if(!isset($fromController))
     </ul>
-    @endif 
+    @endif
