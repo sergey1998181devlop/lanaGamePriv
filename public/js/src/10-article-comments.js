@@ -1,21 +1,30 @@
 jQuery(function() {
     let $wrapper = jQuery('.article_comments_wrapper'),
-        $main_comment_form = jQuery('#add_article_comment');
+        $main_comment_form = jQuery('#add_article_comment'),
+        $add_comment_wrapper = jQuery('.article_comments_wrapper .add_comment_wrapper');
 
-    // $wrapper.on('submit', 'form',function(e) {
-    //     e.preventDefault();
-    //
-    //     let $form = jQuery(this);
-    //
-    //     jQuery.ajax({
-    //         type: 'POST',
-    //         url: $form.attr('action'),
-    //         data: $form.serialize(),
-    //         success: function() {
-    //
-    //         }
-    //     });
-    // });
+    $wrapper.on('submit', 'form',function(e) {
+        e.preventDefault();
+
+        let $form = jQuery(this);
+
+        jQuery.ajax({
+            type: 'POST',
+            url: $form.attr('action'),
+            data: $form.serialize(),
+            success: function() {
+
+            }
+        });
+    });
+
+    $add_comment_wrapper.on('click focus', function() {
+        jQuery(this).addClass('active');
+    });
+
+    $main_comment_form.on('submit', function() {
+        $add_comment_wrapper.removeClass('active');
+    });
 
     $wrapper.on('click', '[data-article-comment-reply]', function(e) {
         let $this = jQuery(this),
@@ -23,7 +32,7 @@ jQuery(function() {
 
         $this.closest('.comment_item')
             .append(`
-            <div class="add_comment_wrapper">
+            <div class="add_comment_wrapper active">
                 <form method="post" action="${$main_comment_form.attr('action')}">
                    <input type="hidden" name="post_id" value="${$comment.data('post-id')}">
                    <input type="hidden" name="comment_id" value="${$comment.data('comment-id')}">
