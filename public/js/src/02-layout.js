@@ -63,23 +63,26 @@ jQuery(function() {
 
 window.Layout = (() => {
     return {
-        isAdmin(){
-            return  jQuery('meta[name="is_admin"]').attr('content') === '1';
-            },
-        isPlayer(){
-            return  jQuery('meta[name="user-role"]').attr('content') === 'player';
+        meta(name) {
+            return jQuery(`meta[name="${name}"]`).attr('content') || null;
         },
-        isOwner(){
-            return  jQuery('meta[name="user-role"]').attr('content') === 'owner';
+        isAdmin() {
+            return Layout.meta('is_admin') === '1';
         },
-        isGuest(){
-            return  jQuery('meta[name="user-role"]').attr('content') === 'guest';
+        isPlayer() {
+            return Layout.meta('user-role') === 'player';
+        },
+        isOwner() {
+            return Layout.meta('user-role') === 'owner';
+        },
+        isGuest() {
+            return Layout.meta('user-role') === 'guest';
         },
 
-        showInfoModal(text){
+        showInfoModal(text) {
             jQuery('[data-remodal-id="success_modal"]')
                 .find('.title')
-                .html(text)
+                .html(text);
             jQuery('[data-remodal-id="success_modal"]').remodal().open();
         },
 
@@ -139,13 +142,13 @@ window.Layout = (() => {
                             return reject(response.error);
                         }
 
-                        if(response?.errors?.file){
+                        if (response?.errors?.file) {
                             return reject(response?.errors?.file);
                         }
 
-                        if(xhr.status >= 400){
+                        if (xhr.status >= 400) {
                             return reject('Произошла непредвиденная ошибка');
-                        }else{
+                        } else {
                             resolve(response.data);
                         }
                     } catch (e) {

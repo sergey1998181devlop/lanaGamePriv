@@ -2,23 +2,6 @@
 <ul>
  @endif
     @foreach($comments as $comment)
-
-
-@can('like', $comment)
-    <form action="{{ route('like') }}" class="likesForms"  method="POST">
-        @csrf
-        <input type="hidden" name="id" value="{{ $comment->id }}"/>
-        <button>@lang('Like')</button>
-    </form>
-@endcan
-
-@can('unlike', $comment)
-    <form action="{{ route('unlike') }}" class="likesForms" method="POST">
-        @csrf
-        <input type="hidden" name="id" value="{{ $comment->id }}"/>
-        <button>@lang('Unlike')</button>
-    </form>
-@endcan
         <?php
         $likeable = 'none';
         if(Gate::check('like', $comment)){
@@ -27,6 +10,17 @@
             }
         }else{
             $likeable = 'like';
+        }
+
+
+        $likeable = 'none';
+
+        if (!Auth::guest()) {
+            if (Gate::check('like', $comment) && !Gate::check('unlike', $comment)) {
+                $likeable = 'unlike';
+            } else if (!Gate::check('like', $comment) && Gate::check('unlike', $comment)) {
+                $likeable = 'like';
+            }
         }
         ?>
         @if($comment->parent_id != '')
@@ -61,12 +55,12 @@
                         <?php
                         $sumRating = count($comment->likes) - count($comment->unlikes);
                         ?>
-                        <button type="button" class="minus" data-rating-vote="minus"></button>
+                        <button type="button" class="minus <?= Auth::guest() ? 'disabled' : ''; ?>" data-rating-vote="minus"></button>
                         <div class="rating<? if($sumRating > 0){echo ' plus';}elseif($sumRating < 0){echo ' minus';}?>"
                         >
                         {{ $sumRating }}
                         </div>
-                        <button type="button" class="plus" data-rating-vote="plus"></button>
+                        <button type="button" class="plus <?= Auth::guest() ? 'disabled' : ''; ?>" data-rating-vote="plus"></button>
                     </div>
                 </div>
                 <div class="comment_content_wrapper">

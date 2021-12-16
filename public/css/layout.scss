@@ -5779,6 +5779,11 @@ section.article_page_wrapper {
                                     height: 17px;
                                     cursor: pointer;
 
+                                    &.disabled{
+                                        opacity: 0.5;
+                                        cursor: auto;
+                                    }
+
                                     &.minus {
                                         margin-right: 20px;
 

@@ -18,6 +18,9 @@
     @else
         <meta name="user-role" content="guest">
     @endif
+    <meta name="url-comment-like" content="{{ route('like') }}">
+    <meta name="url-comment-unlike" content="{{ route('unlike') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="yandex-verification" content="32e051951e8b0c78"/>
     <meta name="google-site-verification" content="hxlJwydJQGGNf58k_xhPIcvSaIB1Vb3LplRFOPUyl0g"/>
     <link rel="stylesheet"

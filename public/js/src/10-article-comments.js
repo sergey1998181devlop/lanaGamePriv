@@ -2,7 +2,9 @@ jQuery(function() {
     let $wrapper = jQuery('.article_comments_wrapper'),
         $main_comment_form = jQuery('#add_article_comment'),
         $add_comment_wrapper = jQuery('.article_comments_wrapper .add_comment_wrapper'),
-        comment_count_label_formatter = new IntlMessageFormat.IntlMessageFormat('{count, plural, one{# комментарий} few{# комментария} many{# комментариев} other{# комментария}}', 'ru-RU');
+        comment_count_label_formatter = new IntlMessageFormat.IntlMessageFormat('{count, plural, one{# комментарий} few{# комментария} many{# комментариев} other{# комментария}}', 'ru-RU'),
+        comment_like_url = Layout.meta('url-comment-like'),
+        comment_unlike_url = Layout.meta('url-comment-unlike');
 
     $wrapper.on('submit', 'form', function(e) {
         e.preventDefault();
@@ -71,7 +73,6 @@ jQuery(function() {
                 <form method="post" action="${$main_comment_form.attr('action')}">
                    <input type="hidden" name="post_id" value="${$comment.data('post-id')}">
                    <input type="hidden" name="comment_id" value="${$comment.data('comment-id')}">
-                   <input type="hidden" name="_token" value="${$main_comment_form.find('[name="_token"]').val()}">
                    <textarea placeholder="Написать комментарий..." name="comment_body"></textarea>
                    <label>
                         <input type="file" id="add-image-article-comment" accept="image/*">
@@ -125,6 +126,17 @@ jQuery(function() {
             $comment.toggleClass('vote-minus', saved_vote === 'minus');
             $rating.toggleClass('plus', rating > 0);
             $rating.toggleClass('minus', rating < 0);
+
+            let url = vote === 'plus' ? comment_like_url : comment_unlike_url;
+
+            jQuery.ajax({
+                url,
+                method: 'POST',
+                data: {id: $comment.data('comment-id')},
+                success: function() {
+                    console.log(arguments);
+                }
+            });
         }
     });
 

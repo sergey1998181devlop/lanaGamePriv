@@ -100,21 +100,3 @@
 
     @endif
 @endsection
-@section('scripts')
-<script>
-    $('.likesForms').submit(function(e){
-        e.preventDefault();
-        let $form = jQuery(this);
-
-        jQuery.ajax({
-            type: 'POST',
-            url: $form.attr('action'),
-            data: $form.serialize(),
-            success: function() {
-
-            }
-        });
-
-    })
-</script>
-@endsection
