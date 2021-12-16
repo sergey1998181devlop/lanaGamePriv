@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
-class post_comment extends Model
+use App\Contracts\Likeable;
+use App\Concerns\Likes;
+class post_comment extends Model implements Likeable
 {
+    use Likes;
     public function user()
     {
         return $this->belongsTo(User::class);

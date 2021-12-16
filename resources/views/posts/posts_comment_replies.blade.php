@@ -4,21 +4,41 @@
     @foreach($comments as $comment)
 
 
+@can('like', $comment)
+    <form action="{{ route('like') }}" class="likesForms"  method="POST">
+        @csrf
+        <input type="hidden" name="id" value="{{ $comment->id }}"/>
+        <button>@lang('Like')</button>
+    </form>
+@endcan
+
+@can('unlike', $comment)
+    <form action="{{ route('unlike') }}" class="likesForms" method="POST">
+        @csrf
+        <input type="hidden" name="id" value="{{ $comment->id }}"/>
+        <button>@lang('Unlike')</button>
+    </form>
+@endcan
+        <?php
+        $likeable = 'none';
+        if(Gate::check('like', $comment)){
+            if(!Gate::check('unlike', $comment)){
+                $likeable = 'unlike';
+            }
+        }else{
+            $likeable = 'like';
+        }
+        ?>
         @if($comment->parent_id != '')
             <li>
                 <button type="button" class="hide_branch" data-hide-branch></button>
             </li>
         @endif
         <li>
-            <div class="comment_item"
-            {{-- class="comment_item vote-plus"  если пользователь голосовал +1 --}}
-            {{-- class="comment_item vote-minus" если пользователь голосовал -1 --}}
+            <div class="comment_item<? if($likeable == 'like'){echo ' vote-plus';}elseif($likeable == 'unlike'){echo ' vote-minus';}?>"
                  data-post-id="{{$post->id}}"
                  data-comment-id="{{$comment->id}}"
-                 data-rating-saved-vote=""
-            {{-- data-rating-saved-vote=""      если пользователь еще не голосовал --}}
-            {{-- data-rating-saved-vote="plus"  если пользователь голосовал +1 --}}
-            {{-- data-rating-saved-vote="minus" если пользователь голосовал -1 --}}
+                 data-rating-saved-vote="<? if($likeable == 'like'){echo 'plus';}elseif($likeable == 'unlike'){echo 'minus';}?>"
             >
                 <div class="top_wrapper">
                     <div class="user_info_wrapper">
@@ -38,12 +58,13 @@
                         </div>
                     </div>
                     <div class="comment_rating">
+                        <?php
+                        $sumRating = count($comment->likes) - count($comment->unlikes);
+                        ?>
                         <button type="button" class="minus" data-rating-vote="minus"></button>
-                        <div class="rating"
-                        {{-- class="rating plus"  если суммарный рейтинг > 0 --}}
-                        {{-- class="rating minus" если суммарный рейтинг < 0 --}}
+                        <div class="rating<? if($sumRating > 0){echo ' plus';}elseif($sumRating < 0){echo ' minus';}?>"
                         >
-                            0
+                        {{ $sumRating }}
                         </div>
                         <button type="button" class="plus" data-rating-vote="plus"></button>
                     </div>

@@ -6,8 +6,14 @@ use Illuminate\Http\Request;
 use App\post_comment;
 use App\post;
 use View;
+use App\Http\Requests\LikeRequest;
+use App\Http\Requests\UnlikeRequest;
 class CommentController extends Controller
 {
+    public function __construct()
+    {   
+        $this->middleware('auth');
+    }
     public function store(Request $request)
     {
         $comment = new post_comment;
@@ -29,5 +35,29 @@ class CommentController extends Controller
         }
         return response()->json(['status'=>false]);
     }
+    public function like(LikeRequest $request)
+    {
+        $request->user()->like($request->likeable());
 
+        if ($request->ajax()) {
+            return response()->json([
+                'likes' => $request->likeable()->likes()->count(),
+            ]);
+        }
+
+        return redirect()->back();
+    }
+
+    public function unlike(UnlikeRequest $request)
+    {
+        $request->user()->unlike($request->likeable());
+
+        if ($request->ajax()) {
+            return response()->json([
+                'likes' => $request->likeable()->likes()->count(),
+            ]);
+        }
+
+        return redirect()->back();
+    }
 }
