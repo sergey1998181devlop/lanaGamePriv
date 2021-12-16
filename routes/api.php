@@ -26,6 +26,7 @@ Route::get('/auth/user', 'Api\RegisterController@getUserData');
 Route::post('/profile/update', 'Api\personalController@update');
 Route::post('/profile/sendSMS', 'Api\personalController@sendSMS');
 Route::post('/profile/verifySMS', 'Api\personalController@verifySMS');
+Route::post('/auth/resetPasswordViaPhone', 'Api\RegisterController@resetPasswordViaPhone');
 
 
 Route::get('/getHomeData', 'Api\HomeController@index');

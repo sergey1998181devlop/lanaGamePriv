@@ -21,6 +21,8 @@ jQuery(function() {
             $lastForm.find('input[name="user_type"]').val('owner');
             $lastForm.find('.form-group.owner').show().find('select').prop('disabled', false);
             $lastForm.find('.form-group.player').hide().find('select').prop('disabled', true);
+            $lastForm.find('input[name="email"]').prop('required', true);
+            $lastForm.find('input[name="email"]').closest('.form-group').addClass('required');
         }else{
             Layout.showInfoModal('Вы уже авторизованы.');
         }
@@ -33,7 +35,10 @@ jQuery(function() {
     jQuery('[data-btn-club-gamer-reg]').on('click', function(e) {
         if(Layout.isGuest()){
             jQuery(this).closest('.main_reg_wrapper').find('.form_reg_wrapper').show().find('.page_title').text('Регистрация ланнера');
+
             $lastForm.find('input[name="user_type"]').val('player');
+            $lastForm.find('input[name="email"]').prop('required', false);
+            $lastForm.find('input[name="email"]').closest('.form-group').removeClass('required');
             $lastForm.find('.form-group.owner').hide().find('select').prop('disabled', true);
             $lastForm.find('.form-group.player').show().find('select').prop('disabled', false);
             $lastForm.find('.club_list_link').hide();

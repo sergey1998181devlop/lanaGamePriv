@@ -111,8 +111,8 @@ return [
     'url'                  => 'Поле :attribute имеет ошибочный формат URL.',
     'uuid'                 => 'Поле :attribute должно быть корректным UUID.',
     'custom'               => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'phone' => [
+            'exists' => 'Данный телефон не зарегистрирован в системе',
         ],
     ],
     'attributes'           => [

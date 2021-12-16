@@ -9,6 +9,7 @@ use App\city;
 use App\sms_code;
 use App\Jobs\SMSRU;
 use Carbon;
+use Illuminate\Support\Facades\Hash;
 class personalController extends Controller
 {
     public function __construct()
@@ -34,14 +35,20 @@ class personalController extends Controller
         }
         $user = Auth::user();
         if($request->input('email') != $user->email){
-            $data = $request->validate([
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users']
-            ]);
+            if(owner()){
+                $data = $request->validate([
+                    'email' => ['required', 'string', 'email', 'max:255', 'unique:users']
+                ]);
+            }elseif($request->input('email') !=''){
+                $data = $request->validate([
+                    'email' => ['string', 'email', 'max:255', 'unique:users']
+                ]);
+            }
             $user->email = $request->input('email');
         }
        if(!empty($request->input('password')) && $request->input('password') != ''){
             $data = $request->validate([
-                'password' => ['required', 'string', 'min:5', 'confirmed'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
             ]);
             $user->password = Hash::make($request->input('password'));
        }
@@ -63,11 +70,12 @@ class personalController extends Controller
         ]);
         $sms_code = sms_code::where('phone',$request->input('phone'))->first();
         if($sms_code){
-            if($sms_code->created_at->diffInSeconds(Carbon::now()) > 180){
+            $diffInSeconds = $sms_code->created_at->diffInSeconds(Carbon::now());
+            if($diffInSeconds > 180){
                 $sms_code->delete();
                $send =  $this->send($request);
             }else{
-                return response()->json(['status'=>false,'msg'=>'codeSentWithin3Minutes'], 202);
+                return response()->json(['status'=>false,'msg'=>'codeSentWithin3Minutes','leftSeconds'=>(180 - $diffInSeconds)], 202);
             }
 
         }else{
@@ -105,7 +113,7 @@ class personalController extends Controller
         }
     }
     public function verify($phone,$code){
-        $sms_code = sms_code::where('code',$code)->where('phone',$phone)->first();
+        $sms_code = sms_code::where('code',$code)->where('phone',$phone)->where('created_at', '>=', Carbon::now()->subMinutes(30)->toDateTimeString())->first();
         if($sms_code){
             return true;
         }else{
