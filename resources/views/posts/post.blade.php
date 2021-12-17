@@ -34,7 +34,7 @@
 
                     <div class="article_comments_wrapper">
                         <?
-                            $messageForComments = msgfmt_create('ru_RU', '{count, plural, one{# комментарий} few{# комментария} many{# комментариев} other{# комментария}}');
+                        $messageForComments = msgfmt_create('ru_RU', '{count, plural, one{# комментарий} few{# комментария} many{# комментариев} other{# комментария}}');
                         ?>
                         @if($post->comments_total_count > 0)
                             <div class="comment_qty">{{$messageForComments->format(['count' => $post->comments_total_count]) . PHP_EOL}}</div>
@@ -45,17 +45,18 @@
                         </div>
                         <div class="add_comment_wrapper">
                             <form action="{{ route('comment.add') }}" method="post" id="add_article_comment" class="main_comment_form">
-                            @csrf
-                            <input type="hidden" name="post_id" value="{{ $post->id }}" />
+                                @csrf
+                                <input type="hidden" name="post_id" value="{{ $post->id }}"/>
+                                <input type="hidden" name="comment_photo" value="">
                                 <textarea name="comment_body" placeholder="Написать комментарий..."></textarea>
-                                <label>
+                                <label class="comment_file">
                                     <input type="file" id="add-image-article-comment" accept="image/*">
                                 </label>
                                 <button type="submit">Отправить</button>
                             </form>
                         </div>
                         <div class="comments_list_wrapper">
-                        @include('posts.posts_comment_replies', ['comments' => $post->comments])
+                            @include('posts.posts_comment_replies', ['comments' => $post->comments])
                         </div>
                     </div>
                 </main>

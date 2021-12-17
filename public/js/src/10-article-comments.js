@@ -6,6 +6,21 @@ jQuery(function() {
         comment_like_url = Layout.meta('url-comment-like'),
         comment_unlike_url = Layout.meta('url-comment-unlike');
 
+
+    $wrapper.on('change', 'form input[type="file"]',function(e) {
+        if (this.files.length === 0) {
+            return;
+        }
+
+        let $this = jQuery(this),
+            file = this.files[0];
+
+        Layout.fileUpload(file).then((img_url) => {
+            $this.closest('label.comment_file').addClass('loaded');
+            $this.closest('form').find('input[name="comment_photo"]').val(img_url);
+        });
+    });
+
     $wrapper.on('submit', 'form', function(e) {
         e.preventDefault();
         let $form = jQuery(this);
@@ -19,6 +34,8 @@ jQuery(function() {
                 url: $form.attr('action'),
                 data: $form.serialize(),
                 success: function(data) {
+                    $form.find('label.comment_file').removeClass('loaded');
+
                     if ($form.hasClass('main_comment_form')) {
                         let $main_ul = $form.closest('.article_comments_wrapper').find('.comments_list_wrapper >ul');
 
@@ -53,7 +70,11 @@ jQuery(function() {
     });
 
     $add_comment_wrapper.on('click focus', function() {
-        jQuery(this).addClass('active');
+        if (Layout.isGuest()) {
+            Layout.showInfoModal('Если хотите оставить комментарий или оценить ответ, <a href="/registration">зарегистрируйтесь</a> или <a href="/login">авторизуйтесь</a> на сайте.');
+        } else {
+            jQuery(this).addClass('active');
+        }
     });
 
     $main_comment_form.on('submit', function() {
@@ -73,9 +94,10 @@ jQuery(function() {
                 <form method="post" action="${$main_comment_form.attr('action')}">
                    <input type="hidden" name="post_id" value="${$comment.data('post-id')}">
                    <input type="hidden" name="comment_id" value="${$comment.data('comment-id')}">
+                   <input type="hidden" name="comment_photo" value="">
                    <textarea placeholder="Написать комментарий..." name="comment_body"></textarea>
-                   <label>
-                        <input type="file" id="add-image-article-comment" accept="image/*">
+                   <label class="comment_file">
+                        <input type="file" accept="image/*">
                    </label>
                    <button type="button" class="remove_form" data-remove-article-reply-form>Отмена</button>
                    <button type="submit">Отправить</button>

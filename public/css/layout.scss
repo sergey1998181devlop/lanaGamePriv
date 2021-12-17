@@ -5621,6 +5621,12 @@ section.article_page_wrapper {
                                 background-image: url("../img/addpic.svg");
                                 background-repeat: no-repeat;
                             }
+
+                            &.loaded{
+                                &:before{
+                                    background-image: url("../img/addpic-red.svg");
+                                }
+                            }
                         }
                     }
 
@@ -5825,6 +5831,15 @@ section.article_page_wrapper {
                         }
 
                         .comment_content_wrapper {
+                            .comment_img_wrapper{
+                                img{
+                                    display: block;
+                                    width: 150px;
+                                    height: 100px;
+                                    object-fit: cover;
+                                }
+                            }
+
                             font-style: normal;
                             font-weight: 500;
                             font-size: 18px;
