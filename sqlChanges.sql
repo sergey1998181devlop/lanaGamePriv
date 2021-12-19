@@ -1,3 +1,39 @@
-ALTER TABLE `clubs` ADD `console_type_1` VARCHAR(100) NULL AFTER `qty_console`, ADD `qty_console_1` INT NULL AFTER `console_type_1`, ADD `console_type_2` VARCHAR(100) NULL AFTER `qty_console_1`, ADD `qty_console_2` INT NULL AFTER `console_type_2`, ADD `console_type_3` VARCHAR(100) NULL AFTER `qty_console_2`, ADD `qty_console_3` INT NULL AFTER `console_type_3`;
+CREATE TABLE `likes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `post_id` int(11) DEFAULT NULL,
+  `likeable_id` bigint(20) UNSIGNED NOT NULL,
+  `likeable_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type` enum('like','unLike') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-ALTER TABLE `clubs` CHANGE `qty_console_1` `qty_console_1` INT(11) NOT NULL DEFAULT '0', CHANGE `qty_console_2` `qty_console_2` INT(11) NOT NULL DEFAULT '0', CHANGE `qty_console_3` `qty_console_3` INT(11) NOT NULL DEFAULT '0';
+CREATE TABLE `post_comments` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `parent_id` int(10) UNSIGNED DEFAULT NULL,
+  `body` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image_thumbnail` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `commentable_id` int(10) UNSIGNED NOT NULL,
+  `commentable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+ALTER TABLE `likes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `likes_likeable_type_likeable_id_index` (`likeable_id`);
+
+ALTER TABLE `post_comments`
+  ADD PRIMARY KEY (`id`);
+
+
+ALTER TABLE `likes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+ALTER TABLE `post_comments`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+COMMIT;
