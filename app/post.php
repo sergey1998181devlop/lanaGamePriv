@@ -13,10 +13,10 @@ class post extends Model
     }
     public function comments()
     {
-        return $this->morphMany(post_comment::class, 'commentable')->whereNull('parent_id');
+        return $this->morphMany(post_comment::class, 'commentable')->whereNull('parent_id')->has('user');
     }
     public function commentsTotal()
     {
-        return $this->hasMany(post_comment::class, 'commentable_id');
+        return $this->hasMany(post_comment::class, 'commentable_id')->has('user');
     }
 }

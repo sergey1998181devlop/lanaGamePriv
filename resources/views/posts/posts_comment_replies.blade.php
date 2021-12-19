@@ -1,8 +1,14 @@
 @if(!isset($fromController))
+
     <ul>
-        @endif
+@endif
         @foreach($comments as $comment)
-            <?php
+            <?php 
+            //чтобы знать количество комментраии отображаемых на самом деле, если удалить коммент который имееть детей то его детей не отображаются но отчитываются в общое количество комментраии
+            if(!isset($fromController)){
+                global $totalComments;
+                $totalComments++ ;
+            }
             $likeable = 'none';
             if (Gate::check('like', $comment)) {
                 if (!Gate::check('unlike', $comment)) {
@@ -76,9 +82,12 @@
                         </div>
                     </div>
                     <div class="comment_content_wrapper">
-                        <div class="comment_img_wrapper" style="display: none">
-                            <img src="" alt="" class="comment_img">
-                        </div>
+                        <?php
+                        if ( $comment->image != '') {?>
+                            <div class="comment_img_wrapper">
+                                <img src="{{$comment->image_thumbnail != '' ? $comment->image_thumbnail : $comment->image}}" full-image="{{$comment->image}}" alt="" class="comment_img">
+                            </div>
+                        <?}?>
                         {{ $comment->body }}
                     </div>
                     <div class="btn_wrapper">
@@ -89,7 +98,16 @@
                     <button class="show_branch"
                             data-show-branch-comments><?=($comment->parent_id == '') ? 'Развернуть ветку' : $messageForComments->format(['count' => count($comment->replies)]).PHP_EOL?></button>
                 @endif
-                @include('posts.posts_comment_replies', ['comments' => $comment->replies])
+                @include('posts.posts_comment_replies', ['comments' => 
+                    isset($commentsBy) && $commentsBy == 'in_order' ? 
+                        $comment->replies
+                        :
+                        $comment->replies->sortByDesc(function($comment) {
+                            return ($comment->likes->count() - $comment->unLikes->count());
+                        })->sortByDesc(function($comment) {
+                            return $comment->replies->count();
+                        })
+                ])
             </li>
         @endforeach
         @if(!isset($fromController))

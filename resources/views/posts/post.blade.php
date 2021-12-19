@@ -38,11 +38,17 @@
                         ?>
                         @if($post->comments_total_count > 0)
                             <div class="comment_qty">{{$messageForComments->format(['count' => $post->comments_total_count]) . PHP_EOL}}</div>
-                        @endif
-                        <div class="comments_sort_wrapper">
-                            <a href="#" class="active">Популярные</a>
-                            <a href="#">По порядку</a>
+                            <div class="comments_sort_wrapper">
+                            <?php
+                            $commentsBy = isset($_GET['sc_b']) && $_GET['sc_b'] == 'in_order' ? 'in_order' : 'popular';
+                            ?>
+                            <a <?=$commentsBy == 'popular' ? 'class="active"':'href="?sc_b=popular"'?>>Популярные</a>
+                            <a <?=$commentsBy == 'in_order' ? 'class="active"':'href="?sc_b=in_order"'?>>По порядку</a>
                         </div>
+                        @else
+                            <div class="comment_qty">Нет комментарий</div>
+                        @endif
+                        
                         <div class="add_comment_wrapper">
                             <form action="{{ route('comment.add') }}" method="post" id="add_article_comment" class="main_comment_form">
                                 @csrf
@@ -56,7 +62,18 @@
                             </form>
                         </div>
                         <div class="comments_list_wrapper">
-                            @include('posts.posts_comment_replies', ['comments' => $post->comments])
+                       <? global $totalComments; 
+                        $totalComments = 0;?>
+                            @include('posts.posts_comment_replies', ['comments' => 
+                            isset($commentsBy) && $commentsBy == 'in_order' ? 
+                                $post->comments
+                                :
+                                $post->comments->sortByDesc(function($comment) {
+                                    return ($comment->likes->count() - $comment->unLikes->count());
+                                })->sortByDesc(function($comment) {
+                                    return $comment->replies->count();
+                                })
+                            ])
                         </div>
                     </div>
                 </main>
@@ -99,5 +116,14 @@
             </div>
         </div>
 
+    @endif
+@endsection
+@section('scripts')
+    @if($post->comments_total_count != $totalComments)
+      <script>
+          $( document ).ready(function() {
+                $('.article_comments_wrapper .comment_qty').text('{{$messageForComments->format(['count' => $totalComments]) . PHP_EOL}}')
+            });
+      </script>
     @endif
 @endsection
