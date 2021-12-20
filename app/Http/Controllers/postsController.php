@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller; 
 use Str;
-
+use App\post_comment;
 use App\post;
 include_once(resource_path('views/includes/functions.blade.php')); 
 class postsController extends Controller
 {
     public function post($id,$url){
-        $post=post::where('id',$id)->first();
+        // post_comment::where('id',71)->delete();
+        $post=post::where('id',$id)->withCount('commentsTotal')->first();
         if(!$post ){
             abort(404);
         }

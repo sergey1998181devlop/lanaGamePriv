@@ -9,6 +9,8 @@ use App\Notifications\ResetPasswordNotification;
 use App\club;
 use DB;
 use Laravel\Passport\HasApiTokens;
+use App\Contracts\Likeable;
+use App\Like;
 class User extends Authenticatable
 {
     use Notifiable,HasApiTokens;
@@ -96,5 +98,68 @@ class User extends Authenticatable
              DB::table('sms_codes')->where('phone',$user->phone)->delete();
              DB::table('users_verify')->where('user_id',$user->id)->delete();
         });
+    }
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function like(Likeable $likeable): self
+    {
+        if ($this->hasLiked($likeable)) {
+            return $this;
+        }
+        if ( $this->hasUnLiked($likeable)) {
+            $likeable->unLikes()
+            ->whereHas('user', fn($q) => $q->whereId($this->id))
+            ->delete();
+                return $this;
+            }
+       $like =  (new Like())
+            ->user()->associate($this)
+            ->likeable()->associate($likeable);
+            $like->type="like";
+            $like->save();
+
+        return $this;
+    }
+
+    public function unlike(Likeable $likeable): self
+    {
+       if ( $this->hasLiked($likeable)) {
+        $likeable->likes()
+        ->whereHas('user', fn($q) => $q->whereId($this->id))
+        ->delete();
+            return $this;
+        }
+
+        $like =  (new Like())
+        ->user()->associate($this)
+        ->likeable()->associate($likeable);
+        $like->type="unlike";
+        $like->save();
+
+        return $this;
+    }
+
+    public function hasLiked(Likeable $likeable): bool
+    {
+        if (! $likeable->exists) {
+            return false;
+        }
+        return $likeable->likes()
+            
+            ->whereHas('user', fn($q) =>  $q->whereId($this->id))
+            ->exists();
+    }
+    public function hasUnLiked(Likeable $likeable): bool
+    {
+        if (! $likeable->exists) {
+            return true;
+        }
+        
+        return $likeable->unLikes()
+            ->whereHas('user', fn($q) =>  $q->whereId($this->id))
+            ->exists();
     }
 }

@@ -134,7 +134,7 @@ input[type=number] {
     font-weight: 500;
 }
 
-.sc_item{
+.sc_item {
     height: 100%;
 }
 
@@ -695,7 +695,7 @@ input[type=number] {
     color: #000000;
     margin-bottom: 8px;
 
-    @media (max-width: 750px){
+    @media (max-width: 750px) {
         font-size: 24px;
     }
 }
@@ -708,7 +708,7 @@ input[type=number] {
     color: #000000;
     margin-bottom: 32px;
 
-    @media (max-width: 750px){
+    @media (max-width: 750px) {
         font-size: 18px;
     }
 }
@@ -1461,11 +1461,11 @@ input[type=number] {
 /*! HEADER END */
 
 /*! SECTION REGISTRATION START */
-.main_reg_wrapper.add_club_page_start_wrapper{
+.main_reg_wrapper.add_club_page_start_wrapper {
     height: auto;
     padding: 64px 0 138px;
 
-    @media (max-width: 980px){
+    @media (max-width: 980px) {
         padding: 64px 0 104px;
     }
 }
@@ -1479,10 +1479,10 @@ input[type=number] {
         .reg_item {
             width: 338px;
 
-            .img_wrapper{
+            .img_wrapper {
                 margin-bottom: 32px;
 
-                img{
+                img {
                     display: block;
                     width: 256px;
                     height: 256px;
@@ -1493,7 +1493,7 @@ input[type=number] {
             .btn {
                 display: block;
                 width: 100%;
-                background-color: #DC0000;
+                background-color: #dc0000;
                 color: #ffffff;
                 margin-bottom: 16px;
                 transition: box-shadow 0.2s;
@@ -1503,7 +1503,7 @@ input[type=number] {
                 }
             }
 
-            .instr{
+            .instr {
                 font-style: normal;
                 font-weight: 400;
                 font-size: 18px;
@@ -1833,7 +1833,7 @@ input[type=number] {
         }
     }
 
-    @media (max-width: 750px){
+    @media (max-width: 750px) {
         .main_reg_list {
             display: block;
             flex-direction: unset;
@@ -1843,10 +1843,10 @@ input[type=number] {
                 width: 100%;
                 margin-bottom: 32px;
 
-                .img_wrapper{
+                .img_wrapper {
                     margin-bottom: 32px;
 
-                    img{
+                    img {
                         display: block;
                         width: 256px;
                         height: 256px;
@@ -1857,7 +1857,7 @@ input[type=number] {
                 .btn {
                     display: block;
                     width: 280px;
-                    background-color: #DC0000;
+                    background-color: #dc0000;
                     color: #ffffff;
                     margin: 0 auto 16px;
                     transition: box-shadow 0.2s;
@@ -1870,9 +1870,10 @@ input[type=number] {
         }
     }
 
-    @media (max-width: 600px){
+    @media (max-width: 600px) {
         .add_club_start_wrapper {
             width: 100%;
+
             .add_club_start {
                 width: 100%;
 
@@ -1911,6 +1912,7 @@ input[type=number] {
                         .checkbox_item {
                             label {
                                 width: auto;
+
                                 span {
                                     font-size: 16px;
                                 }
@@ -1980,6 +1982,7 @@ input[type=number] {
                         text-align: center;
                         color: #ffffff;
                         cursor: pointer;
+                        transition: box-shadow 0.2s;
 
                         &:hover {
                             box-shadow: 0 0 6px #dc0000;
@@ -5432,6 +5435,7 @@ section.article_page_wrapper {
                         color: #ffffff;
                         text-shadow: 2px 1px 0 rgba(0, 0, 0, 0.6);
                     }
+
                     h2 {
                         margin: 0;
                         font-style: normal;
@@ -5478,6 +5482,435 @@ section.article_page_wrapper {
 
                 img {
                     max-width: 100%;
+                }
+            }
+
+            .article_comments_wrapper {
+                border-top: 1px solid #d3d3d3;
+                padding: 16px 0 0;
+                margin-top: 32px;
+
+                .comment_qty {
+                    font-style: normal;
+                    font-weight: 900;
+                    font-size: 20px;
+                    line-height: 1;
+                    color: #000000;
+                    margin-bottom: 20px;
+                }
+
+                .comments_sort_wrapper {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: flex-start;
+                    margin: 0 -9px 20px;
+
+                    a {
+                        text-decoration: none;
+                        border: none;
+                        outline: none;
+                        box-shadow: none;
+                        background-color: #ffffff;
+                        display: block;
+                        margin: 0 9px;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 18px;
+                        line-height: 1;
+                        color: #000000;
+                        padding: 0 0 4px;
+                        border-bottom: 3px solid transparent;
+                        border-radius: 2px;
+                        transition: border-bottom-color 0.2s;
+
+                        &.active {
+                            border-bottom-color: #dc0000;
+                        }
+                    }
+
+                }
+
+                .add_comment_wrapper {
+                    margin-bottom: 16px;
+
+                    form {
+                        width: 100%;
+                        position: relative;
+
+                        textarea {
+                            width: 100%;
+                            height: 46px;
+                            border: 2px solid rgba(0, 0, 0, 0.25);
+                            box-sizing: border-box;
+                            border-radius: 14px;
+                            resize: none;
+                            padding: 10px 14px;
+                            font-weight: 500;
+                            font-size: 18px;
+                            line-height: 1;
+                            color: #000000;
+
+                            &::placeholder {
+                                font-style: normal;
+                                font-weight: 500;
+                                font-size: 18px;
+                                line-height: 1;
+                                color: rgba(0, 0, 0, 0.25);
+                            }
+                        }
+
+                        button {
+                            display: none;
+                            position: absolute;
+                            right: 14px;
+                            bottom: 14px;
+                            border: none;
+                            outline: none;
+                            background: #dc0000;
+                            border-radius: 14px;
+                            padding: 14px 32px;
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 18px;
+                            line-height: 1;
+                            text-align: center;
+                            color: #ffffff;
+                            cursor: pointer;
+                            transition: box-shadow 0.2s;
+
+                            &:hover {
+                                box-shadow: 0 0 6px #dc0000;
+                            }
+
+                            &.remove_form {
+                                background: transparent;
+                                color: rgba(0, 0, 0, 0.8);
+                                right: 167px;
+
+                                &:hover {
+                                    box-shadow: none;
+                                }
+                            }
+                        }
+
+                        label {
+                            display: none;
+                            position: absolute;
+                            left: 14px;
+                            bottom: 14px;
+                            width: 24px;
+                            height: 24px;
+                            cursor: pointer;
+
+                            input {
+                                opacity: 0;
+                                position: absolute;
+                                left: -9999px;
+                                z-index: -1;
+                            }
+
+                            &:before {
+                                content: '';
+                                display: block;
+                                width: 24px;
+                                height: 24px;
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                background-image: url("../img/addpic.svg");
+                                background-repeat: no-repeat;
+                            }
+
+                            &.loaded{
+                                &:before{
+                                    background-image: url("../img/addpic-red.svg");
+                                }
+                            }
+                        }
+                    }
+
+                    &.active {
+                        textarea {
+                            height: 156px;
+                        }
+
+                        button {
+                            display: block;
+                        }
+
+                        label {
+                            display: block;
+                        }
+                    }
+                }
+
+                .comments_list_wrapper {
+                    ul {
+                        position: relative;
+                        list-style: none;
+                        margin: 0;
+                        padding: 0;
+
+                        ul {
+                            position: relative;
+                            padding-left: 16px;
+                            display: none;
+
+                            .hide_branch {
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                display: block;
+                                border: none;
+                                outline: none;
+                                box-shadow: none;
+                                background-color: transparent;
+                                border-left: 2px solid #d3d3d3;
+                                width: 10px;
+                                height: 100%;
+                                padding: 2px;
+                                margin: 0;
+                                cursor: pointer;
+                                transition: border-left-color 0.2s;
+
+                                &:hover {
+                                    border-left-color: #dc0000;
+                                }
+                            }
+                        }
+                    }
+
+                    .comment_item {
+                        margin-bottom: 12px;
+
+                        .top_wrapper {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-between;
+                            align-items: center;
+                            margin-bottom: 8px;
+
+                            .user_info_wrapper {
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: flex-start;
+                                align-items: center;
+
+                                .user_avatar {
+                                    width: 42px;
+                                    height: 42px;
+                                    border-radius: 50%;
+                                    margin-right: 8px;
+
+                                    img {
+                                        display: block;
+                                        object-fit: cover;
+                                        width: 100%;
+                                        height: 100%;
+                                        border-radius: 50%;
+                                    }
+                                }
+
+                                .user_info {
+                                    .user_name {
+                                        font-style: normal;
+                                        font-weight: 900;
+                                        font-size: 18px;
+                                        line-height: 1;
+                                        color: #dc0000;
+                                        margin-bottom: 3px;
+                                    }
+
+                                    .user_detail {
+                                        display: flex;
+                                        flex-direction: row;
+                                        justify-content: flex-start;
+                                        font-style: normal;
+                                        font-weight: 500;
+                                        font-size: 16px;
+                                        line-height: 1;
+                                        color: #bfbfbf;
+
+                                        span + span {
+                                            position: relative;
+                                            margin-left: 20px;
+
+                                            &:before {
+                                                content: '';
+                                                position: absolute;
+                                                top: 50%;
+                                                left: -12px;
+                                                width: 4px;
+                                                height: 4px;
+                                                border-radius: 50%;
+                                                background-color: #bfbfbf;
+                                                transform: translateY(-50%);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            .comment_rating {
+                                display: flex;
+                                flex-direction: row;
+                                align-items: center;
+                                justify-content: flex-start;
+
+                                .rating {
+                                    font-style: normal;
+                                    font-weight: 500;
+                                    font-size: 18px;
+                                    line-height: 1;
+                                    color: #999999;
+
+                                    &.plus {
+                                        color: #4db762;
+                                    }
+
+                                    &.minus {
+                                        color: #dc0000;
+                                    }
+                                }
+
+                                button {
+                                    position: relative;
+                                    display: block;
+                                    background-color: transparent;
+                                    border: none;
+                                    outline: none;
+                                    box-shadow: none;
+                                    width: 17px;
+                                    height: 17px;
+                                    cursor: pointer;
+
+                                    &.disabled{
+                                        opacity: 0.5;
+                                        cursor: auto;
+                                    }
+
+                                    &.minus {
+                                        margin-right: 20px;
+
+                                        &:before {
+                                            content: '';
+                                            position: absolute;
+                                            left: 0;
+                                            top: 50%;
+                                            display: block;
+                                            width: 100%;
+                                            height: 100%;
+                                            background-image: url("../img/minus.svg");
+                                            background-repeat: no-repeat;
+                                        }
+                                    }
+
+                                    &.plus {
+                                        margin-left: 20px;
+
+                                        &:before {
+                                            content: '';
+                                            position: absolute;
+                                            left: 0;
+                                            top: 0;
+                                            display: block;
+                                            width: 100%;
+                                            height: 100%;
+                                            background-image: url("../img/plus_com.svg");
+                                            background-repeat: no-repeat;
+                                        }
+                                    }
+
+                                    &:disabled {
+                                        opacity: 0.5;
+                                        cursor: auto;
+                                    }
+                                }
+                            }
+                        }
+
+                        .comment_content_wrapper {
+                            .comment_img_wrapper{
+                                img{
+                                    display: block;
+                                    width: 150px;
+                                    height: 100px;
+                                    object-fit: cover;
+                                }
+                            }
+
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 18px;
+                            line-height: 1.2;
+                            color: #000000;
+                            margin-bottom: 8px;
+                        }
+
+                        .btn_wrapper {
+                            margin-bottom: 8px;
+
+                            button {
+                                display: block;
+                                background-color: transparent;
+                                border: none;
+                                outline: none;
+                                box-shadow: none;
+                                font-style: normal;
+                                font-weight: 500;
+                                font-size: 16px;
+                                line-height: 1;
+                                color: #999999;
+                                padding: 2px 0;
+                                cursor: pointer;
+                            }
+                        }
+
+                        &.vote-plus{
+                            .top_wrapper {
+                                .comment_rating {
+                                    button {
+                                        &.plus {
+                                            opacity: 0.5;
+                                            cursor: auto;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        &.vote-minus{
+                            .top_wrapper {
+                                .comment_rating {
+                                    button {
+                                        &.minus {
+                                            opacity: 0.5;
+                                            cursor: auto;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .show_branch {
+                        display: block;
+                        background-color: transparent;
+                        border: none;
+                        outline: none;
+                        box-shadow: none;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 16px;
+                        line-height: 1;
+                        padding: 2px 2px 2px 0;
+                        color: rgba(220, 0, 0, 1);
+                        cursor: pointer;
+                        margin-bottom: 16px;
+                        min-width: 150px;
+                        text-align: left;
+                    }
                 }
             }
         }
@@ -5608,6 +6041,122 @@ section.article_page_wrapper {
                     .go_back {
                         top: 21px;
                         left: 21px;
+                    }
+                }
+
+                .article_comments_wrapper {
+                    .comment_qty {
+                        font-style: normal;
+                        font-weight: 900;
+                        font-size: 20px;
+                        line-height: 1;
+                        color: #000000;
+                        margin-bottom: 20px;
+                    }
+
+                    .comments_sort_wrapper {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: flex-start;
+                        margin: 0 -9px 20px;
+
+                        a {
+                            text-decoration: none;
+                            border: none;
+                            outline: none;
+                            box-shadow: none;
+                            background-color: #ffffff;
+                            display: block;
+                            margin: 0 9px;
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 18px;
+                            line-height: 1;
+                            color: #000000;
+                            padding: 0 0 4px;
+                            border-bottom: 3px solid transparent;
+                            border-radius: 2px;
+                            transition: border-bottom-color 0.2s;
+
+                            &.active {
+                                border-bottom-color: #dc0000;
+                            }
+                        }
+                    }
+
+                    .add_comment_wrapper {
+                        form {
+                            button {
+                                padding: 12px 24px;
+
+                                &.remove_form {
+                                    right: 149px;
+                                }
+                            }
+                        }
+                    }
+
+                    .comments_list_wrapper {
+                        .comment_item {
+                            position: relative;
+
+                            .top_wrapper {
+                                .comment_rating {
+                                    position: absolute;
+                                    right: 0;
+                                    bottom: 0;
+
+                                    &.mob_position {
+                                        bottom: 166px;
+                                    }
+                                }
+                            }
+
+                            .comment_content_wrapper {
+                                font-style: normal;
+                                font-weight: 500;
+                                font-size: 18px;
+                                line-height: 1.2;
+                                color: #000000;
+                                margin-bottom: 8px;
+                            }
+
+                            .btn_wrapper {
+                                margin-bottom: 8px;
+
+                                button {
+                                    display: block;
+                                    background-color: transparent;
+                                    border: none;
+                                    outline: none;
+                                    box-shadow: none;
+                                    font-style: normal;
+                                    font-weight: 500;
+                                    font-size: 16px;
+                                    line-height: 1;
+                                    color: #999999;
+                                    padding: 2px 0;
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+
+                        .show_branch {
+                            display: block;
+                            background-color: transparent;
+                            border: none;
+                            outline: none;
+                            box-shadow: none;
+                            font-style: normal;
+                            font-weight: 900;
+                            font-size: 18px;
+                            line-height: 1;
+                            padding: 2px 0;
+                            color: #dc0000;
+                            cursor: pointer;
+                            margin-bottom: 16px;
+                        }
                     }
                 }
             }
@@ -6196,25 +6745,26 @@ section.personal_page_wrapper {
                 padding: 38px 0 0;
 
                 .tab {
-                    .instr{
+                    .instr {
                         font-size: 16px;
                         font-weight: 400;
                         color: #000000;
                         line-height: 1.4;
 
-                        a{
+                        a {
                             color: #dc0000;
                             text-decoration: none;
                         }
 
-                        span{
-                            img{
+                        span {
+                            img {
                                 width: 20px;
                                 height: 20px;
                                 margin: 0 3px -5px;
                             }
                         }
                     }
+
                     .club_list_content {
                         width: calc(100% + 78px);
                         display: flex;
@@ -6229,7 +6779,7 @@ section.personal_page_wrapper {
                             width: calc(100% / 2 - 78px);
                             margin: 0 39px 32px;
 
-                            button[data-role-remove-liked-club]{
+                            button[data-role-remove-liked-club] {
                                 position: absolute;
                                 top: -7px;
                                 right: -7px;
@@ -7355,7 +7905,7 @@ section.club_page_main_info_wrapper {
                 background-color: transparent;
                 margin-left: 10px;
 
-                &:before{
+                &:before {
                     content: 'Отправить комментарий к клубу';
                     display: none;
                     position: absolute;
@@ -7370,8 +7920,8 @@ section.club_page_main_info_wrapper {
                     transform: translateY(-50%);
                 }
 
-                &:hover{
-                    &:before{
+                &:hover {
+                    &:before {
                         display: block;
                     }
                 }
@@ -7430,7 +7980,7 @@ section.club_page_main_info_wrapper {
                     }
                 }
 
-                &.favorite{
+                &.favorite {
                     width: 46px;
                     height: 46px;
                     display: flex;
@@ -7438,7 +7988,7 @@ section.club_page_main_info_wrapper {
                     justify-content: center;
                     align-items: center;
                     padding: 1px;
-                    background: #FFFFFF;
+                    background: #ffffff;
                     box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
                     border-radius: 50%;
                 }
@@ -7592,9 +8142,9 @@ section.club_page_main_info_wrapper {
             .main_info_title {
                 font-size: 26px;
 
-                .report{
-                    &:hover{
-                        &:before{
+                .report {
+                    &:hover {
+                        &:before {
                             display: none;
                         }
                     }
@@ -8853,7 +9403,7 @@ section.bottom_nav_mobile {
             align-items: center;
             padding: 1px;
             margin: 0 5px;
-            background: #fff;
+            background: #ffffff;
             box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
             border-radius: 50%;
             border: none;
@@ -13495,7 +14045,7 @@ section.cities_list_wrapper {
                                         }
                                     }
 
-                                    button[data-role="console-add-tab"]{
+                                    button[data-role="console-add-tab"] {
                                         position: absolute;
                                         top: 6px;
                                         right: -45px;
@@ -13508,7 +14058,7 @@ section.cities_list_wrapper {
                                         cursor: pointer;
                                         transition: background-color 0.2s;
 
-                                        &:before{
+                                        &:before {
                                             content: '';
                                             position: absolute;
                                             top: 50%;
@@ -13520,7 +14070,7 @@ section.cities_list_wrapper {
                                             transform: translate(-50%, -50%);
                                         }
 
-                                        &:after{
+                                        &:after {
                                             content: '';
                                             position: absolute;
                                             top: 50%;
@@ -13532,7 +14082,7 @@ section.cities_list_wrapper {
                                             transform: translate(-50%, -50%);
                                         }
 
-                                        &:disabled{
+                                        &:disabled {
                                             cursor: auto;
                                             background-color: #bfbfbf;
                                         }
@@ -13699,7 +14249,7 @@ section.cities_list_wrapper {
                                 }
                             }
 
-                            .additional_console_wrapper{
+                            .additional_console_wrapper {
                                 display: flex;
                                 flex-direction: column;
                                 justify-content: flex-end;
@@ -13755,7 +14305,7 @@ section.cities_list_wrapper {
                                     }
                                 }
 
-                                button[data-role="console-add-tab"]{
+                                button[data-role="console-add-tab"] {
                                     position: absolute;
                                     top: 6px;
                                     right: -45px;
@@ -13768,7 +14318,7 @@ section.cities_list_wrapper {
                                     cursor: pointer;
                                     transition: background-color 0.2s;
 
-                                    &:before{
+                                    &:before {
                                         content: '';
                                         position: absolute;
                                         top: 50%;
@@ -13780,7 +14330,7 @@ section.cities_list_wrapper {
                                         transform: translate(-50%, -50%);
                                     }
 
-                                    &:after{
+                                    &:after {
                                         content: '';
                                         position: absolute;
                                         top: 50%;
@@ -13792,7 +14342,7 @@ section.cities_list_wrapper {
                                         transform: translate(-50%, -50%);
                                     }
 
-                                    &:disabled{
+                                    &:disabled {
                                         cursor: auto;
                                         background-color: #bfbfbf;
                                     }
@@ -14755,7 +15305,7 @@ section.cities_list_wrapper {
             }
 
             .remodal-content {
-               form {
+                form {
                     width: 100%;
                     margin: 0 auto;
 
@@ -14902,7 +15452,7 @@ section.cities_list_wrapper {
                                                 margin: 0 10px;
                                             }
 
-                                            &.monitor{
+                                            &.monitor {
                                                 display: grid;
                                                 margin: 0;
                                                 grid-gap: 20px;
@@ -14913,7 +15463,7 @@ section.cities_list_wrapper {
                                                     width: 100%;
                                                     margin: 0;
 
-                                                    &:first-child{
+                                                    &:first-child {
                                                         grid-column: 1/2 span;
                                                     }
                                                 }
@@ -14936,7 +15486,7 @@ section.cities_list_wrapper {
                                             }
                                         }
 
-                                        button[data-role="console-add-tab"]{
+                                        button[data-role="console-add-tab"] {
                                             position: absolute;
                                             top: -43px;
                                             right: 0;
@@ -14944,12 +15494,12 @@ section.cities_list_wrapper {
                                             height: 28px;
                                             border-radius: 9px;
 
-                                            &:before{
+                                            &:before {
                                                 height: 13px;
                                                 border-radius: 2px;
                                             }
 
-                                            &:after{
+                                            &:after {
                                                 width: 13px;
                                                 border-radius: 2px;
                                             }
@@ -14967,10 +15517,11 @@ section.cities_list_wrapper {
                                     }
                                 }
 
-                                .additional_console_wrapper{
-                                    .form-group{
+                                .additional_console_wrapper {
+                                    .form-group {
                                         width: 100%;
                                     }
+
                                     .console_select {
                                         display: flex;
                                         flex-direction: row;
@@ -15003,7 +15554,7 @@ section.cities_list_wrapper {
                                         }
                                     }
 
-                                    button[data-role="console-add-tab"]{
+                                    button[data-role="console-add-tab"] {
                                         position: absolute;
                                         top: -43px;
                                         right: 0;
@@ -15011,12 +15562,12 @@ section.cities_list_wrapper {
                                         height: 28px;
                                         border-radius: 9px;
 
-                                        &:before{
+                                        &:before {
                                             height: 13px;
                                             border-radius: 2px;
                                         }
 
-                                        &:after{
+                                        &:after {
                                             width: 13px;
                                             border-radius: 2px;
                                         }
@@ -15613,7 +16164,7 @@ section.cities_list_wrapper {
                 text-align: center;
                 color: #000000;
 
-                a{
+                a {
                     color: #dc0000;
                     text-decoration: none;
                 }
@@ -18164,7 +18715,7 @@ section.cities_list_wrapper {
     background-color: #ffffff;
 }
 
-nav[aria-label="breadcrumb"]{
+nav[aria-label="breadcrumb"] {
     ul.breadcrumbs {
         display: flex;
         flex-direction: row;
@@ -18175,13 +18726,13 @@ nav[aria-label="breadcrumb"]{
         margin-left: 0;
         padding-left: 0;
 
-        li{
+        li {
             font-size: 16px;
             font-weight: 500;
             color: #000000;
             line-height: 1.3;
 
-            a{
+            a {
                 position: relative;
                 display: block;
                 text-decoration: none;
@@ -18190,11 +18741,11 @@ nav[aria-label="breadcrumb"]{
                 color: #474747;
                 font-weight: 400;
 
-                &:hover{
+                &:hover {
                     text-decoration: underline;
                 }
 
-                &:after{
+                &:after {
                     content: '';
                     position: absolute;
                     top: 50%;
@@ -18212,18 +18763,18 @@ nav[aria-label="breadcrumb"]{
         }
     }
 
-    @media (max-width: 980px){
+    @media (max-width: 980px) {
         position: absolute;
         top: 64px;
 
-       ul.breadcrumbs{
-           li{
-               font-size: 12px;
-           }
-       }
+        ul.breadcrumbs {
+            li {
+                font-size: 12px;
+            }
+        }
     }
 
-    @media (max-width: 330px){
+    @media (max-width: 330px) {
         top: 56px;
     }
 }

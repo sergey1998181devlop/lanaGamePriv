@@ -18,6 +18,9 @@
     @else
         <meta name="user-role" content="guest">
     @endif
+    <meta name="url-comment-like" content="{{ route('like') }}">
+    <meta name="url-comment-unlike" content="{{ route('unlike') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="yandex-verification" content="32e051951e8b0c78"/>
     <meta name="google-site-verification" content="hxlJwydJQGGNf58k_xhPIcvSaIB1Vb3LplRFOPUyl0g"/>
     <link rel="stylesheet"
@@ -622,6 +625,10 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/17.3.1/lazyload.min.js"
         integrity="sha512-lVcnjCLGjJTaZU55wD7H3f8SJVi6VV5cQRcmGuYcyIY607N/rzZGEl90lNgsiEhKygATryG/i6e5u2moDFs5kQ=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-messageformat/9.0.2/intl-messageformat.min.js"
+        integrity="sha512-uGIOqaLIi8I30qAnPLfrEnecDDi08AcCrg7gzGp/XrDafLJl/NIilHwAm1Wl2FLiTSf10D5vM70108k3oMjK5Q=="
         crossorigin="anonymous"
         referrerpolicy="no-referrer"></script>
 <script src="https://www.google.com/recaptcha/api.js?hl=ru" async defer></script>
