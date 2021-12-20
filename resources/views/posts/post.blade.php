@@ -46,9 +46,9 @@
                             <a <?=$commentsBy == 'in_order' ? 'class="active"':'href="?sc_b=in_order"'?>>По порядку</a>
                         </div>
                         @else
-                            <div class="comment_qty">Нет комментарий</div>
+                            <div class="comment_qty">Нет комментариев</div>
                         @endif
-                        
+
                         <div class="add_comment_wrapper">
                             <form action="{{ route('comment.add') }}" method="post" id="add_article_comment" class="main_comment_form">
                                 @csrf
@@ -62,10 +62,10 @@
                             </form>
                         </div>
                         <div class="comments_list_wrapper">
-                       <? global $totalComments; 
+                       <? global $totalComments;
                         $totalComments = 0;?>
-                            @include('posts.posts_comment_replies', ['comments' => 
-                            isset($commentsBy) && $commentsBy == 'in_order' ? 
+                            @include('posts.posts_comment_replies', ['comments' =>
+                            isset($commentsBy) && $commentsBy == 'in_order' ?
                                 $post->comments
                                 :
                                 $post->comments->sortByDesc(function($comment) {
