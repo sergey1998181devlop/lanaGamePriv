@@ -5577,7 +5577,7 @@ section.article_page_wrapper {
                             text-align: center;
                             color: #ffffff;
                             cursor: pointer;
-                            transition: box-shadow 0.2s;
+                            transition: box-shadow 0.2s, background 0.2s;
 
                             &:hover {
                                 box-shadow: 0 0 6px #dc0000;
@@ -5591,6 +5591,12 @@ section.article_page_wrapper {
                                 &:hover {
                                     box-shadow: none;
                                 }
+                            }
+
+                            &:disabled{
+                                cursor: auto;
+                                background: #dedede;
+                                box-shadow: none;
                             }
                         }
 
@@ -5628,6 +5634,45 @@ section.article_page_wrapper {
                                 }
                             }
                         }
+
+                        .preview_img{
+                            display: none;
+                            position: absolute;
+                            left: 60px;
+                            bottom: 14px;
+                            border-radius: 4px;
+
+                            img{
+                                display: block;
+                                width: 55px;
+                                height: 55px;
+                                object-fit: cover;
+                                border-radius: 4px;
+                            }
+
+                            button[data-role-remove-price-list-event] {
+                                position: absolute;
+                                top: -7px;
+                                right: -7px;
+                                display: block;
+                                width: 15px;
+                                height: 15px;
+                                padding: 0;
+                                background-image: url("../img/cancel.svg");
+                                background-repeat: no-repeat;
+                                background-position: center;
+                                background-size: 15px 15px;
+                                background-color: #ffffff;
+                                border: none;
+                                border-radius: 50%;
+                                outline: none;
+                                cursor: pointer;
+                            }
+
+                            &.active{
+                                display: block;
+                            }
+                        }
                     }
 
                     &.active {
@@ -5655,7 +5700,7 @@ section.article_page_wrapper {
                         ul {
                             position: relative;
                             padding-left: 16px;
-                            display: none;
+                            display: block;
 
                             .hide_branch {
                                 position: absolute;
@@ -5837,6 +5882,7 @@ section.article_page_wrapper {
                                     width: 150px;
                                     height: 100px;
                                     object-fit: cover;
+                                    margin-top: 5px;
                                 }
                             }
 
@@ -5895,7 +5941,7 @@ section.article_page_wrapper {
                     }
 
                     .show_branch {
-                        display: block;
+                        display: none;
                         background-color: transparent;
                         border: none;
                         outline: none;
