@@ -4,8 +4,9 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller; 
 use Str;
-
+use Auth;
 use App\post;
+
 class postsController extends Controller
 {
     public function post($id){
@@ -37,5 +38,56 @@ class postsController extends Controller
         $data['status']=true;
         return response()->json($data, 202);
      }
-     
+     public function getPostComments($id,Request $request){
+        $post=post::where('id',$id)->first();
+        if(!$post ){
+            return response()->json(['status'=>false,'msg'=>'non_found'], 202);
+        }
+        $commentsBy = $request->input('sc_b') == 'in_order' ? 'in_order' : 'popular';
+
+        $comments = $this->generateComments(
+            $commentsBy == 'in_order' ?
+                $post->comments
+                :
+                $post->comments->sortByDesc(function($comment) {
+                    return ($comment->likes->count() - $comment->unLikes->count()) + $comment->replies->count();
+                })
+            ,$commentsBy);
+        return response()->json($comments, 202);
+     }
+     public function generateComments($comments,$commentsBy){
+        $commentsAr = [];
+        foreach($comments as $comment){
+            $likeable = 'none';
+            if (Auth::guard('api')->check()) {
+                if (Auth::guard('api')->user()->hasUnLiked($comment)) {
+                    $likeable = 'unliked';
+                } else if (Auth::guard('api')->user()->hasLiked($comment)) {
+                    $likeable = 'liked';
+                }
+            }
+            $comment->status = $likeable ;
+            $comment->user_name=$comment->user->name;
+            $comment->user_type=$comment->user->type == 'player' ? 'Игрок' : 'Представитель клуба';
+            $comment->totalLikes = $comment->likes->count() - $comment->unLikes->count();
+            
+            $replies  = $this->generateComments(
+            $commentsBy == 'in_order' ? 
+                $comment->replies
+                :
+                $comment->replies->sortByDesc(function($comment) {
+                    return ($comment->likes->count() - $comment->unLikes->count()) + $comment->replies->count();
+                })
+            ,$commentsBy);
+            unset($comment->replies);
+            $comment->replies = $replies ;
+            unset($comment->likes);
+            unset($comment->un_likes);
+            unset($comment->unLikes);
+            unset($comment->user);
+            unset($comment->user_id);
+            $commentsAr[] = $comment;
+        }
+        return $commentsAr;
+     }
 }

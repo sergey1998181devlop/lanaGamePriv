@@ -69,9 +69,7 @@
                                 $post->comments
                                 :
                                 $post->comments->sortByDesc(function($comment) {
-                                    return ($comment->likes->count() - $comment->unLikes->count());
-                                })->sortByDesc(function($comment) {
-                                    return $comment->replies->count();
+                                    return ($comment->likes->count() - $comment->unLikes->count()) + $comment->replies->count();
                                 })
                             ])
                         </div>

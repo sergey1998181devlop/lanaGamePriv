@@ -13,7 +13,7 @@ class post extends Model
     }
     public function comments()
     {
-        return $this->morphMany(post_comment::class, 'commentable')->whereNull('parent_id')->has('user');
+        return $this->morphMany(post_comment::class, 'commentable')->whereNull('parent_id')->has('user')->select('id','user_id','body','image','image_thumbnail','created_at');
     }
     public function commentsTotal()
     {
