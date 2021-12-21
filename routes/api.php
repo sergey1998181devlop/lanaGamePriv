@@ -44,3 +44,9 @@ Route::get('/user_agreement', function(){
         'data' => view('about.user_agreement_text')->render()
     ]); 
 });
+Route::get('/policy', function(){
+    return response()->json([
+        'status' => true,
+        'data' => view('about.policy_text')->render()
+    ]); 
+});
