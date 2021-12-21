@@ -7,18 +7,41 @@ jQuery(function() {
         comment_unlike_url = Layout.meta('url-comment-unlike');
 
 
-    $wrapper.on('change', 'form input[type="file"]',function(e) {
+    $wrapper.on('change', 'form input[type="file"]', function(e) {
         if (this.files.length === 0) {
             return;
         }
 
         let $this = jQuery(this),
-            file = this.files[0];
+            file = this.files[0],
+            $btn_submit = $this.closest('form').find('button[type="submit"]'),
+            $offer_img_wrapper = $this.closest('form').find('.preview_img');
+
+        if (['image/jpeg', 'image/png'].includes(file.type) === false) {
+            Layout.showInfoModal('Файл имеет недопустимый формат. Необходимо загрузить изображение формата jpg или png.');
+
+            return;
+        }
+
+        $btn_submit.prop('disabled', true);
 
         Layout.fileUpload(file).then((img_url) => {
             $this.closest('label.comment_file').addClass('loaded');
-            $this.closest('form').find('input[name="comment_photo"]').val(img_url);
+            $btn_submit.prop('disabled', false);
+            $offer_img_wrapper.append('<button type="button" data-role-remove-price-list-event></button>');
+            changeOfferImage(img_url);
         });
+
+        $offer_img_wrapper.on('click', '[data-role-remove-price-list-event]', function(e) {
+            changeOfferImage('');
+            $offer_img_wrapper.removeClass('active');
+            $this.closest('label.comment_file').removeClass('loaded');
+        });
+
+        function changeOfferImage(img_url) {
+            $this.closest('form').find('input[name="comment_photo"]').val(img_url);
+            $offer_img_wrapper.addClass('active').find('img').attr('src', img_url);
+        }
     });
 
     $wrapper.on('submit', 'form', function(e) {
@@ -29,43 +52,49 @@ jQuery(function() {
             $form.trigger('reset');
             Layout.showInfoModal('Если хотите оставить комментарий или оценить ответ, <a href="/registration">зарегистрируйтесь</a> или <a href="/login">авторизуйтесь</a> на сайте.');
         } else {
-            jQuery.ajax({
-                type: 'POST',
-                url: $form.attr('action'),
-                data: $form.serialize(),
-                success: function(data) {
-                    $form.find('label.comment_file').removeClass('loaded');
+            if ($form.find('textarea').val() === '' && $form.find('input[name="comment_photo"]').val() === '') {
+                Layout.showInfoModal('Введите текст комментария или приложите картинку.');
+            } else {
+                $form.find('label.comment_file').removeClass('loaded');
+                $form.find('.preview_img').removeClass('active').find('img').attr('src', '');
 
-                    if ($form.hasClass('main_comment_form')) {
-                        let $main_ul = $form.closest('.article_comments_wrapper').find('.comments_list_wrapper >ul');
+                jQuery.ajax({
+                    type: 'POST',
+                    url: $form.attr('action'),
+                    data: $form.serialize(),
+                    success: function(data) {
+                        $form.find('input[name="comment_photo"]').val('');
+                        if ($form.hasClass('main_comment_form')) {
+                            let $main_ul = $form.closest('.article_comments_wrapper').find('.comments_list_wrapper >ul');
 
-                        $form.trigger('reset');
-                        $main_ul.append(`${data.html}`);
+                            $form.trigger('reset');
+                            $main_ul.append(`${data.html}`);
 
-                    } else {
-                        if ($form.closest('li').find('>ul').length === 0) {
-                            $form.closest('li').append('<ul></ul>');
+                        } else {
+                            if ($form.closest('li').find('>ul').length === 0) {
+                                $form.closest('li').append('<ul></ul>');
+                            }
+
+                            if ($form.closest('li').find('[data-show-branch-comments]').length === 0) {
+                                $form.closest('li').append(`<button class="show_branch" style="display: none;" data-show-branch-comments>Развернуть ветку</button>`);
+                            }
+
+                            $form.closest('li').find('>ul').css('display', 'block').append(data.html);
+                            $form.closest('li').find('[data-show-branch-comments]').hide();
+                            $form.closest('.comment_item').find('[data-article-comment-reply]').prop('disabled', false);
+
+                            if ($form.is('.comments_list_wrapper ul ul form')) {
+                                let qty_comments = $form.closest('li').find('>ul >li >.comment_item').length,
+                                    button_text = comment_count_label_formatter.format({count: qty_comments});
+
+                                $form.closest('li').find('>[data-show-branch-comments]').text(button_text);
+                            }
+
+                            $form.closest('.add_comment_wrapper').remove();
                         }
-
-                        if ($form.closest('li').find('[data-show-branch-comments]').length === 0) {
-                            $form.closest('li').append(`<button class="show_branch" style="display: none;" data-show-branch-comments>Развернуть ветку</button>`);
-                        }
-
-                        $form.closest('li').find('>ul').css('display', 'block').append(data.html);
-                        $form.closest('li').find('[data-show-branch-comments]').hide();
-                        $form.closest('.comment_item').find('[data-article-comment-reply]').prop('disabled', false);
-
-                        if ($form.is('.comments_list_wrapper ul ul form')) {
-                            let qty_comments = $form.closest('li').find('>ul >li >.comment_item').length,
-                                button_text = comment_count_label_formatter.format({count: qty_comments});
-
-                            $form.closest('li').find('>[data-show-branch-comments]').text(button_text);
-                        }
-
-                        $form.closest('.add_comment_wrapper').remove();
                     }
-                }
-            });
+                });
+            }
         }
     });
 
@@ -101,6 +130,9 @@ jQuery(function() {
                    </label>
                    <button type="button" class="remove_form" data-remove-article-reply-form>Отмена</button>
                    <button type="submit">Отправить</button>
+                   <div class="preview_img">
+                       <img src="" alt="">
+                   </div>
                 </form>
             </div>`)
                 .find('.comment_rating')
