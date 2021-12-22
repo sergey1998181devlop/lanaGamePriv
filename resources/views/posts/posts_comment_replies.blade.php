@@ -46,7 +46,11 @@
                             @endif
                             <div class="user_info">
                                 <div class="user_name">
-                                    <span>{{ $comment->user->name }}</span>
+                                    <? $user_name = $comment->user->name;
+                                    if(substr_count($comment->user->name,' ') > 1){
+                                        $user_name = explode(' ',$comment->user->name)[1];
+                                    }?>
+                                    <span>{{ $user_name }}</span>
                                 </div>
                                 <div class="user_detail">
                                     <span>{{ $comment->user->type == 'player' ? 'Игрок' : 'Представитель клуба' }}</span>

@@ -9,8 +9,13 @@ use App\post;
 
 class postsController extends Controller
 {
+    public $totalComments;
+    public function __construct()
+    {
+        $this->totalComments = 0;
+    }
     public function post($id){
-        $post=post::where('id',$id)->select('id','name','about','image','created_at','views')->first();
+        $post=post::where('id',$id)->select('id','name','about','image','created_at','views')->withCount('commentsTotal')->first();
         if(!$post ){
             return response()->json(['status'=>false,'msg'=>'non_found'], 202);
         }
@@ -23,6 +28,12 @@ class postsController extends Controller
         $morePosts = post::select('id','image','name')->where('id','!=',$post->id)->inRandomOrder()->limit(2)->get();
         foreach ($morePosts as $m_post) {
             $m_post->image = ($m_post->image != '') ? url('storage/posts/thumbnail/'.$m_post->image) : asset('img/default-club-preview-image.svg');
+        }
+        if($post->comments_total_count > 0){
+            $messageForComments = msgfmt_create('ru_RU', '{count, plural, one{# комментарий} few{# комментария} many{# комментариев} other{# комментария}}');
+            $post->totalComments = $messageForComments->format(['count' => $post->comments_total_count]);
+        }else{
+            $post->totalComments = 'Нет комментариев';
         }
         return response()->json(['status'=>true,'post'=>$post,'morePosts'=>$morePosts]);
      }
@@ -53,7 +64,13 @@ class postsController extends Controller
                     return ($comment->likes->count() - $comment->unLikes->count()) + $comment->replies->count();
                 })
             ,$commentsBy);
-        return response()->json($comments, 202);
+            if($this->totalComments > 0){
+                $messageForComments = msgfmt_create('ru_RU', '{count, plural, one{# комментарий} few{# комментария} many{# комментариев} other{# комментария}}');
+                $comments_total_count = $messageForComments->format(['count' => $this->totalComments]);
+            }else{
+                $comments_total_count = 'Нет комментариев';
+            }
+        return response()->json(['status'=>true,'comments'=>$comments,'comments_total_count' => $comments_total_count,'totalComments'=>$this->totalComments]);
      }
      public function generateComments($comments,$commentsBy){
         $commentsAr = [];
@@ -87,6 +104,7 @@ class postsController extends Controller
             unset($comment->user);
             unset($comment->user_id);
             $commentsAr[] = $comment;
+            $this->totalComments++;
         }
         return $commentsAr;
      }
