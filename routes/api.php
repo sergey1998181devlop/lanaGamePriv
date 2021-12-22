@@ -35,6 +35,7 @@ Route::get('/searchCities', 'Api\HomeController@searchCities');
 
 Route::get('/getPosts', 'Api\postsController@allposts');
 Route::get('/getPost/{id}', 'Api\postsController@post');
+Route::get('/getPostComments/{id}', 'Api\postsController@getPostComments');
 
 
 Route::get('/getClub/{id}', 'Api\clubsController@index');

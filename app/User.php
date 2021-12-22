@@ -106,9 +106,6 @@ class User extends Authenticatable
 
     public function like(Likeable $likeable): self
     {
-        if ($this->hasLiked($likeable)) {
-            return $this;
-        }
         if ( $this->hasUnLiked($likeable)) {
             $likeable->unLikes()
             ->whereHas('user', fn($q) => $q->whereId($this->id))

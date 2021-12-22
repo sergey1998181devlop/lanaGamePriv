@@ -21,7 +21,7 @@ class clubsController extends Controller
             return response()->json(['status'=>false,'msg'=>'non_found'], 202);
         }
         if($club->published_at == null || $club->hidden_at != null ){
-            if(Auth::guest() || $club->user_id != Auth::user()->id){
+            if(Auth::guard('api')->guest() || $club->user_id != Auth::guard('api')->user()->id){
                 return response()->json(['status'=>false,'msg'=>'non_found'], 202);
             }
         }

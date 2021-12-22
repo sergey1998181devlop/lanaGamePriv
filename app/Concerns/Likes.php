@@ -8,11 +8,11 @@ trait Likes
 {
     public function likes(): MorphMany
     {
-        return $this->morphMany(Like::class, 'likeable')->where('type','like')->has('user');
+        return $this->morphMany(Like::class, 'likeable')->where('type','like')->has('user')->select('id','user_id');
     }
-    public function unlikes(): MorphMany
+    public function unLikes(): MorphMany
     {
-        return $this->morphMany(Like::class, 'likeable')->where('type','unlike')->has('user');
+        return $this->morphMany(Like::class, 'likeable')->where('type','unlike')->has('user')->select('id','user_id');
     }
 }
 ?>

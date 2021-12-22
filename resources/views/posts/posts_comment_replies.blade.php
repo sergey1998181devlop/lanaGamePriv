@@ -10,21 +10,10 @@
                 $totalComments++ ;
             }
             $likeable = 'none';
-            if (Gate::check('like', $comment)) {
-                if (!Gate::check('unlike', $comment)) {
-                    $likeable = 'unlike';
-                }
-            } else {
-                $likeable = 'like';
-            }
-
-
-            $likeable = 'none';
-
             if (!Auth::guest()) {
-                if (Gate::check('like', $comment) && !Gate::check('unlike', $comment)) {
+                if (Auth::user()->hasUnLiked($comment)) {
                     $likeable = 'unlike';
-                } else if (!Gate::check('like', $comment) && Gate::check('unlike', $comment)) {
+                } else if (Auth::user()->hasLiked($comment)) {
                     $likeable = 'like';
                 }
             }
@@ -67,7 +56,7 @@
                         </div>
                         <div class="comment_rating">
                             <?php
-                            $sumRating = count($comment->likes) - count($comment->unlikes);
+                            $sumRating = $comment->likes->count() - $comment->unLikes->count();
                             ?>
                             <button type="button" class="minus <?= Auth::guest() ? 'disabled' : ''; ?>" data-rating-vote="minus"></button>
                             <div class="rating<? if ($sumRating > 0) {
@@ -105,9 +94,7 @@
                         $comment->replies
                         :
                         $comment->replies->sortByDesc(function($comment) {
-                            return ($comment->likes->count() - $comment->unLikes->count());
-                        })->sortByDesc(function($comment) {
-                            return $comment->replies->count();
+                            return ($comment->likes->count() - $comment->unLikes->count()) + $comment->replies->count();
                         })
                 ])
             </li>
