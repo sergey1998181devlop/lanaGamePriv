@@ -1,9 +1,9 @@
 @if(!isset($fromController))
 
     <ul>
-@endif
+        @endif
         @foreach($comments as $comment)
-            <?php 
+            <?php
             //чтобы знать количество комментраии отображаемых на самом деле, если удалить коммент который имееть детей то его детей не отображаются но отчитываются в общое количество комментраии
             if(!isset($fromController)){
                 global $totalComments;
@@ -82,13 +82,15 @@
                         </div>
                     </div>
                     <div class="comment_content_wrapper">
+                        {{ $comment->body }}
                         <?php
                         if ( $comment->image != '') {?>
-                            <div class="comment_img_wrapper">
-                                <img src="{{$comment->image_thumbnail != '' ? $comment->image_thumbnail : $comment->image}}" full-image="{{$comment->image}}" alt="" class="comment_img">
-                            </div>
+                        <div class="comment_img_wrapper">
+                            <a href="{{$comment->image}}" data-fancybox>
+                                <img src="{{$comment->image_thumbnail != '' ? $comment->image_thumbnail : $comment->image}}" onerror="this.src='/img/default-club-preview-image.svg'" alt="comment_img">
+                            </a>
+                        </div>
                         <?}?>
-                        {{ $comment->body }}
                     </div>
                     <div class="btn_wrapper">
                         <button type="button" class="comment_reply" data-article-comment-reply>Ответить</button>
@@ -98,8 +100,8 @@
                     <button class="show_branch"
                             data-show-branch-comments><?=($comment->parent_id == '') ? 'Развернуть ветку' : $messageForComments->format(['count' => count($comment->replies)]).PHP_EOL?></button>
                 @endif
-                @include('posts.posts_comment_replies', ['comments' => 
-                    isset($commentsBy) && $commentsBy == 'in_order' ? 
+                @include('posts.posts_comment_replies', ['comments' =>
+                    isset($commentsBy) && $commentsBy == 'in_order' ?
                         $comment->replies
                         :
                         $comment->replies->sortByDesc(function($comment) {
