@@ -83,23 +83,23 @@ jQuery(function() {
         ]
     });
 
-    jQuery('.our_team_list').slick({
-        infinite: true,
-        slidesToShow: 5,
-        slidesToScroll: 1,
-        variableWidth: true,
-        prevArrow: '<button type="button" class="slick-prev slick-arrow"><img src="../../img/left1.svg" alt="arrow"></button>',
-        nextArrow: '<button type="button" class="slick-next slick-arrow"><img src="../../img/right1.svg" alt="arrow"></button>',
-        responsive: [
-            {
-                breakpoint: 700,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            }
-        ]
-    });
+    // jQuery('.our_team_list').slick({
+    //     infinite: true,
+    //     slidesToShow: 5,
+    //     slidesToScroll: 1,
+    //     variableWidth: true,
+    //     prevArrow: '<button type="button" class="slick-prev slick-arrow"><img src="../../img/left1.svg" alt="arrow"></button>',
+    //     nextArrow: '<button type="button" class="slick-next slick-arrow"><img src="../../img/right1.svg" alt="arrow"></button>',
+    //     responsive: [
+    //         {
+    //             breakpoint: 700,
+    //             settings: {
+    //                 slidesToShow: 1,
+    //                 slidesToScroll: 1
+    //             }
+    //         }
+    //     ]
+    // });
 
     // club page (mobile) - counter photo in gallery
     let scrollLeft = 0,

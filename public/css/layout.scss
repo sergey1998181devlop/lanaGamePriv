@@ -13082,6 +13082,9 @@ section.langame_software_wrapper {
 
     .our_team_list {
         position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
         margin-bottom: 67px;
 
         .our_team_item {
