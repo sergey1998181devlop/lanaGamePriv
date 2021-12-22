@@ -229,8 +229,19 @@
                     Дмитрий Лукин
                     <span class="position">Основатель LANGAME и «F5 Центр киберспорта»</span>
                 </div>
-
             </div>
+            <div class="our_team_item">
+                <div class="img_wrapper">
+                    <img src="{{ asset('/img/service/team2.png')}}" alt="image">
+                </div>
+                <div class="name">
+                    Павел Голубев
+                    <span class="position">
+                        Руководитель проекта
+                    </span>
+                </div>
+            </div>
+            @if(false)
             <div class="our_team_item">
                 <div class="img_wrapper">
                     <img src="{{ asset('/img/service/team6.png')}}" alt="image">
@@ -279,18 +290,7 @@
                 </div>
 
             </div>
-            <div class="our_team_item">
-                <div class="img_wrapper">
-                    <img src="{{ asset('/img/service/team2.png')}}" alt="image">
-                </div>
-                <div class="name">
-                    Павел Голубев
-                    <span class="position">
-                        Руководитель проекта
-                    </span>
-                </div>
 
-            </div>
             <div class="our_team_item">
                 <div class="img_wrapper">
                     <img src="{{ asset('/img/service/team.png')}}" alt="image">
@@ -303,6 +303,7 @@
                 </div>
 
             </div>
+            @endif
         </div>
 
         <p>И ещё <span class="text_decor">42 ценных сотрудника</span></p>
