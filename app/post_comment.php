@@ -11,7 +11,7 @@ class post_comment extends Model implements Likeable
     use Likes;use SoftDeletes;
     public function user()
     {
-        return $this->belongsTo(User::class)->select('id','name','type');
+        return $this->belongsTo(User::class)->select('id','name','type','phone');
     }
     public function replies()
     {

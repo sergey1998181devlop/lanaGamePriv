@@ -113,10 +113,32 @@
                 </form>
             </div>
         </div>
-
+        <div class="deleteitem_modal remodal admin_modal" id="deleteComment" data-remodal-id="deleteComment" data-remodal-options="hashTracking: false">
+            <button data-remodal-action="close" class="remodal-close">Закрыть</button>
+            <div class="remodal-content">
+                <form action="{{url('panel/comment/delete')}}" method="post" style="dispaly:inline">
+                    {{ csrf_field() }}
+                    <input type="hidden" id="commentTargetId" name="id">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Подтверждение удаления</h4>
+                    </div>
+                    <div class="modal-body">
+                        Вы уверены, что хотите удалить комментарий?
+                    </div>
+                    <button type="submit" class="btn btn-danger" data-toggle="modal" data-target=".bs-example-modal-sm">Удалить</button>
+                </form>
+            </div>
+        </div>
     @endif
 @endsection
 @section('scripts')
+    @if(admin())
+        <script>
+            $('.deleteCommentBtn').click(function(){
+                $('#deleteComment #commentTargetId').val($(this).attr('data-comment-id'))
+            })
+        </script>
+    @endif
     @if($post->comments_total_count != $totalComments)
       <script>
           $( document ).ready(function() {

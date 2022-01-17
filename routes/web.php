@@ -117,7 +117,7 @@ Route::post('post/delete/{id}','panel\postsController@delete' );
 Route::post('post/edit/saveImage','panel\postsController@saveImage' );
 Route::get('panel/posts/all','panel\postsController@index');
 Route::post('panel/posts/order_no','panel\postsController@reOrderPost');
-
+Route::post('panel/comment/delete', 'panel\postsController@deleteComment');
 // объявления
 Route::post('offer/create','panel\offersController@store' );
 Route::get('offer/edit/{id}','panel\offersController@offerToUpdste');

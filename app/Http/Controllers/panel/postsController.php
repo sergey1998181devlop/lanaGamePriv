@@ -11,7 +11,7 @@ use App\post;
 use App\User;
 use Illuminate\Support\Facades\Storage; 
 use Str;
-
+use App\post_comment;
 include_once(resource_path('views/includes/functions.blade.php'));
 class postsController extends Controller
 {
@@ -151,6 +151,14 @@ public function reOrderPost(Request $request){
     $post->save();
     return back()->with('success','Операция выполнена успешно');
 }
-
+public function deleteComment(Request $request){
+    $validatedData =  $this->validate($request ,[
+        'id'=>'required|numeric|min:0',
+    ]);
+    if(post_comment::where('id',$request->input('id'))->delete()){
+        return back()->with('success','Операция выполнена успешно');
+    }
+    return back()->with('error','Что-то не так');
+}
 }
 
