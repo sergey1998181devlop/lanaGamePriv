@@ -36,7 +36,8 @@ Route::get('/searchCities', 'Api\HomeController@searchCities');
 Route::get('/getPosts', 'Api\postsController@allposts');
 Route::get('/getPost/{id}', 'Api\postsController@post');
 Route::get('/getPostComments/{id}', 'Api\postsController@getPostComments');
-
+Route::post('post/comments/addComment', 'Api\postsController@storeComment');
+Route::post('post/comments/add-image','Api\postsController@saveImage' );
 
 Route::get('/getClub/{id}', 'Api\clubsController@index');
 Route::get('/user_agreement', function(){
