@@ -589,7 +589,7 @@
         </div>
         <div class="footer_bottom">
             <div class="footer_rights_wrapper">
-                <p>© ООО «Лангейм», 2021</p>
+                <p>© ООО «Лангейм», {{date("Y")}}</p>
             </div>
             <div class="footer_site_info">
                 <a href="{{url('policy')}}">Политика конфиденциальности</a>
