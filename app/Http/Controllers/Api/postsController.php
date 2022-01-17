@@ -6,13 +6,18 @@ use App\Http\Controllers\Controller;
 use Str;
 use Auth;
 use App\post;
-
+use App\post_comment;
+use App\Http\Requests\LikeRequest;
+use App\Http\Requests\UnlikeRequest;
+use ImageResize;
+use Illuminate\Support\Facades\Validator;
 class postsController extends Controller
 {
     public $totalComments;
     public function __construct()
     {
         $this->totalComments = 0;
+        $this->middleware('auth:api', ['only' => ['storeComment','saveImage']]);
     }
     public function post($id){
         $post=post::where('id',$id)->select('id','name','about','image','created_at','views')->withCount('commentsTotal')->first();
@@ -107,5 +112,80 @@ class postsController extends Controller
             $this->totalComments++;
         }
         return $commentsAr;
+     }
+     public function storeComment(Request $request)
+    {
+        if($request->input('comment_body') == '' && $request->input('comment_photo') == ''){
+            return response()->json(['status'=>false,'msg'=>'Напишите комментарий']);
+        }
+        $comment = new post_comment;
+        $comment->body = $request->get('comment_body');
+        $comment->user()->associate($request->user());
+        $comment->parent_id = null;
+        if((int) $request->input('comment_id') > 0 ){
+            $comment->parent_id = $request->get('comment_id');
+        }
+        if($request->input('comment_photo') != ''){
+            $comment->image = $request->get('comment_photo');
+            $comment->image_thumbnail = '';
+            $filename = explode('clubs/',$request->get('comment_photo'));
+            if(isset($filename[1])){
+                $filename=$filename[1];
+                if(file_exists(storage_path('app/public/clubs/'.$filename))){
+                    $infoPath = pathinfo(storage_path('app/public/clubs/'.$filename));
+                    $subPath = date("Y").'/'.date("M").'/'.date("d");
+                    if (!file_exists(storage_path('app/public/clubs/thumbnail/'.$subPath))) {
+                        mkdir(storage_path('app/public/clubs/thumbnail/'.$subPath), 0777, true);
+                    }
+                    if($infoPath['extension'] != 'jfif' &&  $infoPath['extension'] != 'HEIC'){
+                        $destinationPath = storage_path('app/public/clubs/thumbnail/'.$subPath);
+                            $img = ImageResize::make(storage_path('app/public/clubs/'.$filename));
+                            $img->resize(300,'auto', function ($constraint) {
+                                $constraint->aspectRatio();
+                        })->save($destinationPath.'/'.$infoPath['basename']);
+                        $comment->image_thumbnail =  url('storage/clubs/thumbnail').'/'.$subPath.'/'. $infoPath['basename'];
+                    }
+                }
+            }
+        }
+        $post = post::find($request->get('post_id'));
+        if($comment=$post->comments()->save($comment)){
+            return response()->json(['status'=>true,'id'=>$comment->id,'user_name'=>$request->user()->name,'user_type'=> $request->user()->type == 'player' ? 'Игрок' : 'Представитель клуба','created_at'=>timelabe($comment->created_at)]);
+        }
+        return response()->json(['status'=>false]);
+    }
+
+    public function saveImage(Request $request){
+        $this->imageSaver($request,'clubs');
+     }
+     public function savePriceList(Request $request){
+         $this->imageSaver($request,'clubs/lists');
+     }
+     public function imageSaver(Request $request,$folder = 'clubs'){
+         $validator = Validator::make($request->all(), [
+             'file' => ['required', 'image','max:5500']
+         ]);
+         if ($validator->fails()) {
+             jsonValidationException(['file' => $validator->errors()->first()]);
+         }
+         $message = $url = '';
+         if ($request->hasFile('file')) {
+             $file = $request->file('file');
+             if ($file->isValid()) {
+                 $uniqie=time().uniqid();
+                 $filename = $uniqie.'.'.$file->getClientOriginalExtension();
+                 $subPath = date("Y").'/'.date("M").'/'.date("d");
+                 if (!file_exists(storage_path('app/public/'.$folder.'/'.$subPath))) {
+                     mkdir(storage_path('app/public/'.$folder.'/'.$subPath), 0777, true);
+                 }
+                 $file->move(storage_path('app/public/'.$folder.'/'.$subPath), $filename);
+                 $url = url('storage/'.$folder).'/'.$subPath.'/'.$filename;
+                 header('Content-type: application/json');
+                 \http_response_code(200);
+                 echo json_encode(['status'=>true,'data'=>$url]);
+                 exit();
+             }
+         }
+         jsonValidationException(['file' => 'Произошла ошибка при загрузке файла']);
      }
 }
