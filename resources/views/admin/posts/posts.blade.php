@@ -28,6 +28,7 @@
           <tr>
             <th>Заголовок</th>
             <th>Просмотры</th>
+            <th>Комментарий</th>
             <th>Дата добавления</th>
             <th>Приоритет</th>
             <th>Действие</th>
@@ -38,6 +39,7 @@
           <tr>  
             <td name="name"><a href="{{url($post->id.'_statia_'.Str::slug($post->url))}}">{{$post->name}}</a></td>
             <td name="views">{{$post->views}}</td>
+            <td>{{$post->commentsTotal->count()}}</td>
             <td name="phone">{{$post->created_at}}</td>
             <td><button type="button" class="btn-sm btn btn-primary reOrderPostButton"  data-toggle="modal" data-target="#reOrderPost" contactId="{{$post->id}}">{{$post->order_no}}</button></td>
             <td>

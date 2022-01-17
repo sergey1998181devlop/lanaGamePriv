@@ -23,7 +23,7 @@ class postsController extends Controller
     $this->middleware('rule:1');  
 }
 public function index(){
-    $posts= post::select('id','url','name','views','order_no','created_at')->get();
+    $posts= post::select('id','url','name','views','order_no','created_at')->withCount('commentsTotal')->get();
     return view('admin.posts.posts')->with(['posts'=>$posts]);
 }
 
@@ -155,10 +155,16 @@ public function deleteComment(Request $request){
     $validatedData =  $this->validate($request ,[
         'id'=>'required|numeric|min:0',
     ]);
-    if(post_comment::where('id',$request->input('id'))->delete()){
+    if($this->commentDeletor($request->input('id'))){
         return back()->with('success','Операция выполнена успешно');
     }
     return back()->with('error','Что-то не так');
 }
+    private function commentDeletor($id){
+        post_comment::where('id',$id)->delete();
+        foreach (post_comment::where('parent_id',$id)->get() as $value) {
+            $this->commentDeletor($value->id);
+        }
+    }
 }
 
