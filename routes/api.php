@@ -38,7 +38,8 @@ Route::get('/getPost/{id}', 'Api\postsController@post');
 Route::get('/getPostComments/{id}', 'Api\postsController@getPostComments');
 Route::post('post/comments/addComment', 'Api\postsController@storeComment');
 Route::post('post/comments/add-image','Api\postsController@saveImage' );
-
+Route::post('post/comments/like', 'Api\postsController@like')->name('like');
+Route::post('post/comments/dislike', 'Api\postsController@unlike')->name('unlike');
 Route::get('/getClub/{id}', 'Api\clubsController@index');
 Route::get('/user_agreement', function(){
     return response()->json([

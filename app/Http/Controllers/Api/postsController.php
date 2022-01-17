@@ -7,8 +7,8 @@ use Str;
 use Auth;
 use App\post;
 use App\post_comment;
-use App\Http\Requests\LikeRequest;
-use App\Http\Requests\UnlikeRequest;
+use App\Http\Requests\ApiLikeRequest;
+use App\Http\Requests\ApiUnlikeRequest;
 use ImageResize;
 use Illuminate\Support\Facades\Validator;
 class postsController extends Controller
@@ -187,5 +187,16 @@ class postsController extends Controller
              }
          }
          jsonValidationException(['file' => 'Произошла ошибка при загрузке файла']);
+     }
+     public function like(ApiLikeRequest $request)
+     {
+        Auth::guard('api')->user()->like($request->likeable());
+        return response()->json(['status'=>true]);
+     }
+ 
+     public function unlike(ApiUnlikeRequest $request)
+     {
+        Auth::guard('api')->user()->unlike($request->likeable());
+        return response()->json(['status'=>true]);
      }
 }
