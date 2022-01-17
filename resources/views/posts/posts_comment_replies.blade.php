@@ -48,7 +48,7 @@
                                 <div class="user_name">
                                     <? if(admin()){
                                         $url = $comment->user->type == 'player' ? 'panel/players' : 'panel/users';
-                                        echo '<a href="/'.$url.'?search='.$comment->user->phone.'" target="_blank">';
+                                        echo '<a style="color: inherit;text-decoration: none;" href="/'.$url.'?search='.$comment->user->phone.'" target="_blank">';
                                     } ?>
                                     <? $user_name = $comment->user->name;
                                     if(substr_count($comment->user->name,' ') > 1){
