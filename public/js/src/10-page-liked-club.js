@@ -11,6 +11,14 @@ jQuery(function() {
         jQuery('[data-unlike-club-form]').show();
     }
 
+    jQuery('[data-like-club-form]').on('submit', function (e) {
+        e.preventDefault();
+    });
+
+    jQuery('[data-unlike-club-form]').on('submit', function (e) {
+        e.preventDefault();
+    });
+
     jQuery('[data-like-club]').on('click', function(e) {
         if(!Layout.isPlayer()){
             Layout.showInfoModal('Если не хотите потерять понравившийся клуб, <a href="/registration">зарегистрируйтесь</a> или <a href="/login">авторизуйтесь</a> на сайте как ланнер.');
