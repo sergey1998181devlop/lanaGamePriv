@@ -92,6 +92,7 @@ class postsController extends Controller
             $comment->user_name=$comment->user->name;
             $comment->user_type=$comment->user->type == 'player' ? 'Игрок' : 'Представитель клуба';
             $comment->totalLikes = $comment->likes->count() - $comment->unLikes->count();
+            $comment->date=timelabe($comment->created_at);
             
             $replies  = $this->generateComments(
             $commentsBy == 'in_order' ? 
@@ -108,6 +109,7 @@ class postsController extends Controller
             unset($comment->unLikes);
             unset($comment->user);
             unset($comment->user_id);
+            unset($comment->created_at);
             $commentsAr[] = $comment;
             $this->totalComments++;
         }
