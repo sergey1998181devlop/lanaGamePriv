@@ -59,6 +59,9 @@
                                     <input type="file" id="add-image-article-comment" accept="image/*">
                                 </label>
                                 <button type="submit">Отправить</button>
+                                <div class="preview_img">
+                                    <img src="" alt="">
+                                </div>
                             </form>
                         </div>
                         <div class="comments_list_wrapper">
