@@ -230,7 +230,7 @@
                                 </div>
                             @endif
 
-                            @if(count($published)==0 && count($underModify)==0 && count($draft)==0)
+
                                 <div class="instr">
                                     Привет! Добро пожаловать на <span class="text_decor">langame.ru</span> - платформу для компьютерных клубов.
                                     <br>
@@ -249,7 +249,7 @@
                                     <br>
                                     Спасибо, что участвуете в развитии LAN-культуры!
                                 </div>
-                            @endif
+
                             <div class="club_list_content">
                                 @foreach($published as $club)
                                     <div class="club_list_item">
