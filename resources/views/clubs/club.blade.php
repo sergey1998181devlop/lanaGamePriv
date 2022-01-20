@@ -79,9 +79,6 @@
             <div class="club_page_main_info_top">
                 <div class="main_info_title approve">
                 <span><h1 class="main_info_title approve">{{$club->club_name}}</h1></span>
-                    <button class="report" data-remodal-target="report_club_modal">
-                        <img src="{{asset('/img/icons/wrmsg.svg')}}" alt="">
-                    </button>
                 </div>
 
                 <div class="main_info_btn_wrapper">
@@ -156,6 +153,9 @@
                         @else
                             <button type="button" class="club_calling closed">Закрыт</button>
                         @endif
+                            <button type="button" class="club_booking" data-remodal-target="report_club_modal">
+                                Это мой клуб
+                            </button>
                     @endif
                 </div>
             </div>
@@ -769,12 +769,12 @@
                             <br>
                             <small style="font-size: 13px;">Текущий владелец {{$club->user->name}} {{$club->user->phone}}</small>
                         </h4>
-                        
+
                     </div>
                     <div class="modal-body">
-                    
+
                         <div class="form-group required">
-                            
+
                             <label for="select_new_user">Выберите нового владелеца</label>
                             <div class="input_wrapper">
                                 <input id="select_new_user" type="text" placeholder="" autocomplete="false" autocomplete="chrome-off" required>
