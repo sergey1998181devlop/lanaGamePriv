@@ -1,9 +1,11 @@
 @extends('layouts.app')
 @section('page')
-    <title>Компьютерный клуб {{$club->club_name}} {{$club->city["name"]}} {{$club->club_address}} - цены, отзывы, обзоры</title>
+    <title>Компьютерный клуб {{$club->club_name}} {{$club->city["name"]}} {{$club->club_address}} -
+        цены, отзывы, обзоры</title>
     <meta name="description"
           content="Компьютерный клуб {{$club->club_name}} по адресу {{$club->club_full_address}} - расположение, цены, отзывы, рейтинг ({{$club->rating }} из 5), честные обзоры, новости, ближайшие мероприятия">
-    <meta name="keywords" content="компьютерный клуб {{$club->club_name}}, интернет кафе {{$club->club_name}}, киберклуб {{$club->club_name}}, {{$club->city["name"]}}"/>
+    <meta name="keywords"
+          content="компьютерный клуб {{$club->club_name}}, интернет кафе {{$club->club_name}}, киберклуб {{$club->club_name}}, {{$club->city["name"]}}" />
     <meta name="club_id" content="{{$club->id}}">
     <style>
         .comment {
@@ -51,8 +53,11 @@
             <nav aria-label="breadcrumb">
                 <ul class="breadcrumbs">
                     <li class="breadcrumb-item"><a href="{{ url('/') }}">Главная</a></li>
-                    <li class="breadcrumb-item"><a href="{{ url('/computerniy_club') }}_{{$club->city["en_name"]}}">Клубы {{$club->city["name"]}}</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Компьютерный клуб {{$club->club_name}}</li>
+                    <li class="breadcrumb-item"><a
+                            href="{{ url('/computerniy_club') }}_{{$club->city["en_name"]}}">Клубы {{$club->city["name"]}}</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Компьютерный
+                        клуб {{$club->club_name}}</li>
                 </ul>
             </nav>
             @if(isset($comments))
@@ -60,7 +65,8 @@
                     @foreach($comments as $comment)
                         <div class="comment">
                             @if(admin())
-                                <button type="button" data-role-remove-comment data-id="{{$comment->id}}"></button>
+                                <button type="button" data-role-remove-comment
+                                        data-id="{{$comment->id}}"></button>
                             @endif
                             <div class="comment-header">
                                 {{timelabe($comment->created_at)}}
@@ -78,7 +84,11 @@
             @endif
             <div class="club_page_main_info_top">
                 <div class="main_info_title approve">
-                <span><h1 class="main_info_title approve">{{$club->club_name}}</h1></span>
+                    <span><h1 class="main_info_title approve">{{$club->club_name}}</h1></span>
+                    <button type="button" class="club_booking"
+                            data-remodal-target="report_club_modal">
+                        Это мой клуб
+                    </button>
                 </div>
 
                 <div class="main_info_btn_wrapper">
@@ -94,14 +104,19 @@
                         <a href="{{url('personal/club/'.$club->id.'/edit')}}"
                            style="background:#cb8e20;color:#000;margin-right: 5px;font-size: 14px;"
                            class="btn"
-                           data-remodal-target="change_user_modal" data-remodal-options="hashTracking: false">Сменить владелеца</a>
+                           data-remodal-target="change_user_modal"
+                           data-remodal-options="hashTracking: false">Сменить владелеца</a>
                     @endif
                     @if($club->published_at == null && admin() && $club->deleted_at == null)
-                        <a href="{{url($club->id.'_computerniy_club_'.Str::slug($club->url).'_'.$club->city["en_name"].'/active')}}" class="club_active btn">Опубликовать</a>
-                        <button type="button" class="club_comment" data-remodal-target="club_comment_modal">Написать коммент</button>
+                        <a href="{{url($club->id.'_computerniy_club_'.Str::slug($club->url).'_'.$club->city["en_name"].'/active')}}"
+                           class="club_active btn">Опубликовать</a>
+                        <button type="button" class="club_comment"
+                                data-remodal-target="club_comment_modal">Написать коммент
+                        </button>
                     @endif
                     @if(admin())
-                        <a href="{{url('personal/club/'.$club->id.'/edit')}}" style="background:#1f42ff;color:#fff;margin-right: 5px;" class="btn">Редактировать</a>
+                        <a href="{{url('personal/club/'.$club->id.'/edit')}}"
+                           style="background:#1f42ff;color:#fff;margin-right: 5px;" class="btn">Редактировать</a>
                     @endif
                     @if(admin() && $club->published_at != null &&  $club->deleted_at == null)
                         <a href="{{url('personal/club/'.$club->id.'/edit')}}"
@@ -136,26 +151,28 @@
                             }
                         }
                         ?>
-                        <form action="" method="post" data-like-club-form class="<?=clubLiked($club->id) ? 'liked' : 'notLiked'?>">
+                        <form action="" method="post" data-like-club-form
+                              class="<?=clubLiked($club->id) ? 'liked' : 'notLiked'?>">
                             {{ csrf_field() }}
-                            <button type="submit" class="favorite" data-like-club><img src="{{asset('/img/icons/like-gray.svg')}}" alt="like"></button>
+                            <button type="submit" class="favorite" data-like-club><img
+                                    src="{{asset('/img/icons/like-gray.svg')}}" alt="like"></button>
                         </form>
-                        <form action="" method="post" class="unlike_club" style="display: none" data-unlike-club-form>
+                        <form action="" method="post" class="unlike_club" style="display: none"
+                              data-unlike-club-form>
                             {{ csrf_field() }}
-                            <button type="submit" class="favorite" data-unlike-club><img src="{{asset('/img/icons/like.svg')}}" alt="like"></button>
+                            <button type="submit" class="favorite" data-unlike-club><img
+                                    src="{{asset('/img/icons/like.svg')}}" alt="like"></button>
                         </form>
                         @if($showCallButton)
                             <button type="button"
                                     class="club_calling"
                                     data-remodal-target="club_phone_modal"
-                                    onclick="ym(82365286,'reachGoal','phone');gtag('event', 'send', { 'event_category': 'phone', 'event_action': 'click' });">Позвонить
+                                    onclick="ym(82365286,'reachGoal','phone');gtag('event', 'send', { 'event_category': 'phone', 'event_action': 'click' });">
+                                Позвонить
                             </button>
                         @else
                             <button type="button" class="club_calling closed">Закрыт</button>
                         @endif
-                            <button type="button" class="club_booking" data-remodal-target="report_club_modal">
-                                Это мой клуб
-                            </button>
                     @endif
                 </div>
             </div>
@@ -175,9 +192,12 @@
                 @endif
                 @if($club->club_metro != null && $club->metro != null)
                     <div class="club_subway_wrapper">
-                        <div class="subway_img_wrapper" style="--subway-color: #{{$club->metro->color}}">
-                            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-svg-subway"></use>
+                        <div class="subway_img_wrapper"
+                             style="--subway-color: #{{$club->metro->color}}">
+                            <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                     xlink:href="#icon-svg-subway"></use>
                             </svg>
                         </div>
                         <div class="subway_station">
@@ -222,18 +242,22 @@
                         if (($key = array_search($club->main_preview_photo, $images)) !== false) {
                             unset($images[$key]);
                         }
-                        array_unshift($images,$club->main_preview_photo);
+                        array_unshift($images, $club->main_preview_photo);
                         foreach ($images as $value) {
                         ?>
                         <div class="club_page_photo_item">
                             <a href="{{$value}}" data-fancybox="gallery">
-                                <img src="{{$value}}" onerror="this.src='/img/default-club-preview-image.svg'" alt="image">
+                                <img src="{{$value}}"
+                                     onerror="this.src='/img/default-club-preview-image.svg'"
+                                     alt="image">
                             </a>
                         </div>
 
                         <?php } ?>
 
-                        <button type="button" class="@if(count($images) < 5) hidden-lg @endif" data-remodal-target="club_photo_modal">Показать все фото</button>
+                        <button type="button" class="@if(count($images) < 5) hidden-lg @endif"
+                                data-remodal-target="club_photo_modal">Показать все фото
+                        </button>
                     </div>
                 </div>
                 <span class="counter"></span>
@@ -256,7 +280,7 @@
                         <?
                         $message = msgfmt_create('ru_RU', '{count, plural, one{# консоль} few{# консоли} many{# консолей} other{# консоли}}');
                         $count_cons = $club->qty_console + $club->qty_console_1 + $club->qty_console_2 + $club->qty_console_3;
-                        $cons_types = implode(', ',array_unique(array_filter([$club->console_type,$club->console_type_1,$club->console_type_2,$club->console_type_3])));
+                        $cons_types = implode(', ', array_unique(array_filter([$club->console_type, $club->console_type_1, $club->console_type_2, $club->console_type_3])));
                         ?>
                         <div class="club_page_services_item">
                             <img src="{{asset('/img/icons/playstation.svg')}}" alt="icons">
@@ -390,9 +414,13 @@
                     </div>
                     @if($club->club_price_file != null && $club->club_price_file != '')
                         @if(substr($club->club_price_file, strrpos($club->club_price_file, '.') + 1) != 'pdf')
-                            <button type="button" class="show_price_list" data-remodal-target="club_price_list_modal">Посмотреть прайс-лист</button>
+                            <button type="button" class="show_price_list"
+                                    data-remodal-target="club_price_list_modal">Посмотреть
+                                прайс-лист
+                            </button>
                         @else
-                            <a href="{{$club->club_price_file}}" target="_blank" class="show_price_list">Посмотреть прайс-лист</a>
+                            <a href="{{$club->club_price_file}}" target="_blank"
+                               class="show_price_list">Посмотреть прайс-лист</a>
                         @endif
                     @endif
                 </div>
@@ -455,14 +483,15 @@
                                         <tr>
                                             <th>Оборудование</th>
                                             <?foreach($configuration as $val){
-                                                if(isset($val['pc_quantity']) && (int) $val['pc_quantity'] < 1) continue;  ?>
-                                                <th>
-                                                    {{isset($val['conf_name'])? $val['conf_name'] : null}}
-                                                    <span class="text_decor">{{isset($val['pc_quantity'])? (int) $val['pc_quantity'].' ПК' : null}}</span>
-                                                </th>
-                                                <? foreach ($val as $key => $value) {
-                                                    $configurationAr[$key][] = $value;
-                                                }
+                                            if (isset($val['pc_quantity']) && (int)$val['pc_quantity'] < 1) continue;  ?>
+                                            <th>
+                                                {{isset($val['conf_name'])? $val['conf_name'] : null}}
+                                                <span
+                                                    class="text_decor">{{isset($val['pc_quantity'])? (int) $val['pc_quantity'].' ПК' : null}}</span>
+                                            </th>
+                                            <? foreach ($val as $key => $value) {
+                                                $configurationAr[$key][] = $value;
+                                            }
                                             }?>
                                         </tr>
                                     </thead>
@@ -471,7 +500,7 @@
                                             <tr>
                                                 <td>Процессор</td>
                                                 @foreach($configurationAr['cpu_vendor'] as $key=>$val)
-                                                    <?$cv= isset($configurationAr['cpu_model'][$key]) ? $val .' '. $configurationAr['cpu_model'][$key] : $val?>
+                                                    <?$cv = isset($configurationAr['cpu_model'][$key]) ? $val . ' ' . $configurationAr['cpu_model'][$key] : $val?>
                                                     <td>{{$cv == '' || $cv == 'Другое' ? 'Нет информации' : $cv }}</td>
                                                 @endforeach
                                             </tr>
@@ -480,7 +509,7 @@
                                             <tr>
                                                 <td>Видеокарта</td>
                                                 @foreach($configurationAr['video_vendor'] as $key=>$val)
-                                                    <?$cv= isset($configurationAr['video_model'][$key]) ? $val .' '. $configurationAr['video_model'][$key] : $val?>
+                                                    <?$cv = isset($configurationAr['video_model'][$key]) ? $val . ' ' . $configurationAr['video_model'][$key] : $val?>
                                                     <td>{{$cv == '' || $cv == 'Другое' ? 'Нет информации' : $cv }}</td>
                                                 @endforeach
                                             </tr>
@@ -489,7 +518,7 @@
                                             <tr>
                                                 <td>Оперативная память</td>
                                                 @foreach($configurationAr['memory_size'] as $key=>$val)
-                                                    <?$cv= isset($configurationAr['memory_type'][$key]) ? $val .' '. $configurationAr['memory_type'][$key] : $val?>
+                                                    <?$cv = isset($configurationAr['memory_type'][$key]) ? $val . ' ' . $configurationAr['memory_type'][$key] : $val?>
                                                     <td>{{$cv == '' || $cv == 'Другое' ? 'Нет информации' : $cv }}</td>
                                                 @endforeach
                                             </tr>
@@ -538,7 +567,7 @@
                                             <tr>
                                                 <td>Монитор</td>
                                                 @foreach($configurationAr['monitor_vendor'] as $key=>$val)
-                                                <?$cv= isset($configurationAr['monitor_type'][$key]) ? $val .' '. $configurationAr['monitor_type'][$key] : $val?>
+                                                    <?$cv = isset($configurationAr['monitor_type'][$key]) ? $val . ' ' . $configurationAr['monitor_type'][$key] : $val?>
                                                     <td>{{$cv == '' || $cv == 'Другое' ? 'Нет информации' : $cv }}</td>
                                                 @endforeach
                                             </tr>
@@ -597,14 +626,20 @@
                                 </div>
                                 <div class="review_content_wrapper">
                                     <div class="review_content">
-                                        Мощная аппаратура, тянет все игры, часто здесь бываю и один, и с компанией.
+                                        Мощная аппаратура, тянет все игры, часто здесь бываю и один,
+                                        и с компанией.
                                         Отличный вариант отдыха после работы для любителей игр.
-                                        Располагающая атмосфера, приятный персонал, много единомышленников, даже если пришёл один
-                                        - без компании не останешься. Мне нравится бывать в этом клубе, цены не завышены.
-                                        Мощная аппаратура, тянет все игры, часто здесь бываю и один, и с компанией.
+                                        Располагающая атмосфера, приятный персонал, много
+                                        единомышленников, даже если пришёл один
+                                        - без компании не останешься. Мне нравится бывать в этом
+                                        клубе, цены не завышены.
+                                        Мощная аппаратура, тянет все игры, часто здесь бываю и один,
+                                        и с компанией.
                                         Отличный вариант отдыха после работы для любителей игр.
-                                        Располагающая атмосфера, приятный персонал, много единомышленников, даже если пришёл один
-                                        - без компании не останешься. Мне нравится бывать в этом клубе, цены не завышены.
+                                        Располагающая атмосфера, приятный персонал, много
+                                        единомышленников, даже если пришёл один
+                                        - без компании не останешься. Мне нравится бывать в этом
+                                        клубе, цены не завышены.
                                     </div>
                                 </div>
                             </div>
@@ -683,9 +718,12 @@
                     <div class="club_page_contacts_item">
                         @if($club->club_metro != null && $club->metro != null)
                             <div class="club_subway_wrapper">
-                                <div class="subway_img_wrapper" style="--subway-color: #{{$club->metro->color}}">
-                                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-svg-subway"></use>
+                                <div class="subway_img_wrapper"
+                                     style="--subway-color: #{{$club->metro->color}}">
+                                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                             xlink:href="#icon-svg-subway"></use>
                                     </svg>
                                 </div>
                                 <div class="subway_station">
@@ -728,13 +766,17 @@
         <div class="container">
             <div class="club_price_wrapper">
                 <div class="club_price">Аренда от {{$club->club_min_price}} ₽/час</div>
-                <form action="" method="post" data-like-club-form class="<?=clubLiked($club->id) ? 'liked' : 'notLiked'?>">
+                <form action="" method="post" data-like-club-form
+                      class="<?=clubLiked($club->id) ? 'liked' : 'notLiked'?>">
                     {{ csrf_field() }}
-                    <button type="submit" class="favorite" data-like-club><img src="{{asset('/img/icons/like-gray.svg')}}" alt="like"></button>
+                    <button type="submit" class="favorite" data-like-club><img
+                            src="{{asset('/img/icons/like-gray.svg')}}" alt="like"></button>
                 </form>
-                <form action="" method="post" class="unlike_club" style="display: none" data-unlike-club-form>
+                <form action="" method="post" class="unlike_club" style="display: none"
+                      data-unlike-club-form>
                     {{ csrf_field() }}
-                    <button type="submit" class="favorite" data-unlike-club><img src="{{asset('/img/icons/like.svg')}}" alt="like"></button>
+                    <button type="submit" class="favorite" data-unlike-club><img
+                            src="{{asset('/img/icons/like.svg')}}" alt="like"></button>
                 </form>
                 @if($club->closed == '1')
                     <a class="club_calling closed">Закрыто навсегда</a>
@@ -748,7 +790,8 @@
             </div>
         </div>
     </section>
-    <div class="remodal show_club_phone_modal" data-remodal-id="club_phone_modal" data-remodal-options="hashTracking: false">
+    <div class="remodal show_club_phone_modal" data-remodal-id="club_phone_modal"
+         data-remodal-options="hashTracking: false">
         <button data-remodal-action="close" class="remodal-close"></button>
         <div class="remodal-content">
             <div class="club_phone_wrapper">
@@ -758,16 +801,19 @@
     </div>
 
     @if(admin())
-        <div class="change_user_modal remodal admin_modal" id="change_user_modal" data-remodal-id="change_user_modal" data-remodal-options="hashTracking: false">
+        <div class="change_user_modal remodal admin_modal" id="change_user_modal"
+             data-remodal-id="change_user_modal" data-remodal-options="hashTracking: false">
             <button data-remodal-action="close" class="remodal-close">Закрыть</button>
             <div class="remodal-content">
-                <form action="{{url('panel/club/'.$club->id.'/change-user')}}" method="post" style="dispaly:inline">
+                <form action="{{url('panel/club/'.$club->id.'/change-user')}}" method="post"
+                      style="dispaly:inline">
                     {{ csrf_field() }}
                     <input type="hidden" name="club_id" value="{{$club->id}}">
                     <div class="modal-header">
                         <h4 class="modal-title">Сменить владелеца клуба
                             <br>
-                            <small style="font-size: 13px;">Текущий владелец {{$club->user->name}} {{$club->user->phone}}</small>
+                            <small style="font-size: 13px;">Текущий
+                                владелец {{$club->user->name}} {{$club->user->phone}}</small>
                         </h4>
 
                     </div>
@@ -777,7 +823,8 @@
 
                             <label for="select_new_user">Выберите нового владелеца</label>
                             <div class="input_wrapper">
-                                <input id="select_new_user" type="text" placeholder="" autocomplete="false" autocomplete="chrome-off" required>
+                                <input id="select_new_user" type="text" placeholder=""
+                                       autocomplete="false" autocomplete="chrome-off" required>
                                 <input type="hidden" id="new_user_id" name="new_user" required>
                                 <div class="error"></div>
                             </div>
@@ -787,10 +834,12 @@
                 </form>
             </div>
         </div>
-        <div class="club_comment_modal remodal admin_modal" id="club_comment_modal" data-remodal-id="club_comment_modal" data-remodal-options="hashTracking: false">
+        <div class="club_comment_modal remodal admin_modal" id="club_comment_modal"
+             data-remodal-id="club_comment_modal" data-remodal-options="hashTracking: false">
             <button data-remodal-action="close" class="remodal-close">Закрыть</button>
             <div class="remodal-content">
-                <form action="{{url('club/')}}/{{$club->id}}/comment" method="post" style="dispaly:inline">
+                <form action="{{url('club/')}}/{{$club->id}}/comment" method="post"
+                      style="dispaly:inline">
                     {{ csrf_field() }}
                     <input type="hidden" name="club_id" value="{{$club->id}}">
                     <div class="modal-header">
@@ -813,7 +862,8 @@
 
     @endif
 
-    <div class="remodal report_modal report_club_modal" data-remodal-id="report_club_modal" data-remodal-options="hashTracking: false">
+    <div class="remodal report_modal report_club_modal" data-remodal-id="report_club_modal"
+         data-remodal-options="hashTracking: false">
         <button data-remodal-action="close" class="remodal-close"></button>
         <div class="remodal-content">
             <div class="title">Комментарий к клубу</div>
@@ -822,29 +872,35 @@
                 описании или оставить заявку на передачу управления
                 представителю клуба.
             </div>
-            <form action="{{url('report_club_error')}}" method="post" id="report-club-form" data-recaptcha-form>
+            <form action="{{url('report_club_error')}}" method="post" id="report-club-form"
+                  data-recaptcha-form>
                 @csrf
                 <input type="hidden" name="url" value="{{url()->current()}}">
                 <div class="forma">
                     <div class="form-group required @error('name') error @enderror">
                         <label for="contact-us-name-input">Имя</label>
-                        <input id="contact-us-name-input" name="name" value="{{ old('name') }}" type="text" placeholder="" required>
+                        <input id="contact-us-name-input" name="name" value="{{ old('name') }}"
+                               type="text" placeholder="" required>
                     </div>
                     <div class="form-group required @error('email') error @enderror">
                         <label for="contact-us-email-input">Email</label>
-                        <input id="contact-us-email-input" name="email" value="{{ old('email') }}" type="email" placeholder="" required>
+                        <input id="contact-us-email-input" name="email" value="{{ old('email') }}"
+                               type="email" placeholder="" required>
                     </div>
                     <div class="form-group @error('phone') error @enderror">
                         <label for="contact-us-phone-input">Контактный телефон</label>
-                        <input id="contact-us-phone-input" name="phone" value="{{ old('phone') }}" type="tel" placeholder="+7 (___) ___-__-__">
+                        <input id="contact-us-phone-input" name="phone" value="{{ old('phone') }}"
+                               type="tel" placeholder="+7 (___) ___-__-__">
                     </div>
                     <div class="form-group required @error('message') error @enderror">
                         <label for="contact-us-message-input">Текст сообщения</label>
-                        <textarea name="message" id="contact-us-message-input" value="{{ old('message') }}" maxlength="1500" required></textarea>
+                        <textarea name="message" id="contact-us-message-input"
+                                  value="{{ old('message') }}" maxlength="1500" required></textarea>
                     </div>
                 </div>
                 <div class="recaptcha-holder">
-                    <div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="{{env('RECAPCHA_PUB')}}"></div>
+                    <div class="g-recaptcha" data-callback="recaptchaCallback"
+                         data-sitekey="{{env('RECAPCHA_PUB')}}"></div>
                 </div>
                 <div class="recaptcha-msg">
                     @error('g-recaptcha-response')
@@ -857,7 +913,8 @@
             </form>
         </div>
     </div>
-    <div class="remodal show_club_photo_modal" data-remodal-id="club_photo_modal" data-remodal-options="hashTracking: false">
+    <div class="remodal show_club_photo_modal" data-remodal-id="club_photo_modal"
+         data-remodal-options="hashTracking: false">
         <button data-remodal-action="close" class="remodal-close"></button>
         <div class="remodal-content">
             <div class="counter_slide" id="show_club_photo_counter_slide">
@@ -882,7 +939,8 @@
         </div>
     </div>
     @if(substr($club->club_price_file, strrpos($club->club_price_file, '.') + 1) != 'pdf')
-        <div class="remodal show_club_price_list_modal" data-remodal-id="club_price_list_modal" data-remodal-options="hashTracking: false">
+        <div class="remodal show_club_price_list_modal" data-remodal-id="club_price_list_modal"
+             data-remodal-options="hashTracking: false">
             <button data-remodal-action="close" class="remodal-close"></button>
             <div class="remodal-content">
                 <div class="club_price_list_wrapper">
@@ -896,19 +954,21 @@
 @endsection
 @section('scripts')
     @if($club->lat!= '' && $club->lon!= '')
-        <script src="https://api-maps.yandex.ru/2.1/?apikey={{env('YANDIX_MAPS_KEY','79ca1998-f254-447d-8081-bcd9647a8fb9')}}&lang=ru_RU" type="text/javascript"></script>
+        <script
+            src="https://api-maps.yandex.ru/2.1/?apikey={{env('YANDIX_MAPS_KEY','79ca1998-f254-447d-8081-bcd9647a8fb9')}}&lang=ru_RU"
+            type="text/javascript"></script>
         <script>
             ymaps.ready(init);
 
             function init() {
                 var myMap = new ymaps.Map('club_page_maps', {
                     center: [{{$club->lat}}, {{$club->lon}}],
-                    zoom: 15
+                    zoom: 15,
                 });
                 myMap.geoObjects
                     .add(new ymaps.Placemark([{{$club->lat}}, {{$club->lon}}], {
                         preset: 'islands#dotIcon',
-                        iconColor: '#735184'
+                        iconColor: '#735184',
                     }));
             }
         </script>
@@ -920,15 +980,15 @@
                 serviceUrl: '{{url("/panel/find-user")}}',
                 dataType: 'json',
 
-                onSelect: function(suggestion) {
+                onSelect: function (suggestion) {
                     $('#new_user_id').val(suggestion.data);
-                }
+                },
             });
         </script>
     @endif
     @if(session('success') || (isset($_GET['status']) && $_GET['status'] === 'success'))
         <script>
-            $(document).ready(function() {
+            $(document).ready(function () {
                 jQuery('[data-remodal-id="success_modal"]').remodal().open();
             });
             window.history.replaceState({}, document.title, $('meta[name="site"]').attr('content') + "/{{$club->id.'_computerniy_club_'.$club->url.'_'.$club->city->en_name.''}}");
@@ -936,7 +996,7 @@
     @endif
     @if(isset($_GET['action']) && $_GET['action'] == 'change_user')
         <script>
-            $(document).ready(function() {
+            $(document).ready(function () {
                 jQuery('[data-remodal-id="change_user_modal"]').remodal().open();
                 jQuery('[data-remodal-id="change_user_modal"] #select_new_user').focus();
             });
@@ -944,7 +1004,7 @@
     @endif
     @if(admin())
         <script>
-            $('.comment button[data-role-remove-comment]').click(function() {
+            $('.comment button[data-role-remove-comment]').click(function () {
                 var id = $(this).attr('data-id'),
                     comment = $(this).closest('.comment');
                 comment.css('background', '#cccccc');
@@ -953,14 +1013,14 @@
                     type: 'post',
                     data: {
                         'id': id,
-                        '_token': $('[name="_token"]').val()
+                        '_token': $('[name="_token"]').val(),
                     },
-                    success: function(data) {
+                    success: function (data) {
                         comment.remove();
                     },
-                    error: function(xhr, ajaxOptions, thrownError) {
+                    error: function (xhr, ajaxOptions, thrownError) {
                         comment.css('background', '');
-                    }
+                    },
                 });
             });
         </script>

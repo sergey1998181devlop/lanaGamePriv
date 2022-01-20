@@ -1458,6 +1458,7 @@ input[type=number] {
         }
     }
 }
+
 /*! HEADER END */
 
 /*! SECTION REGISTRATION START */
@@ -2008,6 +2009,7 @@ input[type=number] {
 
     }
 }
+
 /*! SECTION REGISTRATION END */
 
 /*! SECTION MAIN PAGE START */
@@ -2627,6 +2629,7 @@ input[type=number] {
         }
     }
 }
+
 /*! SECTION MAIN PAGE END */
 
 /*! SECTION CHOOSE CLUB INFO START */
@@ -2840,6 +2843,7 @@ input[type=number] {
         }
     }
 }
+
 /*! SECTION CHOOSE CLUB INFO END */
 
 /*! SECTION SEARCH CLUB START */
@@ -3361,6 +3365,7 @@ section.sc_wrapper {
         }
     }
 }
+
 /*! SECTION SEARCH CLUB END */
 
 /*! SECTION SEARCH CLUB BY MAP START */
@@ -5142,6 +5147,7 @@ section.sc_wrapper_by_map {
         }
     }
 }
+
 /*! SECTION SEARCH CLUB BY MAP END */
 
 /*! SECTION ARTICLES START */
@@ -5348,6 +5354,7 @@ section.articles_wrapper {
         }
     }
 }
+
 /*! SECTION ARTICLES END */
 
 /*! SECTION TOURNAMENT START */
@@ -5387,6 +5394,7 @@ section.tournament_wrapper {
         }
     }
 }
+
 /*! SECTION TOURNAMENT END */
 
 /*! SECTION ARTICLE PAGE START */
@@ -5597,7 +5605,7 @@ section.article_page_wrapper {
                                 }
                             }
 
-                            &:disabled{
+                            &:disabled {
                                 cursor: auto;
                                 background: #dedede;
                                 box-shadow: none;
@@ -5632,21 +5640,21 @@ section.article_page_wrapper {
                                 background-repeat: no-repeat;
                             }
 
-                            &.loaded{
-                                &:before{
+                            &.loaded {
+                                &:before {
                                     background-image: url("../img/addpic-red.svg");
                                 }
                             }
                         }
 
-                        .preview_img{
+                        .preview_img {
                             display: none;
                             position: absolute;
                             left: 60px;
                             bottom: 14px;
                             border-radius: 4px;
 
-                            img{
+                            img {
                                 display: block;
                                 width: 55px;
                                 height: 55px;
@@ -5673,7 +5681,7 @@ section.article_page_wrapper {
                                 cursor: pointer;
                             }
 
-                            &.active{
+                            &.active {
                                 display: block;
                             }
                         }
@@ -5834,7 +5842,7 @@ section.article_page_wrapper {
                                     height: 17px;
                                     cursor: pointer;
 
-                                    &.disabled{
+                                    &.disabled {
                                         opacity: 0.5;
                                         cursor: auto;
                                     }
@@ -5880,8 +5888,8 @@ section.article_page_wrapper {
                         }
 
                         .comment_content_wrapper {
-                            .comment_img_wrapper{
-                                img{
+                            .comment_img_wrapper {
+                                img {
                                     display: block;
                                     width: 150px;
                                     height: 100px;
@@ -5917,7 +5925,7 @@ section.article_page_wrapper {
                             }
                         }
 
-                        &.vote-plus{
+                        &.vote-plus {
                             .top_wrapper {
                                 .comment_rating {
                                     button {
@@ -5930,7 +5938,7 @@ section.article_page_wrapper {
                             }
                         }
 
-                        &.vote-minus{
+                        &.vote-minus {
                             .top_wrapper {
                                 .comment_rating {
                                     button {
@@ -6217,6 +6225,7 @@ section.article_page_wrapper {
         }
     }
 }
+
 /*! SECTION ARTICLE PAGE END */
 
 /*! SECTION PRIVACY POLICY PAGE CONTENT START */
@@ -6293,6 +6302,7 @@ section.privacy_policy_content_wrapper {
         }
     }
 }
+
 /*! SECTION PRIVACY POLICY PAGE CONTENT END */
 
 /*! SECTION TERMS OF USE PAGE CONTENT START */
@@ -6355,6 +6365,7 @@ section.terms_of_use_content_wrapper {
         }
     }
 }
+
 /*! SECTION TERMS OF USE PAGE CONTENT END */
 
 /*! SECTION PERSONAL PAGE START */
@@ -7907,6 +7918,7 @@ section.clubs_offers_wrapper {
         }
     }
 }
+
 /*! SECTION CLUBS OFFERS PAGE END */
 
 /*! SECTION CLUB PAGE START */
@@ -7937,9 +7949,9 @@ section.club_page_main_info_wrapper {
             color: #000000;
             margin: 0;
 
-            .report {
-                position: relative;
+            .club_booking {
                 display: block;
+                padding: 14px 24px;
                 border: none;
                 outline: none;
                 font-style: normal;
@@ -7950,30 +7962,12 @@ section.club_page_main_info_wrapper {
                 color: #ffffff;
                 border-radius: 14px;
                 cursor: pointer;
+                margin: 0 12px;
+                background: #dc0000;
                 transition: box-shadow 0.2s;
-                padding: 5px;
-                background-color: transparent;
-                margin-left: 10px;
-
-                &:before {
-                    content: 'Отправить комментарий к клубу';
-                    display: none;
-                    position: absolute;
-                    top: 50%;
-                    left: 110%;
-                    width: 185px;
-                    background-color: #ffffff;
-                    border-radius: 12px;
-                    padding: 10px;
-                    color: #000000;
-                    font-size: 11px;
-                    transform: translateY(-50%);
-                }
 
                 &:hover {
-                    &:before {
-                        display: block;
-                    }
+                    box-shadow: 0 0 8px #dc0000;
                 }
             }
         }
@@ -8193,12 +8187,10 @@ section.club_page_main_info_wrapper {
             .main_info_title {
                 font-size: 26px;
 
-                .report {
-                    &:hover {
-                        &:before {
-                            display: none;
-                        }
-                    }
+                .club_booking {
+                    padding: 10px 12px;
+                    font-size: 14px;
+                    margin: 0 12px;
                 }
             }
 
@@ -9543,6 +9535,7 @@ section.bottom_nav_mobile {
         display: block;
     }
 }
+
 /*! SECTION CLUB PAGE END */
 
 /*! SECTION CONTACTS PAGE START */
@@ -9840,6 +9833,7 @@ section.contacts_page_content_wrapper {
         }
     }
 }
+
 /*! SECTION CONTACTS PAGE END */
 
 /*! SECTION LOG IN PAGE START */
@@ -10087,6 +10081,7 @@ section.log_in_page_wrapper {
         }
     }
 }
+
 /*! SECTION LOG IN PAGE END */
 
 /*! SECTION PASSWORD RECOVERY PAGE START */
@@ -10304,6 +10299,7 @@ section.password_recovery_page_wrapper {
         }
     }
 }
+
 /*! SECTION PASSWORD RECOVERY PAGE END */
 
 /*! SECTION ADD CLUB START PAGE START */
@@ -10827,6 +10823,7 @@ section.add_club_page_start_wrapper {
         }
     }
 }
+
 /*! SECTION ADD CLUB START PAGE END */
 
 /*! SECTION LANGAME SOFTWARE START */
@@ -12626,6 +12623,7 @@ section.langame_software_wrapper {
         }
     }
 }
+
 /*! SECTION LANGAME SOFTWARE END */
 
 /*! SECTION ABOUT SERVICE START */
@@ -13547,6 +13545,7 @@ section.langame_software_wrapper {
         }
     }
 }
+
 /*! SECTION ABOUT SERVICE END */
 
 /*! SECTION CITIES LIST PAGE START */
@@ -13733,6 +13732,7 @@ section.cities_list_wrapper {
         }
     }
 }
+
 /*! SECTION CITIES LIST PAGE END */
 
 /*! MODALS START */
@@ -18669,6 +18669,7 @@ section.cities_list_wrapper {
         }
     }
 }
+
 /*! FOOTER END */
 
 .pointer {
