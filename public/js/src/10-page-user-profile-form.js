@@ -41,7 +41,9 @@ jQuery(function() {
                     }
                 },
                 error: function (xhr, textStatus, errorThrown) {
-                    console.log(xhr.responseText);
+                    console.log(xhr.statusText);
+                    console.log(textStatus);
+                    console.log(error);
                 }
             });
         } else {
