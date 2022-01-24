@@ -55,7 +55,7 @@
                                         <form action="{{url('register/verify_sms')}}" method="post" class="add_class_confirm_code" id="add-club-code-confirm-form">
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             <div class="forma">
-                                                <p>Введите код, отправленный на номер <span class="user_phone"></span></p>
+                                                <p>Введите последние 4 цифры номера, с которого поступил звонок на <span class="user_phone"></span></p>
                                                 <div class="code_wrapper">
                                                     <input type="text" name="code" data-code-input>
                                                     <span class="error"></span>
@@ -136,7 +136,7 @@
                             <form action="{{url('register/verify_sms')}}" method="post" class="add_class_confirm_code" id="add-club-code-confirm-form">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="forma">
-                                    <p>Введите код, отправленный на номер <span class="user_phone"></span></p>
+                                    <p>Введите последние 4 цифры номера, с которого поступил звонок на <span class="user_phone"></span></p>
                                     <div class="code_wrapper">
                                         <input type="text" name="code" data-code-input>
                                         <span class="error"></span>
