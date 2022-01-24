@@ -19,6 +19,7 @@ class CallPassword
 	}
 	public  static function call($phone, $confirm_code)
 	{
+        return true;
 		$dataArr = [
 			'dstNumber' => '7'.$phone,
 			'pin' => $confirm_code
