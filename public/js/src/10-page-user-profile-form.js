@@ -39,12 +39,6 @@ jQuery(function() {
                         clearInterval(codeFormInterval);
                         startCountDown();
                     }
-                },
-                error: function(errors) {
-                    jQuery('.user_profile_submit').removeClass('disabled');
-                    $.each(errors.responseJSON.errors, function(key, item) {
-                        jQuery('#user-profile-form').find('#user-phone-input').closest('.form-group').addClass('error').append('<div class="error">' + item + '</div>');
-                    });
                 }
             });
         } else {
