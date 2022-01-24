@@ -556,9 +556,9 @@ jQuery(function() {
                 $block.find('input:not([type="radio"]):not([type="checkbox"]), select, textarea').each(function() {
                     let $input = jQuery(this);
 
-                    // if (!state) {
-                    //     $input.val('').trigger('change');
-                    // }
+                    if (!state) {
+                        $input.val('').trigger('change');
+                    }
 
                     $input.prop('disabled', $input.is('.block_disabled *'));
                 });
@@ -683,6 +683,8 @@ jQuery(function() {
                 tab = $this.data('remove-tab');
 
             remove_tab(tab);
+
+            recalc_qty_pc();
         });
 
         function add_tab() {
