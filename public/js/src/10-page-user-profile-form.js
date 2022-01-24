@@ -40,8 +40,8 @@ jQuery(function() {
                         startCountDown();
                     }
                 },
-                error: function (data) {
-                    console.log(data);
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log(xhr.responseText);
                 }
             });
         } else {
