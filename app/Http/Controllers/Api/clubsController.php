@@ -7,8 +7,16 @@ use Str;
 use App\club;
 use DateTime;
 use Carbon\Carbon;
+use App\liked_club;
+use Auth;
 class clubsController extends Controller
 {
+    public function __construct()
+    {
+        
+        $this->middleware('auth:api',['only' => ['likeClub','unLikeClub','likedClubs']]);
+        $this->middleware('player',['only' => ['likeClub','unLikeClub','likedClubs']]);
+    }
     public function index($id,Request $request){
         $lon = ($request->input('lon')) ? $request->input('lon') : 0;
         $lat =($request->input('lat')) ? $request->input('lat') : 0 ;
@@ -159,5 +167,79 @@ class clubsController extends Controller
         $club->payment_methods = $payment_list_ar;
         return response()->json(['status'=>true,'club'=>$club], 202);
     }
-     
+    public function likeClub(Request $request){
+        $data = $request->validate([
+            'club_id' => ['required']
+        ]);
+        if(club::where('id',$request->input('club_id'))->count() == 0){
+            return response()->json(['status'=>false], 202);
+        }
+        $liked_club = liked_club::firstOrCreate(['user_id'=>Auth::user()->id,'club_id'=>$request->input('club_id')]);
+        if($liked_club){
+            return response()->json(['status'=>true], 202);
+        }else{
+            return response()->json(['status'=>false], 202);
+        }
+    }
+    public function unLikeClub(Request $request){
+        $data = $request->validate([
+            'club_id' => ['required']
+        ]);
+        $liked_club = liked_club::where('club_id',$request->input('club_id'))->where('user_id',Auth::user()->id)->delete();
+
+        return response()->json(['status'=>true], 202);
+    }
+    
+  public function likedClubs(Request $request){
+    $lon = ($request->input('lon')) ? $request->input('lon') : 0;
+    $lat =($request->input('lat')) ? $request->input('lat') : 0 ;
+
+    $user_id= Auth::user()->id;
+    $clubs = club::SelectCartFeilds4Home($lat, $lon)->whereHas('liked', function ($q) use ($user_id) {
+        $q->where('user_id', $user_id);
+    })->Published()->whereNull('hidden_at')->with(array('metro'=>function($query) {
+        $query->select('id','name','color');
+    },
+    'city' => function($query) {
+        $query->select('id','en_name');
+    }))->get();
+
+    $now = new DateTime();
+     $today = strtolower(date("l"));
+     foreach($clubs as $club){
+      if($club->closed == '1'){
+        $openStatus = 'closedAlways';
+      }else{
+        $openStatus = 'open';
+        if ($club->work_time == '2') {
+          $schedule_item = unserialize($club->work_time_days);
+        }
+        if ($club->work_time == '2' && is_array($schedule_item)) {
+            if (!isset($schedule_item[strtolower($today)])) {
+                $openStatus = 'closed';
+            } else {
+                if (!empty($schedule_item[strtolower($today)]['from']) && !empty($schedule_item[strtolower($today)]['to'])) {
+                    $now = new DateTime();
+                    $begin = new DateTime($schedule_item[strtolower($today)]['from']);
+                    if (explode(":", $schedule_item[strtolower($today)]['to'])[0] < explode(":", $schedule_item[strtolower($today)]['from'])[0]) {
+                        $end = new DateTime($schedule_item[strtolower($today)]['to']);
+                        $end->add(new \DateInterval("P1D"));
+                    } else {
+                        $end = new DateTime($schedule_item[strtolower($today)]['to']);
+                    }
+                    if ($now >= $begin && $now <= $end) {
+                        $openStatus = 'open';
+                    } else {
+                        $openStatus = 'closed';
+                    }
+                }
+            }
+        }
+      }
+      $club->openStatus = $openStatus;
+     }
+     unset($club->work_time_days,$schedule_item);
+
+  return response()->json(['status'=>true,'clubs'=>$clubs ], 202);
+}
 }

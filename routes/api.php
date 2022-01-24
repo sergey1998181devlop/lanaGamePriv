@@ -27,7 +27,7 @@ Route::post('/profile/update', 'Api\personalController@update');
 Route::post('/profile/sendSMS', 'Api\personalController@sendSMS');
 Route::post('/profile/verifySMS', 'Api\personalController@verifySMS');
 Route::post('/auth/resetPasswordViaPhone', 'Api\RegisterController@resetPasswordViaPhone');
-
+Route::get('/profile/get-liked-clubs', 'Api\clubsController@likedClubs');
 
 Route::get('/getHomeData', 'Api\HomeController@index');
 Route::get('/getHomeClubs', 'Api\HomeController@getClubs');
@@ -41,6 +41,8 @@ Route::post('post/comments/add-image','Api\postsController@saveImage' );
 Route::post('post/comments/like', 'Api\postsController@like')->name('like');
 Route::post('post/comments/dislike', 'Api\postsController@unlike')->name('unlike');
 Route::get('/getClub/{id}', 'Api\clubsController@index');
+Route::post('clubs/like-club','Api\clubsController@likeClub');
+Route::post('clubs/unlike-club','Api\clubsController@unLikeClub');
 Route::get('/user_agreement', function(){
     return response()->json([
         'status' => true,
