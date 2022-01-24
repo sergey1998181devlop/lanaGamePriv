@@ -40,10 +40,11 @@ jQuery(function() {
                         startCountDown();
                     }
                 },
-                error: function (xhr, textStatus, errorThrown) {
-                    console.log(xhr.statusText);
-                    console.log(textStatus);
-                    console.log(error);
+                error: function(errors) {
+                    jQuery('#user-profile-form').find('#user-phone-input').closest('.form-group').addClass('error');
+                    $.each(errors.responseJSON.errors, function(key, item) {
+                        jQuery('#user-profile-form').find('#user-phone-input').closest('.form-group').append('<div class="error">' + item + '</div>');
+                    });
                 }
             });
         } else {
