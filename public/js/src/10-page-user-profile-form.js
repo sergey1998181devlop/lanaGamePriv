@@ -39,6 +39,9 @@ jQuery(function() {
                         clearInterval(codeFormInterval);
                         startCountDown();
                     }
+                },
+                error: function (data) {
+                    console.log(data);
                 }
             });
         } else {
