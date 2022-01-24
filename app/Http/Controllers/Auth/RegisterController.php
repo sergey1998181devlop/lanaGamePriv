@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use Carbon;
 use App\sms_code;
 use App\city;
-use App\Jobs\SMSRU;
+use App\Jobs\CallPassword;
 use Auth;
 use App\UserVerify;
 use Mail;
@@ -152,7 +152,7 @@ class RegisterController extends Controller
         if($send ){
             return response()->json(['status'=>'success'], 202);
         }
-        return response()->json(['status'=>'false','msg'=>'Ошибка отправки SMS'], 202);
+        return response()->json(['status'=>'false','msg'=>'Ошибка отправки кода'], 202);
     }
     public function send($request){
         $sms_code=new sms_code();
@@ -161,8 +161,11 @@ class RegisterController extends Controller
         if($sms_code->save()){
             if($this->sendSMSViaService($request->input('phone'),$sms_code->code)){
                 return true;
+            }else{
+                $sms_code->delete();
             }
         }
+
         return false;
     }
 
@@ -188,17 +191,8 @@ class RegisterController extends Controller
 
     public static function sendSMSViaService($phone, $confirm_code)
   {
-    $smsru = new SMSRU(env('SMSRU_API_KEY'));
-    $data = new \stdClass();
-    $data->to = '7' . $phone;
-    $data->text ='Ваш код подтверждения: '. $confirm_code .'. Наберите его в поле ввода.';
-    $data->test = env('SMSRU_TEST',1);
-    $sms = $smsru->send_one($data); // Отправка сообщения и возврат данных в переменную
-    if ($sms->status === 'OK') { // Запрос выполнен успешно
-       return true;
-    } else {
-      return false;
-    }
+    $smsru = new CallPassword();
+    return $smsru->call($phone, $confirm_code); // Отправка сообщения и возврат данных в переменную
   }
   public function verifyEmail($token)
     {
