@@ -13,7 +13,7 @@ class clubsController extends Controller
 {
     public function __construct()
     {
-        
+        auth()->setDefaultDriver('api');
         $this->middleware('auth:api',['only' => ['likeClub','unLikeClub','likedClubs']]);
         $this->middleware('player',['only' => ['likeClub','unLikeClub','likedClubs']]);
     }
@@ -141,7 +141,7 @@ class clubsController extends Controller
         ];
         $club->services = $services;
         unset($club->qty_pc,$club->console,$club->qty_vip_pc,$club->qty_simulator,$club->qty_vr,$club->food_drinks,$club->hookah,$club->alcohol,$club->alcohol,$club->bathroom,$club->checkroom,$club->conditioner,$club->print,$club->streamer,$club->club_account,$club->download_app,$club->smoke,$club->with_own_device,$club->with_own_food,$club->tsena,$club->qty_console,$club->qty_console_1,$club->qty_console_2,$club->qty_console_3,$club->console_type,$club->console_type_1,$club->console_type_2,$club->console_type_3,$club->food_drink_type,$club->closed);
-
+        $club->isLiked =  clubLiked($club->id) ? true : false;
         // configirations
         if(canBeUnserialized($club->configuration)){
             $club_configuration =[];
