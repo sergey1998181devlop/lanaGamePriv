@@ -10,6 +10,8 @@ use App\metro;
 use DateTime;
 use Carbon\Carbon;
 use DB;
+use App\contact;
+use Auth;
 class HomeController extends Controller
 {
     public function index(Request $request)
@@ -183,4 +185,22 @@ class HomeController extends Controller
       $b['status']=true;
         return response()->json($b, 202);
    }
+   public function storeFromContacts(Request $request){
+
+    $data = $request->validate([
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'email', 'max:255'],
+        'message' => ['required'],
+    ]);
+    $contact = new contact();
+    $contact->name = $request->input('name');
+    $contact->email = $request->input('email');
+    $contact->message = $request->input('message');
+    if($request->input('phone') != '')
+    $contact->phone = $request->input('phone');
+    if(!Auth::guard('api')->guest())
+    $contact->user_id =Auth::guard('api')->user()->id;
+    if($contact->save())
+    return response()->json(['status'=>true], 202);
+}
 }

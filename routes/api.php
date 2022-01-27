@@ -55,3 +55,5 @@ Route::get('/policy', function(){
         'data' => view('about.policy_text')->render()
     ]); 
 });
+
+Route::post('messages/send','Api\HomeController@storeFromContacts');
