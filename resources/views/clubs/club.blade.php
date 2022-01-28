@@ -85,6 +85,19 @@
             <div class="club_page_main_info_top">
                 <div class="main_info_title approve">
                     <span><h1 class="main_info_title approve">{{$club->club_name}}</h1></span>
+                    <form action="" method="post" data-like-club-form
+                          class="<?=clubLiked($club->id) ? 'liked' : 'notLiked'?>">
+                        {{ csrf_field() }}
+                        <button type="submit" class="favorite" data-like-club><img
+                                src="{{asset('/img/icons/like-gray.svg')}}" alt="like"></button>
+                    </form>
+                    <form action="" method="post" class="unlike_club" style="display: none"
+                          data-unlike-club-form>
+                        {{ csrf_field() }}
+                        <button type="submit" class="favorite" data-unlike-club><img
+                                src="{{asset('/img/icons/like.svg')}}" alt="like"></button>
+                    </form>
+
                     <button type="button" class="club_booking"
                             data-remodal-target="report_club_modal">
                         Это мой клуб
@@ -125,7 +138,8 @@
                            class="btn">Снять с публикации</a>
                     @endif
                     @if($club->closed == '1')
-                        <button type="button" class="club_calling closed">Закрыто навсегда</button>
+                        <button type="button" class="club_calling closed">Закрыто навсегда
+                        </button>
                     @else
                         <?php
                         $showCallButton = true;
@@ -151,18 +165,12 @@
                             }
                         }
                         ?>
-                        <form action="" method="post" data-like-club-form
-                              class="<?=clubLiked($club->id) ? 'liked' : 'notLiked'?>">
-                            {{ csrf_field() }}
-                            <button type="submit" class="favorite" data-like-club><img
-                                    src="{{asset('/img/icons/like-gray.svg')}}" alt="like"></button>
-                        </form>
-                        <form action="" method="post" class="unlike_club" style="display: none"
-                              data-unlike-club-form>
-                            {{ csrf_field() }}
-                            <button type="submit" class="favorite" data-unlike-club><img
-                                    src="{{asset('/img/icons/like.svg')}}" alt="like"></button>
-                        </form>
+
+                        <button type="button" class="club_booking"
+                                data-remodal-target="report_club_modal">
+                            Это мой клуб
+                        </button>
+
                         @if($showCallButton)
                             <button type="button"
                                     class="club_calling"

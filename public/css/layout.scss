@@ -7950,30 +7950,44 @@ section.club_page_main_info_wrapper {
             color: #000000;
             margin: 0;
 
-            .club_booking {
-                display: block;
-                padding: 14px 24px;
+            .favorite {
+                width: 46px;
+                height: 46px;
+                border: none;
+                outline: none;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                padding: 1px;
+                margin: 0 12px;
+                background: #ffffff;
+                box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+                border-radius: 50%;
+                cursor: pointer;
+            }
+
+            .club_booking{
+                display: none;
+                flex-shrink: 0;
+                background: #dc0000;
                 border: none;
                 outline: none;
                 font-style: normal;
                 font-weight: 500;
-                font-size: 18px;
                 line-height: 1;
                 text-align: center;
                 color: #ffffff;
                 border-radius: 14px;
                 cursor: pointer;
+                padding: 10px 12px;
+                font-size: 14px;
                 margin: 0 12px;
-                background: #dc0000;
-                transition: box-shadow 0.2s;
-
-                &:hover {
-                    box-shadow: 0 0 8px #dc0000;
-                }
             }
         }
 
         .main_info_btn_wrapper {
+            flex-shrink: 0;
             display: flex;
             flex-direction: row;
             align-items: stretch;
@@ -7981,7 +7995,7 @@ section.club_page_main_info_wrapper {
 
             button {
                 display: block;
-                padding: 14px 32px;
+                padding: 14px 28px;
                 border: none;
                 outline: none;
                 font-style: normal;
@@ -8026,18 +8040,7 @@ section.club_page_main_info_wrapper {
                     }
                 }
 
-                &.favorite {
-                    width: 46px;
-                    height: 46px;
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    align-items: center;
-                    padding: 1px;
-                    background: #ffffff;
-                    box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
-                    border-radius: 50%;
-                }
+
             }
         }
     }
@@ -8188,10 +8191,12 @@ section.club_page_main_info_wrapper {
             .main_info_title {
                 font-size: 26px;
 
+                .favorite{
+                    display: none;
+                }
+
                 .club_booking {
-                    padding: 10px 12px;
-                    font-size: 14px;
-                    margin: 0 12px;
+                    display: block;
                 }
             }
 
