@@ -47,8 +47,8 @@ class postsController extends Controller
         $posts=post::select('id','name','about','image','created_at')->orderBy('order_no','desc')->orderBy('created_at','desc')->paginate(9);
         foreach ($posts as $post) {
             $post->image = ($post->image != '') ? url('storage/posts/thumbnail/'.$post->image) : asset('img/default-club-preview-image.svg');
-            $post->about=\Illuminate\Support\Str::limit(strip_tags($post->about),200, '...');
-            
+            $post->about=html_entity_decode(\Illuminate\Support\Str::limit(strip_tags($post->about),200, '...'), ENT_NOQUOTES, 'UTF-8');
+ 
           }
         $data['posts'] =$posts;
         $data['status']=true;
