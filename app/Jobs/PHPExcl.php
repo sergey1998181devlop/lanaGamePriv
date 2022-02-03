@@ -72,6 +72,8 @@ class PHPExcl
     $objPHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(30);
     $objPHPExcel->getActiveSheet()->getColumnDimension('J')->setWidth(30);
     $objPHPExcel->getActiveSheet()->getColumnDimension('K')->setWidth(30);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('L')->setWidth(30);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('M')->setWidth(30);
     
     
     $objPHPExcel->getActiveSheet()->SetCellValue('A'.$rowCount,'№')->setSharedStyle($main, 'A'.$rowCount);
@@ -85,6 +87,8 @@ class PHPExcl
     $objPHPExcel->getActiveSheet()->SetCellValue('I'.$rowCount,'Внешняя ссылка')->setSharedStyle($main, 'I'.$rowCount);
     $objPHPExcel->getActiveSheet()->SetCellValue('J'.$rowCount,'Ссылка на Instagram')->setSharedStyle($main, 'J'.$rowCount);
     $objPHPExcel->getActiveSheet()->SetCellValue('K'.$rowCount,'группа вк')->setSharedStyle($main, 'K'.$rowCount);
+    $objPHPExcel->getActiveSheet()->SetCellValue('L'.$rowCount,'Телефон владельца')->setSharedStyle($main, 'L'.$rowCount);
+    $objPHPExcel->getActiveSheet()->SetCellValue('M'.$rowCount,'Почта владельца')->setSharedStyle($main, 'M'.$rowCount);
     
     
 
@@ -99,6 +103,8 @@ class PHPExcl
     $objPHPExcel->getActiveSheet()->getStyle("I".$rowCount.":I".($rowCount + count($clubs)))->applyFromArray($table);
     $objPHPExcel->getActiveSheet()->getStyle("J".$rowCount.":J".($rowCount + count($clubs)))->applyFromArray($table);
     $objPHPExcel->getActiveSheet()->getStyle("K".$rowCount.":K".($rowCount + count($clubs)))->applyFromArray($table);
+    $objPHPExcel->getActiveSheet()->getStyle("L".$rowCount.":L".($rowCount + count($clubs)))->applyFromArray($table);
+    $objPHPExcel->getActiveSheet()->getStyle("M".$rowCount.":M".($rowCount + count($clubs)))->applyFromArray($table);
     $rowCount = 2;
     foreach($clubs as $club){
     
@@ -113,6 +119,8 @@ class PHPExcl
         $objPHPExcel->getActiveSheet()->SetCellValue('I'.$rowCount,$club->club_link);
         $objPHPExcel->getActiveSheet()->SetCellValue('J'.$rowCount,$club->club_instagram_link);
         $objPHPExcel->getActiveSheet()->SetCellValue('K'.$rowCount,$club->club_vk_link);
+        $objPHPExcel->getActiveSheet()->SetCellValue('L'.$rowCount,$club->user->phone);
+        $objPHPExcel->getActiveSheet()->SetCellValue('M'.$rowCount,$club->user->email);
         $rowCount ++;
     }
     $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);

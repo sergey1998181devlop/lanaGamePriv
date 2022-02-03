@@ -200,7 +200,7 @@ class clubsController extends Controller
     }
     public function exportClubs(){
         $сlubs= club::with(array('user' => function($query) {
-            $query->select('id','name','phone');
+            $query->select('id','name','phone','email');
             },'city' => function($query) {
                 $query->select('id','name','en_name','parentName');
         }))->where('draft','0')->orderBy('updated_at','DESC')->get();
