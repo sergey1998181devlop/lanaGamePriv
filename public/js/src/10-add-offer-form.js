@@ -43,8 +43,4 @@ jQuery(function() {
         $offer_img_wrapper.toggle(!!img_url).find('img').attr('src', img_url);
         $upload_hidden_input.val(img_url);
     }
-
-    jQuery('#show_more_club_offers').on('click', function () {
-        new SimpleBar(jQuery('[data-simplebar]'));
-    });
 });
