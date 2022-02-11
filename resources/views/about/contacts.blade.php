@@ -30,7 +30,7 @@
                         <img src="{{ asset('/img/point-red.svg')}}" alt="location">
                     </div>
                     <div class="club_address">
-                        г. Москва, ул. Большая Семёновская 11, стр. 11
+                        г. Москва, ул. Большая Семёновская, д. 15
                     </div>
                 </div>
             </div>
