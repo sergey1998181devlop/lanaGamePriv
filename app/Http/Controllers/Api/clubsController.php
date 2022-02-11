@@ -146,6 +146,9 @@ class clubsController extends Controller
         if(canBeUnserialized($club->configuration)){
             $club_configuration =[];
             foreach ( unserialize($club->configuration) as $key => $value) {
+                if(isset($value['pc_quantity'])){
+                    $value['pc_quantity'] = (int) $value['pc_quantity'];
+                }
                 $club_configuration[] = $value;
             }
             $club->configuration = $club_configuration;
