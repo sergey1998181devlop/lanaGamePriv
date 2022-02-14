@@ -20,6 +20,6 @@ class report extends Model
             '185.154.15.155',
             '91.122.80.236'
         ];
-        return $query->whereNotIn('REMOTE_ADDR',$blocked_ips)->OrWhereNull('REMOTE_ADDR');
+        return $query->whereNotIn('REMOTE_ADDR',$blocked_ips)->OrWhereNull('REMOTE_ADDR')->where('is_spam',0);
     }
 }

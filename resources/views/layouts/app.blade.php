@@ -415,9 +415,18 @@
         <button data-remodal-action="close" class="remodal-close"></button>
         <div class="remodal-content">
             <div class="title">Экспресс - отчёт об ошибке</div>
-            <form action="{{url('report_error')}}" method="post" id="report-form" data-recaptcha-form>
+            <form action="{{url('report_error/send')}}" method="post" id="report-form" data-recaptcha-form>
                 @csrf
                 <input type="hidden" name="url" value="{{url()->current()}}">
+                <?php
+                    $time = Carbon\Carbon::now(); 
+                ?>
+                <input type="hidden" name="time" value="{{$time->toDateTimeString()}}">
+                <div class="form-group" style="display: none;">
+                    <label for="important">Важно
+                        <input type="checkbox" name="important" id="important" />
+                    </label>
+                </div>
                 <div class="forma">
                     <textarea name="message" id="report-message-input" maxlength="1500" required></textarea>
                 </div>

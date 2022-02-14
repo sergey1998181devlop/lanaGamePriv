@@ -63,7 +63,8 @@ Route::post('unlike-club','clubsController@unLikeClub');
 // обратная связь
 Route::post('messages/send','mailController@storeFromContacts');
 Route::post('langame/request','mailController@langameRequest');
-Route::post('report_error','mailController@reportError');
+Route::post('report_error/send','mailController@reportError');
+Route::post('report_error','mailController@reportErrorSpam');
 Route::post('report_club_error','mailController@reportClubError');
 Route::post('subscribe','mailController@subscribe');
 

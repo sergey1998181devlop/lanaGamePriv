@@ -66,8 +66,44 @@ class mailController extends Controller
         } else {
             $ip = $_SERVER['REMOTE_ADDR'];
         }
+        $comments = '';
         $report->REMOTE_ADDR =$ip;
-        
+        if($request->important){
+            $report->is_spam = 1;
+            $comments = 'important,';
+        }
+        $report->pageOpend_at=$request->input('time');
+        $report->comments=$comments;
+        if(!Auth::guest())
+        $report->user_id =Auth::user()->id;
+        if($report->save())
+        return back()->with(['success'=>'Сообщение успешно отправлено']);
+    }
+    // это для подержки старого адреса - чисто для анализа спама
+    public function reportErrorSpam(Request $request){
+        $data = $request->validate([
+            'message' => ['required'],
+        ]);
+        $this->reCaptcha($request);
+        $report = new report();
+        $report->message = $request->input('message');
+        $report->url =$request->input('url');
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        $report->REMOTE_ADDR =$ip;
+        $comments = '';
+        $report->pageOpend_at=$request->input('time');
+        if($request->important){
+            $comments = 'important,';
+        }
+        $report->is_spam = 1;
+        $comments .= 'reportErrorSpamOldURL';
+        $report->comments=$comments;
         if(!Auth::guest())
         $report->user_id =Auth::user()->id;
         if($report->save())
@@ -109,6 +145,7 @@ class mailController extends Controller
         $responseKeys = json_decode($response,true);
         if(!$responseKeys["success"]){
             throw ValidationException::withMessages(['g-recaptcha-response' => 'Необходимо пройти капчу']);
+            die();
         }
     }
 }
