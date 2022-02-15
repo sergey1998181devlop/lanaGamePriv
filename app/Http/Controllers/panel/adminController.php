@@ -80,9 +80,15 @@ class adminController extends Controller
         return back()->with('success',__('messages.Success'));
     }
     public function errorReports(){
-        $reports = report::whereNull('seen_at')->WithoutSpam()->orderBy('created_at','desc')->get();
-        $reportsR = report::whereNotNull('seen_at')->WithoutSpam()->orderBy('created_at','desc')->get();
-        $newCount = report::whereNull('seen_at')->WithoutSpam()->count();
+        if(isset($_GET['withSpam'])){
+            $reports = report::whereNull('seen_at')->orderBy('created_at','desc')->get();
+            $reportsR = report::whereNotNull('seen_at')->orderBy('created_at','desc')->get();
+            $newCount = report::whereNull('seen_at')->count();
+        }else{
+            $reports = report::whereNull('seen_at')->WithoutSpam()->orderBy('created_at','desc')->get();
+            $reportsR = report::whereNotNull('seen_at')->WithoutSpam()->orderBy('created_at','desc')->get();
+            $newCount = report::whereNull('seen_at')->WithoutSpam()->count();  
+        }
         $new_collection = $reports->merge($reportsR);
         return view('admin.contacts.reports')->with(['reports'=>$new_collection,'newCount'=>$newCount]);
     }

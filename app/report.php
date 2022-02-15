@@ -18,7 +18,8 @@ class report extends Model
             '176.213.153.210',
             '178.69.61.117',
             '185.154.15.155',
-            '91.122.80.236'
+            '91.122.80.236',
+            '46.161.11.178'
         ];
         return $query->where(function($query) use($blocked_ips) {
             $query->whereNotIn('REMOTE_ADDR',$blocked_ips)->OrWhereNull('REMOTE_ADDR');
