@@ -305,7 +305,7 @@
                 </div>
                 <div class="present_item">
                     <p>
-                        Оставьте заявку и получите 6 месяцев тарифа «Профессиональный» в подарок после официального релиза LANGAME Software!
+                        Оставьте заявку и получите 2 месяца тарифа «Профессиональный» в подарок после официального релиза LANGAME Software!
                     </p>
                     <a href="#block-langame_software_request" class="learn_more">Оформить заявку</a>
                 </div>
