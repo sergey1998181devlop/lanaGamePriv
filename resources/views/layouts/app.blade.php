@@ -135,11 +135,11 @@
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window,document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '495768342120859'); 
+            fbq('init', '495768342120859');
             fbq('track', 'PageView');
         </script>
         <noscript>
-            <img height="1" width="1" 
+            <img height="1" width="1"
             src="https://www.facebook.com/tr?id=495768342120859&ev=PageView
             &noscript=1"/>
         </noscript>
@@ -248,6 +248,9 @@
                                     <li>
                                         <a href="{{url('clubs-offers')}}">Биржа предложений</a>
                                     </li>
+                                    <li>
+                                        <a href="{{url('posts')}}">Блог</a>
+                                    </li>
                                 @endif
                                 <li>
                                     <a href="{{ route('logout') }}"
@@ -269,6 +272,9 @@
                             </li>
                             <li>
                                 <a href="{{url('clubs-offers')}}">Биржа предложений</a>
+                            </li>
+                            <li>
+                                <a href="{{url('posts')}}">Блог</a>
                             </li>
                             <li>
                                 <a href="{{url('contacts')}}">Контакты</a>
@@ -439,7 +445,7 @@
                 @csrf
                 <input type="hidden" name="url" value="{{url()->current()}}">
                 <?php
-                    $time = Carbon\Carbon::now(); 
+                    $time = Carbon\Carbon::now();
                 ?>
                 <input type="hidden" name="time" value="{{$time->toDateTimeString()}}">
                 <div class="form-group" style="display: none;">
