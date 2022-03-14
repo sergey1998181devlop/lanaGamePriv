@@ -270,10 +270,7 @@
 
                                     @endforeach
                                 </div>
-                                @if(isset( $offersClub ) && count($offersClub)>6)
-                                    <a id="show_more_club_offers" class="show_more pointer">Показать
-                                        ещё</a>
-                                @endif
+                                
                             @endif
                         </div>
                     </div>
