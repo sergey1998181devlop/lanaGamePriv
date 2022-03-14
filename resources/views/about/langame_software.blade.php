@@ -160,7 +160,7 @@
                     <div class="tariffs_item">
                         <div class="tariffs_title">
                             <p>Профессиональный</p>
-                            <p class="text_decor">6 месяцев - в подарок</p>
+                            <p class="text_decor">2 месяца - в подарок</p>
                         </div>
                         <div class="descr">Решение для бизнеса с серьёзным подходом</div>
                         <ul class="secondary">
@@ -232,7 +232,7 @@
                         <img src="{{ asset('/img/service/rocket.svg')}}" alt="icon">
                     </div>
                     <div class="title">Сравните</div>
-                    <div class="descr">6 месяцев полного функционала - в подарок</div>
+                    <div class="descr">2 месяца полного функционала - в подарок</div>
                 </div>
             </div>
             <a href="#block-langame_software_request" class="learn_more">Попробовать</a>
