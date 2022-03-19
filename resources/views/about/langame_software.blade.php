@@ -141,7 +141,7 @@
                     <div class="tariffs_item">
                         <div class="tariffs_title">
                             <p>Стартовый</p>
-                            <p class="text_decor">Бесплатно. Всегда.</p>
+                            <p class="text_decor">В РАЗРАБОТЕ</p>
                         </div>
                         <div class="descr">Простое решение для небольшого бизнеса</div>
                         <ul>
@@ -160,7 +160,14 @@
                     <div class="tariffs_item">
                         <div class="tariffs_title">
                             <p>Профессиональный</p>
-                            <p class="text_decor">2 месяца - в подарок</p>
+                            <p class="" style="color: #dc0000;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+    text-align: center;
+    margin: 0 0 5px;">Бесплатная помощь в переходе с другого ПО</p>
+                            <p class="text_decor">300 рублей ПК/месяц</p>
                         </div>
                         <div class="descr">Решение для бизнеса с серьёзным подходом</div>
                         <ul class="secondary">
@@ -232,7 +239,7 @@
                         <img src="{{ asset('/img/service/rocket.svg')}}" alt="icon">
                     </div>
                     <div class="title">Сравните</div>
-                    <div class="descr">2 месяца полного функционала - в подарок</div>
+                    <div class="descr">Всего 300 рублей за 1ПК в месяц</div>
                 </div>
             </div>
             <a href="#block-langame_software_request" class="learn_more">Попробовать</a>
@@ -305,7 +312,7 @@
                 </div>
                 <div class="present_item">
                     <p>
-                        Оставьте заявку и получите 2 месяца тарифа «Профессиональный» в подарок после официального релиза LANGAME Software!
+                        Оставьте заявку и получите бесплатную помощь в переходе с другого ПО после официального релиза LANGAME Software!
                     </p>
                     <a href="#block-langame_software_request" class="learn_more">Оформить заявку</a>
                 </div>
@@ -484,13 +491,21 @@ $tariffs = [
                     <th></th>
                     <th>
                         <div class="head_wrapper">
-                            <p class="text_decor">Бесплатно</p>
+                            <p class="text_decor">В РАЗРАБОТЕ</p>
                             <p>Стартовый</p>
                         </div>
                     </th>
                     <th>
                         <div class="head_wrapper">
-                            <p class="text_decor">1% от выручки</p>
+                            <!-- <p class="text_decor">1% от выручки</p> -->
+                            <p class="" style="color: #dc0000;
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 16px;
+                            line-height: 16px;
+                            text-align: center;
+                            margin: 0 0 5px;">Бесплатная помощь в переходе с другого ПО</p>
+                            <p class="text_decor">300 рублей ПК/месяц</p>
                             <p>Профессиональный</p>
                         </div>
                     </th>
