@@ -141,7 +141,7 @@
                     <div class="tariffs_item">
                         <div class="tariffs_title">
                             <p>Стартовый</p>
-                            <p class="text_decor">В РАЗРАБОТЕ</p>
+                            <p class="text_decor">В РАЗРАБОТКЕ</p>
                         </div>
                         <div class="descr">Простое решение для небольшого бизнеса</div>
                         <ul>
@@ -491,7 +491,7 @@ $tariffs = [
                     <th></th>
                     <th>
                         <div class="head_wrapper">
-                            <p class="text_decor">В РАЗРАБОТЕ</p>
+                            <p class="text_decor">В РАЗРАБОТКЕ</p>
                             <p>Стартовый</p>
                         </div>
                     </th>
