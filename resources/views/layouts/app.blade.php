@@ -202,13 +202,13 @@
 </div>
 <?}?>
 <div>
-    <a href="https://forms.yandex.ru/u/623c1ade9390ee24bb684208/" target='blank' style="text-align: center;font-size: 20px;background: #ff0000;padding: 15px;color:white;display:block;">Заявки на ПО принимаются сейчас только по этой анкете</a>
+    <a href="https://forms.yandex.ru/u/623c1ade9390ee24bb684208/" target='blank' style="text-align: center;font-size: 20px;background: #ff0000;padding: 15px;color:white;display:block;word-wrap: break-word;word-break: break-all;">Заявки на ПО принимаются сейчас только по этой анкете https://forms.yandex.ru/u/623c1ade9390ee24bb684208/</a>
 </div>
 <!--HEADER START-->
 <header class="header">
     <div class="container-fluid">
         <div class="header_wrapper">
-            <div class="header_logo_wrapper">
+            <div class="header_logo_wrapper" style="z-index:1">
                 <a href="{{url('/')}}">
                     <img src="{{ asset('/img/logo.svg')}}" alt="logo">
                 </a>
