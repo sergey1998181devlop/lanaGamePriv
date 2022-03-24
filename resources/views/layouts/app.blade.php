@@ -202,7 +202,7 @@
 </div>
 <?}?>
 <div>
-    <a href="https://forms.yandex.ru/u/623c1ade9390ee24bb684208/" target='blank' style="text-align: center;font-size: 20px;background: #ff0000;padding: 15px;color:white;display:block;word-wrap: break-word;word-break: break-all;">Заявки на ПО принимаются сейчас только по этой анкете https://forms.yandex.ru/u/623c1ade9390ee24bb684208/</a>
+    <a href="https://forms.yandex.ru/u/623c1ade9390ee24bb684208/" target='blank' style="text-align: center;font-size: 20px;background: #ff0000;padding: 15px 48px 15px 15px;color:white;display:block;word-wrap: break-word;word-break: break-all;">Заявки на ПО принимаются сейчас только по этой анкете https://forms.yandex.ru/u/623c1ade9390ee24bb684208/</a>
 </div>
 <!--HEADER START-->
 <header class="header">
