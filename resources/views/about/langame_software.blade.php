@@ -322,6 +322,8 @@
     <div class="langame_software_content" id="block-langame_software_request">
             <div class="add_club_request_wrapper">
                 <div class="title">Оформить заявку</div>
+                <script src="https://yastatic.net/s3/frontend/forms/_/embed.js"></script><iframe src="https://forms.yandex.ru/u/623c1ade9390ee24bb684208/?iframe=1" frameborder="0" name="ya-form-623c1ade9390ee24bb684208" width="650"></iframe>
+                <?/*
                 <form action="{{url('langame/request')}}" method="post" id="add-club-request-form" data-recaptcha-form>
                     {{ csrf_field() }}
                     <div class="forma">
@@ -404,6 +406,7 @@
                     </div>
                     <button type="submit" onclick="gtag('event', 'send', { 'event_category': 'add-club-request-form', 'event_action': 'send' });VK.Goal('lead');">Отправить заявку</button>
                 </form>
+                */?>
             </div>
     </div>
 </section>
