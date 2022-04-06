@@ -508,7 +508,7 @@ $tariffs = [
                             line-height: 16px;
                             text-align: center;
                             margin: 0 0 5px;">Бесплатная помощь в переходе с другого ПО</p>
-                            <p class="text_decor">300 рублей ПК/месяц</p>
+                            <p class="text_decor">600 рублей ПК/месяц</p>
                             <p>Профессиональный</p>
                         </div>
                     </th>
