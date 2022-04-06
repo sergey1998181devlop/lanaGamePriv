@@ -167,7 +167,7 @@
     line-height: 16px;
     text-align: center;
     margin: 0 0 5px;">Бесплатная помощь в переходе с другого ПО</p>
-                            <p class="text_decor">300 рублей ПК/месяц</p>
+                            <p class="text_decor">600 рублей ПК/месяц</p>
                         </div>
                         <div class="descr">Решение для бизнеса с серьёзным подходом</div>
                         <ul class="secondary">
@@ -231,7 +231,7 @@
                         <img src="{{ asset('/img/service/check.svg')}}" alt="icon">
                     </div>
                     <div class="title">Установите ПО</div>
-                    <div class="descr">Наш специалист поможет вам online</div>
+                    <div class="descr">С помощью инструкции и техподдержки</div>
                 </div>
                 <div class="offer_item">
                     <div class="number">03</div>
@@ -239,7 +239,7 @@
                         <img src="{{ asset('/img/service/rocket.svg')}}" alt="icon">
                     </div>
                     <div class="title">Сравните</div>
-                    <div class="descr">Всего 300 рублей за 1ПК в месяц</div>
+                    <div class="descr">Всего 600 рублей за 1ПК в месяц</div>
                 </div>
             </div>
             <a href="#block-langame_software_request" class="learn_more">Попробовать</a>
@@ -312,7 +312,7 @@
                 </div>
                 <div class="present_item">
                     <p>
-                        Оставьте заявку и получите бесплатную помощь в переходе с другого ПО после официального релиза LANGAME Software!
+                        Оставьте заявку и получите бесплатную помощь в переходе с другого ПО на LANGAME Software!
                     </p>
                     <a href="#block-langame_software_request" class="learn_more">Оформить заявку</a>
                 </div>
