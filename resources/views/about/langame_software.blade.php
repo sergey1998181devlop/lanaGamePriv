@@ -167,7 +167,7 @@
     line-height: 16px;
     text-align: center;
     margin: 0 0 5px;">Бесплатная помощь в переходе с другого ПО</p>
-                            <p class="text_decor">600 рублей Устройство/месяц</p>
+                            <p class="text_decor">600 рублей <span style='font-size:20px'>Устройство/месяц</span></p>
                         </div>
                         <div class="descr">Решение для бизнеса с серьёзным подходом</div>
                         <ul class="secondary">
@@ -559,19 +559,20 @@ $tariffs = [
 @if(session('success'))
 <script>
     $( document ).ready(function(){
-        VK.Goal('view_content');
         jQuery('[data-remodal-id="success_modal"]').remodal().open();
     });
 </script>
 @endif
 <script>
- $('#club-request-select-сity').select2({
+    $( document ).ready(function(){
+        VK.Goal('view_content');
+    });
+    $('#club-request-select-сity').select2({
         ajax: {
             url: $('meta[name="site"]').attr('content') +'/searchCities',
             dataType: 'json'
         },
         cache: true
     });
-
 </script>
 @endsection
