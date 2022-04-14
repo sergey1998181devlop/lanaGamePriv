@@ -167,7 +167,7 @@
     line-height: 16px;
     text-align: center;
     margin: 0 0 5px;">Бесплатная помощь в переходе с другого ПО</p>
-                            <p class="text_decor">600 рублей ПК/месяц</p>
+                            <p class="text_decor">600 рублей Устройство/месяц</p>
                         </div>
                         <div class="descr">Решение для бизнеса с серьёзным подходом</div>
                         <ul class="secondary">
@@ -239,7 +239,7 @@
                         <img src="{{ asset('/img/service/rocket.svg')}}" alt="icon">
                     </div>
                     <div class="title">Сравните</div>
-                    <div class="descr">Всего 600 рублей за 1ПК в месяц</div>
+                    <div class="descr">Всего 600 рублей за 1 устройство в месяц</div>
                 </div>
             </div>
             <a href="#block-langame_software_request" class="learn_more">Попробовать</a>
@@ -508,7 +508,7 @@ $tariffs = [
                             line-height: 16px;
                             text-align: center;
                             margin: 0 0 5px;">Бесплатная помощь в переходе с другого ПО</p>
-                            <p class="text_decor">600 рублей ПК/месяц</p>
+                            <p class="text_decor">600 рублей Устройство/месяц</p>
                             <p>Профессиональный</p>
                         </div>
                     </th>
@@ -559,6 +559,7 @@ $tariffs = [
 @if(session('success'))
 <script>
     $( document ).ready(function(){
+        VK.Goal('view_content');
         jQuery('[data-remodal-id="success_modal"]').remodal().open();
     });
 </script>
