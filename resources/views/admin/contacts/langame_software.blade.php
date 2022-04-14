@@ -29,6 +29,9 @@
             <th>{{__('messages.Email')}}</th>
             <th>{{__('messages.phone')}}</th>
             <th>Название клуба</th>
+            <th>Количество клубов</th>
+            <th>Общее количество ПК и консолей</th>
+            <th>Роль в клубе</th>
             <th>Город</th>
             <th>Отпралено</th>        
             <th>Действие</th>
@@ -41,6 +44,9 @@
             <th>{{__('messages.Email')}}</th>
             <th>{{__('messages.phone')}}</th>
             <th>Название клуба</th>
+            <th>Количество клубов</th>
+            <th>Общее количество ПК и консолей</th>
+            <th>Роль в клубе</th>
             <th>Город</th>
             <th>Отпралено</th>
             <th>Действие</th>
@@ -54,7 +60,10 @@
             <td name="email">{{$request->email}}</td>
             <td name="phone">{{$request->phone}}</td>
             <td name="club_name">{{$request->club_name}}</td>
-            <td name="city">{{$request->city_name->name}}</td>
+            <td name="club_name">{{$request->club_count}}</td>
+            <td name="club_name">{{$request->club_pk_count}}</td>
+            <td name="club_name">{{$request->boss}}</td>
+            <td name="city">@if (!empty($request->city_name)) {{$request->city_name->name}} @endif</td>
             <td>{{$request->created_at}}</td>
             <td>
             @if($request->seen_at==null)

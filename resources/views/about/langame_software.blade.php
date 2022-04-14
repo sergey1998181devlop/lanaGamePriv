@@ -322,11 +322,37 @@
     <div class="langame_software_content" id="block-langame_software_request">
             <div class="add_club_request_wrapper">
                 <div class="title">Оформить заявку</div>
-                <script src="https://yastatic.net/s3/frontend/forms/_/embed.js"></script><iframe src="https://forms.yandex.ru/u/623c1ade9390ee24bb684208/?iframe=1" frameborder="0" name="ya-form-623c1ade9390ee24bb684208" width="650"></iframe>
-                <?/*
+                
                 <form action="{{url('langame/request')}}" method="post" id="add-club-request-form" data-recaptcha-form>
                     {{ csrf_field() }}
                     <div class="forma">
+                        <div class="form-group required @error('club_name') error @enderror">
+                            <label for="club-request-name-input">Название вашего клуба / сети клубов</label>
+                            <input id="club-request-name-input" name="club_name" value="{{old('club_name')}}" type="text" placeholder="Введите название клуба" required>
+                            @error('club_name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group required @error('club_count')error @enderror">
+                            <label for="club-request-user-name-input">Количество клубов</label>
+                            <input id="club-request-user-name-input" name="club_count" value="{{old('club_count')}}" type="text" placeholder="" required>
+                            @error('club_count')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group required @error('club_pk_count')error @enderror">
+                            <label for="club-request-user-name-input">Общее количество ПК и консолей</label>
+                            <input id="club-request-user-name-input" name="club_pk_count" value="{{old('club_pk_count')}}" type="text" placeholder="" required>
+                            @error('club_pk_count')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                         <div class="form-group required @error('name')error @enderror">
                             <label for="club-request-user-name-input">Ваше имя</label>
                             <input id="club-request-user-name-input" name="name" value="{{old('name')}}" type="text" placeholder="" required>
@@ -336,15 +362,15 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="form-group required @error('club_name') error @enderror">
-                            <label for="club-request-name-input">Название клуба</label>
-                            <input id="club-request-name-input" name="club_name" value="{{old('club_name')}}" type="text" placeholder="Введите название клуба" required>
-                            @error('club_name')
+                        <div class="form-group required @error('boss')error @enderror">
+                            <label for="club-request-user-name-input">Роль в клубе</label>
+                            <input id="club-request-user-name-input" name="boss" value="{{old('boss')}}" type="text" placeholder="" required>
+                            @error('boss')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div>
+                        </div><?/*
                         <div class="form-group required @error('city') error @enderror">
                             <label for="club-request-select-сity">Город</label>
                             <div class="input_wrapper">
@@ -367,19 +393,19 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div>
-                        <div class="form-group @error('phone') error @enderror">
-                            <label for="club-request-phone-input">Контактный телефон</label>
-                            <input id="club-request-phone-input" name="phone" value="{{old('phone')}}" type="tel" placeholder="+7 (___) ___-__-__">
+                        </div>*/?>
+                        <div class="form-group required @error('phone') error @enderror" required>
+                            <label for="club-request-phone-input">Телефон для связи</label>
+                            <input id="club-request-phone-input" name="phone" value="{{old('phone')}}" type="tel" placeholder="+7 (___) ___-__-__" required>
                             @error('phone')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
-                        <div class="form-group required @error('email') error @enderror">
+                        <div class="form-group @error('email') error @enderror">
                             <label for="club-request-email-input">Email</label>
-                            <input id="club-request-email-input" name="email" value="{{old('email')}}" type="email" placeholder="" required>
+                            <input id="club-request-email-input" name="email" value="{{old('email')}}" type="email" placeholder="">
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -406,7 +432,6 @@
                     </div>
                     <button type="submit" onclick="gtag('event', 'send', { 'event_category': 'add-club-request-form', 'event_action': 'send' });VK.Goal('lead');">Отправить заявку</button>
                 </form>
-                */?>
             </div>
     </div>
 </section>

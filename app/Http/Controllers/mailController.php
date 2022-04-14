@@ -34,8 +34,7 @@ class mailController extends Controller
     public function langameRequest(Request $request){
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'city' => ['required'],
+            'phone' => ['required'],
             'club_name' => ['required']
         ]);
         $this->reCaptcha($request);
@@ -44,6 +43,9 @@ class mailController extends Controller
         $langame_request->email = $request->input('email');
         $langame_request->city = $request->input('city');
         $langame_request->club_name = $request->input('club_name');
+        $langame_request->club_count = $request->input('club_count');
+        $langame_request->club_pk_count = $request->input('club_pk_count');
+        $langame_request->boss = $request->input('boss');
         if($request->input('phone') != '')
         $langame_request->phone = $request->input('phone');
         if(!Auth::guest())
