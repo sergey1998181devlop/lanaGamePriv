@@ -43,6 +43,11 @@
             <td name="views_click">{{$offer->views_click}}</td>
             <td><button type="button" class="btn-sm btn btn-primary reOrderOfferButton"  data-toggle="modal" data-target="#reOrderOffer" contactId="{{$offer->id}}">{{$offer->order_no}}</button></td>
             <td>
+                <?if($offer->published_at == null){?>
+                    <a href="{{url('offer/active')}}/{{$offer->id}}" class="club_active btn btn-sm btn-success">Опубликовать</a>
+                  <?}else{?>
+                    <a href="{{url('offer/deactive')}}/{{$offer->id}}" class="club_active btn btn-sm btn-success">Снять с публикации</a>
+                <?}?>
                 <a class="btn-sm btn btn-info" href="{{url('offer/edit/')}}/{{$offer->id}}">Отредактировать</a>
                 <button type="button" class="btn-sm btn btn-danger deleteOfferButton"  data-toggle="modal" data-target="#deleteOffer" contactId="{{$offer->id}}" contactName="{{$offer->name}}">{{__('messages.Delete')}}</button>
             </td>

@@ -28,7 +28,7 @@ class HomeController extends Controller
       if(owner()){
         $offersMyClub=offer::where('offers.user_id', Auth::user()->id)->get();
       }
-      $offersBrand=offer::where('type', 'newBrand')->orderBy('order_no','desc')->orderBy('created_at','desc')->paginate($paginate);
+      $offersBrand=offer::where('type', 'newBrand')->where('published_at','!=', null)->orderBy('order_no','desc')->orderBy('created_at','desc')->paginate($paginate);
       $offersClub=offer::where('type', 'newClub')->where('published_at','!=', null)->with('user','linkedClub','firstClub')
       ->orderBy('order_no','desc')->orderBy('created_at','desc')->get();
       if(\Request::ajax())

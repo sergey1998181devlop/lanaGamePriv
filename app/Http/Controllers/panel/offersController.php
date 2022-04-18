@@ -25,7 +25,7 @@ class offersController extends Controller
     $this->middleware('rule:1');  
 }
 public function index(){
-    $offers= offer::select('id','url','name','views','views_click','order_no','created_at')->where('type','=','newBrand')->get();
+    $offers= offer::select('*')->where('type','=','newBrand')->get();
     return view('admin.offers.offers')->with(['offers'=>$offers]);
 }
 public function indexClub(){
@@ -41,7 +41,11 @@ public function active($id){
     $offer->unpublished_by =null;
     $offer->last_admin_edit =Auth::user()->id;
     $offer->save();
-    return redirect(url("panel/offers/allClub"));
+    if ($offer->type=="newClub"){
+        return redirect(url("panel/offers/allClub"));
+    }else{
+        return redirect(url("panel/offers/all"));
+    }
 }
 
 public function deactive($id){
@@ -52,7 +56,11 @@ public function deactive($id){
     $offer->unpublished_by =null;
     $offer->last_admin_edit =Auth::user()->id;
     $offer->save();
-    return redirect(url("panel/offers/allClub"));
+    if ($offer->type=="newClub"){
+        return redirect(url("panel/offers/allClub"));
+    }else{
+        return redirect(url("panel/offers/all"));
+    }
 }
 public function store(Request $request){
     $validatedData =  $this->validate($request ,[
