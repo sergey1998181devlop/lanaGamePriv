@@ -41,7 +41,7 @@
                 {
                     publicId: 'pk_c2c48acc650701a210909a8175196',
                     description: 'Оплата в langame.ru',
-                    amount: 1,
+                    amount: 3000,
                     currency: 'RUB',
                     accountId: '{{$emails[0]->user_email}}',
                     email: '{{$emails[0]->user_email}}',
