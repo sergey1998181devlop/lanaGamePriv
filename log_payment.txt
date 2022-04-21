@@ -1,0 +1,119 @@
+Array
+(
+)
+Array
+(
+    [fds] => 3243
+    [fdsfs] => 323
+)
+Array
+(
+    [TransactionId] => 1101644753
+    [Amount] => 1.00
+    [Currency] => RUB
+    [PaymentAmount] => 1.00
+    [PaymentCurrency] => RUB
+    [OperationType] => Payment
+    [InvoiceId] => 
+    [AccountId] => 2@lebedenko.ru
+    [SubscriptionId] => 
+    [Name] => 
+    [Email] => 2@lebedenko.ru
+    [DateTime] => 2022-04-20 20:49:12
+    [IpAddress] => 93.157.23.56
+    [IpCountry] => RU
+    [IpCity] => Волгодонск
+    [IpRegion] => Ростовская область
+    [IpDistrict] => Южный федеральный округ
+    [IpLatitude] => 47.519039
+    [IpLongitude] => 42.141178
+    [CardFirstSix] => 220220
+    [CardLastFour] => 3330
+    [CardType] => MIR
+    [CardExpDate] => 03/27
+    [Issuer] => Sberbank
+    [IssuerBankCountry] => RU
+    [Description] => Оплата в langame.ru
+    [AuthCode] => 783519
+    [Token] => tk_393676f5f3b63362e83d3bb974b4b
+    [TestMode] => 0
+    [Status] => Authorized
+    [GatewayName] => Tinkoff
+    [TotalFee] => 3.90
+    [CardProduct] => PRD
+    [PaymentMethod] => 
+)
+Array
+(
+    [TransactionId] => 1101644753
+    [Amount] => 1.00
+    [Currency] => RUB
+    [PaymentAmount] => 1.00
+    [PaymentCurrency] => RUB
+    [OperationType] => Payment
+    [InvoiceId] => 
+    [AccountId] => 2@lebedenko.ru
+    [SubscriptionId] => 
+    [Name] => 
+    [Email] => 2@lebedenko.ru
+    [DateTime] => 2022-04-20 20:49:12
+    [IpAddress] => 93.157.23.56
+    [IpCountry] => RU
+    [IpCity] => Волгодонск
+    [IpRegion] => Ростовская область
+    [IpDistrict] => Южный федеральный округ
+    [IpLatitude] => 47.519039
+    [IpLongitude] => 42.141178
+    [CardFirstSix] => 220220
+    [CardLastFour] => 3330
+    [CardType] => MIR
+    [CardExpDate] => 03/27
+    [Issuer] => Sberbank
+    [IssuerBankCountry] => RU
+    [Description] => Оплата в langame.ru
+    [AuthCode] => 783519
+    [Token] => tk_393676f5f3b63362e83d3bb974b4b
+    [TestMode] => 0
+    [Status] => Authorized
+    [GatewayName] => Tinkoff
+    [TotalFee] => 3.90
+    [CardProduct] => PRD
+    [PaymentMethod] => 
+)
+Array
+(
+    [TransactionId] => 1101644753
+    [Amount] => 1.00
+    [Currency] => RUB
+    [PaymentAmount] => 1.00
+    [PaymentCurrency] => RUB
+    [OperationType] => Payment
+    [InvoiceId] => 
+    [AccountId] => 2@lebedenko.ru
+    [SubscriptionId] => 
+    [Name] => 
+    [Email] => 2@lebedenko.ru
+    [DateTime] => 2022-04-20 20:49:12
+    [IpAddress] => 93.157.23.56
+    [IpCountry] => RU
+    [IpCity] => Волгодонск
+    [IpRegion] => Ростовская область
+    [IpDistrict] => Южный федеральный округ
+    [IpLatitude] => 47.519039
+    [IpLongitude] => 42.141178
+    [CardFirstSix] => 220220
+    [CardLastFour] => 3330
+    [CardType] => MIR
+    [CardExpDate] => 03/27
+    [Issuer] => Sberbank
+    [IssuerBankCountry] => RU
+    [Description] => Оплата в langame.ru
+    [AuthCode] => 783519
+    [Token] => tk_393676f5f3b63362e83d3bb974b4b
+    [TestMode] => 0
+    [Status] => Authorized
+    [GatewayName] => Tinkoff
+    [TotalFee] => 3.90
+    [CardProduct] => PRD
+    [PaymentMethod] => 
+)

@@ -134,6 +134,18 @@
               </div>
           </div>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/panel/emails/all">
+              <i class="far fa-newspaper"></i>
+              <span>Список Email</span>
+          </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/payments" target="blank">
+              <i class="far fa-newspaper"></i>
+              <span>Оплата</span>
+          </a>
+      </li>
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>

@@ -80,6 +80,10 @@ Route::post('subscribe','mailController@subscribe');
  Route::get('/registration','Auth\RegisterController@registration');
 
 
+//база email оплаты
+Route::get('/payments', 'paymentsController@front');
+// проверка оплаты
+Route::get('/payments-check', 'paymentsController@check');
 
 
 Auth::routes();
@@ -136,6 +140,15 @@ Route::get('panel/offers/allclub','panel\offersController@indexClub');
 Route::get('panel/offers/order_no','panel\offersController@reOrderOffer');
 Route::post('clubs-offers/add', 'offersController@addFromUser');
 
+//база email оплаты
+Route::get('panel/emails/all', 'panel\emailController@index');
+Route::get('panel/emails/add', 'panel\emailController@add');
+Route::post('panel/emails/create','panel\emailController@store' );
+Route::post('panel/emails/update','panel\emailController@store' );
+Route::get('panel/emails/edit/{id}', 'panel\emailController@edit');
+Route::get('panel/emails/active/{id}', 'panel\emailController@active');
+Route::get('panel/emails/deactive/{id}', 'panel\emailController@deactive');
+Route::post('panel/emails/update/{id}','panel\emailController@update');
 
 // клубы
 Route::get('panel/export_clubs', 'panel\clubsController@exportClubs');
