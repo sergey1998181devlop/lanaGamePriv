@@ -1,4 +1,6 @@
 <?php
+
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -154,7 +156,19 @@ Route::post('panel/emails/update/{id}','panel\emailController@update');
 Route::get('panel/export_clubs', 'panel\clubsController@exportClubs');
 Route::get('panel/clubs/new-clubs','panel\clubsController@new_clubs');
 Route::get('panel/clubs/hidded-clubs','panel\clubsController@hidded_clubs');
-Route::get('panel/clubs/drafts','panel\clubsController@drafts');
+
+Route::group(['prefix' => 'panel/clubs/' , 'namespace' => '\App\Http\Controllers\panel\Admin\Drafts'] , function (){
+    Route::resource('drafts' , 'DraftsController')
+        ->names('admin.clubs');
+});
+Route::get('/clear', function() {
+    Artisan::call('cache:clear');
+    Artisan::call('config:cache');
+    Artisan::call('view:clear');
+    Artisan::call('route:clear');
+    Artisan::call('backup:clean');
+    return "Кэш очищен.";
+});
 Route::get('panel/clubs/deleted-clubs','panel\clubsController@deleted_clubs');
 Route::get('panel/clubs/clubs','panel\clubsController@clubs');
 Route::get('{id}_computerniy_club_{url}_{city}/active','panel\clubsController@active');

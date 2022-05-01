@@ -16,6 +16,8 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
+
+
   </div>
   <div class="card-body">
     <div class="table-responsive">
@@ -32,7 +34,7 @@
         </thead>
         <tbody>
             <? $i = 1;?>
-           @foreach($clubs as $club) 
+           @foreach($clubs as $club)
           <tr>
             <td name="id" val="{{$club->id}}">{{$i++}}</td>
             <td>{{$club->club_name}}</td>
@@ -44,6 +46,22 @@
             <td>
                 {{$club->updated_at }}
             </td>
+              <td>
+{{--                  если текущий пользователь админ или это создатель--}}
+                  @if(admin(2) || $club->user->id == $currentUserId)
+                      <a href="{{ route('admin.clubs.edit' , $club->id) }}"
+                         class="btn-sm btn btn-info editUserButton">{{__('messages.edit')}}</a>
+                  @endif
+                  @if(admin(2) || $club->user->id == $currentUserId)
+                      <form method="POST" action="{{ route('admin.clubs.destroy' , $club->id) }}">
+                          @method('DELETE')
+                          @csrf
+                          <button type="submit" class="btn-sm btn btn-danger deleteUserButton" data-toggle="modal"
+                                  data-target="#deleteUser"
+                          >{{__('messages.Delete')}}</button>
+                      </form>
+                  @endif
+              </td>
           </tr>
           @endforeach
         </tbody>

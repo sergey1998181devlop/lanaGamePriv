@@ -1,7 +1,11 @@
+
 @extends('layouts.app')
 @section('page')
     <title>Список клубов - LanGame</title>
     <style>
+        header , footer{
+            display: none;
+        }
         .ck.ck-content.ck-editor__editable {
             height: 250px;
         }
@@ -19,16 +23,10 @@
 @endsection
 @section('content')
     @include('personal/club_card')
-    <?php
+    <?
     include_once(resource_path('views/personal/tabs/conf.blade.php'));
     ?>
     <?php
-    $mess = explode('/',$_SERVER['HTTP_REFERER']);
-    $url = ((!empty($_SERVER['HTTPS'])) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] ;
-    if(array_search('drafts' , $mess) && array_search('edit' , $mess)){
-        header("Location: ".$url."/panel/clubs/drafts");
-        die();
-    }
     global $edit;
     global $clubAr;
     global $schedule_item;
@@ -147,7 +145,7 @@
     }
     ?>
     <!--SECTION PERSONAL PAGE START-->
-    <section class="personal_page_wrapper">
+    <section class="personal_page_wrapper" style="display:none;" >
         <div class="container-fluid">
             <div class="personal_page">
                 <div class="personal_menu_wrapper">
@@ -280,7 +278,7 @@
         </div>
     </section>
     <!--SECTION PERSONAL PAGE END-->
-    @include("personal.modals")
+    @include("admin.clubs.include.modals")
 
 @endsection
 
@@ -300,16 +298,7 @@
             window.history.replaceState({}, document.title, $('meta[name="site"]').attr('content') + '/' + 'personal/clubs/');
         </script>
     @endif
-
     @if(isset($_GET['status']) && $_GET['status'] == 'success')
-        <script>
-            $(document).ready(function() {
-                jQuery('[data-remodal-id="success_modal"]').remodal().open();
-            });
-            window.history.replaceState({}, document.title, $('meta[name="site"]').attr('content') + '/' + 'personal/clubs/');
-        </script>
-    @endif
-    @if(isset($_GET['status']) && $_GET['status'] == 'successDrafts')
         <script>
             $(document).ready(function() {
                 jQuery('[data-remodal-id="success_modal"]').remodal().open();
@@ -317,10 +306,19 @@
             window.history.replaceState({}, document.title, $('meta[name="site"]').attr('content') + '/' + 'panel/clubs/drafts?status=success');
         </script>
     @endif
-
     <script src="{{ asset('/js/jquery.autocomplete.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
     <script src="{{url('ck5/ckeditor.js')}}"></script>
     <script>
+        // $(function (){
+        //     function removeEvents() {
+        //         // save_for_admin
+        //         $( ".save_for_admin" ).off();
+        //     alert();
+        //
+        //     }
+        //
+        //     setTimeout(removeEvents, 2000);
+        // });
         ClassicEditor
             .create(document.querySelector('#club-descr-input'), {
                 toolbar: {
@@ -349,3 +347,115 @@
             });
     </script>
 @endsection
+
+
+
+
+
+
+
+{{--@extends('admin.layouts.app')--}}
+{{--@section('page')--}}
+{{--    <?php $page='drafts';$title="Черновики";?>--}}
+{{--@endsection--}}
+{{--@section('content')--}}
+{{--    <div class="container">--}}
+{{--        <form method="POST" action="{{ route('admin.clubs.update' , $draftClub->id) }}">--}}
+{{--            @method('PATCH')--}}
+{{--            <div class="form_tab_title">--}}
+{{--                1. Общая информация о клубе--}}
+{{--            </div>--}}
+{{--            <div class="form-group required">--}}
+{{--                <label for="club-name-input">Название клуба</label>--}}
+{{--                <div class="input_wrapper">--}}
+{{--                    <input id="club-name-input" value="{{ old('draftClubName' , $draftClub->name) }}" name="club_name" type="text" placeholder="" required>--}}
+{{--                    <div class="error"></div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="form-group required">--}}
+{{--                <label for="select-сity">Город</label>--}}
+{{--                <div class="input_wrapper">--}}
+{{--                    <div class="select2_wrapper">--}}
+{{--                        <select id="select-сity" name="club_city" data-select2-skip-auto-init required data-placeholder="Выберите город">--}}
+{{--                            <option value=""></option>--}}
+{{--                            --}}{{--                    @if(!$edit)--}}
+{{--                            --}}{{--                        @if(city(true)['id'] != 1)--}}
+{{--                            --}}{{--                            <option value="{{city(true)['id']}}" selected >{{city(true)['name']}}</option>--}}
+{{--                            --}}{{--                        @endif--}}
+{{--                            --}}{{--                    @else--}}
+{{--                            --}}{{--                        @if($clubAr->club_city != '')--}}
+{{--                            --}}{{--                            @if($curCity = App\city::select('id','name','metroMap')->find($clubAr->club_city))--}}
+{{--                            --}}{{--                                <option value="{{$curCity->id}}"  selected >{{$curCity->name}}</option>--}}
+{{--                            --}}{{--                            @endif--}}
+{{--                            --}}{{--                        @endif--}}
+{{--                            --}}{{--                    @endif--}}
+{{--                        </select>--}}
+{{--                        <div class="error"></div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="form-group required">--}}
+{{--                <label for="club-phone-input">Телефон клуба</label>--}}
+{{--                <div class="input_wrapper">--}}
+{{--                    <input id="club-phone-input" name="phone" value="{{ old('draftClubPhone' , $draftClub->phone) }}" type="tel" placeholder="+7 (___) ___-__-__" required>--}}
+{{--                    <div class="error"></div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="form-group required">--}}
+{{--                <label for="club-address-input">Адрес</label>--}}
+{{--                <div class="input_wrapper">--}}
+{{--                    <input id="club-address-input" name="club_address" value="{{ old('draftClubAddress' , $draftClub->club_address) }}" type="text" placeholder="" autocomplete="off" required>--}}
+{{--                    <div class="error address_error"></div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="form-group">--}}
+{{--                <label for="select-subway">Метро</label>--}}
+{{--                <div class="input_wrapper">--}}
+{{--                    <div class="select2_wrapper">--}}
+{{--                        <!--                --><?//--}}
+{{--                        //                $metro_disabled = true;--}}
+{{--                        //                if(!$edit){--}}
+{{--                        //                    if(city(true)['metroMap'] == '1') $metro_disabled = false;--}}
+{{--                        //                }else{--}}
+{{--                        //                    if($clubAr->club_city != '' && $curCity){--}}
+{{--                        //                        if($curCity->metroMap == '1'){$metro_disabled = false;}--}}
+{{--                        //                    }--}}
+{{--                        //                }--}}
+{{--                        //                ?>--}}
+{{--                        --}}{{--                <select id="select-subway" name="club_metro" data-placeholder="Выберите метро" data-select2-skip-auto-init @if($metro_disabled) disabled @endif>--}}
+{{--                        <select id="select-subway" name="club_metro" data-placeholder="Выберите метро" data-select2-skip-auto-init >--}}
+{{--                            <option value=""></option>--}}
+{{--                            --}}{{--                    @if(!$metro_disabled && clubValue('club_metro'))--}}
+{{--                            --}}{{--                        @if($curMetro = App\metro::select('id','name','color')->find(clubValue('club_metro')))--}}
+{{--                            --}}{{--                            <option value="{{$curMetro->id}}"  selected data-line-color="#{{$curMetro->color}}">{{$curMetro->name}}</option>--}}
+{{--                            --}}{{--                        @endif--}}
+{{--                            --}}{{--                    @endif--}}
+{{--                        </select>--}}
+{{--                        <div class="error"></div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="form-group">--}}
+{{--                <label for="club-area-input">Общая площадь клуба</label>--}}
+{{--                <div class="input_wrapper">--}}
+{{--                    <input id="club-area-input" name="club_area" value="{{ old('draftClubArea' , $draftClub->club_area) }}"  type="number" min="1" step="1" placeholder="м2">--}}
+{{--                    <div class="error"></div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            @if(admin())--}}
+{{--                <div class="form-group">--}}
+{{--                    <label for="rating-input">Рейтинг клуба</label>--}}
+{{--                    <div class="input_wrapper">--}}
+{{--                        <input id="rating-input" type="number" step="0.1" max="5" min="1" name="rating" value="{{ old('draftClubRating' , $draftClub->rating) }}">--}}
+{{--                        <div class="error"></div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            @endif--}}
+{{--            <input type="hidden" name="lat" id="lat" value="{{ old('draftClubLat' , $draftClub->lat) }}">--}}
+{{--            <input type="hidden" name="lon" id="lon" value="{{ old('draftClubLon' , $draftClub->lon) }}">--}}
+{{--            <input type="hidden" name="club_address" id="club_address" value="{{ old('draftClubAddress' , $draftClub->club_address) }}">--}}
+{{--            <input type="hidden" name="club_full_address" id="club_full_address" value="{{ old('draftClubFullAddress' , $draftClub->club_full_address) }}">--}}
+{{--        </form>--}}
+{{--    </div>--}}
+
+{{--@endsection--}}
