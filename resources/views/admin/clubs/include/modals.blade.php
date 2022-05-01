@@ -2,28 +2,20 @@
 <div class="person_add_club_modal_wrapper"></div>
 <div class="person_add_club_modal" data-remodal-id="add_club_modal">
     @if($edit)
-        <a href="{{url('personal/clubs')}}" class="remodal-close">Закрыть</a>
+        <a href="{{url('/panel/clubs/drafts')}}" class="remodal-close">Назад</a>
     @else
-        <button data-remodal-action="close" class="remodal-close">Закрыть</button>
+        <button data-remodal-action="close" class="remodal-close">Назад</button>
     @endif
     <div class="remodal-content">
         @if($edit)
-            <form action="{{url('personal/club/'.$clubAr->id.'/update')}}"
-                  @if($clubAr->draft == '1') draft-action="{{url('personal/club/'.$clubAr->id.'/update-draft')}}"
-                  @endif class="edit_club_form"
-                  list-action="{{url('clubs/add-list')}}"
-                  image-action="{{url('clubs/add-image')}}"
+            <form        action="{{ route('admin.clubs.update' , $clubAr->id) }}"
+             class="edit_club_form"
+
                   method="post"
                   id="add-club-form">
-                @else
-                    <form action="{{url('clubs/add')}}"
-                          draft-action="{{url('clubs/add-draft')}}"
-                          list-action="{{url('clubs/add-list')}}"
-                          image-action="{{url('clubs/add-image')}}"
-                          method="post"
-                          id="add-club-form">
-                        @endif
-                        {{ csrf_field() }}
+                @method('PATCH')
+               @endif
+
                         <div class="forma">
                             <div class="form_tab_wrapper">
                                 <div class="form_tab form_tab_01_common_info">
@@ -63,6 +55,7 @@
                                 </div>
                             </div>
                             <div class="form_btn_wrapper">
+
 
 
                                 <div class="form_btn_item">

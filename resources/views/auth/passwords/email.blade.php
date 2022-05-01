@@ -17,12 +17,23 @@
                         <div class="form-group">
                             <label for="password-recovery-input">Email</label>
                             <input id="password-recovery-input" name="email" type="email" value="{{ old('email') }}" placeholder="" required>
-                            @if (session('status'))
-                                <div class="success" style="position: absolute;left: 0;top: 100%;font-size: 18px;">
+                        </div>
+                        @if (session('status'))
+                            <div class="form-group">
+                                <div class="success" >
                                     {{ session('status') }}
                                 </div>
-                            @endif
-                        </div>
+                            </div>
+                        @endif
+                        @if($errors)
+                            <div class="form-group">
+                                <div class="alert alert-danger" role="alert">
+                                    @foreach($errors->all() as $errorTxt)
+                                        <p class="text_decor">{{ $errorTxt }}</p>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
                     </div>
                     <div class="btn_wrapper">
                         <a href="{{url('login')}}" class="step_back">Назад</a>

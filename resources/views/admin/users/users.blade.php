@@ -49,7 +49,7 @@
           </tr>
         </thead>
         <tbody>
-           @foreach($users as $user) 
+           @foreach($users as $user)
           <tr>
             <td name="id" val="{{$user->id}}">{{$user->id}}</td>
             <td name="name" val="{{$user->name}}">{{$user->name}}</td>
@@ -79,40 +79,41 @@
               ?>
             </td>
             <?
-            $clubsCount = [];
+
             $userClubs = [];
-            if(count($user->clubsPublished) > 0 ){
-              $clubsCount []=' опуб.('.count($user->clubsPublished).')';
-              $userClubs[] ='<p><strong>Опубликованные</strong></p>';
-              foreach($user->clubsPublished as $club){
-                $userClubs[] = '<p><a href="'.url('clubs/'.$club->id.'/'.$club->url).'">'.$club->club_name.'</a></p>';
-              }
+            if(!empty($user->userMessClubs)){
+                foreach ($user->userMessClubs as $id => $val){
+                    if($id == 'clubPublished'){
+                        $userClubs[] = '<p><strong>Опубликованные</strong></p>';
+                        foreach ($val as $idClub => $clubVal){
+                            $userClubs[] = '<p><a href="'.url('clubs/'.$clubVal->id.'/'.$clubVal->url).'">'.$clubVal->club_name.'</a></p>';
+                        }
+                    }
+                    if($id == 'draft'){
+                        $userClubs[] = '<p><strong>Черновики</strong></p>';
+                        foreach ($val as $idClub => $clubVal){
+                            $userClubs[] = '<p>'.$clubVal->club_name.'</p>';
+                        }
+                    }
+                    if($id == 'clubClosed'){
+                        $userClubs[] = '<p><strong>На модерации</strong></p>';
+                        foreach ($val as $idClub => $clubVal){
+                            $userClubs[] = '<p><a href="'.url('clubs/'.$clubVal->id.'/'.$clubVal->url).'">'.$clubVal->club_name.'</a></p>';
+                        }
+                    }
+                }
             }
-            if(count($user->clubsUnderEdit) > 0 ){
-              $clubsCount []=' на мод.('.count($user->clubsUnderEdit).')';
-              $userClubs[] ='<p><strong>На модерации</strong></p>';
-              foreach($user->clubsUnderEdit as $club){
-                $userClubs[] = '<p><a href="'.url('clubs/'.$club->id.'/'.$club->url).'">'.$club->club_name.'</a></p>';
-              }
-            }
-            if(count($user->clubsDraft) > 0 ){
-              $clubsCount []=' черн.('.count($user->clubsDraft).')';
-              $userClubs[] ='<p><strong>Черновики</strong></p>';
-              foreach($user->clubsDraft as $club){
-                if($club->club_name == '')continue;
-                $userClubs[] = '<p>'.$club->club_name.'</p>';
-              }
-            }
-            $clubsCount = implode(', ', $clubsCount);
-            $userClubs = implode('',$userClubs);
+              $userClubs = implode('',$userClubs);
             ?>
+
+
             <td>
-             <span class="userClubsCount">{{$clubsCount}}</span> 
-              
+             <span class="userClubsCount">{{$user->userClubsCount}}</span>
+
               <div class="userClubs" style="display:none;">
-                {!!$userClubs!!}
+                  {!!$userClubs!!}
               </div>
-            
+
             </td>
             <td name="email" val="{{$user->email}}">{{$user->email}}</td>
             <td name="phone" val="{{$user->phone}}">{{$user->phone}}</td>
@@ -126,7 +127,7 @@
                 <button type="button" class="btn-sm btn btn-secondary  sendMailButton"  data-toggle="modal" data-target="#sendMail">Написать</button>
             @if(admin(2))
                 <button type="button" class="btn-sm btn btn-danger deleteUserButton"  data-toggle="modal" data-target="#deleteUser" userId="{{$user->id}}" userName="{{$user->name}}">{{__('messages.Delete')}}</button>
-            @endif 
+            @endif
 
             </td>
           </tr>
@@ -153,7 +154,7 @@
   <script src="{{asset('admin/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
   <script>
-  
+
   $('.editUserButton').click(function(){
             var modal=$('.modal'+$(this).attr('data-target'));
             modal.find('input#name').val($(this).closest('tr').find('td[name="name"]').text());
@@ -240,11 +241,11 @@
           }
       }
   } );
- 
+
  <?if(isset($_GET['search'])){?>
   table.search("{{$_GET['search']}}" ).draw();
  <?}?>
-    
+
     </script>
-    
+
 @endsection

@@ -1,56 +1,39 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace  App\Http\Controllers\panel\Admin\Drafts;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\club;
+use App\city;
 use App\User;
+use App\comment;
 use Auth;
 use Carbon\Carbon;
-use ImageResize;
+use Notification;
 use Str;
-use App\liked_club;
-use Illuminate\Support\Facades\Validator;
-include_once(resource_path('views/includes/functions.blade.php'));
-class clubsController extends Controller
+use App\Notifications\userNotification;
+class DraftsController extends Controller
 {
     public $isDraft;
     public $club_id;
     public function __construct()
     {
-        $this->middleware('owner',['except' => ['index','redirectOldClubsURLS','likeClub','unLikeClub']]);        
+        $this->middleware('owner',['except' => ['index','redirectOldClubsURLS','likeClub','unLikeClub']]);
         $this->middleware('player',['only' => ['likeClub','unLikeClub']]);
         $this->isDraft = false;
     }
-    public function index($id, $url, $city){
-        $lon = isset($_COOKIE['lon']) ? $_COOKIE['lon'] : 0;
-        $lat =isset($_COOKIE['lat']) ? $_COOKIE['lat'] : 0 ;
-        $club = club::where('id',$id)->select('*', club::raw('round(1.6 * ( 3959 * acos( cos( radians("'.$lat.'") ) * cos( radians( lat ) ) * cos( radians( lon ) - radians("'.$lon.'") ) + sin( radians("'.$lat.'") ) * sin( radians( lat ) ) ) ),1) AS nearby'))->where('draft','0')->with(array('city' => function($query) {
-            $query->select('id','name', 'en_name');
-        },'metro'=>function($query) {
-            $query->select('id','name','color');
-        }))->withTrashed()->first();
-        if(!$club)abort(404);
-        if($club->deleted_at!= null && !admin())abort(404);
-        if($club->published_at == null || $club->hidden_at != null ){
-            if(Auth::guest())abort(404);
-            if(!admin() && $club->user_id != Auth::user()->id){
-                abort(404);
-            }
-            $comments = $club->comments;
-            if(count($comments) > 0)
-            return view('clubs.club')->with(['club'=>$club,'comments'=>$comments ]);
+    public function index()
+    {
+        $clubs= club::select('id','user_id','club_name','club_city','updated_at','created_at')->with(array('user' => function($query) {
+            $query->select('id','name','phone');
+        },'city' => function($query) {
+            $query->select('id','name');
         }
-        if ($url != Str::slug($club->url) || $city != $club->city->en_name){
-            return redirect($club->id.'_computerniy_club_'.Str::slug($club->url).'_'.$club->city->en_name);
-        }
-        $views=$club->views;
-        $views++;
-        $club->views=$views;
-        $club->timestamps = false;
-        $club->save();
-
-        return view('clubs.club')->with(['club'=>$club]);
+        ))->Draft()->orderBy('updated_at','DESC')->get();
+        $currentUserId = Auth::id();
+        return view('admin.clubs.drafts' , compact('clubs' , 'currentUserId'));
     }
     public function toggle($id){
         $club = club::select('id','user_id','published_at','hidden_at','draft')->where('id',$id)->CorrentUser()->Published()->first();
@@ -70,15 +53,15 @@ class clubsController extends Controller
         $underModify = club::SelectCartFeilds()->CorrentUser()->UnderEdit()->get();
         $draft = club::SelectCartFeilds()->CorrentUser()->Draft()->get();
 
-        return view('personal/club_list')->with(['action'=>'edit','clubAr'=>$clubAr,'published'=>$published,'underModify'=>$underModify,'draft'=>$draft]);
+        return view('admin.clubs.edit')->with(['action'=>'edit','clubAr'=>$clubAr,'published'=>$published,'underModify'=>$underModify,'draft'=>$draft]);
     }
     public function clubs(){
         $published = club::SelectCartFeilds()->CorrentUser()->Published()->with(array('metro'=>function($query) {
             $query->select('id','name','color');
         },
-        'city' => function($query) {
-            $query->select('id','en_name');
-        }))->get();
+            'city' => function($query) {
+                $query->select('id','en_name');
+            }))->get();
         $underModify = club::SelectCartFeilds()->CorrentUser()->UnderEdit()->with(array('metro'=>function($query) {
             $query->select('id','name','color');
         }))->get();
@@ -179,7 +162,7 @@ class clubsController extends Controller
                 'configuration' => ['required'],
             ]);
         }
-        
+
         $validationAr = [];
         $errors = [];
         if($update){
@@ -212,10 +195,10 @@ class clubsController extends Controller
         if(admin() && !$this->isDraft){
             $club->rating = $request->input('rating');
         }
-       foreach($this->inputsTextsHandle() as $input){
-           if($request->input($input) == ''){ $club->$input = '';continue;}
+        foreach($this->inputsTextsHandle() as $input){
+            if($request->input($input) == ''){ $club->$input = '';continue;}
             $club->$input = $request->input($input);
-       }
+        }
         foreach($this->inputsNumersHandle() as $input){
             if($request->input($input) == ''){ $club->$input = 0;continue;}
             $club->$input = $request->input($input);
@@ -249,7 +232,7 @@ class clubsController extends Controller
         $club->qty_console_2 = 0;
         $club->console_type_3 = null;
         $club->qty_console_3 = 0;
-       if($request->input('console') == 'on'){
+        if($request->input('console') == 'on'){
             $club->console = '1';
             foreach ($request->input('console_type') as $key => $value) {
                 if(!isset($consX)){
@@ -312,9 +295,9 @@ class clubsController extends Controller
             $club->work_time = '1';
             $club->work_time_days = '';
         }
-        
+
         if(!is_array($request->input('configuration'))){
-            
+
             $errors['configuration'] = [
                 'Конфигурация оборудования заполнена неверно'
             ];
@@ -326,7 +309,7 @@ class clubsController extends Controller
                 $hertz = isset($configuration[$key]['monitor_hertz']) ? $configuration[$key]['monitor_hertz'] .' Гц' : '';
                 unset($configuration[$key]['monitor_hertz']);
                 $configuration[$key]['monitor_type']=$type . ' ' .$hertz;
-           }
+            }
             $club->configuration = serialize($configuration);
         }
         if($request->input('marketing_event') == 'on'){
@@ -336,7 +319,7 @@ class clubsController extends Controller
                 $errors['marketing_event'] = [
                     'Акции заполнены неверно'
                 ];
-            } 
+            }
         }else{
             $club->marketing_event = '0';
             $club->marketing_event_descr = '';
@@ -351,7 +334,7 @@ class clubsController extends Controller
         ];
         foreach($payment_ways as $input){
             if($request->input($input) == 'on')
-            $payment_methods[]=$input;
+                $payment_methods[]=$input;
         }
         if(count($payment_methods) == 0){
             $errors['payment_methods'] = [
@@ -361,11 +344,11 @@ class clubsController extends Controller
         $club->payment_methods = implode(',',$payment_methods);
         $club->url=$this->clean($request->input('club_name'));
         if($club->main_preview_photo != $request->input('main_preview_photo')){
-            
+
             $club->club_thumbnail = '';
             $filename = explode('clubs/',$request->input('main_preview_photo'));
             if(isset($filename[1])){
-               
+
                 $filename=$filename[1];
                 if(file_exists(storage_path('app/public/clubs/'.$filename))){
                     $infoPath = pathinfo(storage_path('app/public/clubs/'.$filename));
@@ -375,9 +358,9 @@ class clubsController extends Controller
                     }
                     if($infoPath['extension'] != 'jfif' &&  $infoPath['extension'] != 'HEIC'){
                         $destinationPath = storage_path('app/public/clubs/thumbnail/'.$subPath);
-                            $img = ImageResize::make(storage_path('app/public/clubs/'.$filename));
-                            $img->resize(300,'auto', function ($constraint) {
-                                $constraint->aspectRatio();
+                        $img = ImageResize::make(storage_path('app/public/clubs/'.$filename));
+                        $img->resize(300,'auto', function ($constraint) {
+                            $constraint->aspectRatio();
                         })->save($destinationPath.'/'.$infoPath['basename']);
                         $club->club_thumbnail =  url('storage/clubs/thumbnail').'/'.$subPath.'/'. $infoPath['basename'];
                     }
@@ -391,18 +374,21 @@ class clubsController extends Controller
                 jsonValidationException($errors);
             }
         }
-       if($club->save()){
-            $this->club_id = $club->id;
-           return true;
-       }
-       
-       header('Content-type: application/json');
-       \http_response_code(422);
-       echo json_encode(['error'=>'Ошибка! обратитесь к администратору']);
-       exit();
+
+        $club->draft = 1;
+        if($club->save()){
+            if($club->id){
+                return redirect('admin.clubs.drafts')->with(['success' => "Черновик с номером [$club->id] успешно сохранен"]);
+            }else{
+                return redirect('admin.clubs.drafts')->withErrors(['msg' => 'Ошибка сохранения'])
+                    ->withInput();
+            }
+        }
+
+
     }
     public function saveImage(Request $request){
-       $this->imageSaver($request,'clubs');
+        $this->imageSaver($request,'clubs');
     }
     public function savePriceList(Request $request){
         $this->imageSaver($request,'clubs/lists');
@@ -436,7 +422,7 @@ class clubsController extends Controller
     }
     public function clean($string) {
         $string = str_replace(' ', '-', $string);
-        return str_ireplace( array("'",'"','?',',' , ';', '<', '>','~','!','@','#','$','%','^','&','*','(',')','+','№','|','/',"\'",'`','{','}',':','=' ), '', $string); 
+        return str_ireplace( array("'",'"','?',',' , ';', '<', '>','~','!','@','#','$','%','^','&','*','(',')','+','№','|','/',"\'",'`','{','}',':','=' ), '', $string);
     }
     public function redirectOldClubsURLS($id){
         $club = club::where('id',$id)->select('id','club_city','url')->with(array('city' => function($query) {
@@ -444,27 +430,36 @@ class clubsController extends Controller
         }))->findOrFail($id);
         return redirect($club->id.'_computerniy_club_'.Str::slug($club->url).'_'.$club->city->en_name);
     }
-      
-  public function likeClub(Request $request){
-    $data = $request->validate([
-        'club_id' => ['required']
-    ]);
-    if(club::where('id',$request->input('club_id'))->count() == 0){
-        return response()->json(['status'=>false],400);
-    }
-    $liked_club = liked_club::firstOrCreate(['user_id'=>Auth::user()->id,'club_id'=>$request->input('club_id')]);
-    if($liked_club){
-        return response()->json(['status'=>true]);
-    }else{
-        return response()->json(['status'=>false],400);
-    }
-  }
-  public function unLikeClub(Request $request){
-    $data = $request->validate([
-        'club_id' => ['required']
-    ]);
-    $liked_club = liked_club::where('club_id',$request->input('club_id'))->where('user_id',Auth::user()->id)->delete();
 
-    return response()->json(['status'=>true]);
-  }
+    public function likeClub(Request $request){
+        $data = $request->validate([
+            'club_id' => ['required']
+        ]);
+        if(club::where('id',$request->input('club_id'))->count() == 0){
+            return response()->json(['status'=>false],400);
+        }
+        $liked_club = liked_club::firstOrCreate(['user_id'=>Auth::user()->id,'club_id'=>$request->input('club_id')]);
+        if($liked_club){
+            return response()->json(['status'=>true]);
+        }else{
+            return response()->json(['status'=>false],400);
+        }
+    }
+    public function unLikeClub(Request $request){
+        $data = $request->validate([
+            'club_id' => ['required']
+        ]);
+        $liked_club = liked_club::where('club_id',$request->input('club_id'))->where('user_id',Auth::user()->id)->delete();
+
+        return response()->json(['status'=>true]);
+    }
+    public function destroy($id){
+        //удаляю черновик  , тоесть клуб
+        $result = club::destroy($id);
+        if($result){
+            return back()->with(['success' => "Черновик с номером [$id] успешно удален"]);
+        }else{
+            return back()->withErrors(['msg' => 'Ошибка удаления']);
+        }
+    }
 }

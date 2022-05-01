@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Panel;
 
+use App\club;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller; 
-use App\User; 
-use Illuminate\Support\Facades\Auth; 
+use App\Http\Controllers\Controller;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use Illuminate\Support\Facades\Hash;
-use Mail;   
+use Mail;
 class usersController extends Controller
 {
     public function __construct()
@@ -17,7 +18,42 @@ class usersController extends Controller
         $this->middleware('rule:1');
     }
     public function index(){
-        $users=User::where('type','owner')->orderBy('created_at','DESC')->get();
+        $users = User::
+        with(
+            'clubs'
+        )
+            ->where('type','owner')
+            ->orderBy('created_at','DESC')->get();
+
+        $messClubs = [];
+        foreach ($users as $user){
+            if(count($user->clubs) > 0){
+               foreach ($user->clubs as $club){
+                    if(!empty($club->published_at)){
+                        $user->clubPublished++;
+                        $messClubs['messClubs']['clubPublished'][] = $club;
+                    }
+                    if($club->draft == 1){
+                        $user->clubDraft++;
+                        $messClubs['messClubs']['draft'][] = $club;
+                    }
+                   if($club->closed == 1){
+                       $user->clubClosed++;
+                       $messClubs['messClubs']['clubClosed'][] = $club;
+                   }
+               }
+            }
+            $user->userClubsCount = $user->clubPublished > 0 ? 'опуб.('.$user->clubPublished.')'   : 'опуб.(0)' ;
+            $user->userClubsCount .= $user->clubDraft > 0 ? 'черн.(' .$user->clubDraft. ')' : 'черн.(0)' ;
+            $user->userClubsCount .= $user->clubClosed > 0 ? 'на мод.(' .$user->clubClosed. ')' : 'на мод.(0)' ;
+            if(!empty($messClubs['messClubs'])){
+                $user->userMessClubs = $messClubs['messClubs'];
+                unset($messClubs);
+            }
+        }
+
+
+
         return view('admin.users.users')->with(['users'=>$users]);
     }
     public function players(){
@@ -38,7 +74,7 @@ class usersController extends Controller
                 'password_confirmation' => 'required|same:password',
             ]);
             $user->password =Hash::make($request->input('password'));
-            
+
             }
         if($input->email != $user->email ){
             $validatedData =  $this->validate($request ,[
@@ -56,7 +92,7 @@ class usersController extends Controller
         $user->rules=$input->rules;
         $user->save();
         return back()->with('success',__('messages.SupdatetSuccess'));
-    }        
+    }
     // public function toggleadmin($id){
     //     if($id!=1){
     //     $user=User::findorFail($id);
@@ -76,7 +112,7 @@ class usersController extends Controller
             abort('404');
         }
     }
-    
+
     public function find(Request $request){
             $b = array();
             $b['query']='Unit';
@@ -101,5 +137,5 @@ class usersController extends Controller
         });
         return response()->json(['status'=>'success']);
     }
-    
+
 }
