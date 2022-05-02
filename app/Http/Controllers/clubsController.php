@@ -7,6 +7,8 @@ use App\club;
 use App\User;
 use Auth;
 use Carbon\Carbon;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use ImageResize;
 use Str;
 use App\liked_club;
@@ -51,6 +53,24 @@ class clubsController extends Controller
         $club->save();
 
         return view('clubs.club')->with(['club'=>$club]);
+    }
+    /**
+     * Store for save number of bookings
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function sendBooking(Request $request)
+    {
+        $club_id = $request->input('club_id');
+
+        $result = club::where('id', $club_id)
+            ->update([
+                'count_booking' => DB::raw('count_booking + 1')
+            ]);
+        if ($result) {
+            return response()->json(['success' => true]);
+        }
     }
     public function toggle($id){
         $club = club::select('id','user_id','published_at','hidden_at','draft')->where('id',$id)->CorrentUser()->Published()->first();
