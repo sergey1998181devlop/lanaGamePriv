@@ -92,7 +92,7 @@
                     if($id == 'draft'){
                         $userClubs[] = '<p><strong>Черновики</strong></p>';
                         foreach ($val as $idClub => $clubVal){
-                            $userClubs[] = '<p>'.$clubVal->club_name.'</p>';
+                            $userClubs[] = '<p><a href="'.url('panel/clubs/drafts/'.$clubVal->id.'/'.'edit').'">'.$clubVal->club_name.'</a></p>';
                         }
                     }
                     if($id == 'clubClosed'){

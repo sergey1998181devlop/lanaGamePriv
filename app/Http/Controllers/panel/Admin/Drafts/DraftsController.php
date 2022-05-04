@@ -31,7 +31,7 @@ class DraftsController extends Controller
         },'city' => function($query) {
             $query->select('id','name');
         }
-        ))->Draft()->orderBy('updated_at','DESC')->get();
+        ))->where('draft' , 1)->Draft()->orderBy('updated_at','DESC')->get();
         $currentUserId = Auth::id();
         return view('admin.clubs.drafts' , compact('clubs' , 'currentUserId'));
     }
@@ -455,10 +455,16 @@ class DraftsController extends Controller
     }
     public function destroy($id){
         //удаляю черновик  , тоесть клуб
-        $result = club::destroy($id);
+//        $club = club::where('id', $id)->firstOrFail();
+//        $result = $club->delete('id' , $id);
+        $club = club::find($id);
+        $result = $club->delete();
         if($result){
+
             return back()->with(['success' => "Черновик с номером [$id] успешно удален"]);
         }else{
+
+
             return back()->withErrors(['msg' => 'Ошибка удаления']);
         }
     }
