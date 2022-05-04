@@ -38,8 +38,8 @@ class ClubObserver
      */
     public function updating(club $club){
         //при публикации клуба  - активирую автоматически акаунт пользователя
-        if($club->published_at){
-            User::where('id' , $club->user_id)->update([
+        if ($club->published_at) {
+            User::where('id', $club->user_id)->update([
                 'email_verified_at' => Carbon::now()->toDateTimeString()
             ]);
         }
