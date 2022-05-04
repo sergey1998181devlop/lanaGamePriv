@@ -51,6 +51,9 @@ Route::post('personal/club/{id}/update', 'clubsController@update');
 Route::post('personal/club/{id}/update-draft', 'clubsController@updateDraft');
 //Route::get('clubs/{id}/{url}','clubsController@index');
 Route::get('{id}_computerniy_club_{url}_{city}','clubsController@index');
+
+Route::post('clubs/saveCountBooking','clubsController@sendBooking');
+
 Route::post('clubs/add', 'clubsController@addClub');
 Route::post('clubs/add-draft', 'clubsController@addDraftClub');
 Route::post('clubs/add-list','clubsController@savePriceList' );

@@ -23,12 +23,19 @@
     include_once(resource_path('views/personal/tabs/conf.blade.php'));
     ?>
     <?php
+
+
     $mess = explode('/',$_SERVER['HTTP_REFERER']);
     $url = ((!empty($_SERVER['HTTPS'])) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] ;
+
+
     if(array_search('drafts' , $mess) && array_search('edit' , $mess)){
         header("Location: ".$url."/panel/clubs/drafts");
         die();
     }
+
+
+
     global $edit;
     global $clubAr;
     global $schedule_item;

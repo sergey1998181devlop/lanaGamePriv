@@ -462,4 +462,6 @@ class DraftsController extends Controller
             return back()->withErrors(['msg' => 'Ошибка удаления']);
         }
     }
+
 }
+

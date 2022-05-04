@@ -981,56 +981,27 @@
             }
         </script>
     @endif
+    <script src="{{ asset('/js/clubs/clubDetail/detailClub.js') }}"></script>
     @if(admin())
+        <script src="{{ asset('/js/clubs/clubDetail/detailClubAdmin.js') }}"></script>
         <script src="{{ asset('/js/jquery.autocomplete.js') }}?v={{ENV('JS_VERSION',0)}}"></script>
-        <script>
-            $('#select_new_user').autocomplete({
-                serviceUrl: '{{url("/panel/find-user")}}',
-                dataType: 'json',
-
-                onSelect: function (suggestion) {
-                    $('#new_user_id').val(suggestion.data);
-                },
-            });
-        </script>
     @endif
+
     @if(session('success') || (isset($_GET['status']) && $_GET['status'] === 'success'))
         <script>
-            $(document).ready(function () {
-                jQuery('[data-remodal-id="success_modal"]').remodal().open();
-            });
-            window.history.replaceState({}, document.title, $('meta[name="site"]').attr('content') + "/{{$club->id.'_computerniy_club_'.$club->url.'_'.$club->city->en_name.''}}");
+    $(document).ready(function () {
+    jQuery('[data-remodal-id="success_modal"]').remodal().open();
+    });
+    window.history.replaceState({}, document.title, $('meta[name="site"]').attr('content') + "/{{$club->id.'_computerniy_club_'.$club->url.'_'.$club->city->en_name.''}}");
         </script>
     @endif
     @if(isset($_GET['action']) && $_GET['action'] == 'change_user')
         <script>
-            $(document).ready(function () {
-                jQuery('[data-remodal-id="change_user_modal"]').remodal().open();
-                jQuery('[data-remodal-id="change_user_modal"] #select_new_user').focus();
-            });
+    $(document).ready(function () {
+    jQuery('[data-remodal-id="change_user_modal"]').remodal().open();
+    jQuery('[data-remodal-id="change_user_modal"] #select_new_user').focus();
+    });
         </script>
     @endif
-    @if(admin())
-        <script>
-            $('.comment button[data-role-remove-comment]').click(function () {
-                var id = $(this).attr('data-id'),
-                    comment = $(this).closest('.comment');
-                comment.css('background', '#cccccc');
-                $.ajax({
-                    url: "{{url('club').'/'.$club->id.'/remove_comment'}}",
-                    type: 'post',
-                    data: {
-                        'id': id,
-                        '_token': $('[name="_token"]').val(),
-                    },
-                    success: function (data) {
-                        comment.remove();
-                    },
-                    error: function (xhr, ajaxOptions, thrownError) {
-                        comment.css('background', '');
-                    },
-                });
-            });
-        </script>
-    @endif
+
 @endsection

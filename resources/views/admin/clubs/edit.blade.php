@@ -6,13 +6,16 @@
         header , footer{
             display: none;
         }
+
         .ck.ck-content.ck-editor__editable {
             height: 250px;
         }
+
         .ck.ck-reset.ck-editor {
             max-width: 500px;
             width: 400px;
         }
+
         @media (max-width: 500px) {
             .ck.ck-reset.ck-editor {
                 max-width: 100%;
@@ -55,6 +58,7 @@
     } else {
         $edit = false;
     }
+
     function clubValue($input)
     {
         global $edit;
@@ -62,8 +66,10 @@
         global $clubAr;
         if (isset($clubAr->$input)) {
             if (is_numeric($clubAr->$input) && $clubAr->$input == 0) return false;
+
             return $clubAr->$input;
         }
+
         return false;
     }
     function checkDays($day)
@@ -74,6 +80,7 @@
         if ($clubAr->work_time == '1') return true;
         global $schedule_item;
         if (!is_array($schedule_item) || !isset($schedule_item[$day])) return false;
+
         return true;
     }
     function hours($day, $fromOrTo = 'to')
@@ -126,6 +133,7 @@
         if (isset($configuration[$key][$name])) {
             return $configuration[$key][$name];
         }
+
         return false;
     }
     function getMarketingEvents($key = null)
@@ -141,6 +149,7 @@
             return false;
         }
         if ($key === null) return $marketing_events;
+
         return $marketing_events[$key];
     }
     ?>
@@ -458,4 +467,6 @@
 {{--        </form>--}}
 {{--    </div>--}}
 
+
 {{--@endsection--}}
+

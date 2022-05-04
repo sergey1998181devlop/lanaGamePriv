@@ -79,6 +79,7 @@
               ?>
             </td>
             <?
+
             $userClubs = [];
             if(!empty($user->userMessClubs)){
                 foreach ($user->userMessClubs as $id => $val){
@@ -153,6 +154,7 @@
   <script src="{{asset('admin/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
   <script>
+
   $('.editUserButton').click(function(){
             var modal=$('.modal'+$(this).attr('data-target'));
             modal.find('input#name').val($(this).closest('tr').find('td[name="name"]').text());
@@ -237,9 +239,13 @@
           }
       }
   } );
+
+
  <?if(isset($_GET['search'])){?>
   table.search("{{$_GET['search']}}" ).draw();
  <?}?>
+
     </script>
 
 @endsection
+

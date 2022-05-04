@@ -7,6 +7,8 @@ use App\club;
 use App\User;
 use Auth;
 use Carbon\Carbon;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use ImageResize;
 use Str;
 use App\liked_club;
@@ -18,7 +20,7 @@ class clubsController extends Controller
     public $club_id;
     public function __construct()
     {
-        $this->middleware('owner',['except' => ['index','redirectOldClubsURLS','likeClub','unLikeClub']]);        
+        $this->middleware('owner',['except' => ['index','redirectOldClubsURLS','likeClub','unLikeClub']]);
         $this->middleware('player',['only' => ['likeClub','unLikeClub']]);
         $this->isDraft = false;
     }
@@ -51,6 +53,24 @@ class clubsController extends Controller
         $club->save();
 
         return view('clubs.club')->with(['club'=>$club]);
+    }
+    /**
+     * Store for save number of bookings
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function sendBooking(Request $request)
+    {
+        $club_id = $request->input('club_id');
+
+        $result = club::where('id', $club_id)
+            ->update([
+                'count_booking' => DB::raw('count_booking + 1')
+            ]);
+        if ($result) {
+            return response()->json(['success' => true]);
+        }
     }
     public function toggle($id){
         $club = club::select('id','user_id','published_at','hidden_at','draft')->where('id',$id)->CorrentUser()->Published()->first();
@@ -179,7 +199,7 @@ class clubsController extends Controller
                 'configuration' => ['required'],
             ]);
         }
-        
+
         $validationAr = [];
         $errors = [];
         if($update){
@@ -312,9 +332,9 @@ class clubsController extends Controller
             $club->work_time = '1';
             $club->work_time_days = '';
         }
-        
+
         if(!is_array($request->input('configuration'))){
-            
+
             $errors['configuration'] = [
                 'Конфигурация оборудования заполнена неверно'
             ];
@@ -336,7 +356,7 @@ class clubsController extends Controller
                 $errors['marketing_event'] = [
                     'Акции заполнены неверно'
                 ];
-            } 
+            }
         }else{
             $club->marketing_event = '0';
             $club->marketing_event_descr = '';
@@ -361,11 +381,11 @@ class clubsController extends Controller
         $club->payment_methods = implode(',',$payment_methods);
         $club->url=$this->clean($request->input('club_name'));
         if($club->main_preview_photo != $request->input('main_preview_photo')){
-            
+
             $club->club_thumbnail = '';
             $filename = explode('clubs/',$request->input('main_preview_photo'));
             if(isset($filename[1])){
-               
+
                 $filename=$filename[1];
                 if(file_exists(storage_path('app/public/clubs/'.$filename))){
                     $infoPath = pathinfo(storage_path('app/public/clubs/'.$filename));
@@ -395,7 +415,7 @@ class clubsController extends Controller
             $this->club_id = $club->id;
            return true;
        }
-       
+
        header('Content-type: application/json');
        \http_response_code(422);
        echo json_encode(['error'=>'Ошибка! обратитесь к администратору']);
@@ -436,7 +456,7 @@ class clubsController extends Controller
     }
     public function clean($string) {
         $string = str_replace(' ', '-', $string);
-        return str_ireplace( array("'",'"','?',',' , ';', '<', '>','~','!','@','#','$','%','^','&','*','(',')','+','№','|','/',"\'",'`','{','}',':','=' ), '', $string); 
+        return str_ireplace( array("'",'"','?',',' , ';', '<', '>','~','!','@','#','$','%','^','&','*','(',')','+','№','|','/',"\'",'`','{','}',':','=' ), '', $string);
     }
     public function redirectOldClubsURLS($id){
         $club = club::where('id',$id)->select('id','club_city','url')->with(array('city' => function($query) {
@@ -444,7 +464,7 @@ class clubsController extends Controller
         }))->findOrFail($id);
         return redirect($club->id.'_computerniy_club_'.Str::slug($club->url).'_'.$club->city->en_name);
     }
-      
+
   public function likeClub(Request $request){
     $data = $request->validate([
         'club_id' => ['required']
