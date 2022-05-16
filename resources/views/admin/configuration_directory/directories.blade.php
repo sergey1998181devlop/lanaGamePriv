@@ -18,7 +18,7 @@
         <form method="POST" action="{{ url('panel/configuration/directory/configuration.save') }}">
             <div class="tab-content ">
 
-                @foreach($dataForView as $typeDevice => $fields)
+                @foreach($resultForView['dataForView'] as $typeDevice => $fields)
 
                     <div id="{{ $typeDevice }}"
                          class="tab-pane fade {{  $loop->first ? 'in active show' : '' }}">
@@ -57,7 +57,7 @@
 
 
                                                         @foreach($messData as $id => $fieldMess)
-                                                            @if($idFields == 'firms' && !array_search($typeDevice , $listWithoutDopDataModel)  )
+                                                            @if($idFields == 'firms' && !array_search($typeDevice , $resultForView['listWithoutDopDataModel'])  )
                                                                 <tr>
                                                                     <td data-idFirm="{{$fieldMess['id']}}">{{$fieldMess['title']}}</td>
 
@@ -129,7 +129,7 @@
                                                                     @endif
                                                                 </tr>
                                                             @endif
-                                                            @if(array_search($typeDevice , $listWithoutDopData))
+                                                            @if(array_search($typeDevice , $resultForView['listWithoutDopData']))
                                                                 <tr>
                                                                     <td data-type="{{ $idFields }}" >{{$fieldMess['title']}}</td>
                                                                 </tr>

@@ -2,6 +2,14 @@
 
 namespace  App\Http\Controllers\panel\Admin\Drafts;
 
+use App\Models\InternetSpeedLists;
+use App\Models\Memory;
+use App\Models\Models;
+use App\Models\MonitorHertz;
+use App\Models\MonitorInches;
+use App\Models\TypeDevices;
+use App\Models\TypeMemory;
+use App\Services\MakeDataConfigurationService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -18,11 +26,27 @@ class DraftsController extends Controller
 {
     public $isDraft;
     public $club_id;
-    public function __construct()
+    private $typeDevices;
+    private $memory;
+    private $typeMemory;
+    private $internetSpeed;
+    private $monitorHertz;
+    private $monitorInches;
+    private $models;
+    public function __construct(TypeDevices $typeDevices, Memory $memory, TypeMemory $typeMemory, InternetSpeedLists $internetSpeed , MonitorHertz $monitorHertz , MonitorInches $monitorInches ,Models $models)
     {
         $this->middleware('owner',['except' => ['index','redirectOldClubsURLS','likeClub','unLikeClub']]);
         $this->middleware('player',['only' => ['likeClub','unLikeClub']]);
         $this->isDraft = false;
+
+        //это все нужно вынести в репозиторий чтобы не было этого списка
+        $this->typeDevices = $typeDevices;
+        $this->memory = $memory;
+        $this->typeMemory = $typeMemory;
+        $this->internetSpeed = $internetSpeed;
+        $this->monitorHertz = $monitorHertz;
+        $this->monitorInches = $monitorInches;
+        $this->models = $models;
     }
     public function index()
     {
@@ -41,7 +65,7 @@ class DraftsController extends Controller
         $club->hidden_at = ($club->hidden_at == null) ? Carbon::now()->toDateTimeString() : null;
         $club->save();
     }
-    public function edit($id){
+    public function edit($id , MakeDataConfigurationService $service){
         global $clubAr;
         if(admin()){
             $clubAr = club::withTrashed()->findOrFail($id);
@@ -53,7 +77,38 @@ class DraftsController extends Controller
         $underModify = club::SelectCartFeilds()->CorrentUser()->UnderEdit()->get();
         $draft = club::SelectCartFeilds()->CorrentUser()->Draft()->get();
 
-        return view('admin.clubs.edit')->with(['action'=>'edit','clubAr'=>$clubAr,'published'=>$published,'underModify'=>$underModify,'draft'=>$draft]);
+        $data = [];
+        $data['typeDevicesFirms'] = $this->typeDevices->getTypeDevicesFirms();
+        $data['memory'] =  $this->memory->getMemory()->toArray();
+        $data['memory_type'] =  $this->typeMemory->getTypeMemory()->toArray();
+        $data['internetSpeedList']  = $this->internetSpeed->getInternetSpeeds()->toArray();
+        $data['monitorHertz'] = $this->monitorHertz->getMonitorHertz()->toArray();
+        $data['monitorInches'] = $this->monitorInches->getMonitorInches()->toArray();
+        //модели можно как-то получить через - релейшион - к многим через
+        $data['modelsData'] = $this->models->getAllModels()->toArray();
+        $result = $service->getDataForConfigurationDirectoryModel($data);
+
+        return view('admin.clubs.edit')->with(
+            [
+                'action'=>'edit',
+                'clubAr'=>$clubAr,
+                'published'=>$published,
+                'underModify'=>$underModify,
+                'draft'=>$draft,
+
+                'cpus' => $result['cpus'],
+                'videoCards' => $result['videoCards'],
+                'keybords' => $result['keyboards'],
+                'mouses' => $result['mouse'],
+                'headphones' => $result['headphones'],
+                'chairs' => $result['chairs'],
+                'monitor_types' => $result['monitor_types'],
+                'monitor_hertz' => $result['monitorHertz'],
+                'monitors' => $result['monitor'],
+                'internetSpeed' => $result['internetSpeed'],
+                'memoryCount' => $result['memoryCount'],
+                'memoryType' => $result['memoryType'],
+            ]);
     }
     public function clubs(){
         $published = club::SelectCartFeilds()->CorrentUser()->Published()->with(array('metro'=>function($query) {

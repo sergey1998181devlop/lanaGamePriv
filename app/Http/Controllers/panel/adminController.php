@@ -10,6 +10,7 @@ use App\Models\MonitorHertz;
 use App\Models\MonitorInches;
 use App\Models\TypeDevices;
 use App\Models\TypeMemory;
+use App\Services\MakeDataConfigurationService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -32,8 +33,9 @@ class adminController extends Controller
     private $internetSpeed;
     private $monitorHertz;
     private $monitorInches;
+    private $models;
 
-    public function __construct(TypeDevices $typeDevices, Memory $memory, TypeMemory $typeMemory, InternetSpeedLists $internetSpeed , MonitorHertz $monitorHertz , MonitorInches $monitorInches)
+    public function __construct(TypeDevices $typeDevices, Memory $memory, TypeMemory $typeMemory, InternetSpeedLists $internetSpeed , MonitorHertz $monitorHertz , MonitorInches $monitorInches ,Models $models)
     {
         //это все нужно вынести в репозиторий чтобы не было этого списка
         $this->typeDevices = $typeDevices;
@@ -42,6 +44,7 @@ class adminController extends Controller
         $this->internetSpeed = $internetSpeed;
         $this->monitorHertz = $monitorHertz;
         $this->monitorInches = $monitorInches;
+        $this->models = $models;
 
         $this->middleware('rule:1');
     }
@@ -181,153 +184,21 @@ class adminController extends Controller
     /**
      *  Method for get all data for configs directory list
      */
-    public function configurationDirectory( ){
+    public function configurationDirectory( MakeDataConfigurationService $service){
 
-        //cpu type - 0
-        //videocards - 1
+        $data = [];
+        $data['typeDevicesFirms'] = $this->typeDevices->getTypeDevicesFirms();
+        $data['memory'] =  $this->memory->getMemory()->toArray();
+        $data['memory_type'] =  $this->typeMemory->getTypeMemory()->toArray();
+        $data['internetSpeedList']  = $this->internetSpeed->getInternetSpeeds()->toArray();
+        $data['monitorHertz'] = $this->monitorHertz->getMonitorHertz()->toArray();
+        $data['monitorInches'] = $this->monitorInches->getMonitorInches()->toArray();
+        //модели можно как-то получить через - релейшион - к многим через
+        $data['modelsData'] = $this->models->getAllModels()->toArray();
+        $result = $service->getDataForConfigurationDirectory($data);
+        return view('admin.configuration_directory.directories')
+            ->with([ 'resultForView' => $result , 'typeDevicesFirms' => $data['typeDevicesFirms']]);
 
-        $typeDevicesFirms = $this->typeDevices->getTypeDevicesFirms();
-        $memory = $this->memory->getMemory()->toArray();
-        $memory_type = $this->typeMemory->getTypeMemory()->toArray();
-
-        $internetSpeedList  = $this->internetSpeed->getInternetSpeeds()->toArray();
-        $monitorHertz = $this->monitorHertz->getMonitorHertz()->toArray();
-        $monitorInches = $this->monitorInches->getMonitorInches()->toArray();
-
-//Санный костыль который я не знаю как решить через связи - как узнаю - перепишу через связь !КОСТЫЛЬ!
-        $modelsData = Models::all()->toArray();
-        $models = [];
-        foreach ($modelsData as $model) {
-            $models[$model['firms_id']][] =  $model;
-        }
-//список вот этих всех данных надо собирать иначе и все это пихать в сервис провайдер вместе с массивами
-        $memoryData = [
-            TypeMemory::TypeRAM => [],
-            TypeMemory::TypeHDD => []
-        ];
-        $ram = [];
-        $hdd = [];
-        foreach ($memory_type as $memoryVal){
-            if($memoryVal['type_memory'] == TypeMemory::TypeRAM){
-                $memoryData[TypeMemory::TypeRAM]['types'][] = $memoryVal;
-            }
-            if($memoryVal['type_memory'] == TypeMemory::TypeHDD){
-                $memoryData[TypeMemory::TypeHDD]['types'][] = $memoryVal;
-            }
-        }
-        foreach ($memory as $countMemory){
-            $memoryData[TypeMemory::TypeRAM]['countMemory'][] = $countMemory;
-        }
-
-        $optionsForView = [
-            'cpus' => [
-                'Фирма' , 'Модель'
-            ],
-            'videoCards' => [
-                'Фирма' , 'Модель'
-            ],
-            'ram' => [
-                'Тип' ,'Обьем'
-            ],
-            'hdd' => [
-                'Тип'
-            ],
-            'keyboards' => [
-                'Фирма'
-            ],
-            'mouse'  =>  [
-                'Фирма'
-            ],
-            'headphones'  =>  [
-                'Фирма'
-            ],
-            'chairs'  =>  [
-                'Фирма'
-            ],
-            'monitor'  =>  [
-                'Фирма' , 'Дюймы' , 'Герцы'
-            ],
-            'internet'  =>  [
-                'Скорость интернета'
-            ]
-        ];
-
-        $dataForView = [
-            'cpus' => [],
-            'videoCards' => [],
-            'ram' => $memoryData[TypeMemory::TypeRAM],
-            'hdd' => [
-                'types' => $memoryData[TypeMemory::TypeHDD]['types']
-            ],
-            'keyboards' => [
-
-            ],
-            'mouse'  =>  [
-
-            ],
-            'headphones'  =>  [
-
-            ],
-            'chairs'  =>  [
-
-            ],
-            'monitor'  =>  [
-
-            ],
-            'internet'  =>  [
-                'internetSpeedList' => $internetSpeedList,
-
-            ]
-
-        ];
-        $listWithoutDopData = [
-            'type' ,  'keyboards' , 'mouse' , 'headphones' , 'chairs' , 'internet','hdd'
-        ];
-        $listWithoutDopDataModel = [
-            'type' ,  'keyboards' , 'mouse' , 'headphones' , 'chairs' , 'internet','hdd' , 'monitor'
-        ];
-        foreach ($typeDevicesFirms as $type){
-            foreach ($type->firms as $id => $firm){
-                if(!empty($firm)){
-                    $dataForView[$type->slug]['firms'][$id] = [
-                        'id' => $firm->id,
-                        'title' => $firm->title,
-                        'slug' => $firm->slug
-                    ] ;
-
-                    if(!empty($models[$firm->id])){
-                        foreach ($models[$firm->id] as $model){
-                            if($type->slug == 'cpus'){
-                                if($model['type_model'] == 0){
-                                    $dataForView[$type->slug]['firms'][$id]['models'][] = $model;
-                                }
-                            }
-                            if($type->slug == 'videoCards'){
-                                if($model['type_model'] == 1){
-                                    $dataForView[$type->slug]['firms'][$id]['models'][] = $model;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        $dataForView['monitor']['monitorHertz'] = $monitorHertz ;
-        $dataForView['monitor']['monitorInches'] = $monitorInches ;
-
-        //   конец костыля
-//        dd($dataForView);
-        return view(
-            'admin.configuration_directory.directories' ,
-            compact(
-                'typeDevicesFirms',
-                'internetSpeedList',
-                'dataForView',
-                'optionsForView',
-                'listWithoutDopData',
-                'listWithoutDopDataModel'
-            ));
     }
     public function contacts(){
         $messages = contact::select('id','name','phone','email','created_at','seen_at')->whereNull('seen_at')->orderBy('created_at','DESC')->get();

@@ -30,4 +30,9 @@ class Models extends Model
     {
         return $this->belongsTo(Firms::class);
     }
+
+    public function getAllModels(){
+        $result = $this->select('id' , 'title' , 'firms_id' , 'type_model')->get();
+        return $result;
+    }
 }

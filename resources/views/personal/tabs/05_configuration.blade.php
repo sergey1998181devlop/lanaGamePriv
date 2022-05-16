@@ -62,9 +62,11 @@ declare(strict_types=1);
                             <select id="cpu-model-0" name="configuration[0][cpu_model]" data-placeholder="Модель" data-select2-depends-on="#cpu-vendor-0" required>
                                 <option value=""></option>
                                 @foreach($cpus as $key=>$vendor)
-                                    @foreach($vendor as $model)
-                                        <option value="{{$model}}" {{(getConf('cpu_model','0') === $model) ? 'selected' : null}} data-depend-value="{{$key}}">{{$model}}</option>
-                                    @endforeach
+                                    @if(is_array($vendor))
+                                        @foreach($vendor as $model)
+                                            <option value="{{$model}}" {{(getConf('cpu_model','0') === $model) ? 'selected' : null}} data-depend-value="{{$key}}">{{$model}}</option>
+                                        @endforeach
+                                    @endif
                                 @endforeach
                             </select>
                             <div class="error"></div>
@@ -106,21 +108,20 @@ declare(strict_types=1);
                         <div class="select2_wrapper">
                             <select id="memory-size-0" name="configuration[0][memory_size]" data-placeholder="Объем" required>
                                 <option value=""></option>
-                                <option value="4 Gb" {{(getConf('memory_size','0') == '4 Gb') ? 'selected' : null}}>4 Gb</option>
-                                <option value="6 Gb" {{(getConf('memory_size','0') == '6 Gb') ? 'selected' : null}}>6 Gb</option>
-                                <option value="8 Gb" {{(getConf('memory_size','0') == '8 Gb') ? 'selected' : null}}>8 Gb</option>
-                                <option value="16 Gb" {{(getConf('memory_size','0') == '16 Gb') ? 'selected' : null}}>16 Gb</option>
-                                <option value="32 Gb" {{(getConf('memory_size','0') == '32 Gb') ? 'selected' : null}}>32 Gb</option>
-                                <option value="64 Gb" {{(getConf('memory_size','0') == '64 Gb') ? 'selected' : null}}>64 Gb</option>
+                                @foreach($memoryCount as $key=> $count)
+                                    <option value="{{$count['title']}}" {{(getConf('memory_size','0') === $count['title']) ? 'selected' : null}}>{{$count['title']}}</option>
+                                @endforeach
                             </select>
                             <div class="error"></div>
                         </div>
                         <div class="select2_wrapper">
                             <select id="memory-type-0" name="configuration[0][memory_type]" data-placeholder="Тип" required>
                                 <option value=""></option>
-                                <option value="DDR3" {{(getConf('memory_type','0') == 'DDR3') ? 'selected' : null}}>DDR3</option>
-                                <option value="DDR4" {{(getConf('memory_type','0') == 'DDR4') ? 'selected' : null}}>DDR4</option>
-                                <option value="DDR5" {{(getConf('memory_type','0') == 'DDR5') ? 'selected' : null}}>DDR5</option>
+                                @foreach($memoryType as $key=> $type)
+                                    @if($type['type_memory'] == 0)
+                                          <option value="{{$type['title']}}" {{(getConf('memory_type','0') === $type['title']) ? 'selected' : null}}>{{$type['title']}}</option>
+                                    @endif
+                                @endforeach
                             </select>
                             <div class="error"></div>
                         </div>
@@ -133,10 +134,11 @@ declare(strict_types=1);
                     <div class="select2_wrapper">
                         <select id="hard-disc-type-0" name="configuration[0][hard_disc_type]" data-placeholder="Тип" required>
                             <option value=""></option>
-                            <option value="HDD" {{(getConf('hard_disc_type','0') == 'HDD') ? 'selected' : null}}>HDD</option>
-                            <option value="SSD" {{(getConf('hard_disc_type','0') == 'SSD') ? 'selected' : null}}>SSD</option>
-                            <option value="SSD+HDD" {{(getConf('hard_disc_type','0') == 'SSD+HDD') ? 'selected' : null}}>SSD+HDD</option>
-                            <option value="Бездисковая система" {{(getConf('hard_disc_type','0') == 'Бездисковая система') ? 'selected' : null}}>Бездисковая система</option>
+                            @foreach($memoryType as $key=> $type)
+                                @if($type['type_memory'] == 1)
+                                    <option value="{{$type['title']}}" {{(getConf('hard_disc_type','0') === $type['title']) ? 'selected' : null}}>{{$type['title']}}</option>
+                                @endif
+                            @endforeach
                         </select>
                         <div class="error"></div>
                     </div>
@@ -215,7 +217,7 @@ declare(strict_types=1);
                             <select id="monitor-type-0" name="configuration[0][monitor_type]" data-placeholder="Дюймы" required>
                                 <option value=""></option>
                                 @foreach ($monitor_types as $vendor)
-                                    <option value="{{$vendor}}" {{(getConf('monitor_type','0') == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
+                                    <option value="{{$vendor['title']}}" {{(getConf('monitor_type','0') == $vendor['title']) ? 'selected' : null}}>{{$vendor['title']}}</option>
                                 @endforeach
                             </select>
                             <div class="error"></div>
@@ -224,7 +226,7 @@ declare(strict_types=1);
                             <select id="monitor-hertz-0" name="configuration[0][monitor_hertz]" data-placeholder="Гц" required>
                                 <option value=""></option>
                                 @foreach ($monitor_hertz as $vendor)
-                                    <option value="{{$vendor}}" {{(getConf('monitor_hertz','0') == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
+                                    <option value="{{$vendor['title']}}" {{(getConf('monitor_hertz','0') == $vendor['title']) ? 'selected' : null}}>{{$vendor['title']}}</option>
                                 @endforeach
                             </select>
                             <div class="error"></div>
@@ -238,9 +240,9 @@ declare(strict_types=1);
                     <div class="select2_wrapper">
                         <select id="internet-0" name="configuration[0][internet]" data-placeholder="Скорость" required>
                             <option value=""></option>
-                            <option value="<100 Мбит" {{(getConf('internet','0') == '<100 Мбит') ? 'selected' : null}}>&lt;100 Мбит</option>
-                            <option value=">100 Мбит" {{(getConf('internet','0') == '>100 Мбит') ? 'selected' : null}}>&gt;100 Мбит</option>
-                            <option value=">1 Гбит" {{(getConf('internet','0') == '>1 Гбит') ? 'selected' : null}}>&gt;1 Гбит</option>
+                            @foreach($internetSpeed as $key=> $speed)
+                                    <option value="{{$speed['title']}}" {{(getConf('internet','0') == $speed['title']) ? 'selected' : null}}>{{$speed['title']}}</option>
+                            @endforeach
                         </select>
                         <div class="error"></div>
                     </div>
@@ -276,9 +278,11 @@ declare(strict_types=1);
                             <select id="cpu-model-1" name="configuration[1][cpu_model]" data-placeholder="Модель" data-select2-depends-on="#cpu-vendor-1" required>
                                 <option value=""></option>
                                 @foreach($cpus as $key=>$vendor)
-                                    @foreach($vendor as $model)
-                                        <option value="{{$model}}" {{(getConf('cpu_model','1') === $model) ? 'selected' : null}} data-depend-value="{{$key}}">{{$model}}</option>
-                                    @endforeach
+                                    @if(is_array($vendor))
+                                        @foreach($vendor as $model)
+                                            <option value="{{$model}}" {{(getConf('cpu_model','1') === $model) ? 'selected' : null}} data-depend-value="{{$key}}">{{$model}}</option>
+                                        @endforeach
+                                    @endif
                                 @endforeach
                             </select>
                             <div class="error"></div>
@@ -320,21 +324,20 @@ declare(strict_types=1);
                         <div class="select2_wrapper">
                             <select id="memory-size-1" name="configuration[1][memory_size]" data-placeholder="Объем" required>
                                 <option value=""></option>
-                                <option value="4 Gb" {{(getConf('memory_size','1') == '4 Gb') ? 'selected' : null}}>4 Gb</option>
-                                <option value="6 Gb" {{(getConf('memory_size','1') == '6 Gb') ? 'selected' : null}}>6 Gb</option>
-                                <option value="8 Gb" {{(getConf('memory_size','1') == '8 Gb') ? 'selected' : null}}>8 Gb</option>
-                                <option value="16 Gb" {{(getConf('memory_size','1') == '16 Gb') ? 'selected' : null}}>16 Gb</option>
-                                <option value="32 Gb" {{(getConf('memory_size','1') == '32 Gb') ? 'selected' : null}}>32 Gb</option>
-                                <option value="64 Gb" {{(getConf('memory_size','1') == '64 Gb') ? 'selected' : null}}>64 Gb</option>
+                                @foreach($memoryCount as $key=> $count)
+                                    <option value="{{$count['title']}}" {{(getConf('memory_size','0') === $count['title']) ? 'selected' : null}}>{{$count['title']}}</option>
+                                @endforeach
                             </select>
                             <div class="error"></div>
                         </div>
                         <div class="select2_wrapper">
                             <select id="memory-type-1" name="configuration[1][memory_type]" data-placeholder="Тип" required>
                                 <option value=""></option>
-                                <option value="DDR3" {{(getConf('memory_type','1') == 'DDR3') ? 'selected' : null}}>DDR3</option>
-                                <option value="DDR4" {{(getConf('memory_type','1') == 'DDR4') ? 'selected' : null}}>DDR4</option>
-                                <option value="DDR5" {{(getConf('memory_type','1') == 'DDR5') ? 'selected' : null}}>DDR5</option>
+                                @foreach($memoryType as $key=> $type)
+                                    @if($type['type_memory'] == 0)
+                                        <option value="{{$type['title']}}" {{(getConf('memory_type','1') === $type['title']) ? 'selected' : null}}>{{$type['title']}}</option>
+                                    @endif
+                                @endforeach
                             </select>
                             <div class="error"></div>
                         </div>
@@ -347,10 +350,11 @@ declare(strict_types=1);
                     <div class="select2_wrapper">
                         <select id="hard-disc-type-1" name="configuration[1][hard_disc_type]" data-placeholder="Тип" required>
                             <option value=""></option>
-                            <option value="HDD" {{(getConf('hard_disc_type','1') == 'HDD') ? 'selected' : null}}>HDD</option>
-                            <option value="SSD" {{(getConf('hard_disc_type','1') == 'SSD') ? 'selected' : null}}>SSD</option>
-                            <option value="SSD+HDD" {{(getConf('hard_disc_type','1') == 'SSD+HDD') ? 'selected' : null}}>SSD+HDD</option>
-                            <option value="Бездисковая система" {{(getConf('hard_disc_type','1') == 'Бездисковая система') ? 'selected' : null}}>Бездисковая система</option>
+                            @foreach($memoryType as $key=> $type)
+                                @if($type['type_memory'] == 1)
+                                    <option value="{{$type['title']}}" {{(getConf('hard_disc_type','1') === $type['title']) ? 'selected' : null}}>{{$type['title']}}</option>
+                                @endif
+                            @endforeach
                         </select>
                         <div class="error"></div>
                     </div>
@@ -429,7 +433,7 @@ declare(strict_types=1);
                             <select id="monitor-type-1" name="configuration[1][monitor_type]" data-placeholder="Тип" required>
                                 <option value=""></option>
                                 @foreach ($monitor_types as $vendor)
-                                    <option value="{{$vendor}}" {{(getConf('monitor_type','1') == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
+                                    <option value="{{$vendor['title']}}" {{(getConf('monitor_type','1') == $vendor['title']) ? 'selected' : null}}>{{$vendor['title']}}</option>
                                 @endforeach
                             </select>
                             <div class="error"></div>
@@ -438,7 +442,7 @@ declare(strict_types=1);
                             <select id="monitor-hertz-1" name="configuration[1][monitor_hertz]" data-placeholder="Гц" required>
                                 <option value=""></option>
                                 @foreach ($monitor_hertz as $vendor)
-                                    <option value="{{$vendor}}" {{(getConf('monitor_hertz','1') == $vendor) ? 'selected' : null}}>{{$vendor}}</option>
+                                    <option value="{{$vendor['title']}}" {{(getConf('monitor_hertz','1') == $vendor['title']) ? 'selected' : null}}>{{$vendor['title']}}</option>
                                 @endforeach
                             </select>
                             <div class="error"></div>
@@ -452,9 +456,9 @@ declare(strict_types=1);
                     <div class="select2_wrapper">
                         <select id="internet-1" name="configuration[1][internet]" data-placeholder="Скорость" required>
                             <option value=""></option>
-                            <option value="<100 Мбит" {{(getConf('internet','1') == '<100 Мбит') ? 'selected' : null}}>&lt;100 Мбит</option>
-                            <option value=">100 Мбит" {{(getConf('internet','1') == '>100 Мбит') ? 'selected' : null}}>&gt;100 Мбит</option>
-                            <option value=">1 Гбит" {{(getConf('internet','1') == '>1 Гбит') ? 'selected' : null}}>&gt;1 Гбит</option>
+                            @foreach($internetSpeed as $key=> $speed)
+                                <option value="{{$speed['title']}}" {{(getConf('internet','1') == $speed['title']) ? 'selected' : null}}>{{$speed['title']}}</option>
+                            @endforeach
                         </select>
                         <div class="error"></div>
                     </div>
@@ -502,9 +506,11 @@ declare(strict_types=1);
                         <select id="cpu-model-{n}" name="configuration[{n}][cpu_model]" data-placeholder="Модель" data-select2-depends-on="#cpu-vendor-{n}" required>
                             <option value=""></option>
                             @foreach($cpus as $key=>$vendor)
-                                @foreach($vendor as $model)
-                                    <option value="{{$model}}" data-depend-value="{{$key}}">{{$model}}</option>
-                                @endforeach
+                                @if(is_array($vendor))
+                                    @foreach($vendor as $model)
+                                        <option value="{{$model}}" data-depend-value="{{$key}}">{{$model}}</option>
+                                    @endforeach
+                                @endif
                             @endforeach
                         </select>
                         <div class="error"></div>
@@ -546,21 +552,20 @@ declare(strict_types=1);
                     <div class="select2_wrapper">
                         <select id="memory-size-{n}" name="configuration[{n}][memory_size]" data-placeholder="Объем" required>
                             <option value=""></option>
-                            <option value="4 Gb">4 Gb</option>
-                            <option value="6 Gb">6 Gb</option>
-                            <option value="8 Gb">8 Gb</option>
-                            <option value="16 Gb">16 Gb</option>
-                            <option value="32 Gb">32 Gb</option>
-                            <option value="64 Gb">64 Gb</option>
+                            @foreach($memoryCount as $key=> $count)
+                                <option value="{{$count['title']}}">{{$count['title']}}</option>
+                            @endforeach
                         </select>
                         <div class="error"></div>
                     </div>
                     <div class="select2_wrapper">
                         <select id="memory-type-{n}" name="configuration[{n}][memory_type]" data-placeholder="Тип" required>
                             <option value=""></option>
-                            <option value="DDR3">DDR3</option>
-                            <option value="DDR4">DDR4</option>
-                            <option value="DDR5">DDR5</option>
+                            @foreach($memoryType as $key=> $type)
+                                @if($type['type_memory'] == 0)
+                                    <option value="{{$type['title']}}">{{$type['title']}}</option>
+                                @endif
+                            @endforeach
                         </select>
                         <div class="error"></div>
                     </div>
@@ -573,10 +578,11 @@ declare(strict_types=1);
                 <div class="select2_wrapper">
                     <select id="hard-disc-type-{n}" name="configuration[{n}][hard_disc_type]" data-placeholder="Тип" required>
                         <option value=""></option>
-                        <option value="HDD">HDD</option>
-                        <option value="SSD">SSD</option>
-                        <option value="SSD+HDD">SSD+HDD</option>
-                        <option value="Бездисковая система">Бездисковая система</option>
+                        @foreach($memoryType as $key=> $type)
+                            @if($type['type_memory'] == 1)
+                                <option value="{{$type['title']}}" >{{$type['title']}}</option>
+                            @endif
+                        @endforeach
                     </select>
                     <div class="error"></div>
                 </div>
@@ -655,7 +661,7 @@ declare(strict_types=1);
                         <select id="monitor-type-{n}" name="configuration[{n}][monitor_type]" data-placeholder="Дюймы" required>
                             <option value=""></option>
                             @foreach ($monitor_types as $vendor)
-                                <option value="{{$vendor}}">{{$vendor}}</option>
+                                <option value="{{$vendor['title']}}">{{$vendor['title']}}</option>
                             @endforeach
                         </select>
                         <div class="error"></div>
@@ -664,7 +670,7 @@ declare(strict_types=1);
                         <select id="monitor-hertz-{n}" name="configuration[{n}][monitor_hertz]" data-placeholder="Гц" required>
                             <option value=""></option>
                             @foreach ($monitor_hertz as $vendor)
-                                <option value="{{$vendor}}">{{$vendor}}</option>
+                                <option value="{{$vendor['title']}}">{{$vendor['title']}}</option>
                             @endforeach
                         </select>
                         <div class="error"></div>
@@ -678,9 +684,9 @@ declare(strict_types=1);
                 <div class="select2_wrapper">
                     <select id="internet-{n}" name="configuration[{n}][internet]" data-placeholder="Скорость" required>
                         <option value=""></option>
-                        <option value="<100 Мбит">&lt;100 Мбит</option>
-                        <option value=">100 Мбит">&gt;100 Мбит</option>
-                        <option value=">1 Гбит">&gt;1 Гбит</option>
+                        @foreach($internetSpeed as $key=> $speed)
+                            <option value="{{$speed['title']}}" >{{$speed['title']}}</option>
+                        @endforeach
                     </select>
                     <div class="error"></div>
                 </div>
