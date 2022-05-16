@@ -16,7 +16,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class TypeDevices extends Model
 {
-    use \Staudenmeir\EloquentHasManyDeep\HasRelationships;
     use SoftDeletes;
 
 
