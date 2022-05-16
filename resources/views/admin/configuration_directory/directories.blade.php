@@ -31,8 +31,8 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                     <tr class="trNameColums">
-                                        @if(!empty($optionsForView[$typeDevice]))
-                                            @foreach($optionsForView[$typeDevice] as $type)
+                                        @if(!empty($resultForView['optionsForView'][$typeDevice]))
+                                            @foreach($resultForView['optionsForView'][$typeDevice] as $type)
                                                 <th width="80" >
                                                     <div class="typeColumn"> {{ $type }}</div>
                                                     @if($loop->first)
