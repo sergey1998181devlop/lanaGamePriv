@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Custom fonts for this template -->
-  
+
   <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
@@ -52,13 +52,13 @@
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Панель</span></a>
       </li>
-  
+
       <li class="nav-item">
           <a class="nav-link <?=($page=="clubs" || $page=="hidded-clubs" || $page=="new-clubs" || $page=="deleted-clubs" || $page=="drafts") ? null: 'collapsed' ?>" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
               <i class="fas fa-network-wired"></i>
               <span>Клубы</span>
           </a>
-        
+
           <div id="collapseTwo" class="collapse <?=($page=="clubs" || $page=="hidded-clubs" || $page=="new-clubs" || $page=="deleted-clubs" || $page=="drafts") ? ' show': null ?> collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
               <div class="bg-white py-2 collapse-inner rounded">
                   <a class="collapse-item<?=($page=="clubs")? ' active': null ?>" href="{{url('/panel/clubs/clubs')}}">Все клубы</a>
@@ -66,18 +66,23 @@
                   <a class="collapse-item<?=($page=="hidded-clubs")? ' active': null ?>" href="{{url('/panel/clubs/hidded-clubs')}}">Снятые клубы</a>
                   <a class="collapse-item<?=($page=="deleted-clubs")? ' active': null ?>" href="{{url('/panel/clubs/deleted-clubs')}}">Удалённые</a>
                   <a class="collapse-item<?=($page=="drafts")? ' active': null ?>" href="{{url('/panel/clubs/drafts')}}">Черновики</a>
-                  
+
               </div>
           </div>
       </li>
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item <?=($page=="directory") ? ' active': null ?> ">
+            <a class="nav-link" href="{{url('/panel/configuration/directory')}}">
+                <i class="fas fa-fw fa-laptop"></i>
+                <span>Справочник конфигураций</span></a>
+        </li>
 
-      
       <li class="nav-item">
           <a class="nav-link <?php if($page!="posts" && $page!="addPost") echo 'collapsed'; ?> " data-toggle="collapse" data-target="#collapsePosts" aria-expanded="false" aria-controls="collapsePosts">
           <i class="far fa-newspaper"></i>
               <span>Статьи</span>
           </a>
-        
+
           <div id="collapsePosts" class="collapse <?=($page=="posts" || $page=="addPost") ? ' show': null ?> collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
               <div class="bg-white py-2 collapse-inner rounded">
                   <a class="collapse-item <?php if($page=="posts") echo 'active'; ?>" href="{{url('panel/posts/all')}}">Все</a>
@@ -90,7 +95,7 @@
           <i class="far fa-newspaper"></i>
               <span>Объявления</span>
           </a>
-        
+
           <div id="collapseOffers" class="collapse <?=($page=="offers" || $page=="offersClubs") ? ' show': null ?> collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
               <div class="bg-white py-2 collapse-inner rounded">
                   <a class="collapse-item <?php if($page=="offers") echo 'active'; ?>" href="{{url('panel/offers/all')}}">От брендов</a>
@@ -103,12 +108,12 @@
           <i class="fas fa-users"></i>
               <span>Пользователи</span>
           </a>
-        
+
           <div id="collapseUsers" class="collapse <?=($page=="users" || $page=="players") ? ' show': null ?> collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
               <div class="bg-white py-2 collapse-inner rounded">
                   <a class="collapse-item <?php if($page=="users") echo 'active'; ?>" href="{{url('panel/users')}}">Представители клубов</a>
                   <a class="collapse-item <?php if($page=="players") echo 'active'; ?>" href="{{url('panel/players')}}">Ланнеры</a>
-                  
+
               </div>
           </div>
       </li>
@@ -124,7 +129,7 @@
           <i class="fas fa-comments"></i>
               <span>Обратная связь  {!!$totalMsgs > 0 ? '<span class="badge badge-pill badge-warning">'.$totalMsgs.'</span>' : null!!} </span>
           </a>
-        
+
           <div id="collapseTwoContact" class="collapse <?=($page=="contacts" || $page=="langame_soft" || $page=="error-reports" || $page=="club_errors"  )? ' show': null ?> collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
               <div class="bg-white py-2 collapse-inner rounded">
                   <a class="collapse-item<?=($page=="contacts")? ' active': null ?>" href="{{url('/panel/contacts')}}">Напишите нам <span class="badge badge-pill badge-warning">{{$newMessagesC > 0 ? $newMessagesC : null}}</span></a>
@@ -172,7 +177,7 @@
                     <ul class="navbar-nav mr-auto">
 
                     </ul>
-                 
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
@@ -192,7 +197,7 @@
                                     </form>
                                 </div>
                             </li>
-                           
+
                     </ul>
                 </div>
       </nav>

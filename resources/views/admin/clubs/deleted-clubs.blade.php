@@ -43,7 +43,11 @@
             <td><a href="{{$CUrl}}">{{$club->club_name}}</a></td>
 
             <td>{{$club->city->name}}</td>
-            <td><a href="{{url('panel/users')}}?search={{$club->user->phone}}">{{$club->user->name}}</a></td>
+              @if($club->user)
+                  <td><a href="{{url('panel/users')}}?search={{$club->user->phone}}">{{$club->user->name}}</a></td>
+              @else
+                  <td>-</td>
+              @endif
             <?php
               $status = ($club->created_at == $club->updated_at ) ? 'первичная модерация' : 'повторная модерация';
               $color= (count($club->comments) > 0 && $club->updated_at > $club->comments[0]->created_at) ? 'background:#ffcf92':null;

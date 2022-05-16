@@ -1,0 +1,21 @@
+.to-show {
+    display: none;
+}
+.to-hover:hover .to-show {
+    display: block;
+}
+.del-point{
+    display: none;
+    cursor: pointer;
+    text-align: center;
+}
+.model-item{
+    height: 92px;
+}
+.add-model{
+    cursor: pointer;
+}
+.typeColumn{
+    float: left;
+    margin-right: 10px;
+}
